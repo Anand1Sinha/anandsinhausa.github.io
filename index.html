@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Why Hindu Americans Must Organize Now — Americans4Hindus</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,300;1,8..60,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --deep-navy: #1a2340;
+    --saffron: #e87020;
+    --saffron-light: #f5a050;
+    --cream: #faf8f4;
+    --warm-gray: #6b6560;
+    --rule: #e0d8cc;
+    --text: #2c2825;
+    --accent-bg: #fff8f0;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Source Serif 4', Georgia, serif;
+    background: var(--cream);
+    color: var(--text);
+    font-size: 18px;
+    line-height: 1.75;
+  }
+
+  /* Header */
+  .publication-bar {
+    background: var(--deep-navy);
+    padding: 14px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .publication-name {
+    font-family: 'Playfair Display', serif;
+    color: #fff;
+    font-size: 15px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .publication-tag {
+    font-family: 'Source Serif 4', serif;
+    color: var(--saffron-light);
+    font-size: 12px;
+    letter-spacing: 0.05em;
+  }
+
+  /* Hero */
+  .hero {
+    background: var(--deep-navy);
+    padding: 60px 24px 50px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: radial-gradient(ellipse at 30% 50%, rgba(232,112,32,0.15) 0%, transparent 60%),
+                radial-gradient(ellipse at 70% 50%, rgba(232,112,32,0.08) 0%, transparent 60%);
+  }
+
+  .hero-label {
+    font-family: 'Source Serif 4', serif;
+    font-size: 12px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--saffron);
+    margin-bottom: 20px;
+    position: relative;
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 6vw, 48px);
+    color: #fff;
+    line-height: 1.2;
+    max-width: 720px;
+    margin: 0 auto 24px;
+    position: relative;
+  }
+
+  .hero h1 em {
+    color: var(--saffron-light);
+    font-style: italic;
+  }
+
+  .hero-sub {
+    font-size: 16px;
+    color: rgba(255,255,255,0.65);
+    max-width: 520px;
+    margin: 0 auto;
+    position: relative;
+    font-style: italic;
+  }
+
+  /* Article container */
+  .article {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 48px 24px 80px;
+  }
+
+  /* Byline */
+  .byline {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding-bottom: 28px;
+    border-bottom: 1px solid var(--rule);
+    margin-bottom: 36px;
+  }
+
+  .byline-avatar {
+    width: 42px;
+    height: 42px;
+    background: var(--deep-navy);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Playfair Display', serif;
+    color: var(--saffron);
+    font-size: 16px;
+    flex-shrink: 0;
+  }
+
+  .byline-text {
+    font-size: 14px;
+    color: var(--warm-gray);
+    line-height: 1.4;
+  }
+
+  .byline-name {
+    font-weight: 600;
+    color: var(--text);
+    font-size: 15px;
+  }
+
+  /* Pull quote / opener */
+  .opener {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(19px, 3vw, 23px);
+    line-height: 1.5;
+    color: var(--deep-navy);
+    border-left: 3px solid var(--saffron);
+    padding-left: 20px;
+    margin-bottom: 36px;
+    font-style: italic;
+  }
+
+  /* Body text */
+  p {
+    margin-bottom: 24px;
+    font-size: 17px;
+    color: #3a3530;
+  }
+
+  /* Section headers */
+  .section-label {
+    font-family: 'Source Serif 4', serif;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--saffron);
+    margin: 48px 0 8px;
+    display: block;
+  }
+
+  h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(20px, 3vw, 26px);
+    color: var(--deep-navy);
+    line-height: 1.3;
+    margin-bottom: 18px;
+  }
+
+  /* Issue cards */
+  .issue-card {
+    background: #fff;
+    border: 1px solid var(--rule);
+    border-left: 4px solid var(--saffron);
+    border-radius: 0 8px 8px 0;
+    padding: 20px 24px;
+    margin-bottom: 16px;
+  }
+
+  .issue-card-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--deep-navy);
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+  }
+
+  .issue-card p {
+    font-size: 15px;
+    margin-bottom: 0;
+    color: #4a4540;
+    line-height: 1.65;
+  }
+
+  /* Pull quote */
+  .pull-quote {
+    background: var(--accent-bg);
+    border-top: 2px solid var(--saffron);
+    border-bottom: 2px solid var(--saffron);
+    padding: 28px 32px;
+    margin: 40px 0;
+    text-align: center;
+  }
+
+  .pull-quote p {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(18px, 3vw, 22px);
+    color: var(--deep-navy);
+    font-style: italic;
+    margin-bottom: 0;
+    line-height: 1.45;
+  }
+
+  /* Trust block */
+  .trust-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin: 24px 0 32px;
+  }
+
+  .trust-item {
+    background: #fff;
+    border: 1px solid var(--rule);
+    border-radius: 8px;
+    padding: 16px 18px;
+    text-align: center;
+  }
+
+  .trust-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    color: var(--saffron);
+    font-weight: 700;
+    display: block;
+    line-height: 1.1;
+  }
+
+  .trust-label {
+    font-size: 12px;
+    color: var(--warm-gray);
+    margin-top: 4px;
+    line-height: 1.3;
+  }
+
+  /* Join CTA */
+  .join-block {
+    background: var(--deep-navy);
+    border-radius: 12px;
+    padding: 36px 32px;
+    margin: 40px 0;
+    text-align: center;
+  }
+
+  .join-block h3 {
+    font-family: 'Playfair Display', serif;
+    color: #fff;
+    font-size: 22px;
+    margin-bottom: 8px;
+  }
+
+  .join-block p {
+    color: rgba(255,255,255,0.7);
+    font-size: 15px;
+    margin-bottom: 24px;
+  }
+
+  .join-options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+
+  .join-option {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 8px;
+    padding: 16px;
+    text-align: center;
+  }
+
+  .join-option-price {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px;
+    color: var(--saffron-light);
+    font-weight: 700;
+    display: block;
+  }
+
+  .join-option-label {
+    font-size: 12px;
+    color: rgba(255,255,255,0.6);
+    margin-top: 4px;
+    line-height: 1.3;
+  }
+
+  .join-note {
+    font-size: 13px;
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 20px !important;
+    font-style: italic;
+  }
+
+  .cta-button {
+    display: inline-block;
+    background: var(--saffron);
+    color: #fff;
+    font-family: 'Source Serif 4', serif;
+    font-size: 15px;
+    font-weight: 600;
+    padding: 14px 36px;
+    border-radius: 6px;
+    text-decoration: none;
+    letter-spacing: 0.02em;
+    transition: background 0.2s;
+  }
+
+  .cta-button:hover { background: var(--saffron-light); }
+
+  /* Contact */
+  .contact-block {
+    background: var(--accent-bg);
+    border: 1px solid var(--rule);
+    border-radius: 8px;
+    padding: 24px 28px;
+    margin: 32px 0;
+  }
+
+  .contact-block p {
+    font-size: 15px;
+    margin-bottom: 10px;
+  }
+
+  .contact-block p:last-child { margin-bottom: 0; }
+
+  .contact-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--deep-navy);
+  }
+
+  .contact-detail {
+    color: var(--warm-gray);
+    font-size: 14px;
+  }
+
+  a { color: var(--saffron); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  hr {
+    border: none;
+    border-top: 1px solid var(--rule);
+    margin: 40px 0;
+  }
+
+  /* Footer */
+  footer {
+    background: var(--deep-navy);
+    color: rgba(255,255,255,0.5);
+    text-align: center;
+    padding: 28px 24px;
+    font-size: 13px;
+    line-height: 1.7;
+  }
+
+  footer a { color: var(--saffron-light); }
+
+  @media (max-width: 480px) {
+    .join-options { grid-template-columns: 1fr; }
+    .trust-grid { grid-template-columns: 1fr 1fr; }
+    .join-block { padding: 28px 20px; }
+    .article { padding: 36px 18px 60px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="publication-bar">
+  <span class="publication-name">Americans4Hindus</span>
+  <span class="publication-tag">A4H Michigan Chapter</span>
+</div>
+
+<div class="hero">
+  <div class="hero-label">Community Briefing — 2025</div>
+  <h1>Policies are being written that affect us.<br><em>Most of us don't even know.</em></h1>
+  <p class="hero-sub">Why Hindu Americans must organize now — and what we are doing about it.</p>
+</div>
+
+<article class="article">
+
+  <div class="byline">
+    <div class="byline-avatar">AS</div>
+    <div class="byline-text">
+      <div class="byline-name">Anand Sinha</div>
+      Director, Outreach — A4H Michigan Chapter
+    </div>
+  </div>
+
+  <p class="opener">We are the most educated, highest-earning ethnic group in America. And one of the least politically organized. That gap is no longer just embarrassing. It is costly.</p>
+
+  <p>Policies have been made — and more are coming — that directly affect you, your children, and their future in schools, colleges, and workplaces. Most Hindu Americans are not even aware this is happening. Because we have built almost no political infrastructure to monitor, respond to, or influence the decisions that shape our lives.</p>
+
+  <p>Every other community figured this out long ago. Jewish Americans built AIPAC. Cuban Americans built powerful political networks in Florida. Irish Americans shaped machine politics for a century. We have been largely absent — and the consequences are beginning to show.</p>
+
+  <div class="pull-quote">
+    <p>"If we are not at the table, we will be on the menu."</p>
+  </div>
+
+  <span class="section-label">What is already happening</span>
+  <h2>Five Issues Affecting Our Community Right Now</h2>
+
+  <div class="issue-card">
+    <div class="issue-card-title">1. The Caste Trap — A Legal Weapon Targeting Hindu Identity</div>
+    <p>California's SB403 proposed making "caste" a protected legal category in a way that would have made temple associations, Sanskrit study, guru-shishya relationships, and Diwali gatherings legally suspect. It passed the California legislature. Only a governor's veto stopped it. Similar bills are being drafted in other states. Major tech companies have already embedded caste in HR policies in ways that implicate Indian American employees and students unlike any other ethnic group. Your children will carry this into every job application, every campus, every workplace.</p>
+  </div>
+
+  <div class="issue-card">
+    <div class="issue-card-title">2. Hinduism Misrepresented — In Classrooms and on Campuses</div>
+    <p>Ask any Hindu child what they have been taught about their faith. Monkey God. 33 million Gods. The Shivling misrepresented and stripped of all spiritual meaning. Our sacred swastika — used in Hindu Rangoli for 5,000 years — equated to the Nazi Hakenkreuz. Hindu Americans have been reported to authorities for displaying it in their own homes. South Asian Studies programs increasingly treat Hinduism not as a living spiritual tradition but as a social hierarchy to be dismantled. No other major faith is treated this way without consequence.</p>
+  </div>
+
+  <div class="issue-card">
+    <div class="issue-card-title">3. DEI Frameworks Working Against Our Children</div>
+    <p>Indian American students are being passed over at elite universities despite outstanding academic records — treated as "overrepresented." In corporate environments, South Asians are the one group DEI initiatives consistently disadvantage: not protected enough to benefit, not "overrepresented" enough to be left alone. Without an organized political voice, we have no seat at the table when these policies are written.</p>
+  </div>
+
+  <div class="issue-card">
+    <div class="issue-card-title">4. Temple Attacks — Met With Political Silence</div>
+    <p>Hate crimes and vandalism targeting Hindu Americans have risen steadily. These incidents receive a fraction of the media and political attention given to similar attacks on other faith communities — because political attention follows political organization, and we have neither.</p>
+  </div>
+
+  <div class="issue-card">
+    <div class="issue-card-title">5. No Rapid Response When Crisis Hits</div>
+    <p>Every time a hostile bill surfaces or a temple is vandalized, our community trends on WhatsApp for 48 hours — then disappears with zero political consequence for anyone. We have no pre-built infrastructure, no relationships with legislators, no rapid response capability. The next crisis will not announce itself in advance.</p>
+  </div>
+
+  <hr>
+
+  <span class="section-label">The Solution</span>
+  <h2>Americans4Hindus — The Only Hindu PAC in America</h2>
+
+  <p>Every other Hindu organization in America is a 501(c)(3) advocacy group — legally prohibited from working in the political space. Americans4Hindus (A4H) is different. It is a registered, non-partisan Super PAC — the one organization legally able to fund candidates, build political relationships, and fight back on behalf of our community.</p>
+
+  <p>When we are not engaged in public policy, important decisions get made without fully understanding our perspective. A4H exists to change that.</p>
+
+  <div class="trust-grid">
+    <div class="trust-item">
+      <span class="trust-number">1,000+</span>
+      <div class="trust-label">Members across America</div>
+    </div>
+    <div class="trust-item">
+      <span class="trust-number">28</span>
+      <div class="trust-label">State chapters active</div>
+    </div>
+    <div class="trust-item">
+      <span class="trust-number">26</span>
+      <div class="trust-label">Member Congressional Caucus</div>
+    </div>
+    <div class="trust-item">
+      <span class="trust-number">Every 3mo</span>
+      <div class="trust-label">Audits published publicly</div>
+    </div>
+  </div>
+
+  <p>A4H works directly with the 26-member Hindu, Buddhist, Sikh & Jain Congressional Caucus to push back on Hinduphobic legislation before crises occur — not after. The Hindu Rajneeti Academy is building the next generation of Hindu American political leaders. The organization is entirely volunteer-run with no salaries — all contributions go directly toward funding candidates who champion Hindu American issues.</p>
+
+  <hr>
+
+  <div class="join-block">
+    <h3>Join Americans4Hindus</h3>
+    <p>All contributions go directly toward funding candidates who champion Hindu American issues.</p>
+
+    <div class="join-options">
+      <div class="join-option">
+        <span class="join-option-price">$100</span>
+        <div class="join-option-label">Annual Membership<br>General Member</div>
+      </div>
+      <div class="join-option">
+        <span class="join-option-price">$10,000</span>
+        <div class="join-option-label">Annual Trustee<br>Decides which candidates we fund</div>
+      </div>
+    </div>
+
+    <p class="join-note">To become a Member, select $100 at checkout and note "Annual Membership" in the comments. Trustees may contribute further as the PAC's needs require.</p>
+
+    <div style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap;">
+      <a class="cta-button" href="https://americans4hindus.org" target="_blank" style="background:transparent; border:2px solid var(--saffron); color:var(--saffron-light);">About A4H</a>
+      <a class="cta-button" href="https://secure.anedot.com/americans4hindus/donate" target="_blank">Become a Member →</a>
+    </div>
+  </div>
+
+  <div class="contact-block">
+    <p class="contact-name">Anand Sinha</p>
+    <p class="contact-detail">Director, Outreach — A4H Michigan Chapter</p>
+    <p class="contact-detail">(248) 872-3057 &nbsp;|&nbsp; <a href="mailto:Sinha.Anand@gmail.com">Sinha.Anand@gmail.com</a></p>
+    <p class="contact-detail" style="margin-top:10px;">National: <a href="mailto:contact@americans4hindus.org">contact@americans4hindus.org</a> &nbsp;|&nbsp; (405) 410-8214</p>
+    <p class="contact-detail">Website: <a href="https://americans4hindus.org" target="_blank">americans4hindus.org</a></p>
+  </div>
+
+</article>
+
+<footer>
+  <p>Americans4Hindus (A4H) &nbsp;·&nbsp; A registered non-partisan Super PAC</p>
+  <p>1000 Hunter Lane, Fremont, CA 94539 &nbsp;·&nbsp; <a href="mailto:contact@americans4hindus.org">contact@americans4hindus.org</a></p>
+  <p style="margin-top:8px; font-size:12px;">Paid for by Americans4Hindus PAC. Not authorized by any candidate or candidate's committee.</p>
+</footer>
+
+</body>
+</html>
