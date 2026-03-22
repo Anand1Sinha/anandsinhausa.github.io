@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MI-11 City Strategy — Dr. Anil Kumar</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Source+Serif+4:opsz,wght@8..60,300;8..60,400;8..60,600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #1a2340;
+    --gold: #c8960c;
+    --gold-light: #f0c040;
+    --red: #c0392b;
+    --green: #1a6b3c;
+    --cream: #fdfaf4;
+    --rule: #ddd5c0;
+    --text: #2c2825;
+    --gray: #6b6560;
+    --light: #f5f0e8;
+    --target-bg: #e8f5ee;
+    --compete-bg: #eef1f8;
+    --reach-bg: #fff8e8;
+    --deprio-bg: #f5f5f5;
+    --writeoff-bg: #fdf0ef;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Source Serif 4', Georgia, serif;
+    background: var(--cream);
+    color: var(--text);
+    font-size: 14px;
+  }
+
+  .header {
+    background: var(--navy);
+    padding: 20px 18px 16px;
+  }
+
+  .header::after {
+    content: '';
+    display: block;
+    height: 3px;
+    background: linear-gradient(90deg, var(--gold), var(--gold-light), var(--gold));
+    margin-top: 14px;
+  }
+
+  .header h1 {
+    font-family: 'Playfair Display', serif;
+    color: #fff;
+    font-size: 20px;
+    line-height: 1.25;
+  }
+
+  .header h1 span { color: var(--gold-light); }
+  .header-sub { font-size: 11px; color: rgba(255,255,255,0.5); margin-top: 5px; font-style: italic; }
+
+  /* STAT STRIP */
+  .stat-strip {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 2px;
+    background: var(--rule);
+    border-bottom: 3px solid var(--gold);
+  }
+
+  .stat-box {
+    background: var(--navy);
+    padding: 12px 8px;
+    text-align: center;
+  }
+
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    color: var(--gold-light);
+    font-weight: 700;
+    line-height: 1;
+    display: block;
+  }
+
+  .stat-label {
+    font-size: 9px;
+    color: rgba(255,255,255,0.5);
+    margin-top: 3px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    line-height: 1.3;
+  }
+
+  /* LEGEND */
+  .legend {
+    padding: 12px 18px;
+    background: #f0ece2;
+    border-bottom: 1px solid var(--rule);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+  }
+
+  .legend-title {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--gray);
+    font-weight: 600;
+    margin-right: 4px;
+  }
+
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 11px;
+    color: var(--text);
+  }
+
+  .legend-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 2px;
+    flex-shrink: 0;
+  }
+
+  /* TABLE */
+  .table-wrap { overflow-x: auto; }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+  }
+
+  thead tr {
+    background: var(--navy);
+  }
+
+  thead th {
+    color: rgba(255,255,255,0.8);
+    padding: 8px 10px;
+    text-align: left;
+    font-size: 9.5px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  thead th.right { text-align: right; }
+
+  tbody tr { border-bottom: 1px solid var(--rule); }
+
+  tbody td {
+    padding: 8px 10px;
+    vertical-align: middle;
+    line-height: 1.3;
+  }
+
+  tbody td.right { text-align: right; }
+
+  .city-name {
+    font-weight: 700;
+    font-size: 13px;
+    color: var(--navy);
+    line-height: 1.2;
+  }
+
+  .tier-badge {
+    display: inline-block;
+    font-size: 9px;
+    font-weight: 700;
+    padding: 1px 5px;
+    border-radius: 2px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-top: 3px;
+  }
+
+  .target .tier-badge { background: var(--green); color: #fff; }
+  .compete .tier-badge { background: var(--navy); color: var(--gold-light); }
+  .reach .tier-badge { background: var(--gold); color: var(--navy); }
+  .deprio .tier-badge { background: #999; color: #fff; }
+  .writeoff .tier-badge { background: var(--red); color: #fff; }
+
+  tr.target td { background: var(--target-bg); }
+  tr.compete td { background: var(--compete-bg); }
+  tr.reach td { background: var(--reach-bg); }
+  tr.deprio td { background: var(--deprio-bg); }
+  tr.writeoff td { background: var(--writeoff-bg); }
+
+  .votes-needed { color: var(--green); font-weight: 700; }
+  .spend { color: var(--navy); font-weight: 700; }
+
+  /* SUBTOTAL ROWS */
+  tr.subtotal td {
+    background: var(--navy) !important;
+    color: var(--gold-light);
+    font-weight: 700;
+    font-size: 11px;
+    padding: 6px 10px;
+  }
+
+  tr.subtotal td.right { color: #fff; }
+
+  /* TOTAL ROW */
+  tr.total-row td {
+    background: var(--navy) !important;
+    color: #fff;
+    font-weight: 700;
+    font-size: 13px;
+    padding: 10px 10px;
+    border-top: 3px solid var(--gold);
+  }
+
+  tr.total-row td .label { color: var(--gold-light); }
+  tr.total-row td.right { color: var(--gold-light); }
+
+  /* FOOTER */
+  .footer {
+    background: var(--navy);
+    padding: 14px 18px;
+    margin-top: 2px;
+  }
+
+  .footer p { font-size: 10px; color: rgba(255,255,255,0.4); line-height: 1.6; }
+  .footer .contact { color: var(--gold-light); font-size: 11px; font-weight: 600; margin-top: 4px; }
+
+  .note {
+    padding: 10px 18px;
+    background: #eef1f8;
+    border-left: 3px solid var(--navy);
+    margin: 0;
+  }
+
+  .note p { font-size: 11px; color: var(--gray); line-height: 1.5; }
+  .note strong { color: var(--navy); }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>MI-11 Campaign — <span>City-by-City Strategy</span></h1>
+  <div class="header-sub">29 Cities · Oakland County · Dr. Anil Kumar Independent · November 3, 2026</div>
+</div>
+
+<div class="stat-strip">
+  <div class="stat-box">
+    <span class="stat-num">29</span>
+    <div class="stat-label">Total Cities</div>
+  </div>
+  <div class="stat-box">
+    <span class="stat-num">152K</span>
+    <div class="stat-label">Votes to Win</div>
+  </div>
+  <div class="stat-box">
+    <span class="stat-num">$2.8M</span>
+    <div class="stat-label">Total Budget</div>
+  </div>
+</div>
+
+<div class="legend">
+  <span class="legend-title">Tier Key:</span>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--green)"></div> Target — Full Field</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--navy)"></div> Compete — Mixed</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--gold)"></div> Reach — Surrogate</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#999"></div> Deprioritize</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--red)"></div> Write-Off</div>
+</div>
+
+<div class="table-wrap">
+<table>
+  <thead>
+    <tr>
+      <th>City</th>
+      <th class="right">Precincts</th>
+      <th class="right">Est. 2026 Voters</th>
+      <th class="right">Kumar Needs</th>
+      <th class="right">Est. Spend</th>
+    </tr>
+  </thead>
+  <tbody>
+
+    <!-- TARGET TIER -->
+    <tr class="subtotal">
+      <td colspan="5">▸ TARGET CITIES — Full Field Operation · Kumar Personal Canvass</td>
+    </tr>
+    <tr class="target">
+      <td><div class="city-name">Waterford Township</div><span class="tier-badge">Target</span></td>
+      <td class="right">21</td>
+      <td class="right">33,624</td>
+      <td class="right votes-needed">13,449</td>
+      <td class="right spend">$57,700</td>
+    </tr>
+    <tr class="target">
+      <td><div class="city-name">Wixom City</div><span class="tier-badge">Target</span></td>
+      <td class="right">4</td>
+      <td class="right">6,403</td>
+      <td class="right votes-needed">2,561</td>
+      <td class="right spend">$57,700</td>
+    </tr>
+    <tr class="target">
+      <td><div class="city-name">Walled Lake City</div><span class="tier-badge">Target</span></td>
+      <td class="right">3</td>
+      <td class="right">3,310</td>
+      <td class="right votes-needed">1,324</td>
+      <td class="right spend">$57,700</td>
+    </tr>
+    <tr class="target">
+      <td><div class="city-name">Keego Harbor City</div><span class="tier-badge">Target</span></td>
+      <td class="right">1</td>
+      <td class="right">1,240</td>
+      <td class="right votes-needed">496</td>
+      <td class="right spend">$57,700</td>
+    </tr>
+    <tr class="target">
+      <td><div class="city-name">Sylvan Lake City</div><span class="tier-badge">Target</span></td>
+      <td class="right">1</td>
+      <td class="right">998</td>
+      <td class="right votes-needed">399</td>
+      <td class="right spend">$57,700</td>
+    </tr>
+
+    <!-- COMPETE TIER -->
+    <tr class="subtotal">
+      <td colspan="5">▸ COMPETE CITIES — Mixed Field + Digital · Kumar Selective Appearances</td>
+    </tr>
+    <tr class="compete">
+      <td><div class="city-name">Troy City</div><span class="tier-badge">Compete</span></td>
+      <td class="right">37</td>
+      <td class="right">39,034</td>
+      <td class="right votes-needed">15,613</td>
+      <td class="right spend">$38,500</td>
+    </tr>
+    <tr class="compete">
+      <td><div class="city-name">Farmington Hills City</div><span class="tier-badge">Compete</span></td>
+      <td class="right">27</td>
+      <td class="right">38,444</td>
+      <td class="right votes-needed">15,377</td>
+      <td class="right spend">$38,500</td>
+    </tr>
+    <tr class="compete">
+      <td><div class="city-name">West Bloomfield Twp</div><span class="tier-badge">Compete</span></td>
+      <td class="right">26</td>
+      <td class="right">35,083</td>
+      <td class="right votes-needed">14,033</td>
+      <td class="right spend">$38,500</td>
+    </tr>
+    <tr class="compete">
+      <td><div class="city-name">Bloomfield Township</div><span class="tier-badge">Compete</span></td>
+      <td class="right">18</td>
+      <td class="right">24,354</td>
+      <td class="right votes-needed">9,741</td>
+      <td class="right spend">$38,500</td>
+    </tr>
+    <tr class="compete">
+      <td><div class="city-name">Madison Heights City</div><span class="tier-badge">Compete</span></td>
+      <td class="right">9</td>
+      <td class="right">12,024</td>
+      <td class="right votes-needed">4,809</td>
+      <td class="right spend">$38,500</td>
+    </tr>
+    <tr class="compete">
+      <td><div class="city-name">Birmingham City</div><span class="tier-badge">Compete</span></td>
+      <td class="right">9</td>
+      <td class="right">11,819</td>
+      <td class="right votes-needed">4,727</td>
+      <td class="right spend">$38,500</td>
+    </tr>
+    <tr class="compete">
+      <td><div class="city-name">Auburn Hills City</div><span class="tier-badge">Compete</span></td>
+      <td class="right">9</td>
+      <td class="right">9,211</td>
+      <td class="right votes-needed">3,684</td>
+      <td class="right spend">$38,500</td>
+    </tr>
+    <tr class="compete">
+      <td><div class="city-name">Hazel Park City</div><span class="tier-badge">Compete</span></td>
+      <td class="right">6</td>
+      <td class="right">6,349</td>
+      <td class="right votes-needed">2,539</td>
+      <td class="right spend">$38,500</td>
+    </tr>
+    <tr class="compete">
+      <td><div class="city-name">Clawson City</div><span class="tier-badge">Compete</span></td>
+      <td class="right">5</td>
+      <td class="right">6,014</td>
+      <td class="right votes-needed">2,405</td>
+      <td class="right spend">$38,500</td>
+    </tr>
+    <tr class="compete">
+      <td><div class="city-name">Farmington City</div><span class="tier-badge">Compete</span></td>
+      <td class="right">5</td>
+      <td class="right">4,887</td>
+      <td class="right votes-needed">1,954</td>
+      <td class="right spend">$38,500</td>
+    </tr>
+    <tr class="compete">
+      <td><div class="city-name">Novi City</div><span class="tier-badge">Compete</span></td>
+      <td class="right">4</td>
+      <td class="right">2,839</td>
+      <td class="right votes-needed">1,135</td>
+      <td class="right spend">$38,500</td>
+    </tr>
+
+    <!-- REACH TIER -->
+    <tr class="subtotal">
+      <td colspan="5">▸ REACH CITIES — Surrogate Canvass · White Moderate Lead Team</td>
+    </tr>
+    <tr class="reach">
+      <td><div class="city-name">Commerce Township</div><span class="tier-badge">Reach</span></td>
+      <td class="right">15</td>
+      <td class="right">22,479</td>
+      <td class="right votes-needed">8,991</td>
+      <td class="right spend">$19,200</td>
+    </tr>
+    <tr class="reach">
+      <td><div class="city-name">White Lake Township</div><span class="tier-badge">Reach</span></td>
+      <td class="right">12</td>
+      <td class="right">15,548</td>
+      <td class="right votes-needed">6,219</td>
+      <td class="right spend">$19,200</td>
+    </tr>
+    <tr class="reach">
+      <td><div class="city-name">Bloomfield Hills City</div><span class="tier-badge">Reach</span></td>
+      <td class="right">2</td>
+      <td class="right">2,419</td>
+      <td class="right votes-needed">967</td>
+      <td class="right spend">$19,200</td>
+    </tr>
+    <tr class="reach">
+      <td><div class="city-name">Orchard Lake Village</div><span class="tier-badge">Reach</span></td>
+      <td class="right">1</td>
+      <td class="right">1,322</td>
+      <td class="right votes-needed">528</td>
+      <td class="right spend">$19,200</td>
+    </tr>
+    <tr class="reach">
+      <td><div class="city-name">Lake Angelus City</div><span class="tier-badge">Reach</span></td>
+      <td class="right">1</td>
+      <td class="right">210</td>
+      <td class="right votes-needed">84</td>
+      <td class="right spend">$19,200</td>
+    </tr>
+
+    <!-- DEPRIORITIZE -->
+    <tr class="subtotal">
+      <td colspan="5">▸ DEPRIORITIZE — Mail + Digital Only · Ticket-Splitters Focus</td>
+    </tr>
+    <tr class="deprio">
+      <td><div class="city-name">Royal Oak City</div><span class="tier-badge">Deprioritize</span></td>
+      <td class="right">24</td>
+      <td class="right">31,366</td>
+      <td class="right votes-needed">12,546</td>
+      <td class="right spend">$6,400</td>
+    </tr>
+    <tr class="deprio">
+      <td><div class="city-name">Berkley City</div><span class="tier-badge">Deprioritize</span></td>
+      <td class="right">7</td>
+      <td class="right">8,420</td>
+      <td class="right votes-needed">3,368</td>
+      <td class="right spend">$6,400</td>
+    </tr>
+
+    <!-- WRITE-OFF -->
+    <tr class="subtotal">
+      <td colspan="5">▸ WRITE-OFF — Digital Only · No Field Investment</td>
+    </tr>
+    <tr class="writeoff">
+      <td><div class="city-name">Pontiac City</div><span class="tier-badge">Write-Off</span></td>
+      <td class="right">18</td>
+      <td class="right">17,562</td>
+      <td class="right votes-needed">7,024</td>
+      <td class="right spend">$3,200</td>
+    </tr>
+    <tr class="writeoff">
+      <td><div class="city-name">Oak Park City</div><span class="tier-badge">Write-Off</span></td>
+      <td class="right">16</td>
+      <td class="right">14,223</td>
+      <td class="right votes-needed">5,689</td>
+      <td class="right spend">$3,200</td>
+    </tr>
+    <tr class="writeoff">
+      <td><div class="city-name">Ferndale City</div><span class="tier-badge">Write-Off</span></td>
+      <td class="right">9</td>
+      <td class="right">10,436</td>
+      <td class="right votes-needed">4,174</td>
+      <td class="right spend">$3,200</td>
+    </tr>
+    <tr class="writeoff">
+      <td><div class="city-name">Huntington Woods</div><span class="tier-badge">Write-Off</span></td>
+      <td class="right">5</td>
+      <td class="right">3,903</td>
+      <td class="right votes-needed">1,561</td>
+      <td class="right spend">$3,200</td>
+    </tr>
+    <tr class="writeoff">
+      <td><div class="city-name">Pleasant Ridge City</div><span class="tier-badge">Write-Off</span></td>
+      <td class="right">1</td>
+      <td class="right">1,657</td>
+      <td class="right votes-needed">662</td>
+      <td class="right spend">$3,200</td>
+    </tr>
+    <tr class="writeoff">
+      <td><div class="city-name">Royal Oak Township</div><span class="tier-badge">Write-Off</span></td>
+      <td class="right">2</td>
+      <td class="right">987</td>
+      <td class="right votes-needed">394</td>
+      <td class="right spend">$3,200</td>
+    </tr>
+
+    <!-- TOTAL -->
+    <tr class="total-row">
+      <td><span class="label">TOTAL — 29 Cities</span></td>
+      <td class="right">299</td>
+      <td class="right">386,208</td>
+      <td class="right">152,000+</td>
+      <td class="right">$840,000</td>
+    </tr>
+
+  </tbody>
+</table>
+</div>
+
+<div class="note">
+  <p><strong>Note on Spend:</strong> The $840,000 shown is field operations only (30% of $2.8M budget). Each city receives additional digital, TV, mailer, and lawn sign investment proportional to tier. Total campaign budget is $2.8M across all categories. Kumar vote targets assume 40% district-wide. Battleground precincts targeted at 45%.</p>
+</div>
+
+<div class="footer">
+  <p>MI-11 Campaign Victory Plan — Confidential Strategic Briefing — March 2026 — Americans4Hindus Michigan Chapter</p>
+  <p class="contact">Anand Sinha, Director Outreach A4H MI — (248) 872-3057 — Sinha.Anand@gmail.com</p>
+</div>
+
+</body>
+</html>
