@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MI-11 Campaign Briefing — Dr. Anil Kumar</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Source+Serif+4:opsz,wght@8..60,300;8..60,400;8..60,600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #1a2340;
+    --gold: #c8960c;
+    --gold-light: #f0c040;
+    --red: #c0392b;
+    --green: #1a6b3c;
+    --cream: #fdfaf4;
+    --rule: #ddd5c0;
+    --text: #2c2825;
+    --gray: #6b6560;
+    --light: #f5f0e8;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Source Serif 4', Georgia, serif;
+    background: var(--cream);
+    color: var(--text);
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  /* HEADER */
+  .header {
+    background: var(--navy);
+    padding: 24px 20px 20px;
+    position: relative;
+  }
+
+  .header::after {
+    content: '';
+    display: block;
+    height: 3px;
+    background: linear-gradient(90deg, var(--gold), var(--gold-light), var(--gold));
+    margin-top: 16px;
+  }
+
+  .header h1 {
+    font-family: 'Playfair Display', serif;
+    color: #fff;
+    font-size: 22px;
+    line-height: 1.25;
+  }
+
+  .header h1 span { color: var(--gold-light); }
+
+  .header-sub {
+    margin-top: 6px;
+    font-size: 12px;
+    color: rgba(255,255,255,0.55);
+    font-style: italic;
+  }
+
+  .header-badges {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 12px;
+  }
+
+  .badge {
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 4px;
+    padding: 4px 10px;
+    font-size: 11px;
+    color: var(--gold-light);
+  }
+
+  .badge span {
+    color: rgba(255,255,255,0.5);
+    font-size: 10px;
+    display: block;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  /* BODY */
+  .body { padding: 0 0 32px; }
+
+  /* STAT STRIP */
+  .stat-strip {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    background: var(--rule);
+    border-bottom: 2px solid var(--gold);
+  }
+
+  .stat-box {
+    background: var(--navy);
+    padding: 14px 12px;
+    text-align: center;
+  }
+
+  .stat-box.wide {
+    grid-column: span 2;
+  }
+
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    color: var(--gold-light);
+    font-weight: 700;
+    line-height: 1;
+    display: block;
+  }
+
+  .stat-label {
+    font-size: 10px;
+    color: rgba(255,255,255,0.55);
+    margin-top: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    line-height: 1.3;
+  }
+
+  /* SECTION */
+  .section {
+    padding: 20px 20px 0;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--navy);
+    border-bottom: 2px solid var(--gold);
+    padding-bottom: 4px;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .num {
+    background: var(--navy);
+    color: var(--gold-light);
+    font-size: 9px;
+    padding: 2px 6px;
+    border-radius: 2px;
+    font-family: 'Source Serif 4', serif;
+    letter-spacing: 0;
+  }
+
+  /* PATH BOX */
+  .path-box {
+    background: var(--navy);
+    border-radius: 8px;
+    padding: 16px;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr auto 1fr;
+    align-items: center;
+    gap: 4px;
+    margin-bottom: 12px;
+  }
+
+  .path-item { text-align: center; }
+
+  .path-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    color: var(--gold-light);
+    font-weight: 700;
+    display: block;
+    line-height: 1;
+  }
+
+  .path-label {
+    font-size: 9px;
+    color: rgba(255,255,255,0.55);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-top: 4px;
+    line-height: 1.3;
+  }
+
+  .path-arrow { color: var(--gold); font-size: 14px; opacity: 0.6; text-align: center; }
+
+  /* CARDS */
+  .card {
+    background: var(--light);
+    border-radius: 6px;
+    padding: 12px 14px;
+    border-left: 4px solid var(--gold);
+    margin-bottom: 10px;
+  }
+
+  .card.green { border-left-color: var(--green); }
+  .card.red { border-left-color: var(--red); }
+  .card.navy { border-left-color: var(--navy); background: #eef1f8; }
+
+  .card-title {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: var(--navy);
+    margin-bottom: 8px;
+  }
+
+  .card-title.green { color: var(--green); }
+  .card-title.red { color: var(--red); }
+
+  .bullet-list { list-style: none; padding: 0; }
+
+  .bullet-list li {
+    font-size: 13px;
+    padding: 3px 0 3px 16px;
+    position: relative;
+    color: #3a3530;
+    line-height: 1.45;
+  }
+
+  .bullet-list li::before {
+    content: '▸';
+    position: absolute;
+    left: 0;
+    color: var(--gold);
+    font-size: 10px;
+    top: 5px;
+  }
+
+  .bullet-list.green li::before { color: var(--green); }
+  .bullet-list.red li::before { color: var(--red); }
+  .bullet-list.navy li::before { color: var(--navy); }
+
+  /* CITY TABLE */
+  .city-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+    margin-bottom: 4px;
+  }
+
+  .city-table th {
+    background: var(--navy);
+    color: rgba(255,255,255,0.8);
+    padding: 6px 8px;
+    text-align: left;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .city-table td {
+    padding: 7px 8px;
+    border-bottom: 1px solid var(--rule);
+    vertical-align: middle;
+    line-height: 1.3;
+  }
+
+  .city-table tr:nth-child(even) td { background: var(--light); }
+  .city-table .city-name { font-weight: 700; color: var(--navy); font-size: 13px; }
+  .city-table .highlight { color: var(--green); font-weight: 700; }
+  .city-table .t1 { color: var(--red); font-weight: 700; }
+
+  /* BUDGET TABLE */
+  .budget-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+  }
+
+  .budget-table th {
+    background: var(--navy);
+    color: rgba(255,255,255,0.8);
+    padding: 6px 8px;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    text-align: left;
+  }
+
+  .budget-table td {
+    padding: 6px 8px;
+    border-bottom: 1px solid var(--rule);
+    vertical-align: top;
+    line-height: 1.3;
+  }
+
+  .budget-table tr:nth-child(even) td { background: var(--light); }
+  .budget-table .total td { background: #eef1f8; font-weight: 700; color: var(--navy); }
+  .budget-table .amount { text-align: right; font-weight: 700; color: var(--navy); white-space: nowrap; }
+
+  /* CALLOUT */
+  .callout {
+    margin: 20px 20px 0;
+    background: var(--navy);
+    border-radius: 8px;
+    padding: 16px 18px;
+    border-left: 4px solid var(--gold);
+  }
+
+  .callout p {
+    font-size: 13px;
+    color: rgba(255,255,255,0.88);
+    line-height: 1.6;
+    font-style: italic;
+  }
+
+  .callout strong { color: var(--gold-light); font-style: normal; }
+
+  /* FOOTER */
+  .footer {
+    background: var(--navy);
+    padding: 16px 20px;
+    margin-top: 24px;
+  }
+
+  .footer p {
+    font-size: 11px;
+    color: rgba(255,255,255,0.4);
+    line-height: 1.6;
+  }
+
+  .footer .contact {
+    color: var(--gold-light);
+    font-size: 12px;
+    font-weight: 600;
+    margin-top: 4px;
+  }
+
+  p.body-text {
+    font-size: 13px;
+    color: #3a3530;
+    line-height: 1.6;
+    margin-bottom: 10px;
+  }
+
+  .divider { height: 1px; background: var(--rule); margin: 20px 20px 0; }
+
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <h1>MI-11 Campaign Strategy<br><span>Road to Victory — Dr. Anil Kumar</span></h1>
+  <div class="header-sub">Executive Briefing — Americans4Hindus Michigan &amp; Anand Sinha, Director Outreach</div>
+  <div class="header-badges">
+    <div class="badge"><span>District</span>Michigan's 11th Congressional</div>
+    <div class="badge"><span>Election</span>November 3, 2026</div>
+    <div class="badge"><span>Candidate</span>Independent</div>
+  </div>
+</div>
+
+<!-- STAT STRIP -->
+<div class="stat-strip">
+  <div class="stat-box">
+    <span class="stat-num">380K</span>
+    <div class="stat-label">Est. 2026 District Votes</div>
+  </div>
+  <div class="stat-box">
+    <span class="stat-num">152K</span>
+    <div class="stat-label">Votes Needed to Win</div>
+  </div>
+  <div class="stat-box">
+    <span class="stat-num">299</span>
+    <div class="stat-label">Total Precincts</div>
+  </div>
+  <div class="stat-box">
+    <span class="stat-num">96</span>
+    <div class="stat-label">Battleground Precincts</div>
+  </div>
+  <div class="stat-box wide">
+    <span class="stat-num">40%</span>
+    <div class="stat-label">Minimum Vote Share to Win — Three-Way Race</div>
+  </div>
+</div>
+
+<div class="body">
+
+  <!-- 01 HOW BUILT -->
+  <div class="section">
+    <div class="section-title"><span class="num">01</span> How This Plan Was Built</div>
+    <p class="body-text">Built on four election cycles of Michigan SOS precinct-level data (2018–2024) covering all 299 precincts in Oakland County — the entirety of MI-11 post-2022 redistricting. Every number is traceable to source files. The analytical work produced a 10-sheet Excel workbook, a 163-page campaign playbook, and a targeting framework covering turnout, margins, swing trends, door-knock ROI, and a three-way race model.</p>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- 02 PATH TO VICTORY -->
+  <div class="section">
+    <div class="section-title"><span class="num">02</span> Path to Victory — The Math</div>
+    <div class="path-box">
+      <div class="path-item">
+        <span class="path-num">380K</span>
+        <div class="path-label">Total Votes</div>
+      </div>
+      <div class="path-arrow">▸</div>
+      <div class="path-item">
+        <span class="path-num">40%</span>
+        <div class="path-label">Kumar Target</div>
+      </div>
+      <div class="path-arrow">▸</div>
+      <div class="path-item">
+        <span class="path-num">152K</span>
+        <div class="path-label">Wins the Seat</div>
+      </div>
+    </div>
+    <p class="body-text">MI-11 is an open seat — Haley Stevens is running for Senate. In a three-way race, 40% wins. Kumar does not need a majority. The 96 battleground precincts hold ~148,000 votes. Winning 45% there while holding 38% elsewhere delivers the 152K target.</p>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- 03 CITY TARGETS -->
+  <div class="section">
+    <div class="section-title"><span class="num">03</span> Where the Votes Come From</div>
+    <table class="city-table">
+      <tr>
+        <th>City</th>
+        <th>Est. Votes</th>
+        <th>BG Prec.</th>
+        <th>T1</th>
+        <th>Target %</th>
+        <th>Target Votes</th>
+      </tr>
+      <tr>
+        <td class="city-name">Troy City</td>
+        <td>39,000</td>
+        <td>28</td>
+        <td class="t1">7</td>
+        <td class="highlight">47%</td>
+        <td class="highlight">18,330</td>
+      </tr>
+      <tr>
+        <td class="city-name">West Bloomfield</td>
+        <td>35,000</td>
+        <td>10</td>
+        <td class="t1">3</td>
+        <td class="highlight">44%</td>
+        <td class="highlight">15,400</td>
+      </tr>
+      <tr>
+        <td class="city-name">Waterford Twp</td>
+        <td>34,000</td>
+        <td>13</td>
+        <td class="t1">5</td>
+        <td class="highlight">48%</td>
+        <td class="highlight">16,320</td>
+      </tr>
+      <tr>
+        <td class="city-name">Farmington Hills</td>
+        <td>24,000</td>
+        <td>—</td>
+        <td class="t1">1</td>
+        <td>38%</td>
+        <td>9,120</td>
+      </tr>
+      <tr>
+        <td class="city-name">Rochester Hills</td>
+        <td>26,000</td>
+        <td>—</td>
+        <td>—</td>
+        <td>38%</td>
+        <td>9,880</td>
+      </tr>
+      <tr>
+        <td class="city-name" style="font-style:italic;font-weight:400;">All other cities</td>
+        <td>222,000</td>
+        <td>—</td>
+        <td>—</td>
+        <td>36%</td>
+        <td>79,920</td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- 04 DOORS -->
+  <div class="section">
+    <div class="section-title"><span class="num">04</span> Doors to Knock</div>
+    <div class="card navy">
+      <div class="card-title">Dr. Kumar — Personal Canvass</div>
+      <ul class="bullet-list navy">
+        <li><strong>37 precincts</strong> — Kumar personal canvass list (~63,000 votes)</li>
+        <li>3 passes each — Troy, West Bloomfield, Waterford</li>
+        <li>Focus: Indian American density + Tier 1 overlap</li>
+        <li>~4,500 personal door contacts across campaign</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title">Volunteer Canvass</div>
+      <ul class="bullet-list">
+        <li>Tier 1 — 23 precincts — 3 passes each</li>
+        <li>Tier 2 — 49 precincts — 2 passes each</li>
+        <li>Tier 3 — 24 precincts — 1 pass, after T1/T2 complete</li>
+        <li>~35,000 volunteer door contacts needed total</li>
+        <li>150+ trained volunteers required by July 2026</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- 05 ENDORSEMENTS -->
+  <div class="section">
+    <div class="section-title"><span class="num">05</span> Endorsements Needed</div>
+    <div class="card green">
+      <div class="card-title green">Priority Targets</div>
+      <ul class="bullet-list green">
+        <li>Indian American physicians &amp; business leaders (50+)</li>
+        <li>Oakland County elected officials — non-partisan</li>
+        <li>Hindu, Sikh, Jain community organizations</li>
+        <li>Small business associations — Troy, West Bloomfield</li>
+        <li>Minimum 100 named public endorsers by August 1</li>
+        <li>At least 3 elected officials, cross-party</li>
+        <li>1 faith community endorsement per priority city</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- 06 BUDGET -->
+  <div class="section">
+    <div class="section-title"><span class="num">06</span> Campaign Budget — $2.8M</div>
+    <table class="budget-table">
+      <tr>
+        <th>Category</th>
+        <th style="text-align:right;">Amount</th>
+        <th style="text-align:center;">%</th>
+      </tr>
+      <tr>
+        <td>Field Operations — canvassing, GOTV, staff</td>
+        <td class="amount">$840,000</td>
+        <td style="text-align:center;color:var(--gray);font-size:11px;">30%</td>
+      </tr>
+      <tr>
+        <td>Digital advertising — targeted social &amp; search</td>
+        <td class="amount">$560,000</td>
+        <td style="text-align:center;color:var(--gray);font-size:11px;">20%</td>
+      </tr>
+      <tr>
+        <td>TV / Cable / OTT advertising</td>
+        <td class="amount">$420,000</td>
+        <td style="text-align:center;color:var(--gray);font-size:11px;">15%</td>
+      </tr>
+      <tr>
+        <td>Lawn signs, mailers, print collateral</td>
+        <td class="amount">$336,000</td>
+        <td style="text-align:center;color:var(--gray);font-size:11px;">12%</td>
+      </tr>
+      <tr>
+        <td>Voter file, data, technology</td>
+        <td class="amount">$168,000</td>
+        <td style="text-align:center;color:var(--gray);font-size:11px;">6%</td>
+      </tr>
+      <tr>
+        <td>Community events &amp; earned media</td>
+        <td class="amount">$140,000</td>
+        <td style="text-align:center;color:var(--gray);font-size:11px;">5%</td>
+      </tr>
+      <tr>
+        <td>Legal, compliance, FEC reporting</td>
+        <td class="amount">$112,000</td>
+        <td style="text-align:center;color:var(--gray);font-size:11px;">4%</td>
+      </tr>
+      <tr>
+        <td>Reserve / contingency</td>
+        <td class="amount">$224,000</td>
+        <td style="text-align:center;color:var(--gray);font-size:11px;">8%</td>
+      </tr>
+      <tr class="total">
+        <td><strong>TOTAL</strong></td>
+        <td class="amount">$2,800,000</td>
+        <td style="text-align:center;font-size:11px;">100%</td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- 07 STRENGTHS -->
+  <div class="section">
+    <div class="section-title"><span class="num">07</span> Strengths &amp; Opponent Dynamics</div>
+    <div class="card green">
+      <div class="card-title green">Dr. Kumar's Strengths</div>
+      <ul class="bullet-list green">
+        <li>Elected to WSU Board of Governors (2018) — proven ballot performer</li>
+        <li>Physician credibility — healthcare is the top district issue</li>
+        <li>Indian American community — largest single ethnic bloc in MI-11</li>
+        <li>Independent positioning — captures DEM defectors + REP crossovers</li>
+        <li>Open seat — no incumbent advantage for anyone</li>
+        <li>Three-way race math — wins at 40%, not 50%</li>
+        <li>Dominant in Troy, West Bloomfield, Waterford — the three decisive cities</li>
+      </ul>
+    </div>
+    <div class="card red">
+      <div class="card-title red">Opponent — Jeremy Moss (Projected DEM)</div>
+      <ul class="bullet-list red">
+        <li>Strong institutional DEM backing — unions, party machinery</li>
+        <li>SD-7 State Senate base — name ID in parts of district</li>
+        <li>Superior early fundraising capacity</li>
+        <li><strong>Weakness:</strong> Unknown in Troy, West Bloomfield, Waterford</li>
+        <li><strong>Weakness:</strong> Progressive brand — wrong fit for suburban IND voters</li>
+        <li><strong>Weakness:</strong> No Indian American community relationships</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- CALLOUT -->
+  <div class="callout">
+    <p>The central strategic insight: <strong>Moss will consolidate the Democratic base — and that is not enough to win MI-11 in a three-way race.</strong> The election is decided by 80,000–100,000 independent and soft-partisan suburban voters in Troy, Waterford, and West Bloomfield. Dr. Kumar's physician credibility, independent positioning, and Indian American community strength make him the natural plurality winner in exactly the geography that decides this race.</p>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <p>MI-11 Campaign Victory Plan — Confidential Strategic Briefing — March 2026 — Americans4Hindus Michigan Chapter</p>
+  <p class="contact">Anand Sinha, Director Outreach A4H MI — (248) 872-3057 — Sinha.Anand@gmail.com</p>
+</div>
+
+</body>
+</html>
