@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Join Americans4Hindus — Michigan Chapter</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --deep-navy: #1a2340;
+    --saffron: #e87020;
+    --saffron-light: #f5a050;
+    --cream: #faf8f4;
+    --warm-gray: #6b6560;
+    --rule: #e0d8cc;
+    --text: #2c2825;
+    --accent-bg: #fff8f0;
+    --red: #c0392b;
+    --red-light: #fdf2f1;
+    --amber: #b8690a;
+    --amber-light: #fef5e4;
+    --green: #1a6b3c;
+    --green-light: #eaf5ef;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Source Serif 4', Georgia, serif;
+    background: var(--cream);
+    color: var(--text);
+    font-size: 18px;
+    line-height: 1.75;
+  }
+
+  /* TOP BAR */
+  .pub-bar {
+    background: var(--deep-navy);
+    padding: 13px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .pub-name {
+    font-family: 'Playfair Display', serif;
+    color: #fff;
+    font-size: 14px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .pub-tag {
+    color: var(--saffron-light);
+    font-size: 12px;
+    letter-spacing: 0.05em;
+    font-style: italic;
+  }
+
+  /* HERO */
+  .hero {
+    background: var(--deep-navy);
+    padding: 56px 32px 48px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 60% 40%, rgba(232,112,32,0.10) 0%, transparent 65%);
+    pointer-events: none;
+  }
+  .hero-kicker {
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--saffron);
+    margin-bottom: 18px;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(26px, 5vw, 46px);
+    font-weight: 900;
+    color: #fff;
+    line-height: 1.2;
+    max-width: 720px;
+    margin: 0 auto 20px;
+  }
+  .hero h1 em {
+    color: var(--saffron-light);
+    font-style: italic;
+  }
+  .hero-sub {
+    font-size: 16px;
+    color: rgba(255,255,255,0.65);
+    max-width: 560px;
+    margin: 0 auto;
+    line-height: 1.65;
+  }
+  .hero-rule {
+    width: 48px;
+    height: 2px;
+    background: var(--saffron);
+    margin: 28px auto 0;
+  }
+
+  /* ARTICLE */
+  article {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 48px 32px 64px;
+  }
+
+  /* SECTION HEADING — same style as v9 */
+  .section-label {
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--saffron);
+    margin-bottom: 6px;
+  }
+  h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--deep-navy);
+    margin-bottom: 18px;
+    line-height: 1.25;
+  }
+  h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--deep-navy);
+    margin-bottom: 10px;
+  }
+
+  hr {
+    border: none;
+    border-top: 1px solid var(--rule);
+    margin: 40px 0;
+  }
+
+  p {
+    margin-bottom: 1.3em;
+    color: var(--text);
+  }
+  p:last-child { margin-bottom: 0; }
+
+  /* PULL QUOTE */
+  .pull-quote {
+    border-left: 3px solid var(--saffron);
+    padding: 16px 24px;
+    margin: 32px 0;
+    background: var(--accent-bg);
+    border-radius: 0 6px 6px 0;
+  }
+  .pull-quote p {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-style: italic;
+    color: var(--deep-navy);
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  /* ISSUE CARDS — v9 style */
+  .issue-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin: 8px 0 32px;
+  }
+  .issue-card {
+    padding: 20px 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .issue-card:last-child { border-bottom: none; }
+  .issue-card-title {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: 16px;
+    color: var(--deep-navy);
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .issue-card-title .icon { font-size: 15px; }
+  .issue-card p {
+    font-size: 15px;
+    line-height: 1.65;
+    color: #4a4540;
+    margin: 0;
+  }
+
+  /* TRANSITION BLOCK — bridge to facts */
+  .bridge-block {
+    background: var(--deep-navy);
+    border-radius: 8px;
+    padding: 28px 28px;
+    margin: 36px 0;
+    color: rgba(255,255,255,0.88);
+    font-size: 16px;
+    line-height: 1.7;
+  }
+  .bridge-block p { color: rgba(255,255,255,0.88); margin-bottom: 0; }
+  .bridge-block strong { color: var(--saffron-light); }
+
+  /* EMGAGE COMPARISON — inserted as a natural content block */
+  .comparison-block {
+    background: var(--accent-bg);
+    border: 1px solid #f0e4d0;
+    border-left: 4px solid var(--saffron);
+    border-radius: 0 8px 8px 0;
+    padding: 24px 28px;
+    margin: 28px 0;
+  }
+  .comparison-block h3 {
+    font-size: 16px;
+    color: var(--deep-navy);
+    margin-bottom: 14px;
+  }
+  .comparison-block p {
+    font-size: 15px;
+    line-height: 1.7;
+    color: #3a3330;
+    margin-bottom: 12px;
+  }
+  .comparison-block p:last-child { margin-bottom: 0; }
+  .comparison-block .stat-line {
+    display: flex;
+    gap: 12px;
+    align-items: baseline;
+    font-size: 15px;
+    color: #3a3330;
+    margin-bottom: 8px;
+  }
+  .comparison-block .stat-label { flex: 1; color: var(--warm-gray); }
+  .comparison-block .stat-val { font-weight: 700; color: var(--deep-navy); white-space: nowrap; }
+  .comparison-block .verify-note {
+    font-size: 12px;
+    color: var(--warm-gray);
+    border-top: 1px solid #e8ddd0;
+    padding-top: 10px;
+    margin-top: 14px;
+  }
+  .comparison-block .verify-note a { color: var(--saffron); text-decoration: none; }
+
+  /* INSTITUTION CARDS — v9 style */
+  .inst-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin: 24px 0;
+  }
+  .inst-card {
+    background: #fff;
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    padding: 18px 20px;
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+  }
+  .inst-badge {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 3px;
+    white-space: nowrap;
+    margin-top: 3px;
+    flex-shrink: 0;
+  }
+  .inst-badge.red { background: var(--red-light); color: var(--red); }
+  .inst-badge.amber { background: var(--amber-light); color: var(--amber); }
+  .inst-badge.green { background: var(--green-light); color: var(--green); }
+  .inst-body {}
+  .inst-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--deep-navy);
+    margin-bottom: 4px;
+  }
+  .inst-desc {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #4a4540;
+    margin: 0;
+  }
+  .inst-note {
+    font-size: 13px;
+    color: var(--saffron);
+    margin-top: 4px;
+    font-style: italic;
+  }
+
+  /* WHAT A4H DOES */
+  .a4h-list {
+    list-style: none;
+    padding: 0;
+    margin: 8px 0 24px;
+  }
+  .a4h-list li {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--rule);
+    font-size: 16px;
+    line-height: 1.6;
+    color: #3a3330;
+  }
+  .a4h-list li:last-child { border-bottom: none; }
+  .a4h-list li::before {
+    content: '◆';
+    color: var(--saffron);
+    font-size: 8px;
+    margin-top: 8px;
+    flex-shrink: 0;
+  }
+
+  /* TRUST STATS */
+  .trust-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 14px;
+    margin: 12px 0 28px;
+  }
+  .trust-item {
+    text-align: center;
+    padding: 18px 12px;
+    background: #fff;
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+  }
+  .trust-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 900;
+    color: var(--saffron);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .trust-label {
+    font-size: 12px;
+    color: var(--warm-gray);
+    line-height: 1.4;
+  }
+
+  /* JOIN BLOCK */
+  .join-block {
+    background: var(--deep-navy);
+    border-radius: 8px;
+    padding: 36px 32px;
+    margin: 32px 0 0;
+    text-align: center;
+  }
+  .join-block h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 8px;
+  }
+  .join-block .join-sub {
+    font-size: 15px;
+    color: rgba(255,255,255,0.6);
+    margin-bottom: 28px;
+  }
+  .join-options {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+  }
+  .join-option {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.18);
+    border-radius: 8px;
+    padding: 20px 28px;
+    min-width: 160px;
+    text-align: center;
+  }
+  .join-option-price {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 900;
+    color: var(--saffron-light);
+    display: block;
+    margin-bottom: 4px;
+  }
+  .join-option-label {
+    font-size: 13px;
+    color: rgba(255,255,255,0.65);
+    line-height: 1.4;
+  }
+  .join-note {
+    font-size: 13px;
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 24px;
+    line-height: 1.6;
+  }
+  .btn-row {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .cta-button {
+    display: inline-block;
+    background: var(--saffron);
+    color: #fff;
+    font-family: 'Source Serif 4', serif;
+    font-size: 15px;
+    font-weight: 600;
+    padding: 13px 28px;
+    border-radius: 5px;
+    text-decoration: none;
+  }
+  .cta-button:hover { background: #d06018; }
+  .cta-inline {
+    display: inline-block;
+    background: var(--saffron);
+    color: #fff;
+    font-family: 'Source Serif 4', serif;
+    font-size: 15px;
+    font-weight: 600;
+    padding: 11px 28px;
+    border-radius: 5px;
+    text-decoration: none;
+    letter-spacing: 0.01em;
+  }
+  .cta-inline:hover { background: #d06018; }
+
+  .cta-button-outline {
+    display: inline-block;
+    background: transparent;
+    color: rgba(255,255,255,0.75);
+    border: 1px solid rgba(255,255,255,0.3);
+    font-family: 'Source Serif 4', serif;
+    font-size: 15px;
+    padding: 13px 28px;
+    border-radius: 5px;
+    text-decoration: none;
+  }
+
+  /* CONTACT */
+  .contact-block {
+    margin-top: 40px;
+    padding-top: 28px;
+    border-top: 1px solid var(--rule);
+    text-align: center;
+  }
+  .contact-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--deep-navy);
+    margin-bottom: 4px;
+  }
+  .contact-detail {
+    font-size: 14px;
+    color: var(--warm-gray);
+    margin-bottom: 4px;
+  }
+  .contact-detail a { color: var(--saffron); text-decoration: none; }
+
+  /* FOOTER */
+  footer {
+    background: var(--deep-navy);
+    color: rgba(255,255,255,0.5);
+    text-align: center;
+    padding: 40px 24px 60px;
+    font-size: 13px;
+    line-height: 1.9;
+    display: block;
+    width: 100%;
+    clear: both;
+  }
+  footer p { margin-bottom: 6px; color: rgba(255,255,255,0.5); font-size: 13px; }
+  footer a { color: var(--saffron-light); text-decoration: none; }
+
+  /* SOFT INLINE CTA — unobtrusive mid-page button */
+  .cta-soft-wrap {
+    text-align: right;
+    margin: 18px 0;
+  }
+  .cta-soft {
+    display: inline-flex;
+    align-items: center;
+    background: transparent;
+    color: var(--saffron);
+    border: 1.5px solid var(--saffron);
+    font-family: 'Source Serif 4', serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    padding: 9px 18px;
+    border-radius: 4px;
+    text-decoration: none;
+    min-height: 44px;
+    line-height: 1.2;
+  }
+  .cta-soft:hover { background: var(--saffron); color: #fff; }
+
+  @media (max-width: 560px) {
+    .hero { padding: 40px 20px 36px; }
+    article { padding: 36px 20px 48px; }
+    .join-block { padding: 28px 20px; }
+    .pub-bar { padding: 12px 20px; }
+  }
+
+  /* GAP CHART */
+  .gap-chart {
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    overflow: hidden;
+    margin: 32px 0 28px;
+  }
+  .gap-chart-header {
+    background: var(--deep-navy);
+    color: #fff;
+    padding: 18px 20px 14px;
+  }
+  .gap-chart-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 17px;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+  .gap-chart-sub {
+    font-size: 11px;
+    color: rgba(255,255,255,0.5);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .gap-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 20px;
+    border-bottom: 1px solid var(--rule);
+    background: #fff;
+  }
+  .gap-row:last-of-type { border-bottom: none; }
+  .gap-row-us {
+    background: var(--accent-bg);
+    border-left: 3px solid var(--saffron);
+  }
+  .gap-row-sub {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 11px 20px;
+    border-bottom: 1px solid var(--rule);
+    background: #fff;
+  }
+  .gap-label {
+    width: 160px;
+    flex-shrink: 0;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text);
+    line-height: 1.4;
+  }
+  .gap-label-sub {
+    display: block;
+    font-size: 11px;
+    font-weight: 400;
+    color: var(--warm-gray);
+    margin-top: 2px;
+  }
+  .gap-bar-wrap { flex: 1; position: relative; }
+  .gap-bar-full {
+    height: 24px;
+    background: #ede8e2;
+    border-radius: 3px;
+    overflow: hidden;
+  }
+  .gap-bar-fill {
+    height: 100%;
+    background: var(--deep-navy);
+    border-radius: 3px;
+    transition: width 1.2s ease-in-out;
+  }
+  .gap-bar-small { background: #8a9ac0; }
+  .gap-bar-ecosystem { background: #8a9ac0; }
+  .gap-bar-us { background: var(--saffron); min-width: 2px; }
+  .gap-bar-label-float {
+    font-size: 11px;
+    color: var(--saffron);
+    font-weight: 700;
+    margin-top: 5px;
+    font-style: italic;
+  }
+  .gap-amount {
+    width: 72px;
+    flex-shrink: 0;
+    font-family: 'Playfair Display', serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--deep-navy);
+    text-align: right;
+  }
+  .gap-amount-us { color: var(--saffron); }
+  .gap-group-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--warm-gray);
+    background: var(--cream);
+    padding: 7px 20px;
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+  }
+  .gap-footer {
+    background: var(--cream);
+    padding: 14px 20px;
+    font-size: 13px;
+    color: var(--warm-gray);
+    line-height: 1.65;
+    border-top: 1px solid var(--rule);
+  }
+  @media (max-width: 500px) {
+    .gap-label { width: 110px; }
+    .gap-row-sub { flex-wrap: wrap; }
+  }
+</style>
+</head>
+<body>
+
+<div class="pub-bar">
+  <span class="pub-name">Americans4Hindus</span>
+  <span class="pub-tag">Michigan Chapter · Membership Brief</span>
+</div>
+
+<div class="hero">
+  <p class="hero-kicker">Why This Moment Matters</p>
+  <h1>If we are not at the table,<br><em>we will be on the menu.</em></h1>
+  <p class="hero-sub">Certain policies have been made — and more are coming — that directly affect Hindu Americans in schools, colleges, and workplaces. Most of us are not even aware this is happening.</p>
+  <div class="hero-rule"></div>
+</div>
+
+<article>
+
+  <!-- OPENING -->
+  <p>Hindu Americans are among the most educated and most successful ethnic communities in the United States. We have built remarkable lives here. And yet on the one dimension that shapes the rules under which our children will grow up — political organization — we are far behind communities a fraction of our size.</p>
+
+  <p>This is not a complaint. It is a statement of fact that has a fix. Americans4Hindus (A4H) is that fix — the only Hindu-focused PAC in America, built to give our community a real seat at the table.</p>
+
+  <div class="pull-quote">
+    <p>"When policies are written that affect our families, our faith, and our future — we will have a seat at the table. That is what A4H is building."</p>
+  </div>
+
+  <div class="cta-soft-wrap">
+    <a class="cta-soft" href="https://secure.anedot.com/americans4hindus/donate" target="_blank">Become a Member →</a>
+  </div>
+
+  <hr>
+
+  <!-- WHAT IS HAPPENING -->
+  <p class="section-label">The Issues</p>
+  <h2>What Is Already Happening to Our Community</h2>
+
+  <p>These are not hypothetical threats. They are policies already on the books, bills that came within one vote of becoming law, and practices embedded in workplaces across America right now.</p>
+
+  <div class="issue-cards">
+
+    <div class="issue-card">
+      <div class="issue-card-title"><span class="icon">⚖️</span> The Caste Trap — SB403 &amp; Corporate HR</div>
+      <p>California's SB403 would have made being Hindu or Indian enough to presume guilt of caste discrimination. It was vetoed after enormous pressure — and it will return. Meanwhile, major tech companies have already embedded caste clauses into HR policies. Your children will carry this into every job application and campus they enter.</p>
+    </div>
+
+    <div class="issue-card">
+      <div class="issue-card-title"><span class="icon">🎓</span> Faith Framed as Oppression — Campus &amp; Curriculum</div>
+      <p>On campuses where our children study, Hinduism is being taught as a system of oppression — and no Hindu American organization had a seat at the table when those curricula were written. Mandatory diversity training at major universities frames Hindu practice as a social hierarchy to be dismantled. State legislatures control K–12 curricula. PAC funding of the right candidates is how that changes.</p>
+    </div>
+
+    <div class="issue-card">
+      <div class="issue-card-title"><span class="icon">📚</span> Faith Misrepresented in Classrooms</div>
+      <p>Hinduism is consistently portrayed in K–12 curricula and media in ways that leave our children hesitant to acknowledge their faith openly. Other faith communities have the organized advocacy to shape how they are taught in schools. We do not. This is a direct consequence of our lack of political organization.</p>
+    </div>
+
+    <div class="issue-card">
+      <div class="issue-card-title"><span class="icon">🕌</span> Temple Attacks &amp; No Political Consequence</div>
+      <p>Rising hate crimes targeting Hindu Americans receive a fraction of the media and political attention given to similar attacks on other faith communities. Political attention follows political organization. We have neither.</p>
+    </div>
+
+    <div class="issue-card">
+      <div class="issue-card-title"><span class="icon">🌐</span> No Rapid Response When Crisis Hits</div>
+      <p>Every crisis: 48 hours on WhatsApp, then silence. Zero political consequence for anyone. No pre-built infrastructure. No legislative relationships. The next crisis will not announce itself — and we will not be ready unless we build the machine now.</p>
+    </div>
+
+  </div>
+
+  <div style="text-align:center; margin: 8px 0 36px;">
+    <a class="cta-inline" href="https://secure.anedot.com/americans4hindus/donate" target="_blank">Become a Member — $100/year →</a>
+  </div>
+
+  <hr>
+
+  <!-- BRIDGE -->
+  <p class="section-label">The Evidence</p>
+  <h2>Named Institutions. Documented Actions.</h2>
+
+  <div class="bridge-block">
+    <p>If you think these are distant or theoretical threats — they are not. The following institutions have <strong>already acted</strong>. These are documented policies and legislative records, not projections.</p>
+  </div>
+
+  <!-- GROUP 1: IMPLEMENTED -->
+  <div class="issue-cards">
+    <div class="issue-card-title" style="margin: 28px 0 4px; font-family: 'Playfair Display', serif; font-size: 16px; color: #c0392b; font-weight: 700; border-bottom: 2px solid #c0392b; padding-bottom: 6px;">Already Law or Policy</div>
+
+    <div class="issue-card">
+      <div class="issue-card-title">Cisco Systems <span style="font-size:10px;font-family:'Source Serif 4',serif;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;background:var(--red-light);color:var(--red);padding:2px 7px;border-radius:3px;margin-left:6px;vertical-align:middle;">Implemented</span></div>
+      <p>A federal lawsuit revealed Cisco discriminated against a Dalit engineer — and internal HR policy treated caste as a protected category, effectively placing Hindu and Indian employees under a presumption of guilt. This is already in place at one of America's largest employers.</p>
+    </div>
+
+    <div class="issue-card">
+      <div class="issue-card-title">Seattle, Washington — Caste Ordinance <span style="font-size:10px;font-family:'Source Serif 4',serif;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;background:var(--red-light);color:var(--red);padding:2px 7px;border-radius:3px;margin-left:6px;vertical-align:middle;">Implemented</span></div>
+      <p>Seattle became the first U.S. city to add caste as a protected category in anti-discrimination law. The ordinance was passed in 2023. More cities are watching. Detroit is not immune.</p>
+    </div>
+
+    <div class="issue-card">
+      <div class="issue-card-title">Brandeis University <span style="font-size:10px;font-family:'Source Serif 4',serif;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;background:var(--red-light);color:var(--red);padding:2px 7px;border-radius:3px;margin-left:6px;vertical-align:middle;">Implemented</span></div>
+      <p>Brandeis has added caste as a protected category in its official non-discrimination and harassment policies — making Hindu and Indian students subject to complaint under a framework they had no voice in shaping.</p>
+    </div>
+
+    <div class="issue-card">
+      <div class="issue-card-title">Brown University <span style="font-size:10px;font-family:'Source Serif 4',serif;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;background:var(--red-light);color:var(--red);padding:2px 7px;border-radius:3px;margin-left:6px;vertical-align:middle;">Implemented</span></div>
+      <p>Brown has implemented caste protections. The standard used is based on activist frameworks that treat Hindu identity as inherently connected to caste oppression.</p>
+    </div>
+
+  </div>
+
+  <!-- GROUP 2: VETOED BUT CAMPAIGN CONTINUES -->
+  <div class="issue-cards">
+    <div class="issue-card-title" style="margin: 28px 0 4px; font-family: 'Playfair Display', serif; font-size: 16px; color: #b8690a; font-weight: 700; border-bottom: 2px solid #b8690a; padding-bottom: 6px;">Vetoed — Campaign Continues</div>
+
+    <div class="issue-card">
+      <div class="issue-card-title">California SB403 <span style="font-size:10px;font-family:'Source Serif 4',serif;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;background:var(--amber-light);color:var(--amber);padding:2px 7px;border-radius:3px;margin-left:6px;vertical-align:middle;">Vetoed — Will Return</span></div>
+      <p>The bill that would have added caste discrimination to state law. Vetoed by Governor Newsom in 2023 after sustained advocacy — and its architects have stated publicly they will reintroduce it.</p>
+      <p>The organization behind SB403 is <strong>Equality Labs</strong> — the activist group that wrote the bill's framework, ran the statewide lobbying campaign, and produced the caste survey on which the entire legislative rationale rests. Equality Labs is funded through a network of left-progressive philanthropies including the Ford Foundation, the Omidyar Network, and Open Society-linked grant channels. Their full-time staff conducted over 700 advocacy meetings across California in a single legislative cycle. The lobbying infrastructure they built remains fully intact and active.</p>
+    </div>
+
+  </div>
+
+  <!-- GROUP 3: ACTIVE CAMPAIGNS -->
+  <div class="issue-cards">
+    <div class="issue-card-title" style="margin: 28px 0 4px; font-family: 'Playfair Display', serif; font-size: 16px; color: #1a2340; font-weight: 700; border-bottom: 2px solid #1a2340; padding-bottom: 6px;">Active Campaigns</div>
+
+    <div class="issue-card">
+      <div class="issue-card-title">Harvard University <span style="font-size:10px;font-family:'Source Serif 4',serif;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;background:var(--amber-light);color:var(--amber);padding:2px 7px;border-radius:3px;margin-left:6px;vertical-align:middle;">Active Campaign</span></div>
+      <p>Faculty and student groups have pushed to add caste to Harvard's non-discrimination policy. The campaign is ongoing. The framework being used is identical to what passed in Seattle.</p>
+    </div>
+
+    <div class="issue-card">
+      <div class="issue-card-title">UC Davis &amp; USC <span style="font-size:10px;font-family:'Source Serif 4',serif;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;background:var(--amber-light);color:var(--amber);padding:2px 7px;border-radius:3px;margin-left:6px;vertical-align:middle;">Active Campaign</span></div>
+      <p>Both campuses have active faculty and student campaigns to implement caste policies. The UC system-wide review is ongoing. Once one UC campus implements it, system-wide adoption typically follows.</p>
+    </div>
+
+    <div class="issue-card">
+      <div class="issue-card-title">University of Michigan — Ann Arbor <span style="font-size:10px;font-family:'Source Serif 4',serif;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;background:var(--amber-light);color:var(--amber);padding:2px 7px;border-radius:3px;margin-left:6px;vertical-align:middle;">Active Campaign</span></div>
+      <p>Advocacy groups have pushed U of M to adopt caste discrimination policies. This is our home state. This is personal.</p>
+      <p style="font-size: 13px; color: var(--saffron); font-style: italic; margin-top: 4px;">Michigan is where A4H's chapter is most active. This is why local organization matters.</p>
+    </div>
+
+  </div>
+
+  <div style="text-align:center; margin: 8px 0 36px;">
+    <a class="cta-inline" href="https://secure.anedot.com/americans4hindus/donate" target="_blank">Become a Member — $100/year →</a>
+  </div>
+
+  <hr>
+
+  <!-- COMPARISON -->
+  <p class="section-label">The Political Reality</p>
+  <h2>We Are Bringing a Toothpick to a Gunfight</h2>
+
+  <p>Every diaspora community that has achieved durable political influence in America did the same thing: it organized, it funded, and it showed up — year after year, election after election. Jewish Americans built AIPAC over decades. Cuban Americans built a network that has shaped US foreign policy for two generations. Irish Americans built machine politics that lasted a century. The pattern is not a secret. The question is whether our community is willing to follow it.</p>
+
+  <div class="gap-chart">
+    <div class="gap-chart-header">
+      <div class="gap-chart-title">The Organization Gap: A Wake-Up Call</div>
+      <div class="gap-chart-sub">2023–24 Political Spending — PAC contributions and full ecosystem where applicable</div>
+    </div>
+
+    <div class="gap-row">
+      <div class="gap-label">Jewish American<br><span class="gap-label-sub">AIPAC / United Democracy Project</span></div>
+      <div class="gap-bar-wrap">
+        <div class="gap-bar-full">
+          <div class="gap-bar-fill" style="width:100%;"></div>
+        </div>
+      </div>
+      <div class="gap-amount">~$127M</div>
+    </div>
+
+    <div class="gap-group-label">Muslim American Political Infrastructure — Emgage</div>
+
+    <div class="gap-row-sub">
+      <div class="gap-label">Federal PAC<br><span class="gap-label-sub">Direct candidate contributions</span></div>
+      <div class="gap-bar-wrap">
+        <div class="gap-bar-full">
+          <div class="gap-bar-fill gap-bar-small" style="width:0.5%;"></div>
+        </div>
+      </div>
+      <div class="gap-amount">~$600K</div>
+    </div>
+
+    <div class="gap-row-sub" style="border-bottom: 1px solid var(--rule);">
+      <div class="gap-label">Full Ecosystem<br><span class="gap-label-sub">Foundation + operations + mobilization</span></div>
+      <div class="gap-bar-wrap">
+        <div class="gap-bar-full">
+          <div class="gap-bar-fill gap-bar-ecosystem" style="width:2.75%;"></div>
+        </div>
+        <div class="gap-bar-label-float" style="color:var(--warm-gray);">Funds 7-state staff, 80+ events/yr, Million Muslim Votes program</div>
+      </div>
+      <div class="gap-amount">~$3.5M</div>
+    </div>
+
+    <div class="gap-row gap-row-us">
+      <div class="gap-label">Hindu American<br><span class="gap-label-sub">Americans4Hindus PAC</span></div>
+      <div class="gap-bar-wrap">
+        <div class="gap-bar-full">
+          <div class="gap-bar-fill gap-bar-us" style="width:0%;"></div>
+        </div>
+        <div class="gap-bar-label-float">Your membership closes this gap</div>
+      </div>
+      <div class="gap-amount gap-amount-us">Growing</div>
+    </div>
+
+    <div class="gap-footer">
+      Politicians follow donations and votes. Without organized infrastructure, our community has no seat at the table when these bills are being written. A4H is the only Hindu organization legally permitted to change this.
+    </div>
+  </div>
+
+  <div class="cta-soft-wrap">
+    <a class="cta-soft" href="https://secure.anedot.com/americans4hindus/donate" target="_blank">Become a Member →</a>
+  </div>
+
+  <div class="comparison-block">
+    <h3>Jewish American Political Infrastructure — AIPAC / United Democracy Project</h3>
+    <p>AIPAC and its super PAC, the United Democracy Project, spent approximately <strong>$127 million combined</strong> in the 2023–24 election cycle — funding candidates, running ad campaigns, and actively opposing legislators they consider insufficiently aligned with their community's interests. This is the result of decades of sustained, organized community giving. It did not happen overnight.</p>
+    <div class="verify-note">
+      <strong>Source:</strong> FEC filings, confirmed by OpenSecrets and Sludge investigative reporting. Figures cover the full 2023–24 federal election cycle.
+    </div>
+  </div>
+
+  <div class="comparison-block">
+    <h3>Muslim American Political Infrastructure — Emgage</h3>
+    <p>Emgage — the leading Muslim American political organization — is a useful benchmark for what organized community power looks like even at a fraction of AIPAC's scale. Their 2024 Federal PAC reported approximately <strong>$600,000</strong> in direct candidate contributions. But that is just the candidate-check layer.</p>
+    <p>Their foundation and operational infrastructure — contributions exceeding <strong>$3.5 million in 2024</strong> — funds full-time staff across seven states, 80+ political events per year, and a voter mobilization program they call "Million Muslim Votes." That is the machine that puts staff in the offices of Michigan and California legislators week after week, shaping policy before bills are ever written.</p>
+    <p style="font-family:'Playfair Display',serif; font-style:italic; color:var(--deep-navy); font-size:16px; line-height:1.55; margin-top:14px;">The $600,000 is the bullet. The $3.5 million is the rifle, the scope, and the trained sniper. While our doctors and engineers work 60 hours a week building their careers, a full-time political staff works 60 hours a week shaping the laws those careers operate under.</p>
+    <div class="verify-note">
+      <strong>Verify it yourself:</strong> Emgage Federal PAC figures are public on <a href="https://www.fec.gov" target="_blank">FEC.gov</a>. Foundation figures are disclosed in Emgage Foundation annual reports and IRS Form 990 filings, searchable at <a href="https://www.guidestar.org" target="_blank">Candid/GuideStar</a>. A4H FEC filings: FEC.gov → search "Americans4Hindus."
+    </div>
+  </div>
+
+  <p>These communities are not our adversaries. They are simply organized — and we are not. Every dollar they raise, every legislator they meet, every bill they help shape is a reminder of what sustained political engagement produces. Hindu Americans are among the most educated and highest-earning communities in this country. The gap is not resources. It is organization.</p>
+
+  <p>Consider what organized community power looks like in our own backyard. In 2024, the Uncommitted movement in Michigan's Democratic primary drew over 101,000 protest votes — flipping Dearborn from 69% Biden in 2020 to 36% Harris. Michigan was ultimately decided by roughly 80,000 votes. That is what a concentrated, organized community bloc can do — without a large PAC budget, simply through disciplined voter mobilization. We have 28,000 A4H members nationally. The infrastructure to match that does not exist yet. Your membership is how it gets built.</p>
+
+  <p>While our community's professionals are building careers and companies, others are building the political infrastructure that shapes the laws governing those careers. Every community that has organized politically understands this — and acts accordingly. We have not. A4H is changing that.</p>
+
+  <div class="cta-soft-wrap">
+    <a class="cta-soft" href="https://secure.anedot.com/americans4hindus/donate" target="_blank">Become a Member →</a>
+  </div>
+
+  <hr>
+
+  <!-- WHAT A4H DOES -->
+  <p class="section-label">The Solution</p>
+  <h2>What Americans4Hindus Is Doing</h2>
+
+  <ul class="a4h-list">
+    <li>Supporting candidates across party lines who understand and respect Hindu Americans — the only PAC in America doing this specifically for our community</li>
+    <li>Working directly with the 26-member Hindu-Buddhist-Sikh-Jain Congressional Caucus to push back on Hinduphobic legislation before it becomes law</li>
+    <li>Building rapid-response infrastructure so the next crisis does not end in WhatsApp silence and zero political consequence</li>
+    <li>Training the next generation of Hindu American political leaders through the Hindu Rajneeti Academy — so 20 years from now, we are not still reacting from the outside</li>
+    <li>Expanding state chapter presence — including the active and growing Michigan chapter</li>
+  </ul>
+
+  <p>The Hindu Rajneeti Academy is building the next generation of Hindu American political leaders. The organization is entirely volunteer-run with no salaries — all contributions go directly toward funding candidates who champion Hindu American issues.</p>
+
+  <hr>
+
+  <!-- TRUST -->
+  <p class="section-label">Transparency</p>
+  <h2>Where Does the Money Go</h2>
+
+  <p>A4H runs on an entirely volunteer basis — no salaries, no overhead capture. All contributions go directly toward funding candidates who champion Hindu American issues. FEC filings are publicly available every quarter.</p>
+
+  <div class="trust-grid">
+    <div class="trust-item">
+      <div class="trust-num">100%</div>
+      <div class="trust-label">of funds toward candidate support — no salaries</div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-num">Quarterly</div>
+      <div class="trust-label">FEC filings, publicly audited and accessible</div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-num">28,000+</div>
+      <div class="trust-label">members across 28 states</div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-num">26</div>
+      <div class="trust-label">members in the Congressional Hindu-Buddhist-Sikh-Jain Caucus</div>
+    </div>
+  </div>
+
+  <!-- JOIN -->
+  <div class="join-block">
+    <h3>Join Americans4Hindus</h3>
+    <p class="join-sub">All contributions go directly toward funding candidates who champion Hindu American issues.</p>
+
+    <div class="join-options">
+      <div class="join-option">
+        <span class="join-option-price">$100</span>
+        <div class="join-option-label">Annual Membership<br>— or —<br>$10/month</div>
+      </div>
+      <div class="join-option">
+        <span class="join-option-price">$10,000</span>
+        <div class="join-option-label">A4H Trustee<br>Voice in strategy &amp; funding decisions</div>
+      </div>
+    </div>
+
+    <p class="join-note">To become a Member, select $100 at checkout and note "Annual Membership" in the comments.<br>Trustees may contribute further as the PAC's needs require.</p>
+
+    <div class="btn-row">
+      <a class="cta-button-outline" href="https://www.americans4hindus.org" target="_blank">About A4H</a>
+      <a class="cta-button" href="https://secure.anedot.com/americans4hindus/donate" target="_blank">Become a Member →</a>
+    </div>
+  </div>
+
+  <!-- CONTACT -->
+  <div class="contact-block">
+    <p class="contact-name">Anand Sinha</p>
+    <p class="contact-detail">Director, Outreach — A4H Michigan Chapter</p>
+    <p class="contact-detail">(248) 872-3057 &nbsp;|&nbsp; <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="c794aea9afa6e986a9a6a9a387a0aaa6aeabe9a4a8aa">[email&#160;protected]</a></p>
+    <p class="contact-detail" style="margin-top:10px;">National: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="32515d5c4653514672535f57405b51535c41065a5b5c5647411c5d4055">[email&#160;protected]</a> &nbsp;|&nbsp; (405) 41
