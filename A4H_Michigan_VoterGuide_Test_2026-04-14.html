@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hindu Voter Guide — Michigan 2026 | Americans 4 Hindus</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: Arial, sans-serif; background: #f5f5f5; color: #1a1a1a; }
+
+/* ── DISCLAIMER BANNER ── */
+.disclaimer-banner {
+  background: #fff3cd; border-bottom: 2px solid #ffc107;
+  padding: 10px 20px; text-align: center; font-size: 13px; color: #5a4000;
+  line-height: 1.5;
+}
+.disclaimer-banner strong { color: #c00; }
+
+/* ── NAV ── */
+nav {
+  background: #1a2a5a; padding: 0 1.25rem;
+  display: flex; align-items: center; gap: 1rem;
+  height: 68px; box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+  flex-wrap: wrap;
+}
+.nav-logo img { height: 54px; width: 54px; border-radius: 50%; object-fit: cover; flex-shrink:0; }
+.nav-links {
+  display: flex; gap: 1rem; margin-left: auto;
+  align-items: center; list-style: none; flex-wrap: wrap;
+}
+.nav-links a {
+  color: #ccd6f6; text-decoration: none; font-size: 13px;
+  font-weight: 500; white-space: nowrap;
+}
+.nav-links a.active { color: #5b9cf6; }
+.nav-btn {
+  background: #e85c2a !important; color: #fff !important;
+  padding: 8px 16px; border-radius: 5px;
+  font-weight: 700 !important; font-size: 13px !important;
+  white-space: nowrap;
+}
+
+/* ── HERO ── */
+.hero {
+  background: linear-gradient(135deg, #1a2a5a 0%, #1e3a7a 50%, #1a2a5a 100%);
+  color: #fff; text-align: center; padding: 2.5rem 1.25rem 2rem;
+}
+.hero h1 { font-size: clamp(28px, 6vw, 44px); font-weight: 900; margin-bottom: 10px; }
+.hero .subtitle { color: #5b9cf6; font-size: clamp(16px, 4vw, 21px); font-weight: 600; margin-bottom: 14px; }
+.hero p { color: #a8b8d8; font-size: 14px; max-width: 760px; margin: 0 auto; line-height: 1.7; }
+
+/* ── TAB NAV ── */
+.tab-nav {
+  background: #fff; border-bottom: 2px solid #e0e0e0;
+  display: flex; overflow-x: auto;
+  -webkit-overflow-scrolling: touch; scrollbar-width: none; white-space: nowrap;
+}
+.tab-nav::-webkit-scrollbar { display: none; }
+.tab-nav button {
+  padding: 14px 18px; font-size: 10.5px; font-weight: 800;
+  text-transform: uppercase; letter-spacing: .07em;
+  border: none; background: transparent; color: #555;
+  cursor: pointer; border-bottom: 3px solid transparent;
+  transition: all .15s; font-family: Arial, sans-serif;
+  white-space: nowrap; flex-shrink: 0;
+}
+.tab-nav button.active { color: #5b9cf6; border-bottom-color: #5b9cf6; }
+
+/* ── SEARCH ── */
+.search-section {
+  background: #fff; border-bottom: 1px solid #dde4f0;
+  padding: 1.5rem 1.25rem;
+}
+.search-inner { max-width: 680px; margin: 0 auto; text-align: center; }
+.search-inner h2 { font-size: clamp(18px, 4vw, 22px); font-weight: 800; color: #1a2a5a; margin-bottom: 6px; }
+.search-inner p { font-size: 14px; color: #666; margin-bottom: 1rem; line-height: 1.5; }
+.search-row { display: flex; gap: 8px; max-width: 460px; margin: 0 auto; }
+.search-row input {
+  flex: 1; font-size: 17px; padding: 12px 16px;
+  border: 2px solid #c0cce0; border-radius: 6px; outline: none;
+  font-family: Arial, sans-serif;
+  background: #fff !important;
+  -webkit-box-shadow: 0 0 0 30px white inset !important;
+}
+.search-row input:focus { border-color: #5b9cf6; }
+.search-row button {
+  background: #e85c2a; color: #fff; border: none;
+  padding: 12px 22px; border-radius: 6px;
+  font-size: 15px; font-weight: 700;
+  cursor: pointer; font-family: Arial, sans-serif; white-space: nowrap;
+}
+.search-row button:hover { background: #c94a1e; }
+.loading-msg { text-align:center; color:#888; font-size:13px; padding:8px; }
+
+/* ── MAIN ── */
+.main { max-width: 860px; margin: 0 auto; padding: 1.5rem 1rem 5rem; }
+
+/* ── FILTER PILLS ── */
+.filter-bar {
+  display: flex; gap: 8px; flex-wrap: nowrap;
+  overflow-x: auto; -webkit-overflow-scrolling: touch;
+  scrollbar-width: none; margin-bottom: 1.25rem; padding-bottom: 4px;
+}
+.filter-bar::-webkit-scrollbar { display: none; }
+.filter-pill {
+  font-size: 12px; padding: 6px 16px; border-radius: 100px;
+  border: 1.5px solid #c0cce0; background: #fff; color: #555;
+  cursor: pointer; font-family: Arial, sans-serif;
+  transition: all .15s; white-space: nowrap; flex-shrink: 0;
+}
+.filter-pill.active { background: #1a2a5a; color: #fff; border-color: #1a2a5a; }
+
+/* ── SECTION HEADER ── */
+.section-header {
+  background: #1a2a5a; color: #fff; text-align: center;
+  padding: 13px 16px; font-size: clamp(16px, 4vw, 20px);
+  font-weight: 800; border-radius: 5px; margin-bottom: 8px;
+}
+.section-desc { font-style: italic; text-align: center; color: #444; font-size: 13px; margin-bottom: 1rem; }
+
+/* ── STATS ── */
+.stats-row { display: flex; gap: 12px; margin-bottom: 1rem; }
+.stat-box {
+  flex: 1; background: #fff; border: 1px solid #e0e0e0;
+  border-radius: 8px; padding: 14px 10px; text-align: center;
+}
+.stat-n { font-size: clamp(22px,5vw,30px); font-weight: 900; color: #1a2a5a; }
+.stat-l { font-size: 11px; color: #888; text-transform: uppercase; letter-spacing: .05em; margin-top: 2px; }
+
+/* ── NOTICE ── */
+.notice {
+  background: #fffbea; border: 1px solid #ffe58f;
+  border-radius: 6px; padding: 10px 14px;
+  font-size: 13px; color: #7a5c00; margin-bottom: 1rem;
+}
+
+/* ── RACE GROUP LABEL ── */
+.race-group-label {
+  font-size: 11px; font-weight: 800; text-transform: uppercase;
+  letter-spacing: .1em; color: #5b9cf6;
+  margin: 1.25rem 0 .5rem; padding-left: 2px;
+}
+
+/* ── CANDIDATE CARD ── */
+.candidate-card {
+  background: #fff; border: 1px solid #e0e8f4;
+  border-radius: 10px; padding: 16px 18px;
+  margin-bottom: 12px; display: flex;
+  align-items: flex-start; gap: 14px;
+  transition: box-shadow .15s;
+}
+.candidate-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.08); }
+.candidate-info { flex: 1; min-width: 0; }
+.candidate-name { font-size: clamp(16px,4vw,19px); font-weight: 800; color: #1a2a5a; margin-bottom: 6px; }
+.candidate-meta { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; margin-bottom: 8px; }
+.party-badge {
+  font-size: 11px; font-weight: 700; padding: 3px 10px;
+  border-radius: 100px; text-transform: uppercase; letter-spacing: .04em;
+}
+.party-d  { background: #dbeafe; color: #1e40af; }
+.party-r  { background: #fee2e2; color: #b91c1c; }
+.party-i  { background: #f3e8ff; color: #7c3aed; }
+.party-tbd{ background: #f3f4f6; color: #6b7280; }
+.district-badge {
+  font-size: 11px; background: #f0f4f8; color: #4a5568;
+  padding: 3px 10px; border-radius: 100px; font-weight: 600;
+}
+.candidate-desc { font-size: 13.5px; color: #333; line-height: 1.55; margin-bottom: 6px; }
+.candidate-race { font-size: 12px; color: #777; margin-bottom: 6px; font-style: italic; }
+.candidate-date { font-size: 12px; color: #555; margin-bottom: 6px; }
+.candidate-date span { font-weight: 700; color: #1a2a5a; }
+
+/* ── ZIP ROW ── */
+.zip-row { display: flex; align-items: flex-start; gap: 8px; flex-wrap: wrap; }
+.zip-label { font-size: 11px; font-weight: 700; color: #888; text-transform: uppercase; white-space: nowrap; padding-top: 3px; }
+.zip-statewide { font-size: 12px; color: #27ae60; font-style: italic; }
+.zip-tags { display: flex; gap: 4px; flex-wrap: wrap; }
+.zip-tag {
+  font-size: 11px; background: #f0f4f8; color: #4a5568;
+  padding: 2px 7px; border-radius: 4px; font-weight: 500;
+}
+.zip-tag.matched { background: #1a2a5a; color: #fff; font-weight: 700; }
+.zip-more { font-size: 11px; color: #999; padding-top: 2px; }
+
+/* ── AVATAR ── */
+.candidate-avatar {
+  width: 52px; height: 52px; min-width: 52px;
+  border-radius: 10px; background: #dde8f8;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 16px; font-weight: 800; color: #1a2a5a; letter-spacing: .02em;
+  flex-shrink: 0;
+}
+
+/* ── PROMPT BOX ── */
+.prompt-box {
+  background: #fff; border: 1px dashed #c0cce0;
+  border-radius: 8px; padding: 2rem 1.5rem;
+  text-align: center; color: #555; font-size: 14px; line-height: 1.7;
+}
+
+/* ── DATA SOURCE NOTE ── */
+.data-source {
+  font-size: 11px; color: #aaa; text-align: center;
+  padding: 8px; margin-top: 1rem;
+}
+</style>
+</head>
+<body>
+
+<!-- ── CONTACT BAR ── -->
+<div style="background:#1a2a5a; text-align:right; padding:6px 16px; font-size:12px; color:#ccd6f6; font-family:Arial,sans-serif; font-weight:600; letter-spacing:0.03em;">
+  Anand Sinha &nbsp;|&nbsp; (248) 872-3057
+</div>
+
+<!-- ── DISCLAIMER BANNER ── -->
+<div class="disclaimer-banner">
+  <strong>⚠ TEST PURPOSES ONLY — NOT AN OFFICIAL A4H TOOL.</strong>
+  This page is for internal review only. If you have received this in error, you are requested to delete it immediately.
+</div>
+
+<!-- ── NAV ── -->
+<nav>
+  <div class="nav-logo">
+    <img src="https://anandsinhausa.github.io/Logo.jpg" alt="A4H" onerror="this.style.display='none'">
+  </div>
+  <ul class="nav-links">
+    <li><a href="#">Chapters</a></li>
+    <li><a href="#" class="active">Voter Guide</a></li>
+    <li><a href="#">Upcoming Events</a></li>
+    <li><a href="#">Endorsements</a></li>
+    <li><a href="#">News</a></li>
+    <li><a href="#">Blog</a></li>
+    <li><a href="#">Rajneeti Academy</a></li>
+    <li><a href="#">Volunteer</a></li>
+    <li><a href="https://secure.anedot.com/a4h/donate" target="_blank" class="nav-btn">Become a Member</a></li>
+  </ul>
+</nav>
+
+<!-- ── HERO ── -->
+<div class="hero">
+  <h1>Hindu Voter Guide</h1>
+  <div class="subtitle">Let Your Voice Be Heard</div>
+  <p>Reach out to us to share your concerns, ideas, and aspirations for our community. Together, we can strengthen our influence and ensure our voices resonate in the political sphere.</p>
+</div>
+
+<!-- ── TAB NAV ── -->
+<div class="tab-nav">
+  <button class="active" onclick="switchTab(this,'michigan')">Michigan Candidates</button>
+  <button onclick="switchTab(this,'california')">California Bay Area</button>
+  <button onclick="switchTab(this,'congressional')">Congressional Candidates</button>
+  <button onclick="switchTab(this,'ca-state')">California State Candidates</button>
+  <button onclick="switchTab(this,'caucus')">Hindu Buddhist Sikh Jain Caucus Members</button>
+</div>
+
+<!-- ── SEARCH ── -->
+<div class="search-section">
+  <div class="search-inner">
+    <h2>Find Your Candidates by ZIP Code</h2>
+    <p>Enter your ZIP code — we'll show every candidate on your ballot across US Senate, US House, State Senate and State House races.</p>
+    <div class="search-row">
+      <input type="text" id="zip" maxlength="5" inputmode="numeric" placeholder="e.g. 48084">
+      <button onclick="go()">Search</button>
+    </div>
+    <div id="load-status" class="loading-msg"></div>
+  </div>
+</div>
+
+<!-- ── MAIN ── -->
+<div class="main">
+  <div class="filter-bar" id="filters" style="display:none">
+    <button class="filter-pill active" onclick="setFilter(this,'all')">All races</button>
+    <button class="filter-pill" onclick="setFilter(this,'US Senate')">US Senate</button>
+    <button class="filter-pill" onclick="setFilter(this,'US House')">US House</button>
+  </div>
+  <div id="results">
+    <div class="prompt-box">Enter your Michigan ZIP code above to find your candidates.</div>
+  </div>
+  <div class="data-source" id="data-source"></div>
+</div>
+
+<script>
+// ── CONFIG ─────────────────────────────────────────────────────────────────
+// Point this to the raw JSON file on your GitHub:
+// https://raw.githubusercontent.com/Anand1Sinha/anandsinhausa.github.io/main/A4H_Michigan_2026_candidates.json
+const DATA_URL = 'https://raw.githubusercontent.com/Anand1Sinha/anandsinhausa.github.io/main/A4H_Michigan_2026_candidates.json';
+
+// ── STATE ──────────────────────────────────────────────────────────────────
+let CANDIDATES = [];
+let dataLoaded = false;
+let dataUpdated = '';
+let activeFilter = 'all', lastResults = [], currentZip = '';
+
+// ── EMBEDDED DATA (works locally + as fallback) ────────────────────────────
+const EMBEDDED = {"state":"Michigan","updated":"Apr 14, 2026","candidates":[{"name":"Abdul El-Sayed","party":"Democratic","office":"US Senate","race":"U.S. Senate \u2014 Michigan (2026)","scope":"Statewide","district":"Statewide","desc":"","primaryDate":"Aug 4, 2026","zips":["ALL"],"displayZips":[]},{"name":"Bill Huizenga","party":"Republican","office":"US Senate","race":"U.S. Senate \u2014 Michigan (2026)","scope":"Statewide","district":"Statewide","desc":"","primaryDate":"Aug 4, 2026","zips":["ALL"],"displayZips":[]},{"name":"Haley Stevens","party":"Democratic","office":"US Senate","race":"U.S. Senate \u2014 Michigan (2026)","scope":"Statewide","district":"Statewide","desc":"","primaryDate":"Aug 4, 2026","zips":["ALL"],"displayZips":[]},{"name":"Mallory McMorrow","party":"Democratic","office":"US Senate","race":"U.S. Senate \u2014 Michigan (2026)","scope":"Statewide","district":"Statewide","desc":"","primaryDate":"Aug 4, 2026","zips":["ALL"],"displayZips":[]},{"name":"Mike Rogers","party":"Republican","office":"US Senate","race":"U.S. Senate \u2014 Michigan (2026)","scope":"Statewide","district":"Statewide","desc":"","primaryDate":"Aug 4, 2026","zips":["ALL"],"displayZips":[]},{"name":"Hillary Scholten","party":"Democratic","office":"US House","race":"U.S. House \u2014 MI-03 (Michigan)","scope":"MI-03","district":"MI-03","desc":"","primaryDate":"Aug 4, 2026","zips":["49501","49503","49504","49505","49506","49507","49508","49509","49512","49519","49525","49534","49544","49546","49548"],"displayZips":["49501","49503","49504","49505","49506","49507","49508","49509","49512","49519"]},{"name":"J Allen Mr Fiorletta","party":"Republican","office":"US House","race":"U.S. House \u2014 MI-03 (Michigan)","scope":"MI-03","district":"MI-03","desc":"","primaryDate":"Aug 4, 2026","zips":["49501","49503","49504","49505","49506","49507","49508","49509","49512","49519","49525","49534","49544","49546","49548"],"displayZips":["49501","49503","49504","49505","49506","49507","49508","49509","49512","49519"]},{"name":"Jason Ickes","party":"Republican","office":"US House","race":"U.S. House \u2014 MI-03 (Michigan)","scope":"MI-03","district":"MI-03","desc":"","primaryDate":"Aug 4, 2026","zips":["49501","49503","49504","49505","49506","49507","49508","49509","49512","49519","49525","49534","49544","49546","49548"],"displayZips":["49501","49503","49504","49505","49506","49507","49508","49509","49512","49519"]},{"name":"Lynn Afendoulis","party":"Republican","office":"US House","race":"U.S. House \u2014 MI-03 (Michigan)","scope":"MI-03","district":"MI-03","desc":"","primaryDate":"Aug 4, 2026","zips":["49501","49503","49504","49505","49506","49507","49508","49509","49512","49519","49525","49534","49544","49546","49548"],"displayZips":["49501","49503","49504","49505","49506","49507","49508","49509","49512","49519"]},{"name":"Michael Jay Mr. Jr. Markey","party":"Republican","office":"US House","race":"U.S. House \u2014 MI-03 (Michigan)","scope":"MI-03","district":"MI-03","desc":"","primaryDate":"Aug 4, 2026","zips":["49501","49503","49504","49505","49506","49507","49508","49509","49512","49519","49525","49534","49544","49546","49548"],"displayZips":["49501","49503","49504","49505","49506","49507","49508","49509","49512","49519"]},{"name":"Paul Hudson","party":"Republican","office":"US House","race":"U.S. House \u2014 MI-03 (Michigan)","scope":"MI-03","district":"MI-03","desc":"","primaryDate":"Aug 4, 2026","zips":["49501","49503","49504","49505","49506","49507","49508","49509","49512","49519","49525","49534","49544","49546","49548"],"displayZips":["49501","49503","49504","49505","49506","49507","49508","49509","49512","49519"]},{"name":"Peter Mr. Meijer","party":"Republican","office":"US House","race":"U.S. House \u2014 MI-03 (Michigan)","scope":"MI-03","district":"MI-03","desc":"","primaryDate":"Aug 4, 2026","zips":["49501","49503","49504","49505","49506","49507","49508","49509","49512","49519","49525","49534","49544","49546","49548"],"displayZips":["49501","49503","49504","49505","49506","49507","49508","49509","49512","49519"]},{"name":"Ryan Cushman","party":"Republican","office":"US House","race":"U.S. House \u2014 MI-03 (Michigan)","scope":"MI-03","district":"MI-03","desc":"","primaryDate":"Aug 4, 2026","zips":["49501","49503","49504","49505","49506","49507","49508","49509","49512","49519","49525","49534","49544","49546","49548"],"displayZips":["49501","49503","49504","49505","49506","49507","49508","49509","49512","49519"]},{"name":"Terri Deboer","party":"Republican","office":"US House","race":"U.S. House \u2014 MI-03 (Michigan)","scope":"MI-03","district":"MI-03","desc":"","primaryDate":"Aug 4, 2026","zips":["49501","49503","49504","49505","49506","49507","49508","49509","49512","49519","49525","49534","49544","49546","49548"],"displayZips":["49501","49503","49504","49505","49506","49507","49508","49509","49512","49519"]},{"name":"Diop Harris","party":"Democratic","office":"US House","race":"U.S. House \u2014 MI-04 (Michigan)","scope":"MI-04","district":"MI-04","desc":"","primaryDate":"Aug 4, 2026","zips":["49001","49002","49003","49004","49006","49007","49008","49009","49024","49048","49053"],"displayZips":["49001","49002","49003","49004","49006","49007","49008","49009"]},{"name":"Sean McCann","party":"Democratic","office":"US House","race":"U.S. House \u2014 MI-04 (Michigan)","scope":"MI-04","district":"MI-04","desc":"","primaryDate":"Aug 4, 2026","zips":["49001","49002","49003","49004","49006","49007","49008","49009","49024","49048","49053"],"displayZips":["49001","49002","49003","49004","49006","49007","49008","49009"]},{"name":"Curtis Hertel Jr.","party":"Democratic","office":"US House","race":"U.S. House \u2014 MI-07 (Michigan)","scope":"MI-07","district":"MI-07","desc":"","primaryDate":"Aug 4, 2026","zips":["48901","48906","48910","48911","48912","48917","48933","48823","48824","48825","48842","48864","48879"],"displayZips":["48901","48906","48910","48911","48912","48917","48933","48823","48824","48825"]},{"name":"Tom Barrett","party":"Republican","office":"US House","race":"U.S. House \u2014 MI-07 (Michigan)","scope":"MI-07","district":"MI-07","desc":"","primaryDate":"Aug 4, 2026","zips":["48901","48906","48910","48911","48912","48917","48933","48823","48824","48825","48842","48864","48879"],"displayZips":["48901","48906","48910","48911","48912","48917","48933","48823","48824","48825"]},{"name":"Kristen McDonald Rivet","party":"Democratic","office":"US House","race":"U.S. House \u2014 MI-08 (Michigan)","scope":"MI-08","district":"MI-08","desc":"","primaryDate":"Aug 4, 2026","zips":["48501","48502","48503","48504","48505","48506","48507","48601","48602","48603","48640","48642","48706","48708"],"displayZips":["48501","48502","48503","48504","48505","48506","48507","48601","48602","48603"]},{"name":"Paul Junge","party":"Republican","office":"US House","race":"U.S. House \u2014 MI-08 (Michigan)","scope":"MI-08","district":"MI-08","desc":"","primaryDate":"Aug 4, 2026","zips":["48501","48502","48503","48504","48505","48506","48507","48601","48602","48603","48640","48642","48706","48708"],"displayZips":["48501","48502","48503","48504","48505","48506","48507","48601","48602","48603"]},{"name":"Carl Marlinga","party":"Democratic","office":"US House","race":"U.S. House \u2014 MI-10 (Michigan)","scope":"MI-10","district":"MI-10","desc":"","primaryDate":"Aug 4, 2026","zips":["48088","48089","48091","48092","48093","48310","48312","48313","48314","48315","48316","48317","48043","48044","48045","48066","48080","48081","48082"],"displayZips":["48088","48089","48091","48092","48093","48310","48312","48313","48314","48315"]},{"name":"John James","party":"Republican","office":"US House","race":"U.S. House \u2014 MI-10 (Michigan)","scope":"MI-10","district":"MI-10","desc":"","primaryDate":"Aug 4, 2026","zips":["48088","48089","48091","48092","48093","48310","48312","48313","48314","48315","48316","48317","48043","48044","48045","48066","48080","48081","48082"],"displayZips":["48088","48089","48091","48092","48093","48310","48312","48313","48314","48315"]},{"name":"Aisha Farooqi","party":"Democratic","office":"US House","race":"U.S. House \u2014 MI-11 (Michigan)","scope":"MI-11","district":"MI-11","desc":"","primaryDate":"Aug 4, 2026","zips":["48073","48083","48084","48085","48098","48009","48017","48025","48034","48076","48220","48221","48237","48301","48302","48303","48304","48306","48307","48309","48326","48328","48330","48336","48340","48341","48342","48346","48320","48322","48323","48324","48325","48327","48329","48331","48334","48335","48350","48356","48360","48362","48367","48370","48380","48381","48382","48386","48390","48393"],"displayZips":["48073","48083","48084","48085","48098","48009","48017","48025","48034","48076"]},{"name":"Don Ufford","party":"Democratic","office":"US House","race":"U.S. House \u2014 MI-11 (Michigan)","scope":"MI-11","district":"MI-11","desc":"","primaryDate":"Aug 4, 2026","zips":["48073","48083","48084","48085","48098","48009","48017","48025","48034","48076","48220","48221","48237","48301","48302","48303","48304","48306","48307","48309","48326","48328","48330","48336","48340","48341","48342","48346","48320","48322","48323","48324","48325","48327","48329","48331","48334","48335","48350","48356","48360","48362","48367","48370","48380","48381","48382","48386","48390","48393"],"displayZips":["48073","48083","48084","48085","48098","48009","48017","48025","48034","48076"]},{"name":"Jeremy Moss","party":"Democratic","office":"US House","race":"U.S. House \u2014 MI-11 (Michigan)","scope":"MI-11","district":"MI-11","desc":"","primaryDate":"Aug 4, 2026","zips":["48073","48083","48084","48085","48098","48009","48017","48025","48034","48076","48220","48221","48237","48301","48302","48303","48304","48306","48307","48309","48326","48328","48330","48336","48340","48341","48342","48346","48320","48322","48323","48324","48325","48327","48329","48331","48334","48335","48350","48356","48360","48362","48367","48370","48380","48381","48382","48386","48390","48393"],"displayZips":["48073","48083","48084","48085","48098","48009","48017","48025","48034","48076"]},{"name":"Dr. Anil Kumar","party":"Independent","office":"US House","race":"U.S. House \u2014 MI-11 (Michigan)","scope":"MI-11","district":"MI-11","desc":"","primaryDate":"Aug 4, 2026","zips":["48073","48083","48084","48085","48098","48009","48017","48025","48034","48076","48220","48221","48237","48301","48302","48303","48304","48306","48307","48309","48326","48328","48330","48336","48340","48341","48342","48346","48320","48322","48323","48324","48325","48327","48329","48331","48334","48335","48350","48356","48360","48362","48367","48370","48380","48381","48382","48386","48390","48393"],"displayZips":["48073","48083","48084","48085","48098","48009","48017","48025","48034","48076"]},{"name":"Ethan Baker","party":"Republican","office":"US House","race":"U.S. House \u2014 MI-11 (Michigan)","scope":"MI-11","district":"MI-11","desc":"","primaryDate":"Aug 4, 2026","zips":["48073","48083","48084","48085","48098","48009","48017","48025","48034","48076","48220","48221","48237","48301","48302","48303","48304","48306","48307","48309","48326","48328","48330","48336","48340","48341","48342","48346","48320","48322","48323","48324","48325","48327","48329","48331","48334","48335","48350","48356","48360","48362","48367","48370","48380","48381","48382","48386","48390","48393"],"displayZips":["48073","48083","48084","48085","48098","48009","48017","48025","48034","48076"]},{"name":"Shri Thanedar","party":"Democratic","office":"US House","race":"U.S. House \u2014 MI-13 (Michigan)","scope":"MI-13","district":"MI-13","desc":"","primaryDate":"Aug 4, 2026","zips":["48201","48202","48203","48204","48205","48206","48207","48208","48209","48210","48211","48212","48213","48214","48216","48217","48218","48219","48223","48224","48225","48226","48227","48228","48234","48235","48238"],"displayZips":["48201","48202","48203","48204","48205","48206","48207","48208","48209","48210"]},{"name":"Andrew Lorenz","party":"Republican","office":"US House","race":"U.S. House \u2014 MI-13 (Michigan)","scope":"MI-13","district":"MI-13","desc":"","primaryDate":"Aug 4, 2026","zips":["48201","48202","48203","48204","48205","48206","48207","48208","48209","48210","48211","48212","48213","48214","48216","48217","48218","48219","48223","48224","48225","48226","48227","48228","48234","48235","48238"],"displayZips":["48201","48202","48203","48204","48205","48206","48207","48208","48209","48210"]},{"name":"Articia Bomer","party":"Republican","office":"US House","race":"U.S. House \u2014 MI-13 (Michigan)","scope":"MI-13","district":"MI-13","desc":"","primaryDate":"Aug 4, 2026","zips":["48201","48202","48203","48204","48205","48206","48207","48208","48209","48210","48211","48212","48213","48214","48216","48217","48218","48219","48223","48224","48225","48226","48227","48228","48234","48235","48238"],"displayZips":["48201","48202","48203","48204","48205","48206","48207","48208","48209","48210"]},{"name":"David Anthony Dudenhoefer","party":"Republican","office":"US House","race":"U.S. House \u2014 MI-13 (Michigan)","scope":"MI-13","district":"MI-13","desc":"","primaryDate":"Aug 4, 2026","zips":["48201","48202","48203","48204","48205","48206","48207","48208","48209","48210","48211","48212","48213","48214","48216","48217","48218","48219","48223","48224","48225","48226","48227","48228","48234","48235","48238"],"displayZips":["48201","48202","48203","48204","48205","48206","48207","48208","48209","48210"]},{"name":"Martell De'Angelo Bivings","party":"Republican","office":"US House","race":"U.S. House \u2014 MI-13 (Michigan)","scope":"MI-13","district":"MI-13","desc":"","primaryDate":"Aug 4, 2026","zips":["48201","48202","48203","48204","48205","48206","48207","48208","48209","48210","48211","48212","48213","48214","48216","48217","48218","48219","48223","48224","48225","48226","48227","48228","48234","48235","48238"],"displayZips":["48201","48202","48203","48204","48205","48206","48207","48208","48209","48210"]}]};
+
+// ── LOAD DATA ──────────────────────────────────────────────────────────────
+async function loadData() {
+  // Always load embedded data first so it works offline/locally
+  CANDIDATES  = EMBEDDED.candidates || [];
+  dataUpdated = EMBEDDED.updated || '';
+  dataLoaded  = true;
+  if (dataUpdated) {
+    document.getElementById('data-source').textContent =
+      `Candidate data last updated: ${dataUpdated} · Source: A4H Elections Hub 2026`;
+  }
+
+  // Then try to fetch live data from GitHub (only works when hosted online)
+  try {
+    const resp = await fetch(DATA_URL);
+    if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
+    const json = await resp.json();
+    CANDIDATES  = json.candidates || [];
+    dataUpdated = json.updated || '';
+    if (dataUpdated) {
+      document.getElementById('data-source').textContent =
+        `Candidate data last updated: ${dataUpdated} · Source: A4H Elections Hub 2026`;
+    }
+  } catch(e) {
+    // Silently use embedded data — no error message shown
+  }
+}
+loadData();
+
+// ── HELPERS ────────────────────────────────────────────────────────────────
+function initials(name) {
+  return name.replace(/^(Dr\.|Rep\.|Sen\.)\s*/i,'').split(' ')
+    .filter(Boolean).map(w=>w[0]).join('').toUpperCase().slice(0,2);
+}
+function partyClass(p) {
+  if (!p) return 'party-tbd';
+  const l = p.toLowerCase();
+  if (l.includes('democrat')) return 'party-d';
+  if (l.includes('republican')) return 'party-r';
+  if (l.includes('independent')) return 'party-i';
+  return 'party-tbd';
+}
+function partyLabel(p) { return p || 'Party TBD'; }
+
+function switchTab(el, tab) {
+  document.querySelectorAll('.tab-nav button').forEach(b=>b.classList.remove('active'));
+  el.classList.add('active');
+  if (tab !== 'michigan') {
+    document.getElementById('results').innerHTML =
+      '<div class="prompt-box">This tab is coming soon.</div>';
+    document.getElementById('filters').style.display = 'none';
+  } else {
+    document.getElementById('results').innerHTML =
+      '<div class="prompt-box">Enter your Michigan ZIP code above to find your candidates.</div>';
+    document.getElementById('filters').style.display = 'none';
+  }
+}
+
+function setFilter(el, f) {
+  activeFilter = f;
+  document.querySelectorAll('.filter-pill').forEach(p=>p.classList.remove('active'));
+  el.classList.add('active');
+  render(lastResults, currentZip);
+}
+
+async function go() {
+  if (!dataLoaded) { await loadData(); }
+
+  const zip = document.getElementById('zip').value.trim();
+  if (zip.length !== 5 || isNaN(zip)) {
+    document.getElementById('results').innerHTML =
+      '<div class="prompt-box">Please enter a valid 5-digit Michigan ZIP code.</div>';
+    return;
+  }
+  currentZip = zip;
+  const found = CANDIDATES.filter(c => c.zips.includes('ALL') || c.zips.includes(zip));
+  lastResults = found;
+  activeFilter = 'all';
+  document.querySelectorAll('.filter-pill').forEach((p,i) => {
+    p.classList.remove('active'); if(i===0) p.classList.add('active');
+  });
+  document.getElementById('filters').style.display = found.length ? 'flex' : 'none';
+  render(found, zip);
+}
+
+function buildZipHtml(c, zip) {
+  if (c.zips.includes('ALL')) {
+    return `<div class="zip-row"><span class="zip-label">Coverage:</span><span class="zip-statewide">Statewide — all Michigan ZIP codes</span></div>`;
+  }
+  const show = (c.displayZips && c.displayZips.length) ? c.displayZips : c.zips.slice(0,8);
+  const more = c.zips.length - show.length;
+  const tags = show.map(z => `<span class="zip-tag ${z===zip?'matched':''}">${z}</span>`).join('');
+  const moreHtml = more > 0 ? `<span class="zip-more">+${more} more</span>` : '';
+  return `<div class="zip-row"><span class="zip-label">ZIP Codes:</span><div class="zip-tags">${tags}${moreHtml}</div></div>`;
+}
+
+function render(found, zip) {
+  const container = document.getElementById('results');
+  if (!found.length) {
+    container.innerHTML = '<div class="prompt-box">We don\'t have candidate data for ZIP <strong>' +
+      (zip||'') + '</strong> just yet.<br><small>We are continuously updating our database — please check back soon.</small></div>';
+    return;
+  }
+  const filtered = activeFilter === 'all' ? found : found.filter(c => c.office === activeFilter);
+  const groups = {};
+  filtered.forEach(c => { if (!groups[c.office]) groups[c.office]=[]; groups[c.office].push(c); });
+
+  const total = filtered.length;
+  const dems = filtered.filter(c=>c.party && c.party.toLowerCase().includes('democrat')).length;
+  const reps = filtered.filter(c=>c.party && c.party.toLowerCase().includes('republican')).length;
+  const tbd  = filtered.filter(c=>!c.party).length;
+
+  let html = `
+    <div class="section-header">Candidates for ZIP Code ${zip||''}</div>
+    <p class="section-desc">Get to know your candidates with clear, concise profiles. Make an informed decision by comparing their visions for your district.</p>
+    <div class="stats-row">
+      <div class="stat-box"><div class="stat-n">${total}</div><div class="stat-l">Candidates</div></div>
+      <div class="stat-box"><div class="stat-n">${Object.keys(groups).length}</div><div class="stat-l">Races</div></div>
+      <div class="stat-box"><div class="stat-n">${dems}D · ${reps}R${tbd?' · '+tbd+' TBD':''}</div><div class="stat-l">By Party</div></div>
+    </div>`;
+
+  if (tbd > 0) html += `<div class="notice">⚠️ Party affiliation for some candidates is pending official 2026 filing confirmation.</div>`;
+
+  ['US Senate','US House'].filter(o=>groups[o]).forEach(office => {
+    html += `<div class="race-group-label">${office}</div>`;
+    groups[office].forEach(c => {
+      const dateHtml = c.primaryDate
+        ? `<div class="candidate-date">Primary: <span>${c.primaryDate}</span></div>` : '';
+      html += `
+        <div class="candidate-card">
+          <div class="candidate-info">
+            <div class="candidate-name">${c.name}</div>
+            <div class="candidate-meta">
+              <span class="party-badge ${partyClass(c.party)}">${partyLabel(c.party)}</span>
+              <span class="district-badge">${c.scope}</span>
+            </div>
+            ${c.desc ? `<div class="candidate-desc">${c.desc}</div>` : ''}
+            <div class="candidate-race">${c.race}</div>
+            ${dateHtml}
+            ${buildZipHtml(c, zip)}
+          </div>
+          <div class="candidate-avatar">${initials(c.name)}</div>
+        </div>`;
+    });
+  });
+
+  container.innerHTML = html;
+}
+
+document.getElementById('zip').addEventListener('keydown', e => { if (e.key==='Enter') go(); });
+</script>
+</body>
+</html>
