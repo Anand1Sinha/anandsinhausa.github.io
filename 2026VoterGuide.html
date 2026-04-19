@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hindu Voter Guide 2026 | Americans 4 Hindus</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: Arial, sans-serif; background: #f5f5f5; color: #1a1a1a; }
+
+.contact-bar {
+  background: #1a2a5a; text-align: right; padding: 6px 16px;
+  font-size: 12px; color: #ccd6f6; font-weight: 600; letter-spacing: 0.03em;
+}
+.disclaimer-banner {
+  background: #fff3cd; border-bottom: 2px solid #ffc107;
+  padding: 10px 20px; text-align: center; font-size: 13px; color: #5a4000; line-height: 1.5;
+}
+.disclaimer-banner strong { color: #c00; }
+nav {
+  background: #1a2a5a; padding: 0 1.25rem;
+  display: flex; align-items: center; gap: 1rem;
+  height: 68px; box-shadow: 0 2px 8px rgba(0,0,0,0.3); flex-wrap: wrap;
+}
+.nav-logo img { height: 54px; width: 54px; border-radius: 50%; object-fit: cover; flex-shrink: 0; }
+.nav-links {
+  display: flex; gap: 1rem; margin-left: auto;
+  align-items: center; list-style: none; flex-wrap: wrap;
+}
+.nav-links a { color: #ccd6f6; text-decoration: none; font-size: 13px; font-weight: 500; white-space: nowrap; }
+.nav-links a.active { color: #5b9cf6; }
+.nav-btn {
+  background: #e85c2a !important; color: #fff !important;
+  padding: 8px 16px; border-radius: 5px; font-weight: 700 !important;
+  font-size: 13px !important; white-space: nowrap;
+}
+.hero {
+  background: linear-gradient(135deg, #1a2a5a 0%, #1e3a7a 50%, #1a2a5a 100%);
+  color: #fff; text-align: center; padding: 2.5rem 1.25rem 2rem;
+}
+.hero h1 { font-size: clamp(28px, 6vw, 44px); font-weight: 900; margin-bottom: 10px; }
+.hero .subtitle { color: #5b9cf6; font-size: clamp(16px, 4vw, 21px); font-weight: 600; margin-bottom: 14px; }
+.hero p { color: #a8b8d8; font-size: 14px; max-width: 760px; margin: 0 auto; line-height: 1.7; }
+.search-section {
+  background: #fff; border-bottom: 1px solid #dde4f0; padding: 1.5rem 1.25rem;
+}
+.search-inner { max-width: 680px; margin: 0 auto; text-align: center; }
+.search-inner h2 { font-size: clamp(18px, 4vw, 22px); font-weight: 800; color: #1a2a5a; margin-bottom: 6px; }
+.search-inner p { font-size: 14px; color: #666; margin-bottom: 1rem; line-height: 1.5; }
+.search-row { display: flex; gap: 8px; max-width: 460px; margin: 0 auto; flex-wrap: wrap; }
+.search-row input {
+  flex: 1; font-size: 17px; padding: 12px 16px; min-width: 200px;
+  border: 2px solid #c0cce0; border-radius: 6px; outline: none; font-family: Arial, sans-serif;
+}
+.search-row input:focus { border-color: #5b9cf6; }
+.search-row button {
+  background: #e85c2a; color: #fff; border: none;
+  padding: 12px 24px; border-radius: 6px; font-size: 15px;
+  font-weight: 700; cursor: pointer; font-family: Arial, sans-serif;
+}
+.search-row button:hover { background: #c94e20; }
+.address-prompt {
+  background: #fff3cd; border: 2px solid #ffc107; border-radius: 8px;
+  padding: 1.25rem; margin: 1rem auto; max-width: 600px; text-align: center;
+}
+.address-prompt h3 { font-size: 16px; color: #5a4000; margin-bottom: 8px; }
+.address-prompt p { font-size: 13px; color: #666; margin-bottom: 12px; line-height: 1.5; }
+.filter-bar {
+  background: #f8f9fb; border-bottom: 1px solid #e0e8f0;
+  padding: .6rem 1.25rem; display: flex; gap: 8px; flex-wrap: wrap;
+}
+.filter-pill {
+  background: #fff; border: 1.5px solid #c0cce0; color: #334;
+  padding: 5px 14px; border-radius: 20px; font-size: 12px;
+  font-weight: 700; cursor: pointer; font-family: Arial, sans-serif; transition: all .15s;
+}
+.filter-pill.active { background: #1a2a5a; border-color: #1a2a5a; color: #fff; }
+.results-section { max-width: 900px; margin: 0 auto; padding: 1.5rem 1.25rem; }
+.race-group { margin-bottom: 2rem; }
+.race-header {
+  font-size: 11px; font-weight: 800; text-transform: uppercase;
+  letter-spacing: .1em; color: #888; padding: 0 0 8px;
+  border-bottom: 1px solid #e0e8f0; margin-bottom: 12px;
+}
+.candidate-card {
+  background: #fff; border: 1px solid #e0e8f0; border-radius: 10px;
+  padding: 1rem 1.25rem; margin-bottom: 10px;
+  display: flex; align-items: flex-start; gap: 1rem;
+  box-shadow: 0 1px 4px rgba(0,0,0,.05);
+}
+.candidate-info { flex: 1; }
+.candidate-name { font-size: 17px; font-weight: 800; color: #1a2a5a; margin-bottom: 6px; }
+.candidate-meta { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 6px; }
+.party-badge {
+  font-size: 11px; font-weight: 700; padding: 2px 9px; border-radius: 12px;
+  text-transform: uppercase; letter-spacing: .05em;
+}
+.party-dem { background: #dbeafe; color: #1e40af; }
+.party-rep { background: #fee2e2; color: #991b1b; }
+.party-ind { background: #fef9c3; color: #854d0e; }
+.party-other { background: #f3f4f6; color: #374151; }
+.district-badge {
+  font-size: 11px; font-weight: 700; padding: 2px 9px; border-radius: 12px;
+  background: #f0f4ff; color: #3b5bdb; text-transform: uppercase;
+}
+.state-badge {
+  font-size: 11px; font-weight: 700; padding: 2px 9px; border-radius: 12px;
+  background: #f0fdf4; color: #166534; text-transform: uppercase;
+}
+.candidate-race { font-size: 12px; color: #888; margin-top: 4px; }
+.candidate-date { font-size: 12px; color: #666; margin-top: 3px; }
+.candidate-date span { font-weight: 700; color: #e85c2a; }
+.candidate-avatar {
+  width: 46px; height: 46px; border-radius: 50%;
+  background: #1a2a5a; color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 15px; font-weight: 800; flex-shrink: 0;
+}
+.prompt-box {
+  background: #fff; border: 1px dashed #c0cce0;
+  border-radius: 8px; padding: 2rem 1.5rem;
+  text-align: center; color: #555; font-size: 14px; line-height: 1.7;
+}
+.data-source { font-size: 11px; color: #aaa; text-align: center; padding: 8px; margin-top: 1rem; }
+.split-badge {
+  font-size: 10px; font-weight: 700; padding: 2px 6px; border-radius: 4px;
+  background: #fef9c3; color: #854d0e; margin-left: 6px;
+}
+</style>
+</head>
+<body>
+
+<div class="contact-bar">Anand Sinha &nbsp;|&nbsp; (248) 872-3057</div>
+
+<div class="disclaimer-banner">
+  <strong>⚠ BETA VERSION — CALIFORNIA ONLY.</strong>
+  This voter guide currently covers California races only. More states coming soon!
+</div>
+
+<nav>
+  <div class="nav-logo">
+    <img src="https://anandsinhausa.github.io/Logo.jpg" alt="A4H" onerror="this.style.display='none'">
+  </div>
+  <ul class="nav-links">
+    <li><a href="#">Chapters</a></li>
+    <li><a href="#" class="active">Voter Guide</a></li>
+    <li><a href="#">Upcoming Events</a></li>
+    <li><a href="#">Endorsements</a></li>
+    <li><a href="#">News</a></li>
+    <li><a href="#">Blog</a></li>
+    <li><a href="#">Rajneeti Academy</a></li>
+    <li><a href="#">Volunteer</a></li>
+    <li><a href="https://secure.anedot.com/a4h/donate" target="_blank" class="nav-btn">Become a Member</a></li>
+  </ul>
+</nav>
+
+<div class="hero">
+  <h1>Hindu Voter Guide 2026</h1>
+  <div class="subtitle">California Edition</div>
+  <p>Find every candidate on your ballot across US House, State Senate, and State Assembly races. All data certified by the California Secretary of State.</p>
+</div>
+
+<div class="search-section">
+  <div class="search-inner">
+    <h2>Find Your Candidates</h2>
+    <p>Enter your ZIP code or full address for California races.</p>
+    <div class="search-row">
+      <input type="text" id="searchInput" placeholder="ZIP code or full address" maxlength="100">
+      <button onclick="search()">Search</button>
+    </div>
+  </div>
+</div>
+
+<div class="filter-bar" id="filters" style="display:none">
+  <button class="filter-pill active" onclick="setFilter(this,'all')">All races</button>
+  <button class="filter-pill" onclick="setFilter(this,'US House')">US House</button>
+  <button class="filter-pill" onclick="setFilter(this,'State Senate')">State Senate</button>
+  <button class="filter-pill" onclick="setFilter(this,'State House')">State House</button>
+</div>
+
+<div class="results-section">
+  <div id="results">
+    <div class="prompt-box">Enter your ZIP code or address above to find your candidates.</div>
+  </div>
+  <div class="data-source" id="data-source">Data last updated: Apr 18, 2026 | Source: CA Secretary of State</div>
+</div>
+
+<script>
+let activeFilter = 'all', lastResults = [], currentSearch = '';
+
+let DATA = {
+  candidates: [],
+  zipCodes: [],
+  splitZips: new Set()
+};
+
+async function loadData() {
+  try {
+    const urls = {
+      usHouse: "https://docs.google.com/spreadsheets/d/1y5t9vz0GrFsjSfptxwZBlG-QNEQ8LpmLC_fdcaLzxc4/gviz/tq?tqx=out:csv&sheet=US%20House",
+      stateSenate: "https://docs.google.com/spreadsheets/d/1y5t9vz0GrFsjSfptxwZBlG-QNEQ8LpmLC_fdcaLzxc4/gviz/tq?tqx=out:csv&sheet=State%20Senate",
+      stateHouse: "https://docs.google.com/spreadsheets/d/1y5t9vz0GrFsjSfptxwZBlG-QNEQ8LpmLC_fdcaLzxc4/gviz/tq?tqx=out:csv&sheet=State%20House",
+      zipCodes: "https://docs.google.com/spreadsheets/d/1y5t9vz0GrFsjSfptxwZBlG-QNEQ8LpmLC_fdcaLzxc4/gviz/tq?tqx=out:csv&sheet=ZIP%20Codes"
+    };
+    
+    const fetchSheet = async (url) => {
+      const res = await fetch(url);
+      const text = await res.text();
+      const lines = text.split('\n').slice(1); // Skip header
+      return lines.filter(l => l.trim()).map(line => {
+        // Simple CSV parse - handles quoted fields
+        const matches = line.match(/(".*?"|[^",]+)(?=\s*,|\s*$)/g);
+        return matches ? matches.map(m => m.replace(/^"|"$/g, '').trim()) : [];
+      });
+    };
+
+    // Load all data
+    const [usHouse, stateSenate, stateHouse, zipCodes] = await Promise.all([
+      fetchSheet(urls.usHouse),
+      fetchSheet(urls.stateSenate),
+      fetchSheet(urls.stateHouse),
+      fetchSheet(urls.zipCodes)
+    ]);
+
+    // Process candidates - filter for CA only
+    const processCandidate = (row, office) => {
+      if (row[0] !== 'CA') return null; // CA only
+      return {
+        state: row[0],
+        district: row[1],
+        name: row[2],
+        party: row[3],
+        status: row[4],
+        primaryDate: row[5],
+        office: office
+      };
+    };
+
+    DATA.candidates = [
+      ...usHouse.map(r => processCandidate(r, 'US House')),
+      ...stateSenate.map(r => processCandidate(r, 'State Senate')),
+      ...stateHouse.map(r => processCandidate(r, 'State House'))
+    ].filter(Boolean);
+
+    // Process ZIP codes - CA only, US House only for now
+    DATA.zipCodes = zipCodes
+      .filter(r => r[0] === 'CA' && r[1] === 'US House')
+      .map(r => ({
+        zip: r[3],
+        district: r[2],
+        isSplit: r[5] === 'Yes'
+      }));
+
+    // Build split ZIP set
+    DATA.splitZips = new Set(
+      DATA.zipCodes.filter(z => z.isSplit).map(z => z.zip)
+    );
+
+    console.log(`Loaded ${DATA.candidates.length} candidates, ${DATA.zipCodes.length} ZIP mappings, ${DATA.splitZips.size} split ZIPs`);
+    
+  } catch (error) {
+    console.error('Error loading data:', error);
+    document.getElementById('results').innerHTML = 
+      '<div class="prompt-box">Error loading data. Please refresh the page.</div>';
+  }
+}
+
+loadData();
+
+function search() {
+  const input = document.getElementById('searchInput').value.trim();
+  
+  if (!input) {
+    document.getElementById('results').innerHTML =
+      '<div class="prompt-box">Please enter a ZIP code or address.</div>';
+    return;
+  }
+
+  currentSearch = input;
+
+  // Check if it's a 5-digit ZIP
+  if (/^\d{5}$/.test(input)) {
+    searchByZip(input);
+  } else {
+    searchByAddress(input);
+  }
+}
+
+function searchByZip(zip) {
+  // Check if split ZIP
+  if (DATA.splitZips.has(zip)) {
+    showSplitZipPrompt(zip);
+    return;
+  }
+
+  // Find districts for this ZIP
+  const zipMatches = DATA.zipCodes.filter(z => z.zip === zip);
+  
+  if (zipMatches.length === 0) {
+    document.getElementById('results').innerHTML =
+      '<div class="prompt-box">ZIP code ' + zip + ' not found. Currently showing California only. More states coming soon!</div>';
+    document.getElementById('filters').style.display = 'none';
+    return;
+  }
+
+  // Get unique districts
+  const districts = [...new Set(zipMatches.map(z => z.district))];
+  
+  // Find candidates
+  const results = DATA.candidates.filter(c => 
+    districts.includes(c.district) && c.office === 'US House'
+  );
+
+  lastResults = results;
+  document.getElementById('filters').style.display = results.length ? 'flex' : 'none';
+  render(results);
+}
+
+function showSplitZipPrompt(zip) {
+  const html = `
+    <div class="address-prompt">
+      <h3>🏘️ Your ZIP code covers multiple districts</h3>
+      <p>ZIP ${zip} spans multiple congressional districts. Please enter your full street address for accurate results.</p>
+      <div class="search-row">
+        <input type="text" id="fullAddress" placeholder="e.g. 123 Main St, Los Angeles, CA 90001" style="max-width:100%">
+        <button onclick="searchByAddress(document.getElementById('fullAddress').value)">Find My District</button>
+      </div>
+    </div>
+    <div class="prompt-box" style="margin-top:1rem">
+      <strong>Why do I need my address?</strong><br>
+      Some ZIP codes cross district boundaries. Your full address ensures we show you the correct candidates.
+    </div>
+  `;
+  
+  document.getElementById('results').innerHTML = html;
+  document.getElementById('filters').style.display = 'none';
+}
+
+async function searchByAddress(address) {
+  if (!address || address.trim().length < 5) {
+    document.getElementById('results').innerHTML =
+      '<div class="prompt-box">Please enter a valid address.</div>';
+    return;
+  }
+
+  document.getElementById('results').innerHTML =
+    '<div class="prompt-box">🔍 Looking up your district...</div>';
+
+  document.getElementById('filters').style.display = 'none';
+
+  try {
+    const apiKey = "AIzaSyB5ZXpP8ru6II8_s8w5JZJWyWscrDC8cSU";  // 🔴 paste your key here
+
+    const url = `https://www.googleapis.com/civicinfo/v2/representatives?address=${encodeURIComponent(address)}&key=${apiKey}`;
+
+    const res = await fetch(url);
+    const data = await res.json();
+
+    if (!data || !data.offices) {
+      throw new Error("No data found");
+    }
+
+    // Find Congressional District
+    let district = null;
+
+    data.offices.forEach((office, i) => {
+      if (office.name.includes("United States House")) {
+        const idx = office.officialIndices[0];
+        const official = data.officials[idx];
+
+        // Extract district from divisionId
+        const division = office.divisionId;
+        const match = division.match(/cd:(\d+)/);
+
+        if (match) {
+          district = match[1];
+        }
+      }
+    });
+
+    if (!district) {
+      document.getElementById('results').innerHTML =
+        '<div class="prompt-box">Could not determine your congressional district. Try a full address.</div>';
+      return;
+    }
+
+    // Convert to your format (e.g., "CA-12")
+    const districtCode = "CA-" + district;
+
+    // Match candidates
+    const results = DATA.candidates.filter(c =>
+      c.district === districtCode && c.office === 'US House'
+    );
+
+    lastResults = results;
+
+    document.getElementById('filters').style.display = results.length ? 'flex' : 'none';
+
+    render(results);
+
+  } catch (err) {
+    console.error(err);
+
+    document.getElementById('results').innerHTML =
+      '<div class="prompt-box">Error finding your district. Please try again.</div>';
+  }
+}
+
+function setFilter(btn, val) {
+  activeFilter = val;
+  document.querySelectorAll('.filter-pill').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  render(lastResults);
+}
+
+function render(candidates) {
+  const filtered = activeFilter === 'all' ? candidates
+    : candidates.filter(c => c.office === activeFilter);
+
+  if (!filtered.length) {
+    document.getElementById('results').innerHTML =
+      '<div class="prompt-box">No candidates found for the selected filter.</div>';
+    return;
+  }
+
+  const officeOrder = ['US House', 'State Senate', 'State House'];
+  const groups = {};
+  officeOrder.forEach(o => groups[o] = []);
+  filtered.forEach(c => { if (groups[c.office]) groups[c.office].push(c); });
+
+  let html = '';
+  officeOrder.forEach(office => {
+    if (!groups[office].length) return;
+    const label = {
+      'US House': 'U.S. House of Representatives',
+      'State Senate': 'California State Senate',
+      'State House': 'California State Assembly'
+    }[office];
+
+    html += '<div class="race-group"><div class="race-header">' + label + '</div>';
+    groups[office].forEach(c => {
+      const dateHtml = c.primaryDate
+        ? '<div class="candidate-date">Primary: <span>' + c.primaryDate + '</span></div>' : '';
+      const partyClass = getPartyClass(c.party);
+      const initials = getInitials(c.name);
+      
+      html += '<div class="candidate-card">' +
+        '<div class="candidate-info">' +
+          '<div class="candidate-name">' + c.name + '</div>' +
+          '<div class="candidate-meta">' +
+            '<span class="party-badge ' + partyClass + '">' + (c.party || 'Party TBD') + '</span>' +
+            '<span class="state-badge">CA</span>' +
+            '<span class="district-badge">' + c.district + '</span>' +
+          '</div>' +
+          dateHtml +
+        '</div>' +
+        '<div class="candidate-avatar">' + initials + '</div>' +
+      '</div>';
+    });
+    html += '</div>';
+  });
+
+  document.getElementById('results').innerHTML = html;
+  setTimeout(() => document.getElementById('results').scrollIntoView({behavior:'smooth', block:'start'}), 50);
+}
+
+function getPartyClass(party) {
+  if (!party) return 'party-other';
+  const p = party.toLowerCase();
+  if (p.includes('dem')) return 'party-dem';
+  if (p.includes('rep')) return 'party-rep';
+  if (p.includes('ind') || p.includes('no party')) return 'party-ind';
+  return 'party-other';
+}
+
+function getInitials(name) {
+  return (name || '').split(' ').filter(Boolean).slice(0, 2).map(w => w[0]).join('').toUpperCase();
+}
+
+document.getElementById('searchInput').addEventListener('keydown', e => { 
+  if (e.key === 'Enter') search(); 
+});
+</script>
+</body>
+</html>
