@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A4H 2026 Voter Guide - OG Image</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: #f0f0f0;
+            padding: 20px;
+        }
+        
+        .og-container {
+            width: 1200px;
+            height: 630px;
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+            position: relative;
+            overflow: hidden;
+            border: 1px solid #ddd;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+        
+        /* Decorative background elements */
+        .bg-pattern {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0.03;
+        }
+        
+        .bg-circle {
+            position: absolute;
+            border-radius: 50%;
+            background: #4169E1;
+        }
+        
+        .circle-1 {
+            width: 600px;
+            height: 600px;
+            top: -200px;
+            right: -150px;
+            opacity: 0.05;
+        }
+        
+        .circle-2 {
+            width: 400px;
+            height: 400px;
+            bottom: -150px;
+            left: -100px;
+            background: #FF1654;
+            opacity: 0.05;
+        }
+        
+        .circle-3 {
+            width: 300px;
+            height: 300px;
+            top: 50%;
+            left: -50px;
+            background: #FF8C00;
+            opacity: 0.04;
+        }
+        
+        /* Main content container */
+        .content {
+            position: relative;
+            z-index: 10;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            padding: 60px 80px;
+        }
+        
+        /* Header with logo */
+        .header {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+        
+        .logo-container {
+            width: 140px;
+            height: 140px;
+            flex-shrink: 0;
+        }
+        
+        .logo {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 4px solid #4169E1;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            font-size: 36px;
+            color: #FF1654;
+            box-shadow: 0 4px 20px rgba(65, 105, 225, 0.2);
+        }
+        
+        .brand-text {
+            flex: 1;
+        }
+        
+        .brand-name {
+            font-size: 42px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            margin-bottom: 4px;
+        }
+        
+        .brand-name .ameri {
+            color: #FF1654;
+        }
+        
+        .brand-name .cans {
+            color: #4169E1;
+        }
+        
+        .brand-name .four {
+            color: #4169E1;
+            font-size: 48px;
+        }
+        
+        .brand-name .hindus {
+            background: linear-gradient(180deg, #FF8C00 0%, #32CD32 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        /* Main title */
+        .main-title {
+            font-size: 96px;
+            font-weight: 900;
+            line-height: 1;
+            margin-bottom: 30px;
+            letter-spacing: -2px;
+            background: linear-gradient(135deg, #1a1a1a 0%, #4a4a4a 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .year {
+            color: #4169E1;
+            -webkit-text-fill-color: #4169E1;
+        }
+        
+        /* Subtitle */
+        .subtitle {
+            font-size: 38px;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 35px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .subtitle::before {
+            content: '';
+            width: 60px;
+            height: 5px;
+            background: linear-gradient(90deg, #FF1654 0%, #4169E1 50%, #FF8C00 100%);
+            border-radius: 3px;
+        }
+        
+        /* Features */
+        .features {
+            display: flex;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .feature {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 24px;
+            font-weight: 600;
+            color: #34495e;
+        }
+        
+        .feature-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, #4169E1 0%, #FF1654 100%);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 18px;
+            font-weight: 700;
+        }
+        
+        /* Call to action */
+        .cta {
+            margin-top: auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .cta-text {
+            font-size: 32px;
+            font-weight: 700;
+            color: white;
+            background: linear-gradient(90deg, #FF1654 0%, #4169E1 100%);
+            padding: 18px 40px;
+            border-radius: 50px;
+            box-shadow: 0 8px 25px rgba(255, 22, 84, 0.3);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .search-icon {
+            font-size: 28px;
+        }
+        
+        .races {
+            font-size: 20px;
+            font-weight: 600;
+            color: #7f8c8d;
+            text-align: right;
+            line-height: 1.5;
+        }
+        
+        .races span {
+            display: block;
+        }
+        
+        /* Accent stripes */
+        .accent-stripe {
+            position: absolute;
+            left: 0;
+            width: 8px;
+            background: linear-gradient(180deg, #FF1654 0%, #4169E1 50%, #FF8C00 100%);
+        }
+        
+        .stripe-1 {
+            top: 0;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="og-container">
+        <!-- Background elements -->
+        <div class="bg-pattern">
+            <div class="bg-circle circle-1"></div>
+            <div class="bg-circle circle-2"></div>
+            <div class="bg-circle circle-3"></div>
+        </div>
+        
+        <!-- Accent stripe -->
+        <div class="accent-stripe stripe-1"></div>
+        
+        <!-- Main content -->
+        <div class="content">
+            <!-- Header with logo -->
+            <div class="header">
+                <div class="logo-container">
+                    <div class="logo">A4H</div>
+                </div>
+                <div class="brand-text">
+                    <div class="brand-name">
+                        <span class="ameri">AMERI</span><span class="cans">CANS</span> <span class="four">4</span> <span class="hindus">HINDUS</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Main title -->
+            <div class="main-title">
+                <span class="year">2026</span> VOTER<br>GUIDE
+            </div>
+            
+            <!-- Subtitle -->
+            <div class="subtitle">
+                Find Your Candidates • All 50 States
+            </div>
+            
+            <!-- Features -->
+            <div class="features">
+                <div class="feature">
+                    <div class="feature-icon">🏛️</div>
+                    US Senate
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">🗳️</div>
+                    US House
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">📍</div>
+                    State Legislature
+                </div>
+            </div>
+            
+            <!-- Call to action -->
+            <div class="cta">
+                <div class="cta-text">
+                    <span class="search-icon">🔍</span>
+                    Search by ZIP Code
+                </div>
+                <div class="races">
+                    <span><strong>1,595+ Candidates</strong></span>
+                    <span>Certified • Verified • Updated</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
