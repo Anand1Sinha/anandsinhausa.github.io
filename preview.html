@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Learn Mahjong - Simple Guide</title>
+<style>
+  :root{
+    --bg:#f7f3ea;
+    --card:#ffffff;
+    --ink:#1f2933;
+    --muted:#5f6b7a;
+    --accent:#0f766e;
+    --accent2:#b45309;
+    --line:#e4ded2;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    font-family: Georgia, "Times New Roman", serif;
+    background:var(--bg);
+    color:var(--ink);
+    line-height:1.55;
+  }
+  header{
+    background:linear-gradient(135deg,#0f766e,#134e4a);
+    color:white;
+    padding:28px 18px;
+    text-align:center;
+  }
+  header h1{margin:0;font-size:2rem;letter-spacing:.3px}
+  header p{margin:8px auto 0;max-width:760px;font-size:1.05rem;opacity:.95}
+  .wrap{max-width:1100px;margin:0 auto;padding:18px}
+  .tabs{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    margin:14px 0 18px;
+    position:sticky;
+    top:0;
+    background:rgba(247,243,234,.96);
+    padding:10px 0;
+    z-index:5;
+  }
+  .tab-btn{
+    border:1px solid var(--line);
+    background:#fff;
+    color:var(--ink);
+    padding:10px 14px;
+    border-radius:999px;
+    cursor:pointer;
+    font-weight:700;
+    font-family:inherit;
+  }
+  .tab-btn.active{
+    background:var(--accent);
+    color:white;
+    border-color:var(--accent);
+  }
+  .tab{display:none}
+  .tab.active{display:block}
+  .card{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:18px;
+    padding:22px;
+    box-shadow:0 8px 20px rgba(0,0,0,.05);
+    margin-bottom:18px;
+  }
+  h2{margin:0 0 10px;color:#134e4a;font-size:1.65rem}
+  h3{margin:22px 0 8px;color:#7c2d12;font-size:1.2rem}
+  .lead{font-size:1.1rem;color:#26323f}
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+  @media(max-width:780px){.grid,.grid2{grid-template-columns:1fr}.tabs{position:static}}
+  .note{
+    background:#fffbeb;
+    border-left:5px solid #f59e0b;
+    padding:12px 14px;
+    border-radius:10px;
+    color:#533b04;
+  }
+  .pill{
+    display:inline-block;
+    padding:3px 8px;
+    border-radius:999px;
+    background:#e6fffb;
+    color:#115e59;
+    font-weight:700;
+    font-size:.9rem;
+    margin-right:6px;
+  }
+  .tile-row{display:flex;gap:7px;flex-wrap:wrap;align-items:center;margin:10px 0 16px}
+  .tile{
+    width:48px;height:66px;border-radius:8px;
+    background:linear-gradient(145deg,#fff,#eee7db);
+    border:1px solid #cfc8bc;
+    box-shadow:inset 0 -3px 0 rgba(0,0,0,.08),0 3px 5px rgba(0,0,0,.12);
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    font-weight:800;position:relative;
+  }
+  .tile small{font-size:.62rem;color:#6b7280;position:absolute;top:4px;left:5px}
+  .tile .num{font-size:1.05rem;line-height:1}
+  .tile .sym{font-size:1.45rem;line-height:1.05}
+  .bamboo .sym{color:#047857}
+  .dots .sym{color:#b91c1c}
+  .chars .sym{color:#991b1b}
+  .wind .sym{color:#1e3a8a}
+  .dragon-red .sym{color:#dc2626}
+  .dragon-green .sym{color:#047857}
+  .dragon-white .sym{color:#111827}
+  .flower .sym{color:#7c3aed}
+  .group-label{font-weight:700;color:#374151;margin:4px 0}
+  .set-label{font-size:.9rem;color:var(--muted);margin-top:-8px;margin-bottom:12px}
+  .hand{
+    background:#f8fafc;border:1px dashed #cbd5e1;padding:14px;border-radius:14px;margin-top:8px
+  }
+  .section-title{
+    display:flex;align-items:center;gap:10px;margin-top:8px
+  }
+  .badge{
+    background:#134e4a;color:#fff;border-radius:999px;padding:3px 10px;font-size:.8rem;font-weight:700
+  }
+  ul{margin-top:8px}
+</style>
+</head>
+<body>
+<header>
+  <h1>Learn Mahjong</h1>
+  <p>A simple beginner-friendly guide: objective first, tiles next, then special winning patterns one at a time.</p>
+</header>
+
+<div class="wrap">
+  <nav class="tabs" aria-label="Mahjong learning tabs">
+    <button class="tab-btn active" onclick="openTab(event,'intro')">Introduction</button>
+    <button class="tab-btn" onclick="openTab(event,'windy')">Windy Chow</button>
+    <button class="tab-btn" onclick="openTab(event,'crazy')">Crazy Chow</button>
+    <button class="tab-btn" onclick="openTab(event,'chop')">Chop Suey</button>
+  </nav>
+
+  <section id="intro" class="tab active">
+    <div class="card">
+      <h2>Introduction to Mahjong</h2>
+      <p class="lead"><strong>Objective:</strong> Mahjong is a tile game where each player draws and discards tiles to complete a winning hand. A normal winning hand usually has <strong>4 sets and 1 pair</strong>.</p>
+
+      <div class="hand">
+        <div class="group-label">Simple winning structure</div>
+        <p><span class="pill">Set 1</span><span class="pill">Set 2</span><span class="pill">Set 3</span><span class="pill">Set 4</span><span class="pill">Pair</span></p>
+        <p>A set can be a sequence, three matching tiles, or four matching tiles. A pair is two identical tiles.</p>
+      </div>
+
+      <h3>How the game is played</h3>
+      <ul>
+        <li>Each player starts with 13 tiles.</li>
+        <li>On your turn, you draw one tile and discard one tile.</li>
+        <li>You try to arrange your tiles into legal sets and a pair.</li>
+        <li>When your hand is complete, you call <strong>Mahjong</strong>.</li>
+      </ul>
+
+      <h3>Basic sets</h3>
+      <div class="grid">
+        <div>
+          <div class="group-label">Chow — sequence</div>
+          <div class="tile-row">
+            <div class="tile bamboo"><small>5</small><div class="sym">竹</div></div>
+            <div class="tile bamboo"><small>6</small><div class="sym">竹</div></div>
+            <div class="tile bamboo"><small>7</small><div class="sym">竹</div></div>
+          </div>
+          <div class="set-label">Three consecutive tiles in the same suit.</div>
+        </div>
+        <div>
+          <div class="group-label">Pung — 3 of a kind</div>
+          <div class="tile-row">
+            <div class="tile dots"><small>8</small><div class="sym">●●</div></div>
+            <div class="tile dots"><small>8</small><div class="sym">●●</div></div>
+            <div class="tile dots"><small>8</small><div class="sym">●●</div></div>
+          </div>
+          <div class="set-label">Three identical tiles.</div>
+        </div>
+        <div>
+          <div class="group-label">Pair</div>
+          <div class="tile-row">
+            <div class="tile wind"><small>E</small><div class="sym">東</div></div>
+            <div class="tile wind"><small>E</small><div class="sym">東</div></div>
+          </div>
+          <div class="set-label">Two identical tiles.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Types of Mahjong Tiles</h2>
+      <p>There are three numbered suits and several honor/special tiles. The numbered suits run from 1 to 9.</p>
+
+      <h3>1. Bamboo / Sticks</h3>
+      <div class="tile-row">
+        <div class="tile bamboo"><small>1</small><div class="sym">🦚</div></div><div class="tile bamboo"><small>2</small><div class="sym">竹</div></div><div class="tile bamboo"><small>3</small><div class="sym">竹</div></div><div class="tile bamboo"><small>4</small><div class="sym">竹</div></div><div class="tile bamboo"><small>5</small><div class="sym">竹</div></div><div class="tile bamboo"><small>6</small><div class="sym">竹</div></div><div class="tile bamboo"><small>7</small><div class="sym">竹</div></div><div class="tile bamboo"><small>8</small><div class="sym">竹</div></div><div class="tile bamboo"><small>9</small><div class="sym">竹</div></div>
+      </div>
+
+      <h3>2. Dots / Circles</h3>
+      <div class="tile-row">
+        <div class="tile dots"><small>1</small><div class="sym">◎</div></div><div class="tile dots"><small>2</small><div class="sym">●●</div></div><div class="tile dots"><small>3</small><div class="sym">●●●</div></div><div class="tile dots"><small>4</small><div class="sym">●●</div></div><div class="tile dots"><small>5</small><div class="sym">✿</div></div><div class="tile dots"><small>6</small><div class="sym">●●●</div></div><div class="tile dots"><small>7</small><div class="sym">●●●</div></div><div class="tile dots"><small>8</small><div class="sym">●●</div></div><div class="tile dots"><small>9</small><div class="sym">●●●</div></div>
+      </div>
+
+      <h3>3. Characters / Numbers</h3>
+      <div class="tile-row">
+        <div class="tile chars"><small>1</small><div class="sym">一萬</div></div><div class="tile chars"><small>2</small><div class="sym">二萬</div></div><div class="tile chars"><small>3</small><div class="sym">三萬</div></div><div class="tile chars"><small>4</small><div class="sym">四萬</div></div><div class="tile chars"><small>5</small><div class="sym">五萬</div></div><div class="tile chars"><small>6</small><div class="sym">六萬</div></div><div class="tile chars"><small>7</small><div class="sym">七萬</div></div><div class="tile chars"><small>8</small><div class="sym">八萬</div></div><div class="tile chars"><small>9</small><div class="sym">九萬</div></div>
+      </div>
+
+      <h3>4. Winds</h3>
+      <div class="tile-row">
+        <div class="tile wind"><small>E</small><div class="sym">東</div></div><div class="tile wind"><small>S</small><div class="sym">南</div></div><div class="tile wind"><small>W</small><div class="sym">西</div></div><div class="tile wind"><small>N</small><div class="sym">北</div></div>
+      </div>
+
+      <h3>5. Dragons</h3>
+      <div class="tile-row">
+        <div class="tile dragon-red"><small>Red</small><div class="sym">中</div></div><div class="tile dragon-green"><small>Green</small><div class="sym">發</div></div><div class="tile dragon-white"><small>White</small><div class="sym">□</div></div>
+      </div>
+
+      <h3>6. Flowers / Seasons</h3>
+      <div class="tile-row">
+        <div class="tile flower"><small>F</small><div class="sym">花</div></div><div class="tile flower"><small>S</small><div class="sym">季</div></div>
+      </div>
+
+      <p class="note"><strong>Note:</strong> Some Mahjong versions use flowers/seasons, joker-like tiles, or local special hands. The pattern tabs below are special winning hands, not the only way to play Mahjong.</p>
+    </div>
+
+    <div class="card">
+      <h2>Three Example Winning Patterns</h2>
+      <p>Below are three sample “named hands” so you can see how different games or special hands look. We can keep adding one tab at a time.</p>
+
+      <div class="grid">
+        <div>
+          <h3>Windy Chow</h3>
+          <div class="tile-row">
+            <div class="tile wind"><small>E</small><div class="sym">東</div></div><div class="tile wind"><small>S</small><div class="sym">南</div></div><div class="tile wind"><small>W</small><div class="sym">西</div></div><div class="tile wind"><small>N</small><div class="sym">北</div></div>
+          </div>
+          <p>One of each wind, plus chows in the suits, plus a pair.</p>
+        </div>
+        <div>
+          <h3>Crazy Chow</h3>
+          <div class="tile-row">
+            <div class="tile bamboo"><small>4</small><div class="sym">竹</div></div><div class="tile dots"><small>5</small><div class="sym">✿</div></div><div class="tile chars"><small>6</small><div class="sym">六萬</div></div>
+          </div>
+          <p>Mixed chows using different suits in a special pattern.</p>
+        </div>
+        <div>
+          <h3>Chop Suey</h3>
+          <div class="tile-row">
+            <div class="tile bamboo"><small>1</small><div class="sym">🦚</div></div><div class="tile dots"><small>1</small><div class="sym">◎</div></div><div class="tile chars"><small>1</small><div class="sym">一萬</div></div>
+          </div>
+          <p>One of each wind plus 1-2-3 chow in each suit.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="windy" class="tab">
+    <div class="card">
+      <div class="section-title"><h2>Windy Chow</h2><span class="badge">Special hand</span></div>
+      <p class="lead">Windy Chow is a named winning pattern built around the four winds and one chow in each suit.</p>
+
+      <h3>What you need</h3>
+      <ul>
+        <li>One East, one South, one West, and one North wind.</li>
+        <li>One chow in Bamboo.</li>
+        <li>One chow in Dots.</li>
+        <li>One chow in Characters.</li>
+        <li>One pair, usually a wind tile depending on the house rules.</li>
+      </ul>
+
+      <h3>Example winning hand</h3>
+      <div class="hand">
+        <div class="group-label">One of each Wind</div>
+        <div class="tile-row">
+          <div class="tile wind"><small>E</small><div class="sym">東</div></div>
+          <div class="tile wind"><small>S</small><div class="sym">南</div></div>
+          <div class="tile wind"><small>W</small><div class="sym">西</div></div>
+          <div class="tile wind"><small>N</small><div class="sym">北</div></div>
+        </div>
+
+        <div class="group-label">Chow in Bamboo</div>
+        <div class="tile-row">
+          <div class="tile bamboo"><small>7</small><div class="sym">竹</div></div>
+          <div class="tile bamboo"><small>8</small><div class="sym">竹</div></div>
+          <div class="tile bamboo"><small>9</small><div class="sym">竹</div></div>
+        </div>
+
+        <div class="group-label">Chow in Dots</div>
+        <div class="tile-row">
+          <div class="tile dots"><small>2</small><div class="sym">●●</div></div>
+          <div class="tile dots"><small>3</small><div class="sym">●●●</div></div>
+          <div class="tile dots"><small>4</small><div class="sym">●●</div></div>
+        </div>
+
+        <div class="group-label">Chow in Characters</div>
+        <div class="tile-row">
+          <div class="tile chars"><small>5</small><div class="sym">五萬</div></div>
+          <div class="tile chars"><small>6</small><div class="sym">六萬</div></div>
+          <div class="tile chars"><small>7</small><div class="sym">七萬</div></div>
+        </div>
+
+        <div class="group-label">Pair</div>
+        <div class="tile-row">
+          <div class="tile wind"><small>E</small><div class="sym">東</div></div>
+          <div class="tile wind"><small>E</small><div class="sym">東</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="crazy" class="tab">
+    <div class="card">
+      <div class="section-title"><h2>Crazy Chow</h2><span class="badge">Preview</span></div>
+      <p class="lead">Crazy Chow is another named pattern. It usually uses four mixed chows plus a mixed pair. We will refine this tab after confirming the exact house rules from your group.</p>
+
+      <h3>Example visual</h3>
+      <div class="hand">
+        <div class="group-label">Four mixed chows</div>
+        <div class="tile-row">
+          <div class="tile dots"><small>4</small><div class="sym">●●</div></div>
+          <div class="tile bamboo"><small>5</small><div class="sym">竹</div></div>
+          <div class="tile chars"><small>6</small><div class="sym">六萬</div></div>
+        </div>
+        <div class="tile-row">
+          <div class="tile dots"><small>2</small><div class="sym">●●</div></div>
+          <div class="tile bamboo"><small>3</small><div class="sym">竹</div></div>
+          <div class="tile chars"><small>4</small><div class="sym">四萬</div></div>
+        </div>
+        <div class="tile-row">
+          <div class="tile dots"><small>6</small><div class="sym">●●●</div></div>
+          <div class="tile bamboo"><small>7</small><div class="sym">竹</div></div>
+          <div class="tile chars"><small>8</small><div class="sym">八萬</div></div>
+        </div>
+        <div class="group-label">Mixed pair</div>
+        <div class="tile-row">
+          <div class="tile dots"><small>1</small><div class="sym">◎</div></div>
+          <div class="tile bamboo"><small>1</small><div class="sym">🦚</div></div>
+        </div>
+      </div>
+      <p class="note">This is a learning placeholder. Your group’s printed rulebook image shows Crazy Chow as “Four Mixed Chows” plus “Mixed Pair.” We can make this exact after you choose that game next.</p>
+    </div>
+  </section>
+
+  <section id="chop" class="tab">
+    <div class="card">
+      <div class="section-title"><h2>Chop Suey</h2><span class="badge">Preview</span></div>
+      <p class="lead">Chop Suey is a named pattern using one of each wind and a 1-2-3 chow in each suit.</p>
+
+      <h3>Example winning hand</h3>
+      <div class="hand">
+        <div class="group-label">One of each Wind</div>
+        <div class="tile-row">
+          <div class="tile wind"><small>E</small><div class="sym">東</div></div>
+          <div class="tile wind"><small>S</small><div class="sym">南</div></div>
+          <div class="tile wind"><small>W</small><div class="sym">西</div></div>
+          <div class="tile wind"><small>N</small><div class="sym">北</div></div>
+        </div>
+        <div class="group-label">1-2-3 in Bamboo</div>
+        <div class="tile-row">
+          <div class="tile bamboo"><small>1</small><div class="sym">🦚</div></div>
+          <div class="tile bamboo"><small>2</small><div class="sym">竹</div></div>
+          <div class="tile bamboo"><small>3</small><div class="sym">竹</div></div>
+        </div>
+        <div class="group-label">1-2-3 in Dots</div>
+        <div class="tile-row">
+          <div class="tile dots"><small>1</small><div class="sym">◎</div></div>
+          <div class="tile dots"><small>2</small><div class="sym">●●</div></div>
+          <div class="tile dots"><small>3</small><div class="sym">●●●</div></div>
+        </div>
+        <div class="group-label">1-2-3 in Characters</div>
+        <div class="tile-row">
+          <div class="tile chars"><small>1</small><div class="sym">一萬</div></div>
+          <div class="tile chars"><small>2</small><div class="sym">二萬</div></div>
+          <div class="tile chars"><small>3</small><div class="sym">三萬</div></div>
+        </div>
+        <div class="group-label">Pair</div>
+        <div class="tile-row">
+          <div class="tile wind"><small>N</small><div class="sym">北</div></div>
+          <div class="tile wind"><small>N</small><div class="sym">北</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<script>
+function openTab(evt, tabId){
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById(tabId).classList.add('active');
+  evt.currentTarget.classList.add('active');
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+</script>
+</body>
+</html>
