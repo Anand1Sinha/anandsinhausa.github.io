@@ -55,11 +55,15 @@ nav {
 }
 .search-row input:focus { border-color: #5b9cf6; }
 .search-row button {
-  background: #e85c2a; color: #fff; border: none;
+  background: linear-gradient(180deg, #2d4a8e 0%, #1a2a5a 100%);
+  color: #fff; border: none;
   padding: 12px 24px; border-radius: 6px; font-size: 15px;
   font-weight: 700; cursor: pointer; font-family: Arial, sans-serif;
+  box-shadow: 0 3px 5px rgba(26, 42, 90, 0.3);
 }
-.search-row button:hover { background: #c94e20; }
+.search-row button:hover {
+  background: linear-gradient(180deg, #3d5a9e 0%, #2d4a8e 100%);
+}
 .address-prompt {
   background: #fff3cd; border: 2px solid #ffc107; border-radius: 8px;
   padding: 1.25rem; margin: 1rem auto; max-width: 600px; text-align: center;
@@ -265,7 +269,7 @@ nav {
   position: fixed;
   top: 20px;
   right: 20px;
-  background: #e85c2a;
+  background: linear-gradient(180deg, #2d4a8e 0%, #1a2a5a 100%);
   color: #fff;
   border: none;
   padding: 10px 16px;
@@ -273,12 +277,12 @@ nav {
   font-size: 13px;
   font-weight: 700;
   cursor: pointer;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  box-shadow: 0 2px 8px rgba(26, 42, 90, 0.3);
   z-index: 1000;
   display: none;
 }
 .show-guide-btn:hover {
-  background: #c94e20;
+  background: linear-gradient(180deg, #3d5a9e 0%, #2d4a8e 100%);
 }
 
 /* TAB NAVIGATION */
@@ -1085,7 +1089,7 @@ function showAddressPromptBanner(zip) {
     <p style="margin: 0 0 1rem 0; color: #78350f;">Your ZIP has more than one district. While we are displaying all candidates in your ZIP, please enter your registered address to see your candidates.</p>
     <div class="search-row" style="gap: 0.5rem;">
       <input type="text" id="fullAddress" placeholder="e.g. 123 Main St, Troy, MI 48084" style="flex: 1; padding: 0.75rem; border: 2px solid #d97706; border-radius: 6px; font-size: 0.95rem;">
-      <button onclick="searchByAddress(document.getElementById('fullAddress').value)" style="padding: 0.75rem 1.5rem; background: #f59e0b; color: white; border: none; border-radius: 6px; font-weight: 600; cursor: pointer; white-space: nowrap;">Find My District</button>
+      <button onclick="searchByAddress(document.getElementById('fullAddress').value)" style="padding: 0.75rem 1.5rem; background: linear-gradient(180deg, #2d4a8e 0%, #1a2a5a 100%); color: white; border: none; border-radius: 6px; font-weight: 600; cursor: pointer; white-space: nowrap; box-shadow: 0 3px 5px rgba(26, 42, 90, 0.3);">Find My District</button>
     </div>
   `;
   
