@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A4H Voter Guide 2026 | Americans4Hindus</title>
+
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5XRKDSMPY9"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-5XRKDSMPY9');
+</script>
+
+<style>
+/* MODERN DESIGN - Color Variables */
+:root {
+  --primary: #1a2a5a;
+  --primary-light: #2d4a8e;
+  --accent: #5b9cf6;
+  --orange: #e85c2a;
+  --gold: #d4af37;
+  --gold-light: #fffdf5;
+  --gray-50: #f8f9fb;
+  --gray-200: #e5e7eb;
+  --gray-300: #d1d5db;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { 
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: var(--gray-50); 
+  color: #1a1a1a; 
+  line-height: 1.6;
+}
+
+/* Header */
+.contact-bar { background: var(--primary); text-align: right; padding: 6px 16px; font-size: 12px; color: #fff; font-weight: 600; }
+.disclaimer-banner { background: #fff3cd; border-bottom: 2px solid #ffc107; padding: 10px 20px; text-align: center; font-size: 13px; color: #5a4000; }
+.disclaimer-banner strong { color: #c00; }
+
+/* Hero */
+.hero { background: linear-gradient(180deg, #0f1f3d 0%, #1a2f52 100%); color: #fff; text-align: center; padding: 4rem 1.25rem 3.5rem; position: relative; }
+.hero-logo { position: absolute; top: 20px; left: 20px; width: 80px; height: auto; }
+.hero h1 { font-size: clamp(34px, 6vw, 64px); font-weight: 900; margin-bottom: 14px; }
+.hero .subtitle { color: var(--accent); font-size: clamp(18px, 3vw, 30px); font-weight: 700; max-width: 980px; margin: 0 auto; }
+
+/* Tabs */
+.tab-navigation { background: #f0f4ff; border-bottom: 3px solid var(--primary); display: flex; justify-content: center; gap: 8px; padding: 12px 16px; }
+.tab-btn { background: linear-gradient(180deg, var(--primary-light) 0%, var(--primary) 100%); color: #fff; border: none; padding: 12px 24px; font-size: 14px; font-weight: 700; cursor: pointer; border-radius: 6px; flex: 1; max-width: 160px; transition: all 0.2s; }
+.tab-btn:hover { transform: translateY(-2px); }
+.tab-btn.active { box-shadow: 0 4px 12px rgba(26, 42, 90, 0.3); }
+.tab-content { display: none; }
+.tab-content.active { display: block; }
+
+/* Search */
+.search-section { background: var(--gray-50); border-bottom: 1px solid var(--gray-200); padding: 1.5rem 1.25rem; }
+.search-inner { max-width: 680px; margin: 0 auto; text-align: center; }
+.search-inner h2 { font-size: clamp(18px, 4vw, 22px); font-weight: 800; color: var(--primary); margin-bottom: 6px; }
+.search-inner p { font-size: 14px; color: #666; margin-bottom: 1rem; }
+.search-row { display: flex; gap: 8px; max-width: 460px; margin: 0 auto; flex-wrap: wrap; }
+.search-row input { flex: 1; font-size: 17px; padding: 12px 16px; min-width: 200px; border: 2px solid var(--gray-300); border-radius: 6px; }
+.search-row input:focus { border-color: var(--accent); outline: none; }
+.search-row button, .search-row select { background: linear-gradient(180deg, var(--primary-light) 0%, var(--primary) 100%); color: #fff; border: none; padding: 12px 24px; border-radius: 6px; font-size: 15px; font-weight: 700; cursor: pointer; }
+
+/* Filters */
+.filter-bar { background: var(--gray-50); border-bottom: 1px solid var(--gray-200); padding: 0.6rem 1.25rem; display: flex; gap: 8px; flex-wrap: wrap; }
+.filter-pill { background: #fff; border: 1.5px solid var(--gray-300); color: #334; padding: 6px 16px; border-radius: 20px; font-size: 12px; font-weight: 700; cursor: pointer; transition: all 0.15s; }
+.filter-pill.active { background: var(--primary); border-color: var(--primary); color: #fff; }
+
+/* MODERN CANDIDATE CARDS */
+.results-section { max-width: 900px; margin: 0 auto; padding: 1.5rem 1.25rem; }
+.race-group { margin-bottom: 2rem; }
+.race-header { font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; color: #888; padding: 0 0 8px; border-bottom: 1px solid var(--gray-200); margin-bottom: 12px; }
+
+.candidate-card {
+  background: #fff;
+  border: 1px solid var(--gray-200);
+  border-radius: 12px;
+  padding: 1.25rem;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: flex-start;
+  gap: 1.25rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  transition: all 0.2s;
+}
+
+.candidate-card:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.1); transform: translateY(-2px); }
+
+.candidate-card.endorsed {
+  border-left: 6px solid var(--gold);
+  background: linear-gradient(180deg, var(--gold-light) 0%, #fff7e6 100%);
+  box-shadow: 0 6px 16px rgba(180, 132, 0, 0.18);
+}
+
+.candidate-card.concern {
+  background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+  border: 3px solid #64748b;
+}
+
+.candidate-info { flex: 1; min-width: 0; }
+.candidate-name { font-size: 19px; font-weight: 800; color: var(--primary); margin-bottom: 8px; line-height: 1.3; }
+.candidate-name-link { color: var(--primary); text-decoration: none; }
+.candidate-name-link:hover { color: var(--accent); text-decoration: underline; }
+
+.candidate-meta { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 8px; }
+.party-badge, .state-badge, .district-badge, .office-badge {
+  font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 12px; text-transform: uppercase;
+}
+.party-dem { background: #bfdbfe; color: #1e3a8a; }
+.party-rep { background: #fee2e2; color: #991b1b; }
+.party-ind { background: #e5e7eb; color: #4b5563; }
+.party-other { background: #f3f4f6; color: #374151; }
+.state-badge { background: #f0fdf4; color: #166534; }
+.district-badge { background: #f0f4ff; color: #3b5bdb; }
+.office-badge { background: #f3f4f6; color: #4b5563; }
+
+.candidate-website { font-size: 13px; margin-top: 6px; }
+.candidate-website a { color: var(--primary); text-decoration: none; font-weight: 600; word-break: break-all; }
+.candidate-website a:hover { text-decoration: underline; color: var(--accent); }
+
+.candidate-date { font-size: 12px; color: #666; margin-top: 6px; }
+.candidate-date span { font-weight: 700; color: var(--orange); }
+
+/* NEW: Endorsement Button */
+.endorsement-button {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 8px 16px;
+  background: linear-gradient(135deg, var(--gold) 0%, #b8941f 100%);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 700;
+  border-radius: 6px;
+  text-decoration: none;
+  box-shadow: 0 2px 4px rgba(212, 175, 55, 0.3);
+  transition: all 0.2s;
+}
+.endorsement-button:hover {
+  background: linear-gradient(135deg, #b8941f 0%, #9c7a1a 100%);
+  transform: translateY(-1px);
+}
+
+/* NEW: Candidate Photos & Seals */
+.candidate-visual { flex-shrink: 0; position: relative; }
+.candidate-photo {
+  width: 120px;
+  height: 120px;
+  border-radius: 12px;
+  object-fit: cover;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  border: 3px solid #fff;
+}
+.candidate-avatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 12px;
+  background: var(--primary);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40px;
+  font-weight: 800;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+.endorsement-seal {
+  position: absolute;
+  top: -12px;
+  right: -12px;
+  width: 60px;
+  height: 60px;
+  z-index: 10;
+  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.15));
+}
+
+/* Mobile */
+@media (max-width: 640px) {
+  .candidate-card { flex-direction: column; align-items: center; text-align: center; }
+  .candidate-visual { order: -1; }
+  .candidate-photo, .candidate-avatar { width: 100px; height: 100px; }
+  .endorsement-seal { width: 50px; height: 50px; }
+  .candidate-meta { justify-content: center; }
+  .hero-logo { width: 60px; top: 15px; left: 15px; }
+}
+
+.prompt-box { background: #fff; border: 1px dashed var(--gray-300); border-radius: 12px; padding: 2rem 1.5rem; text-align: center; color: #555; font-size: 14px; }
+</style>
+</head>
+<body>
+
+<div class="contact-bar">Anand Sinha &nbsp;|&nbsp; (248) 872-3057</div>
+<div class="disclaimer-banner"><strong>⚠ BETA VERSION.</strong> This voter guide is enabled for all available states. Please verify results before public release.</div>
+
+<div class="hero">
+  <img src="https://raw.githubusercontent.com/Anand1Sinha/anandsinhausa.github.io/main/a4h-logo.png" alt="A4H" class="hero-logo">
+  <h1>A4H Voter Guide 2026</h1>
+  <div class="subtitle">Helping voters identify candidates aligned with Hindu and pro-Hindu values.</div>
+</div>
+
+<div class="tab-navigation">
+  <button class="tab-btn" onclick="switchTab('endorsed')">A4H Endorsed</button>
+  <button class="tab-btn" onclick="switchTab('mystate')">My State</button>
+  <button class="tab-btn active" onclick="switchTab('myzip')">My ZIP Code</button>
+</div>
+
+<!-- TAB 1: ENDORSED -->
+<div id="tab-endorsed" class="tab-content">
+  <div class="search-section">
+    <div class="search-inner">
+      <h2>A4H Endorsed Candidates</h2>
+      <p>View all candidates endorsed by Americans4Hindus nationwide.</p>
+    </div>
+  </div>
+  <div class="filter-bar" id="filters-endorsed" style="display:flex">
+    <button class="filter-pill active" onclick="setFilter(this,'all','endorsed')">All races</button>
+    <button class="filter-pill" onclick="setFilter(this,'Governor','endorsed')">Governor</button>
+    <button class="filter-pill" onclick="setFilter(this,'US Senate','endorsed')">US Senate</button>
+    <button class="filter-pill" onclick="setFilter(this,'US House','endorsed')">US House</button>
+    <button class="filter-pill" onclick="setFilter(this,'State Senate','endorsed')">State Senate</button>
+    <button class="filter-pill" onclick="setFilter(this,'State House','endorsed')">State House</button>
+  </div>
+  <div class="results-section"><div id="endorsed-results"><div class="prompt-box">Loading...</div></div></div>
+</div>
+
+<!-- TAB 2: MY STATE -->
+<div id="tab-mystate" class="tab-content">
+  <div class="search-section">
+    <div class="search-inner">
+      <h2>Select Your State</h2>
+      <p>Choose your state to view all candidates.</p>
+      <div class="search-row">
+        <select id="stateSelector" onchange="showStateResults()" style="flex:1; min-width:200px;">
+          <option value="">-- Select State --</option>
+          <option value="AL">Alabama</option><option value="AK">Alaska</option><option value="AZ">Arizona</option>
+          <option value="AR">Arkansas</option><option value="CA">California</option><option value="CO">Colorado</option>
+          <option value="CT">Connecticut</option><option value="DE">Delaware</option><option value="FL">Florida</option>
+          <option value="GA">Georgia</option><option value="HI">Hawaii</option><option value="ID">Idaho</option>
+          <option value="IL">Illinois</option><option value="IN">Indiana</option><option value="IA">Iowa</option>
+          <option value="KS">Kansas</option><option value="KY">Kentucky</option><option value="LA">Louisiana</option>
+          <option value="ME">Maine</option><option value="MD">Maryland</option><option value="MA">Massachusetts</option>
+          <option value="MI">Michigan</option><option value="MN">Minnesota</option><option value="MS">Mississippi</option>
+          <option value="MO">Missouri</option><option value="MT">Montana</option><option value="NE">Nebraska</option>
+          <option value="NV">Nevada</option><option value="NH">New Hampshire</option><option value="NJ">New Jersey</option>
+          <option value="NM">New Mexico</option><option value="NY">New York</option><option value="NC">North Carolina</option>
+          <option value="ND">North Dakota</option><option value="OH">Ohio</option><option value="OK">Oklahoma</option>
+          <option value="OR">Oregon</option><option value="PA">Pennsylvania</option><option value="RI">Rhode Island</option>
+          <option value="SC">South Carolina</option><option value="SD">South Dakota</option><option value="TN">Tennessee</option>
+          <option value="TX">Texas</option><option value="UT">Utah</option><option value="VT">Vermont</option>
+          <option value="VA">Virginia</option><option value="WA">Washington</option><option value="WV">West Virginia</option>
+          <option value="WI">Wisconsin</option><option value="WY">Wyoming</option>
+        </select>
+      </div>
+    </div>
+  </div>
+  <div class="filter-bar" id="filters-state" style="display:none"></div>
+  <div class="results-section"><div id="state-results"><div class="prompt-box">Select a state above.</div></div></div>
+</div>
+
+<!-- TAB 3: MY ZIP -->
+<div id="tab-myzip" class="tab-content active">
+  <div class="search-section">
+    <div class="search-inner">
+      <h2>Find Your Candidates</h2>
+      <p>Enter your ZIP code to find your races.</p>
+      <div class="search-row">
+        <input type="text" id="searchInput" placeholder="Enter ZIP code" maxlength="5" inputmode="numeric">
+        <button onclick="search()">Search</button>
+      </div>
+    </div>
+  </div>
+  <div class="filter-bar" id="filters" style="display:none">
+    <button class="filter-pill active" onclick="setFilter(this,'all','zip')">All races</button>
+    <button class="filter-pill" onclick="setFilter(this,'Governor','zip')">Governor</button>
+    <button class="filter-pill" onclick="setFilter(this,'US Senate','zip')">US Senate</button>
+    <button class="filter-pill" onclick="setFilter(this,'US House','zip')">US House</button>
+    <button class="filter-pill" onclick="setFilter(this,'State Senate','zip')">State Senate</button>
+    <button class="filter-pill" onclick="setFilter(this,'State House','zip')">State House</button>
+    <button class="filter-pill" onclick="setFilter(this,'Local','zip')">Local Races</button>
+  </div>
+  <div class="results-section"><div id="results"></div></div>
+</div>
+
+<script>
+let activeFilter = 'all', lastResults = [], currentSearch = '';
+let DATA = { candidates: [], zipCodes: [], splitZips: new Set(), stateConfig: [] };
+
+async function loadData() {
+  try {
+    const base = "https://docs.google.com/spreadsheets/d/1ot939X173RXXuAk7Zs66OD_3sc9t8a9HcofS3Fv11Pg/export?format=csv&gid=";
+    
+    // CORRECTED GID NUMBERS FROM MAY 2026
+    const urls = {
+      governor: base + "106542971",
+      usSenate: base + "1588428220",      // FIXED!
+      usHouse: base + "574891025",
+      stateSenate: base + "755731723",
+      stateHouse: base + "2114817971",
+      stateBoard: base + "153617938",
+      localCounty: base + "983206650",
+      localCity: base + "1257794290",
+      localJudges: base + "324526209",
+      localOther: base + "151782435",
+      zipCodes: base + "1136776422",
+      stateConfig: base + "306598189"
+    };
+    
+    const fetchSheet = async (url) => {
+      const res = await fetch(url);
+      if (!res.ok) throw new Error(`Failed: ${url}`);
+      const text = await res.text();
+      const rows = parseCSV(text);
+      return rows.slice(1); // Skip header
+    };
+    
+    function parseCSV(text) {
+      const rows = [], row = [], field = [];
+      let inQuotes = false, i = 0;
+      
+      while (i < text.length) {
+        const c = text[i], next = text[i + 1];
+        
+        if (c === '"') {
+          if (inQuotes && next === '"') { field.push('"'); i++; }
+          else inQuotes = !inQuotes;
+        } else if (c === ',' && !inQuotes) {
+          row.push(field.join('').trim());
+          field.length = 0;
+        } else if (c === '\n' && !inQuotes) {
+          if (field.length || row.length) {
+            row.push(field.join('').trim());
+            if (row.some(f => f)) rows.push(row.slice());
+            row.length = 0;
+            field.length = 0;
+          }
+        } else {
+          field.push(c);
+        }
+        i++;
+      }
+      
+      if (field.length || row.length) {
+        row.push(field.join('').trim());
+        if (row.some(f => f)) rows.push(row);
+      }
+      
+      return rows;
+    }
+
+    const [gov, sen, house, stateSen, stateHse, stBrd, locCty, locCity, locJdg, locOth, zips, cfg] = 
+      await Promise.all([
+        fetchSheet(urls.governor),
+        fetchSheet(urls.usSenate),
+        fetchSheet(urls.usHouse),
+        fetchSheet(urls.stateSenate),
+        fetchSheet(urls.stateHouse),
+        fetchSheet(urls.stateBoard),
+        fetchSheet(urls.localCounty),
+        fetchSheet(urls.localCity),
+        fetchSheet(urls.localJudges),
+        fetchSheet(urls.localOther),
+        fetchSheet(urls.zipCodes),
+        fetchSheet(urls.stateConfig)
+      ]);
+
+    const proc = (r, office) => ({
+      state: r[0], district: r[1], raceName: r[2], name: r[3], party: r[4],
+      status: r[5], primaryDate: r[6], filingStatus: r[7], a4h: r[8],
+      zipCodes: r[9], fecId: r[10], url: r[11], 
+      endorsementPageURL: r[12] || '',  // Column R - NEW
+      candidatePhotoURL: r[13] || '',   // Column S - NEW
+      office
+    });
+
+    DATA.candidates = [
+      ...gov.map(r => proc(r, 'Governor')),
+      ...sen.map(r => proc(r, 'US Senate')),
+      ...house.map(r => proc(r, 'US House')),
+      ...stateSen.map(r => proc(r, 'State Senate')),
+      ...stateHse.map(r => proc(r, 'State House')),
+      ...stBrd.map(r => proc(r, 'State Board')),
+      ...locCty.map(r => proc(r, 'Local - County')),
+      ...locCity.map(r => proc(r, 'Local - City')),
+      ...locJdg.map(r => proc(r, 'Local - Judges')),
+      ...locOth.map(r => proc(r, 'Local - Other'))
+    ].filter(c => c.state && c.district && c.name);
+
+    DATA.zipCodes = zips.map(r => ({
+      state: r[0], office: r[1], district: r[2], zip: r[3], isSplit: r[5] === 'Yes'
+    }));
+
+    DATA.splitZips = new Set(DATA.zipCodes.filter(z => z.isSplit).map(z => z.zip));
+
+    DATA.stateConfig = cfg.map(r => ({
+      state: r[0]?.trim().toUpperCase(),
+      stateName: r[1]?.trim(),
+      hasLocalRaces: String(r[2] || '').trim().toUpperCase() === 'YES'
+    })).filter(s => s.state);
+
+    console.log(`✅ Loaded: ${DATA.candidates.length} candidates, ${DATA.stateConfig.length} states`);
+    
+  } catch (error) {
+    console.error('Error loading data:', error);
+    document.getElementById('results').innerHTML = 
+      '<div class="prompt-box">Error loading data. Please refresh.</div>';
+  }
+}
+
+loadData();
+
+function switchTab(tabName) {
+  document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+  event.target.classList.add('active');
+  
+  document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+  document.getElementById(`tab-${tabName}`).classList.add('active');
+  
+  if (tabName === 'endorsed') showEndorsed();
+}
+
+function showEndorsed() {
+  const endorsed = DATA.candidates.filter(c => String(c.a4h || '').toUpperCase() === 'YES');
+  
+  if (!endorsed.length) {
+    document.getElementById('endorsed-results').innerHTML = '<div class="prompt-box">No endorsed candidates found.</div>';
+    return;
+  }
+  
+  renderToContainer(endorsed, 'endorsed-results', 'all');
+  document.getElementById('filters-endorsed').style.display = 'flex';
+}
+
+function showStateResults() {
+  const state = document.getElementById('stateSelector').value;
+  
+  if (!state) {
+    document.getElementById('state-results').innerHTML = '<div class="prompt-box">Select a state above.</div>';
+    document.getElementById('filters-state').style.display = 'none';
+    return;
+  }
+  
+  const stateCands = DATA.candidates.filter(c => c.state === state);
+  
+  if (!stateCands.length) {
+    document.getElementById('state-results').innerHTML = `<div class="prompt-box">No candidates found for ${state}.</div>`;
+    document.getElementById('filters-state').style.display = 'none';
+    return;
+  }
+  
+  const stateInfo = DATA.stateConfig.find(s => s.state === state);
+  const hasLocal = stateInfo && stateInfo.hasLocalRaces;
+  
+  const filterBar = document.getElementById('filters-state');
+  if (hasLocal) {
+    filterBar.innerHTML = `
+      <button class="filter-pill active" onclick="setFilter(this,'all','state')">All races</button>
+      <button class="filter-pill" onclick="setFilter(this,'Governor','state')">Governor</button>
+      <button class="filter-pill" onclick="setFilter(this,'US Senate','state')">US Senate</button>
+      <button class="filter-pill" onclick="setFilter(this,'US House','state')">US House</button>
+      <button class="filter-pill" onclick="setFilter(this,'State Senate','state')">State Senate</button>
+      <button class="filter-pill" onclick="setFilter(this,'State House','state')">State House</button>
+      <button class="filter-pill" onclick="setFilter(this,'State Board','state')">State Board</button>
+      <button class="filter-pill" onclick="setFilter(this,'Local - County','state')">County</button>
+      <button class="filter-pill" onclick="setFilter(this,'Local - City','state')">City</button>
+      <button class="filter-pill" onclick="setFilter(this,'Local - Judges','state')">Judges</button>
+      <button class="filter-pill" onclick="setFilter(this,'Local - Other','state')">Other Local</button>
+    `;
+  } else {
+    filterBar.innerHTML = `
+      <button class="filter-pill active" onclick="setFilter(this,'all','state')">All races</button>
+      <button class="filter-pill" onclick="setFilter(this,'Governor','state')">Governor</button>
+      <button class="filter-pill" onclick="setFilter(this,'US Senate','state')">US Senate</button>
+      <button class="filter-pill" onclick="setFilter(this,'US House','state')">US House</button>
+      <button class="filter-pill" onclick="setFilter(this,'State Senate','state')">State Senate</button>
+      <button class="filter-pill" onclick="setFilter(this,'State House','state')">State House</button>
+    `;
+  }
+  filterBar.style.display = 'flex';
+  
+  renderToContainer(stateCands, 'state-results', 'all');
+}
+
+function search() {
+  const input = document.getElementById('searchInput').value.trim();
+  
+  if (!input || !/^\d{5}$/.test(input)) {
+    document.getElementById('results').innerHTML = '<div class="prompt-box">Please enter a valid 5-digit ZIP code.</div>';
+    return;
+  }
+
+  currentSearch = input;
+  searchByZip(input);
+}
+
+function searchByZip(zip) {
+  const zipMatches = DATA.zipCodes.filter(z => z.zip === zip);
+  
+  if (!zipMatches.length) {
+    document.getElementById('results').innerHTML = `<div class="prompt-box">ZIP code ${zip} not found in database.</div>`;
+    document.getElementById('filters').style.display = 'none';
+    return;
+  }
+
+  const zipState = zipMatches[0].state;
+  
+  const results = DATA.candidates.filter(c => {
+    if (c.state !== zipState) return false;
+    
+    const relevantMappings = zipMatches.filter(z => z.office === c.office && z.state === c.state);
+    
+    if (relevantMappings.length > 0) {
+      return relevantMappings.some(z => matchesDistrict(c.district, z.district, c.office));
+    }
+    
+    if (!c.zipCodes || String(c.zipCodes).trim() === "") return true;
+    
+    if (c.zipCodes && String(c.zipCodes).includes(zip)) return true;
+    
+    return false;
+  });
+
+  lastResults = results;
+  activeFilter = 'all';
+  document.querySelectorAll('.filter-pill').forEach(b => b.classList.remove('active'));
+  document.querySelector('.filter-pill').classList.add('active');
+  document.getElementById('filters').style.display = results.length ? 'flex' : 'none';
+  render(results);
+}
+
+function matchesDistrict(candDist, lookupDist, office) {
+  if (!candDist || !lookupDist) return false;
+  const c = String(candDist).trim().toUpperCase();
+  const l = String(lookupDist).trim().toUpperCase();
+  if (c === l) return true;
+  
+  const cNum = c.match(/\d+/)?.[0];
+  const lNum = l.match(/\d+/)?.[0];
+  if (!cNum || !lNum || cNum !== lNum) return false;
+  
+  if (office === 'US House') {
+    const cState = c.match(/^([A-Z]{2})-/i)?.[1];
+    const lState = l.match(/^([A-Z]{2})-/i)?.[1];
+    return cState && lState && cState === lState;
+  }
+  
+  return true;
+}
+
+function setFilter(btn, val, tab) {
+  const filterBar = tab === 'endorsed' ? 'filters-endorsed' 
+    : tab === 'state' ? 'filters-state' 
+    : 'filters';
+  document.querySelectorAll(`#${filterBar} .filter-pill`).forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  
+  if (tab === 'endorsed') {
+    const endorsed = DATA.candidates.filter(c => String(c.a4h || '').toUpperCase() === 'YES');
+    renderToContainer(endorsed, 'endorsed-results', val);
+  } else if (tab === 'state') {
+    const state = document.getElementById('stateSelector').value;
+    const stateCands = DATA.candidates.filter(c => c.state === state);
+    renderToContainer(stateCands, 'state-results', val);
+  } else {
+    activeFilter = val;
+    render(lastResults);
+  }
+}
+
+function renderToContainer(candidates, containerId, filterValue) {
+  let filtered;
+  if (filterValue === 'all') {
+    filtered = candidates;
+  } else if (filterValue === 'Local Office Races') {
+    filtered = candidates.filter(c => c.office === 'State Board' || c.office.startsWith('Local -'));
+  } else {
+    filtered = candidates.filter(c => c.office === filterValue);
+  }
+  
+  if (!filtered.length) {
+    document.getElementById(containerId).innerHTML = '<div class="prompt-box">No candidates for selected filter.</div>';
+    return;
+  }
+  
+  const officeOrder = ['Governor', 'US Senate', 'US House', 'State Senate', 'State House', 'State Board',
+                       'Local - County', 'Local - City', 'Local - Judges', 'Local - Other'];
+  const groups = {};
+  officeOrder.forEach(o => groups[o] = []);
+  filtered.forEach(c => { if (groups[c.office]) groups[c.office].push(c); });
+  
+  officeOrder.forEach(office => {
+    if (groups[office]) {
+      groups[office].sort((a, b) => {
+        const aEnd = String(a.a4h).toUpperCase() === 'YES' ? 0 : 1;
+        const bEnd = String(b.a4h).toUpperCase() === 'YES' ? 0 : 1;
+        if (aEnd !== bEnd) return aEnd - bEnd;
+        if (a.district !== b.district) return a.district.localeCompare(b.district);
+        return a.name.localeCompare(b.name);
+      });
+    }
+  });
+  
+  let html = '';
+  officeOrder.forEach(office => {
+    if (!groups[office].length) return;
+    const label = {
+      'US Senate': 'U.S. Senate', 'US House': 'U.S. House of Representatives',
+      'Governor': 'Governor', 'State Senate': 'State Senate', 'State House': 'State House',
+      'State Board': 'State Board', 'Local - County': 'County Races', 'Local - City': 'City Races',
+      'Local - Judges': 'Judicial Races', 'Local - Other': 'Other Local Races'
+    }[office];
+
+    html += `<div class="race-group"><div class="race-header">${label}</div>`;
+    groups[office].forEach(c => {
+      html += renderCard(c);
+    });
+    html += `</div>`;
+  });
+
+  document.getElementById(containerId).innerHTML = html;
+}
+
+function render(candidates) {
+  const filtered = activeFilter === 'all' ? candidates
+    : activeFilter === 'Local' ? candidates.filter(c => c.office.startsWith('Local -'))
+    : candidates.filter(c => c.office === activeFilter);
+
+  if (!filtered.length) {
+    document.getElementById('results').innerHTML = '<div class="prompt-box">No candidates for selected filter.</div>';
+    return;
+  }
+
+  const officeOrder = ['Governor', 'US Senate', 'US House', 'State Senate', 'State House', 'State Board',
+                       'Local - County', 'Local - City', 'Local - Judges', 'Local - Other'];
+  const groups = {};
+  officeOrder.forEach(o => groups[o] = []);
+  filtered.forEach(c => { if (groups[c.office]) groups[c.office].push(c); });
+
+  officeOrder.forEach(office => {
+    if (groups[office]) {
+      groups[office].sort((a, b) => {
+        const aEnd = String(a.a4h).toUpperCase() === 'YES' ? 0 : 1;
+        const bEnd = String(b.a4h).toUpperCase() === 'YES' ? 0 : 1;
+        if (aEnd !== bEnd) return aEnd - bEnd;
+        if (a.district !== b.district) return a.district.localeCompare(b.district);
+        return a.name.localeCompare(b.name);
+      });
+    }
+  });
+
+  let html = '';
+  officeOrder.forEach(office => {
+    if (!groups[office].length) return;
+    const label = {
+      'US Senate': 'U.S. Senate', 'US House': 'U.S. House of Representatives',
+      'Governor': 'Governor', 'State Senate': 'State Senate', 'State House': 'State House',
+      'State Board': 'State Board', 'Local - County': 'County Races', 'Local - City': 'City Races',
+      'Local - Judges': 'Judicial Races', 'Local - Other': 'Other Local Races'
+    }[office];
+
+    html += `<div class="race-group"><div class="race-header">${label}</div>`;
+    groups[office].forEach(c => {
+      html += renderCard(c);
+    });
+    html += `</div>`;
+  });
+
+  document.getElementById('results').innerHTML = html;
+}
+
+function renderCard(c) {
+  const isEndorsed = String(c.a4h).toUpperCase() === 'YES';
+  const isConcern = String(c.a4h).toUpperCase() === 'NO';
+  const cardClass = isEndorsed ? 'candidate-card endorsed' 
+    : isConcern ? 'candidate-card concern' 
+    : 'candidate-card';
+  
+  const nameHtml = c.url && c.url.trim()
+    ? `<a href="${c.url}" target="_blank" rel="noopener" class="candidate-name-link">${c.name}</a>`
+    : c.name;
+  
+  const websiteLink = c.url && c.url.trim()
+    ? `<div class="candidate-website"><a href="${c.url}" target="_blank" rel="noopener">${c.url}</a></div>`
+    : '';
+  
+  const partyClass = c.party && c.party.toLowerCase().includes('dem') ? 'party-dem'
+    : c.party && c.party.toLowerCase().includes('rep') ? 'party-rep'
+    : c.party && c.party.toLowerCase().includes('ind') ? 'party-ind'
+    : 'party-other';
+  
+  const dateHtml = c.primaryDate
+    ? `<div class="candidate-date">Primary: <span>${c.primaryDate}</span>${c.status ? '    ' + c.status : ''}</div>`
+    : '';
+  
+  const initials = (c.name || '').split(' ').filter(Boolean).slice(0, 2).map(w => w[0]).join('').toUpperCase();
+  
+  // NEW: Photo or initials
+  const basePhotoURL = 'https://raw.githubusercontent.com/Anand1Sinha/anandsinhausa.github.io/main/';
+  let visualHtml = '';
+  
+  if (c.candidatePhotoURL && c.candidatePhotoURL.trim()) {
+    // Has photo - show photo with seal overlay if endorsed/concern
+    const photoURL = basePhotoURL + c.candidatePhotoURL;
+    const sealOverlay = isEndorsed 
+      ? `<img src="${basePhotoURL}a4h-seal.png" alt="A4H Endorsed" class="endorsement-seal">`
+      : isConcern
+      ? `<img src="${basePhotoURL}a4h-seal-no.png" alt="A4H Concern" class="endorsement-seal">`
+      : '';
+    
+    visualHtml = `<div class="candidate-visual">
+      <img src="${photoURL}" alt="${c.name}" class="candidate-photo">
+      ${sealOverlay}
+    </div>`;
+  } else {
+    // No photo - show initials or seal
+    if (isEndorsed || isConcern) {
+      const sealURL = isEndorsed ? `${basePhotoURL}a4h-seal.png` : `${basePhotoURL}a4h-seal-no.png`;
+      visualHtml = `<div class="candidate-visual"><img src="${sealURL}" alt="A4H ${isEndorsed ? 'Endorsed' : 'Concern'}" style="width:120px;height:120px;"></div>`;
+    } else {
+      visualHtml = `<div class="candidate-visual"><div class="candidate-avatar">${initials}</div></div>`;
+    }
+  }
+  
+  // NEW: Endorsement button
+  const endorsementButton = c.endorsementPageURL && c.endorsementPageURL.trim()
+    ? `<a href="https://anandsinhausa.github.io/A4H-Voter-Guide/endorsements/${c.endorsementPageURL}" target="_blank" class="endorsement-button">Why A4H Supports</a>`
+    : '';
+  
+  return `<div class="${cardClass}">
+    <div class="candidate-info">
+      <div class="candidate-name">${nameHtml}</div>
+      ${websiteLink}
+      <div class="candidate-meta">
+        <span class="party-badge ${partyClass}">${c.party || 'Party TBD'}</span>
+        <span class="state-badge">${c.state || ''}</span>
+        <span class="district-badge">${(c.office.startsWith('Local -') || c.office === 'State Board') && c.raceName ? c.raceName : c.district}</span>
+        ${c.office.startsWith('Local -') || c.office === 'State Board' ? '' : `<span class="office-badge">${c.office}</span>`}
+      </div>
+      ${dateHtml}
+      ${endorsementButton}
+    </div>
+    ${visualHtml}
+  </div>`;
+}
+
+document.getElementById('searchInput').addEventListener('keydown', e => { 
+  if (e.key === 'Enter') search(); 
+});
+</script></body></html>
