@@ -1063,20 +1063,25 @@ function renderToContainer(candidates, containerId, filterValue) {
         ? endorsementSeal
         : `<div class="candidate-avatar">${initials}</div>`;
       
-      html += `<div class="${cardClass}">` +
-        `<div class="candidate-info">` +
-          `<div class="candidate-name">${nameHtml}</div>` +
-          websiteLink +
-          `<div class="candidate-meta">` +
-            `<span class="party-badge ${partyClass}">${c.party || 'Party TBD'}</span>` +
-            `<span class="state-badge">${c.state || ''}</span>` +
-            `<span class="district-badge">${(c.office.startsWith('Local -') || c.office === 'State Board') && c.raceName ? c.raceName : c.district}</span>` +
-            (c.office.startsWith('Local -') || c.office === 'State Board' ? '' : `<span class="office-badge">${getOfficeLabel(c.office, c.state)}</span>`) +
+      // Use modern or classic renderer
+      if (ACTIVE_SKIN === 'modern') {
+        html += renderModernCard(c, initials, partyClass, dateHtml, endorsementSeal, isEndorsed, isConcern);
+      } else {
+        html += `<div class="${cardClass}">` +
+          `<div class="candidate-info">` +
+            `<div class="candidate-name">${nameHtml}</div>` +
+            websiteLink +
+            `<div class="candidate-meta">` +
+              `<span class="party-badge ${partyClass}">${c.party || 'Party TBD'}</span>` +
+              `<span class="state-badge">${c.state || ''}</span>` +
+              `<span class="district-badge">${(c.office.startsWith('Local -') || c.office === 'State Board') && c.raceName ? c.raceName : c.district}</span>` +
+              (c.office.startsWith('Local -') || c.office === 'State Board' ? '' : `<span class="office-badge">${getOfficeLabel(c.office, c.state)}</span>`) +
+            `</div>` +
+            dateHtml +
           `</div>` +
-          dateHtml +
-        `</div>` +
-        rightContent +
-      `</div>`;
+          rightContent +
+        `</div>`;
+      }
     });
     html += `</div>`;
   });
