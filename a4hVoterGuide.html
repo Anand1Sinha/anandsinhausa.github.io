@@ -59,7 +59,7 @@ nav {
   display: flex; gap: 1rem; margin-left: auto;
   align-items: center; list-style: none; flex-wrap: wrap;
 }
-.nav-links a { color: #ccd6f6; text-decoration= none; font-size: 13px; font-weight: 500; white-space: nowrap; }
+.nav-links a { color: #ccd6f6; text-decoration: none; font-size: 13px; font-weight: 500; white-space: nowrap; }
 .nav-links a.active { color: #5b9cf6; }
 .nav-btn {
   background: #e85c2a !important; color: #fff !important;
@@ -103,6 +103,13 @@ nav {
   .modern-card.endorsed .candidate-photo-container {
     width: 130px;
     height: 130px;
+  }
+  
+  .modern-card .seal-badge-overlay {
+    width: 46px;
+    height: 46px;
+    top: -4px;
+    left: -4px;
   }
   
   .candidate-name {
@@ -440,6 +447,14 @@ nav {
 .modern-card.endorsed .candidate-photo-container {
   width: 155px;
   height: 155px;
+  transition: transform 0.2s ease, filter 0.2s ease;
+}
+.modern-card.endorsed .candidate-photo-container[style*="cursor:pointer"]:hover {
+  transform: scale(1.03);
+  filter: brightness(1.05);
+}
+.modern-card.endorsed .candidate-photo-container[style*="cursor:pointer"]:active {
+  transform: scale(0.98);
 }
 .modern-card .candidate-photo {
   width: 100%;
@@ -465,45 +480,15 @@ nav {
 }
 .modern-card .seal-badge-overlay {
   position: absolute;
-  top: -10px;
-  left: -10px;
-  width: 70px;
-  height: 70px;
+  top: -6px;
+  left: -6px;
+  width: 56px;
+  height: 56px;
   z-index: 10;
-  filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3));
+  filter: drop-shadow(1px 2px 3px rgba(0,0,0,0.2));
 }
 .modern-card .candidate-info {
   order: 1;
-}
-.modern-card .candidate-buttons {
-  display: flex;
-  gap: 12px;
-  margin-top: 16px;
-}
-.modern-card .candidate-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  padding: 10px 20px;
-  border-radius: 6px;
-  font-size: 14px;
-  font-weight: 700;
-  text-decoration: none;
-  cursor: pointer;
-}
-.modern-card .candidate-btn-website {
-  background: transparent;
-  color: #1a2a5a;
-  border: none;
-}
-.modern-card .candidate-btn-website:hover {
-  text-decoration: underline;
-}
-.modern-card .candidate-btn-endorsement {
-  background: #1a2a5a;
-  color: #fff;
-  border: 2px solid #1a2a5a;
 }
 </style>
 </head>
@@ -531,27 +516,23 @@ nav {
   <div class="intro-inner">
     <h3>About This Voter Guide</h3>
     <p>The Americans4Hindus Voter Guide helps Hindu American voters make informed decisions in the 2026 elections. We provide comprehensive candidate information across federal, state, and local races, along with A4H endorsements for candidates who align with our community's values.</p>
-    
     <h4>How to Use This Tool:</h4>
     <ul>
       <li><strong>A4H Endorsed:</strong> View all candidates endorsed by Americans4Hindus across the country</li>
       <li><strong>My State:</strong> Browse all candidates running for office in your state</li>
       <li><strong>My ZIP Code:</strong> Find the specific candidates who will appear on your ballot</li>
     </ul>
-    
     <h4>Understanding Candidate Ratings:</h4>
     <ul>
       <li><strong><img src="https://www.anandsinhausa.com/a4h-seal.png" alt="A4H Endorsed" style="height: 20px; vertical-align: middle; margin-right: 4px;">A4H Endorsed:</strong> Candidates who align with Americans4Hindus values and have demonstrated support for our community's interests</li>
       <li><strong><img src="https://www.anandsinhausa.com/a4h-seal-no.png" alt="A4H Concern" style="height: 20px; vertical-align: middle; margin-right: 4px;">A4H Concern:</strong> Candidates whose positions or actions are not aligned with our values and may work against the interests of our community</li>
     </ul>
-    
     <div style="text-align: center; margin-top: 16px; padding-top: 16px; border-top: 1px solid #dde4f0;">
       <h4 style="display: inline-block; margin: 0; margin-right: 12px; vertical-align: middle;">Have Questions?</h4>
       <a href="mailto:Contact@Americans4Hindus.org" style="display: inline-block; background: linear-gradient(180deg, #2d4a8e 0%, #1a2a5a 100%); color: #fff; padding: 10px 20px; border-radius: 6px; text-decoration: none; font-weight: 700; font-size: 14px; box-shadow: 0 3px 5px rgba(26, 42, 90, 0.3); vertical-align: middle;">
         📧 Email Us
       </a>
     </div>
-    
     <button class="collapse-btn" onclick="collapseIntro()">Hide Guide ▲</button>
   </div>
 </div>
@@ -1505,12 +1486,9 @@ function renderModernCard(c, initials, partyClass, dateHtml, endorsementSeal, is
     rightSide = '<div class="candidate-photo-container"><div class="candidate-photo-fallback">' + initials + '</div></div>';
   }
   
-  // Remove website button entirely for endorsed candidates, only show endorsement button
+  // No buttons for endorsed candidates - photo/seal is the interactive element
   const websiteBtn = '';
-  
-  const endorseBtn = isEndorsed && c.endorsementPageURL && c.endorsementPageURL.trim()
-    ? '<a href="' + c.endorsementPageURL + '" class="candidate-btn candidate-btn-endorsement"><span>📄</span><span>Why A4H Supports</span></a>'
-    : '';
+  const endorseBtn = '';
   
   // Make candidate name clickable if URL exists (opens in same tab for back navigation)
   const nameHtml = c.url && c.url.trim()
@@ -1527,7 +1505,6 @@ function renderModernCard(c, initials, partyClass, dateHtml, endorsementSeal, is
         (c.office.startsWith('Local -') || c.office === 'State Board' ? '' : '<span class="office-badge">' + getOfficeLabel(c.office, c.state) + '</span>') +
       '</div>' +
       dateHtml +
-      (websiteBtn || endorseBtn ? '<div class="candidate-buttons">' + websiteBtn + endorseBtn + '</div>' : '') +
     '</div>' +
     rightSide +
   '</div>';
