@@ -1644,7 +1644,7 @@ function render(candidates) {
   // If address banner exists (multiple districts), scroll to it; otherwise scroll to results
   const addressBanner = document.getElementById('address-banner');
   if (addressBanner) {
-    setTimeout(() => addressBanner.scrollIntoView({behavior:'smooth', block:'start'}), 50);
+    setTimeout(() => addressBanner.scrollIntoView({behavior:'smooth', block:'center'}), 50);
   } else {
     setTimeout(() => document.getElementById('results').scrollIntoView({behavior:'smooth', block:'start'}), 50);
   }
