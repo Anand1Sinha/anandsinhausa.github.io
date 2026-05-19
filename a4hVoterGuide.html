@@ -1465,11 +1465,14 @@ function renderModernCard(c, initials, partyClass, dateHtml, endorsementSeal, is
   
   let rightSide;
   
+  // Generate unique candidate ID for scroll-to functionality
+  const candidateId = 'candidate-' + c.name.toLowerCase().replace(/[^a-z0-9]/g, '-');
+  
   if (isEndorsed && photoUrl) {
     // Endorsed WITH photo: show photo + seal badge overlay, make clickable
     const sealBadge = '<img src="https://www.anandsinhausa.com/a4h-seal.png" alt="A4H Endorsed" class="seal-badge-overlay">';
     const photoClick = c.endorsementPageURL && c.endorsementPageURL.trim() 
-      ? 'onclick="window.location.href=\'' + c.endorsementPageURL + '\'" style="cursor:pointer;"'
+      ? 'onclick="window.location.href=\'' + c.endorsementPageURL + '#from=' + candidateId + '\'" style="cursor:pointer;"'
       : '';
     rightSide = '<div class="candidate-photo-container" ' + photoClick + '>' +
       '<img src="' + photoUrl + '" class="candidate-photo">' +
@@ -1495,7 +1498,7 @@ function renderModernCard(c, initials, partyClass, dateHtml, endorsementSeal, is
     ? '<a href="' + c.url + '" class="candidate-name candidate-name-link">' + c.name + '</a>'
     : '<div class="candidate-name">' + c.name + '</div>';
   
-  return '<div class="candidate-card modern-card' + (isEndorsed ? ' endorsed' : isConcern ? ' concern' : '') + '">' +
+  return '<div id="' + candidateId + '" class="candidate-card modern-card' + (isEndorsed ? ' endorsed' : isConcern ? ' concern' : '') + '">' +
     '<div class="candidate-info">' +
       nameHtml +
       '<div class="candidate-meta">' +
@@ -1889,6 +1892,25 @@ function selectAddress(address) {
   if (input) input.value = cleanAddress;
   if (container) container.style.display = 'none';
 }
+
+// Scroll to candidate if returning from endorsement page
+window.addEventListener('load', function() {
+  const hash = window.location.hash;
+  if (hash && hash.startsWith('#from=')) {
+    const candidateId = hash.substring(6); // Remove '#from='
+    setTimeout(function() {
+      const element = document.getElementById(candidateId);
+      if (element) {
+        element.scrollIntoView({behavior: 'smooth', block: 'center'});
+        // Highlight the card briefly
+        element.style.boxShadow = '0 0 0 3px rgba(91, 156, 246, 0.4)';
+        setTimeout(function() {
+          element.style.boxShadow = '';
+        }, 2000);
+      }
+    }, 500);
+  }
+});
 
 </script>
 </body>
