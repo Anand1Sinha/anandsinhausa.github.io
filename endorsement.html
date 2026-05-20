@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A4H Endorsement</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #1d1d1f;
+            background: #fff;
+        }
+
+        /* Top Navigation Bar */
+        .top-nav {
+            background-color: #1a2a5a;
+            padding: 12px 20px;
+            text-align: center;
+        }
+
+        .contact-info {
+            color: #ffffff;
+            font-size: 14px;
+        }
+
+        .contact-info a {
+            color: #ffffff;
+            text-decoration: none;
+        }
+
+        .contact-info a:hover {
+            text-decoration: underline;
+        }
+
+        /* Container */
+        .container {
+            max-width: 980px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* Back Button */
+        .back-button {
+            display: inline-block;
+            margin-bottom: 30px;
+            padding: 10px 20px;
+            background: #f5f5f7;
+            color: #1d1d1f;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 14px;
+            border: none;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .back-button:hover {
+            background: #e8e8ed;
+        }
+
+        /* Header Section */
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .endorsement-label {
+            font-size: 12px;
+            letter-spacing: 1.5px;
+            color: #86868b;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        .candidate-name {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            line-height: 1.1;
+        }
+
+        .candidate-name a {
+            color: #1d1d1f;
+            text-decoration: none;
+        }
+
+        .candidate-name a:hover {
+            text-decoration: underline;
+        }
+
+        .office-title {
+            font-size: 21px;
+            color: #86868b;
+            font-weight: 400;
+        }
+
+        /* Intro Section */
+        .intro-section {
+            max-width: 800px;
+            margin: 0 auto 60px;
+            text-align: center;
+        }
+
+        .intro-text {
+            font-size: 21px;
+            line-height: 1.6;
+            color: #1d1d1f;
+        }
+
+        .intro-text strong {
+            font-weight: 600;
+        }
+
+        .intro-text a {
+            color: #1d1d1f;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .intro-text a:hover {
+            text-decoration: underline;
+        }
+
+        /* Photo Section */
+        .photo-section {
+            text-align: center;
+            margin: 60px 0;
+        }
+
+        .candidate-photo {
+            max-width: 600px;
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .candidate-photo:hover {
+            transform: scale(1.02);
+        }
+
+        /* Reasons Section */
+        .reasons-section {
+            max-width: 800px;
+            margin: 60px auto;
+        }
+
+        .reasons-grid {
+            display: grid;
+            gap: 40px;
+        }
+
+        .reason-item {
+            display: grid;
+            grid-template-columns: 50px 1fr;
+            gap: 20px;
+            align-items: start;
+        }
+
+        .reason-icon {
+            font-size: 32px;
+            line-height: 1;
+        }
+
+        .reason-content h3 {
+            font-size: 21px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #1d1d1f;
+        }
+
+        .reason-content p {
+            font-size: 17px;
+            line-height: 1.6;
+            color: #1d1d1f;
+        }
+
+        /* Donation Section - Apple Minimalist */
+        .donation-section {
+            max-width: 800px;
+            margin: 60px auto;
+            text-align: center;
+        }
+
+        .donation-text {
+            font-size: 17px;
+            color: #86868b;
+            margin-bottom: 15px;
+        }
+
+        .donation-link {
+            display: inline-block;
+            color: #06c;
+            text-decoration: none;
+            font-size: 17px;
+            padding: 8px 16px;
+            transition: opacity 0.3s;
+        }
+
+        .donation-link:hover {
+            opacity: 0.7;
+        }
+
+        /* Footer */
+        .footer {
+            max-width: 800px;
+            margin: 80px auto 40px;
+            padding-top: 40px;
+            border-top: 1px solid #d2d2d7;
+            text-align: center;
+        }
+
+        .footer p {
+            font-size: 14px;
+            color: #86868b;
+            line-height: 1.6;
+        }
+
+        /* Loading State */
+        .loading {
+            text-align: center;
+            padding: 100px 20px;
+            font-size: 21px;
+            color: #86868b;
+        }
+
+        .error {
+            text-align: center;
+            padding: 100px 20px;
+            font-size: 21px;
+            color: #d60000;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .candidate-name {
+                font-size: 36px;
+            }
+
+            .office-title {
+                font-size: 18px;
+            }
+
+            .intro-text {
+                font-size: 18px;
+            }
+
+            .reason-item {
+                grid-template-columns: 40px 1fr;
+                gap: 15px;
+            }
+
+            .reason-icon {
+                font-size: 28px;
+            }
+
+            .reason-content h3 {
+                font-size: 18px;
+            }
+
+            .reason-content p {
+                font-size: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Navigation -->
+    <div class="top-nav">
+        <div class="contact-info">
+            For questions, contact us at <a href="tel:+17344175051">734-417-5051</a> or <a href="mailto:info@americans4hindus.org">info@americans4hindus.org</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <button class="back-button" onclick="window.history.back()">← Back to Voter Guide</button>
+        
+        <div id="content" class="loading">Loading endorsement...</div>
+    </div>
+
+    <script>
+        // Google Sheets Configuration
+        const SHEET_ID = '1ot939X173RXXuAk7Zs66OD_3sc9t8a9HcofS3Fv11Pg';
+        const API_KEY = 'AIzaSyDmal9egZMor90titNV3diNF0ZrPC3SM0I';
+        
+        // Get candidate name from URL parameter
+        const urlParams = new URLSearchParams(window.location.search);
+        const candidateName = urlParams.get('name');
+
+        if (!candidateName) {
+            document.getElementById('content').innerHTML = '<div class="error">No candidate specified. Please return to the voter guide.</div>';
+        } else {
+            loadEndorsement(candidateName);
+        }
+
+        // CSV parser to handle quoted fields with commas
+        function parseCSVLine(line) {
+            const result = [];
+            let current = '';
+            let inQuotes = false;
+            
+            for (let i = 0; i < line.length; i++) {
+                const char = line[i];
+                const nextChar = line[i + 1];
+                
+                if (char === '"') {
+                    if (inQuotes && nextChar === '"') {
+                        current += '"';
+                        i++;
+                    } else {
+                        inQuotes = !inQuotes;
+                    }
+                } else if (char === ',' && !inQuotes) {
+                    result.push(current);
+                    current = '';
+                } else {
+                    current += char;
+                }
+            }
+            result.push(current);
+            return result;
+        }
+
+        async function loadEndorsement(name) {
+            try {
+                // Sheet GIDs and their names
+                const sheets = [
+                    { gid: '106542971', name: 'Governor' },
+                    { gid: '1588428220', name: 'US Senate' },
+                    { gid: '574891025', name: 'US House' },
+                    { gid: '755731723', name: 'State Senate' },
+                    { gid: '2114817971', name: 'State House' }
+                ];
+                
+                let candidateData = null;
+                let sheetName = null;
+
+                // Search through all sheets using GID
+                for (const sheet of sheets) {
+                    const url = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/export?format=csv&gid=${sheet.gid}`;
+                    const response = await fetch(url);
+                    const csvText = await response.text();
+                    
+                    // Parse CSV
+                    const lines = csvText.split('\n');
+                    
+                    // Skip header row, search data rows
+                    for (let i = 1; i < lines.length; i++) {
+                        const row = parseCSVLine(lines[i]);
+                        const rowName = row[3]; // Column D - Candidate Name
+                        
+                        if (rowName && rowName.trim() === name.trim()) {
+                            candidateData = {
+                                state: row[0],           // Column A
+                                district: row[1],        // Column B
+                                raceName: row[2],        // Column C
+                                name: row[3],            // Column D
+                                party: row[4],           // Column E
+                                status: row[5],          // Column F
+                                endorsed: row[8],        // Column I
+                                officialURL: row[11],    // Column L
+                                endorsementPageURL: row[17], // Column R
+                                photoURL: row[18],       // Column S
+                                collectDonation: row[19], // Column T
+                                donationURL: row[20],    // Column U
+                                introText: row[21],      // Column V
+                                reasonsJSON: row[22]     // Column W
+                            };
+                            sheetName = sheet.name;
+                            break;
+                        }
+                    }
+                    
+                    if (candidateData) break;
+                }
+
+                if (!candidateData) {
+                    document.getElementById('content').innerHTML = '<div class="error">Candidate not found. Please return to the voter guide.</div>';
+                    return;
+                }
+
+                // Parse reasons JSON
+                let reasons = [];
+                if (candidateData.reasonsJSON) {
+                    try {
+                        reasons = JSON.parse(candidateData.reasonsJSON);
+                    } catch (e) {
+                        console.error('Error parsing reasons JSON:', e);
+                        reasons = [];
+                    }
+                }
+
+                // Determine office title
+                let officeTitle = sheetName;
+                if (sheetName === 'US Senate' || sheetName === 'US House') {
+                    officeTitle = candidateData.district === 'Statewide' ? 
+                        `${candidateData.state} ${sheetName}` : 
+                        `${candidateData.state} ${sheetName} District ${candidateData.district}`;
+                } else if (sheetName === 'Governor') {
+                    officeTitle = `${candidateData.state} Governor`;
+                } else {
+                    officeTitle = candidateData.district ? 
+                        `${candidateData.state} ${sheetName} District ${candidateData.district}` : 
+                        `${candidateData.state} ${sheetName}`;
+                }
+
+                // Build the page
+                renderEndorsementPage(candidateData, officeTitle, reasons);
+
+            } catch (error) {
+                console.error('Error loading endorsement:', error);
+                document.getElementById('content').innerHTML = '<div class="error">Error loading endorsement. Please try again.</div>';
+            }
+        }
+
+        function renderEndorsementPage(candidate, officeTitle, reasons) {
+            // Build intro text with clickable name
+            let introHTML = candidate.introText || '';
+            if (candidate.officialURL && introHTML.includes(candidate.name)) {
+                // Make candidate name in intro clickable
+                const nameRegex = new RegExp(candidate.name, 'g');
+                introHTML = introHTML.replace(nameRegex, `<a href="${candidate.officialURL}" target="_blank">${candidate.name}</a>`);
+            }
+
+            // Build reasons grid
+            let reasonsHTML = '';
+            if (reasons && reasons.length > 0) {
+                reasonsHTML = reasons.map(reason => `
+                    <div class="reason-item">
+                        <div class="reason-icon">${reason.icon || '✓'}</div>
+                        <div class="reason-content">
+                            <h3>${reason.title || ''}</h3>
+                            <p>${reason.desc || ''}</p>
+                        </div>
+                    </div>
+                `).join('');
+            }
+
+            // Build donation section
+            let donationHTML = '';
+            if (candidate.collectDonation === 'YES') {
+                const donationURL = candidate.donationURL || 'https://secure.anedot.com/a4h/donate';
+                donationHTML = `
+                    <div class="donation-section">
+                        <p class="donation-text">Would you like to donate to ${candidate.name}'s campaign via A4H?</p>
+                        <a href="${donationURL}" class="donation-link" target="_blank">Donate</a>
+                    </div>
+                `;
+            }
+
+            // Build photo section
+            let photoHTML = '';
+            if (candidate.photoURL) {
+                const photoLink = candidate.officialURL ? 
+                    `<a href="${candidate.officialURL}" target="_blank"><img src="${candidate.photoURL}" alt="${candidate.name}" class="candidate-photo"></a>` :
+                    `<img src="${candidate.photoURL}" alt="${candidate.name}" class="candidate-photo">`;
+                photoHTML = `<div class="photo-section">${photoLink}</div>`;
+            }
+
+            // Render full page
+            const html = `
+                <div class="header">
+                    <div class="endorsement-label">Why A4H Endorses</div>
+                    <h1 class="candidate-name">
+                        ${candidate.officialURL ? 
+                            `<a href="${candidate.officialURL}" target="_blank">${candidate.name}</a>` : 
+                            candidate.name}
+                    </h1>
+                    <div class="office-title">${officeTitle}</div>
+                </div>
+
+                <div class="intro-section">
+                    <p class="intro-text">${introHTML}</p>
+                </div>
+
+                ${photoHTML}
+
+                ${reasons.length > 0 ? `
+                    <div class="reasons-section">
+                        <div class="reasons-grid">
+                            ${reasonsHTML}
+                        </div>
+                    </div>
+                ` : ''}
+
+                ${donationHTML}
+
+                <div class="footer">
+                    <p>
+                        Paid for by Americans4Hindus PAC (A4H) and not authorized by any candidate or candidate's committee. 
+                        A4H is a federally registered political action committee supporting pro-Hindu and pro-Indian American candidates.
+                    </p>
+                </div>
+            `;
+
+            document.getElementById('content').innerHTML = html;
+            
+            // Update page title
+            document.title = `A4H Endorses ${candidate.name}`;
+        }
+    </script>
+</body>
+</html>
