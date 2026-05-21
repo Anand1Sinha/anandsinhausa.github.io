@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A4H Modern Hero - Prototype</title>
+
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { 
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, Arial, sans-serif;
+  background: #f5f5f7;
+  color: #1d1d1f;
+}
+
+/* Contact Bar */
+.contact-bar {
+  background: #1a2a5a;
+  text-align: right;
+  padding: 6px 16px;
+  font-size: 12px;
+  color: #ffffff;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+}
+
+/* Beta Banner */
+.disclaimer-banner {
+  background: #fff3cd;
+  border-bottom: 2px solid #ffc107;
+  padding: 10px 20px;
+  text-align: center;
+  font-size: 13px;
+  color: #5a4000;
+  line-height: 1.5;
+}
+
+.disclaimer-banner strong { 
+  color: #c00; 
+}
+
+/* Navigation */
+nav {
+  background: #1a2a5a;
+  padding: 0 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  height: 68px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+
+.nav-logo img {
+  height: 54px;
+  width: 54px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.nav-links {
+  display: flex;
+  gap: 1rem;
+  margin-left: auto;
+  align-items: center;
+  list-style: none;
+}
+
+.nav-links a {
+  color: #ccd6f6;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.nav-btn {
+  background: #e85c2a !important;
+  color: #fff !important;
+  padding: 8px 16px;
+  border-radius: 5px;
+  font-weight: 700 !important;
+}
+
+/* ========================================
+   MODERN APPLE-STYLE HERO SECTION
+   ======================================== */
+
+.hero {
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  color: #1d1d1f;
+  text-align: center;
+  padding: 5rem 1.25rem 4.5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Subtle animated background pattern */
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 20% 50%, rgba(91, 156, 246, 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(232, 92, 42, 0.06) 0%, transparent 50%);
+  pointer-events: none;
+  animation: subtleFloat 20s ease-in-out infinite;
+}
+
+@keyframes subtleFloat {
+  0%, 100% { opacity: 0.6; transform: translateY(0); }
+  50% { opacity: 1; transform: translateY(-10px); }
+}
+
+.hero-logo {
+  position: absolute;
+  top: 24px;
+  left: 24px;
+  width: 80px;
+  height: 80px;
+  z-index: 2;
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.1));
+  border-radius: 50%;
+  background: #1a2a5a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 800;
+  font-size: 24px;
+}
+
+.hero h1 {
+  font-size: clamp(40px, 7vw, 72px);
+  font-weight: 700;
+  margin-bottom: 20px;
+  letter-spacing: -0.02em;
+  color: #1d1d1f;
+  position: relative;
+  z-index: 1;
+  line-height: 1.05;
+}
+
+.hero .subtitle {
+  color: #5b9cf6;
+  font-size: clamp(20px, 3.5vw, 32px);
+  font-weight: 600;
+  max-width: 1000px;
+  margin: 0 auto 16px;
+  line-height: 1.4;
+  letter-spacing: -0.01em;
+  position: relative;
+  z-index: 1;
+}
+
+.hero p {
+  color: #6e6e73;
+  font-size: 16px;
+  max-width: 760px;
+  margin: 0 auto;
+  line-height: 1.6;
+  position: relative;
+  z-index: 1;
+  font-weight: 400;
+}
+
+/* Three-button section below hero */
+.hero-cta-buttons {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  margin-top: 32px;
+  flex-wrap: wrap;
+  position: relative;
+  z-index: 1;
+}
+
+.hero-cta-btn {
+  background: #1d1d1f;
+  color: #fff;
+  padding: 12px 28px;
+  border-radius: 980px;
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.hero-cta-btn:hover {
+  background: #424245;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+}
+
+.hero-cta-btn.secondary {
+  background: #fff;
+  color: #1d1d1f;
+  border: 1.5px solid #d2d2d7;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.hero-cta-btn.secondary:hover {
+  background: #f5f5f7;
+  border-color: #86868b;
+}
+
+/* Content Preview Section */
+.preview-section {
+  max-width: 900px;
+  margin: 3rem auto;
+  padding: 0 1.25rem;
+}
+
+.preview-section h2 {
+  font-size: 28px;
+  font-weight: 700;
+  color: #1d1d1f;
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.candidate-card-preview {
+  background: #fff;
+  border: 1px solid #e0e8f0;
+  border-radius: 12px;
+  padding: 1.25rem;
+  margin-bottom: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  transition: all 0.3s ease;
+}
+
+.candidate-card-preview:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+.candidate-card-preview.endorsed {
+  border-left: 6px solid #d4af37;
+  background: linear-gradient(180deg, #fffdf5 0%, #fff7e6 100%);
+}
+
+/* Toggle Switch */
+.theme-toggle-container {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 1000;
+  background: white;
+  padding: 12px 20px;
+  border-radius: 980px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.theme-toggle {
+  position: relative;
+  width: 48px;
+  height: 26px;
+  background: #d1d1d6;
+  border-radius: 26px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.theme-toggle.active {
+  background: #34c759;
+}
+
+.theme-toggle-slider {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 22px;
+  height: 22px;
+  background: white;
+  border-radius: 50%;
+  transition: transform 0.3s;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.theme-toggle.active .theme-toggle-slider {
+  transform: translateX(22px);
+}
+
+/* Dark Mode */
+body.dark-mode {
+  background: #000;
+}
+
+body.dark-mode .hero {
+  background: linear-gradient(135deg, #1d1d1f 0%, #2c2c2e 100%);
+}
+
+body.dark-mode .hero h1 {
+  color: #f5f5f7;
+}
+
+body.dark-mode .hero .subtitle {
+  color: #6ab7ff;
+}
+
+body.dark-mode .hero p {
+  color: #98989d;
+}
+
+body.dark-mode .hero-cta-btn {
+  background: #0071e3;
+}
+
+body.dark-mode .hero-cta-btn:hover {
+  background: #0077ed;
+}
+
+body.dark-mode .hero-cta-btn.secondary {
+  background: #2c2c2e;
+  color: #f5f5f7;
+  border-color: #424245;
+}
+
+body.dark-mode .preview-section h2 {
+  color: #f5f5f7;
+}
+
+body.dark-mode .candidate-card-preview {
+  background: #1c1c1e;
+  border-color: #2c2c2e;
+}
+
+body.dark-mode .theme-toggle-container {
+  background: #1c1c1e;
+  color: #f5f5f7;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .hero {
+    padding: 4rem 1.25rem 3.5rem;
+  }
+  
+  .hero-logo {
+    width: 60px;
+    height: 60px;
+    top: 20px;
+    left: 20px;
+    font-size: 18px;
+  }
+  
+  .hero h1 {
+    margin-bottom: 16px;
+  }
+  
+  .hero .subtitle {
+    margin-bottom: 12px;
+  }
+  
+  .hero-cta-buttons {
+    margin-top: 24px;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .hero-cta-btn {
+    width: 100%;
+    max-width: 280px;
+    justify-content: center;
+  }
+  
+  .theme-toggle-container {
+    bottom: 16px;
+    right: 16px;
+    padding: 10px 16px;
+    font-size: 13px;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- Contact Bar -->
+<div class="contact-bar">
+  Anand Sinha | (248) 872-3057
+</div>
+
+<!-- Beta Banner -->
+<div class="disclaimer-banner">
+  <strong>⚠️ BETA VERSION.</strong> This voter guide is now enabled for all available states in the underlying data. Please verify results before public release.
+</div>
+
+<!-- Navigation -->
+<nav>
+  <div class="nav-logo">
+    <img src="https://anandsinhausa.com/a4h-seal.png" alt="A4H Logo" onerror="this.style.display='none'">
+  </div>
+  <ul class="nav-links">
+    <li><a href="#">About</a></li>
+    <li><a href="#">Candidates</a></li>
+    <li><a href="#">Resources</a></li>
+    <li><a href="#" class="nav-btn">Become a Member</a></li>
+  </ul>
+</nav>
+
+<!-- HERO SECTION -->
+<section class="hero">
+  <div class="hero-logo">A4H</div>
+  
+  <h1>A4H Voter Guide 2026</h1>
+  
+  <div class="subtitle">
+    Helping voters identify candidates aligned with Hindu and pro-Hindu values.
+  </div>
+  
+  <p>
+    Find endorsed candidates, explore races by state or ZIP code, and make informed decisions in the 2026 elections.
+  </p>
+  
+  <div class="hero-cta-buttons">
+    <button class="hero-cta-btn" onclick="alert('A4H Endorsed clicked!')">
+      A4H Endorsed
+    </button>
+    <button class="hero-cta-btn secondary" onclick="alert('My State clicked!')">
+      My State
+    </button>
+    <button class="hero-cta-btn secondary" onclick="alert('My ZIP Code clicked!')">
+      My ZIP Code
+    </button>
+  </div>
+</section>
+
+<!-- Preview Section -->
+<section class="preview-section">
+  <h2>How Candidate Cards Look</h2>
+  
+  <div class="candidate-card-preview endorsed">
+    <div style="display: flex; align-items: center; gap: 16px;">
+      <div style="flex: 1;">
+        <div style="font-size: 20px; font-weight: 800; color: #1a2a5a; margin-bottom: 8px;">
+          Steve Hilton
+        </div>
+        <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 8px;">
+          <span style="background: #fee2e2; color: #991b1b; padding: 3px 10px; border-radius: 12px; font-size: 11px; font-weight: 700;">REPUBLICAN</span>
+          <span style="background: #f0fdf4; color: #166534; padding: 3px 10px; border-radius: 12px; font-size: 11px; font-weight: 700;">CA</span>
+          <span style="background: #f3f4f6; color: #4b5563; padding: 3px 10px; border-radius: 12px; font-size: 11px; font-weight: 700;">GOVERNOR</span>
+        </div>
+        <div style="font-size: 12px; color: #666;">
+          Primary: <span style="font-weight: 700; color: #e85c2a;">Jun 2, 2026</span>
+        </div>
+      </div>
+      <div style="width: 100px; height: 100px; border-radius: 50%; background: #1a2a5a; position: relative;">
+        <img src="https://anandsinhausa.com/a4h-seal.png" alt="A4H Seal" style="width: 40px; height: 40px; position: absolute; top: -4px; left: -4px;">
+      </div>
+    </div>
+  </div>
+  
+  <div class="candidate-card-preview">
+    <div style="display: flex; align-items: center; gap: 16px;">
+      <div style="flex: 1;">
+        <div style="font-size: 20px; font-weight: 800; color: #1a2a5a; margin-bottom: 8px;">
+          Sample Candidate
+        </div>
+        <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 8px;">
+          <span style="background: #bfdbfe; color: #1e3a8a; padding: 3px 10px; border-radius: 12px; font-size: 11px; font-weight: 700;">DEMOCRAT</span>
+          <span style="background: #f0fdf4; color: #166534; padding: 3px 10px; border-radius: 12px; font-size: 11px; font-weight: 700;">CA</span>
+          <span style="background: #f0f4ff; color: #3b5bdb; padding: 3px 10px; border-radius: 12px; font-size: 11px; font-weight: 700;">CA-16</span>
+        </div>
+        <div style="font-size: 12px; color: #666;">
+          Primary: <span style="font-weight: 700; color: #e85c2a;">Jun 2, 2026</span>
+        </div>
+      </div>
+      <div style="width: 80px; height: 80px; border-radius: 50%; background: #1a2a5a; color: white; display: flex; align-items: center; justify-content: center; font-size: 28px; font-weight: 800;">
+        SC
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Theme Toggle -->
+<div class="theme-toggle-container">
+  <span id="theme-label">Light Mode</span>
+  <div class="theme-toggle" id="theme-toggle" onclick="toggleTheme()">
+    <div class="theme-toggle-slider"></div>
+  </div>
+</div>
+
+<script>
+function toggleTheme() {
+  const body = document.body;
+  const toggle = document.getElementById('theme-toggle');
+  const label = document.getElementById('theme-label');
+  
+  body.classList.toggle('dark-mode');
+  toggle.classList.toggle('active');
+  
+  if (body.classList.contains('dark-mode')) {
+    label.textContent = 'Dark Mode';
+  } else {
+    label.textContent = 'Light Mode';
+  }
+}
+</script>
+
+</body>
+</html>

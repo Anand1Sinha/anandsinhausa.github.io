@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A4H Refined Hero - Prototype v2</title>
+
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { 
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, Arial, sans-serif;
+  background: #f5f5f7;
+  color: #1d1d1f;
+}
+
+/* Contact Bar */
+.contact-bar {
+  background: #1a2a5a;
+  text-align: right;
+  padding: 6px 16px;
+  font-size: 12px;
+  color: #ffffff;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+}
+
+/* Beta Banner */
+.disclaimer-banner {
+  background: #fff3cd;
+  border-bottom: 2px solid #ffc107;
+  padding: 10px 20px;
+  text-align: center;
+  font-size: 13px;
+  color: #5a4000;
+  line-height: 1.5;
+}
+
+.disclaimer-banner strong { 
+  color: #c00; 
+}
+
+/* Navigation */
+nav {
+  background: #1a2a5a;
+  padding: 0 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  height: 68px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+
+.nav-logo img {
+  height: 54px;
+  width: 54px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.nav-links {
+  display: flex;
+  gap: 1rem;
+  margin-left: auto;
+  align-items: center;
+  list-style: none;
+}
+
+.nav-links a {
+  color: #ccd6f6;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.nav-btn {
+  background: #e85c2a !important;
+  color: #fff !important;
+  padding: 8px 16px;
+  border-radius: 5px;
+  font-weight: 700 !important;
+}
+
+/* ========================================
+   REFINED MODERN HERO - KEEPS DARK BG
+   Sharp white text, softer faded background
+   ======================================== */
+
+.hero {
+  /* Softer, more muted navy gradient - less intense */
+  background: linear-gradient(135deg, rgba(15, 31, 61, 0.85) 0%, rgba(26, 47, 82, 0.90) 100%),
+              linear-gradient(180deg, #0a1525 0%, #162339 100%);
+  color: #fff;
+  text-align: center;
+  padding: 5rem 1.25rem 4.5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Subtle mesh gradient overlay for depth - very faded */
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 20% 30%, rgba(91, 156, 246, 0.06) 0%, transparent 40%),
+    radial-gradient(circle at 80% 70%, rgba(232, 92, 42, 0.04) 0%, transparent 40%);
+  pointer-events: none;
+  opacity: 0.7;
+}
+
+/* Subtle noise texture for Apple-like quality */
+.hero::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255,255,255,.015) 2px, rgba(255,255,255,.015) 4px);
+  pointer-events: none;
+  opacity: 0.3;
+}
+
+.hero-logo {
+  position: absolute;
+  top: 24px;
+  left: 24px;
+  width: 80px;
+  height: 80px;
+  z-index: 2;
+  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.4));
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 800;
+  font-size: 24px;
+}
+
+.hero h1 {
+  /* SHARP, CRISP WHITE TEXT */
+  font-size: clamp(44px, 7vw, 76px);
+  font-weight: 700;
+  margin-bottom: 20px;
+  letter-spacing: -0.03em;
+  color: #ffffff;
+  position: relative;
+  z-index: 1;
+  line-height: 1.05;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.hero .subtitle {
+  /* Bright blue accent - very sharp */
+  color: #64b5f6;
+  font-size: clamp(21px, 3.5vw, 34px);
+  font-weight: 600;
+  max-width: 1000px;
+  margin: 0 auto 18px;
+  line-height: 1.35;
+  letter-spacing: -0.015em;
+  position: relative;
+  z-index: 1;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  -webkit-font-smoothing: antialiased;
+}
+
+.hero p {
+  /* Soft gray but still readable */
+  color: #b8c5d8;
+  font-size: 17px;
+  max-width: 760px;
+  margin: 0 auto;
+  line-height: 1.6;
+  position: relative;
+  z-index: 1;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Three-button section - Apple style with glass effect */
+.hero-cta-buttons {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  margin-top: 36px;
+  flex-wrap: wrap;
+  position: relative;
+  z-index: 1;
+}
+
+.hero-cta-btn {
+  /* Glassmorphism effect */
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: #fff;
+  padding: 13px 30px;
+  border-radius: 980px;
+  font-size: 16px;
+  font-weight: 600;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  -webkit-font-smoothing: antialiased;
+}
+
+.hero-cta-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+.hero-cta-btn.primary {
+  background: rgba(91, 156, 246, 0.9);
+  border: 1px solid rgba(91, 156, 246, 1);
+  box-shadow: 0 4px 16px rgba(91, 156, 246, 0.4);
+}
+
+.hero-cta-btn.primary:hover {
+  background: rgba(91, 156, 246, 1);
+  box-shadow: 0 8px 24px rgba(91, 156, 246, 0.5);
+}
+
+.hero-cta-btn.secondary {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1.5px solid rgba(255, 255, 255, 0.25);
+}
+
+.hero-cta-btn.secondary:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.35);
+}
+
+/* Content Preview Section */
+.preview-section {
+  max-width: 900px;
+  margin: 3rem auto;
+  padding: 0 1.25rem;
+}
+
+.preview-section h2 {
+  font-size: 28px;
+  font-weight: 700;
+  color: #1d1d1f;
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.candidate-card-preview {
+  background: #fff;
+  border: 1px solid #e0e8f0;
+  border-radius: 12px;
+  padding: 1.25rem;
+  margin-bottom: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  transition: all 0.3s ease;
+}
+
+.candidate-card-preview:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+.candidate-card-preview.endorsed {
+  border-left: 6px solid #d4af37;
+  background: linear-gradient(180deg, #fffdf5 0%, #fff7e6 100%);
+}
+
+/* Comparison Toggle */
+.comparison-toggle {
+  position: fixed;
+  top: 50%;
+  right: 24px;
+  transform: translateY(-50%);
+  z-index: 1000;
+  background: white;
+  padding: 16px;
+  border-radius: 12px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.15);
+  width: 200px;
+}
+
+.comparison-toggle h3 {
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: #1d1d1f;
+}
+
+.toggle-option {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px;
+  margin-bottom: 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s;
+  font-size: 13px;
+}
+
+.toggle-option:hover {
+  background: #f5f5f7;
+}
+
+.toggle-option input[type="radio"] {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .hero {
+    padding: 4rem 1.25rem 3.5rem;
+  }
+  
+  .hero-logo {
+    width: 60px;
+    height: 60px;
+    top: 20px;
+    left: 20px;
+    font-size: 18px;
+  }
+  
+  .hero h1 {
+    margin-bottom: 16px;
+  }
+  
+  .hero .subtitle {
+    margin-bottom: 14px;
+  }
+  
+  .hero-cta-buttons {
+    margin-top: 28px;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .hero-cta-btn {
+    width: 100%;
+    max-width: 300px;
+    justify-content: center;
+  }
+  
+  .comparison-toggle {
+    position: static;
+    transform: none;
+    margin: 24px auto;
+    width: calc(100% - 32px);
+    max-width: 300px;
+  }
+}
+
+/* Style variations */
+.hero.style-original {
+  background: linear-gradient(180deg, #0f1f3d 0%, #1a2f52 100%);
+}
+
+.hero.style-original::before,
+.hero.style-original::after {
+  display: none;
+}
+
+.hero.style-original h1 {
+  text-shadow: none;
+}
+
+.hero.style-original .subtitle {
+  color: #5b9cf6;
+  text-shadow: none;
+}
+
+.hero.style-original p {
+  color: #a8b8d8;
+}
+</style>
+</head>
+<body>
+
+<!-- Contact Bar -->
+<div class="contact-bar">
+  Anand Sinha | (248) 872-3057
+</div>
+
+<!-- Beta Banner -->
+<div class="disclaimer-banner">
+  <strong>⚠️ BETA VERSION.</strong> This voter guide is now enabled for all available states in the underlying data. Please verify results before public release.
+</div>
+
+<!-- Navigation -->
+<nav>
+  <div class="nav-logo">
+    <img src="https://anandsinhausa.com/a4h-seal.png" alt="A4H Logo" onerror="this.style.display='none'">
+  </div>
+  <ul class="nav-links">
+    <li><a href="#">About</a></li>
+    <li><a href="#">Candidates</a></li>
+    <li><a href="#">Resources</a></li>
+    <li><a href="#" class="nav-btn">Become a Member</a></li>
+  </ul>
+</nav>
+
+<!-- HERO SECTION -->
+<section class="hero" id="hero">
+  <div class="hero-logo">A4H</div>
+  
+  <h1>A4H Voter Guide 2026</h1>
+  
+  <div class="subtitle">
+    Helping voters identify candidates aligned with Hindu and pro-Hindu values.
+  </div>
+  
+  <p>
+    Find endorsed candidates, explore races by state or ZIP code, and make informed decisions in the 2026 elections.
+  </p>
+  
+  <div class="hero-cta-buttons">
+    <button class="hero-cta-btn primary" onclick="alert('A4H Endorsed clicked!')">
+      A4H Endorsed
+    </button>
+    <button class="hero-cta-btn secondary" onclick="alert('My State clicked!')">
+      My State
+    </button>
+    <button class="hero-cta-btn secondary" onclick="alert('My ZIP Code clicked!')">
+      My ZIP Code
+    </button>
+  </div>
+</section>
+
+<!-- Preview Section -->
+<section class="preview-section">
+  <h2>How Candidate Cards Look</h2>
+  
+  <div class="candidate-card-preview endorsed">
+    <div style="display: flex; align-items: center; gap: 16px;">
+      <div style="flex: 1;">
+        <div style="font-size: 20px; font-weight: 800; color: #1a2a5a; margin-bottom: 8px;">
+          Steve Hilton
+        </div>
+        <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 8px;">
+          <span style="background: #fee2e2; color: #991b1b; padding: 3px 10px; border-radius: 12px; font-size: 11px; font-weight: 700;">REPUBLICAN</span>
+          <span style="background: #f0fdf4; color: #166534; padding: 3px 10px; border-radius: 12px; font-size: 11px; font-weight: 700;">CA</span>
+          <span style="background: #f3f4f6; color: #4b5563; padding: 3px 10px; border-radius: 12px; font-size: 11px; font-weight: 700;">GOVERNOR</span>
+        </div>
+        <div style="font-size: 12px; color: #666;">
+          Primary: <span style="font-weight: 700; color: #e85c2a;">Jun 2, 2026</span>
+        </div>
+      </div>
+      <div style="width: 100px; height: 100px; border-radius: 50%; background: #1a2a5a; position: relative;">
+        <img src="https://anandsinhausa.com/a4h-seal.png" alt="A4H Seal" style="width: 40px; height: 40px; position: absolute; top: -4px; left: -4px;">
+      </div>
+    </div>
+  </div>
+  
+  <div class="candidate-card-preview">
+    <div style="display: flex; align-items: center; gap: 16px;">
+      <div style="flex: 1;">
+        <div style="font-size: 20px; font-weight: 800; color: #1a2a5a; margin-bottom: 8px;">
+          Sample Candidate
+        </div>
+        <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 8px;">
+          <span style="background: #bfdbfe; color: #1e3a8a; padding: 3px 10px; border-radius: 12px; font-size: 11px; font-weight: 700;">DEMOCRAT</span>
+          <span style="background: #f0fdf4; color: #166534; padding: 3px 10px; border-radius: 12px; font-size: 11px; font-weight: 700;">CA</span>
+          <span style="background: #f0f4ff; color: #3b5bdb; padding: 3px 10px; border-radius: 12px; font-size: 11px; font-weight: 700;">CA-16</span>
+        </div>
+        <div style="font-size: 12px; color: #666;">
+          Primary: <span style="font-weight: 700; color: #e85c2a;">Jun 2, 2026</span>
+        </div>
+      </div>
+      <div style="width: 80px; height: 80px; border-radius: 50%; background: #1a2a5a; color: white; display: flex; align-items: center; justify-content: center; font-size: 28px; font-weight: 800;">
+        SC
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Comparison Toggle -->
+<div class="comparison-toggle">
+  <h3>Compare Styles:</h3>
+  
+  <label class="toggle-option">
+    <input type="radio" name="style" value="refined" checked onchange="changeStyle('refined')">
+    <span>✨ Refined Modern</span>
+  </label>
+  
+  <label class="toggle-option">
+    <input type="radio" name="style" value="original" onchange="changeStyle('original')">
+    <span>📊 Your Current</span>
+  </label>
+  
+  <div style="margin-top: 12px; padding-top: 12px; border-top: 1px solid #e5e5e7; font-size: 11px; color: #86868b; line-height: 1.4;">
+    <strong>Refined:</strong> Sharp white text, softer faded background, glass buttons
+  </div>
+</div>
+
+<script>
+function changeStyle(style) {
+  const hero = document.getElementById('hero');
+  
+  if (style === 'refined') {
+    hero.classList.remove('style-original');
+  } else {
+    hero.classList.add('style-original');
+  }
+}
+</script>
+
+</body>
+</html>
