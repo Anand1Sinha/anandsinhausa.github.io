@@ -1,0 +1,44 @@
+/* ========================================
+   UPDATED CONCERN STYLING WITH RED BORDERS
+   Replace the existing concern styles in your a4hVoterGuide.html
+   ======================================== */
+
+/* Line 185-189: Update the .candidate-card.concern style */
+.candidate-card.concern {
+  background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);
+  border: 3px solid #dc2626; /* RED border instead of gray-blue */
+  box-shadow: 0 4px 12px rgba(220, 38, 38, 0.25); /* Red shadow */
+}
+
+/* Line 261-271: Update the .concern-badge style (the yellow triangle icon) */
+.concern-badge {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 4px;
+  background: #fef9c3; /* yellow warning background */
+  color: #854d0e;
+  border: 2px solid #dc2626; /* RED border around the yellow badge */
+  margin-left: 8px;
+}
+
+/* ========================================
+   INSTRUCTIONS FOR IMPLEMENTATION
+   ======================================== */
+
+/*
+In your a4hVoterGuide.html file:
+
+1. Find line 185-189 (the .candidate-card.concern section)
+   Replace with the first style above
+
+2. Find line 261-271 (the .concern-badge section)
+   Replace with the second style above
+
+This will give you:
+- Red border around the entire concern card
+- Red border around the yellow "CONCERN" triangle badge
+- Light red background gradient on the card
+- Red shadow effect
+*/
