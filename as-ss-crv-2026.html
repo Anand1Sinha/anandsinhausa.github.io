@@ -1,231 +1,339 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Croatia Trip — June 2026</title>
-<meta property="og:title" content="Croatia 2026 — Anand & Sonia Sinha">
-<meta property="og:description" content="June 16–25 · Dubrovnik · Split · Montenegro · 10 Days · All Booked">
-<meta property="og:image" content="https://anandsinhausa.com/og-croatia.jpg">
-<meta property="og:type" content="website">
-<style>
-  body { display: block; }
-</style>
-<style>
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-
-  body {
-    font-family: Georgia, serif;
-    background: #ffffff;
-    color: #111;
-    padding: 32px;
-    max-width: 820px;
-    margin: 0 auto;
-  }
-
-  h1 {
-    font-size: 22px;
-    font-weight: bold;
-    margin-bottom: 4px;
-  }
-
-  .trip-meta {
-    font-size: 13px;
-    color: #555;
-    margin-bottom: 28px;
-    border-bottom: 2px solid #111;
-    padding-bottom: 12px;
-  }
-
-  .day-block {
-    margin-bottom: 28px;
-    border-left: 3px solid #111;
-    padding-left: 16px;
-  }
-
-  .day-header {
-    font-size: 15px;
-    font-weight: bold;
-    margin-bottom: 8px;
-  }
-
-  .day-header .date { font-size: 13px; font-weight: normal; color: #555; margin-left: 8px; }
-
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 13px;
-  }
-
-  tr { border-bottom: 1px solid #e0e0e0; }
-  tr:last-child { border-bottom: none; }
-
-  td {
-    padding: 6px 8px;
-    vertical-align: top;
-  }
-
-  td.time {
-    width: 80px;
-    color: #555;
-    white-space: nowrap;
-    font-family: monospace;
-    font-size: 12px;
-    padding-top: 7px;
-  }
-
-  td.activity {
-    font-weight: 500;
-  }
-
-  td.status {
-    width: 90px;
-    text-align: right;
-    font-size: 11px;
-    padding-top: 7px;
-    white-space: nowrap;
-  }
-
-  .booked   { color: #1a7a1a; font-weight: 600; }
-  .unbooked { color: #cc4400; font-weight: 600; }
-  .na       { color: #999; }
-  .warning  { color: #995500; font-weight: 600; }
-
-  .legend {
-    font-size: 11px;
-    color: #555;
-    margin-top: 32px;
-    border-top: 1px solid #ccc;
-    padding-top: 12px;
-    display: flex;
-    gap: 24px;
-  }
-  .legend span { margin-right: 4px; }
-
-  @media print {
-    body { padding: 16px; }
-    .day-block { page-break-inside: avoid; }
-  }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="Croatia 2026 — Anand & Sonia Sinha">
+    <meta property="og:description" content="June 16–25 · Dubrovnik · Split · Montenegro · 10 Days · All Booked">
+    <meta property="og:image" content="https://anandsinhausa.com/og-croatia.jpg">
+    <meta property="og:type" content="website">
+    <title>Croatia Trip — June 2026</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f5f5f5;
+            padding: 20px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #1a5490;
+            margin-bottom: 10px;
+            font-size: 2em;
+        }
+        .subtitle {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 1.1em;
+        }
+        h2 {
+            color: #1a5490;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #1a5490;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        td {
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+            vertical-align: top;
+        }
+        td:first-child {
+            font-weight: 600;
+            color: #1a5490;
+            width: 120px;
+            white-space: nowrap;
+        }
+        td:last-child {
+            text-align: right;
+            color: #28a745;
+            font-weight: 600;
+            width: 140px;
+        }
+        .legend {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #ddd;
+            font-size: 0.95em;
+            color: #666;
+        }
+        .legend div {
+            margin-bottom: 5px;
+        }
+        @media (max-width: 600px) {
+            body {
+                padding: 10px;
+            }
+            .container {
+                padding: 20px;
+            }
+            h1 {
+                font-size: 1.5em;
+            }
+            td:first-child {
+                width: 90px;
+                font-size: 0.9em;
+            }
+            td:last-child {
+                width: 100px;
+                font-size: 0.9em;
+            }
+        }
+    </style>
 </head>
 <body>
+    <div class="container">
+        <h1>Croatia Trip — June 2026</h1>
+        <div class="subtitle">Dubrovnik · Split · Montenegro · 2 Travelers · June 16–25</div>
 
-<h1>Croatia Trip — June 2026</h1>
-<div class="trip-meta">Dubrovnik · Split · Montenegro &nbsp;·&nbsp; 2 Travelers &nbsp;·&nbsp; June 16–25</div>
+        <h2>Tuesday, June 16 — Departure Day</h2>
+        <table>
+            <tr>
+                <td>12:15 PM</td>
+                <td>DL 1716 DTW → ORD (Chicago-O'Hare) Arrive 12:39 PM</td>
+                <td>✓ Booked</td>
+            </tr>
+            <tr>
+                <td>4:20 PM</td>
+                <td>DL 9602 ORD → AMS Arrive Wed Jun 17 7:05 AM</td>
+                <td>✓ Booked</td>
+            </tr>
+        </table>
 
-<!-- DAY 1 -->
-<div class="day-block">
-  <div class="day-header">Monday, June 16 <span class="date">— Departure Day</span></div>
-  <table>
-    <tr><td class="time">12:15 PM</td><td class="activity">DL 1716 &nbsp; DTW → ORD (Chicago-O'Hare) &nbsp; Arrive 12:39 PM</td><td class="status booked">✓ Booked</td></tr>
-    <tr><td class="time">4:20 PM</td><td class="activity">DL 9602 &nbsp; ORD → AMS &nbsp; Arrive Wed Jun 17 7:05 AM</td><td class="status booked">✓ Booked</td></tr>
-  </table>
-</div>
+        <h2>Wednesday, June 17 — Arrive Dubrovnik</h2>
+        <table>
+            <tr>
+                <td>7:05 AM</td>
+                <td>Arrive Amsterdam (AMS)</td>
+                <td>—</td>
+            </tr>
+            <tr>
+                <td>10:15 AM</td>
+                <td>DL 9315 AMS → DBV Arrive 12:35 PM</td>
+                <td>✓ Booked</td>
+            </tr>
+            <tr>
+                <td>3:00 PM</td>
+                <td>Check in — Sheraton Dubrovnik Riviera · Srebreno Mlini · Check-out Jun 19</td>
+                <td>✓ Booked</td>
+            </tr>
+            <tr>
+                <td>Evening</td>
+                <td>Dinner at hotel · Early night</td>
+                <td>—</td>
+            </tr>
+        </table>
 
-<!-- DAY 2 -->
-<div class="day-block">
-  <div class="day-header">Tuesday, June 17 <span class="date">— Arrive Dubrovnik</span></div>
-  <table>
-    <tr><td class="time">7:05 AM</td><td class="activity">Arrive Amsterdam (AMS)</td><td class="status na">—</td></tr>
-    <tr><td class="time">10:15 AM</td><td class="activity">DL 9315 &nbsp; AMS → DBV &nbsp; Arrive 12:35 PM</td><td class="status booked">✓ Booked</td></tr>
-    <tr><td class="time">3:00 PM</td><td class="activity">Check in — Sheraton Dubrovnik Riviera · Srebreno Mlini · Check-out Jun 19</td><td class="status booked">✓ Booked</td></tr>
-    <tr><td class="time">Evening</td><td class="activity">Dinner at hotel · Early night</td><td class="status na">—</td></tr>
-  </table>
-</div>
+        <h2>Thursday, June 18 — Dubrovnik · 🎂 68th Birthday</h2>
+        <table>
+            <tr>
+                <td>9:00 AM</td>
+                <td>Old Town + Ancient City Walls Tour · Meeting: Pile Gate · 3.5 hrs</td>
+                <td>✓ Booked</td>
+            </tr>
+            <tr>
+                <td>9:00 AM</td>
+                <td>City Walls entry tickets · Pay at gate · ~€35/pp</td>
+                <td>Pay at gate</td>
+            </tr>
+            <tr>
+                <td>12:30 PM</td>
+                <td>Lunch in Old City · Explore Stradun</td>
+                <td>—</td>
+            </tr>
+            <tr>
+                <td>Afternoon</td>
+                <td>Free time · Return to hotel · Change for dinner</td>
+                <td>—</td>
+            </tr>
+            <tr>
+                <td>6:30 PM</td>
+                <td>Birthday Dinner — Restaurant Nautika · Brsalje 3, Pile Gate</td>
+                <td>Awaiting confirm</td>
+            </tr>
+        </table>
 
-<!-- DAY 3 -->
-<div class="day-block">
-  <div class="day-header">Wednesday, June 18 <span class="date">— Dubrovnik · 🎂 68th Birthday</span></div>
-  <table>
-    <tr><td class="time">9:00 AM</td><td class="activity">Old Town + Ancient City Walls Tour · Meeting: Pile Gate · 3.5 hrs</td><td class="status booked">✓ Booked</td></tr>
-    <tr><td class="time">9:00 AM</td><td class="activity">City Walls entry tickets · Pay at gate · ~€35/pp</td><td class="status unbooked">Pay at gate</td></tr>
-    <tr><td class="time">12:30 PM</td><td class="activity">Lunch in Old City · Explore Stradun</td><td class="status na">—</td></tr>
-    <tr><td class="time">Afternoon</td><td class="activity">Free time · Return to hotel · Change for dinner</td><td class="status na">—</td></tr>
-    <tr><td class="time">6:30 PM</td><td class="activity">Birthday Dinner — Restaurant Nautika · Brsalje 3, Pile Gate</td><td class="status warning">Awaiting confirm</td></tr>
-  </table>
-</div>
+        <h2>Friday, June 19 — Dubrovnik → Split</h2>
+        <table>
+            <tr>
+                <td>Morning</td>
+                <td>Checkout Sheraton Dubrovnik Riviera by 12:00 PM</td>
+                <td>—</td>
+            </tr>
+            <tr>
+                <td>3:30 PM</td>
+                <td>Krilo Catamaran — Dubrovnik → Hvar → Split · Stops Hvar 7:00 PM · Arrive Split 8:00 PM</td>
+                <td>✓ Booked</td>
+            </tr>
+            <tr>
+                <td>8:00 PM</td>
+                <td>Check in — AC Hotel Split · Check-out Jun 22</td>
+                <td>✓ Booked</td>
+            </tr>
+            <tr>
+                <td>Evening</td>
+                <td>Riva Harbor Promenade stroll · Dinner</td>
+                <td>—</td>
+            </tr>
+        </table>
 
-<!-- DAY 4 -->
-<div class="day-block">
-  <div class="day-header">Thursday, June 19 <span class="date">— Dubrovnik → Split</span></div>
-  <table>
-    <tr><td class="time">Morning</td><td class="activity">Checkout Sheraton Dubrovnik Riviera by 12:00 PM</td><td class="status na">—</td></tr>
-    <tr><td class="time">3:30 PM</td><td class="activity">Krilo Catamaran — Dubrovnik → Hvar → Split · Stops Hvar 7:00 PM · Arrive Split 8:00 PM</td><td class="status booked">✓ Booked</td></tr>
-    <tr><td class="time">8:00 PM</td><td class="activity">Check in — AC Hotel Split · Check-out Jun 22</td><td class="status booked">✓ Booked</td></tr>
-    <tr><td class="time">Evening</td><td class="activity">Riva Harbor Promenade stroll · Dinner</td><td class="status na">—</td></tr>
-  </table>
-</div>
+        <h2>Saturday, June 20 — Split Day 1</h2>
+        <table>
+            <tr>
+                <td>9:00 AM</td>
+                <td>Split & Diocletian's Palace Walking Tour · Private Tour · 1.5 hrs</td>
+                <td>✓ Booked</td>
+            </tr>
+            <tr>
+                <td>10:30 AM</td>
+                <td>Free time · Explore palace on own · Lunch inside palace walls</td>
+                <td>—</td>
+            </tr>
+            <tr>
+                <td>2:30 PM</td>
+                <td>Meštrović Gallery</td>
+                <td>—</td>
+            </tr>
+            <tr>
+                <td>Evening</td>
+                <td>Riva Promenade · Dinner in Split Old Town</td>
+                <td>—</td>
+            </tr>
+        </table>
 
-<!-- DAY 5 -->
-<div class="day-block">
-  <div class="day-header">Friday, June 20 <span class="date">— Split Day 1</span></div>
-  <table>
-    <tr><td class="time">9:00 AM</td><td class="activity">Split & Diocletian's Palace Walking Tour · Private Tour · 1.5 hrs</td><td class="status booked">✓ Booked</td></tr>
-    <tr><td class="time">10:30 AM</td><td class="activity">Free time · Explore palace on own · Lunch inside palace walls</td><td class="status na">—</td></tr>
-    <tr><td class="time">2:30 PM</td><td class="activity">Meštrović Gallery</td><td class="status na">—</td></tr>
-    <tr><td class="time">Evening</td><td class="activity">Riva Promenade · Dinner in Split Old Town</td><td class="status na">—</td></tr>
-  </table>
-</div>
+        <h2>Sunday, June 21 — Krka & Trogir Day Trip</h2>
+        <table>
+            <tr>
+                <td>8:15 AM</td>
+                <td>Pickup at Le Meridien Lav, Split · Krka Waterfalls + Trogir Walking Tour + Boat Cruise · 8.5 hrs</td>
+                <td>✓ Booked</td>
+            </tr>
+            <tr>
+                <td>~5:00 PM</td>
+                <td>Return to Split · Dinner · Rest</td>
+                <td>—</td>
+            </tr>
+        </table>
 
-<!-- DAY 6 -->
-<div class="day-block">
-  <div class="day-header">Saturday, June 21 <span class="date">— Krka & Trogir Day Trip</span></div>
-  <table>
-    <tr><td class="time">8:15 AM</td><td class="activity">Pickup at Le Meridien Lav, Split · Krka Waterfalls + Trogir Walking Tour + Boat Cruise · 8.5 hrs</td><td class="status booked">✓ Booked</td></tr>
-    <tr><td class="time">~5:00 PM</td><td class="activity">Return to Split · Dinner · Rest</td><td class="status na">—</td></tr>
-  </table>
-</div>
+        <h2>Monday, June 22 — Split → Dubrovnik</h2>
+        <table>
+            <tr>
+                <td>Morning</td>
+                <td>Checkout AC Hotel Split by 12:00 PM · Final Riva stroll</td>
+                <td>—</td>
+            </tr>
+            <tr>
+                <td>1:25 PM</td>
+                <td>OU655 SPU → ZAG Arrive Zagreb 2:15 PM</td>
+                <td>✓ Booked</td>
+            </tr>
+            <tr>
+                <td>2:45 PM</td>
+                <td>OU662 ZAG → DBV Arrive Dubrovnik 3:40 PM</td>
+                <td>✓ Booked</td>
+            </tr>
+            <tr>
+                <td>3:00 PM</td>
+                <td>Check in — Sheraton Dubrovnik Riviera · Check-out Jun 24</td>
+                <td>✓ Booked</td>
+            </tr>
+            <tr>
+                <td>~5:00 PM</td>
+                <td>Cable Car — Mount Srđ · Pay at station · ~€27-30/pp · Open until midnight</td>
+                <td>Pay at station</td>
+            </tr>
+            <tr>
+                <td>Evening</td>
+                <td>Dinner at hotel or nearby</td>
+                <td>—</td>
+            </tr>
+        </table>
 
-<!-- DAY 7 -->
-<div class="day-block">
-  <div class="day-header">Sunday, June 22 <span class="date">— Split → Dubrovnik</span></div>
-  <table>
-    <tr><td class="time">Morning</td><td class="activity">Checkout AC Hotel Split by 12:00 PM · Final Riva stroll</td><td class="status na">—</td></tr>
-    <tr><td class="time">1:25 PM</td><td class="activity">OU655 &nbsp; SPU → ZAG &nbsp; Arrive Zagreb 2:15 PM</td><td class="status booked">✓ Booked</td></tr>
-    <tr><td class="time">2:45 PM</td><td class="activity">OU662 &nbsp; ZAG → DBV &nbsp; Arrive Dubrovnik 3:40 PM</td><td class="status booked">✓ Booked</td></tr>
-    <tr><td class="time">3:00 PM</td><td class="activity">Check in — Sheraton Dubrovnik Riviera · Check-out Jun 24</td><td class="status booked">✓ Booked</td></tr>
-    <tr><td class="time">~5:00 PM</td><td class="activity">Cable Car — Mount Srđ · Pay at station · ~€27-30/pp · Open until midnight</td><td class="status unbooked">Pay at station</td></tr>
-    <tr><td class="time">Evening</td><td class="activity">Dinner at hotel or nearby</td><td class="status na">—</td></tr>
-  </table>
-</div>
+        <h2>Tuesday, June 23 — Montenegro Day Trip</h2>
+        <table>
+            <tr>
+                <td>7:00 AM</td>
+                <td>Coach Tour · Perast & Kotor · Montenegro · 11-12 hrs · Optional boat trip</td>
+                <td>✓ Booked</td>
+            </tr>
+            <tr>
+                <td>~7:00 PM</td>
+                <td>Return to Dubrovnik · Dinner · Early night</td>
+                <td>—</td>
+            </tr>
+        </table>
 
-<!-- DAY 8 -->
-<div class="day-block">
-  <div class="day-header">Monday, June 23 <span class="date">— Montenegro Day Trip</span></div>
-  <table>
-    <tr><td class="time">7:00 AM</td><td class="activity">Coach Tour · Perast & Kotor · Montenegro · 11-12 hrs · Optional boat trip</td><td class="status booked">✓ Booked</td></tr>
-    <tr><td class="time">~7:00 PM</td><td class="activity">Return to Dubrovnik · Dinner · Early night</td><td class="status na">—</td></tr>
-  </table>
-</div>
+        <h2>Wednesday, June 24 — Leisure & Farewell</h2>
+        <table>
+            <tr>
+                <td>Morning</td>
+                <td>Checkout Sheraton by 12:00 PM · Transfer to Hotel Konavle</td>
+                <td>—</td>
+            </tr>
+            <tr>
+                <td>2:00 PM</td>
+                <td>Check in — Hotel Konavle · Cilipi · ~10 min from airport · Check-out Jun 25</td>
+                <td>✓ Booked</td>
+            </tr>
+            <tr>
+                <td>Afternoon</td>
+                <td>Cavtat Harbor Town or Lokrum Island · Leisurely last day</td>
+                <td>—</td>
+            </tr>
+            <tr>
+                <td>Evening</td>
+                <td>Farewell dinner · Early night · Ask hotel to arrange 4:30 AM taxi</td>
+                <td>—</td>
+            </tr>
+        </table>
 
-<!-- DAY 9 -->
-<div class="day-block">
-  <div class="day-header">Tuesday, June 24 <span class="date">— Leisure & Farewell</span></div>
-  <table>
-    <tr><td class="time">Morning</td><td class="activity">Checkout Sheraton by 12:00 PM · Transfer to Hotel Konavle</td><td class="status na">—</td></tr>
-    <tr><td class="time">2:00 PM</td><td class="activity">Check in — Hotel Konavle · Cilipi · ~10 min from airport · Check-out Jun 25</td><td class="status booked">✓ Booked</td></tr>
-    <tr><td class="time">Afternoon</td><td class="activity">Cavtat Harbor Town or Lokrum Island · Leisurely last day</td><td class="status na">—</td></tr>
-    <tr><td class="time">Evening</td><td class="activity">Farewell dinner · Early night · Ask hotel to arrange 4:30 AM taxi</td><td class="status na">—</td></tr>
-  </table>
-</div>
+        <h2>Thursday, June 25 — Fly Home</h2>
+        <table>
+            <tr>
+                <td>4:30 AM</td>
+                <td>Hotel taxi to Dubrovnik Airport (DBV) · ~10 min · Arrange night before</td>
+                <td>—</td>
+            </tr>
+            <tr>
+                <td>6:30 AM</td>
+                <td>DL 9221 DBV → AMS (Amsterdam) Arrive 9:00 AM</td>
+                <td>✓ Booked</td>
+            </tr>
+            <tr>
+                <td>12:45 PM</td>
+                <td>DL 9382 AMS → ORD (Chicago-O'Hare) Arrive 2:15 PM</td>
+                <td>✓ Booked</td>
+            </tr>
+            <tr>
+                <td>5:45 PM</td>
+                <td>DL 2358 ORD → DTW (Detroit) Arrive 8:07 PM</td>
+                <td>✓ Booked</td>
+            </tr>
+        </table>
 
-<!-- DAY 10 -->
-<div class="day-block">
-  <div class="day-header">Wednesday, June 25 <span class="date">— Fly Home</span></div>
-  <table>
-    <tr><td class="time">4:30 AM</td><td class="activity">Hotel taxi to Dubrovnik Airport (DBV) · ~10 min · Arrange night before</td><td class="status na">—</td></tr>
-    <tr><td class="time">6:30 AM</td><td class="activity">DL 9221 &nbsp; DBV → AMS (Amsterdam) &nbsp; Arrive 9:00 AM</td><td class="status booked">✓ Booked</td></tr>
-    <tr><td class="time">12:45 PM</td><td class="activity">DL 9382 &nbsp; AMS → ORD (Chicago-O'Hare) &nbsp; Arrive 2:15 PM</td><td class="status booked">✓ Booked</td></tr>
-    <tr><td class="time">5:45 PM</td><td class="activity">DL 2358 &nbsp; ORD → DTW (Detroit) &nbsp; Arrive 8:07 PM</td><td class="status booked">✓ Booked</td></tr>
-  </table>
-</div>
-
-<!-- LEGEND -->
-<div class="legend">
-  <div><span class="booked">✓ Booked</span> — confirmed & paid or autopay</div>
-  <div><span class="unbooked">Pay at gate/station</span> — no booking needed</div>
-  <div><span class="warning">Awaiting confirm</span> — email sent, pending reply</div>
-</div>
-
+        <div class="legend">
+            <div><strong>✓ Booked</strong> — confirmed & paid or autopay</div>
+            <div><strong>Pay at gate/station</strong> — no booking needed</div>
+            <div><strong>Awaiting confirm</strong> — email sent, pending reply</div>
+        </div>
+    </div>
 </body>
 </html>
