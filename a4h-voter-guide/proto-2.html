@@ -1,0 +1,1106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>A4H Voter Guide 2026</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --navy: #1a2838;
+      --navy-light: #2d3e50;
+      --cream: #faf9f6;
+      --saffron: #ff9933;
+      --saffron-light: #ffb366;
+      --text-primary: #1a1a1a;
+      --text-secondary: #6b7280;
+      --text-tertiary: #9ca3af;
+      --border-light: rgba(0, 0, 0, 0.06);
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', 'Roboto', sans-serif;
+      background: #f5f5f7;
+      color: var(--text-primary);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* Hero */
+    .hero {
+      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+      padding: 5rem 2rem 4rem;
+      text-align: center;
+      position: relative;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 30% 50%, rgba(255, 153, 51, 0.05) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .hero h1 {
+      font-size: 56px;
+      font-weight: 600;
+      color: #ffffff;
+      margin-bottom: 1rem;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+    }
+
+    .hero-subtitle {
+      font-size: 22px;
+      color: rgba(255, 255, 255, 0.8);
+      margin-bottom: 2.5rem;
+      font-weight: 400;
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 14px 32px;
+      border-radius: 24px;
+      font-size: 16px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      border: none;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .btn-primary {
+      background: rgba(255, 255, 255, 0.15);
+      color: #ffffff;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(12px);
+    }
+
+    .btn-primary:hover {
+      background: rgba(255, 255, 255, 0.25);
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.08);
+      color: rgba(255, 255, 255, 0.9);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.15);
+    }
+
+    /* Container */
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 4rem 2rem;
+    }
+
+    .section-header {
+      margin-bottom: 3rem;
+    }
+
+    .section-title {
+      font-size: 36px;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.02em;
+    }
+
+    .section-subtitle {
+      font-size: 18px;
+      color: var(--text-secondary);
+      font-weight: 400;
+    }
+
+    /* Cards Grid */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 24px;
+    }
+
+    /* Candidate Card */
+    .candidate-card {
+      background: #ffffff;
+      border-radius: 20px;
+      overflow: hidden;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      cursor: pointer;
+      position: relative;
+      border: 1px solid var(--border-light);
+    }
+
+    .candidate-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+    }
+
+    .candidate-card.endorsed {
+      background: linear-gradient(135deg, #ffffff 0%, #fffbf5 100%);
+      border: 1px solid rgba(255, 153, 51, 0.2);
+    }
+
+    .endorsed-badge {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      padding: 6px 16px;
+      background: rgba(255, 153, 51, 0.12);
+      color: #d97706;
+      font-size: 11px;
+      font-weight: 600;
+      border-radius: 20px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      border: 1px solid rgba(255, 153, 51, 0.2);
+      z-index: 2;
+    }
+
+    .card-header {
+      padding: 28px 28px 24px;
+      display: flex;
+      align-items: flex-start;
+      gap: 18px;
+    }
+
+    .candidate-photo {
+      width: 68px;
+      height: 68px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #e8eef5 0%, #d4dde8 100%);
+      flex-shrink: 0;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 26px;
+      color: #6b7280;
+      font-weight: 600;
+    }
+
+    .candidate-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .endorsed .candidate-photo {
+      border: 2px solid rgba(255, 153, 51, 0.3);
+    }
+
+    .card-info {
+      flex: 1;
+    }
+
+    .candidate-name {
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 4px;
+      letter-spacing: -0.01em;
+    }
+
+    .candidate-office {
+      font-size: 14px;
+      color: var(--text-secondary);
+      margin-bottom: 8px;
+    }
+
+    .candidate-party {
+      display: inline-block;
+      font-size: 11px;
+      padding: 4px 12px;
+      border-radius: 8px;
+      font-weight: 600;
+    }
+
+    .party-d {
+      background: rgba(59, 130, 246, 0.1);
+      color: #2563eb;
+    }
+
+    .party-r {
+      background: rgba(239, 68, 68, 0.1);
+      color: #dc2626;
+    }
+
+    .card-body {
+      padding: 0 28px 28px;
+    }
+
+    .status-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 16px;
+      font-size: 13px;
+      color: var(--text-secondary);
+      font-weight: 500;
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+    }
+
+    .status-incumbent { background: #3b82f6; }
+    .status-challenger { background: #f59e0b; }
+    .status-open { background: #10b981; }
+
+    /* Modal Overlay */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(8px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      padding: 20px;
+    }
+
+    .modal-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .modal-overlay.active .modal-content {
+      transform: translateY(0) scale(1);
+      opacity: 1;
+    }
+
+    /* Modal Content */
+    .modal-content {
+      background: #ffffff;
+      border-radius: 24px;
+      max-width: 900px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      transform: translateY(40px) scale(0.96);
+      opacity: 0;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 40px 80px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Modal Header */
+    .modal-header {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 40px;
+      padding: 48px 48px 32px;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+      position: relative;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: rgba(0, 0, 0, 0.04);
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s ease;
+      font-size: 20px;
+      color: var(--text-secondary);
+    }
+
+    .modal-close:hover {
+      background: rgba(0, 0, 0, 0.08);
+      transform: scale(1.1);
+    }
+
+    .modal-info {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .modal-name {
+      font-size: 36px;
+      font-weight: 600;
+      color: var(--text-primary);
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+    }
+
+    .modal-office {
+      font-size: 18px;
+      color: var(--text-secondary);
+      font-weight: 500;
+    }
+
+    .modal-meta {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .modal-badge {
+      padding: 6px 16px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .badge-endorsed {
+      background: rgba(255, 153, 51, 0.12);
+      color: #d97706;
+      border: 1px solid rgba(255, 153, 51, 0.2);
+    }
+
+    .modal-image {
+      width: 240px;
+      height: 280px;
+      border-radius: 16px;
+      overflow: hidden;
+      position: relative;
+      background: linear-gradient(135deg, #e8eef5 0%, #d4dde8 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 64px;
+      color: #9ca3af;
+      font-weight: 600;
+    }
+
+    .modal-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* Modal Body */
+    .modal-body {
+      padding: 40px 48px 48px;
+    }
+
+    .modal-section {
+      margin-bottom: 40px;
+    }
+
+    .modal-section:last-child {
+      margin-bottom: 0;
+    }
+
+    .modal-section-title {
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 16px;
+      letter-spacing: -0.01em;
+    }
+
+    .modal-summary {
+      font-size: 17px;
+      color: var(--text-secondary);
+      line-height: 1.7;
+      margin-bottom: 32px;
+      padding: 24px;
+      background: rgba(0, 0, 0, 0.02);
+      border-radius: 16px;
+      border-left: 3px solid var(--saffron);
+    }
+
+    /* Endorsement Reasons */
+    .endorsement-reasons {
+      display: grid;
+      gap: 16px;
+    }
+
+    .reason-card {
+      display: flex;
+      gap: 16px;
+      padding: 20px;
+      background: #ffffff;
+      border: 1px solid var(--border-light);
+      border-radius: 16px;
+      transition: all 0.3s ease;
+    }
+
+    .reason-card:hover {
+      background: rgba(0, 0, 0, 0.01);
+      border-color: rgba(0, 0, 0, 0.1);
+    }
+
+    .reason-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      background: rgba(255, 153, 51, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 24px;
+      color: var(--saffron);
+    }
+
+    .reason-content h4 {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 6px;
+    }
+
+    .reason-content p {
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    /* Community Relevance */
+    .relevance-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .relevance-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 16px;
+      background: rgba(59, 130, 246, 0.04);
+      border-radius: 12px;
+      border-left: 3px solid #3b82f6;
+    }
+
+    .relevance-item i {
+      font-size: 20px;
+      color: #3b82f6;
+      margin-top: 2px;
+    }
+
+    .relevance-item p {
+      font-size: 14px;
+      color: var(--text-primary);
+      line-height: 1.6;
+    }
+
+    /* Modal Actions */
+    .modal-actions {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 12px;
+      margin-top: 40px;
+      padding-top: 32px;
+      border-top: 1px solid rgba(0, 0, 0, 0.06);
+    }
+
+    .btn-action {
+      padding: 14px 24px;
+      border-radius: 12px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+      transition: all 0.2s ease;
+      text-decoration: none;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .btn-action-primary {
+      background: var(--navy);
+      color: #ffffff;
+    }
+
+    .btn-action-primary:hover {
+      background: var(--navy-light);
+      transform: translateY(-2px);
+    }
+
+    .btn-action-secondary {
+      background: rgba(255, 153, 51, 0.1);
+      color: #d97706;
+      border: 1px solid rgba(255, 153, 51, 0.2);
+    }
+
+    .btn-action-secondary:hover {
+      background: rgba(255, 153, 51, 0.15);
+    }
+
+    .btn-action-tertiary {
+      background: rgba(0, 0, 0, 0.04);
+      color: var(--text-secondary);
+    }
+
+    .btn-action-tertiary:hover {
+      background: rgba(0, 0, 0, 0.08);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 40px;
+      }
+
+      .hero-subtitle {
+        font-size: 18px;
+      }
+
+      .cards-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .modal-header {
+        grid-template-columns: 1fr;
+        gap: 24px;
+        padding: 32px 24px 24px;
+      }
+
+      .modal-image {
+        width: 100%;
+        height: 320px;
+      }
+
+      .modal-body {
+        padding: 32px 24px;
+      }
+
+      .modal-name {
+        font-size: 28px;
+      }
+
+      .modal-actions {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Smooth scrollbar */
+    .modal-content::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    .modal-content::-webkit-scrollbar-track {
+      background: rgba(0, 0, 0, 0.02);
+    }
+
+    .modal-content::-webkit-scrollbar-thumb {
+      background: rgba(0, 0, 0, 0.15);
+      border-radius: 4px;
+    }
+
+    .modal-content::-webkit-scrollbar-thumb:hover {
+      background: rgba(0, 0, 0, 0.25);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Hero -->
+  <div class="hero">
+    <div class="hero-content">
+      <h1>Your ballot. Simplified.</h1>
+      <p class="hero-subtitle">Intelligent candidate recommendations for Hindu-American voters</p>
+      <div class="hero-cta">
+        <button class="btn btn-primary">Enter your ZIP code</button>
+        <button class="btn btn-secondary">Browse endorsed candidates</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Container -->
+  <div class="container">
+    <div class="section-header">
+      <h2 class="section-title">A4H endorsed candidates</h2>
+      <p class="section-subtitle">Candidates committed to economic growth, religious freedom, and community engagement</p>
+    </div>
+
+    <!-- Cards Grid -->
+    <div class="cards-grid">
+      
+      <!-- Endorsed Candidate 1 -->
+      <div class="candidate-card endorsed" onclick="openModal('huizenga')">
+        <div class="endorsed-badge">A4H Endorsed</div>
+        <div class="card-header">
+          <div class="candidate-photo">BH</div>
+          <div class="card-info">
+            <div class="candidate-name">Bill Huizenga</div>
+            <div class="candidate-office">US House, Michigan District 4</div>
+            <span class="candidate-party party-r">Republican</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="status-row">
+            <div class="status-dot status-incumbent"></div>
+            <span>Incumbent</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Endorsed Candidate 2 -->
+      <div class="candidate-card endorsed" onclick="openModal('patel')">
+        <div class="endorsed-badge">A4H Endorsed</div>
+        <div class="card-header">
+          <div class="candidate-photo">PP</div>
+          <div class="card-info">
+            <div class="candidate-name">Priya Patel</div>
+            <div class="candidate-office">State Senate, District 12</div>
+            <span class="candidate-party party-d">Democrat</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="status-row">
+            <div class="status-dot status-incumbent"></div>
+            <span>Incumbent</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Endorsed Candidate 3 -->
+      <div class="candidate-card endorsed" onclick="openModal('chen')">
+        <div class="endorsed-badge">A4H Endorsed</div>
+        <div class="card-header">
+          <div class="candidate-photo">SC</div>
+          <div class="card-info">
+            <div class="candidate-name">Sarah Chen</div>
+            <div class="candidate-office">US House, Michigan District 3</div>
+            <span class="candidate-party party-d">Democrat</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="status-row">
+            <div class="status-dot status-open"></div>
+            <span>Open seat</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Regular Candidate -->
+      <div class="candidate-card">
+        <div class="card-header">
+          <div class="candidate-photo">MJ</div>
+          <div class="card-info">
+            <div class="candidate-name">Marcus Johnson</div>
+            <div class="candidate-office">US Senate, Michigan</div>
+            <span class="candidate-party party-r">Republican</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="status-row">
+            <div class="status-dot status-challenger"></div>
+            <span>Challenger</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Regular Candidate -->
+      <div class="candidate-card">
+        <div class="card-header">
+          <div class="candidate-photo">DR</div>
+          <div class="card-info">
+            <div class="candidate-name">David Rodriguez</div>
+            <div class="candidate-office">State House, District 45</div>
+            <span class="candidate-party party-r">Republican</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="status-row">
+            <div class="status-dot status-open"></div>
+            <span>Open seat</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Regular Candidate -->
+      <div class="candidate-card">
+        <div class="card-header">
+          <div class="candidate-photo">JK</div>
+          <div class="card-info">
+            <div class="candidate-name">Jennifer Kim</div>
+            <div class="candidate-office">US House, Michigan District 7</div>
+            <span class="candidate-party party-d">Democrat</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="status-row">
+            <div class="status-dot status-challenger"></div>
+            <span>Challenger</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Modal Overlay -->
+  <div class="modal-overlay" id="modalOverlay" onclick="closeModalOnOverlay(event)">
+    <div class="modal-content" id="modalContent">
+      
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <button class="modal-close" onclick="closeModal()">&times;</button>
+        
+        <div class="modal-info">
+          <h2 class="modal-name" id="modalName">Bill Huizenga</h2>
+          <div class="modal-office" id="modalOffice">US House, Michigan District 4</div>
+          <div class="modal-meta">
+            <span class="modal-badge badge-endorsed">A4H Endorsed</span>
+            <span class="candidate-party party-r" id="modalParty">Republican</span>
+          </div>
+        </div>
+
+        <div class="modal-image" id="modalImage">BH</div>
+      </div>
+
+      <!-- Modal Body -->
+      <div class="modal-body" id="modalBody">
+        
+        <!-- Summary -->
+        <div class="modal-summary" id="modalSummary">
+          A4H supports Bill Huizenga for his commitment to entrepreneurship, public service, economic growth, and engagement with diverse communities including Hindu-Americans.
+        </div>
+
+        <!-- Why A4H Endorses -->
+        <div class="modal-section">
+          <h3 class="modal-section-title">Why A4H endorses</h3>
+          <div class="endorsement-reasons" id="endorsementReasons">
+            
+            <div class="reason-card">
+              <div class="reason-icon">
+                <i class="ti ti-chart-line"></i>
+              </div>
+              <div class="reason-content">
+                <h4>Economic growth</h4>
+                <p>Strong advocate for pro-growth policies that benefit entrepreneurs and small business owners across Michigan.</p>
+              </div>
+            </div>
+
+            <div class="reason-card">
+              <div class="reason-icon">
+                <i class="ti ti-briefcase"></i>
+              </div>
+              <div class="reason-content">
+                <h4>Small business support</h4>
+                <p>Consistent champion of reducing regulatory burdens and supporting the small business community.</p>
+              </div>
+            </div>
+
+            <div class="reason-card">
+              <div class="reason-icon">
+                <i class="ti ti-world"></i>
+              </div>
+              <div class="reason-content">
+                <h4>Community engagement</h4>
+                <p>Demonstrated commitment to working with diverse communities including Hindu-American constituents.</p>
+              </div>
+            </div>
+
+            <div class="reason-card">
+              <div class="reason-icon">
+                <i class="ti ti-shield-check"></i>
+              </div>
+              <div class="reason-content">
+                <h4>Religious freedom</h4>
+                <p>Strong defender of First Amendment rights and religious liberty for all faith communities.</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Community Relevance -->
+        <div class="modal-section">
+          <h3 class="modal-section-title">Why Hindu-American voters should care</h3>
+          <div class="relevance-list">
+            
+            <div class="relevance-item">
+              <i class="ti ti-building-store"></i>
+              <p><strong>Small business priorities:</strong> Many Hindu-Americans are entrepreneurs and small business owners who benefit from policies reducing regulatory burdens and supporting economic growth.</p>
+            </div>
+
+            <div class="relevance-item">
+              <i class="ti ti-building-community"></i>
+              <p><strong>Temple security:</strong> Supports funding for security measures at houses of worship, protecting Hindu temples and community centers.</p>
+            </div>
+
+            <div class="relevance-item">
+              <i class="ti ti-world"></i>
+              <p><strong>US-India relations:</strong> Advocates for strengthening strategic partnership between the United States and India on trade, security, and technology.</p>
+            </div>
+
+            <div class="relevance-item">
+              <i class="ti ti-shield"></i>
+              <p><strong>Anti-discrimination:</strong> Committed to combating Hinduphobia and protecting Hindu-Americans from religious discrimination and bias.</p>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Actions -->
+        <div class="modal-actions">
+          <a href="#" class="btn-action btn-action-primary">
+            <i class="ti ti-external-link"></i>
+            Visit campaign website
+          </a>
+          <a href="#" class="btn-action btn-action-secondary">
+            <i class="ti ti-heart"></i>
+            Support this campaign
+          </a>
+          <button class="btn-action btn-action-tertiary" onclick="closeModal()">
+            <i class="ti ti-arrow-left"></i>
+            Return to guide
+          </button>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    const candidateData = {
+      huizenga: {
+        name: 'Bill Huizenga',
+        office: 'US House, Michigan District 4',
+        party: 'Republican',
+        partyClass: 'party-r',
+        initials: 'BH',
+        endorsed: true,
+        summary: 'A4H supports Bill Huizenga for his commitment to entrepreneurship, public service, economic growth, and engagement with diverse communities including Hindu-Americans.',
+        reasons: [
+          {
+            icon: 'ti-chart-line',
+            title: 'Economic growth',
+            description: 'Strong advocate for pro-growth policies that benefit entrepreneurs and small business owners across Michigan.'
+          },
+          {
+            icon: 'ti-briefcase',
+            title: 'Small business support',
+            description: 'Consistent champion of reducing regulatory burdens and supporting the small business community.'
+          },
+          {
+            icon: 'ti-world',
+            title: 'Community engagement',
+            description: 'Demonstrated commitment to working with diverse communities including Hindu-American constituents.'
+          },
+          {
+            icon: 'ti-shield-check',
+            title: 'Religious freedom',
+            description: 'Strong defender of First Amendment rights and religious liberty for all faith communities.'
+          }
+        ],
+        relevance: [
+          {
+            icon: 'ti-building-store',
+            text: '<strong>Small business priorities:</strong> Many Hindu-Americans are entrepreneurs and small business owners who benefit from policies reducing regulatory burdens and supporting economic growth.'
+          },
+          {
+            icon: 'ti-building-community',
+            text: '<strong>Temple security:</strong> Supports funding for security measures at houses of worship, protecting Hindu temples and community centers.'
+          },
+          {
+            icon: 'ti-world',
+            text: '<strong>US-India relations:</strong> Advocates for strengthening strategic partnership between the United States and India on trade, security, and technology.'
+          },
+          {
+            icon: 'ti-shield',
+            text: '<strong>Anti-discrimination:</strong> Committed to combating Hinduphobia and protecting Hindu-Americans from religious discrimination and bias.'
+          }
+        ]
+      },
+      patel: {
+        name: 'Priya Patel',
+        office: 'State Senate, District 12',
+        party: 'Democrat',
+        partyClass: 'party-d',
+        initials: 'PP',
+        endorsed: true,
+        summary: 'A4H endorses Priya Patel for her advocacy on education equity, healthcare access, affordable housing, and strong engagement with immigrant communities.',
+        reasons: [
+          {
+            icon: 'ti-school',
+            title: 'Education equity',
+            description: 'Champion of increased funding for public schools and expanded access to quality education for all students.'
+          },
+          {
+            icon: 'ti-heart',
+            title: 'Healthcare access',
+            description: 'Advocates for affordable healthcare options and expanded coverage for underserved communities.'
+          },
+          {
+            icon: 'ti-home',
+            title: 'Affordable housing',
+            description: 'Works to address housing affordability crisis and support working families in finding quality homes.'
+          },
+          {
+            icon: 'ti-users',
+            title: 'Immigration reform',
+            description: 'Strong supporter of comprehensive immigration reform and pathways to citizenship for immigrant families.'
+          }
+        ],
+        relevance: [
+          {
+            icon: 'ti-school',
+            text: '<strong>Education priorities:</strong> Hindu-American families prioritize quality education, benefiting from policies that strengthen public schools and expand educational opportunities.'
+          },
+          {
+            icon: 'ti-users',
+            text: '<strong>Immigration support:</strong> Advocates for fair immigration policies affecting many Hindu-American families with relatives seeking to join them in the US.'
+          },
+          {
+            icon: 'ti-building-community',
+            text: '<strong>Community representation:</strong> As the first Hindu-American state senator in Michigan, brings direct understanding of community concerns and priorities.'
+          },
+          {
+            icon: 'ti-heart',
+            text: '<strong>Healthcare access:</strong> Supports expanding healthcare coverage for all residents, important to Hindu-American families and small business employees.'
+          }
+        ]
+      },
+      chen: {
+        name: 'Sarah Chen',
+        office: 'US House, Michigan District 3',
+        party: 'Democrat',
+        partyClass: 'party-d',
+        initials: 'SC',
+        endorsed: true,
+        summary: 'A4H supports Sarah Chen for her commitment to small business growth, civil rights, immigration reform, and fostering inclusive communities.',
+        reasons: [
+          {
+            icon: 'ti-briefcase',
+            title: 'Small business champion',
+            description: 'Former small business owner committed to reducing barriers and supporting entrepreneurship.'
+          },
+          {
+            icon: 'ti-users',
+            title: 'Immigration reform',
+            description: 'Advocates for comprehensive immigration reform and protecting immigrant families and workers.'
+          },
+          {
+            icon: 'ti-building-community',
+            title: 'Civil rights',
+            description: 'Strong defender of civil liberties and equal protection under the law for all communities.'
+          },
+          {
+            icon: 'ti-chart-line',
+            title: 'Economic opportunity',
+            description: 'Focused on creating pathways to economic mobility and supporting working families.'
+          }
+        ],
+        relevance: [
+          {
+            icon: 'ti-briefcase',
+            text: '<strong>Entrepreneurship support:</strong> Direct understanding of small business challenges faced by many Hindu-American entrepreneurs and job creators.'
+          },
+          {
+            icon: 'ti-users',
+            text: '<strong>Immigration advocacy:</strong> Committed to fair immigration policies and protecting pathways for family reunification.'
+          },
+          {
+            icon: 'ti-shield',
+            text: '<strong>Anti-hate initiatives:</strong> Active in combating hate crimes and discrimination against minority communities including Hindu-Americans.'
+          },
+          {
+            icon: 'ti-world',
+            text: '<strong>Cultural inclusion:</strong> Champions policies that celebrate diversity and support cultural communities in building strong institutions.'
+          }
+        ]
+      }
+    };
+
+    function openModal(candidateId) {
+      const data = candidateData[candidateId];
+      if (!data) return;
+
+      // Update modal content
+      document.getElementById('modalName').textContent = data.name;
+      document.getElementById('modalOffice').textContent = data.office;
+      document.getElementById('modalParty').textContent = data.party;
+      document.getElementById('modalParty').className = 'candidate-party ' + data.partyClass;
+      document.getElementById('modalImage').textContent = data.initials;
+      document.getElementById('modalSummary').textContent = data.summary;
+
+      // Build reasons
+      const reasonsHTML = data.reasons.map(reason => `
+        <div class="reason-card">
+          <div class="reason-icon">
+            <i class="ti ${reason.icon}"></i>
+          </div>
+          <div class="reason-content">
+            <h4>${reason.title}</h4>
+            <p>${reason.description}</p>
+          </div>
+        </div>
+      `).join('');
+      document.getElementById('endorsementReasons').innerHTML = reasonsHTML;
+
+      // Build relevance
+      const relevanceHTML = data.relevance.map(item => `
+        <div class="relevance-item">
+          <i class="ti ${item.icon}"></i>
+          <p>${item.text}</p>
+        </div>
+      `).join('');
+      document.querySelector('.relevance-list').innerHTML = relevanceHTML;
+
+      // Show modal
+      const overlay = document.getElementById('modalOverlay');
+      overlay.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+      const overlay = document.getElementById('modalOverlay');
+      overlay.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    function closeModalOnOverlay(event) {
+      if (event.target === document.getElementById('modalOverlay')) {
+        closeModal();
+      }
+    }
+
+    // Close on ESC key
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        closeModal();
+      }
+    });
+  </script>
+
+</body>
+</html>
