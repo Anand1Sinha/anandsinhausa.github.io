@@ -1,0 +1,1472 @@
+<!DOCTYPE html>
+<!--
+A4H Voter Guide — Proto-5 May 31 Demo
+Base: proto-3 (2)
+Purpose: demo-ready implementation base preserving the approved atmospheric/cinematic civic-tech direction.
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>A4H Voter Guide 2026 — Proto-5 May 31 Demo</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --navy: #0f172a;
+      --navy-light: #1e293b;
+      --navy-lighter: #334155;
+      --saffron: #f97316;
+      --saffron-light: #fb923c;
+      --text-primary: #0f172a;
+      --text-secondary: #64748b;
+      --text-tertiary: #94a3b8;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', sans-serif;
+      background: #f8fafc;
+      color: var(--text-primary);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* Hero Section - Atmospheric & Layered */
+    .hero {
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+      padding: 7rem 2rem 6rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      min-height: 70vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -30%;
+      width: 150%;
+      height: 200%;
+      background: radial-gradient(circle at 30% 40%, rgba(249, 115, 22, 0.08) 0%, transparent 60%);
+      animation: ambient-float 25s ease-in-out infinite;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -30%;
+      right: -20%;
+      width: 120%;
+      height: 150%;
+      background: radial-gradient(circle at 70% 60%, rgba(59, 130, 246, 0.06) 0%, transparent 55%);
+      animation: ambient-float 20s ease-in-out infinite reverse;
+    }
+
+    @keyframes ambient-float {
+      0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.6; }
+      50% { transform: translate(3%, 4%) scale(1.08); opacity: 0.8; }
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 20px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 100px;
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.85);
+      font-weight: 500;
+      margin-bottom: 2rem;
+      backdrop-filter: blur(12px);
+    }
+
+    .hero-badge i {
+      font-size: 16px;
+      color: var(--saffron-light);
+    }
+
+    .hero h1 {
+      font-size: 64px;
+      font-weight: 700;
+      background: linear-gradient(135deg, #ffffff 0%, rgba(255, 255, 255, 0.85) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 1.5rem;
+      letter-spacing: -0.04em;
+      line-height: 1.05;
+    }
+
+    .hero-subtitle {
+      font-size: 22px;
+      color: rgba(255, 255, 255, 0.7);
+      margin-bottom: 3rem;
+      font-weight: 400;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.6;
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 16px 36px;
+      border-radius: 14px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+      border: none;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, transparent 100%);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .btn:hover::before {
+      opacity: 1;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--saffron) 0%, var(--saffron-light) 100%);
+      color: #ffffff;
+      box-shadow: 0 8px 24px rgba(249, 115, 22, 0.25);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 32px rgba(249, 115, 22, 0.35);
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.1);
+      color: #ffffff;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(12px);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.15);
+      transform: translateY(-2px);
+    }
+
+    /* Container */
+    .container {
+      max-width: 1320px;
+      margin: 0 auto;
+      padding: 5rem 2rem;
+      position: relative;
+    }
+
+    /* Section Header with Smart Recommendations */
+    .section-header {
+      margin-bottom: 3rem;
+      position: relative;
+    }
+
+    .section-header::before {
+      content: '';
+      position: absolute;
+      top: -2rem;
+      left: -2rem;
+      right: -2rem;
+      height: 180px;
+      background: radial-gradient(circle at 20% 50%, rgba(249, 115, 22, 0.03) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .smart-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      background: linear-gradient(135deg, rgba(249, 115, 22, 0.08) 0%, rgba(249, 115, 22, 0.04) 100%);
+      border: 1px solid rgba(249, 115, 22, 0.15);
+      border-radius: 100px;
+      font-size: 12px;
+      color: var(--saffron);
+      font-weight: 600;
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .smart-badge i {
+      font-size: 14px;
+    }
+
+    .section-title {
+      font-size: 42px;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 0.75rem;
+      letter-spacing: -0.03em;
+      position: relative;
+    }
+
+    .section-subtitle {
+      font-size: 19px;
+      color: var(--text-secondary);
+      font-weight: 400;
+      line-height: 1.6;
+    }
+
+    /* Cards Grid - Asymmetric Layout */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+      gap: 28px;
+    }
+
+    /* Candidate Card - Rich & Layered */
+    .candidate-card {
+      background: #ffffff;
+      border-radius: 24px;
+      overflow: hidden;
+      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      cursor: pointer;
+      position: relative;
+      border: 1px solid rgba(15, 23, 42, 0.06);
+      box-shadow: 0 4px 16px rgba(15, 23, 42, 0.04);
+    }
+
+    .candidate-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(249, 115, 22, 0.02) 0%, transparent 100%);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      pointer-events: none;
+    }
+
+    .candidate-card:hover {
+      transform: translateY(-8px) scale(1.01);
+      box-shadow: 0 24px 48px rgba(15, 23, 42, 0.12);
+      border-color: rgba(15, 23, 42, 0.1);
+    }
+
+    .candidate-card:hover::before {
+      opacity: 1;
+    }
+
+    .candidate-card.endorsed {
+      background: linear-gradient(135deg, #ffffff 0%, #fffbf5 100%);
+      border: 1.5px solid rgba(249, 115, 22, 0.2);
+      box-shadow: 0 4px 16px rgba(249, 115, 22, 0.08);
+    }
+
+    .candidate-card.endorsed::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 200px;
+      height: 200px;
+      background: radial-gradient(circle at top right, rgba(249, 115, 22, 0.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    /* Smart Recommendation Badge */
+    .smart-recommend {
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      padding: 6px 12px;
+      background: linear-gradient(135deg, rgba(59, 130, 246, 0.12) 0%, rgba(59, 130, 246, 0.08) 100%);
+      border: 1px solid rgba(59, 130, 246, 0.2);
+      border-radius: 8px;
+      font-size: 10px;
+      color: #2563eb;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      backdrop-filter: blur(8px);
+    }
+
+    .smart-recommend i {
+      font-size: 12px;
+    }
+
+    .endorsed-badge {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      padding: 8px 18px;
+      background: rgba(249, 115, 22, 0.12);
+      color: #ea580c;
+      font-size: 11px;
+      font-weight: 700;
+      border-radius: 100px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      border: 1px solid rgba(249, 115, 22, 0.25);
+      z-index: 2;
+      backdrop-filter: blur(8px);
+    }
+
+    /* Card Image Hero */
+    .card-image {
+      width: 100%;
+      height: 200px;
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(135deg, #e2e8f0 0%, #cbd5e1 100%);
+    }
+
+    .card-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+
+    .candidate-card:hover .card-image img {
+      transform: scale(1.05);
+    }
+
+    .card-image::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.4) 100%);
+    }
+
+    .card-image-initials {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 56px;
+      font-weight: 700;
+      color: rgba(255, 255, 255, 0.8);
+      z-index: 1;
+    }
+
+    .card-info-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 20px 24px;
+      z-index: 2;
+    }
+
+    .card-name {
+      font-size: 22px;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 4px;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+      letter-spacing: -0.01em;
+    }
+
+    .card-office {
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.9);
+      font-weight: 500;
+      text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Card Body */
+    .card-body {
+      padding: 24px;
+    }
+
+    .card-meta {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+
+    .card-party {
+      display: inline-block;
+      font-size: 11px;
+      padding: 5px 12px;
+      border-radius: 8px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .party-d {
+      background: rgba(59, 130, 246, 0.1);
+      color: #2563eb;
+      border: 1px solid rgba(59, 130, 246, 0.2);
+    }
+
+    .party-r {
+      background: rgba(239, 68, 68, 0.1);
+      color: #dc2626;
+      border: 1px solid rgba(239, 68, 68, 0.2);
+    }
+
+    .card-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      color: var(--text-secondary);
+      font-weight: 600;
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+    }
+
+    .status-incumbent { background: #3b82f6; }
+    .status-challenger { background: #f59e0b; }
+    .status-open { background: #10b981; }
+
+    /* Affinity Tags */
+    .affinity-tags {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .affinity-tag {
+      padding: 6px 12px;
+      background: rgba(15, 23, 42, 0.04);
+      border: 1px solid rgba(15, 23, 42, 0.08);
+      border-radius: 8px;
+      font-size: 12px;
+      color: var(--text-secondary);
+      font-weight: 600;
+      transition: all 0.2s ease;
+    }
+
+    .affinity-tag:hover {
+      background: rgba(15, 23, 42, 0.06);
+      border-color: rgba(15, 23, 42, 0.12);
+    }
+
+    .affinity-tag.high-match {
+      background: rgba(249, 115, 22, 0.08);
+      border-color: rgba(249, 115, 22, 0.15);
+      color: var(--saffron);
+    }
+
+    /* Modal Overlay - Immersive */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.75);
+      backdrop-filter: blur(12px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      padding: 20px;
+    }
+
+    .modal-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .modal-overlay.active .modal-content {
+      transform: translateY(0) scale(1);
+      opacity: 1;
+    }
+
+    /* Modal Content - Editorial Layout */
+    .modal-content {
+      background: #ffffff;
+      border-radius: 32px;
+      max-width: 1000px;
+      width: 100%;
+      max-height: 92vh;
+      overflow-y: auto;
+      transform: translateY(50px) scale(0.94);
+      opacity: 0;
+      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 50px 100px rgba(15, 23, 42, 0.3);
+      position: relative;
+    }
+
+    /* Modal Hero - Editorial Composition */
+    .modal-hero {
+      position: relative;
+      height: 420px;
+      background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+      overflow: hidden;
+    }
+
+    .modal-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 30% 40%, rgba(249, 115, 22, 0.12) 0%, transparent 60%);
+    }
+
+    .modal-hero-image {
+      position: absolute;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      width: 45%;
+      background: linear-gradient(135deg, #e2e8f0 0%, #cbd5e1 100%);
+      clip-path: polygon(15% 0%, 100% 0%, 100% 100%, 0% 100%);
+    }
+
+    .modal-hero-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .modal-hero-image-initials {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 96px;
+      font-weight: 700;
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    .modal-hero-content {
+      position: relative;
+      z-index: 2;
+      padding: 56px;
+      max-width: 60%;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 24px;
+      right: 24px;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      backdrop-filter: blur(12px);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+      font-size: 22px;
+      color: rgba(255, 255, 255, 0.9);
+      z-index: 10;
+    }
+
+    .modal-close:hover {
+      background: rgba(255, 255, 255, 0.2);
+      transform: scale(1.1) rotate(90deg);
+    }
+
+    .modal-endorsed-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 20px;
+      background: rgba(249, 115, 22, 0.15);
+      border: 1px solid rgba(249, 115, 22, 0.3);
+      border-radius: 100px;
+      font-size: 12px;
+      color: #ffffff;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 1.5rem;
+      backdrop-filter: blur(12px);
+    }
+
+    .modal-endorsed-badge i {
+      font-size: 16px;
+      color: var(--saffron-light);
+    }
+
+    .modal-name {
+      font-size: 48px;
+      font-weight: 800;
+      color: #ffffff;
+      margin-bottom: 0.75rem;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      text-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    .modal-office {
+      font-size: 20px;
+      color: rgba(255, 255, 255, 0.85);
+      font-weight: 500;
+      margin-bottom: 1rem;
+      text-shadow: 0 1px 6px rgba(0, 0, 0, 0.2);
+    }
+
+    .modal-meta-pills {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .modal-pill {
+      padding: 8px 16px;
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 100px;
+      font-size: 13px;
+      font-weight: 600;
+      backdrop-filter: blur(12px);
+    }
+
+    .modal-pill.party-d { color: #60a5fa; }
+    .modal-pill.party-r { color: #f87171; }
+
+    /* Modal Body */
+    .modal-body {
+      padding: 56px;
+    }
+
+    .modal-section {
+      margin-bottom: 48px;
+    }
+
+    .modal-section:last-child {
+      margin-bottom: 0;
+    }
+
+    .modal-section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 12px;
+      background: rgba(249, 115, 22, 0.08);
+      border-radius: 6px;
+      font-size: 11px;
+      color: var(--saffron);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 1rem;
+    }
+
+    .modal-section-title {
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 1.25rem;
+      letter-spacing: -0.02em;
+    }
+
+    .modal-summary {
+      font-size: 19px;
+      color: var(--text-secondary);
+      line-height: 1.75;
+      padding: 32px;
+      background: linear-gradient(135deg, rgba(249, 115, 22, 0.04) 0%, rgba(249, 115, 22, 0.02) 100%);
+      border-radius: 20px;
+      border-left: 4px solid var(--saffron);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .modal-summary::before {
+      content: '"';
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      font-size: 64px;
+      color: rgba(249, 115, 22, 0.08);
+      font-weight: 700;
+      line-height: 1;
+    }
+
+    /* Endorsement Grid */
+    .endorsement-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    .endorsement-card {
+      padding: 28px;
+      background: rgba(15, 23, 42, 0.02);
+      border: 1px solid rgba(15, 23, 42, 0.06);
+      border-radius: 20px;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .endorsement-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      background: linear-gradient(180deg, var(--saffron) 0%, var(--saffron-light) 100%);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .endorsement-card:hover {
+      background: rgba(15, 23, 42, 0.03);
+      border-color: rgba(15, 23, 42, 0.1);
+      transform: translateX(4px);
+    }
+
+    .endorsement-card:hover::before {
+      opacity: 1;
+    }
+
+    .endorsement-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, rgba(249, 115, 22, 0.12) 0%, rgba(249, 115, 22, 0.08) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 26px;
+      color: var(--saffron);
+      margin-bottom: 16px;
+    }
+
+    .endorsement-card h4 {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 8px;
+      letter-spacing: -0.01em;
+    }
+
+    .endorsement-card p {
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.7;
+    }
+
+    /* Relevance Cards */
+    .relevance-grid {
+      display: grid;
+      gap: 16px;
+    }
+
+    .relevance-card {
+      padding: 24px;
+      background: linear-gradient(135deg, rgba(59, 130, 246, 0.04) 0%, rgba(59, 130, 246, 0.02) 100%);
+      border: 1px solid rgba(59, 130, 246, 0.12);
+      border-radius: 16px;
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      transition: all 0.3s ease;
+    }
+
+    .relevance-card:hover {
+      background: rgba(59, 130, 246, 0.06);
+      border-color: rgba(59, 130, 246, 0.18);
+      transform: translateX(4px);
+    }
+
+    .relevance-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: rgba(59, 130, 246, 0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      color: #3b82f6;
+      flex-shrink: 0;
+    }
+
+    .relevance-card p {
+      font-size: 15px;
+      color: var(--text-primary);
+      line-height: 1.7;
+    }
+
+    .relevance-card strong {
+      color: #2563eb;
+      font-weight: 700;
+    }
+
+    /* Modal Actions */
+    .modal-actions {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 14px;
+      margin-top: 48px;
+      padding-top: 40px;
+      border-top: 1px solid rgba(15, 23, 42, 0.08);
+    }
+
+    .btn-modal {
+      padding: 16px 28px;
+      border-radius: 14px;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      border: none;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      text-decoration: none;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-modal::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, transparent 100%);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .btn-modal:hover::before {
+      opacity: 1;
+    }
+
+    .btn-modal-primary {
+      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+      color: #ffffff;
+      box-shadow: 0 8px 20px rgba(15, 23, 42, 0.2);
+    }
+
+    .btn-modal-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 28px rgba(15, 23, 42, 0.3);
+    }
+
+    .btn-modal-secondary {
+      background: linear-gradient(135deg, var(--saffron) 0%, var(--saffron-light) 100%);
+      color: #ffffff;
+      box-shadow: 0 8px 20px rgba(249, 115, 22, 0.2);
+    }
+
+    .btn-modal-secondary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 28px rgba(249, 115, 22, 0.3);
+    }
+
+    .btn-modal-tertiary {
+      background: rgba(15, 23, 42, 0.05);
+      color: var(--text-secondary);
+      border: 1px solid rgba(15, 23, 42, 0.1);
+    }
+
+    .btn-modal-tertiary:hover {
+      background: rgba(15, 23, 42, 0.08);
+      transform: translateY(-2px);
+    }
+
+    /* Smooth Scrollbar */
+    .modal-content::-webkit-scrollbar {
+      width: 10px;
+    }
+
+    .modal-content::-webkit-scrollbar-track {
+      background: rgba(15, 23, 42, 0.03);
+    }
+
+    .modal-content::-webkit-scrollbar-thumb {
+      background: rgba(15, 23, 42, 0.15);
+      border-radius: 5px;
+    }
+
+    .modal-content::-webkit-scrollbar-thumb:hover {
+      background: rgba(15, 23, 42, 0.25);
+    }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .cards-grid {
+        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+        gap: 20px;
+      }
+
+      .endorsement-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .hero {
+        padding: 5rem 1.5rem 4rem;
+        min-height: 60vh;
+      }
+
+      .hero h1 {
+        font-size: 42px;
+      }
+
+      .hero-subtitle {
+        font-size: 18px;
+      }
+
+      .section-title {
+        font-size: 32px;
+      }
+
+      .cards-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      .card-image {
+        height: 240px;
+      }
+
+      .modal-hero {
+        height: auto;
+        min-height: 440px;
+      }
+
+      .modal-hero-image {
+        width: 100%;
+        clip-path: none;
+        height: 280px;
+      }
+
+      .modal-hero-content {
+        max-width: 100%;
+        padding: 32px 24px;
+      }
+
+      .modal-name {
+        font-size: 36px;
+      }
+
+      .modal-body {
+        padding: 32px 24px;
+      }
+
+      .modal-actions {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Hero Section -->
+  <div class="hero">
+    <div class="hero-content">
+      <div class="hero-badge">
+        <i class="ti ti-sparkles"></i>
+        <span>AI-powered candidate recommendations</span>
+      </div>
+      <h1>Your ballot. Simplified.</h1>
+      <p class="hero-subtitle">Intelligent civic guidance tailored to your values, powered by real policy analysis and community priorities</p>
+      <div class="hero-cta">
+        <button class="btn btn-primary">
+          <i class="ti ti-map-pin"></i>
+          Find my ballot
+        </button>
+        <button class="btn btn-secondary">
+          <i class="ti ti-star"></i>
+          View endorsed candidates
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Container -->
+  <div class="container">
+    <div class="section-header">
+      <div class="smart-badge">
+        <i class="ti ti-target"></i>
+        <span>Recommended for you</span>
+      </div>
+      <h2 class="section-title">Candidates aligned with your values</h2>
+      <p class="section-subtitle">Based on your priorities: economic growth, religious freedom, and community engagement</p>
+    </div>
+
+    <!-- Cards Grid -->
+    <div class="cards-grid">
+      
+      <!-- Endorsed Candidate 1 -->
+      <div class="candidate-card endorsed" onclick="openModal('huizenga')">
+        <div class="smart-recommend">
+          <i class="ti ti-bolt"></i>
+          <span>High match</span>
+        </div>
+        <div class="endorsed-badge">A4H Endorsed</div>
+        
+        <div class="card-image">
+          <div class="card-image-initials">BH</div>
+          <div class="card-info-overlay">
+            <div class="card-name">Bill Huizenga</div>
+            <div class="card-office">US House, Michigan District 4</div>
+          </div>
+        </div>
+
+        <div class="card-body">
+          <div class="card-meta">
+            <span class="card-party party-r">Republican</span>
+            <span class="card-status">
+              <span class="status-dot status-incumbent"></span>
+              Incumbent
+            </span>
+          </div>
+          <div class="affinity-tags">
+            <span class="affinity-tag high-match">Economic growth</span>
+            <span class="affinity-tag high-match">Small business</span>
+            <span class="affinity-tag">Religious freedom</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Endorsed Candidate 2 -->
+      <div class="candidate-card endorsed" onclick="openModal('patel')">
+        <div class="smart-recommend">
+          <i class="ti ti-bolt"></i>
+          <span>High match</span>
+        </div>
+        <div class="endorsed-badge">A4H Endorsed</div>
+        
+        <div class="card-image">
+          <div class="card-image-initials">PP</div>
+          <div class="card-info-overlay">
+            <div class="card-name">Priya Patel</div>
+            <div class="card-office">State Senate, District 12</div>
+          </div>
+        </div>
+
+        <div class="card-body">
+          <div class="card-meta">
+            <span class="card-party party-d">Democrat</span>
+            <span class="card-status">
+              <span class="status-dot status-incumbent"></span>
+              Incumbent
+            </span>
+          </div>
+          <div class="affinity-tags">
+            <span class="affinity-tag high-match">Education</span>
+            <span class="affinity-tag high-match">Healthcare</span>
+            <span class="affinity-tag">Immigration</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Endorsed Candidate 3 -->
+      <div class="candidate-card endorsed" onclick="openModal('chen')">
+        <div class="smart-recommend">
+          <i class="ti ti-bolt"></i>
+          <span>High match</span>
+        </div>
+        <div class="endorsed-badge">A4H Endorsed</div>
+        
+        <div class="card-image">
+          <div class="card-image-initials">SC</div>
+          <div class="card-info-overlay">
+            <div class="card-name">Sarah Chen</div>
+            <div class="card-office">US House, MI District 3</div>
+          </div>
+        </div>
+
+        <div class="card-body">
+          <div class="card-meta">
+            <span class="card-party party-d">Democrat</span>
+            <span class="card-status">
+              <span class="status-dot status-open"></span>
+              Open seat
+            </span>
+          </div>
+          <div class="affinity-tags">
+            <span class="affinity-tag high-match">Small business</span>
+            <span class="affinity-tag">Immigration</span>
+            <span class="affinity-tag">Civil rights</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Regular Candidate -->
+      <div class="candidate-card">
+        <div class="card-image">
+          <div class="card-image-initials">MJ</div>
+          <div class="card-info-overlay">
+            <div class="card-name">Marcus Johnson</div>
+            <div class="card-office">US Senate, Michigan</div>
+          </div>
+        </div>
+
+        <div class="card-body">
+          <div class="card-meta">
+            <span class="card-party party-r">Republican</span>
+            <span class="card-status">
+              <span class="status-dot status-challenger"></span>
+              Challenger
+            </span>
+          </div>
+          <div class="affinity-tags">
+            <span class="affinity-tag">Economy</span>
+            <span class="affinity-tag">Security</span>
+            <span class="affinity-tag">Judiciary</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Regular Candidate -->
+      <div class="candidate-card">
+        <div class="card-image">
+          <div class="card-image-initials">DR</div>
+          <div class="card-info-overlay">
+            <div class="card-name">David Rodriguez</div>
+            <div class="card-office">State House, District 45</div>
+          </div>
+        </div>
+
+        <div class="card-body">
+          <div class="card-meta">
+            <span class="card-party party-r">Republican</span>
+            <span class="card-status">
+              <span class="status-dot status-open"></span>
+              Open seat
+            </span>
+          </div>
+          <div class="affinity-tags">
+            <span class="affinity-tag">Environment</span>
+            <span class="affinity-tag">Infrastructure</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Regular Candidate -->
+      <div class="candidate-card">
+        <div class="card-image">
+          <div class="card-image-initials">JK</div>
+          <div class="card-info-overlay">
+            <div class="card-name">Jennifer Kim</div>
+            <div class="card-office">US House, MI District 7</div>
+          </div>
+        </div>
+
+        <div class="card-body">
+          <div class="card-meta">
+            <span class="card-party party-d">Democrat</span>
+            <span class="card-status">
+              <span class="status-dot status-challenger"></span>
+              Challenger
+            </span>
+          </div>
+          <div class="affinity-tags">
+            <span class="affinity-tag">Clean energy</span>
+            <span class="affinity-tag">Disability rights</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Modal Overlay -->
+  <div class="modal-overlay" id="modalOverlay" onclick="closeModalOnOverlay(event)">
+    <div class="modal-content" id="modalContent">
+      
+      <!-- Modal Hero - Editorial Layout -->
+      <div class="modal-hero">
+        <button class="modal-close" onclick="closeModal()">&times;</button>
+        
+        <div class="modal-hero-content">
+          <div class="modal-endorsed-badge">
+            <i class="ti ti-check"></i>
+            <span>A4H Endorsed</span>
+          </div>
+          <h2 class="modal-name" id="modalName">Bill Huizenga</h2>
+          <div class="modal-office" id="modalOffice">US House, Michigan District 4</div>
+          <div class="modal-meta-pills">
+            <span class="modal-pill party-r" id="modalParty">Republican</span>
+            <span class="modal-pill">Incumbent</span>
+          </div>
+        </div>
+
+        <div class="modal-hero-image">
+          <div class="modal-hero-image-initials" id="modalImageInitials">BH</div>
+        </div>
+      </div>
+
+      <!-- Modal Body -->
+      <div class="modal-body" id="modalBody">
+        
+        <!-- Summary -->
+        <div class="modal-section">
+          <div class="modal-section-label">
+            <i class="ti ti-quote"></i>
+            <span>Endorsement</span>
+          </div>
+          <div class="modal-summary" id="modalSummary">
+            A4H supports Bill Huizenga for his commitment to entrepreneurship, public service, economic growth, and engagement with diverse communities including Hindu-Americans.
+          </div>
+        </div>
+
+        <!-- Why A4H Endorses -->
+        <div class="modal-section">
+          <div class="modal-section-label">
+            <i class="ti ti-target"></i>
+            <span>Our reasoning</span>
+          </div>
+          <h3 class="modal-section-title">Why A4H endorses</h3>
+          <div class="endorsement-grid" id="endorsementGrid">
+            
+            <div class="endorsement-card">
+              <div class="endorsement-icon">
+                <i class="ti ti-chart-line"></i>
+              </div>
+              <h4>Economic growth</h4>
+              <p>Strong advocate for pro-growth policies that benefit entrepreneurs and small business owners.</p>
+            </div>
+
+            <div class="endorsement-card">
+              <div class="endorsement-icon">
+                <i class="ti ti-briefcase"></i>
+              </div>
+              <h4>Small business support</h4>
+              <p>Consistent champion of reducing regulatory burdens and supporting the small business community.</p>
+            </div>
+
+            <div class="endorsement-card">
+              <div class="endorsement-icon">
+                <i class="ti ti-world"></i>
+              </div>
+              <h4>Community engagement</h4>
+              <p>Demonstrated commitment to working with diverse communities including Hindu-Americans.</p>
+            </div>
+
+            <div class="endorsement-card">
+              <div class="endorsement-icon">
+                <i class="ti ti-shield-check"></i>
+              </div>
+              <h4>Religious freedom</h4>
+              <p>Strong defender of First Amendment rights and religious liberty for all faith communities.</p>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Community Relevance -->
+        <div class="modal-section">
+          <div class="modal-section-label">
+            <i class="ti ti-users"></i>
+            <span>Why this matters</span>
+          </div>
+          <h3 class="modal-section-title">Why Hindu-American voters should care</h3>
+          <div class="relevance-grid">
+            
+            <div class="relevance-card">
+              <div class="relevance-icon">
+                <i class="ti ti-building-store"></i>
+              </div>
+              <p><strong>Small business priorities:</strong> Many Hindu-Americans are entrepreneurs who benefit from policies reducing regulatory burdens.</p>
+            </div>
+
+            <div class="relevance-card">
+              <div class="relevance-icon">
+                <i class="ti ti-building-community"></i>
+              </div>
+              <p><strong>Temple security:</strong> Supports funding for security measures protecting Hindu temples and community centers.</p>
+            </div>
+
+            <div class="relevance-card">
+              <div class="relevance-icon">
+                <i class="ti ti-world"></i>
+              </div>
+              <p><strong>US-India relations:</strong> Advocates for strengthening strategic partnership on trade, security, and technology.</p>
+            </div>
+
+            <div class="relevance-card">
+              <div class="relevance-icon">
+                <i class="ti ti-shield"></i>
+              </div>
+              <p><strong>Anti-discrimination:</strong> Committed to combating Hinduphobia and protecting Hindu-Americans from religious bias.</p>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Actions -->
+        <div class="modal-actions">
+          <a href="#" class="btn-modal btn-modal-primary">
+            <i class="ti ti-external-link"></i>
+            Visit campaign
+          </a>
+          <a href="#" class="btn-modal btn-modal-secondary">
+            <i class="ti ti-heart"></i>
+            Support campaign
+          </a>
+          <button class="btn-modal btn-modal-tertiary" onclick="closeModal()">
+            <i class="ti ti-arrow-left"></i>
+            Back to guide
+          </button>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    const candidateData = {
+      huizenga: {
+        name: 'Bill Huizenga',
+        office: 'US House, Michigan District 4',
+        party: 'Republican',
+        partyClass: 'party-r',
+        initials: 'BH',
+        summary: 'A4H supports Bill Huizenga for his commitment to entrepreneurship, public service, economic growth, and engagement with diverse communities including Hindu-Americans.',
+        reasons: [
+          { icon: 'ti-chart-line', title: 'Economic growth', description: 'Strong advocate for pro-growth policies that benefit entrepreneurs and small business owners.' },
+          { icon: 'ti-briefcase', title: 'Small business support', description: 'Consistent champion of reducing regulatory burdens and supporting the small business community.' },
+          { icon: 'ti-world', title: 'Community engagement', description: 'Demonstrated commitment to working with diverse communities including Hindu-Americans.' },
+          { icon: 'ti-shield-check', title: 'Religious freedom', description: 'Strong defender of First Amendment rights and religious liberty for all faith communities.' }
+        ],
+        relevance: [
+          { icon: 'ti-building-store', text: '<strong>Small business priorities:</strong> Many Hindu-Americans are entrepreneurs who benefit from policies reducing regulatory burdens.' },
+          { icon: 'ti-building-community', text: '<strong>Temple security:</strong> Supports funding for security measures protecting Hindu temples and community centers.' },
+          { icon: 'ti-world', text: '<strong>US-India relations:</strong> Advocates for strengthening strategic partnership on trade, security, and technology.' },
+          { icon: 'ti-shield', text: '<strong>Anti-discrimination:</strong> Committed to combating Hinduphobia and protecting Hindu-Americans from religious bias.' }
+        ]
+      },
+      patel: {
+        name: 'Priya Patel',
+        office: 'State Senate, District 12',
+        party: 'Democrat',
+        partyClass: 'party-d',
+        initials: 'PP',
+        summary: 'A4H endorses Priya Patel for her advocacy on education equity, healthcare access, affordable housing, and strong engagement with immigrant communities.',
+        reasons: [
+          { icon: 'ti-school', title: 'Education equity', description: 'Champion of increased funding for public schools and expanded access to quality education.' },
+          { icon: 'ti-heart', title: 'Healthcare access', description: 'Advocates for affordable healthcare options and expanded coverage for underserved communities.' },
+          { icon: 'ti-home', title: 'Affordable housing', description: 'Works to address housing affordability crisis and support working families.' },
+          { icon: 'ti-users', title: 'Immigration reform', description: 'Strong supporter of comprehensive immigration reform and pathways to citizenship.' }
+        ],
+        relevance: [
+          { icon: 'ti-school', text: '<strong>Education priorities:</strong> Hindu-American families prioritize quality education benefiting from stronger public schools.' },
+          { icon: 'ti-users', text: '<strong>Immigration support:</strong> Advocates for fair immigration policies affecting Hindu-American families.' },
+          { icon: 'ti-building-community', text: '<strong>Community representation:</strong> First Hindu-American state senator bringing direct community understanding.' },
+          { icon: 'ti-heart', text: '<strong>Healthcare access:</strong> Supports expanding coverage important to Hindu-American families and businesses.' }
+        ]
+      },
+      chen: {
+        name: 'Sarah Chen',
+        office: 'US House, Michigan District 3',
+        party: 'Democrat',
+        partyClass: 'party-d',
+        initials: 'SC',
+        summary: 'A4H supports Sarah Chen for her commitment to small business growth, civil rights, immigration reform, and fostering inclusive communities.',
+        reasons: [
+          { icon: 'ti-briefcase', title: 'Small business champion', description: 'Former small business owner committed to reducing barriers and supporting entrepreneurship.' },
+          { icon: 'ti-users', title: 'Immigration reform', description: 'Advocates for comprehensive immigration reform and protecting immigrant families.' },
+          { icon: 'ti-building-community', title: 'Civil rights', description: 'Strong defender of civil liberties and equal protection under law.' },
+          { icon: 'ti-chart-line', title: 'Economic opportunity', description: 'Focused on creating pathways to economic mobility for working families.' }
+        ],
+        relevance: [
+          { icon: 'ti-briefcase', text: '<strong>Entrepreneurship support:</strong> Direct understanding of challenges faced by Hindu-American entrepreneurs.' },
+          { icon: 'ti-users', text: '<strong>Immigration advocacy:</strong> Committed to fair policies and protecting family reunification pathways.' },
+          { icon: 'ti-shield', text: '<strong>Anti-hate initiatives:</strong> Active in combating hate crimes against minority communities.' },
+          { icon: 'ti-world', text: '<strong>Cultural inclusion:</strong> Champions policies celebrating diversity and supporting cultural institutions.' }
+        ]
+      }
+    };
+
+    function openModal(candidateId) {
+      const data = candidateData[candidateId];
+      if (!data) return;
+
+      document.getElementById('modalName').textContent = data.name;
+      document.getElementById('modalOffice').textContent = data.office;
+      document.getElementById('modalParty').textContent = data.party;
+      document.getElementById('modalParty').className = 'modal-pill ' + data.partyClass;
+      document.getElementById('modalImageInitials').textContent = data.initials;
+      document.getElementById('modalSummary').textContent = data.summary;
+
+      const reasonsHTML = data.reasons.map(r => `
+        <div class="endorsement-card">
+          <div class="endorsement-icon"><i class="ti ${r.icon}"></i></div>
+          <h4>${r.title}</h4>
+          <p>${r.description}</p>
+        </div>
+      `).join('');
+      document.getElementById('endorsementGrid').innerHTML = reasonsHTML;
+
+      const relevanceHTML = data.relevance.map(r => `
+        <div class="relevance-card">
+          <div class="relevance-icon"><i class="ti ${r.icon}"></i></div>
+          <p>${r.text}</p>
+        </div>
+      `).join('');
+      document.querySelector('.relevance-grid').innerHTML = relevanceHTML;
+
+      document.getElementById('modalOverlay').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+      document.getElementById('modalOverlay').classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    function closeModalOnOverlay(event) {
+      if (event.target === document.getElementById('modalOverlay')) {
+        closeModal();
+      }
+    }
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closeModal();
+    });
+  </script>
+
+</body>
+</html>
