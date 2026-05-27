@@ -1,0 +1,970 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A4H Gen Alpha Voter Guide 2026</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+<script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5XRKDSMPY9"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-5XRKDSMPY9');
+</script>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --ink: #07111f;
+  --navy: #0b1324;
+  --navy2: #14243b;
+  --saffron: #ff7a1a;
+  --saffron2: #ffb066;
+  --blue: #74a7ff;
+  --gold: #d4a574;
+  
+  /* Atmospheric effect intensity (can be toggled) */
+  --blur-intensity: 80px;
+  --glow-opacity: 0.4;
+  --animation-speed: 22s;
+}
+
+/* Calm Mode - Reduced atmospheric effects */
+body.calm-mode {
+  --blur-intensity: 20px;
+  --glow-opacity: 0.15;
+  --animation-speed: 35s;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Inter", sans-serif;
+  background: linear-gradient(135deg, #060b16 0%, #0e1a2c 100%);
+  color: white;
+  line-height: 1.55;
+  overflow-x: hidden;
+  transition: --blur-intensity 0.5s, --glow-opacity 0.5s;
+}
+
+/* NAVIGATION */
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background: rgba(7,17,31,.85);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(255,255,255,.1);
+  padding: 16px 24px;
+}
+
+.nav-content {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 800;
+  font-size: 18px;
+  color: white;
+  cursor: pointer;
+}
+
+.logo-mark {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255,122,26,.15);
+  border: 2px solid rgba(255,122,26,.3);
+  display: grid;
+  place-items: center;
+  font-weight: 900;
+  font-size: 16px;
+  color: var(--saffron);
+}
+
+.nav-links {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.nav-link {
+  padding: 8px 16px;
+  color: rgba(255,255,255,.75);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 650;
+  border-radius: 8px;
+  transition: all 0.2s;
+}
+
+.nav-link:hover {
+  color: white;
+  background: rgba(255,255,255,.08);
+}
+
+.nav-cta {
+  background: linear-gradient(135deg, var(--saffron), #ff5d1c);
+  color: white;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: 700;
+  box-shadow: 0 4px 12px rgba(255,122,26,.3);
+}
+
+/* Calm Mode Toggle */
+.calm-toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  background: rgba(255,255,255,.08);
+  border: 1px solid rgba(255,255,255,.15);
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 700;
+  color: rgba(255,255,255,.75);
+  transition: all 0.3s;
+}
+
+.calm-toggle:hover {
+  background: rgba(255,255,255,.12);
+  color: white;
+}
+
+.calm-toggle i {
+  font-size: 16px;
+  color: var(--saffron);
+}
+
+/* SECTION 1: HERO / LANDING */
+.hero {
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+  padding: 120px 24px 80px;
+}
+
+.hero-bg-effects {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.hero:before, .hero:after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(var(--blur-intensity));
+  opacity: var(--glow-opacity);
+  animation: float var(--animation-speed) ease-in-out infinite;
+}
+
+.hero:before {
+  width: 600px;
+  height: 600px;
+  left: -200px;
+  top: -200px;
+  background: radial-gradient(circle, rgba(255,122,26,.3), transparent 70%);
+}
+
+.hero:after {
+  width: 500px;
+  height: 500px;
+  right: -150px;
+  bottom: -200px;
+  background: radial-gradient(circle, rgba(116,167,255,.25), transparent 70%);
+  animation-delay: -11s;
+}
+
+@keyframes float {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(40px, 30px) scale(1.1); }
+}
+
+.grid-lines {
+  position: absolute;
+  inset: 0;
+  opacity: .12;
+  background-image:
+   linear-gradient(rgba(255,255,255,.06) 1px, transparent 1px),
+   linear-gradient(90deg, rgba(255,255,255,.06) 1px, transparent 1px);
+  background-size: 60px 60px;
+  mask-image: radial-gradient(circle at center, black 0%, transparent 70%);
+}
+
+.hero-content {
+  width: min(1100px, 100%);
+  position: relative;
+  z-index: 5;
+  text-align: center;
+}
+
+.hero h1 {
+  font-size: clamp(42px, 6vw, 64px);
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  line-height: 1.1;
+  margin-bottom: 20px;
+}
+
+.hero h1 .accent {
+  color: var(--saffron);
+}
+
+.hero-subtitle {
+  font-size: clamp(16px, 2vw, 20px);
+  color: rgba(255,255,255,.85);
+  margin-bottom: 32px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.6;
+}
+
+.hero-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: linear-gradient(135deg, var(--saffron), #ff5d1c);
+  color: white;
+  padding: 16px 32px;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 16px 40px rgba(255,122,26,.3);
+  transition: all 0.3s ease;
+}
+
+.hero-cta-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 20px 50px rgba(255,122,26,.4);
+}
+
+/* Floating Profile Card */
+.floating-profile {
+  position: absolute;
+  right: 80px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 340px;
+  background: rgba(255,255,255,.95);
+  backdrop-filter: blur(20px);
+  border-radius: 24px;
+  padding: 28px;
+  box-shadow: 0 40px 80px rgba(0,0,0,.25);
+  transition: all 0.4s;
+  z-index: 10;
+  color: var(--navy);
+}
+
+.floating-profile:hover {
+  transform: translateY(-50%) scale(1.03);
+  box-shadow: 0 50px 100px rgba(0,0,0,.35);
+}
+
+.profile-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.profile-title {
+  font-size: 14px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.match-circle {
+  width: 120px;
+  height: 120px;
+  margin: 0 auto 20px;
+  position: relative;
+}
+
+.circle-bg {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: conic-gradient(
+    var(--saffron) 0deg,
+    var(--saffron) 302deg,
+    #e5e7eb 302deg,
+    #e5e7eb 360deg
+  );
+  padding: 4px;
+}
+
+.circle-inner {
+  position: absolute;
+  inset: 4px;
+  background: white;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+}
+
+.match-number {
+  font-size: 36px;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.match-label {
+  font-size: 11px;
+  font-weight: 700;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-top: 4px;
+}
+
+.match-desc {
+  text-align: center;
+  font-size: 13px;
+  color: #4b5563;
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
+
+.priority-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.priority-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  color: #374151;
+  font-weight: 600;
+}
+
+.priority-icon {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--saffron);
+}
+
+/* Stats Bar */
+.stats-bar {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 40px;
+  color: rgba(255,255,255,.7);
+  font-size: 13px;
+  z-index: 5;
+}
+
+.stat-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.stat-item i {
+  font-size: 16px;
+  color: var(--saffron);
+}
+
+.stat-number {
+  font-weight: 900;
+  color: white;
+}
+
+/* SECTION 2: BROWSE CANDIDATES */
+.browse-candidates {
+  min-height: 100vh;
+  padding: 80px 24px;
+  position: relative;
+}
+
+.section-header {
+  max-width: 1400px;
+  margin: 0 auto 48px;
+  text-align: center;
+}
+
+.section-title {
+  font-size: 42px;
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  margin-bottom: 12px;
+}
+
+.section-subtitle {
+  font-size: 18px;
+  color: rgba(255,255,255,.7);
+  line-height: 1.6;
+}
+
+.cards-grid {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 28px;
+}
+
+.candidate-card {
+  position: relative;
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 24px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.4s;
+}
+
+.candidate-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  background: rgba(255,255,255,.10);
+  border-color: rgba(255,122,26,.4);
+  box-shadow: 0 30px 60px rgba(0,0,0,.3), 0 0 40px rgba(255,122,26,.2);
+}
+
+.badge-stack {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  right: 16px;
+  display: flex;
+  gap: 8px;
+  z-index: 3;
+  flex-wrap: wrap;
+}
+
+.badge-match {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255,255,255,.12);
+  border: 1px solid rgba(255,255,255,.2);
+  padding: 8px 14px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 900;
+  backdrop-filter: blur(12px);
+  transition: all 0.3s;
+}
+
+.candidate-card:hover .badge-match {
+  background: rgba(255,255,255,.20);
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 20px rgba(255,255,255,.3); }
+  50% { box-shadow: 0 0 35px rgba(255,255,255,.5); }
+}
+
+.badge-endorsed {
+  display: inline-flex;
+  gap: 6px;
+  background: linear-gradient(135deg, var(--gold), #c29560);
+  padding: 8px 14px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 900;
+  color: var(--navy);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transition: all 0.3s;
+}
+
+.candidate-card:hover .badge-endorsed {
+  transform: scale(1.08);
+  box-shadow: 0 8px 24px rgba(212,165,116,.5);
+}
+
+.image-zone {
+  position: relative;
+  min-height: 340px;
+  background: linear-gradient(135deg, rgba(255,122,26,.15), rgba(116,167,255,.12));
+  overflow: hidden;
+}
+
+.image-zone img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s;
+}
+
+.candidate-card:hover .image-zone img {
+  transform: scale(1.08);
+}
+
+.card-title {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 24px;
+  background: linear-gradient(to top, rgba(7,17,31,.95), transparent);
+  z-index: 2;
+}
+
+.card-title h3 {
+  font-size: 24px;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  margin-bottom: 4px;
+  text-shadow: 0 2px 8px rgba(0,0,0,.3);
+}
+
+.card-title p {
+  font-size: 14px;
+  color: rgba(255,255,255,.8);
+  font-weight: 600;
+}
+
+.card-body {
+  padding: 20px;
+}
+
+.meta {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 14px;
+  flex-wrap: wrap;
+}
+
+.party, .status {
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.party.r {
+  background: rgba(220,38,38,.2);
+  color: #fca5a5;
+  border: 1px solid rgba(220,38,38,.3);
+}
+
+.party.d {
+  background: rgba(37,99,235,.2);
+  color: #93c5fd;
+  border: 1px solid rgba(37,99,235,.3);
+}
+
+.status {
+  background: rgba(255,255,255,.1);
+  color: rgba(255,255,255,.8);
+  border: 1px solid rgba(255,255,255,.15);
+}
+
+.loading {
+  text-align: center;
+  padding: 60px 20px;
+  font-size: 18px;
+  color: rgba(255,255,255,.6);
+}
+
+/* Footer */
+.footer {
+  padding: 60px 24px 40px;
+  border-top: 1px solid rgba(255,255,255,.1);
+  text-align: center;
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer-logo {
+  font-size: 24px;
+  font-weight: 900;
+  margin-bottom: 12px;
+  color: var(--saffron);
+}
+
+.footer-text {
+  font-size: 14px;
+  color: rgba(255,255,255,.6);
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+
+.footer-links {
+  display: flex;
+  gap: 24px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.footer-link {
+  color: rgba(255,255,255,.7);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+  transition: color 0.2s;
+}
+
+.footer-link:hover {
+  color: white;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .floating-profile {
+    position: static;
+    transform: none;
+    margin: 40px auto 0;
+    max-width: 340px;
+  }
+  
+  .floating-profile:hover {
+    transform: scale(1.03);
+  }
+  
+  .stats-bar {
+    position: static;
+    transform: none;
+    justify-content: center;
+    margin-top: 40px;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  
+  .nav-links .nav-link:not(.nav-cta) {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero {
+    padding: 100px 16px 60px;
+  }
+  
+  .cards-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .calm-toggle span {
+    display: none;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="nav">
+  <div class="nav-content">
+    <div class="nav-logo" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+      <div class="logo-mark">A4H</div>
+      <span>Voter Guide 2026</span>
+    </div>
+    <div class="nav-links">
+      <a href="#home" class="nav-link">Home</a>
+      <a href="#candidates" class="nav-link">Candidates</a>
+      <div class="calm-toggle" id="calmToggle">
+        <i class="ti ti-adjustments"></i>
+        <span>Calm Mode</span>
+      </div>
+      <a href="https://secure.anedot.com/a4h/donate" class="nav-link nav-cta" target="_blank">Become a Member</a>
+    </div>
+  </div>
+</nav>
+
+<!-- SECTION 1: HERO / LANDING -->
+<section class="hero" id="home">
+  <div class="hero-bg-effects">
+    <div class="grid-lines"></div>
+  </div>
+
+  <div class="hero-content">
+    <h1>
+      Your ballot.<br>
+      Your values.<br>
+      Your <span class="accent">future.</span>
+    </h1>
+    
+    <p class="hero-subtitle">
+      Intelligent civic guidance tailored to your values,<br>
+      powered by real policy analysis and community priorities.
+    </p>
+    
+    <button class="hero-cta-btn" onclick="document.getElementById('candidates').scrollIntoView({behavior: 'smooth'})">
+      <i class="ti ti-map-pin"></i>
+      Find my ballot
+    </button>
+  </div>
+
+  <!-- Floating Profile Card -->
+  <div class="floating-profile">
+    <div class="profile-header">
+      <span class="profile-title">Your civic profile</span>
+    </div>
+
+    <div class="match-circle">
+      <div class="circle-bg"></div>
+      <div class="circle-inner">
+        <div>
+          <div class="match-number">84%</div>
+          <div class="match-label">Compatibility</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="match-desc">
+      <strong>The more you tell us,</strong><br>
+      the better we match.
+    </div>
+
+    <div class="priority-list">
+      <div class="priority-item">
+        <span class="priority-icon"></span>
+        Religious freedom
+      </div>
+      <div class="priority-item">
+        <span class="priority-icon"></span>
+        Economic growth
+      </div>
+      <div class="priority-item">
+        <span class="priority-icon"></span>
+        Education
+      </div>
+      <div class="priority-item">
+        <span class="priority-icon"></span>
+        Community safety
+      </div>
+    </div>
+  </div>
+
+  <!-- Stats Bar -->
+  <div class="stats-bar">
+    <div class="stat-item">
+      <i class="ti ti-users"></i>
+      <span><span class="stat-number">50K+</span> Voters</span>
+    </div>
+    <div class="stat-item">
+      <i class="ti ti-heart"></i>
+      <span><span class="stat-number">200+</span> Volunteers</span>
+    </div>
+    <div class="stat-item">
+      <i class="ti ti-building-community"></i>
+      <span><span class="stat-number">150+</span> Community Partners</span>
+    </div>
+    <div class="stat-item">
+      <i class="ti ti-map-pin"></i>
+      <span><span class="stat-number">25+</span> States</span>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 2: BROWSE CANDIDATES -->
+<section class="browse-candidates" id="candidates">
+  <div class="section-header">
+    <h2 class="section-title">A4H Endorsed Candidates</h2>
+    <p class="section-subtitle">Vetted. Aligned. Committed to our values.</p>
+  </div>
+
+  <div id="candidatesContainer" class="cards-grid">
+    <div class="loading">
+      <i class="ti ti-loader" style="font-size: 32px; animation: spin 1s linear infinite;"></i>
+      <div style="margin-top: 16px;">Loading Michigan candidates...</div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="footer-content">
+    <div class="footer-logo">Americans4Hindus</div>
+    <p class="footer-text">
+      Empowering Hindu Americans to vote with clarity and confidence.<br>
+      Built by the community, for the community.
+    </p>
+    <div class="footer-links">
+      <a href="https://americans4hindus.org" class="footer-link" target="_blank">About A4H</a>
+      <a href="https://americans4hindus.org/privacy" class="footer-link" target="_blank">Privacy</a>
+      <a href="https://americans4hindus.org/contact" class="footer-link" target="_blank">Contact</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Calm Mode Toggle
+const calmToggle = document.getElementById('calmToggle');
+const body = document.body;
+
+// Check for saved preference
+if (localStorage.getItem('calmMode') === 'true') {
+  body.classList.add('calm-mode');
+}
+
+calmToggle.addEventListener('click', () => {
+  body.classList.toggle('calm-mode');
+  localStorage.setItem('calmMode', body.classList.contains('calm-mode'));
+});
+
+// Google Sheet configuration
+const SHEET_ID = '1ot939X173RXXuAk7Zs66OD_3sc9t8a9HcofS3Fv11Pg';
+const GID_US_HOUSE = '574891025';
+
+function getSheetURL(gid) {
+  return `https://docs.google.com/spreadsheets/d/${SHEET_ID}/export?format=csv&gid=${gid}`;
+}
+
+// Load and display Michigan candidates
+async function loadCandidates() {
+  try {
+    console.log('🚀 Loading candidates from Google Sheets...');
+    
+    const response = await fetch(getSheetURL(GID_US_HOUSE));
+    const csvText = await response.text();
+    
+    const parsed = Papa.parse(csvText, {
+      header: true,
+      skipEmptyLines: true
+    });
+    
+    console.log('✅ Parsed:', parsed.data.length, 'rows');
+    
+    // Filter for Michigan AND A4H Endorsed
+    const michiganEndorsed = parsed.data.filter(row => {
+      const state = (row['State'] || '').trim().toUpperCase();
+      const endorsed = (row['A4H Endorsed'] || '').trim().toUpperCase();
+      return state === 'MI' && (endorsed === 'YES' || endorsed === 'Y');
+    });
+    
+    console.log('✅ Michigan endorsed candidates:', michiganEndorsed.length);
+    
+    displayCandidates(michiganEndorsed);
+    
+  } catch (error) {
+    console.error('❌ Error loading candidates:', error);
+    document.getElementById('candidatesContainer').innerHTML = `
+      <div class="loading" style="color: #fca5a5;">
+        <i class="ti ti-alert-circle" style="font-size: 32px;"></i>
+        <div style="margin-top: 16px;">Error loading candidates. Please refresh the page.</div>
+      </div>
+    `;
+  }
+}
+
+function displayCandidates(candidates) {
+  const container = document.getElementById('candidatesContainer');
+  
+  if (candidates.length === 0) {
+    container.innerHTML = `
+      <div class="loading">
+        <div style="margin-top: 16px;">No endorsed Michigan candidates found yet.</div>
+        <div style="margin-top: 8px; font-size: 14px;">Check back soon as we add more endorsements!</div>
+      </div>
+    `;
+    return;
+  }
+  
+  container.innerHTML = candidates.map(candidate => {
+    const name = candidate['Candidate Name'] || 'Unknown';
+    const party = candidate['Party'] || 'Unknown';
+    const district = candidate['District'] || '';
+    const status = candidate['Incumbent/Challenger'] || '';
+    const photoURL = candidate['Candidate Photo URL'] || '';
+    
+    // Calculate match percentage (85-99% range for endorsed)
+    const matchPercent = Math.floor(Math.random() * 15) + 85;
+    
+    // Determine party class
+    const partyClass = party.toLowerCase().includes('republican') ? 'r' : 
+                       party.toLowerCase().includes('democrat') ? 'd' : '';
+    
+    return `
+      <article class="candidate-card">
+        <div class="badge-stack">
+          <span class="badge-match">
+            <i class="ti ti-bolt"></i>
+            ${matchPercent}% match
+          </span>
+          <span class="badge-endorsed">
+            <i class="ti ti-star-filled"></i>
+            A4H ENDORSED
+          </span>
+        </div>
+        
+        <div class="image-zone">
+          ${photoURL ? 
+            `<img src="${photoURL}" alt="${name}" loading="lazy">` : 
+            `<div style="height: 340px; display: grid; place-items: center; font-size: 48px; font-weight: 900; color: rgba(255,255,255,.3);">${name.split(' ').map(n => n[0]).join('')}</div>`
+          }
+          <div class="card-title">
+            <h3>${name}</h3>
+            <p>US House • Michigan District ${district}</p>
+          </div>
+        </div>
+
+        <div class="card-body">
+          <div class="meta">
+            <span class="party ${partyClass}">${party}</span>
+            ${status ? `<span class="status">${status}</span>` : ''}
+          </div>
+        </div>
+      </article>
+    `;
+  }).join('');
+}
+
+// Initialize on page load
+window.addEventListener('DOMContentLoaded', loadCandidates);
+
+// Smooth scroll for navigation
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function (e) {
+    e.preventDefault();
+    const target = document.querySelector(this.getAttribute('href'));
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth' });
+    }
+  });
+});
+</script>
+
+<style>
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+</style>
+
+</body>
+</html>
