@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>A4H May 31 Admin Console</title>
+<style>
+:root{
+  --navy:#172640;--navy2:#223553;--cream:#f8f0df;
+  --saffron:#f36c21;--gold:#d6a437;--muted:#5d6675;
+  --green:#2a9d4e;--line:rgba(23,38,64,.18);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;background:var(--cream);color:#15233b;line-height:1.5}
+
+/* Header */
+.admin-header{background:var(--navy);color:white;padding:16px 24px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,.12)}
+.admin-title{font-size:20px;font-weight:700}
+.admin-subtitle{font-size:12px;opacity:.65;margin-top:2px}
+.refresh-controls{display:flex;gap:12px;align-items:center}
+.refresh-btn{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);color:white;padding:8px 16px;border-radius:6px;font-size:13px;font-weight:600;cursor:pointer;transition:background .2s}
+.refresh-btn:hover{background:rgba(255,255,255,.25)}
+.live-badge{display:flex;align-items:center;gap:6px;font-size:12px;opacity:.75}
+.live-dot{width:8px;height:8px;border-radius:50%;background:#2a9d4e;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+
+/* Tabs */
+.tabs{display:flex;background:white;border-bottom:2px solid var(--line);position:sticky;top:57px;z-index:99}
+.tab{flex:1;padding:14px 20px;text-align:center;font-weight:600;font-size:14px;color:var(--muted);cursor:pointer;border-bottom:3px solid transparent;transition:all .2s;text-transform:uppercase;letter-spacing:.05em}
+.tab:hover{background:rgba(243,108,33,.05);color:var(--navy)}
+.tab.active{color:var(--saffron);border-bottom-color:var(--saffron);background:rgba(243,108,33,.06)}
+.tab-count{display:inline-block;background:var(--saffron);color:white;font-size:11px;font-weight:700;padding:2px 8px;border-radius:12px;margin-left:6px}
+.tab.active .tab-count{background:var(--navy)}
+
+/* Content */
+.tab-content{display:none;padding:24px;max-width:1200px;margin:0 auto}
+.tab-content.active{display:block}
+
+/* Stats */
+.stats-bar{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:24px}
+.stat-card{background:white;border:1px solid var(--line);border-radius:8px;padding:16px;text-align:center}
+.stat-value{font-size:34px;font-weight:700;color:var(--navy);margin-bottom:4px}
+.stat-label{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-weight:600}
+
+/* Question cards */
+.question-card{background:white;border:1px solid var(--line);border-radius:10px;padding:20px;margin-bottom:14px;box-shadow:0 2px 6px rgba(0,0,0,.04);transition:box-shadow .2s}
+.question-card:hover{box-shadow:0 4px 14px rgba(0,0,0,.08)}
+.question-card.answered-card{opacity:.65}
+
+.q-top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:10px}
+.q-number{font-size:13px;font-weight:700;color:var(--saffron);font-family:Arial,sans-serif;letter-spacing:.04em}
+.q-time{font-size:12px;color:var(--muted)}
+.q-name{font-size:15px;font-weight:600;color:var(--navy);margin-bottom:6px}
+.q-text{font-size:17px;line-height:1.5;color:#15233b;margin-bottom:12px;font-family:Georgia,serif}
+.q-meta{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.badge{display:inline-block;padding:4px 10px;border-radius:5px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em}
+.badge-speaker{background:rgba(243,108,33,.1);color:var(--saffron)}
+.badge-topic{background:rgba(23,38,64,.08);color:var(--navy)}
+.badge-answered{background:#d1ecf1;color:#0c5460}
+
+.q-actions{display:flex;gap:8px;flex-wrap:wrap}
+.btn{padding:9px 18px;border:none;border-radius:6px;font-size:13px;font-weight:600;cursor:pointer;transition:all .2s;text-transform:uppercase;letter-spacing:.04em}
+.btn-answered{background:var(--green);color:white}
+.btn-answered:hover{background:#238a41}
+.btn-unanswered{background:#e9ecef;color:var(--navy)}
+.btn-unanswered:hover{background:#dee2e6}
+
+.btn-hide{background:#f0ad4e;color:white}
+.btn-hide:hover{background:#d4932e}
+.btn-delete{background:#dc3545;color:white}
+.btn-delete:hover{background:#b02a37}
+.btn-edit{background:#6c757d;color:white}
+.btn-edit:hover{background:#545b62}
+.btn-reorder{background:rgba(23,38,64,.08);color:var(--navy);font-size:18px;padding:6px 12px}
+.btn-reorder:hover{background:rgba(23,38,64,.15)}
+.q-reorder{display:flex;flex-direction:column;gap:4px;margin-right:8px}
+
+/* Modal */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.45);display:none;align-items:center;justify-content:center;z-index:2000;padding:20px}
+.modal-overlay.active{display:flex}
+.modal{background:white;border-radius:12px;padding:28px;width:100%;max-width:520px;box-shadow:0 20px 60px rgba(0,0,0,.2)}
+.modal-title{font-size:18px;font-weight:700;color:var(--navy);margin-bottom:16px}
+.modal-body{margin-bottom:20px}
+.modal-input{width:100%;padding:12px 14px;border:1px solid var(--line);border-radius:8px;font-size:15px;font-family:inherit;resize:vertical;outline:none;transition:border-color .2s}
+.modal-input:focus{border-color:var(--saffron)}
+.modal-label{font-size:13px;font-weight:600;color:var(--muted);margin-bottom:6px;display:block}
+.modal-actions{display:flex;gap:10px;justify-content:flex-end}
+.modal-btn{padding:10px 22px;border:none;border-radius:6px;font-size:13px;font-weight:700;cursor:pointer;text-transform:uppercase;letter-spacing:.04em}
+.modal-btn-cancel{background:#e9ecef;color:var(--navy)}
+.modal-btn-cancel:hover{background:#dee2e6}
+.modal-btn-save{background:var(--saffron);color:white}
+.modal-btn-save:hover{background:#d45a18}
+.modal-btn-danger{background:#dc3545;color:white}
+.modal-btn-danger:hover{background:#b02a37}
+
+/* Delete reg button */
+.btn-delete-reg{background:none;border:none;color:#dc3545;font-size:18px;cursor:pointer;padding:4px 8px;border-radius:4px;transition:background .2s}
+.btn-delete-reg:hover{background:rgba(220,53,69,.1)}
+
+/* Empty state */
+.empty-state{text-align:center;padding:60px 20px;color:var(--muted)}
+.empty-icon{font-size:52px;margin-bottom:16px;opacity:.25}
+.empty-text{font-size:18px;font-weight:600;margin-bottom:6px}
+.empty-sub{font-size:14px;opacity:.7}
+
+/* Check-in */
+.checkin-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:24px}
+.checkin-search{width:100%;padding:12px 16px;border:1px solid var(--line);border-radius:8px;font-size:16px;margin-bottom:18px;outline:none;transition:border-color .2s}
+.checkin-search:focus{border-color:var(--saffron)}
+.checkin-row{background:white;border:1px solid var(--line);border-radius:8px;padding:14px 18px;margin-bottom:8px;display:flex;justify-content:space-between;align-items:center;transition:opacity .3s,transform .3s}
+.checkin-row:hover{box-shadow:0 2px 8px rgba(0,0,0,.07)}
+.checkin-name{font-size:16px;font-weight:600;color:var(--navy)}
+.checkin-meta{font-size:12px;color:var(--muted);margin-top:2px}
+.btn-checkin{background:var(--green);color:white;border:none;padding:9px 18px;border-radius:6px;font-size:13px;font-weight:700;cursor:pointer;text-transform:uppercase;letter-spacing:.04em;transition:background .2s;white-space:nowrap}
+.btn-checkin:hover{background:#238a41}
+.checkin-done-row{background:white;border:1px solid rgba(42,157,78,.2);border-radius:8px;padding:12px 18px;margin-bottom:8px;display:flex;justify-content:space-between;align-items:center;opacity:.7}
+.checkin-done-name{font-size:15px;font-weight:600;color:var(--navy)}
+.checkin-done-time{font-size:12px;color:var(--green);font-weight:600}
+.checkin-badge{display:inline-block;background:rgba(42,157,78,.12);color:var(--green);border-radius:4px;padding:2px 8px;font-size:11px;font-weight:700;margin-left:8px}
+.checkin-section-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin:20px 0 10px}
+
+/* Loading */
+.loading-overlay{position:fixed;inset:0;background:rgba(255,255,255,.88);display:none;align-items:center;justify-content:center;z-index:1000}
+.loading-overlay.active{display:flex}
+.spinner{width:46px;height:46px;border:4px solid var(--line);border-top-color:var(--saffron);border-radius:50%;animation:spin 1s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+@media(max-width:768px){
+  .admin-header{flex-direction:column;align-items:flex-start;gap:10px}
+  .tabs{top:81px}
+  .stats-bar{grid-template-columns:1fr 1fr}
+  .q-actions .btn{flex:1;text-align:center}
+}
+</style>
+</head>
+<body>
+
+<div class="loading-overlay" id="loadingOverlay"><div class="spinner"></div></div>
+
+<header class="admin-header">
+  <div>
+    <div class="admin-title">A4H May 31 · Admin Console</div>
+    <div class="admin-subtitle">Question Tracker — auto-refresh every 15s</div>
+  </div>
+  <div class="refresh-controls">
+    <div class="live-badge"><span class="live-dot"></span>LIVE</div>
+    <button class="refresh-btn" onclick="manualRefresh(this)">↻ Refresh Now</button>
+  </div>
+</header>
+
+<nav class="tabs">
+  <div class="tab active" onclick="switchTab('unanswered')">
+    Unanswered <span class="tab-count" id="countUnanswered">0</span>
+  </div>
+  <div class="tab" onclick="switchTab('answered')">
+    Answered <span class="tab-count" id="countAnswered">0</span>
+  </div>
+  <div class="tab" onclick="switchTab('checkin')">
+    Check-In <span class="tab-count" id="countCheckin">0</span>
+  </div>
+</nav>
+
+<div class="tab-content active" id="tabUnanswered">
+  <div class="stats-bar">
+    <div class="stat-card"><div class="stat-value" id="statUnanswered">0</div><div class="stat-label">Unanswered</div></div>
+    <div class="stat-card"><div class="stat-value" id="statAnswered">0</div><div class="stat-label">Answered</div></div>
+    <div class="stat-card"><div class="stat-value" id="statTotal">0</div><div class="stat-label">Total</div></div>
+  </div>
+  <div id="listUnanswered"></div>
+</div>
+
+<div class="tab-content" id="tabAnswered">
+  <div id="listAnswered"></div>
+</div>
+
+<div class="tab-content" id="tabCheckin">
+  <div class="checkin-stats">
+    <div class="stat-card"><div class="stat-value" id="statCheckedIn">0</div><div class="stat-label">Checked In</div></div>
+    <div class="stat-card"><div class="stat-value" id="statPendingCheckin">0</div><div class="stat-label">Pending</div></div>
+    <div class="stat-card"><div class="stat-value" id="statTotalRegistered">0</div><div class="stat-label">Registered</div></div>
+  </div>
+  <input class="checkin-search" id="checkinSearch" type="text" placeholder="Search by name…" oninput="updateDatalist(this.value);renderCheckin()" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" />
+  <datalist id="guestNameList"></datalist>
+  <div class="checkin-section-title">Pending Check-In</div>
+  <div id="listPending"></div>
+  <div class="checkin-section-title">Checked In</div>
+  <div id="listCheckedIn"></div>
+</div>
+
+<!-- Edit Modal -->
+<div class="modal-overlay" id="editModal">
+  <div class="modal">
+    <div class="modal-title" id="editModalTitle">Edit Question</div>
+    <div class="modal-body">
+      <label class="modal-label" id="editModalLabel">Question</label>
+      <textarea class="modal-input" id="editModalInput" rows="4"></textarea>
+    </div>
+    <div class="modal-actions">
+      <button class="modal-btn modal-btn-cancel" onclick="closeModal()">Cancel</button>
+      <button class="modal-btn modal-btn-save" onclick="saveEdit()">Save</button>
+    </div>
+  </div>
+</div>
+
+<!-- Confirm Delete Modal -->
+<div class="modal-overlay" id="confirmModal">
+  <div class="modal">
+    <div class="modal-title" id="confirmModalTitle">Confirm Delete</div>
+    <div class="modal-body">
+      <p id="confirmModalText" style="font-size:15px;color:#333;line-height:1.6"></p>
+    </div>
+    <div class="modal-actions">
+      <button class="modal-btn modal-btn-cancel" onclick="closeModal()">Cancel</button>
+      <button class="modal-btn modal-btn-danger" id="confirmModalBtn" onclick="">Confirm</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwEsXyih8GNe_prPO8s3RpLf6y93P2X2QVZAJpkFivuVQDX5ECceEXZkV9hOUtb9rQa4g/exec";
+const REFRESH_INTERVAL = 15000;
+
+let allQuestions = [];
+let refreshTimer = null;
+
+function escapeHtml(t){
+  const d = document.createElement("div");
+  d.innerText = t || "";
+  return d.innerHTML;
+}
+
+function formatTime(ts){
+  if(!ts) return "";
+  const d = new Date(ts);
+  return d.toLocaleString('en-US',{month:'short',day:'numeric',hour:'numeric',minute:'2-digit',hour12:true});
+}
+
+function loadQuestions(){
+  const cb = "adminLoad_" + Date.now();
+
+  window[cb] = function(data){
+    allQuestions = Array.isArray(data) ? data : [];
+    renderAll();
+    delete window[cb];
+  };
+
+  const s = document.createElement("script");
+  s.src = SCRIPT_URL + "?action=admin&callback=" + cb;
+  s.onerror = () => { allQuestions = []; renderAll(); };
+  document.body.appendChild(s);
+}
+
+function renderAll(){
+  const unanswered = allQuestions.filter(q => !q.status || q.status.toLowerCase() !== 'answered');
+  const answered   = allQuestions.filter(q => q.status && q.status.toLowerCase() === 'answered');
+
+  // Update counts
+  document.getElementById('countUnanswered').textContent = unanswered.length;
+  document.getElementById('countAnswered').textContent   = answered.length;
+  document.getElementById('statUnanswered').textContent  = unanswered.length;
+  document.getElementById('statAnswered').textContent    = answered.length;
+  document.getElementById('statTotal').textContent       = allQuestions.length;
+
+  renderList('listUnanswered', unanswered, false);
+  renderList('listAnswered',   answered,   true);
+}
+
+function renderList(containerId, questions, isAnswered){
+  const el = document.getElementById(containerId);
+
+  if(!questions.length){
+    el.innerHTML = `
+      <div class="empty-state">
+        <div class="empty-icon">${isAnswered ? '✓' : '💬'}</div>
+        <div class="empty-text">${isAnswered ? 'No answered questions yet' : 'No questions yet'}</div>
+        <div class="empty-sub">${isAnswered ? 'Mark questions as answered during the meeting' : 'Questions will appear here as attendees submit them'}</div>
+      </div>`;
+    return;
+  }
+
+  el.innerHTML = questions.map((q, idx) => {
+    const cardClass = isAnswered ? ' answered-card' : '';
+    const isHidden  = q.status && q.status.toLowerCase() === 'hidden';
+
+    const statusBtn = isAnswered
+      ? `<button class="btn btn-unanswered" onclick="setStatus('${q.id}','Pending')">↩ Unanswered</button>`
+      : `<button class="btn btn-answered" onclick="setStatus('${q.id}','Answered')">✓ Answered</button>`;
+
+    const hideBtn = isHidden
+      ? `<button class="btn btn-hide" onclick="setStatus('${q.id}','Approved')" title="Unhide">👁 Unhide</button>`
+      : `<button class="btn btn-hide" onclick="setStatus('${q.id}','Hidden')" title="Hide from public">🚫 Hide</button>`;
+
+    const reorderBtns = !isAnswered ? `
+      <div class="q-reorder">
+        <button class="btn btn-reorder" onclick="reorderQuestion('${q.id}',-1)" title="Move up" ${idx===0?'disabled':''}>▲</button>
+        <button class="btn btn-reorder" onclick="reorderQuestion('${q.id}',+1)" title="Move down" ${idx===questions.length-1?'disabled':''}>▼</button>
+      </div>` : '';
+
+    return `
+    <div class="question-card${cardClass}${isHidden?' hidden-card':''}" id="card-${q.id}" style="${isHidden?'opacity:.4;border-left:3px solid #f0ad4e':''}">
+      <div class="q-top">
+        <div style="display:flex;align-items:center;gap:8px">
+          ${reorderBtns}
+          <div class="q-number">${escapeHtml(q.displayNumber)}</div>
+          ${isHidden?'<span style="font-size:11px;background:#f0ad4e;color:white;padding:2px 8px;border-radius:4px;font-weight:700">HIDDEN</span>':''}
+        </div>
+        <div class="q-time">${formatTime(q.timestamp)}</div>
+      </div>
+      <div class="q-name" id="name-${q.id}">${escapeHtml(q.name || 'Unknown')}</div>
+      <div class="q-text" id="text-${q.id}">${escapeHtml(q.question)}</div>
+      ${q.speaker || q.topic ? `
+      <div class="q-meta">
+        ${q.speaker ? `<span class="badge badge-speaker">${escapeHtml(q.speaker)}</span>` : ''}
+        ${q.topic   ? `<span class="badge badge-topic">${escapeHtml(q.topic)}</span>`     : ''}
+        ${isAnswered ? `<span class="badge badge-answered">Answered</span>`               : ''}
+      </div>` : ''}
+      <div class="q-actions">
+        ${statusBtn}
+        ${hideBtn}
+        <button class="btn btn-edit" onclick="openEditQuestion('${q.id}')">✎ Edit</button>
+        <button class="btn btn-edit" onclick="openEditName('${q.id}')">✎ Name</button>
+        <button class="btn btn-delete" onclick="openDeleteQuestion('${q.id}')">🗑 Delete</button>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function switchTab(name){
+  const names = ['unanswered','answered','checkin'];
+  document.querySelectorAll('.tab').forEach((t,i) => t.classList.toggle('active', names[i] === name));
+  document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+  document.getElementById('tab' + name.charAt(0).toUpperCase() + name.slice(1)).classList.add('active');
+  if(name === 'checkin') loadGuests();
+}
+
+// ── Check-In ──────────────────────────────────────────────
+let allGuests = [];
+
+function loadGuests(){
+  const cb = "guestLoad_" + Date.now();
+  window[cb] = function(data){
+    allGuests = Array.isArray(data) ? data : [];
+    renderCheckin();
+    delete window[cb];
+  };
+  const s = document.createElement("script");
+  s.src = SCRIPT_URL + "?action=getGuests&callback=" + cb;
+  s.onerror = () => { allGuests = []; renderCheckin(); };
+  document.body.appendChild(s);
+}
+
+function updateDatalist(query){
+  const input = document.getElementById('checkinSearch');
+  const dl    = document.getElementById('guestNameList');
+  if(!dl) return;
+  if(!query){ dl.innerHTML = ''; input.removeAttribute('list'); return; }
+  input.setAttribute('list','guestNameList');
+  const q = query.toLowerCase();
+  dl.innerHTML = allGuests
+    .filter(g => g.fullName.toLowerCase().includes(q))
+    .map(g => `<option value="${escapeHtml(g.fullName)}">`)
+    .join('');
+}
+
+function renderCheckin(){
+  const query = (document.getElementById('checkinSearch').value || '').toLowerCase().trim();
+  const pending   = allGuests.filter(g => g.checkedIn !== 'Yes' && (!query || g.fullName.toLowerCase().includes(query)));
+  const checkedIn = allGuests.filter(g => g.checkedIn === 'Yes'  && (!query || g.fullName.toLowerCase().includes(query)));
+
+  document.getElementById('statCheckedIn').textContent      = allGuests.filter(g => g.checkedIn === 'Yes').length;
+  document.getElementById('statPendingCheckin').textContent = allGuests.filter(g => g.checkedIn !== 'Yes').length;
+  document.getElementById('statTotalRegistered').textContent = allGuests.length;
+  document.getElementById('countCheckin').textContent       = allGuests.filter(g => g.checkedIn !== 'Yes').length;
+
+  const pendingEl = document.getElementById('listPending');
+  if(!pending.length){
+    pendingEl.innerHTML = `<div class="empty-state"><div class="empty-icon">🎉</div><div class="empty-text">${query ? 'No match found' : 'Everyone is checked in!'}</div></div>`;
+  } else {
+    pendingEl.innerHTML = pending.map(g => `
+      <div class="checkin-row" id="grow-${g.id}">
+        <div>
+          <div class="checkin-name">${escapeHtml(g.fullName)}</div>
+          ${g.phone ? `<div class="checkin-meta">${escapeHtml(g.phone)}</div>` : ''}
+        </div>
+        <div style="display:flex;gap:8px;align-items:center">
+          <button class="btn-checkin" onclick="checkIn('${g.id}')">✓ Check In</button>
+          <button class="btn-delete-reg" onclick="openDeleteReg('${g.id}','${escapeHtml(g.fullName)}')" title="Delete registration">🗑</button>
+        </div>
+      </div>`).join('');
+  }
+
+  const doneEl = document.getElementById('listCheckedIn');
+  if(!checkedIn.length){
+    doneEl.innerHTML = `<div style="color:var(--muted);font-size:14px;padding:8px 0">No one checked in yet</div>`;
+  } else {
+    doneEl.innerHTML = checkedIn.map(g => `
+      <div class="checkin-done-row">
+        <div class="checkin-done-name">${escapeHtml(g.fullName)}<span class="checkin-badge">✓ In</span></div>
+        <div class="checkin-done-time">${escapeHtml(g.checkedInTime || '')}</div>
+      </div>`).join('');
+  }
+}
+
+function checkIn(guestId){
+  const g = allGuests.find(g => g.id === guestId);
+  if(!g) return;
+
+  g.checkedIn = 'Yes';
+  g.checkedInTime = new Date().toLocaleTimeString('en-US',{hour:'numeric',minute:'2-digit',hour12:true});
+
+  const row = document.getElementById('grow-' + guestId);
+  if(row){
+    row.style.transition = 'opacity .3s, transform .3s';
+    row.style.opacity = '0';
+    row.style.transform = 'translateX(40px)';
+    setTimeout(() => renderCheckin(), 320);
+  } else {
+    renderCheckin();
+  }
+
+  const cb = "checkin_" + Date.now();
+  window[cb] = function(){ delete window[cb]; };
+  const s = document.createElement("script");
+  s.src = SCRIPT_URL + "?action=checkIn&guestId=" + encodeURIComponent(guestId) + "&callback=" + cb;
+  s.onerror = () => { delete window[cb]; };
+  document.body.appendChild(s);
+}
+
+function setStatus(questionId, status){
+  // Optimistically update local data immediately
+  const q = allQuestions.find(q => q.id === questionId);
+  if(!q) return;
+  q.status = status;
+
+  // Find the card and animate it out smoothly
+  const cards = document.querySelectorAll('.question-card');
+  let targetCard = null;
+  cards.forEach(card => {
+    const btn = card.querySelector('.btn');
+    if(btn && btn.getAttribute('onclick') && btn.getAttribute('onclick').includes(questionId)){
+      targetCard = card;
+    }
+  });
+
+  if(targetCard){
+    const btn = targetCard.querySelector('.btn');
+    if(btn){ btn.disabled = true; btn.style.opacity = '0.5'; }
+    targetCard.style.transition = 'opacity .35s, transform .35s, max-height .4s';
+    targetCard.style.opacity = '0';
+    targetCard.style.transform = 'translateX(40px)';
+    setTimeout(() => { renderAll(); }, 380);
+  } else {
+    renderAll();
+  }
+
+  // Send update via JSONP — avoids CORS issues
+  const cb = "statusUpdate_" + Date.now();
+  window[cb] = function(result){ delete window[cb]; };
+  const s = document.createElement("script");
+  s.src = SCRIPT_URL
+    + "?action=updateStatus"
+    + "&questionId=" + encodeURIComponent(questionId)
+    + "&status="     + encodeURIComponent(status)
+    + "&callback="   + cb;
+  s.onerror = function(){ delete window[cb]; };
+  document.body.appendChild(s);
+}
+
+function manualRefresh(btn){
+  btn.textContent = '↻ Refreshing...';
+  btn.disabled = true;
+  loadQuestions();
+  setTimeout(() => { btn.textContent = '↻ Refresh Now'; btn.disabled = false; }, 1000);
+}
+
+function startAutoRefresh(){
+  if(refreshTimer) clearInterval(refreshTimer);
+  refreshTimer = setInterval(loadQuestions, REFRESH_INTERVAL);
+}
+
+loadQuestions();
+startAutoRefresh();
+
+// ── Modal helpers ─────────────────────────────────────────
+let editContext = null; // { type: 'question'|'name', id }
+
+function closeModal(){
+  document.getElementById('editModal').classList.remove('active');
+  document.getElementById('confirmModal').classList.remove('active');
+  editContext = null;
+}
+
+function openEditQuestion(questionId){
+  const q = allQuestions.find(q => q.id === questionId);
+  if(!q) return;
+  editContext = { type: 'question', id: questionId };
+  document.getElementById('editModalTitle').textContent = 'Edit Question';
+  document.getElementById('editModalLabel').textContent = 'Question text';
+  document.getElementById('editModalInput').value = q.question || '';
+  document.getElementById('editModalInput').rows = 4;
+  document.getElementById('editModal').classList.add('active');
+}
+
+function openEditName(questionId){
+  const q = allQuestions.find(q => q.id === questionId);
+  if(!q) return;
+  editContext = { type: 'name', id: questionId };
+  document.getElementById('editModalTitle').textContent = 'Edit Name';
+  document.getElementById('editModalLabel').textContent = 'Attendee name';
+  document.getElementById('editModalInput').value = q.name || '';
+  document.getElementById('editModalInput').rows = 1;
+  document.getElementById('editModal').classList.add('active');
+}
+
+function saveEdit(){
+  if(!editContext) return;
+  const val = document.getElementById('editModalInput').value.trim();
+  if(!val) return;
+  const q = allQuestions.find(q => q.id === editContext.id);
+  if(!q) return;
+
+  if(editContext.type === 'question') q.question = val;
+  else q.name = val;
+
+  const savedContext = {...editContext};
+  closeModal();
+  renderAll();
+
+  const cb = "edit_" + Date.now();
+  window[cb] = function(result){ delete window[cb]; setTimeout(() => loadQuestions(), 600); };
+  const s = document.createElement("script");
+  s.src = SCRIPT_URL
+    + "?action=editQuestion"
+    + "&questionId=" + encodeURIComponent(savedContext.id)
+    + "&field="      + encodeURIComponent(savedContext.type)
+    + "&value="      + encodeURIComponent(val)
+    + "&callback="   + cb;
+  s.onerror = () => { delete window[cb]; };
+  document.body.appendChild(s);
+}
+
+function openDeleteQuestion(questionId){
+  const q = allQuestions.find(q => q.id === questionId);
+  if(!q) return;
+  document.getElementById('confirmModalTitle').textContent = 'Delete Question';
+  document.getElementById('confirmModalText').textContent = `Are you sure you want to permanently delete this question by ${q.name}? This cannot be undone.`;
+  document.getElementById('confirmModalBtn').onclick = () => deleteQuestion(questionId);
+  document.getElementById('confirmModal').classList.add('active');
+}
+
+function deleteQuestion(questionId){
+  closeModal();
+  allQuestions = allQuestions.filter(q => q.id !== questionId);
+  renderAll();
+
+  const cb = "del_" + Date.now();
+  window[cb] = function(){ delete window[cb]; };
+  const s = document.createElement("script");
+  s.src = SCRIPT_URL
+    + "?action=deleteQuestion"
+    + "&questionId=" + encodeURIComponent(questionId)
+    + "&callback="   + cb;
+  s.onerror = () => { delete window[cb]; };
+  document.body.appendChild(s);
+}
+
+function openDeleteReg(guestId, name){
+  document.getElementById('confirmModalTitle').textContent = 'Delete Registration';
+  document.getElementById('confirmModalText').textContent = `Are you sure you want to delete the registration for ${name}? They will be removed from the attendee list and autocomplete.`;
+  document.getElementById('confirmModalBtn').onclick = () => deleteRegistration(guestId, name);
+  document.getElementById('confirmModal').classList.add('active');
+}
+
+function deleteRegistration(guestId, name){
+  closeModal();
+  allGuests = allGuests.filter(g => g.id !== guestId);
+  renderCheckin();
+
+  const cb = "delreg_" + Date.now();
+  window[cb] = function(){ delete window[cb]; };
+  const s = document.createElement("script");
+  s.src = SCRIPT_URL
+    + "?action=deleteRegistration"
+    + "&guestId="  + encodeURIComponent(guestId)
+    + "&callback=" + cb;
+  s.onerror = () => { delete window[cb]; };
+  document.body.appendChild(s);
+}
+
+function reorderQuestion(questionId, dir){
+  const unanswered = allQuestions.filter(q => !q.status || q.status.toLowerCase() === 'approved');
+  const idx = unanswered.findIndex(q => q.id === questionId);
+  if(idx < 0) return;
+  const newIdx = idx + dir;
+  if(newIdx < 0 || newIdx >= unanswered.length) return;
+
+  // Swap in allQuestions array
+  const ai = allQuestions.indexOf(unanswered[idx]);
+  const bi = allQuestions.indexOf(unanswered[newIdx]);
+  [allQuestions[ai], allQuestions[bi]] = [allQuestions[bi], allQuestions[ai]];
+  renderAll();
+
+  const cb = "reorder_" + Date.now();
+  window[cb] = function(){ delete window[cb]; };
+  const s = document.createElement("script");
+  s.src = SCRIPT_URL
+    + "?action=reorderQuestion"
+    + "&questionId=" + encodeURIComponent(questionId)
+    + "&direction="  + encodeURIComponent(dir)
+    + "&callback="   + cb;
+  s.onerror = () => { delete window[cb]; };
+  document.body.appendChild(s);
+}
+
+// Close modal on overlay click
+document.getElementById('editModal').addEventListener('click', function(e){ if(e.target===this) closeModal(); });
+document.getElementById('confirmModal').addEventListener('click', function(e){ if(e.target===this) closeModal(); });
+
+window.addEventListener('beforeunload', () => { if(refreshTimer) clearInterval(refreshTimer); });
+</script>
+</body>
+</html>
