@@ -1,0 +1,1031 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>A4H May 31 Admin Console</title>
+<style>
+:root{
+  --navy:#172640;--navy2:#223553;--cream:#f8f0df;
+  --saffron:#f36c21;--gold:#d6a437;--muted:#5d6675;
+  --green:#2a9d4e;--line:rgba(23,38,64,.18);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;background:var(--cream);color:#15233b;line-height:1.5}
+
+/* Header */
+.admin-header{background:var(--navy);color:white;padding:16px 24px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,.12)}
+.admin-title{font-size:20px;font-weight:700}
+.admin-subtitle{font-size:12px;opacity:.65;margin-top:2px}
+.refresh-controls{display:flex;gap:12px;align-items:center}
+.refresh-btn{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);color:white;padding:8px 16px;border-radius:6px;font-size:13px;font-weight:600;cursor:pointer;transition:background .2s}
+.refresh-btn:hover{background:rgba(255,255,255,.25)}
+.live-badge{display:flex;align-items:center;gap:6px;font-size:12px;opacity:.75}
+.live-dot{width:8px;height:8px;border-radius:50%;background:#2a9d4e;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+
+/* Tabs */
+.tabs{display:flex;background:white;border-bottom:2px solid var(--line);position:sticky;top:57px;z-index:99}
+.tab{flex:1;padding:14px 20px;text-align:center;font-weight:600;font-size:14px;color:var(--muted);cursor:pointer;border-bottom:3px solid transparent;transition:all .2s;text-transform:uppercase;letter-spacing:.05em}
+.tab:hover{background:rgba(243,108,33,.05);color:var(--navy)}
+.tab.active{color:var(--saffron);border-bottom-color:var(--saffron);background:rgba(243,108,33,.06)}
+.tab-count{display:inline-block;background:var(--saffron);color:white;font-size:11px;font-weight:700;padding:2px 8px;border-radius:12px;margin-left:6px}
+.tab.active .tab-count{background:var(--navy)}
+
+/* Content */
+.tab-content{display:none;padding:24px;max-width:1200px;margin:0 auto}
+.tab-content.active{display:block}
+
+/* Stats */
+.stats-bar{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:24px}
+.stat-card{background:white;border:1px solid var(--line);border-radius:8px;padding:16px;text-align:center}
+.stat-value{font-size:34px;font-weight:700;color:var(--navy);margin-bottom:4px}
+.stat-label{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-weight:600}
+
+/* Question cards */
+.question-card{background:white;border:1px solid var(--line);border-radius:10px;padding:20px;margin-bottom:14px;box-shadow:0 2px 6px rgba(0,0,0,.04);transition:box-shadow .2s}
+.question-card:hover{box-shadow:0 4px 14px rgba(0,0,0,.08)}
+.question-card.answered-card{opacity:.65}
+
+.q-top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:10px}
+.q-number{font-size:13px;font-weight:700;color:var(--saffron);font-family:Arial,sans-serif;letter-spacing:.04em}
+.q-time{font-size:12px;color:var(--muted)}
+.q-name{font-size:15px;font-weight:600;color:var(--navy);margin-bottom:6px}
+.q-text{font-size:17px;line-height:1.5;color:#15233b;margin-bottom:12px;font-family:Georgia,serif}
+.q-meta{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.badge{display:inline-block;padding:4px 10px;border-radius:5px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em}
+.badge-speaker{background:rgba(243,108,33,.1);color:var(--saffron)}
+.badge-topic{background:rgba(23,38,64,.08);color:var(--navy)}
+.badge-answered{background:#d1ecf1;color:#0c5460}
+
+.q-actions{display:flex;gap:8px;flex-wrap:wrap}
+.btn{padding:9px 18px;border:none;border-radius:6px;font-size:13px;font-weight:600;cursor:pointer;transition:all .2s;text-transform:uppercase;letter-spacing:.04em}
+.btn-answered{background:var(--green);color:white}
+.btn-answered:hover{background:#238a41}
+.btn-unanswered{background:#e9ecef;color:var(--navy)}
+.btn-unanswered:hover{background:#dee2e6}
+
+.btn-hide{background:#f0ad4e;color:white}
+.btn-hide:hover{background:#d4932e}
+.btn-delete{background:#dc3545;color:white}
+.btn-delete:hover{background:#b02a37}
+.btn-edit{background:#6c757d;color:white}
+.btn-edit:hover{background:#545b62}
+.btn-reorder{background:rgba(23,38,64,.08);color:var(--navy);font-size:18px;padding:6px 12px}
+.btn-reorder:hover{background:rgba(23,38,64,.15)}
+.q-reorder{display:flex;flex-direction:column;gap:4px;margin-right:8px}
+
+/* Modal */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.45);display:none;align-items:center;justify-content:center;z-index:2000;padding:20px}
+.modal-overlay.active{display:flex}
+.modal{background:white;border-radius:12px;padding:28px;width:100%;max-width:520px;box-shadow:0 20px 60px rgba(0,0,0,.2)}
+.modal-title{font-size:18px;font-weight:700;color:var(--navy);margin-bottom:16px}
+.modal-body{margin-bottom:20px}
+.modal-input{width:100%;padding:12px 14px;border:1px solid var(--line);border-radius:8px;font-size:15px;font-family:inherit;resize:vertical;outline:none;transition:border-color .2s}
+.modal-input:focus{border-color:var(--saffron)}
+.modal-label{font-size:13px;font-weight:600;color:var(--muted);margin-bottom:6px;display:block}
+.modal-actions{display:flex;gap:10px;justify-content:flex-end}
+.modal-btn{padding:10px 22px;border:none;border-radius:6px;font-size:13px;font-weight:700;cursor:pointer;text-transform:uppercase;letter-spacing:.04em}
+.modal-btn-cancel{background:#e9ecef;color:var(--navy)}
+.modal-btn-cancel:hover{background:#dee2e6}
+.modal-btn-save{background:var(--saffron);color:white}
+.modal-btn-save:hover{background:#d45a18}
+.modal-btn-danger{background:#dc3545;color:white}
+.modal-btn-danger:hover{background:#b02a37}
+
+/* Delete reg button */
+.btn-delete-reg{background:none;border:none;color:#dc3545;font-size:18px;cursor:pointer;padding:4px 8px;border-radius:4px;transition:background .2s}
+.btn-delete-reg:hover{background:rgba(220,53,69,.1)}
+
+/* Empty state */
+.empty-state{text-align:center;padding:60px 20px;color:var(--muted)}
+.empty-icon{font-size:52px;margin-bottom:16px;opacity:.25}
+.empty-text{font-size:18px;font-weight:600;margin-bottom:6px}
+.empty-sub{font-size:14px;opacity:.7}
+
+/* Check-in */
+.checkin-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:24px}
+.checkin-search{width:100%;padding:12px 16px;border:1px solid var(--line);border-radius:8px;font-size:16px;margin-bottom:18px;outline:none;transition:border-color .2s}
+.checkin-search:focus{border-color:var(--saffron)}
+.checkin-row{background:white;border:1px solid var(--line);border-radius:8px;padding:14px 18px;margin-bottom:8px;display:flex;justify-content:space-between;align-items:center;transition:opacity .3s,transform .3s}
+.checkin-row:hover{box-shadow:0 2px 8px rgba(0,0,0,.07)}
+.checkin-name{font-size:16px;font-weight:600;color:var(--navy)}
+.checkin-meta{font-size:12px;color:var(--muted);margin-top:2px}
+.btn-checkin{background:var(--green);color:white;border:none;padding:9px 18px;border-radius:6px;font-size:13px;font-weight:700;cursor:pointer;text-transform:uppercase;letter-spacing:.04em;transition:background .2s;white-space:nowrap}
+.btn-checkin:hover{background:#238a41}
+.checkin-done-row{background:white;border:1px solid rgba(42,157,78,.2);border-radius:8px;padding:12px 18px;margin-bottom:8px;display:flex;justify-content:space-between;align-items:center;opacity:.7}
+.checkin-done-name{font-size:15px;font-weight:600;color:var(--navy)}
+.checkin-done-time{font-size:12px;color:var(--green);font-weight:600}
+.checkin-badge{display:inline-block;background:rgba(42,157,78,.12);color:var(--green);border-radius:4px;padding:2px 8px;font-size:11px;font-weight:700;margin-left:8px}
+.checkin-section-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin:20px 0 10px}
+
+
+/* Email modal */
+.email-modal-overlay{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(14,25,48,.65);z-index:4000;align-items:flex-start;justify-content:center;padding:24px;overflow-y:auto}
+.email-modal-overlay.visible{display:flex}
+.email-modal{background:white;border-radius:10px;width:100%;max-width:680px;margin:auto;box-shadow:0 24px 64px rgba(0,0,0,.3);overflow:hidden}
+.email-modal-header{background:var(--navy);padding:20px 28px;display:flex;justify-content:space-between;align-items:center}
+.email-modal-title{color:white;font-size:17px;font-weight:700}
+.email-modal-close{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);color:white;padding:6px 14px;border-radius:6px;font-size:13px;cursor:pointer}
+.email-modal-body{padding:24px 28px}
+.email-meta-row{display:flex;gap:8px;align-items:center;margin-bottom:10px;font-size:14px}
+.email-meta-label{font-weight:700;color:var(--navy);min-width:70px}
+.email-meta-val{color:var(--muted)}
+.email-preview-box{border:1px solid var(--line);border-radius:8px;overflow:hidden;margin:16px 0 24px;max-height:420px;overflow-y:auto}
+.email-actions{display:flex;gap:12px;flex-wrap:wrap;padding-top:4px;border-top:1px solid var(--line)}
+.email-send-btn{padding:12px 24px;border:none;border-radius:999px;font:700 13px Arial,sans-serif;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;transition:background .2s}
+.email-test-btn{background:var(--navy);color:white}
+.email-test-btn:hover{background:#223553}
+.email-all-btn{background:var(--saffron);color:white}
+.email-all-btn:hover{background:#d45a18}
+.email-all-btn:disabled{opacity:.5;cursor:not-allowed}
+.email-status{margin-top:14px;padding:12px 16px;border-radius:8px;font-size:14px;font-family:Arial,sans-serif;display:none}
+.email-status.success{background:rgba(42,157,78,.1);border:1px solid rgba(42,157,78,.3);color:#1a6b38;display:block}
+.email-status.error{background:rgba(220,53,69,.08);border:1px solid rgba(220,53,69,.25);color:#842029;display:block}
+.email-send-btn-row{display:flex;gap:10px;align-items:center;margin-bottom:16px}
+.send-email-trigger{background:var(--navy);color:white;border:none;padding:10px 20px;border-radius:999px;font:700 12px Arial,sans-serif;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;transition:background .2s}
+.send-email-trigger:hover{background:#223553}
+
+/* Attendees tab */
+.attendee-row{background:white;border:1px solid var(--line);border-radius:8px;padding:14px 18px;margin-bottom:8px;display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center}
+.attendee-num{font-size:13px;font-weight:700;color:var(--saffron);min-width:28px}
+.attendee-name{font-size:16px;font-weight:600;color:var(--navy)}
+.attendee-contact{font-size:12px;color:var(--muted);margin-top:2px}
+.attendee-actions{display:flex;gap:8px;align-items:center}
+.attendee-search{width:100%;padding:12px 16px;border:1px solid var(--line);border-radius:8px;font-size:16px;margin-bottom:18px;outline:none;transition:border-color .2s}
+.attendee-search:focus{border-color:var(--saffron)}
+
+/* Questions read-only tab */
+.qro-card{background:white;border:1px solid var(--line);border-radius:8px;padding:16px 18px;margin-bottom:10px}
+.qro-num{font-size:12px;font-weight:700;color:var(--saffron);margin-bottom:4px;font-family:Arial,sans-serif}
+.qro-text{font-size:16px;line-height:1.5;color:#15233b;font-family:Georgia,serif;margin-bottom:6px}
+.qro-author{font-size:13px;color:var(--muted);font-style:italic}
+.qro-badge{display:inline-block;padding:3px 9px;border-radius:4px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;margin-right:6px}
+.qro-badge-answered{background:#d1ecf1;color:#0c5460}
+.qro-badge-speaker{background:rgba(243,108,33,.1);color:var(--saffron)}
+.qro-filter{display:flex;gap:10px;margin-bottom:18px;flex-wrap:wrap}
+.qro-filter-btn{padding:8px 16px;border:1px solid var(--line);border-radius:6px;font-size:13px;font-weight:600;cursor:pointer;background:white;color:var(--muted);transition:all .2s}
+.qro-filter-btn.active{background:var(--navy);color:white;border-color:var(--navy)}
+
+/* Survey results tab */
+.survey-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:24px}
+.survey-row{background:white;border:1px solid var(--line);border-radius:8px;padding:16px 18px;margin-bottom:10px}
+.survey-row-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px;gap:12px}
+.survey-row-name{font-size:15px;font-weight:600;color:var(--navy)}
+.survey-row-time{font-size:12px;color:var(--muted)}
+.survey-rating{color:#f36c21;font-size:20px;letter-spacing:1px}
+.survey-rating-num{font-size:13px;color:var(--muted);font-weight:600;margin-left:6px}
+.survey-topics-list{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.survey-topic-pill{background:rgba(23,38,64,.07);color:var(--navy);border-radius:4px;padding:3px 10px;font-size:12px;font-weight:600}
+.survey-volunteer-badge{display:inline-block;padding:3px 10px;border-radius:4px;font-size:12px;font-weight:700;text-transform:uppercase}
+.survey-volunteer-yes{background:rgba(42,157,78,.12);color:#2a9d4e}
+.survey-volunteer-maybe{background:rgba(214,164,55,.15);color:#9a7520}
+.survey-volunteer-no{background:rgba(23,38,64,.08);color:var(--muted)}
+.survey-feedback{font-size:14px;color:#444;line-height:1.5;margin-top:8px;padding-top:8px;border-top:1px solid var(--line);font-style:italic}
+.survey-contact-row{font-size:12px;color:var(--muted);margin-top:4px}
+.avg-stars{font-size:32px;font-weight:700;color:var(--navy)}
+.avg-stars-label{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-weight:600;margin-top:4px}
+
+@media(max-width:768px){
+  .survey-stats{grid-template-columns:1fr 1fr}
+  .attendee-row{grid-template-columns:auto 1fr}
+  .attendee-actions{grid-column:1/-1;justify-content:flex-end}
+}
+
+/* Loading */
+.loading-overlay{position:fixed;inset:0;background:rgba(255,255,255,.88);display:none;align-items:center;justify-content:center;z-index:1000}
+.loading-overlay.active{display:flex}
+.spinner{width:46px;height:46px;border:4px solid var(--line);border-top-color:var(--saffron);border-radius:50%;animation:spin 1s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+@media(max-width:768px){
+  .admin-header{flex-direction:column;align-items:flex-start;gap:10px}
+  .tabs{top:81px}
+  .stats-bar{grid-template-columns:1fr 1fr}
+  .q-actions .btn{flex:1;text-align:center}
+}
+</style>
+</head>
+<body>
+
+<div class="loading-overlay" id="loadingOverlay"><div class="spinner"></div></div>
+
+<header class="admin-header">
+  <div>
+    <div class="admin-title">A4H May 31 · Admin Console</div>
+    <div class="admin-subtitle">Question Tracker — auto-refresh every 15s</div>
+  </div>
+  <div class="refresh-controls">
+    <div class="live-badge"><span class="live-dot"></span>LIVE</div>
+    <button class="refresh-btn" onclick="manualRefresh(this)">↻ Refresh Now</button>
+  </div>
+</header>
+
+<nav class="tabs">
+  <div class="tab active" onclick="switchTab('unanswered')">
+    Unanswered <span class="tab-count" id="countUnanswered">0</span>
+  </div>
+  <div class="tab" onclick="switchTab('answered')">
+    Answered <span class="tab-count" id="countAnswered">0</span>
+  </div>
+  <div class="tab" onclick="switchTab('checkin')">
+    Check-In <span class="tab-count" id="countCheckin">0</span>
+  </div>
+  <div class="tab" onclick="switchTab('attendees')">
+    Attendees <span class="tab-count" id="countAttendees">0</span>
+  </div>
+  <div class="tab" onclick="switchTab('questions')">
+    Questions <span class="tab-count" id="countQuestions">0</span>
+  </div>
+  <div class="tab" onclick="switchTab('survey')">
+    Survey <span class="tab-count" id="countSurvey">0</span>
+  </div>
+</nav>
+
+<div class="tab-content active" id="tabUnanswered">
+  <div class="stats-bar">
+    <div class="stat-card"><div class="stat-value" id="statUnanswered">0</div><div class="stat-label">Unanswered</div></div>
+    <div class="stat-card"><div class="stat-value" id="statAnswered">0</div><div class="stat-label">Answered</div></div>
+    <div class="stat-card"><div class="stat-value" id="statTotal">0</div><div class="stat-label">Total</div></div>
+  </div>
+  <div id="listUnanswered"></div>
+</div>
+
+<div class="tab-content" id="tabAnswered">
+  <div id="listAnswered"></div>
+</div>
+
+<div class="tab-content" id="tabCheckin">
+  <div class="checkin-stats">
+    <div class="stat-card"><div class="stat-value" id="statCheckedIn">0</div><div class="stat-label">Checked In</div></div>
+    <div class="stat-card"><div class="stat-value" id="statPendingCheckin">0</div><div class="stat-label">Pending</div></div>
+    <div class="stat-card"><div class="stat-value" id="statTotalRegistered">0</div><div class="stat-label">Registered</div></div>
+  </div>
+  <input class="checkin-search" id="checkinSearch" type="text" placeholder="Search by name…" oninput="updateDatalist(this.value);renderCheckin()" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" />
+  <datalist id="guestNameList"></datalist>
+  <div class="checkin-section-title">Pending Check-In</div>
+  <div id="listPending"></div>
+  <div class="checkin-section-title">Checked In</div>
+  <div id="listCheckedIn"></div>
+</div>
+
+<!-- Attendees Tab -->
+<div class="tab-content" id="tabAttendees">
+  <div class="stats-bar">
+    <div class="stat-card"><div class="stat-value" id="statTotalAttendees">0</div><div class="stat-label">Registered</div></div>
+    <div class="stat-card"><div class="stat-value" id="statCheckedInAttendees">0</div><div class="stat-label">Checked In</div></div>
+    <div class="stat-card"><div class="stat-value" id="statPendingAttendees">0</div><div class="stat-label">Pending</div></div>
+  </div>
+  <div class="email-send-btn-row">
+    <button class="send-email-trigger" onclick="openEmailModal('thankyou')">✉ Send Thank-You Email</button>
+    <button class="send-email-trigger" style="background:var(--saffron)" onclick="openEmailModal('japra')">✉ Send Dr. Japra's Message</button>
+  </div>
+  <input class="attendee-search" id="attendeeSearch" type="text" placeholder="Search by name, phone, or email…" oninput="renderAttendees()" autocomplete="off" />
+  <div id="listAttendees"></div>
+</div>
+
+<!-- Questions Read-Only Tab -->
+<div class="tab-content" id="tabQuestions">
+  <div class="stats-bar">
+    <div class="stat-card"><div class="stat-value" id="statQroTotal">0</div><div class="stat-label">Total</div></div>
+    <div class="stat-card"><div class="stat-value" id="statQroAnswered">0</div><div class="stat-label">Answered</div></div>
+    <div class="stat-card"><div class="stat-value" id="statQroPending">0</div><div class="stat-label">Pending</div></div>
+  </div>
+  <div class="qro-filter">
+    <button class="qro-filter-btn active" onclick="setQroFilter('all',this)">All</button>
+    <button class="qro-filter-btn" onclick="setQroFilter('pending',this)">Pending</button>
+    <button class="qro-filter-btn" onclick="setQroFilter('answered',this)">Answered</button>
+  </div>
+  <div id="listQro"></div>
+</div>
+
+<!-- Survey Results Tab -->
+<div class="tab-content" id="tabSurvey">
+  <div class="survey-stats">
+    <div class="stat-card"><div class="avg-stars" id="statAvgRating">—</div><div class="avg-stars-label">Avg Rating</div></div>
+    <div class="stat-card"><div class="stat-value" id="statSurveyCount">0</div><div class="stat-label">Responses</div></div>
+    <div class="stat-card"><div class="stat-value" id="statVolunteerYes">0</div><div class="stat-label">Want to Volunteer</div></div>
+    <div class="stat-card"><div class="stat-value" id="statHasFeedback">0</div><div class="stat-label">Left Feedback</div></div>
+  </div>
+  <div id="listSurvey"></div>
+</div>
+
+<!-- Edit Modal -->
+<div class="modal-overlay" id="editModal">
+  <div class="modal">
+    <div class="modal-title" id="editModalTitle">Edit Question</div>
+    <div class="modal-body">
+      <label class="modal-label" id="editModalLabel">Question</label>
+      <textarea class="modal-input" id="editModalInput" rows="4"></textarea>
+    </div>
+    <div class="modal-actions">
+      <button class="modal-btn modal-btn-cancel" onclick="closeModal()">Cancel</button>
+      <button class="modal-btn modal-btn-save" onclick="saveEdit()">Save</button>
+    </div>
+  </div>
+</div>
+
+<!-- Confirm Delete Modal -->
+<div class="modal-overlay" id="confirmModal">
+  <div class="modal">
+    <div class="modal-title" id="confirmModalTitle">Confirm Delete</div>
+    <div class="modal-body">
+      <p id="confirmModalText" style="font-size:15px;color:#333;line-height:1.6"></p>
+    </div>
+    <div class="modal-actions">
+      <button class="modal-btn modal-btn-cancel" onclick="closeModal()">Cancel</button>
+      <button class="modal-btn modal-btn-danger" id="confirmModalBtn" onclick="">Confirm</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwEsXyih8GNe_prPO8s3RpLf6y93P2X2QVZAJpkFivuVQDX5ECceEXZkV9hOUtb9rQa4g/exec";
+const REFRESH_INTERVAL = 15000;
+
+let allQuestions = [];
+let refreshTimer = null;
+
+function escapeHtml(t){
+  const d = document.createElement("div");
+  d.innerText = t || "";
+  return d.innerHTML;
+}
+
+function formatTime(ts){
+  if(!ts) return "";
+  const d = new Date(ts);
+  return d.toLocaleString('en-US',{month:'short',day:'numeric',hour:'numeric',minute:'2-digit',hour12:true});
+}
+
+function loadQuestions(){
+  const cb = "adminLoad_" + Date.now();
+
+  window[cb] = function(data){
+    allQuestions = Array.isArray(data) ? data : [];
+    renderAll();
+    delete window[cb];
+  };
+
+  const s = document.createElement("script");
+  s.src = SCRIPT_URL + "?action=admin&callback=" + cb;
+  s.onerror = () => { allQuestions = []; renderAll(); };
+  document.body.appendChild(s);
+}
+
+function renderAll(){
+  const unanswered = allQuestions.filter(q => !q.status || q.status.toLowerCase() !== 'answered');
+  const answered   = allQuestions.filter(q => q.status && q.status.toLowerCase() === 'answered');
+
+  // Update counts
+  document.getElementById('countUnanswered').textContent = unanswered.length;
+  document.getElementById('countAnswered').textContent   = answered.length;
+  document.getElementById('statUnanswered').textContent  = unanswered.length;
+  document.getElementById('statAnswered').textContent    = answered.length;
+  document.getElementById('statTotal').textContent       = allQuestions.length;
+
+  renderList('listUnanswered', unanswered, false);
+  renderList('listAnswered',   answered,   true);
+}
+
+function renderList(containerId, questions, isAnswered){
+  const el = document.getElementById(containerId);
+
+  if(!questions.length){
+    el.innerHTML = `
+      <div class="empty-state">
+        <div class="empty-icon">${isAnswered ? '✓' : '💬'}</div>
+        <div class="empty-text">${isAnswered ? 'No answered questions yet' : 'No questions yet'}</div>
+        <div class="empty-sub">${isAnswered ? 'Mark questions as answered during the meeting' : 'Questions will appear here as attendees submit them'}</div>
+      </div>`;
+    return;
+  }
+
+  el.innerHTML = questions.map((q, idx) => {
+    const cardClass = isAnswered ? ' answered-card' : '';
+    const isHidden  = q.status && q.status.toLowerCase() === 'hidden';
+
+    const statusBtn = isAnswered
+      ? `<button class="btn btn-unanswered" onclick="setStatus('${q.id}','Pending')">↩ Unanswered</button>`
+      : `<button class="btn btn-answered" onclick="setStatus('${q.id}','Answered')">✓ Answered</button>`;
+
+    const hideBtn = isHidden
+      ? `<button class="btn btn-hide" onclick="setStatus('${q.id}','Approved')" title="Unhide">👁 Unhide</button>`
+      : `<button class="btn btn-hide" onclick="setStatus('${q.id}','Hidden')" title="Hide from public">🚫 Hide</button>`;
+
+    const reorderBtns = !isAnswered ? `
+      <div class="q-reorder">
+        <button class="btn btn-reorder" onclick="reorderQuestion('${q.id}',-1)" title="Move up" ${idx===0?'disabled':''}>▲</button>
+        <button class="btn btn-reorder" onclick="reorderQuestion('${q.id}',+1)" title="Move down" ${idx===questions.length-1?'disabled':''}>▼</button>
+      </div>` : '';
+
+    return `
+    <div class="question-card${cardClass}${isHidden?' hidden-card':''}" id="card-${q.id}" style="${isHidden?'opacity:.4;border-left:3px solid #f0ad4e':''}">
+      <div class="q-top">
+        <div style="display:flex;align-items:center;gap:8px">
+          ${reorderBtns}
+          <div class="q-number">${escapeHtml(q.displayNumber)}</div>
+          ${isHidden?'<span style="font-size:11px;background:#f0ad4e;color:white;padding:2px 8px;border-radius:4px;font-weight:700">HIDDEN</span>':''}
+        </div>
+        <div class="q-time">${formatTime(q.timestamp)}</div>
+      </div>
+      <div class="q-name" id="name-${q.id}">${escapeHtml(q.name || 'Unknown')}</div>
+      <div class="q-text" id="text-${q.id}">${escapeHtml(q.question)}</div>
+      ${q.speaker || q.topic ? `
+      <div class="q-meta">
+        ${q.speaker ? `<span class="badge badge-speaker">${escapeHtml(q.speaker)}</span>` : ''}
+        ${q.topic   ? `<span class="badge badge-topic">${escapeHtml(q.topic)}</span>`     : ''}
+        ${isAnswered ? `<span class="badge badge-answered">Answered</span>`               : ''}
+      </div>` : ''}
+      <div class="q-actions">
+        ${statusBtn}
+        ${hideBtn}
+        <button class="btn btn-edit" onclick="openEditQuestion('${q.id}')">✎ Edit</button>
+        <button class="btn btn-edit" onclick="openEditName('${q.id}')">✎ Name</button>
+        <button class="btn btn-delete" onclick="openDeleteQuestion('${q.id}')">🗑 Delete</button>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function switchTab(name){
+  const names = ['unanswered','answered','checkin','attendees','questions','survey'];
+  document.querySelectorAll('.tab').forEach((t,i) => t.classList.toggle('active', names[i] === name));
+  document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+  document.getElementById('tab' + name.charAt(0).toUpperCase() + name.slice(1)).classList.add('active');
+  if(name === 'checkin')   loadGuests();
+  if(name === 'attendees') loadAttendees();
+  if(name === 'questions') renderQro();
+  if(name === 'survey')    loadSurvey();
+}
+
+// ── Check-In ──────────────────────────────────────────────
+let allGuests = [];
+
+function loadGuests(){
+  const cb = "guestLoad_" + Date.now();
+  window[cb] = function(data){
+    allGuests = Array.isArray(data) ? data : [];
+    renderCheckin();
+    delete window[cb];
+  };
+  const s = document.createElement("script");
+  s.src = SCRIPT_URL + "?action=getGuests&callback=" + cb;
+  s.onerror = () => { allGuests = []; renderCheckin(); };
+  document.body.appendChild(s);
+}
+
+function updateDatalist(query){
+  const input = document.getElementById('checkinSearch');
+  const dl    = document.getElementById('guestNameList');
+  if(!dl) return;
+  if(!query){ dl.innerHTML = ''; input.removeAttribute('list'); return; }
+  input.setAttribute('list','guestNameList');
+  const q = query.toLowerCase();
+  dl.innerHTML = allGuests
+    .filter(g => g.fullName.toLowerCase().includes(q))
+    .map(g => `<option value="${escapeHtml(g.fullName)}">`)
+    .join('');
+}
+
+function renderCheckin(){
+  const query = (document.getElementById('checkinSearch').value || '').toLowerCase().trim();
+  const pending   = allGuests.filter(g => g.checkedIn !== 'Yes' && (!query || g.fullName.toLowerCase().includes(query)));
+  const checkedIn = allGuests.filter(g => g.checkedIn === 'Yes'  && (!query || g.fullName.toLowerCase().includes(query)));
+
+  document.getElementById('statCheckedIn').textContent      = allGuests.filter(g => g.checkedIn === 'Yes').length;
+  document.getElementById('statPendingCheckin').textContent = allGuests.filter(g => g.checkedIn !== 'Yes').length;
+  document.getElementById('statTotalRegistered').textContent = allGuests.length;
+  document.getElementById('countCheckin').textContent       = allGuests.filter(g => g.checkedIn !== 'Yes').length;
+
+  const pendingEl = document.getElementById('listPending');
+  if(!pending.length){
+    pendingEl.innerHTML = `<div class="empty-state"><div class="empty-icon">🎉</div><div class="empty-text">${query ? 'No match found' : 'Everyone is checked in!'}</div></div>`;
+  } else {
+    pendingEl.innerHTML = pending.map(g => `
+      <div class="checkin-row" id="grow-${g.id}">
+        <div>
+          <div class="checkin-name">${escapeHtml(g.fullName)}</div>
+          ${g.phone ? `<div class="checkin-meta">${escapeHtml(g.phone)}</div>` : ''}
+        </div>
+        <div style="display:flex;gap:8px;align-items:center">
+          <button class="btn-checkin" onclick="checkIn('${g.id}')">✓ Check In</button>
+          <button class="btn-delete-reg" onclick="openDeleteReg('${g.id}','${escapeHtml(g.fullName)}')" title="Delete registration">🗑</button>
+        </div>
+      </div>`).join('');
+  }
+
+  const doneEl = document.getElementById('listCheckedIn');
+  if(!checkedIn.length){
+    doneEl.innerHTML = `<div style="color:var(--muted);font-size:14px;padding:8px 0">No one checked in yet</div>`;
+  } else {
+    doneEl.innerHTML = checkedIn.map(g => `
+      <div class="checkin-done-row">
+        <div class="checkin-done-name">${escapeHtml(g.fullName)}<span class="checkin-badge">✓ In</span></div>
+        <div class="checkin-done-time">${escapeHtml(g.checkedInTime || '')}</div>
+      </div>`).join('');
+  }
+}
+
+function checkIn(guestId){
+  const g = allGuests.find(g => g.id === guestId);
+  if(!g) return;
+
+  g.checkedIn = 'Yes';
+  g.checkedInTime = new Date().toLocaleTimeString('en-US',{hour:'numeric',minute:'2-digit',hour12:true});
+
+  const row = document.getElementById('grow-' + guestId);
+  if(row){
+    row.style.transition = 'opacity .3s, transform .3s';
+    row.style.opacity = '0';
+    row.style.transform = 'translateX(40px)';
+    setTimeout(() => renderCheckin(), 320);
+  } else {
+    renderCheckin();
+  }
+
+  const cb = "checkin_" + Date.now();
+  window[cb] = function(){ delete window[cb]; };
+  const s = document.createElement("script");
+  s.src = SCRIPT_URL + "?action=checkIn&guestId=" + encodeURIComponent(guestId) + "&callback=" + cb;
+  s.onerror = () => { delete window[cb]; };
+  document.body.appendChild(s);
+}
+
+function setStatus(questionId, status){
+  // Optimistically update local data immediately
+  const q = allQuestions.find(q => q.id === questionId);
+  if(!q) return;
+  q.status = status;
+
+  // Find the card and animate it out smoothly
+  const cards = document.querySelectorAll('.question-card');
+  let targetCard = null;
+  cards.forEach(card => {
+    const btn = card.querySelector('.btn');
+    if(btn && btn.getAttribute('onclick') && btn.getAttribute('onclick').includes(questionId)){
+      targetCard = card;
+    }
+  });
+
+  if(targetCard){
+    const btn = targetCard.querySelector('.btn');
+    if(btn){ btn.disabled = true; btn.style.opacity = '0.5'; }
+    targetCard.style.transition = 'opacity .35s, transform .35s, max-height .4s';
+    targetCard.style.opacity = '0';
+    targetCard.style.transform = 'translateX(40px)';
+    setTimeout(() => { renderAll(); }, 380);
+  } else {
+    renderAll();
+  }
+
+  // Send update via JSONP — avoids CORS issues
+  const cb = "statusUpdate_" + Date.now();
+  window[cb] = function(result){ delete window[cb]; };
+  const s = document.createElement("script");
+  s.src = SCRIPT_URL
+    + "?action=updateStatus"
+    + "&questionId=" + encodeURIComponent(questionId)
+    + "&status="     + encodeURIComponent(status)
+    + "&callback="   + cb;
+  s.onerror = function(){ delete window[cb]; };
+  document.body.appendChild(s);
+}
+
+function manualRefresh(btn){
+  btn.textContent = '↻ Refreshing...';
+  btn.disabled = true;
+  loadQuestions();
+  setTimeout(() => { btn.textContent = '↻ Refresh Now'; btn.disabled = false; }, 1000);
+}
+
+function startAutoRefresh(){
+  if(refreshTimer) clearInterval(refreshTimer);
+  refreshTimer = setInterval(loadQuestions, REFRESH_INTERVAL);
+}
+
+loadQuestions();
+startAutoRefresh();
+
+// ── Modal helpers ─────────────────────────────────────────
+let editContext = null; // { type: 'question'|'name', id }
+
+function closeModal(){
+  document.getElementById('editModal').classList.remove('active');
+  document.getElementById('confirmModal').classList.remove('active');
+  editContext = null;
+}
+
+function openEditQuestion(questionId){
+  const q = allQuestions.find(q => q.id === questionId);
+  if(!q) return;
+  editContext = { type: 'question', id: questionId };
+  document.getElementById('editModalTitle').textContent = 'Edit Question';
+  document.getElementById('editModalLabel').textContent = 'Question text';
+  document.getElementById('editModalInput').value = q.question || '';
+  document.getElementById('editModalInput').rows = 4;
+  document.getElementById('editModal').classList.add('active');
+}
+
+function openEditName(questionId){
+  const q = allQuestions.find(q => q.id === questionId);
+  if(!q) return;
+  editContext = { type: 'name', id: questionId };
+  document.getElementById('editModalTitle').textContent = 'Edit Name';
+  document.getElementById('editModalLabel').textContent = 'Attendee name';
+  document.getElementById('editModalInput').value = q.name || '';
+  document.getElementById('editModalInput').rows = 1;
+  document.getElementById('editModal').classList.add('active');
+}
+
+function saveEdit(){
+  if(!editContext) return;
+  const val = document.getElementById('editModalInput').value.trim();
+  if(!val) return;
+  const q = allQuestions.find(q => q.id === editContext.id);
+  if(!q) return;
+
+  if(editContext.type === 'question') q.question = val;
+  else q.name = val;
+
+  const savedContext = {...editContext};
+  closeModal();
+  renderAll();
+
+  const cb = "edit_" + Date.now();
+  window[cb] = function(result){ delete window[cb]; setTimeout(() => loadQuestions(), 600); };
+  const s = document.createElement("script");
+  s.src = SCRIPT_URL
+    + "?action=editQuestion"
+    + "&questionId=" + encodeURIComponent(savedContext.id)
+    + "&field="      + encodeURIComponent(savedContext.type)
+    + "&value="      + encodeURIComponent(val)
+    + "&callback="   + cb;
+  s.onerror = () => { delete window[cb]; };
+  document.body.appendChild(s);
+}
+
+function openDeleteQuestion(questionId){
+  const q = allQuestions.find(q => q.id === questionId);
+  if(!q) return;
+  document.getElementById('confirmModalTitle').textContent = 'Delete Question';
+  document.getElementById('confirmModalText').textContent = `Are you sure you want to permanently delete this question by ${q.name}? This cannot be undone.`;
+  document.getElementById('confirmModalBtn').onclick = () => deleteQuestion(questionId);
+  document.getElementById('confirmModal').classList.add('active');
+}
+
+function deleteQuestion(questionId){
+  closeModal();
+  allQuestions = allQuestions.filter(q => q.id !== questionId);
+  renderAll();
+
+  const cb = "del_" + Date.now();
+  window[cb] = function(){ delete window[cb]; };
+  const s = document.createElement("script");
+  s.src = SCRIPT_URL
+    + "?action=deleteQuestion"
+    + "&questionId=" + encodeURIComponent(questionId)
+    + "&callback="   + cb;
+  s.onerror = () => { delete window[cb]; };
+  document.body.appendChild(s);
+}
+
+function openDeleteReg(guestId, name){
+  document.getElementById('confirmModalTitle').textContent = 'Delete Registration';
+  document.getElementById('confirmModalText').textContent = `Are you sure you want to delete the registration for ${name}? They will be removed from the attendee list and autocomplete.`;
+  document.getElementById('confirmModalBtn').onclick = () => deleteRegistration(guestId, name);
+  document.getElementById('confirmModal').classList.add('active');
+}
+
+function deleteRegistration(guestId, name){
+  closeModal();
+  allGuests = allGuests.filter(g => g.id !== guestId);
+  renderCheckin();
+
+  const cb = "delreg_" + Date.now();
+  window[cb] = function(){ delete window[cb]; };
+  const s = document.createElement("script");
+  s.src = SCRIPT_URL
+    + "?action=deleteRegistration"
+    + "&guestId="  + encodeURIComponent(guestId)
+    + "&callback=" + cb;
+  s.onerror = () => { delete window[cb]; };
+  document.body.appendChild(s);
+}
+
+function reorderQuestion(questionId, dir){
+  const unanswered = allQuestions.filter(q => !q.status || q.status.toLowerCase() === 'approved');
+  const idx = unanswered.findIndex(q => q.id === questionId);
+  if(idx < 0) return;
+  const newIdx = idx + dir;
+  if(newIdx < 0 || newIdx >= unanswered.length) return;
+
+  // Swap in allQuestions array
+  const ai = allQuestions.indexOf(unanswered[idx]);
+  const bi = allQuestions.indexOf(unanswered[newIdx]);
+  [allQuestions[ai], allQuestions[bi]] = [allQuestions[bi], allQuestions[ai]];
+  renderAll();
+
+  const cb = "reorder_" + Date.now();
+  window[cb] = function(){ delete window[cb]; };
+  const s = document.createElement("script");
+  s.src = SCRIPT_URL
+    + "?action=reorderQuestion"
+    + "&questionId=" + encodeURIComponent(questionId)
+    + "&direction="  + encodeURIComponent(dir)
+    + "&callback="   + cb;
+  s.onerror = () => { delete window[cb]; };
+  document.body.appendChild(s);
+}
+
+// Close modal on overlay click
+document.getElementById('editModal').addEventListener('click', function(e){ if(e.target===this) closeModal(); });
+document.getElementById('confirmModal').addEventListener('click', function(e){ if(e.target===this) closeModal(); });
+
+window.addEventListener('beforeunload', () => { if(refreshTimer) clearInterval(refreshTimer); });
+
+// ══════════════════════════════════════════════════════════
+// ATTENDEES TAB
+// ══════════════════════════════════════════════════════════
+let allAttendees = [];
+
+function loadAttendees(){
+  const cb = "attendeeLoad_" + Date.now();
+  window[cb] = function(data){
+    allAttendees = Array.isArray(data) ? data : [];
+    renderAttendees();
+    delete window[cb];
+  };
+  const s = document.createElement("script");
+  s.src = SCRIPT_URL + "?action=getGuests&callback=" + cb;
+  s.onerror = () => { allAttendees = []; renderAttendees(); };
+  document.body.appendChild(s);
+}
+
+function renderAttendees(){
+  const query = (document.getElementById('attendeeSearch').value || '').toLowerCase().trim();
+  const filtered = !query ? allAttendees : allAttendees.filter(g =>
+    g.fullName.toLowerCase().includes(query) ||
+    (g.phone  || '').includes(query) ||
+    (g.email  || '').toLowerCase().includes(query)
+  );
+
+  const checkedIn = allAttendees.filter(g => g.checkedIn === 'Yes').length;
+  document.getElementById('statTotalAttendees').textContent    = allAttendees.length;
+  document.getElementById('statCheckedInAttendees').textContent = checkedIn;
+  document.getElementById('statPendingAttendees').textContent  = allAttendees.length - checkedIn;
+  document.getElementById('countAttendees').textContent        = allAttendees.length;
+
+  const el = document.getElementById('listAttendees');
+  if(!filtered.length){
+    el.innerHTML = `<div class="empty-state"><div class="empty-icon">👥</div><div class="empty-text">${query ? 'No match found' : 'No registrations yet'}</div><div class="empty-sub">Attendees appear here once they register on the meeting page</div></div>`;
+    return;
+  }
+
+  el.innerHTML = filtered.map((g, i) => {
+    const checkedBadge = g.checkedIn === 'Yes'
+      ? `<span style="font-size:11px;background:rgba(42,157,78,.12);color:#2a9d4e;padding:2px 8px;border-radius:4px;font-weight:700">✓ In${g.checkedInTime ? ' · ' + g.checkedInTime : ''}</span>`
+      : `<span style="font-size:11px;background:rgba(23,38,64,.07);color:var(--muted);padding:2px 8px;border-radius:4px;font-weight:600">Pending</span>`;
+    const contactParts = [];
+    if(g.phone) contactParts.push('📞 ' + escapeHtml(g.phone));
+    if(g.email) contactParts.push('✉ ' + escapeHtml(g.email));
+    return `
+    <div class="attendee-row">
+      <div class="attendee-num">${i + 1}</div>
+      <div>
+        <div class="attendee-name">${escapeHtml(g.fullName)} ${checkedBadge}</div>
+        ${contactParts.length ? `<div class="attendee-contact">${contactParts.join(' &nbsp;·&nbsp; ')}</div>` : ''}
+      </div>
+      <div class="attendee-actions">
+        <button class="btn-delete-reg" onclick="openDeleteReg('${g.id}','${escapeHtml(g.fullName)}')" title="Delete">🗑</button>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+// ══════════════════════════════════════════════════════════
+// QUESTIONS READ-ONLY TAB
+// ══════════════════════════════════════════════════════════
+let qroFilter = 'all';
+
+function setQroFilter(f, btn){
+  qroFilter = f;
+  document.querySelectorAll('.qro-filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderQro();
+}
+
+function renderQro(){
+  // Reuse allQuestions already loaded by the main questions loader
+  const total    = allQuestions.length;
+  const answered = allQuestions.filter(q => q.status && q.status.toLowerCase() === 'answered').length;
+  const pending  = total - answered;
+
+  document.getElementById('statQroTotal').textContent    = total;
+  document.getElementById('statQroAnswered').textContent = answered;
+  document.getElementById('statQroPending').textContent  = pending;
+  document.getElementById('countQuestions').textContent  = total;
+
+  let filtered = allQuestions;
+  if(qroFilter === 'answered') filtered = allQuestions.filter(q => q.status && q.status.toLowerCase() === 'answered');
+  if(qroFilter === 'pending')  filtered = allQuestions.filter(q => !q.status || q.status.toLowerCase() !== 'answered');
+
+  const el = document.getElementById('listQro');
+  if(!filtered.length){
+    el.innerHTML = `<div class="empty-state"><div class="empty-icon">💬</div><div class="empty-text">No questions</div></div>`;
+    return;
+  }
+
+  el.innerHTML = filtered.map((q, i) => {
+    const isAnswered = q.status && q.status.toLowerCase() === 'answered';
+    return `
+    <div class="qro-card" style="${isAnswered ? 'opacity:.7' : ''}">
+      <div class="qro-num">Q${i + 1} ${isAnswered ? '<span class="qro-badge qro-badge-answered">Answered</span>' : ''}${q.speaker ? `<span class="qro-badge qro-badge-speaker">${escapeHtml(q.speaker)}</span>` : ''}</div>
+      <div class="qro-text">${escapeHtml(q.question)}</div>
+      <div class="qro-author">— ${escapeHtml(q.name || 'Attendee')}</div>
+    </div>`;
+  }).join('');
+}
+
+// ══════════════════════════════════════════════════════════
+// SURVEY RESULTS TAB
+// ══════════════════════════════════════════════════════════
+let allSurveys = [];
+
+function loadSurvey(){
+  const cb = "surveyLoad_" + Date.now();
+  window[cb] = function(data){
+    allSurveys = Array.isArray(data) ? data : [];
+    renderSurveyResults();
+    delete window[cb];
+  };
+  const s = document.createElement("script");
+  s.src = SCRIPT_URL + "?action=getSurveys&callback=" + cb;
+  s.onerror = () => { allSurveys = []; renderSurveyResults(); };
+  document.body.appendChild(s);
+}
+
+
+// ══════════════════════════════════════════════════════════
+// EMAIL SEND FLOW
+// ══════════════════════════════════════════════════════════
+const EMAIL_HTML = `<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/><style>body{margin:0;padding:0;background:#f8f0df;font-family:Georgia,'Times New Roman',serif}.wrap{max-width:620px;margin:0 auto;background:#fffaf0}.header{background:#172640;padding:28px 32px 22px}.logo-row{display:flex;align-items:center;gap:14px;margin-bottom:18px}.logo{width:60px;height:60px;background:white;border-radius:50%;padding:6px;object-fit:contain}.org-name{color:#ffd45f;font-family:Arial,sans-serif;font-weight:800;font-size:16px;text-transform:uppercase;letter-spacing:.08em}.org-sub{color:rgba(255,255,255,.75);font-family:Arial,sans-serif;font-size:12px;margin-top:3px}.headline{color:#fff;font-size:28px;line-height:1.15;font-weight:500;margin:0}.subhead{color:#e8c565;font-style:italic;font-size:17px;margin-top:8px}.saffron-bar{background:#f36c21;height:4px}.body-section{padding:32px 32px 24px}.greeting{font-size:19px;color:#172640;margin:0 0 18px}p{font-size:16px;line-height:1.7;color:#3a3f49;margin:0 0 16px}.section-title{font-family:Arial,sans-serif;font-weight:800;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#f36c21;border-bottom:1px solid rgba(23,38,64,.15);padding-bottom:7px;margin:28px 0 14px}.card{background:#fff;border-left:4px solid #f36c21;padding:16px 20px;margin:0 0 14px;border-radius:0 6px 6px 0}.card-title{font-family:Arial,sans-serif;font-weight:700;font-size:15px;color:#172640;margin:0 0 5px}.card-body{font-size:15px;color:#5d6675;line-height:1.55;margin:0;font-family:Arial,sans-serif}.card-link{display:inline-block;margin-top:8px;color:#f36c21;font-weight:700;font-size:14px;font-family:Arial,sans-serif;text-decoration:none}.cta-block{background:#172640;text-align:center;padding:28px 24px;margin:28px 0 0}.cta-text{color:rgba(255,255,255,.85);font-size:15px;font-family:Arial,sans-serif;margin:0 0 18px;line-height:1.55}.cta-btn{display:inline-block;background:#f36c21;color:white;text-decoration:none;padding:13px 28px;border-radius:999px;font-family:Arial,sans-serif;font-weight:800;font-size:13px;letter-spacing:.1em;text-transform:uppercase}.survey-block{background:rgba(243,108,33,.07);border:1px solid rgba(243,108,33,.25);border-radius:8px;padding:20px 22px;margin:24px 0;text-align:center}.survey-title{color:#172640;font-family:Arial,sans-serif;font-weight:700;font-size:16px;margin:0 0 8px}.survey-sub{color:#5d6675;font-size:14px;font-family:Arial,sans-serif;margin:0 0 14px;line-height:1.5}.survey-btn{display:inline-block;background:#172640;color:white;text-decoration:none;padding:11px 26px;border-radius:999px;font-family:Arial,sans-serif;font-weight:700;font-size:13px;letter-spacing:.08em;text-transform:uppercase}.footer{background:#172640;color:rgba(255,255,255,.6);text-align:center;padding:20px 24px;font-family:Arial,sans-serif;font-size:11px;letter-spacing:.1em;text-transform:uppercase;line-height:1.7}.footer a{color:#ffd45f;text-decoration:none}</style></head><body><div class="wrap"><div class="header"><div class="logo-row"><img class="logo" src="https://anandsinhausa.com/a4h-logo.png" alt="A4H Logo"/><div><div class="org-name">Americans4Hindus</div><div class="org-sub">Michigan Chapter</div></div></div><h1 class="headline">Thank You for Being There</h1><div class="subhead">May 31 Community Planning Meeting</div></div><div class="saffron-bar"></div><div class="body-section"><p class="greeting">Dear Friend,</p><p>Your presence at our May 31 Planning Meeting with <strong>Dr. Romesh Japra</strong> meant a great deal to us. The energy, the questions, and the conversations in that room are exactly what the Hindu American civic movement needs &mdash; and you were part of it.</p><p>We left the meeting inspired and energized. Now we need your continued participation to turn that inspiration into action.</p><div class="section-title">Share Your Feedback</div><div class="survey-block"><div class="survey-title">How was the meeting?</div><div class="survey-sub">Your feedback takes just 60 seconds and directly shapes how A4H Michigan plans future events. Please rate the meeting, share topics you care about, and tell us how you&rsquo;d like to get involved.</div><a class="survey-btn" href="https://anandsinhausa.com/a4h/meetings/may31.html#surveySection">Take the Survey</a></div><div class="section-title">Stay Connected &amp; Get Involved</div><div class="card"><div class="card-title">&#128222; Join Our Weekly Call &mdash; Sundays at 11 AM</div><div class="card-body">Every Sunday morning at 11 AM, A4H members connect to discuss civic issues, policy updates, and community action. It&rsquo;s 45 minutes that keep you informed and engaged.</div><a class="card-link" href="https://tinyurl.com/A4Hweeklyzoommeeting">Join This Sunday&rsquo;s Call &rarr;</a></div><div class="card"><div class="card-title">&#128161; Share Your Ideas</div><div class="card-body">You have insights and perspectives that A4H needs. Reply to this email with your suggestions &mdash; on policy, outreach, events, or anything else on your mind. Every idea matters.</div></div><div class="card"><div class="card-title">&#127891; Contribute Your Talents</div><div class="card-body">Our community is known for its education, intellect, and professional achievement. There are many ways to contribute beyond membership &mdash; bring a colleague or friend into the A4H fold, spread the word in your network, offer your expertise on a policy issue, or volunteer your time on a research topic where we need depth. Every skill has a place here.</div></div><div class="card"><div class="card-title">&#128106; Bring the Next Generation</div><div class="card-body">Invite the young adults in your family &mdash; children, nieces, nephews, students &mdash; to get involved with A4H. Civic awareness built early lasts a lifetime. A4H has a place for every generation.</div></div><div class="card"><div class="card-title">&#129309; Invite a Friend</div><div class="card-body">Know someone who cares about Hindu American representation but hasn&rsquo;t yet connected with A4H? Forward this email or share our website at <a href="https://www.americans4hindus.org" style="color:#f36c21;font-weight:700">www.americans4hindus.org</a>. Growing our community is how we grow our voice.</div></div><div class="card"><div class="card-title">&#127775; Become a Member or Trustee</div><div class="card-body">Your membership sustains A4H&rsquo;s work &mdash; voter guides, candidate endorsements, policy advocacy, and community events. Consider becoming a Member or Trustee and help shape the organization&rsquo;s future.</div><a class="card-link" href="https://secure.anedot.com/a4h-mi/contribute">Become a Member or Trustee &rarr;</a></div><div class="cta-block"><p class="cta-text">Together we are building a stronger, more engaged, and more represented Hindu American community in Michigan and across the nation.</p><a class="cta-btn" href="https://www.americans4hindus.org">Get Involved at A4H</a></div><p style="margin-top:28px">With gratitude and in community,</p><p><strong>Americans4Hindus</strong><br/><span style=\"font-size:14px;color:#5d6675\">Michigan Chapter</span></p></div><div class="footer">Americans4Hindus &middot; Michigan Chapter<br/><a href="https://www.americans4hindus.org">www.americans4hindus.org</a><br/>You are receiving this email because you attended the A4H May 31 Community Planning Meeting.</div></div></body></html>`;
+
+const JAPRA_EMAIL_HTML = `<!DOCTYPE html> <html lang="en"> <head> <meta charset="UTF-8"/> <meta name="viewport" content="width=device-width,initial-scale=1.0"/> <style> body{margin:0;padding:0;background:#f8f0df;font-family:Georgia,'Times New Roman',serif} .wrap{max-width:620px;margin:0 auto;background:#fffaf0} .header{background:#172640;padding:28px 32px 22px} .logo-row{display:flex;align-items:center;gap:14px;margin-bottom:18px} .logo{width:60px;height:60px;background:white;border-radius:50%;padding:6px;object-fit:contain} .org-name{color:#ffd45f;font-family:Arial,sans-serif;font-weight:800;font-size:16px;text-transform:uppercase;letter-spacing:.08em} .org-sub{color:rgba(255,255,255,.75);font-family:Arial,sans-serif;font-size:12px;margin-top:3px} .headline{color:#fff;font-size:28px;line-height:1.15;font-weight:500;margin:0} .subhead{color:#e8c565;font-style:italic;font-size:16px;margin-top:8px} .saffron-bar{background:#f36c21;height:4px} .body-section{padding:32px 32px 24px;background:#fffaf0} .greeting{font-size:20px;color:#172640;margin:0 0 16px} p{font-size:17px;line-height:1.75;color:#3a3f49;margin:0 0 16px} .section-title{font-family:Arial,sans-serif;font-weight:800;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#f36c21;border-bottom:1px solid rgba(23,38,64,.15);padding-bottom:7px;margin:26px 0 14px} .contribution-table{width:100%;border-collapse:collapse;margin:0 0 18px} .contribution-row{border-bottom:1px solid rgba(23,38,64,.08)} .contribution-row:last-child{border-bottom:none} .contribution-level{padding:12px 16px;font-family:Arial,sans-serif;font-weight:700;font-size:15px;color:#172640;width:60%} .contribution-amount{padding:12px 16px;font-family:Arial,sans-serif;font-size:15px;color:#f36c21;font-weight:700;text-align:right} .contribution-note{padding:10px 16px 14px;font-family:Arial,sans-serif;font-size:13px;color:#5d6675;font-style:italic;border-top:1px dashed rgba(23,38,64,.12)} .cta-center{text-align:center;margin:20px 0 6px} .cta-btn{display:inline-block;background:#f36c21;color:white;text-decoration:none;padding:13px 32px;border-radius:999px;font-family:Arial,sans-serif;font-weight:800;font-size:13px;letter-spacing:.1em;text-transform:uppercase} .info-card{background:#fff;border:1px solid rgba(23,38,64,.1);border-radius:6px;padding:18px 22px;margin:0 0 14px} .info-card-title{font-family:Arial,sans-serif;font-weight:700;font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:#f36c21;margin:0 0 10px} .address-block{font-family:Arial,sans-serif;font-size:16px;color:#172640;line-height:1.6;font-weight:600} .contact-line{font-family:Arial,sans-serif;font-size:17px;color:#3a3f49;line-height:1.75} .contact-line a{color:#f36c21;text-decoration:none;font-weight:600} .tagline-block{background:linear-gradient(135deg,#172640,#223553);padding:24px 28px;margin:24px 0 0;text-align:center} .tagline{color:#e8c565;font-style:italic;font-size:18px;line-height:1.4;margin:0} .sign-off{margin-top:26px;font-family:Georgia,serif;font-size:15px;color:#3a3f49} .footer{background:#172640;color:rgba(255,255,255,.6);text-align:center;padding:18px 24px;font-family:Arial,sans-serif;font-size:11px;letter-spacing:.1em;text-transform:uppercase;line-height:1.7} .footer a{color:#ffd45f;text-decoration:none} </style> </head> <body> <div class="wrap"> <div class="header"> <div class="logo-row"> <img class="logo" src="https://anandsinhausa.com/a4h-logo.png" alt="A4H Logo"/> <div> <div class="org-name">Americans4Hindus</div> <div class="org-sub">Michigan Chapter</div> </div> </div> <div class="headline">A Personal Message from<br/>Dr. Romesh Japra</div> <div class="subhead">Founder &amp; Chairperson, Americans4Hindus</div> </div> <div class="saffron-bar"></div> <div class="body-section"> <p class="greeting">Dear Friend,</p> <p>It was truly a pleasure connecting with you and having the opportunity to share the Mission, Vision, and Purpose of Americans4Hindus (A4H).</p> <p>At this important time, we invite you to be part of this growing movement to empower our community through civic and political engagement.</p> <div class="section-title">Support the Movement</div> <p style="font-size:16px;color:#5d6675;margin-bottom:14px;font-family:Arial,sans-serif">Your contribution — at any level — helps strengthen our collective voice and shape a brighter future for Hindu Americans.</p> <table class="contribution-table"> <tr class="contribution-row"> <td class="contribution-level">&#9679; Trustee</td> <td class="contribution-amount">$10,000</td> </tr> <tr class="contribution-row"> <td class="contribution-level">&#9679; Champion</td> <td class="contribution-amount">$5,000</td> </tr> <tr class="contribution-row"> <td class="contribution-level">&#9679; Premier Member</td> <td class="contribution-amount">$1,000</td> </tr> <tr class="contribution-row"> <td class="contribution-level" colspan="2" class="contribution-note" style="font-family:Arial,sans-serif;font-size:14px;color:#5d6675;font-style:italic;padding:12px 16px">&#9679; Or contribute any amount — every contribution makes a difference</td> </tr> </table> <div class="cta-center"> <a class="cta-btn" href="https://secure.anedot.com/americans4hindus/donate">Donate &amp; Get Involved</a> </div> <div class="section-title">Contribute by Check</div> <div class="info-card"> <div class="info-card-title">Mail To</div> <div class="address-block"> Americans4Hindus<br/> 1000 Hunter Lane<br/> Fremont, CA 94539 </div> <div style="font-family:Arial,sans-serif;font-size:13px;color:#5d6675;margin-top:8px">Make checks payable to <strong>Americans4Hindus</strong></div> </div> <div class="section-title">Contact for In-Person Contribution</div> <div class="info-card"> <div class="contact-line"> <strong>Anand Sinha</strong><br/> Vice President, Strategy, A4H<br/> <a href="tel:+12488723057">(248) 872-3057</a> &nbsp;&middot;&nbsp; <a href="mailto:Sinha.Anand@gmail.com">Sinha.Anand@gmail.com</a> </div> </div> <div class="section-title">Learn More</div> <p style="font-family:Arial,sans-serif;font-size:15px"> <a href="https://www.americans4hindus.org" style="color:#f36c21;font-weight:700">www.americans4hindus.org</a></p> <div class="tagline-block"> <div class="tagline">"Let's come together to Empower Democracy with Hindu Values."</div> </div> <div class="sign-off"> <p style="margin-top:24px">With gratitude,</p> <p><strong>Dr. Romesh Japra</strong><br/> <span style="font-size:14px;color:#5d6675">Founder &amp; Chairperson, Americans4Hindus</span></p> </div> </div> <div class="footer"> Americans4Hindus &middot; Michigan Chapter<br/> <a href="https://www.americans4hindus.org">www.americans4hindus.org</a><br/> You are receiving this email because you attended the A4H May 31 Community Planning Meeting. </div> </div> </body> </html>`;
+
+function openEmailModal(type){
+  const isJapra = type === "japra";
+  const emailHtml = isJapra ? JAPRA_EMAIL_HTML : EMAIL_HTML;
+  // Populate recipient summary
+  const checkedIn = allAttendees.filter(g => g.checkedIn === 'Yes' && g.email);
+  const noEmail   = allAttendees.filter(g => g.checkedIn === 'Yes' && !g.email);
+  let summary = `<strong>${checkedIn.length}</strong> checked-in guests with email`;
+  if(noEmail.length) summary += ` <span style="color:#c0392b">(${noEmail.length} have no email on file — they will be skipped)</span>`;
+  document.getElementById('emailRecipientSummary').innerHTML = summary;
+  document.getElementById('sendAllBtn').disabled = checkedIn.length === 0;
+  document.getElementById('emailModalTitle').textContent = isJapra ? '✉ Send Dr. Japra\'s Message' : '✉ Send Thank-You Email';
+  document.getElementById('emailSubjectVal').textContent = isJapra ? 'A Personal Message from Dr. Romesh Japra — Join the A4H Movement' : 'Thank You for Joining Us — Stay Connected with A4H Michigan';
+  document.getElementById('emailModalOverlay').dataset.emailType = type || 'thankyou';
+  const frame = document.getElementById('emailPreviewFrame');
+  frame.srcdoc = emailHtml;
+
+  // Reset status
+  const st = document.getElementById('emailStatus');
+  st.className = 'email-status';
+  st.textContent = '';
+
+  document.getElementById('emailModalOverlay').classList.add('visible');
+}
+
+function closeEmailModal(){
+  document.getElementById('emailModalOverlay').classList.remove('visible');
+}
+
+// Close on overlay click
+document.getElementById('emailModalOverlay').addEventListener('click', function(e){
+  if(e.target === this) closeEmailModal();
+});
+
+function sendEmail(mode){
+  const statusEl = document.getElementById('emailStatus');
+  statusEl.className = 'email-status';
+  statusEl.textContent = '';
+
+  const testBtn = document.querySelector('.email-test-btn');
+  const allBtn  = document.getElementById('sendAllBtn');
+  testBtn.disabled = true;
+  allBtn.disabled  = true;
+  testBtn.textContent = mode === 'test' ? 'Sending…' : 'Send Test to Anand';
+  allBtn.textContent  = mode === 'all'  ? 'Sending…' : 'Send to All Checked-In Guests';
+
+  const cb = 'emailCb_' + Date.now();
+  window[cb] = function(result){
+    delete window[cb];
+    testBtn.disabled = false;
+    allBtn.disabled  = allAttendees.filter(g => g.checkedIn === 'Yes' && g.email).length === 0;
+    testBtn.textContent = 'Send Test to Anand';
+    allBtn.textContent  = 'Send to All Checked-In Guests';
+    if(result && result.success){
+      statusEl.className = 'email-status success';
+      statusEl.textContent = result.message || 'Email sent successfully.';
+    } else {
+      statusEl.className = 'email-status error';
+      statusEl.textContent = '✗ ' + (result && result.error ? result.error : 'Send failed. Check Apps Script logs.');
+    }
+  };
+
+  const s = document.createElement('script');
+  s.onerror = function(){
+    delete window[cb];
+    testBtn.disabled = false;
+    allBtn.disabled  = false;
+    testBtn.textContent = 'Send Test to Anand';
+    allBtn.textContent  = 'Send to All Checked-In Guests';
+    statusEl.className = 'email-status error';
+    statusEl.textContent = '✗ Network error. Check your connection and try again.';
+  };
+  const emailType = document.getElementById('emailModalOverlay').dataset.emailType || 'thankyou';
+  const actionName = emailType === 'japra' ? 'sendJapraEmail' : 'sendEmail';
+  s.src = SCRIPT_URL
+    + '?action=' + actionName
+    + '&mode=' + encodeURIComponent(mode)
+    + '&callback=' + cb;
+  document.body.appendChild(s);
+}
+
+
+function renderSurveyResults(){
+  const count = allSurveys.length;
+  document.getElementById('countSurvey').textContent    = count;
+  document.getElementById('statSurveyCount').textContent = count;
+
+  const rated   = allSurveys.filter(s => s.rating && parseInt(s.rating) > 0);
+  const avgRaw  = rated.length ? rated.reduce((sum, s) => sum + parseInt(s.rating), 0) / rated.length : 0;
+  const avg     = avgRaw ? avgRaw.toFixed(1) : '—';
+  const avgStars = avgRaw ? '★'.repeat(Math.round(avgRaw)) + '☆'.repeat(5 - Math.round(avgRaw)) : '';
+
+  document.getElementById('statAvgRating').textContent  = avg === '—' ? '—' : avg + ' ' + avgStars;
+  document.getElementById('statVolunteerYes').textContent = allSurveys.filter(s => s.volunteer === 'Yes').length;
+  document.getElementById('statHasFeedback').textContent  = allSurveys.filter(s => s.feedback && s.feedback.trim()).length;
+
+  const el = document.getElementById('listSurvey');
+  if(!count){
+    el.innerHTML = `<div class="empty-state"><div class="empty-icon">📋</div><div class="empty-text">No survey responses yet</div><div class="empty-sub">Responses appear here after attendees submit the survey on the meeting page</div></div>`;
+    return;
+  }
+
+  el.innerHTML = allSurveys.map((s, i) => {
+    const ratingNum = parseInt(s.rating) || 0;
+    const stars = ratingNum ? '★'.repeat(ratingNum) + '☆'.repeat(5 - ratingNum) : '';
+    const topics = s.topics ? s.topics.split(',').map(t => t.trim()).filter(Boolean) : [];
+    const volClass = s.volunteer === 'Yes' ? 'survey-volunteer-yes' : s.volunteer === 'Maybe' ? 'survey-volunteer-maybe' : 'survey-volunteer-no';
+
+    const contactParts = [];
+    if(s.phone) contactParts.push('📞 ' + escapeHtml(s.phone));
+    if(s.email) contactParts.push('✉ '  + escapeHtml(s.email));
+
+    return `
+    <div class="survey-row">
+      <div class="survey-row-top">
+        <div>
+          <div class="survey-row-name">${escapeHtml(s.name || 'Anonymous')}</div>
+          ${contactParts.length ? `<div class="survey-contact-row">${contactParts.join(' &nbsp;·&nbsp; ')}</div>` : ''}
+        </div>
+        <div style="text-align:right">
+          ${ratingNum ? `<div class="survey-rating">${stars}<span class="survey-rating-num">${ratingNum}/5</span></div>` : ''}
+          <div class="survey-row-time">${escapeHtml(s.timestamp || '')}</div>
+        </div>
+      </div>
+      ${topics.length ? `<div class="survey-topics-list">${topics.map(t => `<span class="survey-topic-pill">${escapeHtml(t)}</span>`).join('')}</div>` : ''}
+      ${s.volunteer ? `<div style="margin-top:6px"><span class="survey-volunteer-badge ${volClass}">Volunteer: ${escapeHtml(s.volunteer)}</span></div>` : ''}
+      ${s.feedback  ? `<div class="survey-feedback">"${escapeHtml(s.feedback)}"</div>` : ''}
+    </div>`;
+  }).join('');
+}
+</script>
+<!-- Email Modal -->
+<div class="email-modal-overlay" id="emailModalOverlay">
+  <div class="email-modal">
+    <div class="email-modal-header">
+      <div class="email-modal-title" id="emailModalTitle">✉ Send Thank-You Email</div>
+      <button class="email-modal-close" onclick="closeEmailModal()">✕ Close</button>
+    </div>
+    <div class="email-modal-body">
+      <div class="email-meta-row"><span class="email-meta-label">From:</span><span class="email-meta-val">Americans4Hindus MI Chapter &lt;Sinha.Anand@gmail.com&gt;</span></div>
+      <div class="email-meta-row"><span class="email-meta-label">CC:</span><span class="email-meta-val">Ajith Kadakol, Pramod Thanedar, Anand Sinha</span></div>
+      <div class="email-meta-row"><span class="email-meta-label">Subject:</span><span class="email-meta-val" id="emailSubjectVal">Thank You for Joining Us — Stay Connected with A4H Michigan</span></div>
+      <div class="email-meta-row"><span class="email-meta-label">To:</span><span class="email-meta-val" id="emailRecipientSummary">Loading…</span></div>
+      <div style="font-size:13px;color:var(--muted);margin:4px 0 14px;font-style:italic">Preview of email below — scroll to review before sending</div>
+      <div class="email-preview-box">
+        <iframe id="emailPreviewFrame" style="width:100%;height:420px;border:none" srcdoc="Loading preview…"></iframe>
+      </div>
+      <div class="email-actions">
+        <button class="email-send-btn email-test-btn" onclick="sendEmail('test')">Send Test to Anand</button>
+        <button class="email-send-btn email-all-btn" id="sendAllBtn" onclick="sendEmail('all')">Send to All Checked-In Guests</button>
+      </div>
+      <div class="email-status" id="emailStatus"></div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
