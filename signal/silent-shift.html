@@ -1,0 +1,1362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Silent Shift: How a Policy Landscape Is Being Built Around Hindu Americans - The Signal</title>
+
+    <!-- OG Tags -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://anandsinhausa.com/signal/silent-shift.html">
+    <meta property="og:title" content="The Silent Shift: How a Policy Landscape Is Being Built Around Hindu Americans">
+    <meta property="og:description" content="Five million Indian Americans invest two cents per person in political infrastructure. A documented review of the legislative record — and what the civic gap will cost your children.">
+    <meta property="og:image" content="https://anandsinhausa.com/signal/assets/silent-shift-OG.jpg">
+
+    <!-- Twitter Tags -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://anandsinhausa.com/signal/silent-shift.html">
+    <meta property="twitter:title" content="The Silent Shift | The Signal">
+    <meta property="twitter:description" content="Hindu Americans invest $0.02 per person in political infrastructure. Jewish Americans invest $17. This is not a wealth gap. It is a priority gap.">
+    <meta property="twitter:image" content="https://anandsinhausa.com/signal/assets/silent-shift-OG.jpg">
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: Georgia, 'Times New Roman', serif;
+            font-size: 18px;
+            line-height: 1.7;
+            color: #222;
+            background-color: #fff;
+        }
+
+        header {
+            background-color: #1a1a1a;
+            color: #fff;
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .signal-masthead {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 10px;
+        }
+
+        .globe-icon {
+            width: 40px;
+            height: 40px;
+            border: 2px solid #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        h1.main-title {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 28px;
+            font-weight: 700;
+            letter-spacing: 3px;
+            color: #fff;
+            margin: 0;
+        }
+
+        .category-tags {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 11px;
+            letter-spacing: 2px;
+            color: #999;
+            text-transform: uppercase;
+            margin-top: 8px;
+        }
+
+        .category-tags span { margin: 0 8px; }
+        .category-tags span:first-child { margin-left: 0; }
+
+        .tab-container {
+            background-color: #2b3e50;
+            border-top: 1px solid #1a2732;
+            padding: 0;
+            margin-top: 15px;
+            overflow-x: auto;
+            overflow-y: hidden;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+        }
+
+        .tab-container::-webkit-scrollbar { display: none; }
+
+        .tabs {
+            display: flex;
+            gap: 4px;
+            padding: 8px 10px;
+            justify-content: flex-start;
+            flex-wrap: nowrap;
+        }
+
+        .tab {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 9px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            padding: 9px 13px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            color: #8a9ba8;
+            background-color: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 4px;
+            white-space: nowrap;
+            flex-shrink: 0;
+            text-align: center;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+        }
+
+        .tab:hover {
+            color: #D4AF37;
+            background-color: rgba(212,175,55,0.1);
+            border-color: rgba(212,175,55,0.3);
+        }
+
+        .tab.active {
+            color: #000;
+            background-color: #D4AF37;
+            border-color: #D4AF37;
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.2), 0 1px 1px rgba(255,255,255,0.1);
+        }
+
+        @media (max-width: 768px) {
+            .tabs { padding: 6px 8px; gap: 3px; }
+            .tab { font-size: 8px; padding: 8px 10px; letter-spacing: 0.2px; }
+        }
+
+        @media (max-width: 400px) {
+            .tabs { padding: 5px 6px; gap: 2px; }
+            .tab { font-size: 7.5px; padding: 7px 9px; letter-spacing: 0.1px; }
+        }
+
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: 40px 20px 80px;
+        }
+
+        .tab-content { display: none; }
+
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.4s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .article-meta {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 13px;
+            color: #999;
+            margin-bottom: 35px;
+            padding-bottom: 25px;
+            border-bottom: 1px solid #e5e5e5;
+            text-align: left;
+        }
+
+        .article-meta .author { color: #666; font-weight: 500; }
+        .article-meta span { margin-right: 12px; }
+
+        .article-category {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 11px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #999;
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        h2 {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 32px;
+            font-weight: 700;
+            line-height: 1.3;
+            margin: 40px 0 20px;
+            color: #000;
+            text-align: left;
+        }
+
+        h2:first-of-type { margin-top: 0; }
+
+        h3 {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 24px;
+            font-weight: 600;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            color: #2b3e50;
+            text-align: left;
+        }
+
+        p { margin-bottom: 20px; text-align: left; }
+
+        .subtitle {
+            font-size: 20px;
+            font-style: italic;
+            color: #555;
+            margin-bottom: 30px;
+            text-align: left;
+        }
+
+        strong { font-weight: 700; color: #000; }
+        em { font-style: italic; }
+
+        hr { border: none; border-top: 1px solid #e5e5e5; margin: 40px 0; }
+
+        .callout-box {
+            background-color: #f8f6f0;
+            border-left: 3px solid #D4AF37;
+            padding: 20px 25px;
+            margin: 30px 0;
+        }
+
+        .callout-box p {
+            margin-bottom: 0;
+            font-size: 18px;
+            font-weight: 700;
+            color: #1a1a1a;
+            font-style: normal;
+            text-align: left;
+        }
+
+        .callout-box.note p {
+            font-weight: 400;
+            font-size: 17px;
+            color: #333;
+        }
+
+        .callout-box h3 { margin-top: 0; color: #000; text-align: left; }
+
+        /* STEELMAN BOX */
+        .steelman-box {
+            background-color: #f0f4f8;
+            border-left: 3px solid #4a78a8;
+            padding: 20px 25px;
+            margin: 30px 0;
+        }
+
+        .steelman-label {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 9px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #4a78a8;
+            margin-bottom: 12px;
+        }
+
+        .steelman-box p {
+            font-size: 17px;
+            color: #3a4a5a;
+            line-height: 1.7;
+            margin-bottom: 14px;
+        }
+
+        .steelman-box p:last-child { margin-bottom: 0; }
+
+        /* LEGISLATIVE TIMELINE */
+        .leg-timeline { margin: 10px 0 30px; }
+
+        .leg-item {
+            border-left: 3px solid #e5e5e5;
+            padding: 0 0 28px 22px;
+            position: relative;
+        }
+
+        .leg-item:last-child { padding-bottom: 0; border-left-color: transparent; }
+
+        .leg-dot {
+            position: absolute;
+            left: -7px;
+            top: 5px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #D4AF37;
+            border: 2px solid #fff;
+        }
+
+        .leg-title {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 15px;
+            font-weight: 700;
+            color: #000;
+            margin-bottom: 5px;
+        }
+
+        .leg-status {
+            display: inline-block;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 9px;
+            font-weight: 700;
+            letter-spacing: 1.2px;
+            text-transform: uppercase;
+            padding: 2px 8px;
+            border-radius: 2px;
+            margin-bottom: 10px;
+        }
+
+        .leg-status.vetoed { background: #fef2f2; color: #b03030; }
+        .leg-status.active { background: #fff8e0; color: #8a6800; }
+        .leg-status.enacted { background: #eaf5ef; color: #1a6b3c; }
+        .leg-status.pending { background: #e8ecf5; color: #2a4080; }
+
+        .leg-body {
+            font-size: 16px;
+            line-height: 1.72;
+            color: #444;
+        }
+
+        /* PER-PERSON COMPARISON */
+        .compare-block {
+            margin: 30px 0;
+            border: 1px solid #e5e5e5;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .compare-header {
+            background: #2b3e50;
+            padding: 14px 20px 12px;
+        }
+
+        .compare-header-title {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: #fff;
+            margin-bottom: 3px;
+        }
+
+        .compare-header-sub {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 10px;
+            color: rgba(255,255,255,0.45);
+            letter-spacing: 0.5px;
+        }
+
+        .compare-row {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 14px 20px;
+            border-bottom: 1px solid #e5e5e5;
+            background: #fff;
+        }
+
+        .compare-row:last-of-type { border-bottom: none; }
+        .compare-row.highlight { background: #f8f6f0; border-left: 3px solid #D4AF37; }
+
+        .compare-community {
+            width: 160px;
+            flex-shrink: 0;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 12px;
+            font-weight: 700;
+            color: #222;
+            line-height: 1.4;
+        }
+
+        .compare-community span {
+            display: block;
+            font-size: 10px;
+            font-weight: 400;
+            color: #999;
+            margin-top: 2px;
+        }
+
+        .compare-bar-wrap { flex: 1; }
+
+        .compare-bar-track {
+            height: 18px;
+            background: #ece8e0;
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .compare-bar-fill {
+            height: 100%;
+            border-radius: 2px;
+            width: 0;
+            transition: width 1.4s ease-out;
+        }
+
+        .bar-a { background: #2b3e50; }
+        .bar-b { background: #6b8ab0; }
+        .bar-c { background: #D4AF37; }
+
+        .compare-amount {
+            width: 55px;
+            flex-shrink: 0;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 14px;
+            font-weight: 800;
+            color: #222;
+            text-align: right;
+        }
+
+        .compare-amount.gold { color: #b8860b; }
+
+        .compare-footer {
+            background: #f8f6f0;
+            padding: 10px 20px;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 10px;
+            color: #999;
+            border-top: 1px solid #e5e5e5;
+            line-height: 1.6;
+        }
+
+        /* SUBSCRIBE BOX */
+        .subscribe-box {
+            background-color: #f8f6f0;
+            border-left: 4px solid #D4AF37;
+            padding: 30px;
+            margin: 40px 0;
+            text-align: center;
+        }
+
+        .subscribe-box h3 {
+            margin-top: 0;
+            margin-bottom: 15px;
+            color: #000;
+            text-align: center;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        }
+
+        .subscribe-box p { margin-bottom: 20px; text-align: center; color: #666; }
+
+        .subscribe-box a {
+            display: inline-block;
+            padding: 12px 30px;
+            margin: 10px;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 4px;
+            border: none;
+        }
+
+        .subscribe-box a:first-of-type { background-color: #D4AF37; color: #000; }
+        .subscribe-box a:last-of-type { background-color: #2b3e50; color: #fff; }
+        .subscribe-box a:hover { opacity: 0.9; }
+
+        a { color: #326891; text-decoration: none; border-bottom: 1px solid #326891; }
+        a:hover { color: #1a4d6d; border-bottom-color: #1a4d6d; }
+
+        /* NEXT TAB NAVIGATION */
+        .next-tab-nav {
+            margin: 40px 0 30px;
+            text-align: center;
+            border-top: 1px solid #e5e5e5;
+            padding-top: 36px;
+        }
+
+        .next-tab-teaser {
+            font-style: italic;
+            color: #555;
+            font-size: 18px;
+            line-height: 1.7;
+            margin-bottom: 24px;
+            text-align: center;
+        }
+
+        .next-tab-prompt {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 15px;
+            margin-bottom: 20px;
+            text-align: center;
+            color: #444;
+        }
+
+        .next-tab-btn {
+            display: block;
+            width: 100%;
+            max-width: 420px;
+            margin: 0 auto;
+            padding: 16px 30px;
+            background-color: #D4AF37;
+            color: #000;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 16px;
+            font-weight: 700;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            text-align: center;
+            letter-spacing: 0.3px;
+            transition: opacity 0.2s;
+        }
+
+        .next-tab-btn:hover { opacity: 0.85; }
+
+        /* AUTHOR NOTE */
+        .author-note {
+            background: #2b3e50;
+            color: #fff;
+            padding: 36px 32px;
+            margin: 32px 0 0;
+        }
+
+        .author-note-label {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 9px;
+            font-weight: 800;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: #D4AF37;
+            margin-bottom: 18px;
+        }
+
+        .author-note-text {
+            font-family: Georgia, 'Times New Roman', serif;
+            font-size: 16px;
+            line-height: 1.75;
+            color: #cdd5dc;
+            margin-bottom: 14px;
+            text-align: left;
+        }
+
+        .author-note-strong { color: #D4AF37; font-weight: 700; }
+
+        .author-note-quote {
+            font-family: Georgia, 'Times New Roman', serif;
+            font-size: 20px;
+            font-style: italic;
+            font-weight: 400;
+            color: #D4AF37;
+            line-height: 1.5;
+            margin: 24px 0;
+            padding-left: 20px;
+            border-left: 3px solid #D4AF37;
+            text-align: left;
+        }
+
+        .author-note-sig {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 13px;
+            color: #8a9ba8;
+            margin-top: 20px;
+            margin-bottom: 24px;
+            letter-spacing: 0.3px;
+        }
+
+        .author-note-cta { text-align: center; }
+
+        .author-note-btn {
+            display: inline-block;
+            padding: 14px 36px;
+            background-color: #D4AF37;
+            color: #000;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 14px;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: opacity 0.2s;
+        }
+
+        .author-note-btn:hover { opacity: 0.85; }
+
+        /* ABOUT AUTHOR */
+        .about-author {
+            border: 2px solid #e0d8cc;
+            padding: 30px;
+            margin: 32px 0;
+        }
+
+        .about-author-rule {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .about-author-tag {
+            background: #2b3e50;
+            color: #D4AF37;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 9px;
+            font-weight: 800;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            padding: 7px 14px;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        .about-author-line {
+            flex: 1;
+            height: 1px;
+            background: #e0d8cc;
+            margin-left: 12px;
+        }
+
+        .about-author-name {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 18px;
+            font-weight: 800;
+            color: #000;
+            letter-spacing: 0.3px;
+            margin-bottom: 6px;
+        }
+
+        .about-author-title {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: #D4AF37;
+            margin-bottom: 16px;
+        }
+
+        .about-author-bio {
+            font-family: Georgia, 'Times New Roman', serif;
+            font-size: 16px;
+            line-height: 1.75;
+            color: #444;
+            margin-bottom: 14px;
+            text-align: left;
+        }
+
+        .about-author-bio strong { color: #000; }
+
+        .about-author-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 18px;
+        }
+
+        .about-author-link {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: #2b3e50;
+            text-decoration: none;
+            border: 1px solid #2b3e50;
+            border-bottom: 1px solid #2b3e50;
+            padding: 7px 14px;
+            transition: all 0.2s;
+        }
+
+        .about-author-link:hover {
+            background: #2b3e50;
+            color: #D4AF37;
+            border-color: #2b3e50;
+        }
+
+        /* DISCLAIMER */
+        .disclaimer {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 12px;
+            color: #aaa;
+            margin-top: 40px;
+            font-style: italic;
+        }
+
+        /* ARCHIVE */
+        .archive-section-rule {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+            margin-top: 10px;
+        }
+
+        .archive-rule-tag {
+            background: #2b3e50;
+            color: #D4AF37;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 9px;
+            font-weight: 800;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            padding: 7px 14px;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        .archive-rule-line {
+            flex: 1;
+            height: 1px;
+            background: #e5e5e5;
+            margin-left: 12px;
+        }
+
+        .archive-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin: 24px 0;
+        }
+
+        @media (max-width: 600px) { .archive-grid { grid-template-columns: 1fr; } }
+
+        .arc-card {
+            background: white;
+            border: 2px solid #e0d8cc;
+            padding: 18px;
+            text-decoration: none;
+            display: block;
+            transition: all 0.2s;
+            color: inherit;
+            border-radius: 2px;
+        }
+
+        .arc-card:hover {
+            border-color: #D4AF37;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .arc-card.current-arc {
+            border-color: #D4AF37;
+            box-shadow: 0 2px 10px rgba(212,175,55,0.2);
+            cursor: default;
+        }
+
+        .arc-card.current-arc:hover { transform: none; }
+
+        .arc-badge {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 8px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            padding: 3px 8px;
+            display: inline-block;
+            border-radius: 2px;
+        }
+
+        .arc-badge.live { background: rgba(43,62,80,0.1); color: #2b3e50; }
+        .arc-badge.current { background: #D4AF37; color: #000; }
+
+        .arc-number {
+            font-family: Georgia, 'Times New Roman', serif;
+            font-size: 36px;
+            font-weight: bold;
+            color: #e8e0d4;
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+
+        .arc-headline {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 15px;
+            font-weight: 700;
+            color: #000;
+            margin-bottom: 8px;
+            line-height: 1.3;
+        }
+
+        .arc-headline em { color: #D4AF37; font-style: italic; }
+
+        .arc-deck {
+            font-family: Georgia, 'Times New Roman', serif;
+            font-size: 13px;
+            line-height: 1.6;
+            color: #555;
+            margin-bottom: 10px;
+        }
+
+        .arc-date {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 9px;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: #999;
+        }
+
+        .closing-line {
+            font-style: italic;
+            font-size: 19px;
+            color: #2b3e50;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #e5e5e5;
+        }
+
+        footer {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            border-top: 1px solid #e5e5e5;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 14px;
+            color: #666;
+            text-align: center;
+        }
+
+        footer a { color: #326891; border: none; }
+        footer p { text-align: center; }
+
+        @media (max-width: 768px) {
+            body { font-size: 16px; }
+            h1.main-title { font-size: 22px; }
+            h2 { font-size: 26px; }
+            h3 { font-size: 20px; }
+            .container { padding: 30px 15px 60px; }
+            .subscribe-box a { display: block; margin: 10px 0; }
+            .compare-community { width: 110px; font-size: 11px; }
+            .compare-amount { font-size: 12px; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="header-content">
+        <div class="signal-masthead">
+            <div class="globe-icon">🌐</div>
+            <h1 class="main-title">THE SIGNAL</h1>
+        </div>
+        <div class="category-tags">
+            CIVIC <span>·</span> POLICY <span>·</span> IDENTITY <span>·</span> LEGISLATION <span>·</span> ELECTIONS <span>·</span> ANALYSIS
+        </div>
+    </div>
+    <div class="tab-container">
+        <nav class="tabs">
+            <div class="tab active" data-tab="bubble">THE BUBBLE</div>
+            <div class="tab" data-tab="record">THE RECORD</div>
+            <div class="tab" data-tab="shift">THE SHIFT</div>
+            <div class="tab" data-tab="response">THE RESPONSE</div>
+            <div class="tab" data-tab="more">OTHER EDITIONS</div>
+        </nav>
+    </div>
+</header>
+
+<main class="container">
+
+    <!-- ═══════════════════════════════════════════════ -->
+    <!-- TAB 1: THE BUBBLE -->
+    <!-- ═══════════════════════════════════════════════ -->
+    <article id="bubble" class="tab-content active">
+
+        <div class="article-category">CIVIC · IDENTITY · POLICY · JUNE 2026</div>
+
+        <h2>The Silent Shift</h2>
+
+        <p class="subtitle">How a Policy Landscape Is Being Built Around Hindu Americans — and Why the Generation That Grew Up Safe Is the Least Prepared for It</p>
+
+        <div class="article-meta">
+            <span class="author">Anand Sinha</span>
+            <span>·</span>
+            <span>June 2026</span>
+            <span>·</span>
+            <span>Part I of IV &nbsp;·&nbsp; The Bubble</span>
+        </div>
+
+        <p>For many Hindu Americans now in their thirties and forties, the United States delivered exactly what their parents were promised. You grew up in carefully chosen school districts, attended competitive universities, built careers at institutions your parents could only admire from a distance. You never encountered hostility toward your religion. You never heard anyone question your right to be here. You never heard anyone use the word "caste."</p>
+
+        <p>That experience was genuine. It was also not accidental.</p>
+
+        <p>Your parents made deliberate choices about the neighborhood, the school district, the social environment. They built a protective perimeter around your childhood that was, by design, insulated from whatever tensions existed in the broader culture. The result was a generation of Hindu Americans who developed a foundational assumption — not quite a belief, more a background fact — that discrimination against Hindus was a theoretical concern, not a practical one. For them, in the environments they constructed, it genuinely wasn't.</p>
+
+        <div class="callout-box">
+            <p>Your safety was engineered by your parents' choices. It cannot be passed down like a home or a savings account.</p>
+        </div>
+
+        <p>The problem with that inheritance is not ingratitude. The problem is that the conditions your parents engineered are not transferable to the next generation. They were constructed around specific circumstances, in a specific era, through specific choices. The systems your children will navigate — corporate HR departments, university conduct frameworks, state anti-discrimination law, school curricula — were not part of that construction. They are being built right now. And they are being built largely without your participation.</p>
+
+        <p>This is not a claim about malicious intent. It is a claim about process. Every policy framework reflects the voices that were present when it was written. When Hindu American voices were systematically absent — because life was good, because the bubble held, because there were more urgent professional priorities — the frameworks developed in that absence were shaped by other voices and other interests. This is how policy works in a democracy. Presence is leverage. Absence is consent to whatever others decide.</p>
+
+        <hr>
+
+        <p>The generation of Hindu Americans that grew up in the bubble became, as a consequence, the most civically underprepared segment of one of America's most professionally accomplished communities. Excellent at navigating the meritocracy. Almost entirely absent from the rooms where the rules of the meritocracy are negotiated and rewritten.</p>
+
+        <div class="callout-box">
+            <p>The meritocracy rewards credentials. The policy environment rewards organization. Your generation mastered one and largely ignored the other.</p>
+        </div>
+
+        <p>That gap is no longer theoretical. What follows, across the next three tabs, is a documented account of what has been constructed in the years your generation was focused elsewhere — in legislation, in institutions, and in the political infrastructure that will shape your children's professional and civic lives for decades to come. The record is not a projection. It is public, verifiable, and already in motion.</p>
+
+        <div class="next-tab-nav">
+            <p class="next-tab-teaser">The construction began with a court filing in 2020. What has been built since is a documented legislative and institutional record — one that most Hindu Americans in your demographic have never encountered, because the institutions that track it are not the ones you follow.</p>
+            <p class="next-tab-prompt"><strong>Continue reading:</strong> Tap the <strong>THE RECORD</strong> tab above for the full legislative timeline.</p>
+            <button class="next-tab-btn" onclick="switchToTab('record')">Read: The Record &rarr;</button>
+        </div>
+
+        <div class="subscribe-box">
+            <h3>Stay Updated</h3>
+            <p>Get notified when new Signal articles are published.</p>
+            <a href="mailto:subscribe@anandsinhausa.com?subject=Subscribe to The Signal">Subscribe</a>
+            <a href="mailto:feedback@anandsinhausa.com?subject=Feedback on The Silent Shift">Send Feedback</a>
+        </div>
+
+    </article>
+
+    <!-- ═══════════════════════════════════════════════ -->
+    <!-- TAB 2: THE RECORD -->
+    <!-- ═══════════════════════════════════════════════ -->
+    <article id="record" class="tab-content">
+
+        <div class="article-category">LEGISLATION · POLICY · CIVIC · JUNE 2026</div>
+
+        <h2>The Legislative Record</h2>
+
+        <p class="subtitle">Six documented policy actions — what each one established, and what it left in place after the headline moved on.</p>
+
+        <div class="article-meta">
+            <span class="author">Anand Sinha</span>
+            <span>·</span>
+            <span>June 2026</span>
+            <span>·</span>
+            <span>Part II of IV &nbsp;·&nbsp; The Record</span>
+        </div>
+
+        <p>Policy tends to feel abstract until it becomes personal. What follows is a documented record of legislative action, judicial proceedings, and regulatory proposals drawn from public court filings, state legislative archives, and peer-reviewed legal publications. All citations are independently verifiable. The record is presented in full, including the case for the other side — because a civic argument worth making is one that can survive engagement with the strongest version of the opposing view.</p>
+
+        <div class="steelman-box">
+            <div class="steelman-label">The Case Being Made — What Dalit Advocates Argue</div>
+            <p>The legislative efforts described below are responses to documented discrimination. A 2020 Carnegie Endowment for International Peace survey found that 5% of Indian Americans reported experiencing caste-based discrimination. Cases have been filed with the EEOC. In New York, a Nepali restaurant worker described colleagues who refused to eat with him on caste grounds and arranged for his dismissal after he complained. In California, documented workplace incidents formed the factual basis for the Cisco litigation. These accounts are real, and the advocacy that flows from them is not without foundation.</p>
+            <p>The substantive dispute is not over whether caste discrimination has ever occurred in America — it has. The dispute is over whether the proposed frameworks address that discrimination without misrepresenting the large majority of Hindu Americans who have never practiced it, and without creating legal categories that allow any person identified as Hindu or Indian to be presumed a potential discriminator by default.</p>
+        </div>
+
+        <h3>The Timeline</h3>
+
+        <div class="leg-timeline">
+
+            <div class="leg-item">
+                <span class="leg-dot"></span>
+                <div class="leg-title">Cisco Systems, California — 2020</div>
+                <span class="leg-status vetoed">Settled · Framework Survives</span>
+                <p class="leg-body">The California Civil Rights Department filed a workplace discrimination complaint alleging that two Indian-origin managers had discriminated against a Dalit engineer. The Equality Labs survey submitted as supporting evidence was rejected by the court as methodologically insufficient. The case settled without establishing the facts alleged. What endured was the framework it introduced: caste as a structural feature of South Asian professional culture, applicable to any Hindu or Indian employee regardless of their personal history. That framing became the foundation for every subsequent legislative effort in this space.</p>
+            </div>
+
+            <div class="leg-item">
+                <span class="leg-dot"></span>
+                <div class="leg-title">California SB-403 — 2023</div>
+                <span class="leg-status vetoed">Vetoed · Movement Intact</span>
+                <p class="leg-body">Senator Aisha Wahab introduced SB-403 to add caste as a protected category under California anti-discrimination law. The bill passed the state Senate 34-1 before Governor Newsom vetoed it in October 2023, stating that existing law already prohibited the discrimination described and that a standalone caste category would effectively single out one community. The coalition behind the bill, led by Equality Labs, conducted over 700 advocacy meetings in a single California legislative cycle, funded in part through the Ford Foundation, the Omidyar Network, and Open Society-aligned grant channels. Its architects have stated publicly they will reintroduce it. Their infrastructure remains intact.</p>
+            </div>
+
+            <div class="leg-item">
+                <span class="leg-dot"></span>
+                <div class="leg-title">California SB-509 — 2025</div>
+                <span class="leg-status vetoed">Vetoed · Different Threat Vector</span>
+                <p class="leg-body">A different bill with a different mechanism. SB-509 proposed training California law enforcement to identify "transnational repression" — the harassment by foreign governments of their diaspora members within the state. Supported primarily by Sikh organizations concerned about Indian government surveillance of Khalistan activists, the bill was opposed by CoHNA and HAF on the grounds that its vague language could be used to designate Hindu temples and Indian American organizations as agents of a foreign government — effectively treating Hindu American institutions as foreign proxies subject to law enforcement scrutiny. Newsom vetoed it in October 2025. The episode illustrates a second legislative vector, operating not through caste classification but through foreign agent designation.</p>
+            </div>
+
+            <div class="leg-item">
+                <span class="leg-dot"></span>
+                <div class="leg-title">New York A6920 / S6531 — 2025–2026</div>
+                <span class="leg-status active">Active · 33 Co-Sponsors · Returns Jan 2027</span>
+                <p class="leg-body">Introduced in March 2025, this bill would establish caste as a standalone protected category in New York employment, housing, and public accommodations law. As of the close of the 2026 legislative session, the bill had 22 Assembly and 11 Senate co-sponsors, with more than 45 formal statements of support from bar associations, labor unions, and advocacy organizations. In May 2026, the UN Special Rapporteur on Racism formally urged its passage. The bill did not clear this session, but its legislative infrastructure is intact and growing. The 2027 session begins in January.</p>
+            </div>
+
+            <div class="leg-item">
+                <span class="leg-dot"></span>
+                <div class="leg-title">Virginia HB-2783 — 2025</div>
+                <span class="leg-status enacted">Enacted · Hindu Swastika Explicitly Protected</span>
+                <p class="leg-body">A data point of a different kind — proof of concept rather than threat. When Virginia introduced legislation criminalizing swastika displays, the bill's original language made no distinction between the Nazi hakenkreuz and the Hindu swastika, a sacred symbol used in temple ceremony and wedding ritual for thousands of years. Hindu advocacy groups — HAF and CoHNA — engaged the legislative process, proposed amendments, and succeeded: the bill passed unanimously with language explicitly protecting the Hindu, Buddhist, and Jain swastika while criminalizing only the Nazi emblem. Signed into law as a Class 6 felony in April 2025. This is the most available model for what organized civic engagement produces.</p>
+            </div>
+
+            <div class="leg-item">
+                <span class="leg-dot"></span>
+                <div class="leg-title">Columbia Law Review — Title VII Amendment Proposal, 2026</div>
+                <span class="leg-status pending">Academic · Federal Play in Formation</span>
+                <p class="leg-body">The most consequential development in this space may be taking shape not in a state legislature but in a law journal. The Columbia Human Rights Law Review published a proposal in 2026 to amend Title VII of the Civil Rights Act of 1964 — the foundational federal employment anti-discrimination statute — to add caste as a protected class nationwide. The author proposes statutory language designed specifically to withstand First Amendment challenges, treating state and university anti-caste policies as a proving ground for a federal framework. If this proposal finds a congressional sponsor, every legislative battle fought in California and New York becomes a precedent for a national standard applying to every employer in the country.</p>
+            </div>
+
+        </div>
+
+        <div class="callout-box">
+            <p>The Equality Labs survey was rejected by a court as insufficient evidence. The framework it built is now embedded in HR policies at some of Silicon Valley's largest employers — no court required.</p>
+        </div>
+
+        <p>The pattern across this record is consistent: a bill is introduced, generates organized opposition, and is vetoed or stalled. The legislative architects then rebuild and reintroduce. The infrastructure — the staff, the funders, the legislative relationships, the advocacy networks — does not dissipate between sessions. Each cycle produces more co-sponsors, more institutional endorsements, and more refined statutory language. The vetoes are real victories. They are not permanent ones.</p>
+
+        <div class="next-tab-nav">
+            <p class="next-tab-teaser">Legislation requires a vote and leaves a public record. What is harder to track — and in practice more immediately consequential for your workplace and your children's schools — is what is being built inside institutions without any vote at all.</p>
+            <p class="next-tab-prompt"><strong>Continue reading:</strong> Tap the <strong>THE SHIFT</strong> tab above for what is already in place.</p>
+            <button class="next-tab-btn" onclick="switchToTab('shift')">Read: The Shift &rarr;</button>
+        </div>
+
+        <div class="subscribe-box">
+            <h3>Stay Updated</h3>
+            <p>Get notified when new Signal articles are published.</p>
+            <a href="mailto:subscribe@anandsinhausa.com?subject=Subscribe to The Signal">Subscribe</a>
+            <a href="mailto:feedback@anandsinhausa.com?subject=Feedback on The Silent Shift">Send Feedback</a>
+        </div>
+
+    </article>
+
+    <!-- ═══════════════════════════════════════════════ -->
+    <!-- TAB 3: THE SHIFT -->
+    <!-- ═══════════════════════════════════════════════ -->
+    <article id="shift" class="tab-content">
+
+        <div class="article-category">INSTITUTIONS · DEI · CIVIC · JUNE 2026</div>
+
+        <h2>The Institutional Shift</h2>
+
+        <p class="subtitle">What is already in place — inside corporations, universities, and school systems — without any bill having passed.</p>
+
+        <div class="article-meta">
+            <span class="author">Anand Sinha</span>
+            <span>·</span>
+            <span>June 2026</span>
+            <span>·</span>
+            <span>Part III of IV &nbsp;·&nbsp; The Shift</span>
+        </div>
+
+        <p>The legislative battles described in the previous tab are visible, debatable, and in principle reversible. What is happening in corporate HR departments, university conduct policies, and school curricula is quieter. It does not require a Senate vote. It accumulates incrementally through administrative decision-making, consultant recommendations, and DEI framework adoption — and it is considerably harder to contest after it has been institutionalized than before.</p>
+
+        <h3>Inside Corporate HR</h3>
+
+        <p>Seattle became the first U.S. city to add caste as a protected anti-discrimination category in 2023, passing its ordinance with no meaningful Hindu voice in the room. Brandeis University and Brown University have both incorporated caste into their official non-discrimination and harassment policies, using frameworks developed by activist organizations. Multiple campuses in the University of California system are under active pressure to follow; once a single UC campus adopts a policy, system-wide application typically follows — a mechanism that affects hundreds of thousands of students and faculty across California simultaneously. Google, Apple, and Salesforce have incorporated caste awareness into employee training programs. None of this required legislation to pass.</p>
+
+        <p>The practical implication is direct: an engineer at a major technology company — born in Michigan, who has never once thought about caste — now operates in a professional environment where caste is a live HR category. A complaint can be filed without proof of intent or evidence of actual harm. The category exists whether or not either party has ever associated their identity with it. There are no benefits attached to this classification, as there are in India's reservation system. There is only liability.</p>
+
+        <div class="callout-box note">
+            <h3>The Scale of the Organized Opposition</h3>
+            <p>Equality Labs, the primary organization behind California's SB-403, conducted over 700 advocacy meetings in a single California legislative cycle. Its funding includes the Ford Foundation, the Omidyar Network, and Open Society-aligned grant channels. It maintains a full-time professional staff dedicated to state and federal legislative strategy. The organizations working on the other side — HAF, CoHNA, A4H — operate at a fraction of that institutional scale. The gap is not primarily ideological. It is organizational and financial.</p>
+        </div>
+
+        <h3>On Campus</h3>
+
+        <p>The Dismantling Global Hindutva conference drew formal endorsements from more than fifty universities. Its intellectual framework — that Hindutva-influenced Hindu identity poses a structural social threat — has migrated from conference proceedings into DEI consultant training programs, teacher certification curricula, and state legislative testimony. When a teacher in a California or New York public school reaches for curriculum material on South Asian communities, the available frameworks have been disproportionately shaped by this literature and by the activist organizations that produced it. A child who practices Hinduism may encounter, in an American classroom, an account of their religion that bears no resemblance to their family's experience — and that account will feel institutional, authoritative, and settled, because it arrived through official curriculum channels.</p>
+
+        <hr>
+
+        <div class="callout-box">
+            <p>Every temple attack trends on WhatsApp for 48 hours. Then it disappears with zero political consequence for anyone.</p>
+        </div>
+
+        <p>California's own hate crime statistics show anti-Hindu hate to be second only to antisemitism in the state, with a four-year consecutive increase through 2024. Between December 2023 and March 2025, four Hindu temples in California were vandalized. As of this writing, there have been no arrests or prosecutions in any of these cases. No major elected official has made Hindu temple vandalism a campaign issue. The mechanism by which other communities ensure political accountability for attacks on their places of worship is not mysterious. It is the product of decades of sustained political investment. The silence that follows each incident in the Hindu American community is the measurable price of not having made that investment.</p>
+
+        <p class="closing-line">Awareness of the institutional shift is necessary. It is not sufficient. The question that follows is what it costs to change it — and whether this generation is willing to pay that cost before its children inherit the alternative.</p>
+
+        <div class="next-tab-nav">
+            <p class="next-tab-teaser">The civic gap is not a feeling. It is a number — two cents per person — and it has a direct relationship to every policy development described in the previous three tabs. The final section is about what it takes to close it.</p>
+            <p class="next-tab-prompt"><strong>Continue reading:</strong> Tap the <strong>THE RESPONSE</strong> tab above for the civic analysis and what comes next.</p>
+            <button class="next-tab-btn" onclick="switchToTab('response')">Read: The Response &rarr;</button>
+        </div>
+
+        <div class="subscribe-box">
+            <h3>Stay Updated</h3>
+            <p>Get notified when new Signal articles are published.</p>
+            <a href="mailto:subscribe@anandsinhausa.com?subject=Subscribe to The Signal">Subscribe</a>
+            <a href="mailto:feedback@anandsinhausa.com?subject=Feedback on The Silent Shift">Send Feedback</a>
+        </div>
+
+    </article>
+
+    <!-- ═══════════════════════════════════════════════ -->
+    <!-- TAB 4: THE RESPONSE -->
+    <!-- ═══════════════════════════════════════════════ -->
+    <article id="response" class="tab-content">
+
+        <div class="article-category">CIVIC · ACTION · ELECTIONS · JUNE 2026</div>
+
+        <h2>The Civic Response</h2>
+
+        <p class="subtitle">A per-person analysis of what organized participation costs, what it has already changed, and what the generation behind you will inherit if this one does not act.</p>
+
+        <div class="article-meta">
+            <span class="author">Anand Sinha</span>
+            <span>·</span>
+            <span>June 2026</span>
+            <span>·</span>
+            <span>Part IV of IV &nbsp;·&nbsp; The Response</span>
+        </div>
+
+        <p>The scale of Hindu America's civic engagement gap is best understood not in raw dollars but per person. Raw figures are subject to the objection that larger communities will naturally spend more. A per-person metric normalizes for community size and makes the comparison analytically honest. The figures below are drawn from FEC filings for the 2023–24 federal election cycle, with population data from Pew Research 2024. All are independently verifiable at FEC.gov and OpenSecrets.org.</p>
+
+        <div class="compare-block" id="compareBlock">
+            <div class="compare-header">
+                <div class="compare-header-title">Per-Person PAC Investment — 2023–24 Federal Election Cycle</div>
+                <div class="compare-header-sub">Political Action Committee contributions normalized by community population · Source: FEC / OpenSecrets / Pew Research 2024</div>
+            </div>
+            <div class="compare-row">
+                <div class="compare-community">Jewish Americans<span>AIPAC + United Democracy Project · 7.5M people</span></div>
+                <div class="compare-bar-wrap">
+                    <div class="compare-bar-track">
+                        <div class="compare-bar-fill bar-a" data-width="100%" style="width:0%"></div>
+                    </div>
+                    <div style="font-family:'Helvetica Neue',Arial,sans-serif;font-size:10px;color:#999;margin-top:3px;">$126.9M total · FEC/OpenSecrets confirmed</div>
+                </div>
+                <div class="compare-amount">$17.00</div>
+            </div>
+            <div class="compare-row">
+                <div class="compare-community">Muslim Americans<span>Emgage PAC + full ecosystem · 4.5M people</span></div>
+                <div class="compare-bar-wrap">
+                    <div class="compare-bar-track">
+                        <div class="compare-bar-fill bar-b" data-width="0.76%" style="width:0%"></div>
+                    </div>
+                    <div style="font-family:'Helvetica Neue',Arial,sans-serif;font-size:10px;color:#999;margin-top:3px;">$0.6M direct PAC · $4.1M full ecosystem · FEC / IRS Form 990</div>
+                </div>
+                <div class="compare-amount">$0.13</div>
+            </div>
+            <div class="compare-row highlight">
+                <div class="compare-community" style="font-weight:800;color:#000;">Hindu Americans<span>A4H PAC · 5M people</span></div>
+                <div class="compare-bar-wrap">
+                    <div class="compare-bar-track">
+                        <div class="compare-bar-fill bar-c" data-width="0.12%" style="width:0%"></div>
+                    </div>
+                    <div style="font-family:'Helvetica Neue',Arial,sans-serif;font-size:10px;color:#999;margin-top:3px;">Est. &lt;$100K · Verify: FEC.gov → search "Americans4Hindus"</div>
+                </div>
+                <div class="compare-amount gold">$0.02</div>
+            </div>
+            <div class="compare-footer">All figures from FEC filings, 2023–24 cycle. Population: Pew Research 2024. Jewish American per-person civic investment is approximately 850 times the Hindu American figure. This comparison does not imply criticism of any community's civic engagement — it is a measurement of where Hindu American civic infrastructure currently stands relative to comparable diaspora communities with longer histories of organized political participation.</div>
+        </div>
+
+        <div class="callout-box">
+            <p>Jewish Americans invest $17 per person in political infrastructure. Hindu Americans invest two cents. This is not a wealth gap. It is a priority gap.</p>
+        </div>
+
+        <p>The figure that demands attention is not the Jewish American number — that represents six decades of sustained, organized community investment built across generations. It is the Hindu American number. Five million people, among the highest-earning demographic groups in the United States by most measures, investing two cents per person in the political process that will determine the legal and institutional environment in which their children work, study, and practice their faith. That choice made sense in the era of the bubble. It does not make the same sense now.</p>
+
+        <h3>The Michigan Proof of Concept</h3>
+
+        <p>The 2024 Michigan Democratic presidential primary produced the clearest recent demonstration of what an organized community bloc can accomplish without a large institutional budget. The Uncommitted movement — a coordinated campaign by Arab and Muslim Americans protesting U.S. policy on Gaza — drew over 101,000 protest votes in a single primary, flipping Dearborn from 69% Biden support in 2020 to 36% Harris support in 2024. Michigan was decided in the general election by approximately 80,000 votes. No large PAC budget was required. What was required was organization, discipline, and a willingness to show up consistently in a way that every politician in the state could see and could not ignore.</p>
+
+        <div class="callout-box">
+            <p>The Michigan Uncommitted movement flipped a battleground state with 101,000 protest votes and no PAC budget. Organization was the asset. Hindu Americans have 57,000 A4H members nationally and growing infrastructure across 38 states.</p>
+        </div>
+
+        <p>Virginia HB-2783 is the complementary proof. A bill that, as originally drafted, would have criminalized the display of a sacred Hindu symbol was amended through organized legislative engagement to explicitly protect it. The Jewish community received the hate crime protection it needed. The Hindu community retained the right to display a symbol central to its religious practice. In Seattle, in the Brandeis and Brown conduct policies, in the corporate DEI frameworks that did not distinguish between the Nazi emblem and the rangoli swastika, Hindu voices were not present when those decisions were made. The outcomes reflect their absence. Virginia reflects what presence produces.</p>
+
+        <h3>The Organizations That Exist</h3>
+
+        <p>Three organizations are currently operational in the civic space this article describes. Americans4Hindus (A4H) operates as a registered Super PAC — the electoral layer, building legislative relationships and ensuring Hindu American concerns are present when candidates are evaluated and campaigns are funded, across both parties. The Coalition of Hindus of North America (CoHNA) works as a narrative and institutional watchdog — engaging university conduct processes, confronting misrepresentation in media and DEI frameworks, and building the grassroots awareness that ensures the community's story is told accurately. The Hindu American Foundation (HAF) operates at the legal and policy level — filing briefs, engaging school boards and state education departments, and providing the legal and policy frameworks that make institutional advocacy effective in court and in the legislature. These organizations are not duplicative. They operate in distinct ecosystems. The per-person investment figure above suggests clearly that none of them operates at the scale the current policy environment requires.</p>
+
+        <hr>
+
+        <h3>The Generation Behind You</h3>
+
+        <p>The Hindu American professionals described throughout this article — those in their thirties and forties, raised in the bubble, now raising children — have a reasonably legible frame for what is at stake. The generation immediately behind them is more complicated, and in one important respect more exposed. Gen Z and Gen Alpha members of Hindu American families often do not organize their identities around religion or ethnic background in the way their parents' generation does. Some have absorbed progressive frameworks that circulate on campuses and in professional settings, which means the legislative arguments in the previous tabs can initially register as resistance to civil rights progress. That reading is exactly backwards — but it is the starting condition for the conversation.</p>
+
+        <p>What makes this more than a communication challenge is this: this generation is more directly exposed to the environments where these frameworks are already operational than any generation of Hindu Americans before them. They are the students currently enrolled at UC campuses where caste policy campaigns are active. They are the young professionals entering the HR frameworks already in place at major employers. They will encounter these systems at closer range and at more formative moments than their parents, and without any framework for understanding what they are encountering or why.</p>
+
+        <p>The standard mobilization argument — your community is under threat, join these organizations, vote as a bloc — does not land with Gen Z in the same register it does with their parents. What does land is an argument about agency: someone else is currently writing your identity. Your faith — what it means, what institutional liabilities it carries, how it is categorized in the HR system you will enter in two years — is being defined in policy by people who have never met you, consulted you, or asked whether what they are writing reflects your experience. You can be part of that process, or you can inherit whatever they decide.</p>
+
+        <p>That is not a religious argument or a partisan one. It is an argument about self-determination — about who gets to define you. Across political orientations, it tends to land.</p>
+
+        <p class="closing-line">Your parents built the bubble. Your generation gets to decide whether what comes next is a vacuum or an infrastructure. The New York bill returns in January 2027. The Columbia Law Review proposal will find congressional sponsors. The window to shape the next twenty years of this process is open now — and it will not remain open indefinitely.</p>
+
+        <p class="disclaimer">Sources: FEC filings 2023–24 cycle confirmed via FEC.gov and OpenSecrets.org. Population figures: Pew Research 2024. Legislative records sourced from respective state legislature websites and congress.gov. Carnegie Endowment survey cited: 2020 Survey of Indian Americans. Columbia Human Rights Law Review: Vol. 57, 2026. All FEC data independently verifiable. Nothing in this article constitutes legal advice or a directive to support or oppose any candidate, party, or organization.</p>
+
+        <div class="subscribe-box">
+            <h3>Stay Updated</h3>
+            <p>Get notified when new Signal articles are published.</p>
+            <a href="mailto:subscribe@anandsinhausa.com?subject=Subscribe to The Signal">Subscribe</a>
+            <a href="mailto:feedback@anandsinhausa.com?subject=Feedback on The Silent Shift">Send Feedback</a>
+        </div>
+
+        <div class="author-note">
+            <div class="author-note-label">A Note from the Author</div>
+            <p class="author-note-text">Since retiring from corporate life, I have had time to pursue what I was always drawn to — the questions of identity, policy, and civic life that decades of professional work left no room for. The Signal is where I write them down. The articles range across geopolitics, finance, elections, and civic analysis — independently researched, directly argued, written for the reader who wants more than what the mainstream narrative offers.</p>
+            <p class="author-note-text">I am actively engaged with <strong class="author-note-strong">Americans for Hindus (A4H)</strong>, working to awaken Hindu Americans to the urgency of civic participation and political representation. The stakes are not abstract. Every community faces the same fundamental choice:</p>
+            <p class="author-note-quote">"Be at the table — or be on the menu."</p>
+            <p class="author-note-text">If this article gave you something to think about, I hope you will share it with the Hindu American professionals in your circle who have never seen any of this legislation before. That is the audience this was written for.</p>
+            <div class="author-note-sig">— Anand Sinha &nbsp;·&nbsp; anandsinhausa.com &nbsp;·&nbsp; Director of Outreach, A4H Michigan Chapter</div>
+            <div class="author-note-cta">
+                <button class="author-note-btn" onclick="switchToTab('more')">Explore Other Articles &rarr;</button>
+            </div>
+        </div>
+
+        <div class="about-author">
+            <div class="about-author-rule">
+                <div class="about-author-tag">About the Author</div>
+                <div class="about-author-line"></div>
+            </div>
+            <div class="about-author-name">Anand Sinha</div>
+            <div class="about-author-title">Writer · Policy Analyst · Founder, The Signal</div>
+            <p class="about-author-bio">Anand Sinha spent decades in corporate life before retiring to focus on the questions that had always mattered most to him — civic affairs, policy, identity, and the political future of Hindu Americans. Based in Metro Detroit, he writes <strong>The Signal</strong>, an independent publication covering geopolitics, finance, elections, and civic analysis for the educated reader who wants more than the mainstream narrative offers.</p>
+            <p class="about-author-bio">He is actively engaged with <strong>Americans for Hindus (A4H)</strong>, a Political Action Committee dedicated to building Hindu American civic infrastructure and political representation. He serves as Director of Outreach for the A4H Michigan Chapter and is the architect of the A4H Elections Hub 2026 — a fifty-state voter guide and candidate tracking system designed to give Hindu Americans a seat at the table in American political life.</p>
+            <p class="about-author-bio">He coordinates neighborhood civic services for his community in Troy, Michigan, and publishes his writing, analysis, and civic technology projects at anandsinhausa.com.</p>
+            <div class="about-author-links">
+                <a href="https://anandsinhausa.com/signal" class="about-author-link">The Signal Archive</a>
+                <a href="https://www.anandsinhausa.com/a4hVoterGuide.html" class="about-author-link">A4H Voter Guide</a>
+                <a href="https://www.americans4hindus.org" class="about-author-link">Americans4Hindus</a>
+                <a href="mailto:sinha.anand@gmail.com" class="about-author-link">Write to the Author</a>
+            </div>
+        </div>
+
+    </article>
+
+    <!-- ═══════════════════════════════════════════════ -->
+    <!-- TAB 5: OTHER EDITIONS -->
+    <!-- ═══════════════════════════════════════════════ -->
+    <article id="more" class="tab-content">
+
+        <div class="article-category">THE SIGNAL · ARCHIVE</div>
+
+        <h2>Other Editions</h2>
+        <p class="subtitle">Every analysis. One publication.</p>
+
+        <div class="article-meta">
+            <span class="author">Anand Sinha</span>
+            <span>·</span>
+            <span>anandsinhausa.com/signal</span>
+        </div>
+
+        <div class="archive-section-rule">
+            <div class="archive-rule-tag">THE SIGNAL · ALL EDITIONS</div>
+            <div class="archive-rule-line"></div>
+        </div>
+
+        <div class="archive-grid">
+
+            <a href="https://anandsinhausa.com/signal/petrodollar.html" class="arc-card">
+                <div class="arc-badge live">✓ Published</div>
+                <div class="arc-number">01</div>
+                <h3 class="arc-headline">The Dollar's Three Lives: <em>Gold → Oil → Digital</em></h3>
+                <p class="arc-deck">How America reinvented currency dominance three times — and why every American receives an invisible $1,500–$2,000 monthly subsidy because of it.</p>
+                <div class="arc-date">May 2026 &nbsp;·&nbsp; Finance &amp; Geopolitics</div>
+            </a>
+
+            <a href="https://anandsinhausa.com/signal/crypto.html" class="arc-card">
+                <div class="arc-badge live">✓ Published</div>
+                <div class="arc-number">02</div>
+                <h3 class="arc-headline">The Crypto Landscape: <em>From Cypherpunk Dreams to Infrastructure</em></h3>
+                <p class="arc-deck">Understanding cryptocurrency from its origins in cryptographic freedom movements to today's institutional adoption — and why it matters beyond speculation.</p>
+                <div class="arc-date">May 2026 &nbsp;·&nbsp; Technology &amp; Finance</div>
+            </a>
+
+            <a href="https://anandsinhausa.com/signal/bitcoin.html" class="arc-card">
+                <div class="arc-badge live">✓ Published</div>
+                <div class="arc-number">03</div>
+                <h3 class="arc-headline">Bitcoin: <em>The Investor's Guide for the Skeptical Professional</em></h3>
+                <p class="arc-deck">From Saylor's $21M prediction to crash mechanics and custody decisions — a rigorous first-principles framework for serious investors.</p>
+                <div class="arc-date">May 2026 &nbsp;·&nbsp; Investment Strategy</div>
+            </a>
+
+            <a href="https://anandsinhausa.com/signal/bengal-2026.html" class="arc-card">
+                <div class="arc-badge live">✓ Published</div>
+                <div class="arc-number">04</div>
+                <h3 class="arc-headline">Bengal 2026: <em>How BJP Won the Unconquerable</em></h3>
+                <p class="arc-deck">9.1M voters removed. 240K forces deployed. 93% turnout. The mathematics of an 8 million vote swing that ended 15 years of TMC rule.</p>
+                <div class="arc-date">May 2026 &nbsp;·&nbsp; Elections &amp; Psephology</div>
+            </a>
+
+            <a href="https://anandsinhausa.com/signal/why-krishnamoorthi-lost.html" class="arc-card">
+                <div class="arc-badge live">✓ Published</div>
+                <div class="arc-number">05</div>
+                <h3 class="arc-headline">Why Krishnamoorthi Lost: <em>Money, Five Terms, and Still Not Enough</em></h3>
+                <p class="arc-deck">Despite a $29M war chest and five terms in Congress, Raja Krishnamoorthi was outmaneuvered by a local coalition — undone by immigration vulnerabilities and voters who saw him as out of step.</p>
+                <div class="arc-date">2026 &nbsp;·&nbsp; Elections &amp; Analysis</div>
+            </a>
+
+            <a href="https://anandsinhausa.com/signal/ai-cost-crisis.html" class="arc-card">
+                <div class="arc-badge live">✓ Published</div>
+                <div class="arc-number">06</div>
+                <h3 class="arc-headline">The AI Cost Crisis: <em>When Adoption Breaks the Budget</em></h3>
+                <p class="arc-deck">Microsoft cancels Claude Code. Uber burns its annual AI budget in four months. The structural economics behind enterprise AI's first reckoning.</p>
+                <div class="arc-date">June 2026 &nbsp;·&nbsp; Technology &amp; Economics</div>
+            </a>
+
+            <a href="https://anandsinhausa.com/signal/borrowed-mirror.html" class="arc-card">
+                <div class="arc-badge live">✓ Published</div>
+                <div class="arc-number">07</div>
+                <h3 class="arc-headline">The Borrowed Mirror: <em>A Civilization Looking Outward for Pride It Already Owns</em></h3>
+                <p class="arc-deck">Most Indians can name the conquerors. Very few can name the builders. How historical framing shaped a civilization's self-confidence — in four parts.</p>
+                <div class="arc-date">June 2026 &nbsp;·&nbsp; Civilization &amp; Identity</div>
+            </a>
+
+            <div class="arc-card current-arc">
+                <div class="arc-badge current">★ You Are Here</div>
+                <div class="arc-number">08</div>
+                <h3 class="arc-headline">The Silent Shift: <em>How a Policy Landscape Is Being Built Around Hindu Americans</em></h3>
+                <p class="arc-deck">Hindu Americans invest $0.02 per person in political infrastructure. A documented review of the legislative record — and what the civic gap will cost your children.</p>
+                <div class="arc-date">June 2026 &nbsp;·&nbsp; Civic &amp; Policy</div>
+            </div>
+
+        </div>
+
+        <div class="subscribe-box">
+            <h3>Stay Updated</h3>
+            <p>Get notified when new Signal articles are published.</p>
+            <a href="mailto:subscribe@anandsinhausa.com?subject=Subscribe to The Signal">Subscribe</a>
+            <a href="mailto:feedback@anandsinhausa.com?subject=Feedback on The Silent Shift">Send Feedback</a>
+        </div>
+
+    </article>
+
+</main>
+
+<footer>
+    <p>&copy; 2026 The Signal by Anand Sinha &nbsp;·&nbsp; Published at <a href="https://anandsinhausa.com">anandsinhausa.com</a></p>
+    <p style="margin-top: 10px; font-size: 13px;">Civic Analysis &nbsp;·&nbsp; Policy &nbsp;·&nbsp; Identity &nbsp;·&nbsp; Elections &nbsp;·&nbsp; Geopolitics</p>
+</footer>
+
+<script>
+    function switchToTab(tabId) {
+        document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+        document.querySelector('[data-tab="' + tabId + '"]').classList.add('active');
+        document.getElementById(tabId).classList.add('active');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        if (tabId === 'response') setTimeout(animateCompare, 300);
+    }
+
+    document.querySelectorAll('.tab').forEach(tab => {
+        tab.addEventListener('click', function() {
+            switchToTab(this.getAttribute('data-tab'));
+        });
+    });
+
+    function animateCompare() {
+        document.querySelectorAll('.compare-bar-fill').forEach(function(bar) {
+            var w = bar.getAttribute('data-width');
+            if (w) bar.style.width = w;
+        });
+    }
+
+    // Animate on scroll if response tab is active
+    var compareAnimated = false;
+    window.addEventListener('scroll', function() {
+        if (compareAnimated) return;
+        var block = document.getElementById('compareBlock');
+        if (!block || !block.closest('.tab-content.active')) return;
+        if (block.getBoundingClientRect().top < window.innerHeight - 50) {
+            compareAnimated = true;
+            animateCompare();
+        }
+    });
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+    });
+</script>
+
+</body>
+</html>
