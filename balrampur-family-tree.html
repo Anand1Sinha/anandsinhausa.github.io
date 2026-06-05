@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>Balrampur Family Tree</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --navy:#0C1A4E;--navy-deep:#070F30;--navy-mid:#1A3178;--navy-light:#2548A8;
+  --gold:#C9943A;--gold-light:#E8B84B;--cream:#F5F7FF;--warm-white:#FFFFFF;
+  --text-dark:#0C1A4E;--text-mid:#3A4E7A;--text-light:#7A8CB0;
+  --border:#D0D8F0;--shadow:rgba(12,26,78,0.12);
+}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);height:100vh;overflow:hidden;color:var(--text-dark);}
+
+/* ── Login screen ── */
+.login-screen{height:100vh;overflow-y:auto;display:flex;flex-direction:column;}
+.login-screen.hide{display:none;}
+.stripe{height:5px;background:linear-gradient(90deg,var(--navy-deep) 0%,var(--navy-deep) 20%,var(--gold) 20%,var(--gold) 40%,#FFF 40%,#FFF 60%,var(--gold) 60%,var(--gold) 80%,var(--navy-deep) 80%,var(--navy-deep) 100%);}
+.hero{background:radial-gradient(ellipse at 15% 10%,rgba(37,72,168,.35) 0%,transparent 55%),linear-gradient(155deg,var(--navy-deep) 0%,var(--navy) 50%,var(--navy-mid) 100%);padding:40px 24px 32px;text-align:center;position:relative;overflow:hidden;}
+.hero-support{position:absolute;top:12px;right:14px;text-align:right;line-height:1.5;}
+.hero-support-name{font-size:.72rem;font-weight:600;color:rgba(255,255,255,.7);letter-spacing:.4px;}
+.hero-support-phone{display:block;font-size:.8rem;font-weight:600;color:var(--gold-light);text-decoration:none;letter-spacing:.3px;}
+.hero-support-phone:hover{color:white;}
+.hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(1.9rem,5.5vw,2.8rem);color:#FFF;font-weight:700;line-height:1.15;}
+.hero h1 em{font-style:italic;color:var(--gold-light);}
+.hero-sub{color:rgba(255,255,255,.7);font-size:.88rem;margin-top:10px;letter-spacing:.5px;}
+.hero-gold-bar{height:2px;background:linear-gradient(90deg,transparent,var(--gold),var(--gold-light),var(--gold),transparent);margin-top:28px;}
+.login-wrap{max-width:420px;margin:28px auto 40px;padding:0 16px;}
+.login-card{background:var(--warm-white);border-radius:20px;border:1px solid var(--border);box-shadow:0 4px 28px var(--shadow);overflow:hidden;}
+.login-head{background:linear-gradient(135deg,var(--navy-deep),var(--navy-mid));padding:24px;text-align:center;}
+.login-icon{font-size:40px;display:block;margin-bottom:10px;}
+.login-title{font-family:'Cormorant Garamond',serif;font-size:1.45rem;font-weight:700;color:#FFF;margin-bottom:4px;}
+.login-sub{color:rgba(255,255,255,.6);font-size:.82rem;}
+.login-body{padding:22px 24px 26px;}
+.lbl{display:block;font-size:.71rem;font-weight:600;color:var(--text-mid);text-transform:uppercase;letter-spacing:.7px;margin-bottom:6px;}
+.linput{width:100%;border:1.5px solid var(--border);border-radius:10px;padding:12px 14px;font-family:'DM Sans',sans-serif;font-size:.94rem;color:var(--text-dark);background:white;outline:none;transition:border-color .2s;margin-bottom:14px;}
+.linput:focus{border-color:var(--navy-light);box-shadow:0 0 0 3px rgba(37,72,168,.08);}
+.linput.err{border-color:#C53030;animation:shake .3s ease;}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+.login-btn{width:100%;background:linear-gradient(135deg,var(--navy-deep),var(--navy-light));color:white;border:none;border-radius:12px;padding:14px;font-family:'DM Sans',sans-serif;font-size:.95rem;font-weight:600;cursor:pointer;box-shadow:0 6px 20px rgba(12,26,78,.28);transition:transform .15s;}
+.login-btn:hover{transform:translateY(-2px);}
+.login-btn:disabled{opacity:.6;cursor:not-allowed;transform:none;}
+.login-note{text-align:center;font-size:.74rem;color:var(--text-light);margin-top:12px;}
+
+/* ── Tree screen ── */
+.tree-screen{height:100vh;display:flex;flex-direction:column;display:none;}
+.tree-screen.show{display:flex;}
+.topbar{background:var(--warm-white);border-bottom:1px solid var(--border);padding:0 16px;height:52px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;box-shadow:0 2px 8px var(--shadow);gap:12px;}
+.topbar-title{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:700;color:var(--navy);white-space:nowrap;}
+.topbar-title em{font-style:italic;color:var(--gold);}
+.topbar-controls{display:flex;align-items:center;gap:6px;flex-wrap:wrap;}
+.ctrl-btn{background:var(--cream);border:1px solid var(--border);border-radius:8px;padding:5px 10px;font-family:'DM Sans',sans-serif;font-size:.78rem;font-weight:500;color:var(--text-mid);cursor:pointer;transition:all .15s;white-space:nowrap;}
+.ctrl-btn:hover{background:var(--navy);color:white;border-color:var(--navy);}
+.ctrl-btn.gold{background:var(--gold);color:white;border-color:var(--gold);}
+.ctrl-btn.gold:hover{background:var(--navy);border-color:var(--navy);}
+.tree-wrap{flex:1;overflow:hidden;position:relative;background:var(--cream);}
+#treeSvg{width:100%;height:100%;cursor:grab;}
+#treeSvg:active{cursor:grabbing;}
+
+/* ── Legend ── */
+.legend{position:absolute;bottom:16px;left:16px;background:rgba(255,255,255,.9);border:1px solid var(--border);border-radius:10px;padding:10px 14px;font-size:.72rem;color:var(--text-mid);}
+.legend-row{display:flex;align-items:center;gap:8px;margin-bottom:5px;}
+.legend-row:last-child{margin-bottom:0;}
+.legend-circle{width:14px;height:14px;border-radius:50%;background:var(--navy);flex-shrink:0;}
+.legend-gold{background:var(--gold);}
+
+/* ── Loading ── */
+.loading{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:var(--cream);}
+.loading-text{font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:var(--navy);animation:pulse 1.5s ease-in-out infinite;}
+@keyframes pulse{0%,100%{opacity:.5}50%{opacity:1}}
+
+/* ── Toast ── */
+.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%) translateY(20px);background:#1B2A5E;color:white;padding:11px 24px;border-radius:12px;font-size:.85rem;font-weight:500;box-shadow:0 4px 20px rgba(0,0,0,.2);z-index:999;opacity:0;transition:opacity .25s,transform .25s;pointer-events:none;white-space:nowrap;max-width:calc(100vw - 32px);text-align:center;}
+.toast.on{opacity:1;transform:translateX(-50%) translateY(0);}
+
+/* ── Print ── */
+@media print{
+  .login-screen,.topbar,.legend,.toast{display:none!important;}
+  .tree-screen{display:block!important;height:auto;}
+  .tree-wrap{height:90vh;overflow:visible;}
+  #treeSvg{width:100%;height:100%;}
+}
+</style>
+</head>
+<body>
+
+<!-- ══ LOGIN SCREEN ══ -->
+<div class="login-screen" id="loginScreen">
+  <div class="stripe"></div>
+  <div class="hero">
+    <div class="hero-support">
+      <div class="hero-support-name">Need help? Contact Anand Sinha</div>
+      <a href="https://wa.me/12488723057" target="_blank" class="hero-support-phone">💬 WhatsApp +1 (248) 872-3057</a>
+    </div>
+    <h1>The <em>Balrampur</em><br>Family Tree</h1>
+    <p class="hero-sub">Sign in to explore your family heritage</p>
+    <div class="hero-gold-bar"></div>
+  </div>
+  <div class="login-wrap">
+    <div class="login-card">
+      <div class="login-head">
+        <span class="login-icon">🌳</span>
+        <div class="login-title">Family Access</div>
+        <div class="login-sub">Use the same email &amp; password as the directory form</div>
+      </div>
+      <div class="login-body">
+        <label class="lbl">Email</label>
+        <input type="email" id="loginEmail" class="linput" placeholder="your@email.com"
+          autocomplete="email" onkeydown="if(event.key==='Enter')document.getElementById('loginPwd').focus()"/>
+        <label class="lbl">Password</label>
+        <input type="password" id="loginPwd" class="linput" placeholder="Your password"
+          autocomplete="current-password" onkeydown="if(event.key==='Enter')doLogin()"/>
+        <button class="login-btn" id="loginBtn" onclick="doLogin()">
+          View Family Tree &nbsp;🌳
+        </button>
+        <div class="login-note">Not registered yet? Fill in the <a href="balrampur-family-form.html" style="color:var(--navy-light)">family directory form</a> first.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ TREE SCREEN ══ -->
+<div class="tree-screen" id="treeScreen">
+  <div class="topbar">
+    <div class="topbar-title">🌳 <em>Balrampur</em> Family Tree</div>
+    <div class="topbar-controls">
+      <button class="ctrl-btn" onclick="zoomIn()">＋ Zoom</button>
+      <button class="ctrl-btn" onclick="zoomOut()">－ Zoom</button>
+      <button class="ctrl-btn" onclick="resetView()">⊙ Reset</button>
+      <button class="ctrl-btn gold" onclick="downloadPDF()">📄 PDF</button>
+      <button class="ctrl-btn gold" onclick="downloadPNG()">🖼 PNG</button>
+      <button class="ctrl-btn" onclick="signOut()">Sign Out</button>
+    </div>
+  </div>
+  <div class="tree-wrap" id="treeWrap">
+    <div class="loading" id="loading"><div class="loading-text">🪔 Building your family tree…</div></div>
+    <svg id="treeSvg"></svg>
+    <div class="legend">
+      <div class="legend-row"><div class="legend-circle"></div> Family member</div>
+      <div class="legend-row"><div class="legend-circle legend-gold"></div> 💑 Married couple</div>
+      <div class="legend-row">◆ Click any node to collapse / expand</div>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+// ═══════════════════════════════════════════════════════
+//  CONFIG — only these lines differ between Balrampur/Sonbarsa
+// ═══════════════════════════════════════════════════════
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxZXPLRN-O87hc_2FU4P7MRqKxaGio1-d-RN2GfVC7ysJ9IF9Vj2KJIukr3V9EdV7uVQQ/exec';
+const FAMILY_ID       = 'balrampur';
+
+// Cross-link: which Gen1 node bridges to the other family tree
+const BRIDGE = {
+  gen1Node:  'Shobha Sinha',
+  toFamily:  'Sonbarsa',
+  toUrl:     './sonbarsa-family-tree.html',
+  viaText:   'Married into Sonbarsa family'
+};
+// ═══════════════════════════════════════════════════════
+
+// ── D3 & state ─────────────────────────────────────────
+let svgSel, gSel, zoomBeh, rootHier, treeLayout;
+const R = 30;          // default node radius
+const RC = 24;         // couple node radius
+const NODE_H = 160;    // vertical gap between levels
+
+// ── Login ───────────────────────────────────────────────
+async function doLogin() {
+  const email = document.getElementById('loginEmail').value.trim();
+  const pwd   = document.getElementById('loginPwd').value.trim();
+  if (!email) { shake('loginEmail'); showToast('Please enter your email'); return; }
+  if (!pwd)   { shake('loginPwd');   showToast('Please enter your password'); return; }
+
+  const btn = document.getElementById('loginBtn');
+  btn.disabled = true; btn.textContent = 'Loading…';
+
+  try {
+    const res  = await fetch(APPS_SCRIPT_URL, {
+      method: 'POST',
+      body: JSON.stringify({ action:'getPublicData', family:FAMILY_ID, email, password:pwd })
+    });
+    const data = await res.json();
+    if (data.success) {
+      document.getElementById('loginScreen').classList.add('hide');
+      document.getElementById('treeScreen').classList.add('show');
+      setTimeout(() => {
+        initTree(data);
+        document.getElementById('loading').style.display = 'none';
+      }, 400);
+    } else {
+      showToast(data.message || 'Sign in failed. Please check your credentials.');
+    }
+  } catch {
+    showToast('Network error. Please try again.');
+  }
+  btn.disabled = false; btn.textContent = 'View Family Tree 🌳';
+}
+
+// ── Build hierarchy from flat API data ──────────────────
+function buildHierarchy(apiData) {
+  const { family, gen1List, members } = apiData;
+
+  const fn   = m  => m ? `${m.firstName} ${m.lastName}`.trim() : null;
+  const find = (ct, rel) => members.find(m => m.connectedTo === ct && m.relationship === rel);
+  const kids = (ct) => members.filter(m =>
+    m.connectedTo === ct &&
+    !['Self','Spouse'].includes(m.relationship)
+  );
+
+  return {
+    id:          'root',
+    name:        family.patriarch,
+    spouse:      family.matriarch,
+    photo:       '',  spousePhoto: '',
+    dob:         '',  spouseDob:   '',
+    isBridge:    false,
+    children: gen1List.map(g1 => {
+      const self   = find(g1, 'Self');
+      const spouse = find(g1, 'Spouse');
+
+      // Unique Gen2 nodes under this Gen1 branch
+      const gen2Names = [...new Set(
+        members
+          .filter(m => m.familyBranch === g1 && m.connectedTo !== g1)
+          .map(m => m.connectedTo)
+      )];
+
+      return {
+        id:          g1,
+        name:        self   ? fn(self)   : g1,
+        spouse:      spouse ? fn(spouse) : null,
+        photo:       self?.photoUrl   || '',
+        spousePhoto: spouse?.photoUrl || '',
+        dob:         self?.dob        || '',
+        spouseDob:   spouse?.dob      || '',
+        isBridge:    (g1 === BRIDGE.gen1Node),
+        children: gen2Names.map(g2 => {
+          const g2self   = find(g2, 'Self');
+          const g2spouse = find(g2, 'Spouse');
+          const g2kids   = kids(g2);
+
+          // Unique Gen3 nodes
+          const gen3Names = [...new Set(g2kids.map(m => fn(m)))];
+
+          return {
+            id:          g2,
+            name:        g2self   ? fn(g2self)   : g2,
+            spouse:      g2spouse ? fn(g2spouse) : null,
+            photo:       g2self?.photoUrl   || '',
+            spousePhoto: g2spouse?.photoUrl || '',
+            dob:         g2self?.dob        || '',
+            spouseDob:   g2spouse?.dob      || '',
+            isBridge:    false,
+            children: gen3Names.map((name, i) => {
+              const m = g2kids[i];
+              return {
+                id:       g2 + '__' + name.replace(/\s/g,'_') + i,
+                name,
+                spouse:   null,
+                photo:    m?.photoUrl || '',
+                spousePhoto: '',
+                dob:      m?.dob || '',
+                spouseDob:'',
+                relationship: m?.relationship || '',
+                isBridge: false,
+                children: []
+              };
+            })
+          };
+        })
+      };
+    })
+  };
+}
+
+// ── Init & render tree ─────────────────────────────────
+function initTree(apiData) {
+  const wrap   = document.getElementById('treeWrap');
+  const W      = wrap.clientWidth;
+  const H      = wrap.clientHeight;
+  const treeData = buildHierarchy(apiData);
+
+  svgSel = d3.select('#treeSvg').attr('width', W).attr('height', H);
+  svgSel.append('defs').attr('id', 'defs');
+  gSel   = svgSel.append('g');
+
+  // Zoom / pan
+  zoomBeh = d3.zoom()
+    .scaleExtent([0.08, 4])
+    .on('zoom', e => gSel.attr('transform', e.transform));
+  svgSel.call(zoomBeh);
+
+  rootHier = d3.hierarchy(treeData, d => d.children?.length ? d.children : null);
+
+  treeLayout = d3.tree()
+    .nodeSize([130, NODE_H])
+    .separation((a, b) => {
+      const aw = a.data.spouse ? 2.4 : 1.2;
+      const bw = b.data.spouse ? 2.4 : 1.2;
+      return (aw + bw) / 2 + (a.parent === b.parent ? 0.1 : 0.5);
+    });
+
+  updateTree();
+
+  // Center on root
+  setTimeout(() => {
+    svgSel.call(zoomBeh.transform,
+      d3.zoomIdentity.translate(W / 2, 80).scale(0.85));
+  }, 100);
+}
+
+function updateTree() {
+  treeLayout(rootHier);
+
+  // ── Links ──
+  gSel.selectAll('.link')
+    .data(rootHier.links(), d => d.target.data.id)
+    .join(
+      e => e.append('path').attr('class','link')
+            .attr('fill','none').attr('stroke','#C8D4F0')
+            .attr('stroke-width', 1.5)
+            .attr('d', d => straightLink(d.source, d.source)),
+      u => u,
+      x => x.transition().duration(300)
+            .attr('d', d => straightLink(d.source, d.source))
+            .style('opacity',0).remove()
+    )
+    .transition().duration(300)
+    .attr('d', d => straightLink(d.source, d.target));
+
+  // ── Nodes ──
+  const nodes = rootHier.descendants();
+
+  const nodeG = gSel.selectAll('.node-g')
+    .data(nodes, d => d.data.id)
+    .join(
+      e => {
+        const g = e.append('g').attr('class','node-g')
+          .attr('transform', d => `translate(${d.parent?.x || d.x},${d.parent?.y || d.y})`)
+          .style('opacity',0)
+          .on('click', (ev, d) => {
+            ev.stopPropagation();
+            if (d.children)       { d._children = d.children;  d.children = null; }
+            else if (d._children) { d.children  = d._children; d._children = null; }
+            else return;
+            updateTree();
+          });
+        drawNodeContent(g);
+        return g;
+      },
+      u => { u.selectAll('*').remove(); drawNodeContent(u); return u; },
+      x => x.transition().duration(250).style('opacity',0).remove()
+    );
+
+  nodeG.transition().duration(300)
+    .attr('transform', d => `translate(${d.x},${d.y})`)
+    .style('opacity',1);
+}
+
+// ── Straight-line link path ─────────────────────────────
+function straightLink(s, t) {
+  const my = (s.y + t.y) / 2;
+  return `M${s.x},${s.y} C${s.x},${my} ${t.x},${my} ${t.x},${t.y}`;
+}
+
+// ── Draw node content ───────────────────────────────────
+function drawNodeContent(sel) {
+  sel.each(function(d) {
+    const g    = d3.select(this);
+    const data = d.data;
+
+    if (data.spouse) {
+      drawCouple(g, data);
+    } else {
+      drawSingle(g, data.id, data.name, data.photo, data.dob, 0, R);
+    }
+
+    // Collapse indicator dot
+    if (d.children || d._children) {
+      const offset = (data.spouse ? RC : R) + 78;
+      g.append('circle').attr('class','cdot')
+        .attr('cy', offset).attr('r', 5)
+        .attr('fill', d.children ? '#C9943A' : '#C8D4F0')
+        .attr('stroke','#C9943A').attr('stroke-width',1.5)
+        .style('cursor','pointer');
+    }
+
+    // Bridge button
+    if (data.isBridge) {
+      const offset = (data.spouse ? RC : R) + 96;
+      const bg = g.append('g').attr('class','bridge-btn')
+        .attr('transform', `translate(0,${offset})`)
+        .style('cursor','pointer')
+        .on('click', e => { e.stopPropagation(); window.open(BRIDGE.toUrl,'_blank'); });
+
+      bg.append('rect')
+        .attr('x',-72).attr('y',-11).attr('width',144).attr('height',22).attr('rx',11)
+        .attr('fill','#C9943A');
+      bg.append('text')
+        .attr('text-anchor','middle').attr('y',4)
+        .attr('font-size',10).attr('font-weight','600').attr('fill','white')
+        .attr('font-family','DM Sans, sans-serif')
+        .text('→ ' + BRIDGE.toFamily + ' Family Tree');
+    }
+  });
+}
+
+// ── Draw a couple (side by side) ───────────────────────
+function drawCouple(g, data) {
+  const off = RC + 28; // horizontal offset from center
+
+  // Gold connector line
+  g.append('line')
+    .attr('x1', -off + RC).attr('x2', off - RC).attr('y1',0).attr('y2',0)
+    .attr('stroke','#C9943A').attr('stroke-width',2);
+
+  // Heart
+  g.append('text').attr('text-anchor','middle').attr('dy','0.4em')
+    .attr('font-size',14).text('💑');
+
+  // Person 1 (left)
+  drawSingle(g, data.id + '_p1', data.name, data.photo, data.dob, -off, RC);
+  // Person 2 (right — spouse)
+  drawSingle(g, data.id + '_p2', data.spouse, data.spousePhoto, data.spouseDob, off, RC);
+}
+
+// ── Draw a single person circle ─────────────────────────
+function drawSingle(g, id, name, photo, dob, ox, r) {
+  const clipId = 'clip_' + (id||'x').replace(/[^a-z0-9]/gi,'_');
+
+  // Clip path for photo
+  const defs = d3.select('#defs');
+  if (defs.select('#'+clipId).empty()) {
+    defs.append('clipPath').attr('id',clipId)
+      .append('circle').attr('r',r).attr('cx',ox);
+  }
+
+  // Circle
+  g.append('circle')
+    .attr('cx',ox).attr('r',r)
+    .attr('fill','#0C1A4E')
+    .attr('stroke','#D0D8F0').attr('stroke-width',2);
+
+  if (photo) {
+    g.append('image')
+      .attr('href',photo)
+      .attr('x', ox-r).attr('y',-r)
+      .attr('width',r*2).attr('height',r*2)
+      .attr('clip-path',`url(#${clipId})`);
+  } else {
+    const init = (name||'?').split(' ').slice(0,2).map(n=>n[0]||'').join('').toUpperCase();
+    g.append('text')
+      .attr('x',ox).attr('text-anchor','middle').attr('dy','0.36em')
+      .attr('fill','white').attr('font-size', r*0.62)
+      .attr('font-weight','600').attr('font-family','DM Sans, sans-serif')
+      .text(init);
+  }
+
+  // Name — wrap at ~14 chars
+  const lines = wrapText(name||'', 14);
+  lines.forEach((line, i) => {
+    g.append('text')
+      .attr('x',ox).attr('y', r + 16 + i * 15)
+      .attr('text-anchor','middle')
+      .attr('font-family','Cormorant Garamond, serif')
+      .attr('font-size', 13).attr('font-weight','600').attr('fill','#0C1A4E')
+      .text(line);
+  });
+
+  // DOB
+  if (dob) {
+    g.append('text')
+      .attr('x',ox).attr('y', r + 16 + lines.length * 15 + 4)
+      .attr('text-anchor','middle')
+      .attr('font-size',10).attr('fill','#7A8CB0')
+      .text('🎂 ' + dob);
+  }
+}
+
+// ── Text wrap helper ─────────────────────────────────────
+function wrapText(text, max) {
+  const words = (text||'').split(' ');
+  const lines = [];
+  let cur = '';
+  words.forEach(w => {
+    const test = cur ? cur + ' ' + w : w;
+    if (test.length <= max) { cur = test; }
+    else { if (cur) lines.push(cur); cur = w; }
+  });
+  if (cur) lines.push(cur);
+  return lines.slice(0,2);
+}
+
+// ── Zoom controls ─────────────────────────────────────
+function zoomIn()   { svgSel.transition().duration(250).call(zoomBeh.scaleBy, 1.4); }
+function zoomOut()  { svgSel.transition().duration(250).call(zoomBeh.scaleBy, 0.7); }
+function resetView(){
+  const W = document.getElementById('treeWrap').clientWidth;
+  svgSel.transition().duration(350)
+    .call(zoomBeh.transform, d3.zoomIdentity.translate(W/2, 80).scale(0.85));
+}
+
+// ── Download PDF ─────────────────────────────────────
+function downloadPDF() { window.print(); }
+
+// ── Download PNG ─────────────────────────────────────
+async function downloadPNG() {
+  showToast('Preparing image…');
+  try {
+    const svgEl = document.getElementById('treeSvg');
+    const bbox  = gSel.node().getBBox();
+    const pad   = 40;
+
+    // Clone SVG and set explicit size
+    const clone = svgEl.cloneNode(true);
+    const vw = bbox.width  + pad*2;
+    const vh = bbox.height + pad*2;
+    clone.setAttribute('width',  vw);
+    clone.setAttribute('height', vh);
+    clone.setAttribute('viewBox', `${bbox.x-pad} ${bbox.y-pad} ${vw} ${vh}`);
+
+    // Add white background
+    const rect = document.createElementNS('http://www.w3.org/2000/svg','rect');
+    rect.setAttribute('x', bbox.x-pad); rect.setAttribute('y', bbox.y-pad);
+    rect.setAttribute('width', vw); rect.setAttribute('height', vh);
+    rect.setAttribute('fill', '#F5F7FF');
+    clone.insertBefore(rect, clone.firstChild);
+
+    const svgStr  = new XMLSerializer().serializeToString(clone);
+    const svgBlob = new Blob([svgStr], {type:'image/svg+xml;charset=utf-8'});
+    const url     = URL.createObjectURL(svgBlob);
+
+    const img = new Image();
+    img.onload = () => {
+      const canvas = document.createElement('canvas');
+      canvas.width = vw * 2; canvas.height = vh * 2; // 2x for clarity
+      const ctx = canvas.getContext('2d');
+      ctx.scale(2,2);
+      ctx.drawImage(img, 0, 0);
+      const a = document.createElement('a');
+      a.download = 'balrampur-family-tree.png';
+      a.href = canvas.toDataURL('image/png');
+      a.click();
+      URL.revokeObjectURL(url);
+      showToast('Download started!');
+    };
+    img.src = url;
+  } catch(err) {
+    showToast('Could not generate image. Try PDF instead.');
+  }
+}
+
+// ── Sign out ─────────────────────────────────────────
+function signOut() {
+  document.getElementById('treeScreen').classList.remove('show');
+  document.getElementById('loginScreen').classList.remove('hide');
+  document.getElementById('loginEmail').value = '';
+  document.getElementById('loginPwd').value   = '';
+  if (svgSel) svgSel.selectAll('*').remove();
+  rootHier = null;
+}
+
+// ── Helpers ───────────────────────────────────────────
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg; t.classList.add('on');
+  setTimeout(() => t.classList.remove('on'), 3500);
+}
+function shake(id) {
+  const el = document.getElementById(id);
+  el.classList.add('err'); setTimeout(() => el.classList.remove('err'), 500);
+}
+
+// Handle window resize
+window.addEventListener('resize', () => {
+  if (!svgSel) return;
+  const wrap = document.getElementById('treeWrap');
+  svgSel.attr('width', wrap.clientWidth).attr('height', wrap.clientHeight);
+});
+</script>
+</body>
+</html>
