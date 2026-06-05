@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Balrampur Family Directory</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --navy:       #0C1A4E;
+  --navy-deep:  #070F30;
+  --navy-mid:   #1A3178;
+  --navy-light: #2548A8;
+  --gold:       #C9943A;
+  --gold-light: #E8B84B;
+  --gold-pale:  #F5DFA0;
+  --cream:      #F5F7FF;
+  --warm-white: #FFFFFF;
+  --text-dark:  #0C1A4E;
+  --text-mid:   #3A4E7A;
+  --text-light: #7A8CB0;
+  --border:     #D0D8F0;
+  --shadow:     rgba(12,26,78,0.10);
+}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);min-height:100vh;color:var(--text-dark);}
+
+/* ── Stripe ── */
+.stripe{height:5px;background:linear-gradient(90deg,var(--navy-deep) 0%,var(--navy-deep) 20%,var(--gold) 20%,var(--gold) 40%,#FFF 40%,#FFF 60%,var(--gold) 60%,var(--gold) 80%,var(--navy-deep) 80%,var(--navy-deep) 100%);}
+
+/* ── Hero ── */
+.hero{
+  background:
+    radial-gradient(ellipse at 15% 10%, rgba(37,72,168,.35) 0%, transparent 55%),
+    radial-gradient(ellipse at 85% 90%, rgba(201,148,58,.15) 0%, transparent 50%),
+    linear-gradient(155deg, var(--navy-deep) 0%, var(--navy) 50%, var(--navy-mid) 100%);
+  padding:48px 24px 40px;text-align:center;position:relative;overflow:hidden;
+}
+.hero-ring{position:absolute;border-radius:50%;border:1px solid rgba(201,148,58,.12);pointer-events:none;}
+.ring1{width:300px;height:300px;top:-130px;right:-90px;}
+.ring2{width:210px;height:210px;top:-70px;right:-25px;border-color:rgba(255,255,255,.06);}
+.ring3{width:340px;height:340px;bottom:-170px;left:-110px;}
+.ring4{width:190px;height:190px;bottom:-70px;left:-25px;border-color:rgba(255,255,255,.06);}
+
+.hero-lamp{font-size:32px;display:block;margin-bottom:12px;filter:drop-shadow(0 2px 10px rgba(201,148,58,.6));}
+.hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,6vw,3rem);color:#FFF;font-weight:700;line-height:1.15;}
+.hero h1 em{font-style:italic;color:var(--gold-light);}
+.hero-divider{display:flex;align-items:center;justify-content:center;gap:12px;margin:16px 0;}
+.hero-divider::before,.hero-divider::after{content:'';width:52px;height:1px;background:linear-gradient(90deg,transparent,var(--gold));}
+.hero-divider::after{background:linear-gradient(90deg,var(--gold),transparent);}
+.hero-diamond{color:var(--gold-light);font-size:10px;}
+.hero-sub{color:rgba(255,255,255,.68);font-size:.88rem;font-weight:300;letter-spacing:.8px;}
+.hero-hindi{margin-top:7px;color:rgba(201,148,58,.75);font-size:.78rem;font-style:italic;}
+.hero-gold-bar{height:2px;background:linear-gradient(90deg,transparent,var(--gold),var(--gold-light),var(--gold),transparent);margin-top:32px;}
+
+/* ── Container ── */
+.container{max-width:540px;margin:0 auto;padding:28px 16px 64px;}
+
+/* ══ GATE ══ */
+.gate-screen{display:block;}.gate-screen.hide{display:none;}
+.gate-card{background:var(--warm-white);border-radius:24px;border:1px solid var(--border);box-shadow:0 4px 32px var(--shadow);overflow:hidden;}
+.gate-top{background:linear-gradient(135deg,var(--navy-deep),var(--navy-mid));padding:32px 28px 26px;text-align:center;}
+.gate-lock{font-size:48px;display:block;margin-bottom:14px;filter:drop-shadow(0 4px 12px rgba(0,0,0,.35));}
+.gate-title{font-family:'Cormorant Garamond',serif;font-size:1.55rem;font-weight:700;color:#FFF;margin-bottom:5px;}
+.gate-subtitle{color:rgba(255,255,255,.6);font-size:.86rem;}
+.gate-body{padding:26px 28px 30px;}
+.gate-lbl{display:block;font-size:.72rem;font-weight:600;color:var(--text-mid);text-transform:uppercase;letter-spacing:.7px;margin-bottom:8px;}
+.gate-input{width:100%;border:2px solid var(--border);border-radius:14px;padding:15px 20px;font-family:'DM Sans',sans-serif;font-size:1.05rem;letter-spacing:6px;color:var(--text-dark);background:white;outline:none;transition:border-color .2s,box-shadow .2s;text-align:center;}
+.gate-input::placeholder{letter-spacing:2px;font-size:.9rem;color:var(--text-light);}
+.gate-input:focus{border-color:var(--navy-light);box-shadow:0 0 0 4px rgba(37,72,168,.10);}
+.gate-input.err{border-color:#C53030;background:#FFF5F5;animation:shake .3s ease;}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+.gate-hint{text-align:center;font-size:.76rem;color:var(--text-light);margin-top:9px;}
+.enter-btn{width:100%;margin-top:18px;background:linear-gradient(135deg,var(--navy-deep),var(--navy-light));color:white;border:none;border-radius:14px;padding:16px 24px;font-family:'DM Sans',sans-serif;font-size:1rem;font-weight:600;cursor:pointer;box-shadow:0 6px 28px rgba(12,26,78,.30);transition:transform .15s,box-shadow .15s;position:relative;overflow:hidden;}
+.enter-btn::after{content:'';position:absolute;top:0;left:-100%;width:60%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.1),transparent);transform:skewX(-20deg);transition:left .5s;}
+.enter-btn:hover::after{left:150%;}.enter-btn:hover{transform:translateY(-2px);box-shadow:0 10px 34px rgba(12,26,78,.40);}
+
+/* ══ FORM ══ */
+.form-body{display:none;}.form-body.show{display:block;}
+
+/* Patriarch banner */
+.patriarch-banner{background:linear-gradient(135deg,var(--navy-deep),var(--navy-mid));border-radius:16px;padding:14px 18px;display:flex;align-items:center;gap:14px;margin-bottom:0;}
+.patriarch-icon{font-size:30px;flex-shrink:0;}
+.patriarch-name{font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-weight:700;color:#FFF;line-height:1.2;}
+.patriarch-role{font-size:.68rem;color:var(--gold-light);letter-spacing:.8px;text-transform:uppercase;margin-top:2px;}
+
+/* ── Single continuous form card ── */
+.form-flow{background:var(--warm-white);border-radius:20px;border:1px solid var(--border);box-shadow:0 2px 20px var(--shadow);overflow:hidden;margin-top:16px;}
+
+.form-section{padding:20px 22px;}
+.form-section + .form-section{border-top:1px solid var(--border);}
+
+/* Fields */
+.field{margin-bottom:16px;}.field:last-child{margin-bottom:0;}
+.field label{display:block;font-size:.71rem;font-weight:600;color:var(--text-mid);text-transform:uppercase;letter-spacing:.7px;margin-bottom:6px;}
+.field label .req{color:var(--navy-light);margin-left:2px;}
+.field input,.field select{width:100%;border:1.5px solid var(--border);border-radius:10px;padding:11px 13px;font-family:'DM Sans',sans-serif;font-size:.94rem;color:var(--text-dark);background:white;outline:none;transition:border-color .2s,box-shadow .2s;-webkit-appearance:none;}
+.field input:focus,.field select:focus{border-color:var(--navy-light);box-shadow:0 0 0 3px rgba(37,72,168,.08);}
+.field input.err,.field select.err{border-color:#C53030;background:#FFF5F5;}
+.field select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='8' viewBox='0 0 14 8'%3E%3Cpath fill='%233A4E7A' d='M7 8L0 0h14z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 13px center;padding-right:36px;cursor:pointer;}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+@media(max-width:430px){.row2{grid-template-columns:1fr;}}
+.errmsg{font-size:.7rem;color:#C53030;margin-top:3px;display:none;}.errmsg.on{display:block;}
+.prefill-note{font-size:.7rem;color:var(--text-light);margin-top:4px;font-style:italic;display:none;}
+
+/* Cascade reveal */
+.reveal{display:none;margin-top:14px;padding-top:14px;border-top:1px dashed var(--border);}.reveal.show{display:block;}
+.reveal-lbl{font-size:.71rem;font-weight:600;color:var(--navy);text-transform:uppercase;letter-spacing:.7px;margin-bottom:6px;display:block;}
+.reveal-lbl .hl{color:var(--navy-light);font-style:italic;text-transform:none;font-weight:400;}
+
+/* Date inputs */
+.date-wrap{display:flex;align-items:center;gap:6px;}
+.date-part{border:1.5px solid var(--border);border-radius:10px;padding:11px 0;font-family:'DM Sans',sans-serif;font-size:.95rem;color:var(--text-dark);background:white;outline:none;text-align:center;transition:border-color .2s,box-shadow .2s;-webkit-appearance:none;}
+.date-part:focus{border-color:var(--navy-light);box-shadow:0 0 0 3px rgba(37,72,168,.08);}
+.date-part.err{border-color:#C53030;background:#FFF5F5;}
+.date-dd,.date-mm{width:60px;}.date-slash{font-size:1.2rem;color:var(--text-light);}.date-hint{font-size:.68rem;color:var(--text-light);margin-left:2px;}
+
+/* Submit */
+.submit-section{padding:20px 22px;background:linear-gradient(135deg,rgba(12,26,78,.03),white);}
+.submit-btn{width:100%;background:linear-gradient(135deg,var(--navy-deep),var(--navy-light));color:white;border:none;border-radius:12px;padding:16px;font-family:'DM Sans',sans-serif;font-size:1rem;font-weight:600;cursor:pointer;box-shadow:0 6px 24px rgba(12,26,78,.28);transition:transform .15s,box-shadow .15s;position:relative;overflow:hidden;}
+.submit-btn::after{content:'';position:absolute;top:0;left:-100%;width:60%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.1),transparent);transform:skewX(-20deg);transition:left .5s;}
+.submit-btn:hover::after{left:150%;}.submit-btn:hover{transform:translateY(-2px);box-shadow:0 10px 32px rgba(12,26,78,.38);}
+.submit-btn:disabled{opacity:.6;cursor:not-allowed;transform:none!important;}
+
+/* Success */
+.success{display:none;text-align:center;padding:64px 20px;}.success.on{display:block;}
+.success-diya{font-size:64px;display:block;margin-bottom:20px;animation:glow 2s ease-in-out infinite;}
+@keyframes glow{0%,100%{filter:drop-shadow(0 0 8px rgba(201,148,58,.4))}50%{filter:drop-shadow(0 0 20px rgba(201,148,58,.8))}}
+.success h2{font-family:'Cormorant Garamond',serif;font-size:2.3rem;font-weight:700;color:var(--navy);margin-bottom:6px;}
+.success-divider{width:80px;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:14px auto;}
+.success p{color:var(--text-mid);font-size:.95rem;line-height:1.7;}
+.success .person-name{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:600;color:var(--navy);}
+.success .note{font-size:.78rem;color:var(--text-light);margin-top:12px;}
+.another-btn{display:inline-block;margin-top:24px;background:white;border:2px solid var(--navy);color:var(--navy);border-radius:12px;padding:11px 32px;font-family:'DM Sans',sans-serif;font-size:.9rem;font-weight:600;cursor:pointer;transition:all .2s;}
+.another-btn:hover{background:var(--navy);color:white;}
+
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(20px);background:#1B2A5E;color:white;padding:12px 26px;border-radius:12px;font-size:.86rem;font-weight:500;box-shadow:0 6px 24px rgba(0,0,0,.25);z-index:999;opacity:0;transition:opacity .25s,transform .25s;white-space:nowrap;max-width:calc(100vw - 40px);text-align:center;pointer-events:none;}
+.toast.on{opacity:1;transform:translateX(-50%) translateY(0);}
+.footer{text-align:center;padding:20px;color:var(--text-light);font-size:.74rem;}
+</style>
+</head>
+<body>
+<div class="stripe"></div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-ring ring1"></div><div class="hero-ring ring2"></div>
+  <div class="hero-ring ring3"></div><div class="hero-ring ring4"></div>
+  <span class="hero-lamp">🪔</span>
+  <h1>The <em>Balrampur</em><br>Family Directory</h1>
+  <div class="hero-divider"><span class="hero-diamond">◆</span></div>
+  <p class="hero-sub">Share your details with our family</p>
+  <p class="hero-hindi">एक परिवार · एक सूची · एक पहचान</p>
+  <div class="hero-gold-bar"></div>
+</div>
+
+<div class="container">
+
+  <!-- ══ GATE ══ -->
+  <div class="gate-screen" id="gateScreen">
+    <div class="gate-card">
+      <div class="gate-top">
+        <span class="gate-lock">🔐</span>
+        <div class="gate-title">Family Access</div>
+        <div class="gate-subtitle">Enter the family code to continue</div>
+      </div>
+      <div class="gate-body">
+        <label class="gate-lbl" for="accessCode">Family Access Code</label>
+        <input type="password" id="accessCode" class="gate-input" placeholder="Enter code here"
+          autocomplete="off" onkeydown="if(event.key==='Enter') enterDirectory()"/>
+        <div class="gate-hint">Contact Anand if you don't have the code</div>
+        <button class="enter-btn" onclick="enterDirectory()">Enter Family Directory &nbsp;→</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ FORM ══ -->
+  <div class="form-body" id="formBody">
+
+    <!-- Patriarch banner -->
+    <div class="patriarch-banner" id="patriarchBanner">
+      <div class="patriarch-icon">👴👵</div>
+      <div>
+        <div class="patriarch-name">Raghuraj Prasad &amp; Chandra Kala Devi</div>
+        <div class="patriarch-role">Balrampur Family · Family Heads</div>
+      </div>
+    </div>
+
+    <!-- Single continuous form -->
+    <div class="form-flow">
+
+      <!-- Family Tree -->
+      <div class="form-section">
+
+        <div class="field">
+          <label>Whose family do you belong to? <span class="req">*</span></label>
+          <select id="gen1" onchange="onGen1Change()">
+            <option value="">— Select family branch —</option>
+            <option value="Jaya Srivastava">Jaya Srivastava's Family</option>
+            <option value="Mukund Chandra">Mukund Chandra's Family</option>
+            <option value="Shobha Sinha">Shobha Sinha's Family</option>
+            <option value="J Pratap">J Pratap's Family</option>
+            <option value="Sudha Lal">Sudha Lal's Family</option>
+            <option value="Rajendra Kumar">Rajendra Kumar's Family</option>
+            <option value="Sarla Prasad">Sarla Prasad's Family</option>
+            <option value="Hari Mohan Srivastava">Hari Mohan Srivastava's Family</option>
+            <option value="Sandhya Kumar">Sandhya Kumar's Family</option>
+          </select>
+          <div class="errmsg" id="e-gen1">Please select a family branch</div>
+        </div>
+
+        <div class="reveal" id="revGen2">
+          <span class="reveal-lbl">Which of <span class="hl" id="gen2Label">—</span>'s family? <span class="req">*</span></span>
+          <select id="gen2" onchange="onGen2Change()">
+            <option value="">— Select —</option>
+          </select>
+          <div class="errmsg" id="e-gen2">Please select</div>
+        </div>
+
+        <div class="reveal" id="revRel">
+          <span class="reveal-lbl">Relationship to <span class="hl" id="relLabel">—</span> <span class="req">*</span></span>
+          <select id="relationship">
+            <option value="">— Select —</option>
+            <option value="Self">Self (I am this person)</option>
+            <option value="Spouse">Spouse</option>
+            <option value="Son">Son</option>
+            <option value="Daughter">Daughter</option>
+            <option value="Son-in-law (Damad)">Son-in-law (Damad)</option>
+            <option value="Daughter-in-law (Bahu)">Daughter-in-law (Bahu)</option>
+            <option value="Grandson">Grandson</option>
+            <option value="Granddaughter">Granddaughter</option>
+            <option value="Great-Grandson">Great-Grandson</option>
+            <option value="Great-Granddaughter">Great-Granddaughter</option>
+            <option value="Other">Other</option>
+          </select>
+          <div class="errmsg" id="e-rel">Please select your relationship</div>
+        </div>
+
+      </div><!-- /section -->
+
+      <!-- Personal -->
+      <div class="form-section">
+        <div class="row2">
+          <div class="field">
+            <label>First Name <span class="req">*</span></label>
+            <input type="text" id="firstName" placeholder="First name" autocomplete="given-name"/>
+            <div class="prefill-note" id="prefillNote">✏️ Pre-filled — edit if needed</div>
+            <div class="errmsg" id="e-firstName">Required</div>
+          </div>
+          <div class="field">
+            <label>Last Name</label>
+            <input type="text" id="lastName" placeholder="Last name" autocomplete="family-name"/>
+          </div>
+        </div>
+        <div class="field">
+          <label>Married To</label>
+          <input type="text" id="marriedTo" placeholder="Spouse's full name"/>
+        </div>
+      </div>
+
+      <!-- Contact -->
+      <div class="form-section">
+        <div class="field">
+          <label>Phone</label>
+          <div style="display:flex;gap:8px;">
+            <select id="phoneCode" style="width:110px;flex-shrink:0;border:1.5px solid var(--border);border-radius:10px;padding:11px 8px;font-family:'DM Sans',sans-serif;font-size:.88rem;color:var(--text-dark);background:white;outline:none;cursor:pointer;-webkit-appearance:none;background-image:url('data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'12\' height=\'7\' viewBox=\'0 0 12 7\'%3E%3Cpath fill=\'%233A4E7A\' d=\'M6 7L0 0h12z\'/%3E%3C/svg%3E');background-repeat:no-repeat;background-position:right 8px center;padding-right:24px;">
+              <option value="+1">🇺🇸 +1</option>
+              <option value="+91">🇮🇳 +91</option>
+              <option value="+44">🇬🇧 +44</option>
+              <option value="+61">🇦🇺 +61</option>
+              <option value="+1-CA">🇨🇦 +1</option>
+              <option value="+971">🇦🇪 +971</option>
+              <option value="+65">🇸🇬 +65</option>
+              <option value="+49">🇩🇪 +49</option>
+              <option value="+33">🇫🇷 +33</option>
+              <option value="+other">Other</option>
+            </select>
+            <input type="tel" id="phone" placeholder="(248) 555-0100" autocomplete="tel" style="flex:1;"/>
+          </div>
+        </div>
+        <div class="field">
+          <label>Address</label>
+          <input type="text" id="address" placeholder="City, State  (e.g. Troy, MI  or  Lucknow, UP)"/>
+        </div>
+      </div>
+
+      <!-- Dates -->
+      <div class="form-section">
+        <div class="row2">
+          <div class="field">
+            <label>🎂 Date of Birth</label>
+            <div class="date-wrap">
+              <input type="text" id="dob-dd" class="date-part date-dd" placeholder="DD"
+                inputmode="numeric" maxlength="2"
+                oninput="handleDay(this,'dob-mm')" onblur="padTwo(this)"/>
+              <span class="date-slash">/</span>
+              <input type="text" id="dob-mm" class="date-part date-mm" placeholder="MM"
+                inputmode="numeric" maxlength="2"
+                oninput="handleMonth(this)" onblur="padTwo(this)"/>
+              <span class="date-hint">Day / Month</span>
+            </div>
+            <div class="errmsg" id="e-dob">Check day and month</div>
+          </div>
+          <div class="field">
+            <label>💍 Anniversary</label>
+            <div class="date-wrap">
+              <input type="text" id="ann-dd" class="date-part date-dd" placeholder="DD"
+                inputmode="numeric" maxlength="2"
+                oninput="handleDay(this,'ann-mm')" onblur="padTwo(this)"/>
+              <span class="date-slash">/</span>
+              <input type="text" id="ann-mm" class="date-part date-mm" placeholder="MM"
+                inputmode="numeric" maxlength="2"
+                oninput="handleMonth(this)" onblur="padTwo(this)"/>
+              <span class="date-hint">Day / Month</span>
+            </div>
+            <div class="errmsg" id="e-ann">Check day and month</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Submit -->
+      <div class="submit-section">
+        <button class="submit-btn" id="submitBtn" onclick="submitForm()">
+          🙏&nbsp; Submit to Family Directory
+        </button>
+      </div>
+
+    </div><!-- /form-flow -->
+  </div><!-- /form-body -->
+
+  <!-- SUCCESS -->
+  <div class="success" id="successScreen">
+    <span class="success-diya">🪔</span>
+    <h2>Dhanyavaad!</h2>
+    <div class="success-divider"></div>
+    <p class="person-name" id="successName"></p>
+    <p>Your details have been added to<br><strong>The Balrampur Family Directory</strong></p>
+    <p class="note">Anand will review and confirm your entry shortly.</p>
+    <button class="another-btn" onclick="addAnother()">+ Add Another Family Member</button>
+  </div>
+
+</div>
+<div class="footer">The Balrampur Family Directory &nbsp;·&nbsp; Built with ❤️ for our family &nbsp;·&nbsp; सर्वे भवन्तु सुखिनः</div>
+<div class="toast" id="toast"></div>
+
+<script>
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxZXPLRN-O87hc_2FU4P7MRqKxaGio1-d-RN2GfVC7ysJ9IF9Vj2KJIukr3V9EdV7uVQQ/exec';
+const FAMILY_CODE     = 'LALABABU2026';
+
+let verifiedCode = '';
+
+const FAMILY = {
+  'Jaya Srivastava':       ['Madhuli Nigam','Purshkar Srivastava'],
+  'Mukund Chandra':        ['Nirmal Kumar','Tripti Srivastava','Charu Nigam'],
+  'Shobha Sinha':          ['Divya J Srivastava','Anand Sinha','Sanjay Sinha'],
+  'J Pratap':              ['Kripanshu Pratap'],
+  'Sudha Lal':             ['Shubhra Sahai','Sujala Narain','Ashesh Lal'],
+  'Rajendra Kumar':        ['Praveen Kumar','Aparna Nigam','Paritosh Kumar'],
+  'Sarla Prasad':          ['Snighdha Mohan','Sumangala Bhattacharjee'],
+  'Hari Mohan Srivastava': ['Anupam Kumar','Shruti Verma','Smriti Srivastava'],
+  'Sandhya Kumar':         []
+};
+
+/* ── Gate ──────────────────────────────────── */
+function enterDirectory() {
+  const inp = document.getElementById('accessCode');
+  const code = inp.value.trim();
+  if (!code)              { shake(inp); showToast('Please enter the family access code'); return; }
+  if (code !== FAMILY_CODE){ shake(inp); showToast('Incorrect code. Please check with Anand.'); inp.value=''; inp.focus(); return; }
+  verifiedCode = code;
+  document.getElementById('gateScreen').classList.add('hide');
+  document.getElementById('formBody').classList.add('show');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function shake(el){ el.classList.add('err'); setTimeout(()=>el.classList.remove('err'),600); }
+
+/* ── Cascade ────────────────────────────────── */
+function onGen1Change() {
+  const gen1 = document.getElementById('gen1').value;
+  document.getElementById('revGen2').classList.remove('show');
+  document.getElementById('revRel').classList.remove('show');
+  document.getElementById('gen2').innerHTML = '<option value="">— Select —</option>';
+  document.getElementById('relationship').value = '';
+  clearErr('gen1','e-gen1');
+  if (!gen1) return;
+
+  document.getElementById('gen2Label').textContent = gen1;
+  const sel = document.getElementById('gen2');
+  addOpt(sel, '__self__', 'I am ' + gen1 + ' (myself)');
+
+  const kids = FAMILY[gen1] || [];
+  if (kids.length > 0) {
+    const grp = document.createElement('optgroup');
+    grp.label = 'Children of ' + gen1;
+    kids.forEach(c => { const o=document.createElement('option'); o.value=c; o.textContent=c; grp.appendChild(o); });
+    sel.appendChild(grp);
+  }
+  addOpt(sel, '__other__', 'Other / Not listed');
+  document.getElementById('revGen2').classList.add('show');
+}
+
+function addOpt(sel,val,text){ const o=document.createElement('option'); o.value=val; o.textContent=text; sel.appendChild(o); }
+
+function onGen2Change() {
+  const gen1 = document.getElementById('gen1').value;
+  const gen2 = document.getElementById('gen2').value;
+  clearErr('gen2','e-gen2');
+  document.getElementById('revRel').classList.remove('show');
+  document.getElementById('relationship').value = '';
+  if (!gen2) return;
+
+  if (gen2 === '__self__') {
+    prefillName(gen1);
+    document.getElementById('relationship').value = 'Self';
+  } else {
+    document.getElementById('relLabel').textContent = gen2 === '__other__' ? gen1 : gen2;
+    document.getElementById('revRel').classList.add('show');
+    gen2 !== '__other__' ? prefillName(gen2) : clearPrefill();
+  }
+}
+
+function prefillName(full) {
+  const p = full.trim().split(' ');
+  document.getElementById('firstName').value = p[0]||'';
+  document.getElementById('lastName').value  = p.slice(1).join(' ')||'';
+  document.getElementById('prefillNote').style.display = 'block';
+}
+function clearPrefill() {
+  document.getElementById('firstName').value='';
+  document.getElementById('lastName').value='';
+  document.getElementById('prefillNote').style.display='none';
+}
+
+/* ── Smart date ─────────────────────────────── */
+function handleDay(el,nextId){
+  el.value=el.value.replace(/\D/g,'');
+  if(el.value.length===2){ let d=parseInt(el.value); if(d>31)el.value='31'; if(d<1)el.value='01'; document.getElementById(nextId).focus(); }
+}
+function handleMonth(el){
+  el.value=el.value.replace(/\D/g,'');
+  if(el.value.length>=1&&parseInt(el.value[0])>1) el.value='0'+el.value[0];
+  if(el.value.length===2){ let m=parseInt(el.value); if(m>12)el.value='12'; if(m<1)el.value='01'; }
+}
+function padTwo(el){ if(el.value.length===1) el.value='0'+el.value; }
+function getDDMM(d,m){ const dd=document.getElementById(d).value.trim(),mm=document.getElementById(m).value.trim(); return(!dd&&!mm)?'':dd+'/'+mm; }
+function isValidDate(d,m){ const dd=document.getElementById(d).value.trim(),mm=document.getElementById(m).value.trim(); if(!dd&&!mm)return true; if(!dd||!mm)return false; return parseInt(dd)>=1&&parseInt(dd)<=31&&parseInt(mm)>=1&&parseInt(mm)<=12; }
+
+/* ── Toast / err helpers ───────────────────── */
+function showToast(msg){ const t=document.getElementById('toast'); t.textContent=msg; t.classList.add('on'); setTimeout(()=>t.classList.remove('on'),3800); }
+function setErr(f,e){ if(f)document.getElementById(f).classList.add('err'); document.getElementById(e).classList.add('on'); }
+function clearErr(f,e){ if(f)document.getElementById(f).classList.remove('err'); document.getElementById(e).classList.remove('on'); }
+
+/* ── Validate ───────────────────────────────── */
+function validate(){
+  let ok=true;
+  const gen1=document.getElementById('gen1').value, gen2=document.getElementById('gen2').value, rel=document.getElementById('relationship').value, fn=document.getElementById('firstName').value.trim();
+  if(!gen1){setErr('gen1','e-gen1');ok=false;}else clearErr('gen1','e-gen1');
+  if(gen1&&!gen2){setErr('gen2','e-gen2');ok=false;}else clearErr('gen2','e-gen2');
+  if(gen2&&gen2!=='__self__'&&!rel){setErr('relationship','e-rel');ok=false;}else clearErr('relationship','e-rel');
+  if(!fn){setErr('firstName','e-firstName');ok=false;}else clearErr('firstName','e-firstName');
+  if(!isValidDate('dob-dd','dob-mm')){['dob-dd','dob-mm'].forEach(id=>document.getElementById(id).classList.add('err'));document.getElementById('e-dob').classList.add('on');ok=false;}else{['dob-dd','dob-mm'].forEach(id=>document.getElementById(id).classList.remove('err'));document.getElementById('e-dob').classList.remove('on');}
+  if(!isValidDate('ann-dd','ann-mm')){['ann-dd','ann-mm'].forEach(id=>document.getElementById(id).classList.add('err'));document.getElementById('e-ann').classList.add('on');ok=false;}else{['ann-dd','ann-mm'].forEach(id=>document.getElementById(id).classList.remove('err'));document.getElementById('e-ann').classList.remove('on');}
+  return ok;
+}
+
+/* ── Submit ─────────────────────────────────── */
+async function submitForm(){
+  if(!validate()){showToast('Please complete the required fields');return;}
+  const btn=document.getElementById('submitBtn');
+  btn.disabled=true;btn.innerHTML='⏳&nbsp; Submitting…';
+  const gen1=document.getElementById('gen1').value,gen2=document.getElementById('gen2').value;
+  const firstName=document.getElementById('firstName').value.trim(),lastName=document.getElementById('lastName').value.trim();
+  const payload={
+    accessCode:verifiedCode,firstName,lastName,
+    familyBranch:gen1,
+    connectedTo:gen2==='__self__'?gen1:gen2==='__other__'?'Other':gen2,
+    relationship:gen2==='__self__'?'Self':document.getElementById('relationship').value,
+    marriedTo:document.getElementById('marriedTo').value.trim(),
+    phone: (document.getElementById('phoneCode').value.replace('-CA','') + ' ' + document.getElementById('phone').value.trim()).trim(),
+    address:document.getElementById('address').value.trim(),
+    dob:getDDMM('dob-dd','dob-mm'),anniversary:getDDMM('ann-dd','ann-mm'),
+    enteredBy:firstName+(lastName?' '+lastName:''),notes:''
+  };
+  try{
+    const res=await fetch(APPS_SCRIPT_URL,{method:'POST',body:JSON.stringify(payload)});
+    const data=await res.json();
+    if(data.success){
+      document.getElementById('formBody').classList.remove('show');
+      document.getElementById('successName').textContent=firstName+(lastName?' '+lastName:'');
+      document.getElementById('successScreen').classList.add('on');
+      window.scrollTo({top:0,behavior:'smooth'});
+    }else{showToast(data.message||'Submission failed. Please try again.');btn.disabled=false;btn.innerHTML='🙏&nbsp; Submit to Family Directory';}
+  }catch{showToast('Network error. Please check your connection.');btn.disabled=false;btn.innerHTML='🙏&nbsp; Submit to Family Directory';}
+}
+
+/* ── Reset ──────────────────────────────────── */
+function addAnother(){
+  document.getElementById('successScreen').classList.remove('on');
+  document.getElementById('formBody').classList.add('show');
+  ['firstName','lastName','marriedTo','phone','address'].forEach(id=>document.getElementById(id).value='');
+  ['dob-dd','dob-mm','ann-dd','ann-mm'].forEach(id=>document.getElementById(id).value='');
+  document.getElementById('phoneCode').value='+1';
+  document.getElementById('gen1').value='';
+  document.getElementById('gen2').innerHTML='<option value="">— Select —</option>';
+  document.getElementById('relationship').value='';
+  document.getElementById('revGen2').classList.remove('show');
+  document.getElementById('revRel').classList.remove('show');
+  document.getElementById('prefillNote').style.display='none';
+  const btn=document.getElementById('submitBtn');btn.disabled=false;btn.innerHTML='🙏&nbsp; Submit to Family Directory';
+  document.getElementById('patriarchBanner').scrollIntoView({behavior:'smooth',block:'start'});
+}
+</script>
+</body>
+</html>
