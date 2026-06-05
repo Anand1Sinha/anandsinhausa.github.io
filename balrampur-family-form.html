@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Balrampur Family Directory</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --maroon:       #6B1515;
+  --maroon-deep:  #4A0E0E;
+  --maroon-mid:   #8B2020;
+  --maroon-soft:  #A83030;
+  --gold:         #C9943A;
+  --gold-light:   #E8B84B;
+  --gold-pale:    #F5DFA0;
+  --cream:        #FDF6E8;
+  --cream-dark:   #F5EDD8;
+  --warm-white:   #FFFCF5;
+  --text-dark:    #2C1406;
+  --text-mid:     #6B4226;
+  --text-light:   #9B7050;
+  --border:       #E2CBA8;
+  --border-light: #EDD9B8;
+  --shadow:       rgba(74,14,14,0.12);
+}
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--cream);
+  min-height: 100vh;
+  color: var(--text-dark);
+}
+
+/* ── Rainbow top stripe ── */
+.stripe {
+  height: 5px;
+  background: repeating-linear-gradient(
+    90deg,
+    var(--maroon-deep) 0%, var(--maroon-deep) 20%,
+    var(--gold) 20%, var(--gold) 40%,
+    #FFFFFF 40%, #FFFFFF 60%,
+    var(--gold) 60%, var(--gold) 80%,
+    var(--maroon-deep) 80%, var(--maroon-deep) 100%
+  );
+}
+
+/* ── Hero header ── */
+.hero {
+  background:
+    radial-gradient(ellipse at 10% 0%, rgba(201,148,58,0.18) 0%, transparent 50%),
+    radial-gradient(ellipse at 90% 100%, rgba(201,148,58,0.12) 0%, transparent 50%),
+    linear-gradient(160deg, var(--maroon-deep) 0%, var(--maroon) 45%, var(--maroon-mid) 100%);
+  padding: 48px 24px 40px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Decorative geometric rings */
+.hero-ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid rgba(201,148,58,0.15);
+  pointer-events: none;
+}
+.ring1 { width:280px; height:280px; top:-120px; right:-80px; }
+.ring2 { width:200px; height:200px; top:-60px;  right:-20px; border-color: rgba(201,148,58,0.08); }
+.ring3 { width:320px; height:320px; bottom:-160px; left:-100px; }
+.ring4 { width:180px; height:180px; bottom:-60px;  left:-20px; border-color: rgba(201,148,58,0.08); }
+
+.hero-lamp { font-size: 36px; display:block; margin-bottom: 12px; filter: drop-shadow(0 2px 8px rgba(201,148,58,0.5)); }
+
+.hero h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2rem, 6vw, 3rem);
+  color: #FFFFFF;
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: 0.5px;
+}
+
+.hero h1 em {
+  font-style: italic;
+  color: var(--gold-light);
+}
+
+.hero-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin: 18px 0;
+}
+.hero-divider::before,
+.hero-divider::after {
+  content: '';
+  width: 60px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold));
+}
+.hero-divider::after {
+  background: linear-gradient(90deg, var(--gold), transparent);
+}
+.hero-diamond { color: var(--gold-light); font-size: 10px; }
+
+.hero-sub {
+  color: rgba(255,255,255,0.72);
+  font-size: 0.9rem;
+  font-weight: 300;
+  letter-spacing: 0.8px;
+}
+
+.hero-hindi {
+  margin-top: 8px;
+  color: rgba(201,148,58,0.8);
+  font-size: 0.82rem;
+  font-style: italic;
+  letter-spacing: 0.5px;
+}
+
+.hero-gold-bar {
+  height: 2px;
+  background: linear-gradient(90deg, transparent 0%, var(--gold) 30%, var(--gold-light) 50%, var(--gold) 70%, transparent 100%);
+  margin-top: 36px;
+}
+
+/* ── Container ── */
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 32px 16px 72px;
+}
+
+/* ── Access code block ── */
+.access-block {
+  background: linear-gradient(135deg, var(--maroon-deep), var(--maroon));
+  border-radius: 18px;
+  padding: 22px 24px;
+  margin-bottom: 28px;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  box-shadow: 0 6px 28px rgba(74,14,14,0.28), 0 1px 0 rgba(201,148,58,0.3) inset;
+}
+.access-ico { font-size: 32px; flex-shrink: 0; }
+.access-inner { flex: 1; }
+.access-inner label {
+  display: block;
+  color: var(--gold-light);
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-bottom: 8px;
+}
+.access-inner input {
+  width: 100%;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(201,148,58,0.35);
+  border-radius: 10px;
+  padding: 11px 16px;
+  color: white;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 1rem;
+  letter-spacing: 4px;
+  outline: none;
+  transition: border-color 0.2s, background 0.2s;
+}
+.access-inner input::placeholder { color: rgba(255,255,255,0.25); letter-spacing: 1px; }
+.access-inner input:focus { border-color: var(--gold); background: rgba(255,255,255,0.14); }
+
+/* ── Section card ── */
+.card {
+  background: var(--warm-white);
+  border-radius: 20px;
+  border: 1px solid var(--border-light);
+  box-shadow: 0 2px 16px var(--shadow), 0 1px 0 rgba(255,255,255,0.8) inset;
+  overflow: hidden;
+  margin-bottom: 20px;
+  transition: box-shadow 0.2s;
+}
+.card:focus-within {
+  box-shadow: 0 4px 24px rgba(107,21,21,0.14), 0 1px 0 rgba(255,255,255,0.8) inset;
+}
+
+.card-head {
+  padding: 15px 22px 14px;
+  background: linear-gradient(135deg, var(--cream-dark), var(--warm-white));
+  border-bottom: 1px solid var(--border-light);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.card-ico { font-size: 19px; }
+.card-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--maroon);
+  letter-spacing: 0.3px;
+}
+
+.card-body { padding: 20px 22px; }
+
+/* ── Fields ── */
+.row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+@media(max-width:480px) { .row2 { grid-template-columns: 1fr; } }
+
+.field { margin-bottom: 14px; }
+.field:last-child { margin-bottom: 0; }
+
+.field label {
+  display: block;
+  font-size: 0.73rem;
+  font-weight: 600;
+  color: var(--text-mid);
+  text-transform: uppercase;
+  letter-spacing: 0.7px;
+  margin-bottom: 7px;
+}
+.field label .req { color: var(--maroon-soft); margin-left: 2px; }
+
+.field input,
+.field select,
+.field textarea {
+  width: 100%;
+  border: 1.5px solid var(--border);
+  border-radius: 11px;
+  padding: 11px 14px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.95rem;
+  color: var(--text-dark);
+  background: white;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  -webkit-appearance: none;
+}
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+  border-color: var(--maroon-soft);
+  box-shadow: 0 0 0 3px rgba(107,21,21,0.07);
+}
+.field input.err, .field select.err { border-color: #C53030; background: #FFF5F5; }
+.field textarea { resize: vertical; min-height: 68px; }
+.field select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='8' viewBox='0 0 14 8'%3E%3Cpath fill='%236B4226' d='M7 8L0 0h14z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  padding-right: 38px;
+  cursor: pointer;
+}
+.hint { font-size: 0.72rem; color: var(--text-light); margin-top: 4px; }
+.errmsg { font-size: 0.72rem; color: #C53030; margin-top: 4px; display: none; }
+.errmsg.on { display: block; }
+
+/* ── Proxy card ── */
+.proxy-wrap {
+  background: linear-gradient(135deg, var(--cream-dark), var(--cream));
+  border: 1.5px solid var(--border);
+  border-radius: 16px;
+  padding: 18px 20px;
+  margin-bottom: 20px;
+}
+.proxy-toggle { display: flex; align-items: flex-start; gap: 12px; cursor: pointer; }
+.proxy-toggle input[type=checkbox] {
+  width: 18px; height: 18px; margin-top: 1px;
+  accent-color: var(--maroon); flex-shrink: 0; cursor: pointer;
+}
+.proxy-lbl { font-size: 0.88rem; color: var(--text-mid); font-weight: 500; line-height: 1.4; }
+.proxy-extra { margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--border); display: none; }
+.proxy-extra.on { display: block; }
+
+/* ── Submit button ── */
+.submit-wrap { text-align: center; }
+.submit-btn {
+  background: linear-gradient(135deg, var(--maroon-deep), var(--maroon-soft));
+  color: white;
+  border: none;
+  border-radius: 16px;
+  padding: 17px 52px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  letter-spacing: 0.3px;
+  width: 100%;
+  max-width: 340px;
+  box-shadow: 0 6px 28px rgba(74,14,14,0.32);
+  transition: transform 0.15s, box-shadow 0.15s;
+  position: relative;
+  overflow: hidden;
+}
+.submit-btn::after {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.12), transparent);
+  transform: skewX(-20deg);
+  transition: left 0.5s;
+}
+.submit-btn:hover::after { left: 150%; }
+.submit-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 34px rgba(74,14,14,0.4); }
+.submit-btn:active { transform: translateY(0); }
+.submit-btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none !important; }
+
+/* ── Success screen ── */
+.success { display: none; text-align: center; padding: 64px 20px; }
+.success.on { display: block; }
+.success-diya { font-size: 64px; display: block; margin-bottom: 20px; animation: glow 2s ease-in-out infinite; }
+@keyframes glow {
+  0%,100% { filter: drop-shadow(0 0 8px rgba(201,148,58,0.4)); }
+  50% { filter: drop-shadow(0 0 20px rgba(201,148,58,0.8)); }
+}
+.success h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: var(--maroon);
+  margin-bottom: 6px;
+}
+.success-divider {
+  width: 80px; height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  margin: 16px auto;
+}
+.success p { color: var(--text-mid); font-size: 0.97rem; line-height: 1.7; }
+.success .person-name { font-family: 'Cormorant Garamond', serif; font-size: 1.35rem; font-weight: 600; color: var(--maroon); }
+.success .note { font-size: 0.82rem; color: var(--text-light); margin-top: 14px; }
+.another-btn {
+  display: inline-block;
+  margin-top: 28px;
+  background: white;
+  border: 2px solid var(--maroon);
+  color: var(--maroon);
+  border-radius: 12px;
+  padding: 12px 36px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.92rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.another-btn:hover { background: var(--maroon); color: white; }
+
+/* ── Toast ── */
+.toast {
+  position: fixed;
+  bottom: 24px; left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  background: #742A2A;
+  color: white;
+  padding: 13px 28px;
+  border-radius: 12px;
+  font-size: 0.88rem;
+  font-weight: 500;
+  box-shadow: 0 6px 24px rgba(0,0,0,0.25);
+  z-index: 999;
+  opacity: 0;
+  transition: opacity 0.25s, transform 0.25s;
+  white-space: nowrap;
+  max-width: calc(100vw - 40px);
+  text-align: center;
+  pointer-events: none;
+}
+.toast.on { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+/* ── Footer ── */
+.footer {
+  text-align: center;
+  padding: 24px;
+  color: var(--text-light);
+  font-size: 0.76rem;
+  letter-spacing: 0.3px;
+}
+
+/* ── Helpers ── */
+.form-body { display: block; }
+.form-body.hide { display: none; }
+</style>
+</head>
+<body>
+
+<div class="stripe"></div>
+
+<!-- ── HERO ── -->
+<div class="hero">
+  <div class="hero-ring ring1"></div>
+  <div class="hero-ring ring2"></div>
+  <div class="hero-ring ring3"></div>
+  <div class="hero-ring ring4"></div>
+
+  <span class="hero-lamp">🪔</span>
+  <h1>The <em>Balrampur</em><br>Family Directory</h1>
+
+  <div class="hero-divider"><span class="hero-diamond">◆</span></div>
+
+  <p class="hero-sub">Share your details with our family</p>
+  <p class="hero-hindi">एक परिवार · एक सूची · एक पहचान</p>
+
+  <div class="hero-gold-bar"></div>
+</div>
+
+<!-- ── MAIN CONTAINER ── -->
+<div class="container">
+
+  <div class="form-body" id="formBody">
+
+    <!-- ACCESS CODE -->
+    <div class="access-block">
+      <div class="access-ico">🔐</div>
+      <div class="access-inner">
+        <label for="accessCode">Family Access Code</label>
+        <input type="password" id="accessCode" placeholder="Enter code to continue" autocomplete="off"/>
+      </div>
+    </div>
+
+    <!-- PERSONAL INFO -->
+    <div class="card">
+      <div class="card-head">
+        <span class="card-ico">👤</span>
+        <span class="card-title">Personal Information</span>
+      </div>
+      <div class="card-body">
+        <div class="row2">
+          <div class="field">
+            <label>First Name <span class="req">*</span></label>
+            <input type="text" id="firstName" placeholder="e.g. Rajesh"/>
+            <div class="errmsg" id="e-firstName">First name is required</div>
+          </div>
+          <div class="field">
+            <label>Last Name</label>
+            <input type="text" id="lastName" placeholder="e.g. Srivastava"/>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>Relationship in Family <span class="req">*</span></label>
+          <select id="relationship">
+            <option value="">— Select your relationship —</option>
+            <optgroup label="Core Family">
+              <option>Self (Head of Family)</option>
+              <option>Spouse / Partner</option>
+              <option>Son</option>
+              <option>Daughter</option>
+            </optgroup>
+            <optgroup label="Parents & In-laws">
+              <option>Father</option>
+              <option>Mother</option>
+              <option>Father-in-law</option>
+              <option>Mother-in-law</option>
+            </optgroup>
+            <optgroup label="Grandparents">
+              <option>Grandfather (Paternal · Dada ji)</option>
+              <option>Grandmother (Paternal · Dadi ji)</option>
+              <option>Grandfather (Maternal · Nana ji)</option>
+              <option>Grandmother (Maternal · Nani ji)</option>
+            </optgroup>
+            <optgroup label="Siblings">
+              <option>Brother (Bhai)</option>
+              <option>Sister (Behen)</option>
+              <option>Brother-in-law (Bhai Sahab / Jija ji)</option>
+              <option>Sister-in-law (Bhabhi ji / Saali)</option>
+            </optgroup>
+            <optgroup label="Extended Family">
+              <option>Uncle (Chacha / Mama / Tau ji)</option>
+              <option>Aunt (Chachi / Mami / Tai ji)</option>
+              <option>Nephew (Bhatija / Bhanja)</option>
+              <option>Niece (Bhatiji / Bhanji)</option>
+              <option>Cousin (Bhai / Behen)</option>
+              <option>Son-in-law (Damad)</option>
+              <option>Daughter-in-law (Bahu)</option>
+              <option>Other</option>
+            </optgroup>
+          </select>
+          <div class="errmsg" id="e-relationship">Please select a relationship</div>
+        </div>
+
+        <div class="field" style="margin-bottom:0">
+          <label>Married To</label>
+          <input type="text" id="marriedTo" placeholder="Spouse's full name (leave blank if not applicable)"/>
+        </div>
+      </div>
+    </div>
+
+    <!-- CONTACT -->
+    <div class="card">
+      <div class="card-head">
+        <span class="card-ico">📞</span>
+        <span class="card-title">Contact Details</span>
+      </div>
+      <div class="card-body">
+        <div class="field">
+          <label>Phone Number</label>
+          <input type="tel" id="phone" placeholder="+91 98765 43210  or  +1 (248) 555-0100"/>
+        </div>
+        <div class="field" style="margin-bottom:0">
+          <label>Home Address</label>
+          <input type="text" id="address" placeholder="City, State / Full address"/>
+        </div>
+      </div>
+    </div>
+
+    <!-- IMPORTANT DATES -->
+    <div class="card">
+      <div class="card-head">
+        <span class="card-ico">📅</span>
+        <span class="card-title">Important Dates</span>
+      </div>
+      <div class="card-body">
+        <div class="row2">
+          <div class="field">
+            <label>🎂 Date of Birth</label>
+            <input type="text" id="dob" placeholder="DD/MM"/>
+            <div class="hint">Day/Month only · e.g. 15/08</div>
+            <div class="errmsg" id="e-dob">Use DD/MM format (e.g. 15/08)</div>
+          </div>
+          <div class="field">
+            <label>💍 Wedding Anniversary</label>
+            <input type="text" id="anniversary" placeholder="DD/MM"/>
+            <div class="hint">Day/Month only · e.g. 22/11</div>
+            <div class="errmsg" id="e-anniversary">Use DD/MM format</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROXY -->
+    <div class="proxy-wrap">
+      <label class="proxy-toggle">
+        <input type="checkbox" id="proxyCheck" onchange="toggleProxy()"/>
+        <span class="proxy-lbl">📝 I am filling this on behalf of someone else — a child, an elderly parent, or anyone who needs help</span>
+      </label>
+      <div class="proxy-extra" id="proxyExtra">
+        <div class="field" style="margin-bottom:0">
+          <label>Your Name (person filling this form)</label>
+          <input type="text" id="enteredBy" placeholder="Your full name"/>
+        </div>
+      </div>
+    </div>
+
+    <!-- NOTES -->
+    <div class="card" style="margin-bottom:28px">
+      <div class="card-head">
+        <span class="card-ico">📝</span>
+        <span class="card-title">Additional Notes</span>
+      </div>
+      <div class="card-body">
+        <div class="field" style="margin-bottom:0">
+          <textarea id="notes" placeholder="Anything else you'd like to share — a nickname, alternate city, or note for the family…"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- SUBMIT -->
+    <div class="submit-wrap">
+      <button class="submit-btn" id="submitBtn" onclick="submitForm()">
+        🙏&nbsp; Submit to Family Directory
+      </button>
+    </div>
+
+  </div><!-- /form-body -->
+
+  <!-- SUCCESS -->
+  <div class="success" id="successScreen">
+    <span class="success-diya">🪔</span>
+    <h2>Dhanyavaad!</h2>
+    <div class="success-divider"></div>
+    <p class="person-name" id="successName"></p>
+    <p>Your details have been added to<br><strong>The Balrampur Family Directory</strong></p>
+    <p class="note">Anand will review and confirm your entry shortly.</p>
+    <button class="another-btn" onclick="addAnother()">+ Add Another Family Member</button>
+  </div>
+
+</div><!-- /container -->
+
+<div class="footer">
+  The Balrampur Family Directory &nbsp;·&nbsp; Built with ❤️ for our family &nbsp;·&nbsp; सर्वे भवन्तु सुखिनः
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+// ────────────────────────────────────────────────
+//  CONFIG — update these two values after deploying
+// ────────────────────────────────────────────────
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxZXPLRN-O87hc_2FU4P7MRqKxaGio1-d-RN2GfVC7ysJ9IF9Vj2KJIukr3V9EdV7uVQQ/exec';
+const FAMILY_CODE     = 'BALRAMPUR2026';
+// ────────────────────────────────────────────────
+
+function toggleProxy() {
+  document.getElementById('proxyExtra').classList.toggle('on', document.getElementById('proxyCheck').checked);
+}
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('on');
+  setTimeout(() => t.classList.remove('on'), 3800);
+}
+
+function isValidDDMM(s) {
+  if (!s) return true;
+  return /^\d{1,2}\/\d{1,2}$/.test(s);
+}
+
+function setErr(fieldId, errId, condition) {
+  const el = document.getElementById(fieldId);
+  const em = document.getElementById(errId);
+  if (condition) { el.classList.add('err'); em.classList.add('on'); return false; }
+  el.classList.remove('err'); em.classList.remove('on'); return true;
+}
+
+function validate() {
+  const code = document.getElementById('accessCode').value.trim();
+  if (!code)              { showToast('Please enter the family access code'); return false; }
+  if (code !== FAMILY_CODE){ showToast('Incorrect code. Please check with Anand.'); return false; }
+
+  const fn  = setErr('firstName',    'e-firstName',    !document.getElementById('firstName').value.trim());
+  const rel = setErr('relationship', 'e-relationship', !document.getElementById('relationship').value);
+  const dob = setErr('dob',          'e-dob',          !isValidDDMM(document.getElementById('dob').value.trim()));
+  const ann = setErr('anniversary',  'e-anniversary',  !isValidDDMM(document.getElementById('anniversary').value.trim()));
+
+  return fn && rel && dob && ann;
+}
+
+async function submitForm() {
+  if (!validate()) return;
+
+  const btn = document.getElementById('submitBtn');
+  btn.disabled = true;
+  btn.innerHTML = '⏳&nbsp; Submitting…';
+
+  const firstName  = document.getElementById('firstName').value.trim();
+  const lastName   = document.getElementById('lastName').value.trim();
+  const isProxy    = document.getElementById('proxyCheck').checked;
+  const enteredBy  = isProxy
+    ? (document.getElementById('enteredBy').value.trim() || 'Family Member')
+    : firstName + (lastName ? ' ' + lastName : '');
+
+  const payload = {
+    accessCode:   document.getElementById('accessCode').value.trim(),
+    firstName,
+    lastName,
+    relationship: document.getElementById('relationship').value,
+    marriedTo:    document.getElementById('marriedTo').value.trim(),
+    phone:        document.getElementById('phone').value.trim(),
+    address:      document.getElementById('address').value.trim(),
+    dob:          document.getElementById('dob').value.trim(),
+    anniversary:  document.getElementById('anniversary').value.trim(),
+    enteredBy,
+    notes:        document.getElementById('notes').value.trim()
+  };
+
+  try {
+    const res  = await fetch(APPS_SCRIPT_URL, { method: 'POST', body: JSON.stringify(payload) });
+    const data = await res.json();
+
+    if (data.success) {
+      document.getElementById('formBody').classList.add('hide');
+      document.getElementById('successName').textContent =
+        firstName + (lastName ? ' ' + lastName : '');
+      document.getElementById('successScreen').classList.add('on');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+      showToast(data.message || 'Submission failed. Please try again.');
+      btn.disabled = false;
+      btn.innerHTML = '🙏&nbsp; Submit to Family Directory';
+    }
+  } catch (err) {
+    showToast('Network error. Please check your connection and try again.');
+    btn.disabled = false;
+    btn.innerHTML = '🙏&nbsp; Submit to Family Directory';
+  }
+}
+
+function addAnother() {
+  document.getElementById('successScreen').classList.remove('on');
+  document.getElementById('formBody').classList.remove('hide');
+  ['firstName','lastName','marriedTo','phone','address','dob','anniversary','notes','enteredBy']
+    .forEach(id => { const el = document.getElementById(id); if (el) el.value = ''; });
+  document.getElementById('relationship').value = '';
+  document.getElementById('proxyCheck').checked = false;
+  document.getElementById('proxyExtra').classList.remove('on');
+  const btn = document.getElementById('submitBtn');
+  btn.disabled = false;
+  btn.innerHTML = '🙏&nbsp; Submit to Family Directory';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+</script>
+</body>
+</html>
