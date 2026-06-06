@@ -1,0 +1,991 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>The Balrampur Family Directory</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --navy:#0C1A4E;--navy-deep:#070F30;--navy-mid:#1A3178;--navy-light:#2548A8;
+  --gold:#C9943A;--gold-light:#E8B84B;--cream:#F5F7FF;--warm-white:#FFFFFF;
+  --text-dark:#0C1A4E;--text-mid:#3A4E7A;--text-light:#7A8CB0;
+  --border:#D0D8F0;--shadow:rgba(12,26,78,0.10);
+  --green:#166534;--green-bg:#F0FDF4;--green-border:#BBF7D0;
+}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text-dark);}
+
+/* ── Shared ── */
+.screen{display:none;} .screen.active{display:block;}
+.stripe{height:5px;background:linear-gradient(90deg,var(--navy-deep) 0%,var(--navy-deep) 20%,var(--gold) 20%,var(--gold) 40%,#FFF 40%,#FFF 60%,var(--gold) 60%,var(--gold) 80%,var(--navy-deep) 80%,var(--navy-deep) 100%);}
+.hero{background:radial-gradient(ellipse at 15% 10%,rgba(37,72,168,.35) 0%,transparent 55%),linear-gradient(155deg,var(--navy-deep) 0%,var(--navy) 50%,var(--navy-mid) 100%);padding:56px 24px 36px;text-align:center;position:relative;overflow:hidden;}
+.hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,6vw,3rem);color:#FFF;font-weight:700;line-height:1.15;}
+.hero h1 em{font-style:italic;color:var(--gold-light);}
+.hero-divider{display:flex;align-items:center;justify-content:center;gap:12px;margin:14px 0;}
+.hero-divider::before,.hero-divider::after{content:'';width:52px;height:1px;background:linear-gradient(90deg,transparent,var(--gold));}
+.hero-divider::after{background:linear-gradient(90deg,var(--gold),transparent);}
+.hero-diamond{color:var(--gold-light);font-size:10px;}
+.hero-sub{color:rgba(255,255,255,.68);font-size:.88rem;font-weight:300;letter-spacing:.8px;}
+.hero-hindi{margin-top:6px;color:rgba(201,148,58,.75);font-size:.78rem;font-style:italic;}
+.hero-gold-bar{height:2px;background:linear-gradient(90deg,transparent,var(--gold),var(--gold-light),var(--gold),transparent);margin-top:30px;}
+.hero-support{position:absolute;top:12px;right:14px;text-align:right;line-height:1.6;}
+.hero-support-name{font-size:.72rem;font-weight:600;color:rgba(255,255,255,.7);}
+.hero-support-link{display:block;font-size:.8rem;font-weight:600;color:var(--gold-light);text-decoration:none;}
+.hero-support-link:hover{color:white;}
+.hero-back{position:absolute;top:14px;left:14px;}
+.back-btn{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);color:rgba(255,255,255,.8);border-radius:8px;padding:6px 12px;font-family:'DM Sans',sans-serif;font-size:.78rem;font-weight:500;cursor:pointer;transition:all .2s;}
+.back-btn:hover{background:rgba(255,255,255,.25);color:white;}
+.container{max-width:560px;margin:0 auto;padding:28px 16px 64px;}
+
+/* ── Landing cards ── */
+.landing-cards{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:32px;}
+@media(max-width:480px){.landing-cards{grid-template-columns:1fr;}}
+.option-card{background:var(--warm-white);border:2px solid var(--border);border-radius:20px;padding:28px 20px;text-align:center;cursor:pointer;transition:all .2s;box-shadow:0 2px 16px var(--shadow);}
+.option-card:hover{border-color:var(--navy-light);transform:translateY(-4px);box-shadow:0 8px 28px rgba(12,26,78,.16);}
+.option-icon{font-size:44px;margin-bottom:14px;display:block;}
+.option-title{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:700;color:var(--navy);margin-bottom:8px;line-height:1.2;}
+.option-desc{font-size:.82rem;color:var(--text-light);line-height:1.6;margin-bottom:16px;}
+.option-pill{display:inline-block;background:var(--navy);color:white;border-radius:20px;padding:7px 20px;font-size:.8rem;font-weight:600;transition:background .2s;}
+.option-card:hover .option-pill{background:var(--navy-light);}
+.option-pill.gold{background:var(--gold);}
+.option-card:hover .option-pill.gold{background:var(--gold-light);}
+.option-note{font-size:.72rem;color:var(--text-light);margin-top:8px;}
+
+/* ── Form card ── */
+.form-card{background:var(--warm-white);border-radius:20px;border:1px solid var(--border);box-shadow:0 2px 20px var(--shadow);overflow:hidden;margin-top:14px;}
+.form-section{padding:20px 22px;}.form-section+.form-section{border-top:1px solid var(--border);}
+.patriarch-banner{background:linear-gradient(135deg,var(--navy-deep),var(--navy-mid));border-radius:16px;padding:14px 18px;display:flex;align-items:center;gap:14px;margin-bottom:0;}
+.patriarch-icon{font-size:30px;flex-shrink:0;}
+.patriarch-name{font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-weight:700;color:#FFF;line-height:1.2;}
+.patriarch-role{font-size:.68rem;color:var(--gold-light);letter-spacing:.8px;text-transform:uppercase;margin-top:2px;}
+
+/* ── Gate tabs ── */
+.gate-tabs{display:grid;grid-template-columns:1fr 1fr;border-bottom:1px solid var(--border);}
+.gate-tab{padding:14px;text-align:center;font-size:.85rem;font-weight:600;cursor:pointer;transition:all .2s;color:var(--text-light);background:var(--cream);}
+.gate-tab.active{background:var(--warm-white);color:var(--navy);border-bottom:2px solid var(--navy-light);}
+.gate-panel{padding:22px 24px 26px;display:none;}.gate-panel.active{display:block;}
+
+/* ── Fields ── */
+.field{margin-bottom:16px;}.field:last-child{margin-bottom:0;}
+.field label{display:block;font-size:.71rem;font-weight:600;color:var(--text-mid);text-transform:uppercase;letter-spacing:.7px;margin-bottom:6px;}
+.field label .req{color:var(--navy-light);margin-left:2px;}
+.field input,.field select{width:100%;border:1.5px solid var(--border);border-radius:10px;padding:11px 13px;font-family:'DM Sans',sans-serif;font-size:.94rem;color:var(--text-dark);background:white;outline:none;transition:border-color .2s,box-shadow .2s;-webkit-appearance:none;}
+.field input:focus,.field select:focus{border-color:var(--navy-light);box-shadow:0 0 0 3px rgba(37,72,168,.08);}
+.field input.err,.field select.err{border-color:#C53030;background:#FFF5F5;}
+.field input:disabled{background:#F0F4FF;color:var(--text-mid);cursor:not-allowed;}
+.field select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='8' viewBox='0 0 14 8'%3E%3Cpath fill='%233A4E7A' d='M7 8L0 0h14z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 13px center;padding-right:36px;cursor:pointer;}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+@media(max-width:430px){.row2{grid-template-columns:1fr;}}
+.errmsg{font-size:.7rem;color:#C53030;margin-top:3px;display:none;}.errmsg.on{display:block;}
+.prefill-note{font-size:.7rem;color:var(--text-light);margin-top:4px;font-style:italic;display:none;}
+.locked-note{font-size:.7rem;color:var(--text-light);margin-top:4px;display:flex;align-items:center;gap:4px;}
+.reveal{display:none;margin-top:14px;padding-top:14px;border-top:1px dashed var(--border);}.reveal.show{display:block;}
+.reveal-lbl{font-size:.71rem;font-weight:600;color:var(--navy);text-transform:uppercase;letter-spacing:.7px;margin-bottom:6px;display:block;}
+.reveal-lbl .hl{color:var(--navy-light);font-style:italic;text-transform:none;font-weight:400;}
+.date-wrap{display:flex;align-items:center;gap:6px;}
+.date-part{border:1.5px solid var(--border);border-radius:10px;padding:11px 0;font-family:'DM Sans',sans-serif;font-size:.95rem;color:var(--text-dark);background:white;outline:none;text-align:center;transition:border-color .2s,box-shadow .2s;-webkit-appearance:none;}
+.date-part:focus{border-color:var(--navy-light);box-shadow:0 0 0 3px rgba(37,72,168,.08);}
+.date-part.err{border-color:#C53030;background:#FFF5F5;}
+.date-dd,.date-mm{width:60px;}.date-slash{font-size:1.2rem;color:var(--text-light);}.date-hint{font-size:.68rem;color:var(--text-light);margin-left:2px;}
+
+/* ── Account section ── */
+.account-section{background:linear-gradient(135deg,#F0F4FF,var(--warm-white));border-top:1px solid var(--border);padding:20px 22px;}
+.account-heading{font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-weight:600;color:var(--navy);margin-bottom:4px;}
+.account-sub{font-size:.76rem;color:var(--text-light);margin-bottom:16px;}
+.pwd-change-toggle{font-size:.78rem;color:var(--navy-light);cursor:pointer;text-decoration:underline;margin-bottom:12px;display:inline-block;}
+.pwd-change-fields{display:none;}.pwd-change-fields.show{display:block;}
+
+/* ── Photo ── */
+.photo-wrap{border:2px dashed var(--border);border-radius:14px;padding:20px 16px;text-align:center;cursor:pointer;transition:all .2s;background:var(--cream);}
+.photo-wrap:hover{border-color:var(--navy-light);background:#EEF2FF;}
+.photo-preview{width:96px;height:96px;border-radius:50%;object-fit:cover;border:3px solid var(--navy-light);margin:0 auto 6px;display:block;}
+.photo-placeholder-icon{font-size:34px;margin-bottom:6px;}
+.photo-placeholder-text{font-size:.8rem;color:var(--text-light);}
+.photo-change-link{font-size:.72rem;color:var(--navy-light);margin-top:8px;display:block;}
+
+/* ── Buttons ── */
+.welcome-back{background:var(--green-bg);border:1px solid var(--green-border);border-radius:14px;padding:12px 16px;margin-bottom:14px;display:none;align-items:center;gap:10px;}
+.welcome-back.show{display:flex;}
+.welcome-back-text{font-size:.88rem;color:var(--green);font-weight:500;}
+.submit-section{padding:18px 22px;background:linear-gradient(135deg,rgba(12,26,78,.03),white);}
+.submit-btn{width:100%;background:linear-gradient(135deg,var(--navy-deep),var(--navy-light));color:white;border:none;border-radius:12px;padding:15px;font-family:'DM Sans',sans-serif;font-size:.98rem;font-weight:600;cursor:pointer;box-shadow:0 6px 24px rgba(12,26,78,.28);transition:transform .15s,box-shadow .15s;position:relative;overflow:hidden;}
+.submit-btn:hover{transform:translateY(-2px);}
+.submit-btn:disabled{opacity:.6;cursor:not-allowed;transform:none!important;}
+.gate-btn{width:100%;background:linear-gradient(135deg,var(--navy-deep),var(--navy-light));color:white;border:none;border-radius:12px;padding:14px;font-family:'DM Sans',sans-serif;font-size:.95rem;font-weight:600;cursor:pointer;box-shadow:0 6px 20px rgba(12,26,78,.28);transition:transform .15s;}
+.gate-btn:hover{transform:translateY(-2px);}
+.gate-lbl{display:block;font-size:.71rem;font-weight:600;color:var(--text-mid);text-transform:uppercase;letter-spacing:.7px;margin-bottom:7px;}
+.gate-input{width:100%;border:1.5px solid var(--border);border-radius:10px;padding:12px 14px;font-family:'DM Sans',sans-serif;font-size:.94rem;color:var(--text-dark);background:white;outline:none;transition:border-color .2s;margin-bottom:14px;}
+.gate-input:focus{border-color:var(--navy-light);}
+.gate-input.err{border-color:#C53030;animation:shake .3s ease;}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+.gate-forgot{text-align:center;margin-top:10px;font-size:.76rem;color:var(--text-light);}
+.gate-forgot a{color:var(--navy-light);}
+.pwd-wrap{position:relative;}
+.pwd-wrap input{padding-right:42px!important;}
+.pwd-eye{position:absolute;right:12px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;color:var(--text-light);font-size:1rem;line-height:1;padding:4px;transition:color .15s;}
+.pwd-eye:hover{color:var(--navy);}
+
+/* ── Success ── */
+.success{display:none;text-align:center;padding:60px 20px;}.success.on{display:block;}
+.success-diya{font-size:64px;display:block;margin-bottom:18px;animation:glow 2s ease-in-out infinite;}
+@keyframes glow{0%,100%{filter:drop-shadow(0 0 8px rgba(201,148,58,.4))}50%{filter:drop-shadow(0 0 20px rgba(201,148,58,.8))}}
+.success h2{font-family:'Cormorant Garamond',serif;font-size:2.2rem;font-weight:700;color:var(--navy);margin-bottom:6px;}
+.success-divider{width:80px;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:12px auto;}
+.success p{color:var(--text-mid);font-size:.94rem;line-height:1.7;}
+.success .person-name{font-family:'Cormorant Garamond',serif;font-size:1.25rem;font-weight:600;color:var(--navy);}
+.success .note{font-size:.78rem;color:var(--text-light);margin-top:10px;}
+.success-actions{margin-top:22px;display:flex;flex-wrap:wrap;gap:10px;justify-content:center;}
+.another-btn,.home-btn-sml{border-radius:12px;padding:11px 28px;font-family:'DM Sans',sans-serif;font-size:.88rem;font-weight:600;cursor:pointer;transition:all .2s;}
+.another-btn{background:white;border:2px solid var(--navy);color:var(--navy);}
+.another-btn:hover{background:var(--navy);color:white;}
+.home-btn-sml{background:var(--cream);border:2px solid var(--border);color:var(--text-mid);}
+.home-btn-sml:hover{border-color:var(--navy);color:var(--navy);}
+
+/* ── Tree view ── */
+.tree-full{display:none;height:100vh;flex-direction:column;}
+.tree-full.active{display:flex;}
+.topbar{background:var(--warm-white);border-bottom:1px solid var(--border);padding:0 16px;height:52px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;box-shadow:0 2px 8px var(--shadow);gap:8px;}
+.topbar-title{font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-weight:700;color:var(--navy);white-space:nowrap;}
+.topbar-title em{font-style:italic;color:var(--gold);}
+.topbar-controls{display:flex;align-items:center;gap:5px;flex-wrap:wrap;}
+.ctrl-btn{background:var(--cream);border:1px solid var(--border);border-radius:8px;padding:5px 9px;font-family:'DM Sans',sans-serif;font-size:.75rem;font-weight:500;color:var(--text-mid);cursor:pointer;transition:all .15s;white-space:nowrap;}
+.ctrl-btn:hover{background:var(--navy);color:white;border-color:var(--navy);}
+.ctrl-btn.gold{background:var(--gold);color:white;border-color:var(--gold);}
+.tree-wrap{flex:1;overflow:hidden;position:relative;background:var(--cream);}
+#treeSvg{width:100%;height:100%;cursor:grab;}
+#treeSvg:active{cursor:grabbing;}
+.tree-loading{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:var(--cream);}
+.tree-loading-text{font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:var(--navy);animation:pulse 1.5s ease-in-out infinite;}
+@keyframes pulse{0%,100%{opacity:.4}50%{opacity:1}}
+.legend{position:absolute;bottom:16px;left:16px;background:rgba(255,255,255,.92);border:1px solid var(--border);border-radius:10px;padding:10px 14px;font-size:.72rem;color:var(--text-mid);}
+.legend-row{display:flex;align-items:center;gap:8px;margin-bottom:4px;}
+.legend-row:last-child{margin-bottom:0;}
+.lcircle{width:13px;height:13px;border-radius:50%;background:var(--navy);flex-shrink:0;}
+.lgold{background:var(--gold);}
+
+/* ── Toast ── */
+.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%) translateY(20px);background:#1B2A5E;color:white;padding:11px 24px;border-radius:12px;font-size:.85rem;font-weight:500;box-shadow:0 4px 20px rgba(0,0,0,.2);z-index:9999;opacity:0;transition:opacity .25s,transform .25s;pointer-events:none;white-space:nowrap;max-width:calc(100vw - 32px);text-align:center;}
+.toast.on{opacity:1;transform:translateX(-50%) translateY(0);}
+
+/* ── Print ── */
+@media print{
+  body>*:not(.tree-full){display:none!important;}
+  .tree-full{display:flex!important;height:100vh;}
+  .topbar,.legend{display:none!important;}
+  .tree-wrap{height:100vh;}
+}
+</style>
+</head>
+<body>
+
+<!-- ════════════════════════════════════════════
+     SCREEN 1 — LANDING
+════════════════════════════════════════════ -->
+<div class="screen active" id="landingScreen">
+  <div class="stripe"></div>
+  <div class="hero">
+    <div class="hero-support">
+      <div class="hero-support-name">Need help? Contact Anand Sinha</div>
+      <a href="https://wa.me/12488723057" target="_blank" class="hero-support-link">💬 WhatsApp +1 (248) 872-3057</a>
+    </div>
+    <span style="font-size:32px;display:block;margin-bottom:10px;filter:drop-shadow(0 2px 10px rgba(201,148,58,.6));">🪔</span>
+    <h1>The <em>Balrampur</em><br>Family Directory</h1>
+    <div class="hero-divider"><span class="hero-diamond">◆</span></div>
+    <p class="hero-sub">एक परिवार · एक सूची · एक पहचान</p>
+    <div class="hero-gold-bar"></div>
+  </div>
+
+  <div class="container">
+    <div class="landing-cards">
+      <div class="option-card" onclick="goTo('formScreen')">
+        <span class="option-icon">📝</span>
+        <div class="option-title">Register &amp; Update My Details</div>
+        <div class="option-desc">New to the directory? Join now. Already registered? Sign in and update your information anytime.</div>
+        <div class="option-pill">Get Started →</div>
+      </div>
+      <div class="option-card" onclick="goTo('treeLoginScreen')">
+        <span class="option-icon">🌳</span>
+        <div class="option-title">View Family Tree</div>
+        <div class="option-desc">Explore your family heritage. See the full family tree with photos, dates and connections.</div>
+        <div class="option-pill gold">View Tree →</div>
+        <div class="option-note">For registered members only</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════
+     SCREEN 2 — FORM (Register / Update)
+════════════════════════════════════════════ -->
+<div class="screen" id="formScreen">
+  <div class="stripe"></div>
+  <div class="hero">
+    <div class="hero-back"><button class="back-btn" onclick="goHome()">← Home</button></div>
+    <div class="hero-support">
+      <div class="hero-support-name">Need help? Contact Anand Sinha</div>
+      <a href="https://wa.me/12488723057" target="_blank" class="hero-support-link">💬 WhatsApp +1 (248) 872-3057</a>
+    </div>
+    <span style="font-size:28px;display:block;margin-bottom:8px;">🪔</span>
+    <h1>The <em>Balrampur</em><br>Family Directory</h1>
+    <div class="hero-divider"><span class="hero-diamond">◆</span></div>
+    <p class="hero-sub">Share your details with our family</p>
+    <p class="hero-hindi">एक परिवार · एक सूची · एक पहचान</p>
+    <div class="hero-gold-bar"></div>
+  </div>
+
+  <div class="container" id="formContainer">
+
+    <!-- Gate tabs (New / Returning) -->
+    <div class="form-card" id="gateCard">
+      <div class="gate-tabs">
+        <div class="gate-tab active" id="tabNew" onclick="switchTab('new')">🆕 New Member</div>
+        <div class="gate-tab"        id="tabReturn" onclick="switchTab('return')">🔄 Returning Member</div>
+      </div>
+      <div class="gate-panel active" id="panelNew">
+        <label class="gate-lbl">Family Access Code</label>
+        <div class="pwd-wrap">
+          <input type="password" id="familyCode" class="gate-input" placeholder="Enter family code"
+            autocomplete="off" onkeydown="if(event.key==='Enter')startNew()" style="margin-bottom:0;"/>
+          <button type="button" class="pwd-eye" onclick="toggleEye('familyCode',this)">👁</button>
+        </div>
+        <div style="height:14px;"></div>
+        <button class="gate-btn" onclick="startNew()">Continue to Form &nbsp;→</button>
+      </div>
+      <div class="gate-panel" id="panelReturn">
+        <label class="gate-lbl">Your Email</label>
+        <input type="email" id="loginEmail" class="gate-input" placeholder="your@email.com"
+          autocomplete="email" onkeydown="if(event.key==='Enter')document.getElementById('loginPwd').focus()"/>
+        <label class="gate-lbl">Your Password</label>
+        <div class="pwd-wrap">
+          <input type="password" id="loginPwd" class="gate-input" placeholder="Your personal password"
+            autocomplete="current-password" onkeydown="if(event.key==='Enter')doLogin()" style="margin-bottom:0;"/>
+          <button type="button" class="pwd-eye" onclick="toggleEye('loginPwd',this)">👁</button>
+        </div>
+        <div style="height:14px;"></div>
+        <button class="gate-btn" onclick="doLogin()">Sign In &amp; Edit My Details &nbsp;→</button>
+        <div class="gate-forgot">Forgot password?
+          <span style="color:var(--navy-light);cursor:pointer;font-weight:500;" onclick="toggleResetForm('formReset')">Reset via email</span>
+        </div>
+        <!-- Reset password form -->
+        <div id="formReset" style="display:none;margin-top:14px;padding-top:14px;border-top:1px dashed var(--border);">
+          <label class="gate-lbl">Enter Your Registered Email</label>
+          <input type="email" id="formResetEmail" class="gate-input" placeholder="your@email.com"/>
+          <button class="gate-btn" onclick="doPasswordReset('formResetEmail','formReset')">Send Temporary Password →</button>
+          <div style="text-align:center;margin-top:10px;">
+            <span onclick="toggleResetForm('formReset')" style="font-size:.76rem;color:var(--text-light);cursor:pointer;">← Back to Sign In</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main form (shown after gate) -->
+    <div id="formBody" style="display:none">
+      <div class="welcome-back" id="welcomeBack">
+        <span>✅</span>
+        <div class="welcome-back-text">Welcome back, <strong id="welcomeName"></strong>! Update your details below.</div>
+      </div>
+      <!-- Temp password warning -->
+      <div id="tempPwdBanner" style="display:none;background:#FFF7ED;border:1px solid #FED7AA;border-radius:14px;padding:12px 16px;margin-bottom:14px;font-size:.85rem;color:#9A3412;">
+        ⚠️ You logged in with a temporary password. <strong>Please scroll down and set a new password before saving.</strong>
+      </div>
+
+      <div class="patriarch-banner" id="patriarchBanner">
+        <div class="patriarch-icon">👴👵</div>
+        <div>
+          <div class="patriarch-name">Raghuraj Prasad &amp; Chandra Kala Devi</div>
+          <div class="patriarch-role">Balrampur Family · Family Heads</div>
+        </div>
+      </div>
+
+      <div class="form-card">
+        <!-- Family Tree cascade -->
+        <div class="form-section">
+          <div class="field">
+            <label>Whose family do you belong to? <span class="req">*</span></label>
+            <select id="gen1" onchange="onGen1Change()">
+              <option value="">— Select family branch —</option>
+              <option value="Jaya Srivastava">Jaya Srivastava's Family</option>
+              <option value="Mukund Chandra">Mukund Chandra's Family</option>
+              <option value="Shobha Sinha">Shobha Sinha's Family</option>
+              <option value="J Pratap">J Pratap's Family</option>
+              <option value="Sudha Lal">Sudha Lal's Family</option>
+              <option value="Rajendra Kumar">Rajendra Kumar's Family</option>
+              <option value="Sarla Prasad">Sarla Prasad's Family</option>
+              <option value="Hari Mohan Srivastava">Hari Mohan Srivastava's Family</option>
+              <option value="Sandhya Kumar">Sandhya Kumar's Family</option>
+            </select>
+            <div class="errmsg" id="e-gen1">Please select a family branch</div>
+          </div>
+          <div class="reveal" id="revGen2">
+            <span class="reveal-lbl">Which of <span class="hl" id="gen2Label">—</span>'s family? <span class="req">*</span></span>
+            <select id="gen2" onchange="onGen2Change()"><option value="">— Select —</option></select>
+            <div class="errmsg" id="e-gen2">Please select</div>
+          </div>
+          <div class="reveal" id="revRel">
+            <span class="reveal-lbl">Relationship to <span class="hl" id="relLabel">—</span> <span class="req">*</span></span>
+            <select id="relationship">
+              <option value="">— Select —</option>
+              <option>Self (I am this person)</option><option>Spouse</option>
+              <option>Son</option><option>Daughter</option>
+              <option>Son-in-law (Damad)</option><option>Daughter-in-law (Bahu)</option>
+              <option>Grandson</option><option>Granddaughter</option>
+              <option>Great-Grandson</option><option>Great-Granddaughter</option>
+              <option>Other</option>
+            </select>
+            <div class="errmsg" id="e-rel">Please select your relationship</div>
+          </div>
+        </div>
+        <!-- Personal -->
+        <div class="form-section">
+          <div class="row2">
+            <div class="field">
+              <label>First Name <span class="req">*</span></label>
+              <input type="text" id="firstName" placeholder="First name" autocomplete="given-name"/>
+              <div class="prefill-note" id="prefillNote">✏️ Pre-filled — edit if needed</div>
+              <div class="errmsg" id="e-firstName">Required</div>
+            </div>
+            <div class="field"><label>Last Name</label><input type="text" id="lastName" placeholder="Last name" autocomplete="family-name"/></div>
+          </div>
+          <div class="field"><label>Married To</label><input type="text" id="marriedTo" placeholder="Spouse's full name"/></div>
+        </div>
+        <!-- Contact -->
+        <div class="form-section">
+          <div class="field">
+            <label>Phone</label>
+            <div style="display:flex;gap:8px;">
+              <select id="phoneCode" style="width:115px;flex-shrink:0;border:1.5px solid var(--border);border-radius:10px;padding:11px 8px;font-family:'DM Sans',sans-serif;font-size:.86rem;color:var(--text-dark);background:white;outline:none;cursor:pointer;-webkit-appearance:none;background-image:url('data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'12\' height=\'7\' viewBox=\'0 0 12 7\'%3E%3Cpath fill=\'%233A4E7A\' d=\'M6 7L0 0h12z\'/%3E%3C/svg%3E');background-repeat:no-repeat;background-position:right 8px center;padding-right:24px;">
+                <option value="+1">🇺🇸 +1</option><option value="+91">🇮🇳 +91</option>
+                <option value="+44">🇬🇧 +44</option><option value="+61">🇦🇺 +61</option>
+                <option value="+1-CA">🇨🇦 +1</option><option value="+971">🇦🇪 +971</option>
+                <option value="+65">🇸🇬 +65</option><option value="+other">Other</option>
+              </select>
+              <input type="tel" id="phone" placeholder="(248) 555-0100" autocomplete="tel" style="flex:1;"/>
+            </div>
+          </div>
+          <div class="field"><label>Address</label><input type="text" id="address" placeholder="City, State (e.g. Troy, MI  or  Lucknow, UP)"/></div>
+        </div>
+        <!-- Dates -->
+        <div class="form-section">
+          <div class="row2">
+            <div class="field">
+              <label>🎂 Date of Birth</label>
+              <div class="date-wrap">
+                <input type="text" id="dob-dd" class="date-part date-dd" placeholder="DD" inputmode="numeric" maxlength="2" oninput="handleDay(this,'dob-mm')" onblur="padTwo(this)"/>
+                <span class="date-slash">/</span>
+                <input type="text" id="dob-mm" class="date-part date-mm" placeholder="MM" inputmode="numeric" maxlength="2" oninput="handleMonth(this)" onblur="padTwo(this)"/>
+                <span class="date-hint">Day / Month</span>
+              </div>
+              <div class="errmsg" id="e-dob">Check day and month</div>
+            </div>
+            <div class="field">
+              <label>💍 Anniversary</label>
+              <div class="date-wrap">
+                <input type="text" id="ann-dd" class="date-part date-dd" placeholder="DD" inputmode="numeric" maxlength="2" oninput="handleDay(this,'ann-mm')" onblur="padTwo(this)"/>
+                <span class="date-slash">/</span>
+                <input type="text" id="ann-mm" class="date-part date-mm" placeholder="MM" inputmode="numeric" maxlength="2" oninput="handleMonth(this)" onblur="padTwo(this)"/>
+                <span class="date-hint">Day / Month</span>
+              </div>
+              <div class="errmsg" id="e-ann">Check day and month</div>
+            </div>
+          </div>
+        </div>
+        <!-- Photo -->
+        <div class="form-section" style="background:linear-gradient(135deg,#F0F4FF,white);">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">
+            <span style="font-size:24px;">📷</span>
+            <div>
+              <div style="font-size:.85rem;font-weight:600;color:var(--navy);">Add Your Photo</div>
+              <div style="font-size:.72rem;color:var(--text-light);">Optional · JPG or PNG · max 2MB · appears in the family tree</div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;gap:16px;">
+            <div class="photo-wrap" id="photoWrap" onclick="document.getElementById('photoFile').click()" style="flex-shrink:0;width:90px;height:90px;border-radius:50%;padding:0;display:flex;align-items:center;justify-content:center;">
+              <img id="photoPreview" class="photo-preview" style="display:none;width:90px;height:90px;border-radius:50%;object-fit:cover;" alt="Your photo"/>
+              <div id="photoPlaceholder" style="text-align:center;">
+                <div style="font-size:28px;">🧑</div>
+                <div style="font-size:.65rem;color:var(--text-light);margin-top:2px;">Tap to add</div>
+              </div>
+            </div>
+            <button type="button" onclick="document.getElementById('photoFile').click()"
+              style="flex:1;background:var(--navy);color:white;border:none;border-radius:10px;padding:12px;font-family:'DM Sans',sans-serif;font-size:.85rem;font-weight:600;cursor:pointer;">
+              📁 Choose Photo from Device
+            </button>
+          </div>
+          <span class="photo-change-link" id="photoChangeLink" style="display:none;margin-top:8px;font-size:.72rem;color:var(--navy-light);cursor:pointer;" onclick="document.getElementById('photoFile').click()">Tap to change photo</span>
+          <input type="file" id="photoFile" accept="image/jpeg,image/png" style="display:none" onchange="handlePhotoSelect(this)"/>
+        </div>
+        <!-- Account -->
+        <div class="account-section" id="accountSection">
+          <div class="account-heading" id="accountHeading">🔑 Create Your Account</div>
+          <div class="account-sub" id="accountSub">Your email will be your login ID for future updates.</div>
+          <div id="newAccountFields">
+            <div class="field"><label>Email <span class="req">*</span></label><input type="email" id="regEmail" placeholder="your@email.com" autocomplete="email"/><div class="errmsg" id="e-email">Please enter a valid email</div></div>
+            <div class="row2">
+              <div class="field"><label>Password <span class="req">*</span></label>
+                <div class="pwd-wrap"><input type="password" id="regPwd" placeholder="Create a password" autocomplete="new-password"/><button type="button" class="pwd-eye" onclick="toggleEye('regPwd',this)">👁</button></div>
+                <div class="errmsg" id="e-pwd">Required</div></div>
+              <div class="field"><label>Confirm <span class="req">*</span></label>
+                <div class="pwd-wrap"><input type="password" id="regPwdConfirm" placeholder="Repeat password" autocomplete="new-password"/><button type="button" class="pwd-eye" onclick="toggleEye('regPwdConfirm',this)">👁</button></div>
+                <div class="errmsg" id="e-pwdConfirm">Passwords don't match</div></div>
+            </div>
+          </div>
+          <div id="editAccountFields" style="display:none">
+            <div class="field"><label>Email</label><input type="email" id="editEmail" disabled/><div class="locked-note">🔒 Email cannot be changed</div></div>
+          <div style="background:#F0F4FF;border-radius:12px;padding:14px;margin-top:4px;">
+            <div style="font-size:.78rem;font-weight:600;color:var(--navy);margin-bottom:10px;">🔑 Change Password <span style="font-weight:400;color:var(--text-light)">(optional — leave blank to keep current)</span></div>
+            <div class="row2">
+              <div class="field" style="margin-bottom:0"><label>New Password</label>
+                <div class="pwd-wrap"><input type="password" id="newPwd" placeholder="New password"/><button type="button" class="pwd-eye" onclick="toggleEye('newPwd',this)">👁</button></div>
+              </div>
+              <div class="field" style="margin-bottom:0"><label>Confirm New</label>
+                <div class="pwd-wrap"><input type="password" id="newPwdConfirm" placeholder="Repeat"/><button type="button" class="pwd-eye" onclick="toggleEye('newPwdConfirm',this)">👁</button></div>
+                <div class="errmsg" id="e-newPwd">Passwords don't match</div>
+              </div>
+            </div>
+          </div>
+          </div>
+        </div>
+        <!-- Submit -->
+        <div class="submit-section">
+          <button class="submit-btn" id="submitBtn" onclick="submitForm()">🙏&nbsp; Submit to Family Directory</button>
+        </div>
+      </div>
+
+      </div>
+    </div><!-- /formBody -->
+
+    <!-- Success — OUTSIDE formBody so it shows when formBody is hidden -->
+    <div class="success" id="successScreen">
+      <span class="success-diya">🪔</span>
+      <h2 id="successHeading">Dhanyavaad! 🙏</h2>
+      <div class="success-divider"></div>
+      <p class="person-name" id="successName"></p>
+      <p id="successMsg"></p>
+      <p class="note" id="successNote"></p>
+      <div class="success-actions">
+        <button class="another-btn" onclick="addAnother()">+ Add Another Member</button>
+        <button class="home-btn-sml" onclick="goHome()">🏠 Home</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════
+     SCREEN 3 — TREE LOGIN
+════════════════════════════════════════════ -->
+<div class="screen" id="treeLoginScreen">
+  <div class="stripe"></div>
+  <div class="hero">
+    <div class="hero-back"><button class="back-btn" onclick="goHome()">← Home</button></div>
+    <div class="hero-support">
+      <div class="hero-support-name">Need help? Contact Anand Sinha</div>
+      <a href="https://wa.me/12488723057" target="_blank" class="hero-support-link">💬 WhatsApp +1 (248) 872-3057</a>
+    </div>
+    <span style="font-size:32px;display:block;margin-bottom:10px;filter:drop-shadow(0 2px 10px rgba(201,148,58,.6));">🌳</span>
+    <h1>The <em>Balrampur</em><br>Family Tree</h1>
+    <div class="hero-divider"><span class="hero-diamond">◆</span></div>
+    <p class="hero-sub">Sign in to explore your family heritage</p>
+    <p class="hero-hindi">एक परिवार · एक सूची · एक पहचान</p>
+    <div class="hero-gold-bar"></div>
+  </div>
+  <div style="max-width:420px;margin:28px auto 40px;padding:0 16px;">
+    <div style="background:var(--warm-white);border-radius:20px;border:1px solid var(--border);box-shadow:0 4px 28px var(--shadow);padding:24px;">
+      <label class="gate-lbl">Email</label>
+      <input type="email" id="treeEmail" class="gate-input" placeholder="your@email.com"
+        autocomplete="email" onkeydown="if(event.key==='Enter')document.getElementById('treePwd').focus()"/>
+      <label class="gate-lbl">Password</label>
+      <div class="pwd-wrap">
+        <input type="password" id="treePwd" class="gate-input" placeholder="Your password"
+          autocomplete="current-password" onkeydown="if(event.key==='Enter')doTreeLogin()" style="margin-bottom:0;"/>
+        <button type="button" class="pwd-eye" onclick="toggleEye('treePwd',this)">👁</button>
+      </div>
+      <div style="height:14px;"></div>
+      <button class="gate-btn" id="treeLoginBtn" onclick="doTreeLogin()">View Family Tree &nbsp;🌳</button>
+      <div class="gate-forgot" style="margin-top:12px;">
+        Not registered yet? <span style="color:var(--navy-light);cursor:pointer;font-weight:500;" onclick="goTo('formScreen')">Register here</span>
+        &nbsp;·&nbsp;
+        Forgot password? <span style="color:var(--navy-light);cursor:pointer;font-weight:500;" onclick="toggleResetForm('treeReset')">Reset via email</span>
+      </div>
+      <!-- Tree reset form -->
+      <div id="treeReset" style="display:none;margin-top:14px;padding-top:14px;border-top:1px dashed var(--border);">
+        <label class="gate-lbl">Enter Your Registered Email</label>
+        <input type="email" id="treeResetEmail" class="gate-input" placeholder="your@email.com"/>
+        <button class="gate-btn" onclick="doPasswordReset('treeResetEmail','treeReset')">Send Temporary Password →</button>
+        <div style="text-align:center;margin-top:10px;">
+          <span onclick="toggleResetForm('treeReset')" style="font-size:.76rem;color:var(--text-light);cursor:pointer;">← Back to Sign In</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════
+     SCREEN 4 — TREE VIEW (full-screen)
+════════════════════════════════════════════ -->
+<div class="tree-full" id="treeViewScreen">
+  <div class="topbar">
+    <div class="topbar-title">🌳 <em>Balrampur</em> Family Tree</div>
+    <div class="topbar-controls">
+      <button class="ctrl-btn" onclick="goHome()">🏠 Home</button>
+      <button class="ctrl-btn" onclick="zoomIn()">＋</button>
+      <button class="ctrl-btn" onclick="zoomOut()">－</button>
+      <button class="ctrl-btn" onclick="resetView()">⊙ Reset</button>
+      <button class="ctrl-btn gold" onclick="downloadPDF()">📄 PDF</button>
+      <button class="ctrl-btn gold" onclick="downloadPNG()">🖼 PNG</button>
+    </div>
+  </div>
+  <div class="tree-wrap" id="treeWrap">
+    <div class="tree-loading" id="treeLoading"><div class="tree-loading-text">🪔 Building your family tree…</div></div>
+    <svg id="treeSvg"></svg>
+    <div class="legend">
+      <div class="legend-row"><div class="lcircle"></div>Family member</div>
+      <div class="legend-row"><div class="lcircle lgold"></div>💑 Married couple</div>
+      <div class="legend-row">◆ Click node to expand/collapse</div>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+// ═══════════════════════════════════════════════
+//  CONFIG — only these lines differ per family
+// ═══════════════════════════════════════════════
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxZXPLRN-O87hc_2FU4P7MRqKxaGio1-d-RN2GfVC7ysJ9IF9Vj2KJIukr3V9EdV7uVQQ/exec';
+const FAMILY_ID       = 'balrampur';
+const BRIDGE = null; // No Sonbarsa link in Balrampur tree
+
+// All Gen 1 branches — always shown even before anyone submits
+const GEN1_FIXED = [
+  'Jaya Srivastava','Mukund Chandra','Shobha Sinha','J Pratap',
+  'Sudha Lal','Rajendra Kumar','Sarla Prasad','Hari Mohan Srivastava','Sandhya Kumar'
+];
+// ═══════════════════════════════════════════════
+
+const FAMILY_DATA = {
+  'Jaya Srivastava':       ['Madhuli Nigam','Purshkar Srivastava'],
+  'Mukund Chandra':        ['Nirmal Kumar','Tripti Srivastava','Charu Nigam'],
+  'Shobha Sinha':          ['Divya J Srivastava','Anand Sinha','Sanjay Sinha'],
+  'J Pratap':              ['Kripanshu Pratap'],
+  'Sudha Lal':             ['Shubhra Sahai','Sujala Narain','Ashesh Lal'],
+  'Rajendra Kumar':        ['Praveen Kumar','Aparna Nigam','Paritosh Kumar'],
+  'Sarla Prasad':          ['Snighdha Mohan','Sumangala Bhattacharjee'],
+  'Hari Mohan Srivastava': ['Anupam Kumar','Shruti Verma','Smriti Srivastava'],
+  'Sandhya Kumar':         []
+};
+
+// ── Screen navigation ─────────────────────────────
+function goTo(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  const el = document.getElementById(id);
+  if (el) { el.classList.add('active'); window.scrollTo({top:0,behavior:'smooth'}); }
+}
+function goHome() {
+  // Hide tree view (it uses display:flex, not .screen)
+  document.getElementById('treeViewScreen').classList.remove('active');
+  goTo('landingScreen');
+  // Reset tree state
+  if (svgSel) { svgSel.selectAll('*').remove(); svgSel = null; rootHier = null; }
+  document.getElementById('treeEmail').value = '';
+  document.getElementById('treePwd').value   = '';
+}
+
+// ── Form gate ─────────────────────────────────────
+let formMode='new', verifiedCode='', currentEmail='', currentPassword='';
+let photoBase64='', photoMimeType='image/jpeg', photoFileName='';
+
+function switchTab(t) {
+  ['New','Return'].forEach(x => {
+    document.getElementById('tab'+x).classList.toggle('active', (x.toLowerCase()===t)||(x==='New'&&t==='new'));
+    document.getElementById('panel'+x).classList.toggle('active', (x.toLowerCase()===t)||(x==='New'&&t==='new'));
+  });
+  // Fix: use exact IDs
+  document.getElementById('tabNew').classList.toggle('active', t==='new');
+  document.getElementById('tabReturn').classList.toggle('active', t==='return');
+  document.getElementById('panelNew').classList.toggle('active', t==='new');
+  document.getElementById('panelReturn').classList.toggle('active', t==='return');
+}
+
+async function startNew() {
+  const inp=document.getElementById('familyCode'), code=inp.value.trim();
+  if(!code){shake(inp);showToast('Please enter the family code');return;}
+  const btn=document.querySelector('#panelNew .gate-btn');
+  btn.disabled=true;btn.textContent='Checking…';
+  try{
+    const res=await fetch(APPS_SCRIPT_URL,{method:'POST',body:JSON.stringify({action:'validateCode',family:FAMILY_ID,code})});
+    const data=await res.json();
+    if(data.success){verifiedCode=code;formMode='new';showFormBody();}
+    else{shake(inp);showToast('Incorrect code. Please check with Anand.');inp.value='';inp.focus();}
+  }catch{showToast('Network error. Please try again.');}
+  btn.disabled=false;btn.textContent='Continue to Form →';
+}
+
+async function doLogin() {
+  const email=document.getElementById('loginEmail').value.trim();
+  const pwd=document.getElementById('loginPwd').value.trim();
+  if(!email){shake(document.getElementById('loginEmail'));showToast('Enter your email');return;}
+  if(!pwd){shake(document.getElementById('loginPwd'));showToast('Enter your password');return;}
+  const btn=document.querySelector('#panelReturn .gate-btn');
+  btn.disabled=true;btn.textContent='Signing in…';
+  try{
+    const res=await fetch(APPS_SCRIPT_URL,{method:'POST',body:JSON.stringify({action:'login',family:FAMILY_ID,email,password:pwd})});
+    const data=await res.json();
+    if(data.success){
+      currentEmail=email;currentPassword=pwd;formMode='edit';
+      showFormBody();prefillForm(data.member);
+      if(data.requirePasswordChange){
+        document.getElementById('tempPwdBanner').style.display='block';
+        
+      }
+    }
+    else showToast(data.message||'Sign in failed');
+  }catch{showToast('Network error. Please try again.');}
+  btn.disabled=false;btn.textContent='Sign In & Edit My Details →';
+}
+
+function showFormBody() {
+  document.getElementById('gateCard').style.display='none';
+  document.getElementById('formBody').style.display='block';
+  if(formMode==='edit'){
+    document.getElementById('welcomeBack').classList.add('show');
+    document.getElementById('newAccountFields').style.display='none';
+    document.getElementById('editAccountFields').style.display='block';
+    document.getElementById('accountHeading').textContent='🔑 Your Account';
+    document.getElementById('accountSub').textContent='Email cannot be changed. You may update your password below.';
+    document.getElementById('submitBtn').innerHTML='💾&nbsp; Save My Changes';
+    document.getElementById('editEmail').value=currentEmail;
+  } else {
+    document.getElementById('welcomeBack').classList.remove('show');
+    document.getElementById('newAccountFields').style.display='block';
+    document.getElementById('editAccountFields').style.display='none';
+    document.getElementById('submitBtn').innerHTML='🙏&nbsp; Submit to Family Directory';
+  }
+  document.getElementById('patriarchBanner').scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+// ── Cascade dropdowns ─────────────────────────────
+function onGen1Change(){
+  const gen1=document.getElementById('gen1').value;
+  document.getElementById('revGen2').classList.remove('show');
+  document.getElementById('revRel').classList.remove('show');
+  document.getElementById('gen2').innerHTML='<option value="">— Select —</option>';
+  document.getElementById('relationship').value='';
+  clearErr('gen1','e-gen1'); if(!gen1)return;
+  document.getElementById('gen2Label').textContent=gen1;
+  const sel=document.getElementById('gen2');
+  addOpt(sel,'__self__','I am '+gen1+' (myself)');
+  const kids=FAMILY_DATA[gen1]||[];
+  if(kids.length){const g=document.createElement('optgroup');g.label='Children of '+gen1;kids.forEach(c=>{const o=document.createElement('option');o.value=c;o.textContent=c;g.appendChild(o);});sel.appendChild(g);}
+  addOpt(sel,'__other__','Other / Not listed');
+  document.getElementById('revGen2').classList.add('show');
+}
+function addOpt(sel,val,text){const o=document.createElement('option');o.value=val;o.textContent=text;sel.appendChild(o);}
+function onGen2Change(){
+  const gen1=document.getElementById('gen1').value, gen2=document.getElementById('gen2').value;
+  clearErr('gen2','e-gen2'); document.getElementById('revRel').classList.remove('show');
+  document.getElementById('relationship').value=''; if(!gen2)return;
+  if(gen2==='__self__'){prefillNameFromDropdown(gen1);document.getElementById('relationship').value='Self (I am this person)';}
+  else{document.getElementById('relLabel').textContent=gen2==='__other__'?gen1:gen2;document.getElementById('revRel').classList.add('show');gen2!=='__other__'?prefillNameFromDropdown(gen2):clearPrefill();}
+}
+function prefillNameFromDropdown(full){if(formMode==='edit')return;const p=full.trim().split(' ');document.getElementById('firstName').value=p[0]||'';document.getElementById('lastName').value=p.slice(1).join(' ')||'';document.getElementById('prefillNote').style.display='block';}
+function clearPrefill(){if(formMode==='edit')return;document.getElementById('firstName').value='';document.getElementById('lastName').value='';document.getElementById('prefillNote').style.display='none';}
+
+// ── Prefill (returning member) ─────────────────────
+function prefillForm(m){
+  document.getElementById('welcomeName').textContent=m.firstName;
+  document.getElementById('gen1').value=m.familyBranch; onGen1Change();
+  setTimeout(()=>{
+    const sel=document.getElementById('gen2');
+    for(let o of sel.options){if(o.value===m.connectedTo){sel.value=m.connectedTo;break;}}
+    onGen2Change();
+    setTimeout(()=>{
+      document.getElementById('relationship').value=m.relationship;
+      document.getElementById('firstName').value=m.firstName||'';
+      document.getElementById('lastName').value=m.lastName||'';
+      document.getElementById('marriedTo').value=m.marriedTo||'';
+      document.getElementById('address').value=m.address||'';
+      const ph=m.phone||'', si=ph.indexOf(' ');
+      if(si>-1){const pcSel=document.getElementById('phoneCode');for(let o of pcSel.options){if(o.value===ph.substring(0,si)){pcSel.value=ph.substring(0,si);break;}}document.getElementById('phone').value=ph.substring(si+1);}
+      else document.getElementById('phone').value=ph;
+      if(m.dob){const p=m.dob.split('/');document.getElementById('dob-dd').value=p[0]||'';document.getElementById('dob-mm').value=p[1]||'';}
+      if(m.anniversary){const p=m.anniversary.split('/');document.getElementById('ann-dd').value=p[0]||'';document.getElementById('ann-mm').value=p[1]||'';}
+      if(m.photoUrl)showExistingPhoto(m.photoUrl);
+      document.getElementById('prefillNote').style.display='none';
+    },150);
+  },150);
+}
+
+// ── Photo ─────────────────────────────────────────
+function handlePhotoSelect(input){
+  const file=input.files[0]; if(!file)return;
+  if(!['image/jpeg','image/png'].includes(file.type)){showToast('Please select a JPG or PNG');return;}
+  if(file.size>2*1024*1024){showToast('Photo must be under 2MB');return;}
+  photoMimeType=file.type; photoFileName=file.name;
+  resizePhoto(file,b64=>{photoBase64=b64;document.getElementById('photoPreview').src='data:'+photoMimeType+';base64,'+b64;document.getElementById('photoPreview').style.display='block';document.getElementById('photoPlaceholder').style.display='none';document.getElementById('photoChangeLink').style.display='block';});
+}
+function resizePhoto(file,cb){const r=new FileReader();r.onload=e=>{const img=new Image();img.onload=()=>{const M=800;let w=img.width,h=img.height;if(w>M){h=Math.round(h*M/w);w=M;}if(h>M){w=Math.round(w*M/h);h=M;}const c=document.createElement('canvas');c.width=w;c.height=h;c.getContext('2d').drawImage(img,0,0,w,h);cb(c.toDataURL('image/jpeg',0.82).split(',')[1]);};img.src=e.target.result;};r.readAsDataURL(file);}
+function showExistingPhoto(url){document.getElementById('photoPreview').src=url;document.getElementById('photoPreview').style.display='block';document.getElementById('photoPlaceholder').style.display='none';document.getElementById('photoChangeLink').style.display='block';}
+function resetPhoto(){photoBase64='';photoMimeType='image/jpeg';photoFileName='';document.getElementById('photoPreview').src='';document.getElementById('photoPreview').style.display='none';document.getElementById('photoPlaceholder').style.display='block';document.getElementById('photoChangeLink').style.display='none';document.getElementById('photoFile').value='';}
+
+
+// ── Smart dates ───────────────────────────────────
+function handleDay(el,nId){el.value=el.value.replace(/\D/g,'');if(el.value.length===2){let d=parseInt(el.value);if(d>31)el.value='31';if(d<1)el.value='01';document.getElementById(nId).focus();}}
+function handleMonth(el){el.value=el.value.replace(/\D/g,'');if(el.value.length>=1&&parseInt(el.value[0])>1)el.value='0'+el.value[0];if(el.value.length===2){let m=parseInt(el.value);if(m>12)el.value='12';if(m<1)el.value='01';}}
+function padTwo(el){if(el.value.length===1)el.value='0'+el.value;}
+function getDDMM(d,m){const dd=document.getElementById(d).value.trim(),mm=document.getElementById(m).value.trim();return(!dd&&!mm)?'':dd+'/'+mm;}
+function isValidDate(d,m){const dd=document.getElementById(d).value.trim(),mm=document.getElementById(m).value.trim();if(!dd&&!mm)return true;if(!dd||!mm)return false;return parseInt(dd)>=1&&parseInt(dd)<=31&&parseInt(mm)>=1&&parseInt(mm)<=12;}
+
+// ── Validate & submit form ────────────────────────
+function validate(){
+  let ok=true;
+  const gen1=document.getElementById('gen1').value,gen2=document.getElementById('gen2').value,rel=document.getElementById('relationship').value,fn=document.getElementById('firstName').value.trim();
+  if(!gen1){setErr('gen1','e-gen1');ok=false;}else clearErr('gen1','e-gen1');
+  if(gen1&&!gen2){setErr('gen2','e-gen2');ok=false;}else clearErr('gen2','e-gen2');
+  if(gen2&&gen2!=='__self__'&&!rel){setErr('relationship','e-rel');ok=false;}else clearErr('relationship','e-rel');
+  if(!fn){setErr('firstName','e-firstName');ok=false;}else clearErr('firstName','e-firstName');
+  if(!isValidDate('dob-dd','dob-mm')){['dob-dd','dob-mm'].forEach(id=>document.getElementById(id).classList.add('err'));document.getElementById('e-dob').classList.add('on');ok=false;}else{['dob-dd','dob-mm'].forEach(id=>document.getElementById(id).classList.remove('err'));document.getElementById('e-dob').classList.remove('on');}
+  if(!isValidDate('ann-dd','ann-mm')){['ann-dd','ann-mm'].forEach(id=>document.getElementById(id).classList.add('err'));document.getElementById('e-ann').classList.add('on');ok=false;}else{['ann-dd','ann-mm'].forEach(id=>document.getElementById(id).classList.remove('err'));document.getElementById('e-ann').classList.remove('on');}
+  if(formMode==='new'){
+    const email=document.getElementById('regEmail').value.trim(),pwd=document.getElementById('regPwd').value.trim(),conf=document.getElementById('regPwdConfirm').value.trim();
+    if(!email||!email.includes('@')){setErr('regEmail','e-email');ok=false;}else clearErr('regEmail','e-email');
+    if(!pwd){setErr('regPwd','e-pwd');ok=false;}else clearErr('regPwd','e-pwd');
+    if(pwd&&conf!==pwd){setErr('regPwdConfirm','e-pwdConfirm');ok=false;}else clearErr('regPwdConfirm','e-pwdConfirm');
+  }
+  if(formMode==='edit'){const np=document.getElementById('newPwd').value.trim(),nc=document.getElementById('newPwdConfirm').value.trim();if(np&&np!==nc){setErr('newPwdConfirm','e-newPwd');ok=false;}else clearErr('newPwdConfirm','e-newPwd');}
+  return ok;
+}
+
+async function submitForm(){
+  if(!validate()){showToast('Please complete the required fields');return;}
+  const btn=document.getElementById('submitBtn');btn.disabled=true;btn.innerHTML='⏳&nbsp;'+(formMode==='edit'?'Saving…':'Submitting…');
+  const gen1=document.getElementById('gen1').value,gen2=document.getElementById('gen2').value;
+  const firstName=document.getElementById('firstName').value.trim(),lastName=document.getElementById('lastName').value.trim();
+  const phoneRaw=document.getElementById('phone').value.trim();
+  const phone=phoneRaw?(document.getElementById('phoneCode').value.replace('-CA','')+' '+phoneRaw).trim():'';
+  const base={firstName,lastName,familyBranch:gen1,connectedTo:gen2==='__self__'?gen1:gen2==='__other__'?'Other':gen2,relationship:gen2==='__self__'?'Self (I am this person)':document.getElementById('relationship').value,marriedTo:document.getElementById('marriedTo').value.trim(),phone,address:document.getElementById('address').value.trim(),dob:getDDMM('dob-dd','dob-mm'),anniversary:getDDMM('ann-dd','ann-mm'),photo:photoBase64,photoMimeType,photoFileName:photoFileName||(firstName+'_'+lastName+'.jpg')};
+  const payload=formMode==='new'?{...base,action:'register',family:FAMILY_ID,accessCode:verifiedCode,email:document.getElementById('regEmail').value.trim().toLowerCase(),password:document.getElementById('regPwd').value.trim()}:{...base,action:'update',family:FAMILY_ID,email:currentEmail,currentPassword,newPassword:document.getElementById('newPwd').value.trim()};
+  try{
+    const res=await fetch(APPS_SCRIPT_URL,{method:'POST',body:JSON.stringify(payload)});
+    const data=await res.json();
+    if(data.success){
+      document.getElementById('formBody').style.display='none';
+      const fullName = firstName+(lastName?' '+lastName:'');
+      document.getElementById('successName').textContent=fullName;
+      if(formMode==='edit'){
+        document.getElementById('successHeading').textContent='Updated! 🎉';
+        document.getElementById('successMsg').innerHTML='Thank you, <strong>'+fullName+'</strong>! Your details have been successfully updated in the Balrampur Family Directory.';
+        document.getElementById('successNote').textContent='You can view the family tree or add another family member below.';
+      } else {
+        document.getElementById('successHeading').textContent='Dhanyavaad! 🙏';
+        document.getElementById('successMsg').innerHTML='Thank you, <strong>'+fullName+'</strong>! Your details have been added to the Balrampur Family Directory.<br><br>You can now sign in to view the family tree using your email and the password you just created.';
+        document.getElementById('successNote').textContent='';
+      }
+      document.getElementById('successScreen').classList.add('on');
+      window.scrollTo({top:0,behavior:'smooth'});
+    }else{showToast(data.message||'Submission failed.');btn.disabled=false;btn.innerHTML=formMode==='edit'?'💾&nbsp; Save My Changes':'🙏&nbsp; Submit to Family Directory';}
+  }catch{showToast('Network error.');btn.disabled=false;btn.innerHTML=formMode==='edit'?'💾&nbsp; Save My Changes':'🙏&nbsp; Submit to Family Directory';}
+}
+
+function addAnother(){
+  document.getElementById('successScreen').classList.remove('on');
+  document.getElementById('formBody').style.display='block';
+  document.getElementById('successHeading').textContent='Dhanyavaad!';
+  document.getElementById('successMsg').innerHTML='Your details have been added to<br><strong>The Balrampur Family Directory</strong>';
+  ['firstName','lastName','marriedTo','phone','address','regEmail','regPwd','regPwdConfirm','newPwd','newPwdConfirm'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
+  ['dob-dd','dob-mm','ann-dd','ann-mm'].forEach(id=>document.getElementById(id).value='');
+  document.getElementById('gen1').value='';document.getElementById('gen2').innerHTML='<option value="">— Select —</option>';document.getElementById('relationship').value='';
+  document.getElementById('revGen2').classList.remove('show');document.getElementById('revRel').classList.remove('show');
+  document.getElementById('prefillNote').style.display='none';document.getElementById('phoneCode').value='+1';
+  resetPhoto();
+  formMode='new';
+  document.getElementById('submitBtn').disabled=false;document.getElementById('submitBtn').innerHTML='🙏&nbsp; Submit to Family Directory';
+  document.getElementById('patriarchBanner').scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+// ── Tree login ────────────────────────────────────
+async function doTreeLogin(){
+  const email=document.getElementById('treeEmail').value.trim();
+  const pwd=document.getElementById('treePwd').value.trim();
+  if(!email){shake(document.getElementById('treeEmail'));showToast('Please enter your email');return;}
+  if(!pwd){shake(document.getElementById('treePwd'));showToast('Please enter your password');return;}
+  const btn=document.getElementById('treeLoginBtn');btn.disabled=true;btn.textContent='Loading…';
+  try{
+    const res=await fetch(APPS_SCRIPT_URL,{method:'POST',body:JSON.stringify({action:'getPublicData',family:FAMILY_ID,email,password:pwd})});
+    const data=await res.json();
+    if(data.success){
+      document.getElementById('treeLoginScreen').classList.remove('active');
+      document.getElementById('treeViewScreen').classList.add('active');
+      setTimeout(()=>{initTree(data);document.getElementById('treeLoading').style.display='none';},400);
+    }else{
+      showToast(data.message||'Sign in failed');
+      // If locked or wrong password, shake the password field
+      if(data.message&&(data.message.includes('locked')||data.message.includes('attempt')))
+        shake(document.getElementById('treePwd'));
+    }
+  }catch{showToast('Network error. Please try again.');}
+  btn.disabled=false;btn.textContent='View Family Tree 🌳';
+}
+
+// ── Tree: build hierarchy ─────────────────────────
+let svgSel=null,gSel,zoomBeh,rootHier,treeLayout;
+const R=22,RC=18,NODE_H=110;
+
+function buildHierarchy(apiData){
+  const{family,members}=apiData;
+  const fn=m=>m?`${m.firstName} ${m.lastName}`.trim():null;
+  const isSelfOrSpouse=rel=>(rel||'').startsWith('Self')||(rel||'').startsWith('Spouse');
+  const find=(ct,rel)=>members.find(m=>m.connectedTo===ct&&(m.relationship||'').startsWith(rel));
+  return{
+    id:'root',name:family.patriarch,spouse:family.matriarch,photo:'',spousePhoto:'',dob:'',spouseDob:'',isBridge:false,
+    children:GEN1_FIXED.map(g1=>{
+      const self=find(g1,'Self'),spouse=find(g1,'Spouse');
+      const gen2Names=[...new Set(
+        members.filter(m=>m.familyBranch===g1&&m.connectedTo!==g1).map(m=>m.connectedTo)
+      )];
+      return{
+        id:g1,name:self?fn(self):g1,spouse:spouse?fn(spouse):null,
+        photo:self?.photoUrl||'',spousePhoto:spouse?.photoUrl||'',
+        dob:self?.dob||'',spouseDob:spouse?.dob||'',isBridge:false,
+        children:gen2Names.map(g2=>{
+          const g2s=find(g2,'Self'),g2sp=find(g2,'Spouse');
+          const g3=members.filter(m=>m.connectedTo===g2&&!isSelfOrSpouse(m.relationship))
+            .map((m,i)=>({id:g2+'__'+i,name:fn(m)||m.firstName,spouse:null,photo:m.photoUrl||'',
+              spousePhoto:'',dob:m.dob||'',spouseDob:'',isBridge:false,children:[]}));
+          return{id:g2,name:g2s?fn(g2s):g2,spouse:g2sp?fn(g2sp):null,
+            photo:g2s?.photoUrl||'',spousePhoto:g2sp?.photoUrl||'',
+            dob:g2s?.dob||'',spouseDob:g2sp?.dob||'',isBridge:false,children:g3};
+        })
+      };
+    })
+  };
+}
+
+function initTree(apiData){
+  const wrap=document.getElementById('treeWrap');
+  const W=wrap.clientWidth,H=wrap.clientHeight;
+  svgSel=d3.select('#treeSvg').attr('width',W).attr('height',H);
+  svgSel.append('defs').attr('id','tdefs');
+  gSel=svgSel.append('g');
+  zoomBeh=d3.zoom().scaleExtent([0.08,4]).on('zoom',e=>gSel.attr('transform',e.transform));
+  svgSel.call(zoomBeh);
+  rootHier=d3.hierarchy(buildHierarchy(apiData),d=>d.children?.length?d.children:null);
+
+  // Always show Gen 0 + Gen 1 expanded; collapse Gen 2+ by default
+  function collapseDeep(node){
+    if(node.depth>=2&&node.children){node._children=node.children;node.children=null;}
+    (node.children||[]).forEach(collapseDeep);
+    (node._children||[]).forEach(collapseDeep);
+  }
+  collapseDeep(rootHier);
+
+  treeLayout=d3.tree().nodeSize([100,NODE_H]).separation((a,b)=>{const aw=a.data.spouse?2.2:1.1,bw=b.data.spouse?2.2:1.1;return(aw+bw)/2+(a.parent===b.parent?0.1:0.5);});
+  updateTree();
+  setTimeout(()=>svgSel.call(zoomBeh.transform,d3.zoomIdentity.translate(W/2,80).scale(0.8)),100);
+}
+
+function updateTree(){
+  treeLayout(rootHier);
+  gSel.selectAll('.link').data(rootHier.links(),d=>d.target.data.id).join(e=>e.append('path').attr('class','link').attr('fill','none').attr('stroke','#C8D4F0').attr('stroke-width',1.5).attr('d',d=>curve(d.source,d.source)),u=>u,x=>x.remove()).transition().duration(300).attr('d',d=>curve(d.source,d.target));
+  const ng=gSel.selectAll('.ng').data(rootHier.descendants(),d=>d.data.id).join(e=>{const g=e.append('g').attr('class','ng').attr('transform',d=>`translate(${d.parent?.x||d.x},${d.parent?.y||d.y})`).style('opacity',0).on('click',(ev,d)=>{ev.stopPropagation();if(d.children){d._children=d.children;d.children=null;}else if(d._children){d.children=d._children;d._children=null;}else return;updateTree();});drawNode(g);return g;},u=>{u.selectAll('*').remove();drawNode(u);return u;},x=>x.transition().duration(250).style('opacity',0).remove());
+  ng.transition().duration(300).attr('transform',d=>`translate(${d.x},${d.y})`).style('opacity',1);
+}
+
+function curve(s,t){const my=(s.y+t.y)/2;return `M${s.x},${s.y} C${s.x},${my} ${t.x},${my} ${t.x},${t.y}`;}
+
+function drawNode(sel){
+  sel.each(function(d){
+    const g=d3.select(this),data=d.data;
+    data.spouse?drawCouple(g,data):drawPerson(g,data.id,data.name,data.photo,data.dob,0,R);
+    if(d.children||d._children){const off=(data.spouse?RC:R)+68;g.append('circle').attr('cy',off).attr('r',4).attr('fill',d.children?'#C9943A':'#C8D4F0').attr('stroke','#C9943A').attr('stroke-width',1.5).style('cursor','pointer');}
+  });
+}
+
+function drawCouple(g,data){
+  const off=RC+28;
+  g.append('line').attr('x1',-off+RC).attr('x2',off-RC).attr('y1',0).attr('y2',0).attr('stroke','#C9943A').attr('stroke-width',2);
+  g.append('text').attr('text-anchor','middle').attr('dy','0.4em').attr('font-size',13).text('💑');
+  drawPerson(g,data.id+'_1',data.name,data.photo,data.dob,-off,RC);
+  drawPerson(g,data.id+'_2',data.spouse,data.spousePhoto,data.spouseDob,off,RC);
+}
+
+function drawPerson(g,id,name,photo,dob,ox,r){
+  const cid='c_'+(id||'x').replace(/[^a-z0-9]/gi,'_');
+  const defs=d3.select('#tdefs');
+  if(defs.select('#'+cid).empty())defs.append('clipPath').attr('id',cid).append('circle').attr('r',r).attr('cx',ox);
+  g.append('circle').attr('cx',ox).attr('r',r).attr('fill','#0C1A4E').attr('stroke','#D0D8F0').attr('stroke-width',2);
+  if(photo){g.append('image').attr('href',photo).attr('x',ox-r).attr('y',-r).attr('width',r*2).attr('height',r*2).attr('clip-path',`url(#${cid})`);}
+  else{const init=(name||'?').split(' ').slice(0,2).map(n=>n[0]||'').join('').toUpperCase();g.append('text').attr('x',ox).attr('text-anchor','middle').attr('dy','0.36em').attr('fill','white').attr('font-size',r*0.6).attr('font-weight','600').attr('font-family','DM Sans,sans-serif').text(init);}
+  const lines=wrapText(name||'',14);
+  lines.forEach((ln,i)=>g.append('text').attr('x',ox).attr('y',r+16+i*15).attr('text-anchor','middle').attr('font-family','Cormorant Garamond,serif').attr('font-size',13).attr('font-weight','600').attr('fill','#0C1A4E').text(ln));
+  if(dob)g.append('text').attr('x',ox).attr('y',r+16+lines.length*15+4).attr('text-anchor','middle').attr('font-size',10).attr('fill','#7A8CB0').text('🎂 '+dob);
+}
+
+function wrapText(text,max){const words=(text||'').split(' ');const lines=[];let cur='';words.forEach(w=>{const t=cur?cur+' '+w:w;if(t.length<=max)cur=t;else{if(cur)lines.push(cur);cur=w;}});if(cur)lines.push(cur);return lines.slice(0,2);}
+
+// ── Zoom controls ─────────────────────────────────
+function zoomIn(){if(svgSel)svgSel.transition().duration(250).call(zoomBeh.scaleBy,1.4);}
+function zoomOut(){if(svgSel)svgSel.transition().duration(250).call(zoomBeh.scaleBy,0.7);}
+function resetView(){if(!svgSel)return;const W=document.getElementById('treeWrap').clientWidth;svgSel.transition().duration(350).call(zoomBeh.transform,d3.zoomIdentity.translate(W/2,80).scale(0.8));}
+
+// ── Download ──────────────────────────────────────
+function downloadPDF(){window.print();}
+async function downloadPNG(){
+  showToast('Preparing image…');
+  try{
+    const el=document.getElementById('treeSvg'),bb=gSel.node().getBBox(),pad=40;
+    const clone=el.cloneNode(true),vw=bb.width+pad*2,vh=bb.height+pad*2;
+    clone.setAttribute('width',vw);clone.setAttribute('height',vh);clone.setAttribute('viewBox',`${bb.x-pad} ${bb.y-pad} ${vw} ${vh}`);
+    const rect=document.createElementNS('http://www.w3.org/2000/svg','rect');rect.setAttribute('x',bb.x-pad);rect.setAttribute('y',bb.y-pad);rect.setAttribute('width',vw);rect.setAttribute('height',vh);rect.setAttribute('fill','#F5F7FF');clone.insertBefore(rect,clone.firstChild);
+    const blob=new Blob([new XMLSerializer().serializeToString(clone)],{type:'image/svg+xml;charset=utf-8'});
+    const url=URL.createObjectURL(blob);const img=new Image();
+    img.onload=()=>{const c=document.createElement('canvas');c.width=vw*2;c.height=vh*2;const ctx=c.getContext('2d');ctx.scale(2,2);ctx.drawImage(img,0,0);const a=document.createElement('a');a.download='balrampur-family-tree.png';a.href=c.toDataURL('image/png');a.click();URL.revokeObjectURL(url);showToast('Downloaded!');};
+    img.src=url;
+  }catch{showToast('Try PDF instead.');}
+}
+
+// ── Helpers ───────────────────────────────────────
+// ── Password show/hide toggle ──────────────────────
+function toggleEye(inputId, btn) {
+  const inp = document.getElementById(inputId);
+  if (inp.type === 'password') { inp.type='text';  btn.textContent='🙈'; }
+  else                         { inp.type='password'; btn.textContent='👁'; }
+}
+
+// ── Password reset ─────────────────────────────────
+function toggleResetForm(id) {
+  const el=document.getElementById(id);
+  el.style.display = el.style.display==='none' ? 'block' : 'none';
+}
+
+async function doPasswordReset(emailFieldId, formId) {
+  const email=document.getElementById(emailFieldId).value.trim();
+  if(!email||!email.includes('@')){shake(document.getElementById(emailFieldId));showToast('Please enter a valid email');return;}
+  const btn=document.querySelector('#'+formId+' .gate-btn');
+  btn.disabled=true;btn.textContent='Sending…';
+  try{
+    const res=await fetch(APPS_SCRIPT_URL,{method:'POST',body:JSON.stringify({action:'resetPassword',family:FAMILY_ID,email})});
+    const data=await res.json();
+    if(data.success){
+      document.getElementById(formId).innerHTML='<div style="text-align:center;padding:14px 0;"><div style="font-size:32px;margin-bottom:8px;">📧</div><p style="font-size:.88rem;color:var(--text-mid);line-height:1.6;">'+data.message+'</p><p style="font-size:.76rem;color:var(--text-light);margin-top:8px;">Check your spam folder too.</p></div>';
+    }else{
+      showToast(data.message||'Reset failed. Please try again.');
+      btn.disabled=false;btn.textContent='Send Temporary Password →';
+    }
+  }catch{
+    showToast('Network error. Please try again.');
+    btn.disabled=false;btn.textContent='Send Temporary Password →';
+  }
+}
+
+function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('on');setTimeout(()=>t.classList.remove('on'),3500);}
+function setErr(f,e){if(f)document.getElementById(f).classList.add('err');document.getElementById(e).classList.add('on');}
+function clearErr(f,e){if(f)document.getElementById(f).classList.remove('err');document.getElementById(e).classList.remove('on');}
+function shake(el){el.classList.add('err');setTimeout(()=>el.classList.remove('err'),500);}
+
+window.addEventListener('resize',()=>{if(!svgSel)return;const w=document.getElementById('treeWrap');svgSel.attr('width',w.clientWidth).attr('height',w.clientHeight);});
+</script>
+</body>
+</html>
