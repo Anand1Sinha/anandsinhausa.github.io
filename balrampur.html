@@ -1,0 +1,2153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>The Balrampur Family Directory</title>
+
+<!-- WhatsApp / Social sharing preview -->
+<meta property="og:title"       content="The Balrampur Family Directory"/>
+<meta property="og:description" content="एक परिवार · एक सूची · एक पहचान — Descendants of Raghuraj Prasad &amp; Chandra Kala Devi"/>
+<meta property="og:image"       content="https://anandsinhausa.com/balrampur-og.jpg"/>
+<meta property="og:image:width" content="1200"/>
+<meta property="og:image:height"content="630"/>
+<meta property="og:url"         content="https://anandsinhausa.com/balrampur"/>
+<meta property="og:type"        content="website"/>
+<meta name="twitter:card"       content="summary_large_image"/>
+<meta name="twitter:image"      content="https://anandsinhausa.com/balrampur-og.jpg"/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/exceljs/4.3.0/exceljs.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script id="recaptcha-script"></script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --navy:#0C1A4E;--navy-deep:#070F30;--navy-mid:#1A3178;--navy-light:#2548A8;
+  --gold:#C9943A;--gold-light:#E8B84B;--cream:#F5F7FF;--warm-white:#FFFFFF;
+  --text-dark:#0C1A4E;--text-mid:#3A4E7A;--text-light:#7A8CB0;
+  --border:#D0D8F0;--shadow:rgba(12,26,78,0.10);
+  --green:#166534;--green-bg:#F0FDF4;--green-border:#BBF7D0;
+}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text-dark);}
+
+/* ── Shared ── */
+.screen{display:none;} .screen.active{display:block;}
+.stripe{height:5px;background:linear-gradient(90deg,var(--navy-deep) 0%,var(--navy-deep) 20%,var(--gold) 20%,var(--gold) 40%,#FFF 40%,#FFF 60%,var(--gold) 60%,var(--gold) 80%,var(--navy-deep) 80%,var(--navy-deep) 100%);}
+.hero{background:radial-gradient(ellipse at 15% 10%,rgba(37,72,168,.35) 0%,transparent 55%),linear-gradient(155deg,var(--navy-deep) 0%,var(--navy) 50%,var(--navy-mid) 100%);padding:18px 24px 14px;text-align:center;position:relative;overflow:hidden;}
+.hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(1.7rem,5vw,2.6rem);color:#FFF;font-weight:700;line-height:1.15;}
+.hero h1 em{font-style:italic;color:var(--gold-light);}
+.hero-divider{display:flex;align-items:center;justify-content:center;gap:12px;margin:8px 0;}
+.hero-divider::before,.hero-divider::after{content:'';width:52px;height:1px;background:linear-gradient(90deg,transparent,var(--gold));}
+.hero-divider::after{background:linear-gradient(90deg,var(--gold),transparent);}
+.hero-diamond{color:var(--gold-light);font-size:10px;}
+.hero-sub{color:rgba(255,255,255,.68);font-size:.88rem;font-weight:300;letter-spacing:.8px;}
+.hero-hindi{margin-top:6px;color:rgba(201,148,58,.75);font-size:.78rem;font-style:italic;}
+.hero-gold-bar{height:2px;background:linear-gradient(90deg,transparent,var(--gold),var(--gold-light),var(--gold),transparent);margin-top:12px;}
+.hero-support{position:absolute;top:12px;right:14px;text-align:right;line-height:1.6;}
+.hero-support-name{font-size:.72rem;font-weight:600;color:rgba(255,255,255,.7);}
+.hero-support-link{display:block;font-size:.8rem;font-weight:600;color:var(--gold-light);text-decoration:none;}
+.hero-support-link:hover{color:white;}
+.hero-back{position:absolute;top:14px;left:14px;}
+.back-btn{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);color:rgba(255,255,255,.8);border-radius:8px;padding:6px 12px;font-family:'DM Sans',sans-serif;font-size:.78rem;font-weight:500;cursor:pointer;transition:all .2s;}
+.back-btn:hover{background:rgba(255,255,255,.25);color:white;}
+.container{max-width:560px;margin:0 auto;padding:16px 16px 40px;}
+
+/* ── Landing cards ── */
+.landing-cards{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-top:16px;}
+@media(max-width:680px){.landing-cards{grid-template-columns:1fr;}}
+.option-card{background:var(--warm-white);border:2px solid var(--border);border-radius:20px;padding:20px 16px;text-align:center;cursor:pointer;transition:all .2s;box-shadow:0 2px 16px var(--shadow);}
+.option-card:hover{border-color:var(--navy-light);transform:translateY(-4px);box-shadow:0 8px 28px rgba(12,26,78,.16);}
+.option-icon{font-size:44px;margin-bottom:14px;display:block;}
+.option-title{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:700;color:var(--navy);margin-bottom:8px;line-height:1.2;}
+.option-desc{font-size:.82rem;color:var(--text-light);line-height:1.6;margin-bottom:16px;}
+.option-pill{display:inline-block;background:var(--navy);color:white;border-radius:20px;padding:7px 20px;font-size:.8rem;font-weight:600;transition:background .2s;}
+.option-card:hover .option-pill{background:var(--navy-light);}
+.option-pill.gold{background:var(--gold);}
+.option-card:hover .option-pill.gold{background:var(--gold-light);}
+.option-note{font-size:.72rem;color:var(--text-light);margin-top:8px;}
+
+/* ── Form card ── */
+.form-card{background:var(--warm-white);border-radius:20px;border:1px solid var(--border);box-shadow:0 2px 20px var(--shadow);overflow:hidden;margin-top:14px;}
+.form-section{padding:20px 22px;}.form-section+.form-section{border-top:1px solid var(--border);}
+.patriarch-banner{background:linear-gradient(135deg,var(--navy-deep),var(--navy-mid));border-radius:16px;padding:14px 18px;display:flex;align-items:center;gap:14px;margin-bottom:0;}
+.patriarch-icon{font-size:30px;flex-shrink:0;}
+.patriarch-name{font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-weight:700;color:#FFF;line-height:1.2;}
+.patriarch-role{font-size:.68rem;color:var(--gold-light);letter-spacing:.8px;text-transform:uppercase;margin-top:2px;}
+
+/* ── Gate tabs ── */
+.gate-tabs{display:grid;grid-template-columns:1fr 1fr;border-bottom:1px solid var(--border);}
+.gate-tab{padding:14px;text-align:center;font-size:.85rem;font-weight:600;cursor:pointer;transition:all .2s;color:var(--text-light);background:var(--cream);}
+.gate-tab.active{background:var(--warm-white);color:var(--navy);border-bottom:2px solid var(--navy-light);}
+.gate-panel{padding:22px 24px 26px;display:none;}.gate-panel.active{display:block;}
+
+/* ── Fields ── */
+.field{margin-bottom:16px;}.field:last-child{margin-bottom:0;}
+.field label{display:block;font-size:.71rem;font-weight:600;color:var(--text-mid);text-transform:uppercase;letter-spacing:.7px;margin-bottom:6px;}
+.field label .req{color:var(--navy-light);margin-left:2px;}
+.field input,.field select{width:100%;border:1.5px solid var(--border);border-radius:10px;padding:11px 13px;font-family:'DM Sans',sans-serif;font-size:.94rem;color:var(--text-dark);background:white;outline:none;transition:border-color .2s,box-shadow .2s;-webkit-appearance:none;}
+.field input:focus,.field select:focus{border-color:var(--navy-light);box-shadow:0 0 0 3px rgba(37,72,168,.08);}
+.field input.err,.field select.err{border-color:#C53030;background:#FFF5F5;}
+.field input:disabled{background:#F0F4FF;color:var(--text-mid);cursor:not-allowed;}
+.field select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='8' viewBox='0 0 14 8'%3E%3Cpath fill='%233A4E7A' d='M7 8L0 0h14z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 13px center;padding-right:36px;cursor:pointer;}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+@media(max-width:430px){.row2{grid-template-columns:1fr;}}
+.errmsg{font-size:.7rem;color:#C53030;margin-top:3px;display:none;}.errmsg.on{display:block;}
+.prefill-note{font-size:.7rem;color:var(--text-light);margin-top:4px;font-style:italic;display:none;}
+.locked-note{font-size:.7rem;color:var(--text-light);margin-top:4px;display:flex;align-items:center;gap:4px;}
+.reveal{display:none;margin-top:14px;padding-top:14px;border-top:1px dashed var(--border);}.reveal.show{display:block;}
+.reveal-lbl{font-size:.71rem;font-weight:600;color:var(--navy);text-transform:uppercase;letter-spacing:.7px;margin-bottom:6px;display:block;}
+.reveal-lbl .hl{color:var(--navy-light);font-style:italic;text-transform:none;font-weight:400;}
+.date-wrap{display:flex;align-items:center;gap:6px;}
+.date-part{border:1.5px solid var(--border);border-radius:10px;padding:11px 0;font-family:'DM Sans',sans-serif;font-size:.95rem;color:var(--text-dark);background:white;outline:none;text-align:center;transition:border-color .2s,box-shadow .2s;-webkit-appearance:none;}
+.date-part:focus{border-color:var(--navy-light);box-shadow:0 0 0 3px rgba(37,72,168,.08);}
+.date-part.err{border-color:#C53030;background:#FFF5F5;}
+.date-input{width:100%;border:1.5px solid var(--border);border-radius:10px;padding:10px 14px;font-family:'DM Sans',sans-serif;font-size:1rem;background:var(--warm-white);outline:none;transition:border-color .2s;letter-spacing:2px;}.date-input:focus{border-color:var(--navy-light);box-shadow:0 0 0 3px rgba(37,72,168,.08);}.date-hint{font-size:.68rem;color:var(--text-light);margin-top:3px;display:block;}
+
+/* ── Account section ── */
+.account-section{background:linear-gradient(135deg,#F0F4FF,var(--warm-white));border-top:1px solid var(--border);padding:20px 22px;}
+.account-heading{font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-weight:600;color:var(--navy);margin-bottom:4px;}
+.account-sub{font-size:.76rem;color:var(--text-light);margin-bottom:16px;}
+.pwd-change-toggle{font-size:.78rem;color:var(--navy-light);cursor:pointer;text-decoration:underline;margin-bottom:12px;display:inline-block;}
+.pwd-change-fields{display:none;}.pwd-change-fields.show{display:block;}
+
+/* ── Photo ── */
+.photo-wrap{border:2px dashed var(--border);border-radius:14px;padding:20px 16px;text-align:center;cursor:pointer;transition:all .2s;background:var(--cream);}
+.photo-wrap:hover{border-color:var(--navy-light);background:#EEF2FF;}
+.photo-preview{width:96px;height:96px;border-radius:50%;object-fit:cover;border:3px solid var(--navy-light);margin:0 auto 6px;display:block;}
+.photo-placeholder-icon{font-size:34px;margin-bottom:6px;}
+.photo-placeholder-text{font-size:.8rem;color:var(--text-light);}
+.photo-change-link{font-size:.72rem;color:var(--navy-light);margin-top:8px;display:block;}
+
+/* ── Buttons ── */
+.welcome-back{background:var(--green-bg);border:1px solid var(--green-border);border-radius:14px;padding:12px 16px;margin-bottom:14px;display:none;align-items:center;gap:10px;}
+.welcome-back.show{display:flex;}
+.welcome-back-text{font-size:.88rem;color:var(--green);font-weight:500;}
+.submit-section{padding:18px 22px;background:linear-gradient(135deg,rgba(12,26,78,.03),white);}
+.submit-btn{width:100%;background:linear-gradient(135deg,var(--navy-deep),var(--navy-light));color:white;border:none;border-radius:12px;padding:15px;font-family:'DM Sans',sans-serif;font-size:.98rem;font-weight:600;cursor:pointer;box-shadow:0 6px 24px rgba(12,26,78,.28);transition:transform .15s,box-shadow .15s;position:relative;overflow:hidden;}
+.submit-btn:hover{transform:translateY(-2px);}
+.submit-btn:disabled{opacity:.6;cursor:not-allowed;transform:none!important;}
+.gate-btn{width:100%;background:linear-gradient(135deg,var(--navy-deep),var(--navy-light));color:white;border:none;border-radius:12px;padding:14px;font-family:'DM Sans',sans-serif;font-size:.95rem;font-weight:600;cursor:pointer;box-shadow:0 6px 20px rgba(12,26,78,.28);transition:transform .15s;}
+.gate-btn:hover{transform:translateY(-2px);}
+.gate-lbl{display:block;font-size:.71rem;font-weight:600;color:var(--text-mid);text-transform:uppercase;letter-spacing:.7px;margin-bottom:7px;}
+.gate-input{width:100%;border:1.5px solid var(--border);border-radius:10px;padding:12px 14px;font-family:'DM Sans',sans-serif;font-size:.94rem;color:var(--text-dark);background:white;outline:none;transition:border-color .2s;margin-bottom:14px;}
+.gate-input:focus{border-color:var(--navy-light);}
+.gate-input.err{border-color:#C53030;animation:shake .3s ease;}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+.gate-forgot{text-align:center;margin-top:10px;font-size:.76rem;color:var(--text-light);}
+.gate-forgot a{color:var(--navy-light);}
+.pwd-wrap{position:relative;}
+.pwd-wrap input{padding-right:42px!important;}
+.pwd-eye{position:absolute;right:12px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;color:var(--text-light);font-size:1rem;line-height:1;padding:4px;transition:color .15s;}
+.pwd-eye:hover{color:var(--navy);}
+
+/* ── Success ── */
+.success{display:none;text-align:center;padding:60px 20px;}.success.on{display:block;}
+.success-diya{font-size:40px;display:block;margin-bottom:10px;animation:glow 2s ease-in-out infinite;}
+@keyframes glow{0%,100%{filter:drop-shadow(0 0 6px rgba(201,148,58,.4))}50%{filter:drop-shadow(0 0 16px rgba(201,148,58,.8))}}
+.success h2{font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:700;color:var(--navy);margin-bottom:4px;}
+.success{display:none;text-align:center;padding:32px 20px;}.success.on{display:block;}
+.success-divider{width:80px;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:8px auto 12px;}
+.success p{color:var(--text-mid);font-size:.9rem;line-height:1.7;}
+.success .note{font-size:.76rem;color:var(--text-light);margin-top:8px;}
+.success-actions{margin-top:16px;display:flex;flex-wrap:wrap;gap:10px;justify-content:center;}
+.another-btn,.home-btn-sml{border-radius:12px;padding:11px 28px;font-family:'DM Sans',sans-serif;font-size:.88rem;font-weight:600;cursor:pointer;transition:all .2s;}
+.another-btn{background:white;border:2px solid var(--navy);color:var(--navy);}
+.another-btn:hover{background:var(--navy);color:white;}
+.home-btn-sml{background:var(--cream);border:2px solid var(--border);color:var(--text-mid);}
+.home-btn-sml:hover{border-color:var(--navy);color:var(--navy);}
+
+/* ── Tree view ── */
+.tree-full{display:none;height:100vh;flex-direction:column;}
+.tree-full.active{display:flex;}
+.topbar{background:var(--warm-white);border-bottom:1px solid var(--border);padding:0 16px;height:52px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;box-shadow:0 2px 8px var(--shadow);gap:8px;}
+.topbar-title{font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-weight:700;color:var(--navy);white-space:nowrap;}
+.topbar-title em{font-style:italic;color:var(--gold);}
+.topbar-controls{display:flex;align-items:center;gap:5px;flex-wrap:wrap;}
+.ctrl-btn{background:var(--cream);border:1px solid var(--border);border-radius:8px;padding:5px 9px;font-family:'DM Sans',sans-serif;font-size:.75rem;font-weight:500;color:var(--text-mid);cursor:pointer;transition:all .15s;white-space:nowrap;position:relative;}
+.ctrl-btn[data-tip]:hover::after{content:attr(data-tip);position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);background:#0C1A4E;color:white;padding:6px 10px;border-radius:8px;font-size:.7rem;font-weight:400;white-space:nowrap;z-index:9999;box-shadow:0 4px 12px rgba(0,0,0,.2);pointer-events:none;}
+.ctrl-btn[data-tip]:hover::before{content:'';position:absolute;bottom:calc(100% + 2px);left:50%;transform:translateX(-50%);border:5px solid transparent;border-top-color:#0C1A4E;z-index:9999;pointer-events:none;}
+.ctrl-btn:hover{background:var(--navy);color:white;border-color:var(--navy);}
+.ctrl-btn.gold{background:var(--gold);color:white;border-color:var(--gold);}
+.tree-wrap{flex:1;overflow:hidden;position:relative;background:var(--cream);}
+#treeSvg{width:100%;height:100%;cursor:grab;}
+#treeSvg:active{cursor:grabbing;}
+.tree-loading{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:var(--cream);}
+.tree-loading-text{font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:var(--navy);animation:pulse 1.5s ease-in-out infinite;}
+@keyframes pulse{0%,100%{opacity:.4}50%{opacity:1}}
+.legend{position:absolute;bottom:16px;left:16px;background:rgba(255,255,255,.92);border:1px solid var(--border);border-radius:10px;padding:10px 14px;font-size:.72rem;color:var(--text-mid);}
+.legend-row{display:flex;align-items:center;gap:8px;margin-bottom:4px;}
+.legend-row:last-child{margin-bottom:0;}
+.lcircle{width:13px;height:13px;border-radius:50%;background:var(--navy);flex-shrink:0;}
+.lgold{background:var(--gold);}
+
+/* ── Person detail popup ── */
+.popup-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.45);z-index:1000;display:none;align-items:center;justify-content:center;padding:16px;}
+.person-popup{background:var(--warm-white);border-radius:20px;padding:22px;width:100%;max-width:320px;position:relative;box-shadow:0 12px 48px rgba(0,0,0,0.28);animation:popIn .2s ease;}
+@keyframes popIn{from{transform:scale(0.92);opacity:0}to{transform:scale(1);opacity:1}}
+.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%) translateY(20px);background:#1B2A5E;color:white;padding:11px 24px;border-radius:12px;font-size:.85rem;font-weight:500;box-shadow:0 4px 20px rgba(0,0,0,.2);z-index:9999;opacity:0;transition:opacity .25s,transform .25s;pointer-events:none;white-space:nowrap;max-width:calc(100vw - 32px);text-align:center;}
+.toast.on{opacity:1;transform:translateX(-50%) translateY(0);}
+
+/* ── Directory screen ── */
+.dir-screen{position:fixed;inset:0;background:var(--cream);z-index:600;overflow-y:auto;display:none;}
+.dir-screen.active{display:block;}
+.dir-topbar{background:var(--warm-white);border-bottom:1px solid var(--border);padding:0 20px;height:52px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:10;box-shadow:0 2px 8px var(--shadow);}
+.dir-topbar-title{font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-weight:700;color:var(--navy);}
+.dir-topbar-title em{font-style:italic;color:var(--gold);}
+.dir-topbar-btns{display:flex;gap:8px;}
+.dir-body{max-width:900px;margin:0 auto;padding:24px 16px 60px;}
+.dir-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:12px;margin-bottom:28px;}
+.stat-card{background:var(--warm-white);border-radius:16px;padding:16px;text-align:center;border:1px solid var(--border);box-shadow:0 2px 10px var(--shadow);}
+.stat-num{font-family:'Cormorant Garamond',serif;font-size:2.2rem;font-weight:700;color:var(--navy);line-height:1;}
+.stat-lbl{font-size:.72rem;color:var(--text-light);margin-top:4px;text-transform:uppercase;letter-spacing:.5px;}
+.stat-card.highlight{background:linear-gradient(135deg,var(--navy-deep),var(--navy-mid));border-color:var(--navy);}
+.stat-card.highlight .stat-num,.stat-card.highlight .stat-lbl{color:white;}
+.stat-card.bday-card{background:linear-gradient(135deg,#7B2FBE,#9B59B6);border-color:#7B2FBE;}
+.stat-card.bday-card .stat-num,.stat-card.bday-card .stat-lbl{color:white;}
+.dir-section-title{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:700;color:var(--navy);margin:0 0 14px;display:flex;align-items:center;gap:8px;}
+.dir-section-title::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,var(--border),transparent);}
+.bday-row{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:28px;}
+.bday-chip{background:var(--warm-white);border:1.5px solid var(--border);border-radius:14px;padding:10px 14px;display:flex;align-items:center;gap:10px;box-shadow:0 2px 8px var(--shadow);}
+.bday-chip.today{border-color:#7B2FBE;background:linear-gradient(135deg,#F5EEFF,white);}
+.bday-chip.soon{border-color:var(--gold);}
+.bday-initials{width:38px;height:38px;border-radius:50%;background:var(--navy);color:white;display:flex;align-items:center;justify-content:center;font-size:.85rem;font-weight:700;flex-shrink:0;}
+.bday-name{font-weight:600;font-size:.88rem;color:var(--navy);}
+.bday-date{font-size:.75rem;color:var(--text-light);}
+.bday-days{font-size:.7rem;font-weight:600;color:#7B2FBE;background:#F5EEFF;border-radius:6px;padding:2px 7px;}
+.bday-days.today-badge{background:#7B2FBE;color:white;}
+.dir-search-wrap{position:relative;margin-bottom:24px;}
+.dir-search-input{width:100%;border:2px solid var(--border);border-radius:14px;padding:13px 16px 13px 44px;font-family:'DM Sans',sans-serif;font-size:.95rem;background:var(--warm-white);outline:none;transition:border-color .2s;color:var(--text-dark);}
+.dir-search-input:focus{border-color:var(--navy-light);box-shadow:0 0 0 3px rgba(37,72,168,.08);}
+.dir-search-icon{position:absolute;left:14px;top:50%;transform:translateY(-50%);font-size:1.1rem;color:var(--text-light);}
+.branch-block{background:var(--warm-white);border-radius:18px;border:1px solid var(--border);margin-bottom:14px;overflow:hidden;box-shadow:0 2px 12px var(--shadow);}
+.branch-header{padding:14px 18px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;background:linear-gradient(135deg,var(--navy-deep),var(--navy));transition:opacity .15s;}
+.branch-header:hover{opacity:.92;}
+.branch-name{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:700;color:white;}
+.branch-count{font-size:.75rem;color:rgba(255,255,255,.7);background:rgba(255,255,255,.15);border-radius:10px;padding:3px 10px;}
+.branch-toggle{color:rgba(255,255,255,.7);font-size:.85rem;transition:transform .2s;}
+.branch-toggle.open{transform:rotate(180deg);}
+.branch-members{padding:0 14px 14px;display:none;}
+.branch-members.open{display:block;}
+.member-row{display:flex;align-items:center;gap:12px;padding:10px 6px;border-bottom:1px solid var(--border);transition:background .15s;}
+.member-row:last-child{border-bottom:none;}
+.member-row:hover{background:var(--cream);border-radius:10px;}
+.member-row.unregistered{opacity:1;}
+.mem-photo{width:42px;height:42px;border-radius:50%;flex-shrink:0;object-fit:cover;border:2px solid var(--border);}
+.mem-initials{width:42px;height:42px;border-radius:50%;background:var(--navy);color:white;display:flex;align-items:center;justify-content:center;font-size:.9rem;font-weight:700;flex-shrink:0;}
+.mem-initials.grey{background:#B0BBC8;}
+.mem-info{flex:1;min-width:0;}
+.mem-name{font-weight:600;font-size:.9rem;color:var(--navy);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.mem-detail{font-size:.75rem;color:var(--text-light);margin-top:2px;}
+.mem-badges{display:flex;align-items:center;gap:6px;flex-shrink:0;}
+.badge-reg{background:#DCFCE7;color:#166534;font-size:.65rem;font-weight:600;border-radius:6px;padding:2px 7px;}
+.badge-unreg{background:#F1F5F9;color:#94A3B8;font-size:.65rem;font-weight:600;border-radius:6px;padding:2px 7px;}
+.wa-btn{background:linear-gradient(135deg,#25D366,#128C7E);color:white;border:none;border-radius:8px;padding:5px 10px;font-size:.72rem;font-weight:600;cursor:pointer;text-decoration:none;display:flex;align-items:center;gap:4px;white-space:nowrap;}
+.join-btn{background:var(--cream);color:var(--navy-light);border:1px solid var(--border);border-radius:8px;padding:5px 10px;font-size:.72rem;font-weight:600;cursor:pointer;white-space:nowrap;}
+.no-results{text-align:center;padding:40px;color:var(--text-light);font-size:.9rem;}
+@media print{
+  .dir-topbar-btns,.dir-search-wrap{display:none!important;}
+  .branch-members{display:block!important;}
+  .dir-screen{position:static!important;}
+}
+
+@media print{
+  @page{size:A4 landscape;margin:12mm;}
+  body>*:not(.tree-full){display:none!important;}
+  .tree-full{display:flex!important;height:100vh;page-break-inside:avoid;}
+  .topbar,.legend,.toast{display:none!important;}
+  .tree-wrap{height:calc(100vh - 24mm);overflow:visible;}
+  #treeSvg{width:100%;height:100%;}
+}
+</style>
+</head>
+<body>
+
+<!-- ════════════════════════════════════════════
+     SCREEN 1 — LANDING
+════════════════════════════════════════════ -->
+<div class="screen active" id="landingScreen">
+  <div class="stripe"></div>
+  <div class="hero" style="background:linear-gradient(155deg,rgba(7,15,48,0.90) 0%,rgba(12,26,78,0.85) 50%,rgba(26,49,120,0.90) 100%), url('https://anandsinhausa.com/balrampur-og.jpg') center/cover no-repeat;">
+    <div class="hero-support">
+      <div class="hero-support-name">Need help? Contact Anand Sinha</div>
+      <a href="https://wa.me/12488723057" target="_blank" class="hero-support-link">💬 WhatsApp +1 (248) 872-3057</a>
+    </div>
+    <span style="font-size:22px;display:block;margin-bottom:4px;filter:drop-shadow(0 2px 10px rgba(201,148,58,.6));">🪔</span>
+    <h1>The <em>Balrampur</em><br>Family Directory</h1>
+    <div class="hero-divider"><span class="hero-diamond">◆</span></div>
+    <p class="hero-sub">एक परिवार · एक सूची · एक पहचान</p>
+    <div class="hero-gold-bar"></div>
+  </div>
+
+  <div class="container">
+    <div class="landing-cards">
+
+      <!-- Card 1: New member -->
+      <div class="option-card" onclick="goToNewMember()">
+        <span class="option-icon">📝</span>
+        <div class="option-title">First time?<br>Join Here</div>
+        <div class="option-desc">Register your details and join the Balrampur Family Directory for the first time.</div>
+        <div class="option-pill">Register Now →</div>
+        <div class="option-note" style="margin-top:10px;">
+          <span onclick="event.stopPropagation();toggleEmailCheck()" style="color:var(--navy-light);text-decoration:underline;cursor:pointer;font-size:.73rem;">
+            Not sure if you already registered?
+          </span>
+        </div>
+      </div>
+
+      <!-- Email check panel (hidden by default) -->
+      <div id="emailCheckPanel" style="display:none;grid-column:1/-1;background:var(--warm-white);border:1.5px solid var(--border);border-radius:16px;padding:20px 24px;">
+        <div style="font-size:.88rem;font-weight:600;color:var(--navy);margin-bottom:12px;">🔍 Check if you're already registered</div>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;">
+          <input type="email" id="emailCheckInput" placeholder="Enter your email address"
+            style="flex:1;min-width:200px;border:1.5px solid var(--border);border-radius:10px;padding:10px 13px;font-family:'DM Sans',sans-serif;font-size:.9rem;outline:none;"
+            onkeydown="if(event.key==='Enter')doEmailCheck()"/>
+          <button onclick="doEmailCheck()"
+            style="background:var(--navy);color:white;border:none;border-radius:10px;padding:10px 20px;font-family:'DM Sans',sans-serif;font-size:.85rem;font-weight:600;cursor:pointer;white-space:nowrap;">
+            Check →
+          </button>
+          <button onclick="toggleEmailCheck()"
+            style="background:var(--cream);color:var(--text-mid);border:1px solid var(--border);border-radius:10px;padding:10px 16px;font-family:'DM Sans',sans-serif;font-size:.85rem;cursor:pointer;">
+            Cancel
+          </button>
+        </div>
+        <div id="emailCheckResult" style="margin-top:12px;font-size:.85rem;display:none;"></div>
+      </div>
+
+      <!-- Card 2: Returning member -->
+      <div class="option-card" onclick="goToReturning()">
+        <span class="option-icon">✏️</span>
+        <div class="option-title">Already Joined?<br>Update My Details</div>
+        <div class="option-desc">Sign in to update your photo, address, phone number or any other details.</div>
+        <div class="option-pill">Sign In →</div>
+      </div>
+
+      <!-- Card 3: View tree -->
+      <div class="option-card" onclick="goToTreeView()">
+        <span class="option-icon">🌳</span>
+        <div class="option-title">View the<br>Family Tree</div>
+        <div class="option-desc">Explore your family heritage. See the full interactive tree with photos and connections.</div>
+        <div class="option-pill gold">View Tree →</div>
+        <div class="option-note">For registered members only</div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════
+     SCREEN 2 — FORM (Register / Update)
+════════════════════════════════════════════ -->
+<div class="screen" id="formScreen">
+  <div class="stripe"></div>
+  <div class="hero">
+    <div class="hero-back" style="display:flex;gap:8px;align-items:center;">
+      <button class="back-btn" onclick="goHome()">← Home</button>
+      <button class="back-btn" id="formTreeBtn" onclick="goToTreeView()" style="display:none;background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.3);">🌳 View Tree</button>
+    </div>
+    <div class="hero-support">
+      <div class="hero-support-name">Need help? Contact Anand Sinha</div>
+      <a href="https://wa.me/12488723057" target="_blank" class="hero-support-link">💬 WhatsApp +1 (248) 872-3057</a>
+    </div>
+    <span style="font-size:28px;display:block;margin-bottom:8px;">🪔</span>
+    <h1>The <em>Balrampur</em><br>Family Directory</h1>
+    <div class="hero-divider"><span class="hero-diamond">◆</span></div>
+    <p class="hero-sub">Share your details with our family</p>
+    <p class="hero-hindi">एक परिवार · एक सूची · एक पहचान</p>
+    <div class="hero-gold-bar"></div>
+  </div>
+
+  <div class="container" id="formContainer">
+
+    <!-- Gate tabs (New / Returning) -->
+    <div class="form-card" id="gateCard">
+      <div class="gate-tabs">
+        <div class="gate-tab active" id="tabNew" onclick="switchTab('new')">🆕 New Member</div>
+        <div class="gate-tab"        id="tabReturn" onclick="switchTab('return')">🔄 Returning Member</div>
+      </div>
+      <div class="gate-panel active" id="panelNew">
+        <label class="gate-lbl">Family Access Code</label>
+        <div class="pwd-wrap">
+          <input type="password" id="familyCode" class="gate-input" placeholder="Enter family code"
+            autocomplete="off" onkeydown="if(event.key==='Enter')startNew()" style="margin-bottom:0;"/>
+          <button type="button" class="pwd-eye" onclick="toggleEye('familyCode',this)">👁</button>
+        </div>
+        <div style="height:14px;"></div>
+        <button class="gate-btn" onclick="startNew()">Continue to Form &nbsp;→</button>
+      </div>
+      <div class="gate-panel" id="panelReturn">
+        <label class="gate-lbl">Your Email</label>
+        <input type="email" id="loginEmail" class="gate-input" placeholder="your@email.com"
+          autocomplete="email" onkeydown="if(event.key==='Enter')document.getElementById('loginPwd').focus()"/>
+        <label class="gate-lbl">Your Password</label>
+        <div class="pwd-wrap">
+          <input type="password" id="loginPwd" class="gate-input" placeholder="Your personal password"
+            autocomplete="current-password" onkeydown="if(event.key==='Enter')doLogin()" style="margin-bottom:0;"/>
+          <button type="button" class="pwd-eye" onclick="toggleEye('loginPwd',this)">👁</button>
+        </div>
+        <div style="height:14px;"></div>
+        <button class="gate-btn" onclick="doLogin()">Sign In &amp; Edit My Details &nbsp;→</button>
+        <div class="gate-forgot">Forgot password?
+          <span style="color:var(--navy-light);cursor:pointer;font-weight:500;" onclick="toggleResetForm('formReset')">Reset via email</span>
+        </div>
+        <!-- Reset password form -->
+        <div id="formReset" style="display:none;margin-top:14px;padding-top:14px;border-top:1px dashed var(--border);">
+          <label class="gate-lbl">Enter Your Registered Email</label>
+          <input type="email" id="formResetEmail" class="gate-input" placeholder="your@email.com"/>
+          <button class="gate-btn" onclick="doPasswordReset('formResetEmail','formReset')">Send Temporary Password →</button>
+          <div style="text-align:center;margin-top:10px;">
+            <span onclick="toggleResetForm('formReset')" style="font-size:.76rem;color:var(--text-light);cursor:pointer;">← Back to Sign In</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main form (shown after gate) -->
+    <div id="formBody" style="display:none">
+      <div class="welcome-back" id="welcomeBack">
+        <span>✅</span>
+        <div class="welcome-back-text">Welcome back, <strong id="welcomeName"></strong>! Update your details below.</div>
+      </div>
+      <!-- Temp password warning -->
+      <div id="tempPwdBanner" style="display:none;background:#FFF7ED;border:1px solid #FED7AA;border-radius:14px;padding:12px 16px;margin-bottom:14px;font-size:.85rem;color:#9A3412;">
+        ⚠️ You logged in with a temporary password. <strong>Please scroll down and set a new password before saving.</strong>
+      </div>
+
+      <div class="patriarch-banner" id="patriarchBanner">
+        <div class="patriarch-icon">👴👵</div>
+        <div>
+          <div class="patriarch-name">Raghuraj Prasad &amp; Chandra Kala Devi</div>
+          <div class="patriarch-role">Balrampur Family · Family Heads</div>
+        </div>
+      </div>
+
+      <div class="form-card">
+        <!-- Family Tree cascade -->
+        <div class="form-section">
+          <div class="field">
+            <label>Whose family do you belong to? <span class="req">*</span></label>
+            <select id="gen1" onchange="onGen1Change()">
+              <option value="">— Select family branch —</option>
+              <option value="Jaya Srivastava">Jaya Srivastava's Family</option>
+              <option value="Mukund Chandra">Mukund Chandra's Family</option>
+              <option value="Shobha Sinha">Shobha Sinha's Family</option>
+              <option value="J Pratap">J Pratap's Family</option>
+              <option value="Sudha Lal">Sudha Lal's Family</option>
+              <option value="Rajendra Kumar">Rajendra Kumar's Family</option>
+              <option value="Sarla Prasad">Sarla Prasad's Family</option>
+              <option value="Hari Mohan Srivastava">Hari Mohan Srivastava's Family</option>
+              <option value="Sandhya Kumar">Sandhya Kumar's Family</option>
+            </select>
+            <div class="errmsg" id="e-gen1">Please select a family branch</div>
+          </div>
+          <div class="reveal" id="revGen2">
+            <span class="reveal-lbl">Which of <span class="hl" id="gen2Label">—</span>'s family? <span class="req">*</span></span>
+            <select id="gen2" onchange="onGen2Change()"><option value="">— Select —</option></select>
+            <div class="errmsg" id="e-gen2">Please select</div>
+          </div>
+          <div class="reveal" id="revRel">
+            <span class="reveal-lbl">Relationship to <span class="hl" id="relLabel">—</span> <span class="req">*</span></span>
+            <select id="relationship" onchange="onRelationshipChange()">
+              <option value="">— Select —</option>
+              <option>Self (I am this person)</option><option>Spouse</option>
+              <option>Son</option><option>Daughter</option>
+              <option>Son-in-law (Damad)</option><option>Daughter-in-law (Bahu)</option>
+              <option>Grandson</option><option>Granddaughter</option>
+              <option>Great-Grandson</option><option>Great-Granddaughter</option>
+              <option>Other</option>
+            </select>
+            <div class="errmsg" id="e-rel">Please select your relationship</div>
+          </div>
+        </div>
+        <!-- Personal -->
+        <div class="form-section">
+          <div class="row2">
+            <div class="field">
+              <label>First Name <span class="req">*</span></label>
+              <input type="text" id="firstName" placeholder="First name" autocomplete="given-name"/>
+              <div class="prefill-note" id="prefillNote">✏️ Pre-filled — edit if needed</div>
+              <div class="errmsg" id="e-firstName">Required</div>
+            </div>
+            <div class="field"><label>Last Name</label><input type="text" id="lastName" placeholder="Last name" autocomplete="family-name"/></div>
+          </div>
+          <div class="field"><label>Married To</label><input type="text" id="marriedTo" placeholder="Spouse's full name"/></div>
+        </div>
+        <!-- Contact -->
+        <div class="form-section">
+          <div class="field">
+            <label>Phone</label>
+            <div style="display:flex;gap:8px;">
+              <select id="phoneCode" style="width:115px;flex-shrink:0;border:1.5px solid var(--border);border-radius:10px;padding:11px 8px;font-family:'DM Sans',sans-serif;font-size:.86rem;color:var(--text-dark);background:white;outline:none;cursor:pointer;-webkit-appearance:none;background-image:url('data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'12\' height=\'7\' viewBox=\'0 0 12 7\'%3E%3Cpath fill=\'%233A4E7A\' d=\'M6 7L0 0h12z\'/%3E%3C/svg%3E');background-repeat:no-repeat;background-position:right 8px center;padding-right:24px;">
+                <option value="+1">🇺🇸 +1</option><option value="+91">🇮🇳 +91</option>
+                <option value="+44">🇬🇧 +44</option><option value="+61">🇦🇺 +61</option>
+                <option value="+1-CA">🇨🇦 +1</option><option value="+971">🇦🇪 +971</option>
+                <option value="+65">🇸🇬 +65</option><option value="+other">Other</option>
+              </select>
+              <input type="tel" id="phone" placeholder="(248) 555-0100" autocomplete="tel" style="flex:1;"/>
+            </div>
+          </div>
+          <div class="field"><label>Address</label><input type="text" id="address" placeholder="City, State (e.g. Troy, MI  or  Lucknow, UP)"/></div>
+        </div>
+        <!-- Dates -->
+        <div class="form-section">
+          <div class="row2">
+            <div class="field">
+              <label>🎂 Date of Birth</label>
+              <input type="text" id="dob" class="date-input" placeholder="DD / MM / YYYY" maxlength="10" inputmode="numeric" oninput="autoDate(this)">
+              <span class="date-hint">Year optional — enables milestone birthday alerts 🎊</span>
+              <div class="errmsg" id="e-dob">Check day and month (DD/MM or DD/MM/YYYY)</div>
+            </div>
+            <div class="field">
+              <label>💍 Anniversary</label>
+              <input type="text" id="ann" class="date-input" placeholder="DD / MM / YYYY" maxlength="10" inputmode="numeric" oninput="autoDate(this)">
+              <span class="date-hint">Year optional — shows Silver / Golden milestones 💍</span>
+              <div class="errmsg" id="e-ann">Check day and month (DD/MM or DD/MM/YYYY)</div>
+            </div>
+          </div>
+        </div>
+        <!-- Photo -->
+        <div class="form-section" style="background:linear-gradient(135deg,#F0F4FF,white);">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">
+            <span style="font-size:24px;">📷</span>
+            <div>
+              <div style="font-size:.85rem;font-weight:600;color:var(--navy);">Add Your Photo</div>
+              <div style="font-size:.72rem;color:var(--text-light);">Optional · JPG or PNG · max 2MB · appears in the family tree</div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;gap:16px;">
+            <div id="photoWrap" style="flex-shrink:0;width:90px;height:90px;border-radius:50%;border:2px dashed var(--border);display:flex;align-items:center;justify-content:center;background:var(--cream);">
+              <img id="photoPreview" style="display:none;width:90px;height:90px;border-radius:50%;object-fit:cover;" alt="Your photo"/>
+              <div id="photoPlaceholder" style="text-align:center;">
+                <div style="font-size:28px;">🧑</div>
+              </div>
+            </div>
+            <div style="flex:1;">
+              <input type="file" id="photoFile" accept="image/jpeg,image/png" style="display:none" onchange="handlePhotoSelect(this)"/>
+              <label for="photoFile" style="display:block;background:var(--navy);color:white;border-radius:10px;padding:12px;font-family:'DM Sans',sans-serif;font-size:.85rem;font-weight:600;cursor:pointer;text-align:center;">
+                📁 Choose Photo from Device
+              </label>
+              <div id="photoStatus" style="font-size:.72rem;color:var(--green);margin-top:6px;display:none;">✅ Photo selected — will upload when you submit</div>
+            </div>
+          </div>
+        </div>
+        <!-- Account -->
+        <div class="account-section" id="accountSection">
+          <div class="account-heading" id="accountHeading">🔑 Create Your Account</div>
+          <div class="account-sub" id="accountSub">Your email will be your login ID for future updates.</div>
+          <div id="newAccountFields">
+            <div class="field"><label>Email <span class="req">*</span></label><input type="email" id="regEmail" placeholder="your@email.com" autocomplete="email"/><div class="errmsg" id="e-email">Please enter a valid email</div></div>
+            <div class="row2">
+              <div class="field"><label>Password <span class="req">*</span></label>
+                <div class="pwd-wrap"><input type="password" id="regPwd" placeholder="Create a password (min 8 chars + number)" autocomplete="new-password" oninput="checkPwdStrength(this.value,'reg-pwd-bar','reg-pwd-text')"/><button type="button" class="pwd-eye" onclick="toggleEye('regPwd',this)">👁</button></div>
+                <div style="margin-top:6px;"><div style="height:4px;background:#E5E7EB;border-radius:2px;overflow:hidden;"><div id="reg-pwd-bar" style="height:100%;width:0;transition:all .3s;border-radius:2px;"></div></div><div id="reg-pwd-text" style="font-size:.7rem;margin-top:3px;"></div></div>
+                <div class="errmsg" id="e-pwd">Required</div></div>
+              <div class="field"><label>Confirm <span class="req">*</span></label>
+                <div class="pwd-wrap"><input type="password" id="regPwdConfirm" placeholder="Repeat password" autocomplete="new-password"/><button type="button" class="pwd-eye" onclick="toggleEye('regPwdConfirm',this)">👁</button></div>
+                <div class="errmsg" id="e-pwdConfirm">Passwords don't match</div></div>
+            </div>
+          </div>
+          <div id="editAccountFields" style="display:none">
+            <div class="field"><label>Email</label><input type="email" id="editEmail" disabled/><div class="locked-note">🔒 Email cannot be changed</div></div>
+          <div style="background:#F0F4FF;border-radius:12px;padding:14px;margin-top:4px;">
+            <div style="font-size:.78rem;font-weight:600;color:var(--navy);margin-bottom:10px;">🔑 Change Password <span style="font-weight:400;color:var(--text-light)">(optional — leave blank to keep current)</span></div>
+            <div class="row2">
+              <div class="field" style="margin-bottom:0"><label>New Password</label>
+                <div class="pwd-wrap"><input type="password" id="newPwd" placeholder="Min 8 chars + 1 number" oninput="checkPwdStrength(this.value,'edit-pwd-bar','edit-pwd-text')"/><button type="button" class="pwd-eye" onclick="toggleEye('newPwd',this)">👁</button></div>
+                <div style="margin-top:6px;"><div style="height:4px;background:#E5E7EB;border-radius:2px;overflow:hidden;"><div id="edit-pwd-bar" style="height:100%;width:0;transition:all .3s;border-radius:2px;"></div></div><div id="edit-pwd-text" style="font-size:.7rem;margin-top:3px;"></div></div>
+              </div>
+              <div class="field" style="margin-bottom:0"><label>Confirm New</label>
+                <div class="pwd-wrap"><input type="password" id="newPwdConfirm" placeholder="Repeat"/><button type="button" class="pwd-eye" onclick="toggleEye('newPwdConfirm',this)">👁</button></div>
+                <div class="errmsg" id="e-newPwd">Passwords don't match</div>
+              </div>
+            </div>
+          </div>
+          </div>
+        </div>
+        <!-- Submit -->
+        <div class="submit-section">
+          <button class="submit-btn" id="submitBtn" onclick="submitForm()">🙏&nbsp; Submit to Family Directory</button>
+        </div>
+      </div>
+
+      </div>
+    </div><!-- /formBody -->
+
+    <!-- Success — OUTSIDE formBody so it shows when formBody is hidden -->
+    <div class="success" id="successScreen">
+      <span class="success-diya">🪔</span>
+      <h2 id="successHeading">Dhanyavaad! 🙏</h2>
+      <div class="success-divider"></div>
+      <p id="successMsg"></p>
+      <p class="note" id="successNote"></p>
+      <div class="success-actions">
+        <button class="another-btn" onclick="addAnother()">+ Add Another Member</button>
+        <button class="home-btn-sml" onclick="goHome()">🏠 Home</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════
+     SCREEN 3 — TREE LOGIN
+════════════════════════════════════════════ -->
+<div class="screen" id="treeLoginScreen">
+  <div class="stripe"></div>
+  <div class="hero">
+    <div class="hero-back"><button class="back-btn" onclick="goHome()">← Home</button></div>
+    <div class="hero-support">
+      <div class="hero-support-name">Need help? Contact Anand Sinha</div>
+      <a href="https://wa.me/12488723057" target="_blank" class="hero-support-link">💬 WhatsApp +1 (248) 872-3057</a>
+    </div>
+    <span style="font-size:32px;display:block;margin-bottom:10px;filter:drop-shadow(0 2px 10px rgba(201,148,58,.6));">🌳</span>
+    <h1>The <em>Balrampur</em><br>Family Tree</h1>
+    <div class="hero-divider"><span class="hero-diamond">◆</span></div>
+    <p class="hero-sub">Sign in to explore your family heritage</p>
+    <p class="hero-hindi">एक परिवार · एक सूची · एक पहचान</p>
+    <div class="hero-gold-bar"></div>
+  </div>
+  <div style="max-width:420px;margin:28px auto 40px;padding:0 16px;">
+    <div style="background:var(--warm-white);border-radius:20px;border:1px solid var(--border);box-shadow:0 4px 28px var(--shadow);padding:24px;">
+      <label class="gate-lbl">Email</label>
+      <input type="email" id="treeEmail" class="gate-input" placeholder="your@email.com"
+        autocomplete="email" onkeydown="if(event.key==='Enter')document.getElementById('treePwd').focus()"/>
+      <label class="gate-lbl">Password</label>
+      <div class="pwd-wrap">
+        <input type="password" id="treePwd" class="gate-input" placeholder="Your password"
+          autocomplete="current-password" onkeydown="if(event.key==='Enter')doTreeLogin()" style="margin-bottom:0;"/>
+        <button type="button" class="pwd-eye" onclick="toggleEye('treePwd',this)">👁</button>
+      </div>
+      <div style="height:14px;"></div>
+      <label style="display:flex;align-items:center;gap:8px;font-size:.82rem;color:var(--text-mid);cursor:pointer;margin-bottom:14px;">
+        <input type="checkbox" id="rememberMe" style="width:16px;height:16px;accent-color:var(--navy);cursor:pointer;">
+        Keep me signed in for 30 days
+      </label>
+      <button class="gate-btn" id="treeLoginBtn" onclick="doTreeLogin()">View Family Tree &nbsp;🌳</button>
+      <div class="gate-forgot" style="margin-top:12px;">
+        Not registered yet? <span style="color:var(--navy-light);cursor:pointer;font-weight:500;" onclick="goTo('formScreen')">Register here</span>
+        &nbsp;·&nbsp;
+        Forgot password? <span style="color:var(--navy-light);cursor:pointer;font-weight:500;" onclick="toggleResetForm('treeReset')">Reset via email</span>
+      </div>
+      <!-- Tree reset form -->
+      <div id="treeReset" style="display:none;margin-top:14px;padding-top:14px;border-top:1px dashed var(--border);">
+        <label class="gate-lbl">Enter Your Registered Email</label>
+        <input type="email" id="treeResetEmail" class="gate-input" placeholder="your@email.com"/>
+        <button class="gate-btn" onclick="doPasswordReset('treeResetEmail','treeReset')">Send Temporary Password →</button>
+        <div style="text-align:center;margin-top:10px;">
+          <span onclick="toggleResetForm('treeReset')" style="font-size:.76rem;color:var(--text-light);cursor:pointer;">← Back to Sign In</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════
+     SCREEN 4 — TREE VIEW (full-screen)
+════════════════════════════════════════════ -->
+<div class="tree-full" id="treeViewScreen">
+  <div class="topbar">
+    <div class="topbar-title">🌳 <em>Balrampur</em> Family Tree</div>
+    <div class="topbar-controls">
+      <button class="ctrl-btn" onclick="goHome()" data-tip="Return to home screen">🏠 Home</button>
+      <button class="ctrl-btn" onclick="signOut()" data-tip="Sign out and clear saved login" style="color:#C53030;">⎋ Sign Out</button>
+      <button class="ctrl-btn" onclick="goToReturning()" data-tip="Update your details — no sign-in needed">✏️ Edit My Details</button>
+      <button class="ctrl-btn" onclick="zoomIn()" data-tip="Zoom in">＋</button>
+      <button class="ctrl-btn" onclick="zoomOut()" data-tip="Zoom out">－</button>
+      <button class="ctrl-btn" onclick="resetView()" data-tip="Reset zoom and position">⊙ Reset</button>
+      <button class="ctrl-btn gold" onclick="downloadPDF()" data-tip="Download as PDF file">📄 PDF</button>
+      <button class="ctrl-btn gold" onclick="downloadPNG()" data-tip="Download as PNG image">🖼 PNG</button>
+      <button class="ctrl-btn" style="background:#1D6F42;color:white;border-color:#1D6F42;" onclick="downloadExcel()" data-tip="Download full family directory as Excel">📊 Excel</button>
+      <button class="ctrl-btn" style="background:#7B2FBE;color:white;border-color:#7B2FBE;" onclick="showDirectoryScreen()" data-tip="Browse family members, search by name or phone">📋 Directory</button>
+    </div>
+  </div>
+  <div class="tree-wrap" id="treeWrap">
+    <div class="tree-loading" id="treeLoading">
+      <div style="text-align:center;">
+        <div class="tree-loading-text">🪔 Building your family tree…</div>
+        <div style="font-size:.8rem;color:var(--text-light);margin-top:10px;">Connecting to family directory — this may take a few seconds</div>
+      </div>
+    </div>
+    <svg id="treeSvg"></svg>
+    <div class="legend">
+      <div class="legend-row"><div class="lcircle"></div>Tap name for details</div>
+      <div class="legend-row"><div class="lcircle lgold"></div>💑 Married couple</div>
+      <div class="legend-row">◆ Tap dot to expand/collapse</div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════
+     DIRECTORY SCREEN
+════════════════════════════════════════════ -->
+<div class="dir-screen" id="dirScreen">
+  <div class="dir-topbar">
+    <div class="dir-topbar-title">📋 <em>Balrampur</em> Family Directory</div>
+    <div class="dir-topbar-btns">
+      <button class="ctrl-btn" onclick="window.print()">🖨️ Print / PDF</button>
+      <button class="ctrl-btn" onclick="closeDirectory()">← Back to Tree</button>
+      <button class="ctrl-btn" onclick="goHome()">🏠 Home</button>
+    </div>
+  </div>
+  <div class="dir-body">
+    <div class="dir-stats" id="dirStats"></div>
+    <div id="dirBdays"></div>
+    <div class="dir-search-wrap">
+      <span class="dir-search-icon">🔍</span>
+      <input class="dir-search-input" id="dirSearch" placeholder="Search by name, city, phone…" oninput="searchDir(this.value)"/>
+    </div>
+    <div id="dirContent"></div>
+  </div>
+</div>
+
+<!-- Person detail popup -->
+
+<div class="popup-overlay" id="popupOverlay" onclick="closePopup()">
+  <div class="person-popup" id="personPopup" onclick="event.stopPropagation()"></div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+// ═══════════════════════════════════════════════
+//  CONFIG — only these lines differ per family
+// ═══════════════════════════════════════════════
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxZXPLRN-O87hc_2FU4P7MRqKxaGio1-d-RN2GfVC7ysJ9IF9Vj2KJIukr3V9EdV7uVQQ/exec';
+const FAMILY_ID       = 'balrampur';
+const RECAPTCHA_SITE_KEY = '';  // ← paste your reCAPTCHA v3 site key here
+
+// ── reCAPTCHA v3 — invisible, no puzzles ──────────────────────
+function initRecaptcha() {
+  if (!RECAPTCHA_SITE_KEY) return;
+  const s = document.getElementById('recaptcha-script');
+  s.src = 'https://www.google.com/recaptcha/api.js?render=' + RECAPTCHA_SITE_KEY;
+}
+function getRecaptchaToken(action) {
+  return new Promise(resolve => {
+    if (!RECAPTCHA_SITE_KEY || typeof grecaptcha === 'undefined') { resolve(''); return; }
+    grecaptcha.ready(() => {
+      grecaptcha.execute(RECAPTCHA_SITE_KEY, { action })
+        .then(resolve).catch(() => resolve(''));
+    });
+  });
+}
+
+// ── Password strength indicator ────────────────────────────────
+function checkPwdStrength(pwd, barId, textId) {
+  const bar  = document.getElementById(barId);
+  const text = document.getElementById(textId);
+  if (!bar || !text || !pwd) { if(bar)bar.style.width='0'; return; }
+  const hasLen  = pwd.length >= 8;
+  const hasNum  = /\d/.test(pwd);
+  const hasSpec = /[^a-zA-Z0-9]/.test(pwd);
+  const score   = [hasLen, hasNum, hasSpec].filter(Boolean).length;
+  const levels  = [
+    {pct:'33%', color:'#EF4444', label:'Too short'},
+    {pct:'66%', color:'#F59E0B', label:'Fair — add a number'},
+    {pct:'100%',color:'#10B981', label:'Strong ✓'}
+  ];
+  const lv = score === 0 ? levels[0] : levels[score - 1];
+  bar.style.width = lv.pct;
+  bar.style.background = lv.color;
+  text.textContent = lv.label;
+  text.style.color = lv.color;
+}
+const BRIDGE = null; // No Sonbarsa link in Balrampur tree
+
+// ── Extended family data: Gen 2 → spouse + Gen 3 children ──
+// Add here as more data is known
+const FAM_EXT = {
+  'Madhuli Nigam':       { spouse:'Vinod Nigam',      children:['Ayush Nigam','Charu Nigam'] },
+  'Purshkar Srivastava': { spouse:'Sunita Srivastava', children:['Surhid Srivastava'] },
+};
+
+// Spouses of Gen 1 members — add names as you collect them
+// These show as ghost nodes in the tree even before they register
+const GEN1_SPOUSES = {
+  'Shobha Sinha': 'Uma Shankar Prasad Sinha',
+  // 'Jaya Srivastava':        'Husband name',
+  // 'Mukund Chandra':         'Spouse name',
+  // 'J Pratap':               'Spouse name',
+  // 'Sudha Lal':              'Spouse name',
+  // 'Rajendra Kumar':         'Spouse name',
+  // 'Sarla Prasad':           'Spouse name',
+  // 'Hari Mohan Srivastava':  'Spouse name',
+  // 'Sandhya Kumar':          'Spouse name',
+};
+
+// Deceased members — shown as "🕊️ In fond memory"
+// Also managed via Status column in Google Sheet (enter "deceased")
+const DECEASED = [
+  // Gen 0 — Patriarchs
+  'Raghuraj Prasad', 'Chandra Kala Devi',
+  // Gen 1 — All except Sarla Prasad and Sandhya Kumar
+  'Jaya Srivastava', 'Mukund Chandra', 'Shobha Sinha',
+  'J Pratap', 'Sudha Lal', 'Rajendra Kumar', 'Hari Mohan Srivastava',
+  // Spouses
+  'Vinod Nigam'
+];
+
+// All Gen 1 branches — always shown even before anyone submits
+const GEN1_FIXED = [
+  'Jaya Srivastava','Mukund Chandra','Shobha Sinha','J Pratap',
+  'Sudha Lal','Rajendra Kumar','Sarla Prasad','Hari Mohan Srivastava','Sandhya Kumar'
+];
+// ═══════════════════════════════════════════════
+
+const FAMILY_DATA = {
+  'Jaya Srivastava':       ['Madhuli Nigam','Purshkar Srivastava'],
+  'Mukund Chandra':        ['Nirmal Kumar','Tripti Srivastava','Charu Nigam'],
+  'Shobha Sinha':          ['Divya J Srivastava','Anand Sinha','Sanjay Sinha'],
+  'J Pratap':              ['Kripanshu Pratap'],
+  'Sudha Lal':             ['Shubhra Sahai','Sujala Narain','Ashesh Lal'],
+  'Rajendra Kumar':        ['Praveen Kumar','Aparna Nigam','Paritosh Kumar'],
+  'Sarla Prasad':          ['Snighdha Mohan','Sumangala Bhattacharjee'],
+  'Hari Mohan Srivastava': ['Anupam Kumar','Shruti Verma','Smriti Srivastava'],
+  'Sandhya Kumar':         []
+};
+
+// Initialise reCAPTCHA v3 on page load
+document.addEventListener('DOMContentLoaded', () => {
+  initRecaptcha();
+  checkRememberMe();
+});
+
+// Remember Me — auto-login if valid stored token
+async function checkRememberMe() {
+  try {
+    const stored = localStorage.getItem('bfdir_rem');
+    if(!stored) return;
+    const {e, p, x, f} = JSON.parse(stored);
+    if(!e || !p || Date.now() > x || f !== FAMILY_ID) {
+      localStorage.removeItem('bfdir_rem');
+      return;
+    }
+    // Valid token — auto-login silently
+    sessionEmail = e; sessionPassword = p;
+    // Show a subtle "Welcome back" toast briefly
+    setTimeout(() => showToast('Welcome back! Signing you in…'), 300);
+    const token = await getRecaptchaToken('login');
+    const res = await fetch(APPS_SCRIPT_URL, {method:'POST', body:JSON.stringify({
+      action:'getPublicData', family:FAMILY_ID, email:e, password:p, recaptchaToken:token
+    })});
+    const data = await res.json();
+    if(data.success) {
+      sessionTreeData = data;
+      // Refresh token expiry
+      localStorage.setItem('bfdir_rem', JSON.stringify({e,p,x:Date.now()+30*24*60*60*1000,f:FAMILY_ID}));
+      document.getElementById('treeLoginScreen').classList.remove('active');
+      document.getElementById('treeViewScreen').classList.add('active');
+      document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+      document.getElementById('treeViewScreen').classList.add('active');
+      setTimeout(()=>{initTree(data);document.getElementById('treeLoading').style.display='none';},400);
+    } else {
+      localStorage.removeItem('bfdir_rem');
+      sessionEmail='';sessionPassword='';
+    }
+  } catch(e) { console.log('Auto-login skipped'); }
+}
+
+// ── Screen navigation ─────────────────────────────
+function goTo(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  const el = document.getElementById(id);
+  if (el) { el.classList.add('active'); window.scrollTo({top:0,behavior:'smooth'}); }
+}
+function goHome() {
+  document.getElementById('treeViewScreen').classList.remove('active');
+  goTo('landingScreen');
+  // Keep session credentials — user shouldn't need to re-login
+  // But reset the rendered tree so it reloads fresh data next visit
+  if (svgSel) { svgSel.selectAll('*').remove(); svgSel = null; rootHier = null; }
+  sessionTreeData = null; // force fresh tree data fetch on next visit
+  document.getElementById('treeEmail').value = '';
+  document.getElementById('treePwd').value   = '';
+  document.getElementById('emailCheckPanel').style.display='none';
+  document.getElementById('emailCheckInput').value='';
+  document.getElementById('emailCheckResult').style.display='none';
+  const ftb=document.getElementById('formTreeBtn');
+  if(ftb)ftb.style.display='none';
+}
+
+function signOut() {
+  localStorage.removeItem('bfdir_rem');
+  sessionEmail='';sessionPassword='';sessionTreeData=null;
+  goHome();
+  showToast('Signed out. See you next time! 🙏');
+}
+function goToNewMember() {
+  goTo('formScreen');
+  switchTab('new');
+}
+
+// Pre-fills form when clicking Join from directory
+function joinForMember(name, branch) {
+  closeDirectory();
+  goTo('formScreen');
+  switchTab('new');
+  setTimeout(() => {
+    // Pre-select Gen 1 branch
+    const gen1El = document.getElementById('gen1');
+    if(gen1El && branch) { gen1El.value = branch; onGen1Change(); }
+    // Pre-fill name
+    setTimeout(() => {
+      if(name && name !== branch) {
+        const parts = name.trim().split(' ');
+        document.getElementById('firstName').value = parts[0] || '';
+        document.getElementById('lastName').value  = parts.slice(1).join(' ') || '';
+        document.getElementById('prefillNote').style.display = 'none';
+      }
+    }, 250);
+  }, 300);
+}
+
+// Auto-fills "Married To" when Spouse relationship is selected
+function onRelationshipChange() {
+  const rel  = document.getElementById('relationship').value;
+  const gen2 = document.getElementById('gen2').value;
+  if(rel && rel.toLowerCase().startsWith('spouse') &&
+     gen2 && gen2 !== '__self__' && gen2 !== '__other__') {
+    document.getElementById('marriedTo').value = gen2;
+  }
+}
+function goToTreeView() {
+  if(sessionEmail && sessionPassword && sessionTreeData) {
+    // Already authenticated — go straight to tree
+    document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+    document.getElementById('treeViewScreen').classList.add('active');
+    if(!svgSel) setTimeout(()=>{initTree(sessionTreeData);document.getElementById('treeLoading').style.display='none';},400);
+  } else if(sessionEmail && sessionPassword) {
+    // Have credentials but no tree data yet — auto-fetch
+    goTo('treeLoginScreen');
+    autoFetchTree();
+  } else {
+    goTo('treeLoginScreen');
+  }
+}
+
+async function autoFetchTree() {
+  const btn=document.getElementById('treeLoginBtn');
+  btn.disabled=true;btn.textContent='⏳ Loading your tree…';
+  try{
+    const token=await getRecaptchaToken('viewtree');
+    const res=await fetch(APPS_SCRIPT_URL,{method:'POST',body:JSON.stringify({action:'getPublicData',family:FAMILY_ID,email:sessionEmail,password:sessionPassword,recaptchaToken:token})});
+    const data=await res.json();
+    if(data.success){
+      sessionTreeData=data;
+      document.getElementById('treeLoginScreen').classList.remove('active');
+      document.getElementById('treeViewScreen').classList.add('active');
+      setTimeout(()=>{initTree(data);document.getElementById('treeLoading').style.display='none';},400);
+    }else{sessionEmail='';sessionPassword='';}
+  }catch{}
+  btn.disabled=false;btn.textContent='View Family Tree 🌳';
+}
+
+function goToReturning() {
+  goTo('formScreen');
+  // Switch to returning member tab
+  document.getElementById('tabReturn').click?.() || switchGateTab('return');
+  if(sessionEmail && sessionPassword) {
+    // Auto-prefill using session — skip login gate
+    autoFormLogin();
+  }
+}
+
+async function autoFormLogin() {
+  const btn=document.querySelector('#panelReturn .gate-btn');
+  if(btn){btn.disabled=true;btn.textContent='Signing in…';}
+  try{
+    const token=await getRecaptchaToken('login');
+    const res=await fetch(APPS_SCRIPT_URL,{method:'POST',body:JSON.stringify({action:'login',family:FAMILY_ID,email:sessionEmail,password:sessionPassword,recaptchaToken:token})});
+    const data=await res.json();
+    if(data.success){
+      currentEmail=sessionEmail;currentPassword=sessionPassword;formMode='edit';
+      showFormBody();prefillForm(data.member);
+      const ftb=document.getElementById('formTreeBtn');
+      if(ftb)ftb.style.display='block';
+    }else{sessionEmail='';sessionPassword='';} // session expired
+  }catch{}
+  if(btn){btn.disabled=false;btn.textContent='Sign In & Edit My Details →';}
+}
+
+
+
+// ── Email check (landing page) ────────────────────
+function toggleEmailCheck() {
+  const panel=document.getElementById('emailCheckPanel');
+  const hidden=panel.style.display==='none';
+  panel.style.display=hidden?'block':'none';
+  if(hidden){
+    document.getElementById('emailCheckResult').style.display='none';
+    document.getElementById('emailCheckInput').value='';
+    setTimeout(()=>document.getElementById('emailCheckInput').focus(),150);
+  }
+}
+async function doEmailCheck() {
+  const email=document.getElementById('emailCheckInput').value.trim();
+  const result=document.getElementById('emailCheckResult');
+  if(!email||!email.includes('@')){
+    result.style.display='block';
+    result.innerHTML='<span style="color:#C53030;">⚠️ Please enter a valid email address.</span>';
+    return;
+  }
+  result.style.display='block';
+  result.innerHTML='<span style="color:var(--text-light);">Checking…</span>';
+  try{
+    const res=await fetch(APPS_SCRIPT_URL,{method:'POST',body:JSON.stringify({action:'checkEmail',family:FAMILY_ID,email})});
+    const data=await res.json();
+    if(data.registered){
+      result.innerHTML='✅ <strong>Yes, you\'re already registered!</strong> Please use <span style="color:var(--navy-light);cursor:pointer;font-weight:600;text-decoration:underline;" onclick="goToReturning()">Update My Details</span> to sign in.';
+    }else{
+      result.innerHTML='📝 <strong>Not registered yet.</strong> Please use <span style="color:var(--navy-light);cursor:pointer;font-weight:600;text-decoration:underline;" onclick="goToNewMember()">Join Here</span> to add yourself.';
+    }
+  }catch{
+    result.innerHTML='<span style="color:#C53030;">Network error — please try again.</span>';
+  }
+}
+
+// ── Form gate ─────────────────────────────────────
+let formMode='new', verifiedCode='', currentEmail='', currentPassword='';
+// Session — persists across navigation so user doesn't need to re-login
+let sessionEmail='', sessionPassword='', sessionTreeData=null;
+let photoBase64='', photoThumbBase64='', photoMimeType='image/jpeg', photoFileName='';
+
+function switchTab(t) {
+  ['New','Return'].forEach(x => {
+    document.getElementById('tab'+x).classList.toggle('active', (x.toLowerCase()===t)||(x==='New'&&t==='new'));
+    document.getElementById('panel'+x).classList.toggle('active', (x.toLowerCase()===t)||(x==='New'&&t==='new'));
+  });
+  // Fix: use exact IDs
+  document.getElementById('tabNew').classList.toggle('active', t==='new');
+  document.getElementById('tabReturn').classList.toggle('active', t==='return');
+  document.getElementById('panelNew').classList.toggle('active', t==='new');
+  document.getElementById('panelReturn').classList.toggle('active', t==='return');
+}
+
+async function startNew() {
+  const inp=document.getElementById('familyCode'), code=inp.value.trim();
+  if(!code){shake(inp);showToast('Please enter the family code');return;}
+  const btn=document.querySelector('#panelNew .gate-btn');
+  btn.disabled=true;btn.textContent='Checking…';
+  try{
+    const recaptchaToken = await getRecaptchaToken('register');
+    const res=await fetch(APPS_SCRIPT_URL,{method:'POST',body:JSON.stringify({action:'validateCode',family:FAMILY_ID,code,recaptchaToken})});
+    const data=await res.json();
+    if(data.success){verifiedCode=code;formMode='new';showFormBody();}
+    else{shake(inp);showToast('Incorrect code. Please check with Anand.');inp.value='';inp.focus();}
+  }catch{showToast('Network error. Please try again.');}
+  btn.disabled=false;btn.textContent='Continue to Form →';
+}
+
+async function doLogin() {
+  const email=document.getElementById('loginEmail').value.trim();
+  const pwd=document.getElementById('loginPwd').value.trim();
+  if(!email){shake(document.getElementById('loginEmail'));showToast('Enter your email');return;}
+  if(!pwd){shake(document.getElementById('loginPwd'));showToast('Enter your password');return;}
+  const btn=document.querySelector('#panelReturn .gate-btn');
+  btn.disabled=true;btn.textContent='Signing in…';
+  try{
+    const recaptchaToken = await getRecaptchaToken('login');
+    const res=await fetch(APPS_SCRIPT_URL,{method:'POST',body:JSON.stringify({action:'login',family:FAMILY_ID,email,password:pwd,recaptchaToken})});
+    const data=await res.json();
+    if(data.success){
+      currentEmail=email;currentPassword=pwd;
+      sessionEmail=email;sessionPassword=pwd; // persist session
+      formMode='edit';
+      // Show View Tree shortcut since user is now authenticated
+      const ftb=document.getElementById('formTreeBtn');
+      if(ftb)ftb.style.display='block';
+      showFormBody();prefillForm(data.member);
+      if(data.requirePasswordChange){
+        document.getElementById('tempPwdBanner').style.display='block';
+        
+      }
+    }
+    else showToast(data.message||'Sign in failed');
+  }catch{showToast('Network error. Please try again.');}
+  btn.disabled=false;btn.textContent='Sign In & Edit My Details →';
+}
+
+function showFormBody() {
+  document.getElementById('gateCard').style.display='none';
+  document.getElementById('formBody').style.display='block';
+  if(formMode==='edit'){
+    document.getElementById('welcomeBack').classList.add('show');
+    document.getElementById('newAccountFields').style.display='none';
+    document.getElementById('editAccountFields').style.display='block';
+    document.getElementById('accountHeading').textContent='🔑 Your Account';
+    document.getElementById('accountSub').textContent='Email cannot be changed. You may update your password below.';
+    document.getElementById('submitBtn').innerHTML='💾&nbsp; Save My Changes';
+    document.getElementById('editEmail').value=currentEmail;
+  } else {
+    document.getElementById('welcomeBack').classList.remove('show');
+    document.getElementById('newAccountFields').style.display='block';
+    document.getElementById('editAccountFields').style.display='none';
+    document.getElementById('submitBtn').innerHTML='🙏&nbsp; Submit to Family Directory';
+  }
+  document.getElementById('patriarchBanner').scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+// ── Cascade dropdowns ─────────────────────────────
+function onGen1Change(){
+  const gen1=document.getElementById('gen1').value;
+  document.getElementById('revGen2').classList.remove('show');
+  document.getElementById('revRel').classList.remove('show');
+  document.getElementById('gen2').innerHTML='<option value="">— Select —</option>';
+  document.getElementById('relationship').value='';
+  clearErr('gen1','e-gen1'); if(!gen1)return;
+  document.getElementById('gen2Label').textContent=gen1;
+  const sel=document.getElementById('gen2');
+  addOpt(sel,'__self__','I am '+gen1+' (myself)');
+  const kids=FAMILY_DATA[gen1]||[];
+  if(kids.length){const g=document.createElement('optgroup');g.label='Children of '+gen1;kids.forEach(c=>{const o=document.createElement('option');o.value=c;o.textContent=c;g.appendChild(o);});sel.appendChild(g);}
+  addOpt(sel,'__other__','Other / Not listed');
+  document.getElementById('revGen2').classList.add('show');
+}
+function addOpt(sel,val,text){const o=document.createElement('option');o.value=val;o.textContent=text;sel.appendChild(o);}
+function onGen2Change(){
+  const gen1=document.getElementById('gen1').value, gen2=document.getElementById('gen2').value;
+  clearErr('gen2','e-gen2'); document.getElementById('revRel').classList.remove('show');
+  document.getElementById('relationship').value=''; if(!gen2)return;
+  if(gen2==='__self__'){prefillNameFromDropdown(gen1);document.getElementById('relationship').value='Self (I am this person)';}
+  else{document.getElementById('relLabel').textContent=gen2==='__other__'?gen1:gen2;document.getElementById('revRel').classList.add('show');gen2!=='__other__'?prefillNameFromDropdown(gen2):clearPrefill();}
+}
+function prefillNameFromDropdown(full){if(formMode==='edit')return;const p=full.trim().split(' ');document.getElementById('firstName').value=p[0]||'';document.getElementById('lastName').value=p.slice(1).join(' ')||'';document.getElementById('prefillNote').style.display='block';}
+function clearPrefill(){if(formMode==='edit')return;document.getElementById('firstName').value='';document.getElementById('lastName').value='';document.getElementById('prefillNote').style.display='none';}
+
+// ── Prefill (returning member) ─────────────────────
+function prefillForm(m){
+  document.getElementById('welcomeName').textContent=m.firstName;
+  document.getElementById('gen1').value=m.familyBranch; onGen1Change();
+  setTimeout(()=>{
+    const sel=document.getElementById('gen2');
+    for(let o of sel.options){if(o.value===m.connectedTo){sel.value=m.connectedTo;break;}}
+    onGen2Change();
+    setTimeout(()=>{
+      document.getElementById('relationship').value=m.relationship;
+      document.getElementById('firstName').value=m.firstName||'';
+      document.getElementById('lastName').value=m.lastName||'';
+      document.getElementById('marriedTo').value=m.marriedTo||'';
+      document.getElementById('address').value=m.address||'';
+      const ph=m.phone||'', si=ph.indexOf(' ');
+      if(si>-1){const pcSel=document.getElementById('phoneCode');for(let o of pcSel.options){if(o.value===ph.substring(0,si)){pcSel.value=ph.substring(0,si);break;}}document.getElementById('phone').value=ph.substring(si+1);}
+      else document.getElementById('phone').value=ph;
+      if(m.dob){document.getElementById('dob').value=m.dob;}
+      if(m.anniversary){document.getElementById('ann').value=m.anniversary;}
+      if(m.photoUrl)showExistingPhoto(m.photoUrl);
+      document.getElementById('prefillNote').style.display='none';
+    },150);
+  },150);
+}
+
+// ── Photo ─────────────────────────────────────────
+function handlePhotoSelect(input){
+  const file=input.files[0]; if(!file)return;
+  if(!['image/jpeg','image/png'].includes(file.type)){showToast('Please select a JPG or PNG');return;}
+  if(file.size>2*1024*1024){showToast('Photo must be under 2MB');return;}
+  photoMimeType=file.type; photoFileName=file.name;
+  resizePhoto(file,b64=>{
+    photoBase64=b64;
+    document.getElementById('photoPreview').src='data:'+photoMimeType+';base64,'+b64;
+    document.getElementById('photoPreview').style.display='block';
+    document.getElementById('photoPlaceholder').style.display='none';
+    document.getElementById('photoStatus').style.display='block';
+  });
+}
+function resizePhoto(file,cb){const r=new FileReader();r.onload=e=>{const img=new Image();img.onload=()=>{const M=800;let w=img.width,h=img.height;if(w>M){h=Math.round(h*M/w);w=M;}if(h>M){w=Math.round(w*M/h);h=M;}const c=document.createElement('canvas');c.width=w;c.height=h;c.getContext('2d').drawImage(img,0,0,w,h);const t=document.createElement('canvas');t.width=80;t.height=80;t.getContext('2d').drawImage(img,0,0,80,80);photoThumbBase64=t.toDataURL('image/jpeg',0.7);cb(c.toDataURL('image/jpeg',0.82).split(',')[1]);};img.src=e.target.result;};r.readAsDataURL(file);}
+function showExistingPhoto(url){document.getElementById('photoPreview').src=url;document.getElementById('photoPreview').style.display='block';document.getElementById('photoPlaceholder').style.display='none';document.getElementById('photoChangeLink').style.display='block';}
+function resetPhoto(){photoBase64='';photoMimeType='image/jpeg';photoFileName='';document.getElementById('photoPreview').src='';document.getElementById('photoPreview').style.display='none';document.getElementById('photoPlaceholder').style.display='block';document.getElementById('photoChangeLink').style.display='none';document.getElementById('photoFile').value='';}
+
+
+// ── Smart dates ───────────────────────────────────
+// ── Single-field date auto-formatter ──────────────────────────
+// Types digits only, auto-inserts slashes: 18/06/1972
+// Backspace removes digits naturally, slashes go away automatically
+function autoDate(el) {
+  let digits = el.value.replace(/\D/g, '').slice(0, 8);
+  let out = digits.slice(0, 2);
+  if (digits.length > 2) out += '/' + digits.slice(2, 4);
+  if (digits.length > 4) out += '/' + digits.slice(4, 8);
+  el.value = out;
+}
+
+function getDateVal(id) { return (document.getElementById(id)?.value||'').trim(); }
+
+function isValidDateField(id) {
+  const v = getDateVal(id); if (!v) return true;
+  const p = v.split('/');
+  if (p.length < 2) return false;
+  const dd = parseInt(p[0]), mm = parseInt(p[1]);
+  return dd >= 1 && dd <= 31 && mm >= 1 && mm <= 12;
+}
+
+// ── Validate & submit form ────────────────────────
+function validate(){
+  let ok=true;
+  const gen1=document.getElementById('gen1').value,gen2=document.getElementById('gen2').value,rel=document.getElementById('relationship').value,fn=document.getElementById('firstName').value.trim();
+  if(!gen1){setErr('gen1','e-gen1');ok=false;}else clearErr('gen1','e-gen1');
+  if(gen1&&!gen2){setErr('gen2','e-gen2');ok=false;}else clearErr('gen2','e-gen2');
+  if(gen2&&gen2!=='__self__'&&!rel){setErr('relationship','e-rel');ok=false;}else clearErr('relationship','e-rel');
+  if(!fn){setErr('firstName','e-firstName');ok=false;}else clearErr('firstName','e-firstName');
+  if(!isValidDateField('dob')){document.getElementById('dob').classList.add('err');document.getElementById('e-dob').classList.add('on');ok=false;}else{document.getElementById('dob').classList.remove('err');document.getElementById('e-dob').classList.remove('on');}
+  if(!isValidDateField('ann')){document.getElementById('ann').classList.add('err');document.getElementById('e-ann').classList.add('on');ok=false;}else{document.getElementById('ann').classList.remove('err');document.getElementById('e-ann').classList.remove('on');}
+  if(formMode==='new'){
+    const email=document.getElementById('regEmail').value.trim(),pwd=document.getElementById('regPwd').value.trim(),conf=document.getElementById('regPwdConfirm').value.trim();
+    if(!email||!email.includes('@')){setErr('regEmail','e-email');ok=false;}else clearErr('regEmail','e-email');
+    if(!pwd){setErr('regPwd','e-pwd');ok=false;}else clearErr('regPwd','e-pwd');
+    if(pwd&&conf!==pwd){setErr('regPwdConfirm','e-pwdConfirm');ok=false;}else clearErr('regPwdConfirm','e-pwdConfirm');
+  }
+  if(formMode==='edit'){const np=document.getElementById('newPwd').value.trim(),nc=document.getElementById('newPwdConfirm').value.trim();if(np&&np!==nc){setErr('newPwdConfirm','e-newPwd');ok=false;}else clearErr('newPwdConfirm','e-newPwd');}
+  return ok;
+}
+
+async function submitForm(){
+  if(!validate()){showToast('Please complete the required fields');return;}
+  const btn=document.getElementById('submitBtn');btn.disabled=true;btn.innerHTML='⏳&nbsp;'+(formMode==='edit'?'Saving…':'Submitting…');
+  const gen1=document.getElementById('gen1').value,gen2=document.getElementById('gen2').value;
+  const firstName=document.getElementById('firstName').value.trim(),lastName=document.getElementById('lastName').value.trim();
+  const phoneRaw=document.getElementById('phone').value.trim();
+  const phone=phoneRaw?(document.getElementById('phoneCode').value.replace('-CA','')+' '+phoneRaw).trim():'';
+  const base={firstName,lastName,familyBranch:gen1,connectedTo:gen2==='__self__'?gen1:gen2==='__other__'?'Other':gen2,relationship:gen2==='__self__'?'Self (I am this person)':document.getElementById('relationship').value,marriedTo:document.getElementById('marriedTo').value.trim(),phone,address:document.getElementById('address').value.trim(),dob:getDateVal('dob'),anniversary:getDateVal('ann'),photo:photoBase64,photoThumb:photoThumbBase64,photoMimeType,photoFileName:photoFileName||(firstName+'_'+lastName+'.jpg')};
+  const recaptchaToken = await getRecaptchaToken(formMode==='new'?'register':'update');
+  const payload=formMode==='new'?{...base,action:'register',family:FAMILY_ID,accessCode:verifiedCode,email:document.getElementById('regEmail').value.trim().toLowerCase(),password:document.getElementById('regPwd').value.trim(),recaptchaToken}:{...base,action:'update',family:FAMILY_ID,email:currentEmail,currentPassword,newPassword:document.getElementById('newPwd').value.trim(),recaptchaToken};
+  try{
+    const res=await fetch(APPS_SCRIPT_URL,{method:'POST',body:JSON.stringify(payload)});
+    const data=await res.json();
+    if(data.success){
+      document.getElementById('formBody').style.display='none';
+      const fullName=firstName+(lastName?' '+lastName:'');
+      if(formMode==='edit'){
+        document.getElementById('successHeading').textContent='Updated! 🎉';
+        document.getElementById('successMsg').innerHTML='<strong>'+fullName+'</strong> — your details have been successfully updated in the Balrampur Family Directory.';
+        document.getElementById('successNote').textContent='You can now view the family tree or add another family member.';
+      }else{
+        document.getElementById('successHeading').textContent='Dhanyavaad! 🙏';
+        document.getElementById('successMsg').innerHTML='Thank you, <strong>'+fullName+'</strong>!<br>Your details have been added to the Balrampur Family Directory.<br><br>Sign in to <em>View Family Tree</em> using your email and the password you just created.';
+        document.getElementById('successNote').textContent='';
+      }
+      document.getElementById('successScreen').classList.add('on');
+      window.scrollTo({top:0,behavior:'smooth'});
+    }else{showToast(data.message||'Submission failed.');btn.disabled=false;btn.innerHTML=formMode==='edit'?'💾&nbsp; Save My Changes':'🙏&nbsp; Submit to Family Directory';}
+  }catch{showToast('Network error.');btn.disabled=false;btn.innerHTML=formMode==='edit'?'💾&nbsp; Save My Changes':'🙏&nbsp; Submit to Family Directory';}
+}
+
+function addAnother(){
+  document.getElementById('successScreen').classList.remove('on');
+  document.getElementById('formBody').style.display='block';
+  document.getElementById('successHeading').textContent='Dhanyavaad! 🙏';
+  document.getElementById('successMsg').innerHTML='';
+  document.getElementById('successNote').textContent='';
+  ['firstName','lastName','marriedTo','phone','address','regEmail','regPwd','regPwdConfirm','newPwd','newPwdConfirm'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
+  ['dob','ann'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
+  document.getElementById('gen1').value='';document.getElementById('gen2').innerHTML='<option value="">— Select —</option>';document.getElementById('relationship').value='';
+  document.getElementById('revGen2').classList.remove('show');document.getElementById('revRel').classList.remove('show');
+  document.getElementById('prefillNote').style.display='none';document.getElementById('phoneCode').value='+1';
+  document.getElementById('photoStatus').style.display='none';
+  resetPhoto();
+  formMode='new';
+  document.getElementById('submitBtn').disabled=false;document.getElementById('submitBtn').innerHTML='🙏&nbsp; Submit to Family Directory';
+  document.getElementById('patriarchBanner').scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+// ── Tree login ────────────────────────────────────
+async function doTreeLogin(){
+  const email=document.getElementById('treeEmail').value.trim();
+  const pwd=document.getElementById('treePwd').value.trim();
+  if(!email){shake(document.getElementById('treeEmail'));showToast('Please enter your email');return;}
+  if(!pwd){shake(document.getElementById('treePwd'));showToast('Please enter your password');return;}
+  const btn=document.getElementById('treeLoginBtn');btn.disabled=true;btn.textContent='⏳ Please wait — connecting…';
+  try{
+    const recaptchaToken = await getRecaptchaToken('viewtree');
+    const res=await fetch(APPS_SCRIPT_URL,{method:'POST',body:JSON.stringify({action:'getPublicData',family:FAMILY_ID,email,password:pwd,recaptchaToken})});
+    const data=await res.json();
+    if(data.success){
+      sessionEmail=email;sessionPassword=pwd;sessionTreeData=data; // persist session
+      // Remember Me — store for 30 days if checkbox ticked
+      const remember = document.getElementById('rememberMe')?.checked;
+      if(remember){
+        const expiry = Date.now() + 30*24*60*60*1000;
+        localStorage.setItem('bfdir_rem', JSON.stringify({e:email,p:pwd,x:expiry,f:FAMILY_ID}));
+      } else {
+        localStorage.removeItem('bfdir_rem');
+      }
+      document.getElementById('treeLoginScreen').classList.remove('active');
+      document.getElementById('treeViewScreen').classList.add('active');
+      setTimeout(()=>{initTree(data);document.getElementById('treeLoading').style.display='none';},400);
+    }else{
+      showToast(data.message||'Sign in failed');
+      // If locked or wrong password, shake the password field
+      if(data.message&&(data.message.includes('locked')||data.message.includes('attempt')))
+        shake(document.getElementById('treePwd'));
+    }
+  }catch{showToast('Network error. Please try again.');}
+  btn.disabled=false;btn.textContent='View Family Tree 🌳';
+}
+
+// ── Tree: build hierarchy ─────────────────────────
+let svgSel=null,gSel,zoomBeh,rootHier,treeLayout;
+const R=22,RC=18,NODE_H=110;
+
+let treeMembers = []; // stored for Excel export
+
+function buildHierarchy(apiData){
+  const{family,members}=apiData;
+  treeMembers = members; // store for Excel
+  const fn=m=>m?`${m.firstName} ${m.lastName}`.trim():null;
+  const isSelfOrSpouse=rel=>(rel||'').startsWith('Self')||(rel||'').startsWith('Spouse');
+  const find=(ct,rel)=>members.find(m=>m.connectedTo===ct&&(m.relationship||'').startsWith(rel));
+  return{
+    id:'root',name:family.patriarch,spouse:family.matriarch,photo:'',spousePhoto:'',dob:'',spouseDob:'',isBridge:false,
+    children:GEN1_FIXED.map(g1=>{
+      const self=find(g1,'Self'),spouse=find(g1,'Spouse');
+      const spouseName=spouse?fn(spouse):(self?.marriedTo||GEN1_SPOUSES[g1]||null);
+      const isGhost=!spouse&&!!(self?.marriedTo||GEN1_SPOUSES[g1]);
+      const gen2Names=[...new Set(
+        members.filter(m=>m.familyBranch===g1&&m.connectedTo!==g1).map(m=>m.connectedTo)
+      )];
+      return{
+        id:g1,name:self?fn(self):g1,spouse:spouseName,isGhostSpouse:isGhost,
+        photo:self?.photoUrl||'',photoThumb:self?.photoThumb||'',spousePhoto:spouse?.photoUrl||'',
+        dob:self?.dob||'',spouseDob:spouse?.dob||'',anniversary:self?.anniversary||'',
+        phone:self?.phone||'',address:self?.address||'',isBridge:false,
+        children:gen2Names.map(g2=>{
+          const g2s=find(g2,'Self'),g2sp=find(g2,'Spouse');
+          const g2SpouseName=g2sp?fn(g2sp):(g2s?.marriedTo||FAM_EXT[g2]?.spouse||null);
+          const g2IsGhost=!g2sp&&!!(g2s?.marriedTo||FAM_EXT[g2]?.spouse);
+          const g3=members.filter(m=>m.connectedTo===g2&&!isSelfOrSpouse(m.relationship))
+            .map((m,i)=>({id:g2+'__'+i,name:fn(m)||m.firstName,
+              spouse:m.marriedTo||null,isGhostSpouse:!!m.marriedTo,
+              photo:m.photoUrl||'',photoThumb:m.photoThumb||'',spousePhoto:'',
+              dob:m.dob||'',spouseDob:'',
+              phone:m.phone||'',address:m.address||'',isBridge:false,children:[]}));
+          return{id:g2,name:g2s?fn(g2s):g2,
+            spouse:g2SpouseName,isGhostSpouse:g2IsGhost,
+            photo:g2s?.photoUrl||'',photoThumb:g2s?.photoThumb||'',spousePhoto:g2sp?.photoUrl||'',
+            dob:g2s?.dob||'',spouseDob:g2sp?.dob||'',anniversary:g2s?.anniversary||'',
+            phone:g2s?.phone||'',address:g2s?.address||'',isBridge:false,children:g3};
+        })
+      };
+    })
+  };
+}
+
+function initTree(apiData){
+  const wrap=document.getElementById('treeWrap');
+  const W=wrap.clientWidth,H=wrap.clientHeight;
+  svgSel=d3.select('#treeSvg').attr('width',W).attr('height',H);
+  svgSel.append('defs').attr('id','tdefs');
+  gSel=svgSel.append('g');
+  zoomBeh=d3.zoom().scaleExtent([0.08,4]).on('zoom',e=>gSel.attr('transform',e.transform));
+  svgSel.call(zoomBeh);
+  rootHier=d3.hierarchy(buildHierarchy(apiData),d=>d.children?.length?d.children:null);
+
+  // Always show Gen 0 + Gen 1 expanded; collapse Gen 2+ by default
+  function collapseDeep(node){
+    if(node.depth>=2&&node.children){node._children=node.children;node.children=null;}
+    (node.children||[]).forEach(collapseDeep);
+    (node._children||[]).forEach(collapseDeep);
+  }
+  collapseDeep(rootHier);
+
+  treeLayout=d3.tree().nodeSize([100,NODE_H]).separation((a,b)=>{const aw=a.data.spouse?2.2:1.1,bw=b.data.spouse?2.2:1.1;return(aw+bw)/2+(a.parent===b.parent?0.1:0.5);});
+  updateTree();
+  setTimeout(()=>svgSel.call(zoomBeh.transform,d3.zoomIdentity.translate(W/2,80).scale(0.8)),100);
+}
+
+function updateTree(){
+  treeLayout(rootHier);
+  gSel.selectAll('.link').data(rootHier.links(),d=>d.target.data.id).join(e=>e.append('path').attr('class','link').attr('fill','none').attr('stroke','#C8D4F0').attr('stroke-width',1.5).attr('d',d=>curve(d.source,d.source)),u=>u,x=>x.remove()).transition().duration(300).attr('d',d=>curve(d.source,d.target));
+  const ng=gSel.selectAll('.ng').data(rootHier.descendants(),d=>d.data.id).join(e=>{const g=e.append('g').attr('class','ng').attr('transform',d=>`translate(${d.parent?.x||d.x},${d.parent?.y||d.y})`).style('opacity',0);drawNode(g);return g;},u=>{u.selectAll('*').remove();drawNode(u);return u;},x=>x.transition().duration(250).style('opacity',0).remove());
+  ng.transition().duration(300).attr('transform',d=>`translate(${d.x},${d.y})`).style('opacity',1);
+}
+
+function curve(s,t){
+  // Straight elbow connectors — vertical drop then horizontal across
+  const midY=(s.y+t.y)/2;
+  return `M${s.x},${s.y} L${s.x},${midY} L${t.x},${midY} L${t.x},${t.y}`;
+}
+
+function drawNode(sel){
+  sel.each(function(d){
+    const g=d3.select(this),data=d.data;
+    if(data.spouse){
+      drawCouple(g,data);
+    } else {
+      drawPerson(g,data.id,data.name,data.photo,data.dob,0,R,false,
+        {name:data.name,photo:data.photo,photoThumb:data.photoThumb||'',phone:data.phone,address:data.address,dob:data.dob,anniversary:data.anniversary||'',isGhost:false});
+    }
+    // Collapse dot — separate click from person click
+    if(d.children||d._children){
+      const off=(data.spouse?RC:R)+68;
+      g.append('circle').attr('class','cdot').attr('cy',off).attr('r',5)
+        .attr('fill',d.children?'#C9943A':'#C8D4F0')
+        .attr('stroke','#C9943A').attr('stroke-width',1.5)
+        .style('cursor','pointer')
+        .on('click',(ev,d)=>{
+          ev.stopPropagation();
+          if(d.children){d._children=d.children;d.children=null;}
+          else{d.children=d._children;d._children=null;}
+          updateTree();
+        });
+    }
+  });
+}
+
+function drawCouple(g,data){
+  const off=RC+28;
+  g.append('line').attr('x1',-off+RC).attr('x2',off-RC).attr('y1',0).attr('y2',0)
+    .attr('stroke','#C9943A').attr('stroke-width',2);
+  g.append('text').attr('text-anchor','middle').attr('dy','0.4em').attr('font-size',13).text('💑');
+  // Person 1 (self — has full data)
+  drawPerson(g,data.id+'_1',data.name,data.photo,data.dob,-off,RC,false,
+    {name:data.name,photo:data.photo,photoThumb:data.photoThumb||'',phone:data.phone,address:data.address,dob:data.dob,anniversary:data.anniversary||'',isGhost:false});
+  // Person 2 (spouse — registered or ghost)
+  const sp2=data.isGhostSpouse?null:treeMembers.find(m=>(m.firstName+' '+m.lastName).trim()===data.spouse);
+  drawPerson(g,data.id+'_2',data.spouse,data.spousePhoto,data.spouseDob,off,RC,data.isGhostSpouse,
+    {name:data.spouse,photo:sp2?.photoUrl||'',photoThumb:sp2?.photoThumb||'',phone:sp2?.phone||'',address:sp2?.address||'',dob:sp2?.dob||'',anniversary:sp2?.anniversary||'',isGhost:data.isGhostSpouse});
+}
+
+function drawPerson(g,id,name,photo,dob,ox,r,isGhost,popupData){
+  const cid='c_'+(id||'x').replace(/[^a-z0-9]/gi,'_');
+  const defs=d3.select('#tdefs');
+  if(defs.select('#'+cid).empty())defs.append('clipPath').attr('id',cid).append('circle').attr('r',r).attr('cx',ox);
+
+  // Circle
+  g.append('circle').attr('cx',ox).attr('r',r)
+    .attr('fill',isGhost?'rgba(12,26,78,0.25)':'#0C1A4E')
+    .attr('stroke',isGhost?'#C9943A':'#D0D8F0')
+    .attr('stroke-width',2)
+    .attr('stroke-dasharray',isGhost?'4,3':null)
+    .style('cursor','pointer')
+    .on('click',(ev)=>{ev.stopPropagation();showPersonPopup(popupData);});
+
+  // Photo or initials — use photoThumb (data URL) for CORS-free tree display
+  if(photo&&!isGhost){
+    const photoSrc = popupData.photoThumb || driveUrl(photo, 200);
+    const fo = g.append('foreignObject')
+      .attr('x', ox-r).attr('y', -r)
+      .attr('width', r*2).attr('height', r*2)
+      .style('cursor','pointer')
+      .on('click',(ev)=>{ev.stopPropagation();showPersonPopup(popupData);});
+    const img = document.createElementNS('http://www.w3.org/1999/xhtml','img');
+    img.src = photoSrc;
+    img.style.cssText = `width:${r*2}px;height:${r*2}px;object-fit:cover;border-radius:50%;display:block;`;
+    img.onerror = () => {
+      fo.remove();
+      const init=(name||'?').split(' ').slice(0,2).map(n=>n[0]||'').join('').toUpperCase();
+      g.append('text').attr('x',ox).attr('text-anchor','middle').attr('dy','0.36em')
+        .attr('fill','white').attr('font-size',r*0.6).attr('font-weight','600')
+        .attr('font-family','DM Sans,sans-serif').attr('pointer-events','none').text(init);
+    };
+    fo.node().appendChild(img);
+  } else {
+    const init=(name||'?').split(' ').slice(0,2).map(n=>n[0]||'').join('').toUpperCase();
+    g.append('text').attr('x',ox).attr('text-anchor','middle').attr('dy','0.36em')
+      .attr('fill',isGhost?'rgba(255,255,255,0.6)':'white')
+      .attr('font-size',r*0.6).attr('font-weight','600').attr('font-family','DM Sans,sans-serif')
+      .style('cursor','pointer')
+      .text(init)
+      .on('click',(ev)=>{ev.stopPropagation();showPersonPopup(popupData);});
+  }
+
+  // Name labels
+  const lines=wrapText(name||'',14);
+  lines.forEach((ln,i)=>{
+    g.append('text').attr('x',ox).attr('y',r+16+i*15)
+      .attr('text-anchor','middle')
+      .attr('font-family','Cormorant Garamond,serif')
+      .attr('font-size',13).attr('font-weight','600')
+      .attr('fill',isGhost?'#7A8CB0':'#0C1A4E')
+      .style('cursor','pointer')
+      .text(ln)
+      .on('click',(ev)=>{ev.stopPropagation();showPersonPopup(popupData);});
+  });
+
+  if(isGhost){
+    g.append('text').attr('x',ox).attr('y',r+16+lines.length*15+2)
+      .attr('text-anchor','middle').attr('font-size',9)
+      .attr('fill','#C9943A').attr('font-style','italic')
+      .text('not yet registered');
+  } else if(dob){
+    g.append('text').attr('x',ox).attr('y',r+16+lines.length*15+4)
+      .attr('text-anchor','middle').attr('font-size',10).attr('fill','#7A8CB0')
+      .text('🎂 '+dob);
+  }
+}
+
+// ── Person detail popup ───────────────────────────
+function showPersonPopup(p){
+  if(!p||!p.name) return;
+  const months=['January','February','March','April','May','June','July','August','September','October','November','December'];
+  function fmtDob(d){if(!d)return'';const[dd,mm]=d.split('/');return parseInt(dd)+' '+(months[parseInt(mm)-1]||mm);}
+  const init=(p.name||'?').split(' ').slice(0,2).map(n=>n[0]||'').join('').toUpperCase();
+  const waPhone=p.phone?(p.phone.replace(/[^0-9+]/g,'')):'';
+
+  document.getElementById('personPopup').innerHTML=`
+    <button onclick="closePopup()" style="position:absolute;top:14px;right:14px;background:var(--cream);border:1px solid var(--border);border-radius:50%;width:30px;height:30px;font-size:1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--text-mid);">✕</button>
+    <div style="display:flex;align-items:center;gap:16px;margin-bottom:16px;">
+      ${p.photo
+        ? `<img src="${p.photoThumb || driveUrl(p.photo,200)}" style="width:72px;height:72px;border-radius:50%;object-fit:cover;border:3px solid var(--navy);flex-shrink:0;" onerror="this.style.display='none';document.getElementById('ppInitials').style.display='flex';">
+           <div id="ppInitials" style="display:none;width:72px;height:72px;border-radius:50%;background:var(--navy);align-items:center;justify-content:center;font-size:1.6rem;font-weight:700;color:white;flex-shrink:0;">${init}</div>`
+        : `<div style="width:72px;height:72px;border-radius:50%;background:var(--navy);display:flex;align-items:center;justify-content:center;font-size:1.6rem;font-weight:700;color:white;flex-shrink:0;">${init}</div>`}
+      <div>
+        <div style="font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:700;color:var(--navy);line-height:1.2;">${p.name}</div>
+        ${p.isGhost?'<div style="font-size:.76rem;color:var(--text-light);font-style:italic;margin-top:4px;">Not yet registered</div>':''}
+      </div>
+    </div>
+    ${!p.isGhost?`
+    <div style="border-top:1px solid var(--border);padding-top:14px;display:flex;flex-direction:column;gap:10px;">
+      ${waPhone?`<a href="https://wa.me/${waPhone}" target="_blank" style="display:flex;align-items:center;gap:10px;text-decoration:none;background:var(--cream);border-radius:10px;padding:10px 14px;">
+        <span style="font-size:1.2rem;">💬</span>
+        <div><div style="font-size:.72rem;font-weight:600;color:var(--text-mid);text-transform:uppercase;letter-spacing:.6px;">WhatsApp</div>
+        <div style="font-size:.92rem;color:var(--navy);font-weight:600;">${p.phone}</div></div>
+        <span style="margin-left:auto;color:var(--text-light);font-size:.8rem;">tap →</span>
+      </a>`:''}
+      ${p.address?`<div style="display:flex;align-items:center;gap:10px;padding:2px 4px;">
+        <span style="font-size:1.1rem;">📍</span>
+        <div style="font-size:.9rem;color:var(--text-dark);">${p.address}</div>
+      </div>`:''}
+      ${p.dob?`<div style="display:flex;align-items:center;gap:10px;padding:2px 4px;"><span style="font-size:1.1rem;">🎂</span><div style="font-size:.9rem;color:var(--text-dark);">${fmtDob(p.dob)}</div></div>`:''}
+      ${p.anniversary?`<div style="display:flex;align-items:center;gap:10px;padding:2px 4px;"><span style="font-size:1.1rem;">💍</span><div style="font-size:.9rem;color:var(--text-dark);">${fmtDob(p.anniversary)}</div></div>`:''}
+      ${!p.phone&&!p.address&&!p.dob&&!p.anniversary?'<div style="font-size:.82rem;color:var(--text-light);text-align:center;padding:8px 0;">No additional details on record yet.</div>':''}
+    </div>`:''}
+  `;
+  document.getElementById('popupOverlay').style.display='flex';
+}
+function closePopup(){document.getElementById('popupOverlay').style.display='none';}
+
+
+// ═══════════════════════════════════════════════════════
+//  FAMILY DIRECTORY SCREEN
+// ═══════════════════════════════════════════════════════
+
+let dirAllMembers = []; // full combined list
+
+function showDirectoryScreen() {
+  dirAllMembers = buildDirData();
+  renderDirStats();
+  renderDirCelebrations(); // birthdays + anniversaries combined
+  renderDirContent(dirAllMembers);
+  document.getElementById('dirSearch').value = '';
+  document.getElementById('dirScreen').classList.add('active');
+  window.scrollTo({top:0});
+}
+function closeDirectory() {
+  document.getElementById('dirScreen').classList.remove('active');
+}
+
+// ── Build combined member list ─────────────────────────
+function buildDirData() {
+  const all = [];
+  const regMap = {};
+  treeMembers.forEach(m => { regMap[(m.firstName+' '+m.lastName).trim()] = m; });
+
+  GEN1_FIXED.forEach(g1 => {
+    // Gen 1 person
+    all.push(makeDirEntry(g1, g1, regMap[g1], 1));
+
+    // Known Gen 2 from FAMILY_DATA
+    const knownG2 = FAMILY_DATA[g1] || [];
+    knownG2.forEach(g2name => {
+      const m2 = regMap[g2name];
+      all.push(makeDirEntry(g2name, g1, m2, 2));
+
+      // Gen 2 spouse from FAM_EXT or registered data
+      const ext = FAM_EXT[g2name];
+      if(ext?.spouse) {
+        const sp = regMap[ext.spouse];
+        all.push(makeDirEntry(ext.spouse, g1, sp, 2));
+      } else if(m2?.marriedTo) {
+        const sp = regMap[m2.marriedTo];
+        if(!knownG2.includes(m2.marriedTo))
+          all.push(makeDirEntry(m2.marriedTo, g1, sp, 2));
+      }
+
+      // Gen 3 from FAM_EXT
+      (ext?.children||[]).forEach(g3name => {
+        const m3 = regMap[g3name];
+        all.push(makeDirEntry(g3name, g1, m3, 3));
+      });
+
+      // Gen 3 from registered members
+      treeMembers
+        .filter(m => m.connectedTo===g2name &&
+          !m.relationship.startsWith('Self') &&
+          !m.relationship.startsWith('Spouse'))
+        .forEach(m => {
+          const n=(m.firstName+' '+m.lastName).trim();
+          if(!all.find(e=>e.name===n)) all.push(makeDirEntry(n,g1,m,3));
+          // Gen 3 spouse
+          if(m.marriedTo){
+            const sp=regMap[m.marriedTo];
+            if(!all.find(e=>e.name===m.marriedTo))
+              all.push(makeDirEntry(m.marriedTo,g1,sp,3));
+          }
+        });
+    });
+
+    // Registered members in this branch not yet captured
+    treeMembers.filter(m=>m.familyBranch===g1).forEach(m=>{
+      const name=(m.firstName+' '+m.lastName).trim();
+      if(!all.find(e=>e.name===name)) all.push(makeDirEntry(name,g1,m,2));
+      // Their spouse
+      if(m.marriedTo&&!all.find(e=>e.name===m.marriedTo)){
+        const sp=regMap[m.marriedTo];
+        all.push(makeDirEntry(m.marriedTo,g1,sp,2));
+      }
+    });
+  });
+
+  const seen=new Set();
+  return all.filter(e=>{if(seen.has(e.name))return false;seen.add(e.name);return true;});
+}
+
+function makeDirEntry(name, branch, memberData, level){
+  if(memberData){
+    return {name, branch, level, registered:true,
+      phone:memberData.phone||'', address:memberData.address||'',
+      dob:memberData.dob||'', anniversary:memberData.anniversary||'',
+      photo:memberData.photoUrl||'', photoThumb:memberData.photoThumb||'',
+      marriedTo:memberData.marriedTo||'',
+      status:memberData.status||'',
+      datePassing:memberData.datePassing||''};
+  }
+  return {name, branch, level, registered:false, phone:'',address:'',dob:'',anniversary:'',photo:'',photoThumb:'',marriedTo:'',status:'',datePassing:''};
+}
+
+// ── Stats ─────────────────────────────────────────────
+function renderDirStats() {
+  const total = dirAllMembers.length;
+  const reg = dirAllMembers.filter(m=>m.registered).length;
+  const unreg = total - reg;
+  const bdayThis = getBirthdays().thisMonth.length;
+  const pct = total ? Math.round(reg/total*100) : 0;
+  document.getElementById('dirStats').innerHTML=`
+    <div class="stat-card highlight">
+      <div class="stat-num">${total}</div><div class="stat-lbl">Total Members</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num" style="color:#166534">${reg}</div><div class="stat-lbl">✅ Registered (${pct}%)</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num" style="color:#94A3B8">${unreg}</div><div class="stat-lbl">⏳ Not Yet Joined</div>
+    </div>
+    ${bdayThis>0?`<div class="stat-card bday-card"><div class="stat-num">${bdayThis}</div><div class="stat-lbl">🎂 Birthdays This Month</div></div>`:''}
+  `;
+}
+
+// ── Birthdays ─────────────────────────────────────────
+function getBirthdays(field='dob', type='birthday') {
+  const now = new Date();
+  const thisMonth = now.getMonth()+1, today = now.getDate();
+  const months=['January','February','March','April','May','June','July','August','September','October','November','December'];
+  const thisMonthList=[], upcomingList=[];
+  dirAllMembers.filter(m=>m.registered&&m[field]).forEach(m=>{
+    const parts=(m[field]||'').split('/');
+    const dd=parseInt(parts[0]), mm=parseInt(parts[1]);
+    if(!dd||!mm)return;
+    const entry={...m, dob:m[field], anniversary:m.anniversary, dd, mm, monthName:months[mm-1]};
+    if(mm===thisMonth){
+      thisMonthList.push({...entry, daysUntil:dd-today});
+    } else {
+      let nb=new Date(now.getFullYear(),mm-1,dd);
+      if(nb<=now)nb.setFullYear(now.getFullYear()+1);
+      const daysUntil=Math.ceil((nb-now)/86400000);
+      if(daysUntil<=30) upcomingList.push({...entry, daysUntil});
+    }
+  });
+  thisMonthList.sort((a,b)=>a.dd-b.dd);
+  upcomingList.sort((a,b)=>a.daysUntil-b.daysUntil);
+  return{thisMonth:thisMonthList, upcoming:upcomingList};
+}
+
+function renderDirCelebrations() {
+  const {thisMonth:bdayThis, upcoming:bdayNext} = getBirthdays('dob','birthday');
+  const {thisMonth:annivThis, upcoming:annivNext} = getBirthdays('anniversary','anniversary');
+  const months=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  const now = new Date(), thisYear = now.getFullYear();
+
+  function milestoneLabel(dob, type) {
+    // If year is stored (DD/MM/YYYY), calculate milestone
+    const parts = dob.split('/');
+    if(parts.length < 3 || !parts[2]) return '';
+    const year = parseInt(parts[2]);
+    if(!year) return '';
+    const age = thisYear - year;
+    if(type==='birthday') {
+      if([50,60,70,75,80,90,100].includes(age)) return `🎊 Turning ${age}!`;
+      return `Turns ${age}`;
+    } else {
+      if([25,50].includes(age)) return age===25?`🥈 Silver!`:`🥇 Golden!`;
+      return `${age} years`;
+    }
+  }
+
+  const makeChip = (p, label, cls, type) => {
+    const init=p.name.split(' ').slice(0,2).map(n=>n[0]).join('').toUpperCase();
+    const wa=p.phone?`<a href="https://wa.me/${p.phone.replace(/[^0-9+]/g,'')}" target="_blank" class="wa-btn">💬</a>`:'';
+    const milestone = milestoneLabel(p.dob||p.anniversary||'', type);
+    const icon = type==='anniversary'?'💍':'🎂';
+    return `<div class="bday-chip ${cls}">
+      ${p.photo?`<img src="${driveUrl(p.photo,80)}" style="width:38px;height:38px;border-radius:50%;object-fit:cover;flex-shrink:0;" onerror="this.outerHTML='<div class=bday-initials>${init}</div>'">`:`<div class="bday-initials">${init}</div>`}
+      <div><div class="bday-name">${p.name}</div>
+      <div class="bday-date">${icon} ${p.dd} ${p.monthName}${milestone?' · '+milestone:''} · ${p.address||'—'}</div></div>
+      <span class="bday-days ${cls==='today bday-chip'?'today-badge':''}">${label}</span>
+      ${wa}
+    </div>`;
+  };
+
+  let html='';
+  if(bdayThis.length||annivThis.length){
+    html+=`<div class="dir-section-title">🎉 Celebrating This Month</div><div class="bday-row">`;
+    const today=now.getDate();
+    bdayThis.forEach(p=>{
+      const cls=p.dd===today?'today bday-chip':p.dd<today?'bday-chip':'soon bday-chip';
+      const lbl=p.dd===today?'🎉 Today!':(p.dd<today?`${p.dd} ${months[p.mm-1]}`:`in ${p.dd-today}d`);
+      html+=makeChip(p,lbl,cls,'birthday');
+    });
+    annivThis.forEach(p=>{
+      const cls=p.dd===today?'today bday-chip':p.dd<today?'bday-chip':'soon bday-chip';
+      const lbl=p.dd===today?'💍 Today!':(p.dd<today?`${p.dd} ${months[p.mm-1]}`:`in ${p.dd-today}d`);
+      html+=makeChip(p,lbl,cls,'anniversary');
+    });
+    html+=`</div>`;
+  }
+  if(bdayNext.length||annivNext.length){
+    html+=`<div class="dir-section-title">📅 Coming Up (next 30 days)</div><div class="bday-row">`;
+    [...bdayNext.map(p=>({...p,type:'birthday'})),...annivNext.map(p=>({...p,type:'anniversary'}))]
+      .sort((a,b)=>a.daysUntil-b.daysUntil)
+      .forEach(p=>{ html+=makeChip(p,`in ${p.daysUntil}d`,'soon',p.type); });
+    html+=`</div>`;
+  }
+  document.getElementById('dirBdays').innerHTML=html;
+}
+
+// ── Main directory render ──────────────────────────────
+function renderDirContent(members) {
+  const byBranch={};
+  GEN1_FIXED.forEach(g1=>{byBranch[g1]=[];});
+  members.forEach(m=>{if(byBranch[m.branch])byBranch[m.branch].push(m);});
+  let html='<div class="dir-section-title">👨‍👩‍👧‍👦 Family Directory</div>';
+  let totalShown=0;
+  GEN1_FIXED.forEach((g1,idx)=>{
+    const list=byBranch[g1]||[];
+    if(!list.length)return;
+    totalShown++;
+    const regCount=list.filter(m=>m.registered).length;
+    html+=`<div class="branch-block" id="branch_${idx}">
+      <div class="branch-header" onclick="toggleBranch(${idx})">
+        <span class="branch-name">🌿 ${g1}'s Family</span>
+        <div style="display:flex;align-items:center;gap:8px;">
+          <span class="branch-count">${regCount}/${list.length} registered</span>
+          <span class="branch-toggle" id="btoggle_${idx}">▼</span>
+        </div>
+      </div>
+      <div class="branch-members" id="bmembers_${idx}">
+        ${list.map(m=>memberRow(m)).join('')}
+      </div>
+    </div>`;
+  });
+  if(!totalShown) html+='<div class="no-results">No members found matching your search.</div>';
+  document.getElementById('dirContent').innerHTML=html;
+  // Open branches that have registered members by default
+  GEN1_FIXED.forEach((_,idx)=>{
+    const list=byBranch[GEN1_FIXED[idx]]||[];
+    if(list.some(m=>m.registered)) openBranch(idx);
+  });
+}
+
+function memberRow(m) {
+  const init=m.name.split(' ').slice(0,2).map(n=>n[0]).join('').toUpperCase();
+  const months=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  const isDeceased = (m.status||'').toLowerCase().startsWith('d') || DECEASED.includes(m.name);
+  const dobFmt=m.dob?`🎂 ${parseInt(m.dob.split('/')[0])} ${months[parseInt(m.dob.split('/')[1])-1]} · `:'';
+  const addrFmt=m.address?`📍 ${m.address}`:'';
+
+  if(isDeceased){
+    const passedFmt = m.datePassing ? ` · ${m.datePassing}` : '';
+    return `<div class="member-row" style="opacity:.55;">
+      <div class="mem-initials" style="background:#6B7280;">${init}</div>
+      <div class="mem-info">
+        <div class="mem-name" style="font-style:italic;color:#6B7280;">🕊️ ${m.name}</div>
+        <div class="mem-detail">In fond memory${passedFmt}</div>
+      </div>
+      <div class="mem-badges"><span style="font-size:.65rem;color:#9CA3AF;background:#F3F4F6;border-radius:6px;padding:2px 7px;">Remembered</span></div>
+    </div>`;
+  }
+  if(m.registered){
+    const wa=m.phone?`<a href="https://wa.me/${m.phone.replace(/[^0-9+]/g,'')}" target="_blank" class="wa-btn">💬 WhatsApp</a>`:'';
+    return `<div class="member-row">
+      ${m.photo?`<img src="${driveUrl(m.photo,80)}" class="mem-photo" onerror="this.outerHTML='<div class=mem-initials>${init}</div>'">`:`<div class="mem-initials">${init}</div>`}
+      <div class="mem-info">
+        <div class="mem-name">${m.name}</div>
+        <div class="mem-detail">${dobFmt}${addrFmt}</div>
+      </div>
+      <div class="mem-badges"><span class="badge-reg">✅ Joined</span>${wa}</div>
+    </div>`;
+  }
+  return `<div class="member-row unregistered">
+    <div class="mem-initials" style="background:#4B6082;">${init}</div>
+    <div class="mem-info">
+      <div class="mem-name">${m.name}</div>
+      <div class="mem-detail">Not yet registered</div>
+    </div>
+    <div class="mem-badges">
+      <span class="badge-unreg">⏳ Pending</span>
+      <button class="join-btn" onclick="joinForMember('${m.name}','${m.branch}')">Join →</button>
+    </div>
+  </div>`;
+}
+
+function toggleBranch(idx) {
+  const el=document.getElementById('bmembers_'+idx);
+  const tog=document.getElementById('btoggle_'+idx);
+  const isOpen=el.classList.contains('open');
+  el.classList.toggle('open',!isOpen);
+  tog.classList.toggle('open',!isOpen);
+}
+function openBranch(idx){
+  document.getElementById('bmembers_'+idx)?.classList.add('open');
+  document.getElementById('btoggle_'+idx)?.classList.add('open');
+}
+
+// ── Search ────────────────────────────────────────────
+function searchDir(q) {
+  const qL=q.toLowerCase().trim();
+  const filtered=!qL?dirAllMembers:dirAllMembers.filter(m=>
+    m.name.toLowerCase().includes(qL)||
+    (m.phone||'').includes(qL)||
+    (m.address||'').toLowerCase().includes(qL)
+  );
+  renderDirContent(filtered);
+  // Open all branches when searching
+  if(qL) GEN1_FIXED.forEach((_,i)=>openBranch(i));
+}
+
+// Drive URL → export=view format (cross-origin friendly, no auth required)
+function driveUrl(url, size) {
+  if (!url) return '';
+  const m = url.match(/[?&]id=([^&]+)/);
+  if (!m) return url;
+  return 'https://drive.google.com/uc?export=view&id=' + m[1];
+}
+
+function wrapText(text,max){const words=(text||'').split(' ');const lines=[];let cur='';words.forEach(w=>{const t=cur?cur+' '+w:w;if(t.length<=max)cur=t;else{if(cur)lines.push(cur);cur=w;}});if(cur)lines.push(cur);return lines.slice(0,2);}
+
+// ── Zoom controls ─────────────────────────────────
+function zoomIn(){if(svgSel)svgSel.transition().duration(250).call(zoomBeh.scaleBy,1.4);}
+function zoomOut(){if(svgSel)svgSel.transition().duration(250).call(zoomBeh.scaleBy,0.7);}
+function resetView(){if(!svgSel)return;const W=document.getElementById('treeWrap').clientWidth;svgSel.transition().duration(350).call(zoomBeh.transform,d3.zoomIdentity.translate(W/2,80).scale(0.8));}
+
+// ── Download ──────────────────────────────────────
+// ── Download Excel ─────────────────────────────────
+async function downloadExcel(){
+  if(!rootHier){showToast('Please load the family tree first');return;}
+  if(typeof ExcelJS==='undefined'){showToast('Excel library loading — please try again in a moment');return;}
+  showToast('Preparing Excel file…');
+
+  const wb = new ExcelJS.Workbook();
+  wb.creator = 'Balrampur Family Directory';
+  const ws = wb.addWorksheet('Balrampur Family');
+  ws.properties.outlineLevelRow = 3; // shows level buttons 1 2 3 at top-left
+
+  // Column widths: A-D narrow indent spacers (5), E main content (17), F spacer, then data cols
+  ws.columns = [
+    {width:5}, {width:5}, {width:5}, {width:5}, {width:17}, {width:5}, // A B C D E F
+    {width:14},{width:14},{width:20},{width:25},{width:35}              // G H I J K
+  ];
+
+  // ── Colours & reusable styles ──
+  const NAVY='FF0C1A4E', GOLD='FFC9943A', MID='FF3A4E7A', LIGHT='FF9AAABF', WHITE='FFFFFFFF', CREAM='FFF5F7FF';
+
+  const navyFill = {type:'pattern',pattern:'solid',fgColor:{argb:NAVY}};
+
+
+  function styleCell(cell,{bold,italic,size,color,fill,align,border}={}){
+    cell.font={name:'Calibri',bold:!!bold,italic:!!italic,size:size||10,color:{argb:color||NAVY}};
+    if(fill)  cell.fill = fill;
+    if(align) cell.alignment = align;
+    if(border)cell.border = border;
+  }
+
+  const hdrBorder = {bottom:{style:'medium',color:{argb:GOLD}}};
+
+  // ── ROW 1: Title (left) + Data column headers (right) ──
+  const r1 = ws.addRow(['The Balrampur Family','','','','','','Birthday','Anniversary','Phone','Address','Photo Link']);
+  r1.height = 28;
+  ws.mergeCells('A1:F1');
+  styleCell(r1.getCell(1),{bold:true,size:16,color:NAVY,align:{vertical:'middle'}});
+  ['Birthday','Anniversary','Phone','Address','Photo Link'].forEach((_,i)=>{
+    const c=r1.getCell(7+i);
+    styleCell(c,{bold:true,size:11,color:WHITE,fill:navyFill,align:{horizontal:'center',vertical:'middle'},border:hdrBorder});
+  });
+
+  // ── Helper: look up treeMembers ──
+  function lm(name){return name?treeMembers.find(m=>(m.firstName+' '+m.lastName).trim()===name):null;}
+
+  // ── Helper: add one person row ──
+  const groups=[];
+  function addPerson(genLevel,name,dob,phone,address,photo,isSpouse,isGhost,bgArgb){
+    const vals=new Array(11).fill(null);
+    vals[genLevel]=name||null; vals[6]=dob||null; vals[8]=phone||null; vals[9]=address||null; vals[10]=photo||null;
+    const row=ws.addRow(vals);
+    row.height=16;
+    if(genLevel>=1)row.outlineLevel=genLevel;
+    if(bgArgb){const bg={type:'pattern',pattern:'solid',fgColor:{argb:bgArgb}};for(let c=1;c<=6;c++)row.getCell(c).fill=bg;}
+    const nc=row.getCell(genLevel+1);
+    if(isGhost)        styleCell(nc,{italic:true,size:10,color:LIGHT});
+    else if(isSpouse)  styleCell(nc,{italic:true,size:10,color:MID});
+    else if(genLevel<=1)styleCell(nc,{bold:true,size:11,color:NAVY});
+    else               styleCell(nc,{bold:true,size:10,color:NAVY});
+    if(vals[6])styleCell(row.getCell(7),{size:10,color:MID});
+    if(vals[8])styleCell(row.getCell(9),{size:10,color:MID});
+    if(vals[9])styleCell(row.getCell(10),{size:10,color:MID});
+  }
+
+  // ── Gen 0: Patriarch & Matriarch ──
+  const root=rootHier.data;
+  addPerson(0,root.name,  root.dob,       '','','',false,false,null);
+  if(root.spouse)
+    addPerson(0,root.spouse,root.spouseDob,'','','',true, false,null);
+
+  // ── Gen 1+ families with group borders ──
+  const famBg=['FFEDF3FF','FFFFF8ED'];
+  const gen1nodes=[...(rootHier.children||[]),...(rootHier._children||[])];
+  gen1nodes.forEach((g1n,fidx)=>{
+    const d1=g1n.data,m1=lm(d1.name),bg=famBg[fidx%2];
+    const g1Start=ws.rowCount+1;
+    addPerson(1,d1.name,d1.dob||m1?.dob||'',d1.phone||m1?.phone||'',d1.address||m1?.address||'',m1?.photoUrl||'',false,false,bg);
+    if(d1.spouse){const ms=lm(d1.spouse);addPerson(1,d1.spouse,d1.spouseDob||ms?.dob||'',ms?.phone||'',ms?.address||'',ms?.photoUrl||'',true,d1.isGhostSpouse,bg);}
+    const g2nodes=[...(g1n.children||[]),...(g1n._children||[])];
+    g2nodes.forEach(g2n=>{
+      const d2=g2n.data,m2=lm(d2.name);
+      const g2Start=ws.rowCount+1;
+      addPerson(2,d2.name,d2.dob||m2?.dob||'',d2.phone||m2?.phone||'',d2.address||m2?.address||'',m2?.photoUrl||'',false,false,bg);
+      if(d2.spouse){const ms=lm(d2.spouse);addPerson(2,d2.spouse,d2.spouseDob||ms?.dob||'',ms?.phone||'',ms?.address||'',ms?.photoUrl||'',true,d2.isGhostSpouse,bg);}
+      const g3nodes=[...(g2n.children||[]),...(g2n._children||[])];
+      g3nodes.forEach(g3n=>{
+        const d3=g3n.data,m3=lm(d3.name);
+        addPerson(3,d3.name,d3.dob||m3?.dob||'',d3.phone||m3?.phone||'',d3.address||m3?.address||'',m3?.photoUrl||'',false,false,bg);
+        if(d3.spouse){const ms=lm(d3.spouse);addPerson(3,d3.spouse,ms?.dob||'',ms?.phone||'',ms?.address||'',ms?.photoUrl||'',true,d3.isGhostSpouse,bg);}
+      });
+      const g2End=ws.rowCount;
+      if(g2End>=g2Start)groups.push({start:g2Start,end:g2End,col:3,color:GOLD,weight:'thin'});
+    });
+    const g1End=ws.rowCount;
+    if(g1End>=g1Start)groups.push({start:g1Start,end:g1End,col:2,color:NAVY,weight:'medium'});
+    ws.addRow([]).height=6;
+  });
+
+  // ── Apply family group bracket borders ──
+  groups.forEach(grp=>{
+    for(let r=grp.start;r<=grp.end;r++){
+      const c=ws.getCell(r,grp.col);
+      c.border={...(c.border||{}),left:{style:grp.weight,color:{argb:grp.color}}};
+    }
+    for(let c=grp.col;c<=6;c++){
+      const t=ws.getCell(grp.start,c);
+      t.border={...(t.border||{}),top:{style:grp.weight,color:{argb:grp.color}}};
+      const b=ws.getCell(grp.end,c);
+      b.border={...(b.border||{}),bottom:{style:'thin',color:{argb:grp.color}}};
+    }
+  });
+
+  const buf  = await wb.xlsx.writeBuffer();
+  const blob = new Blob([buf],{type:'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'});
+  const url  = URL.createObjectURL(blob);
+  const a    = document.createElement('a');
+  a.href=url; a.download='balrampur-family-directory.xlsx'; a.click();
+  URL.revokeObjectURL(url);
+  showToast('Excel downloaded!');
+}
+
+
+
+function downloadPDF(){ downloadTreeImage('pdf'); }
+async function downloadPNG(){ downloadTreeImage('png'); }
+
+async function downloadTreeImage(format) {
+  const btn = document.querySelector(`[onclick="download${format.toUpperCase()}()"]`);
+  const orig = btn?.textContent || '';
+  if (btn) { btn.textContent = '⏳ Generating...'; btn.disabled = true; }
+  try {
+    const svg   = document.getElementById('treeSvg');
+    const bb    = gSel.node().getBBox(); // local coords (before zoom transform)
+    const pad   = 80;
+    const titleH = 50; // space for title at top
+    const fullW = Math.ceil(bb.width  + pad * 2);
+    const fullH = Math.ceil(bb.height + pad * 2 + titleH);
+    const scale = format === 'pdf' ? 1.5 : 2;
+
+    const clone = svg.cloneNode(true);
+    // Reset zoom/pan transform so local coords = SVG coords
+    const mg = clone.querySelector('g');
+    if(mg) mg.setAttribute('transform','translate(0,0)');
+    clone.setAttribute('width',  fullW * scale);
+    clone.setAttribute('height', fullH * scale);
+    clone.setAttribute('viewBox', `${bb.x - pad} ${bb.y - pad - titleH} ${fullW} ${fullH}`);
+
+    const ns = 'http://www.w3.org/2000/svg';
+    const cx = bb.x + bb.width / 2;
+    const topY = bb.y - pad - titleH;
+
+    // White/cream background
+    const bg = document.createElementNS(ns,'rect');
+    bg.setAttribute('x', bb.x - pad); bg.setAttribute('y', topY);
+    bg.setAttribute('width', fullW);   bg.setAttribute('height', fullH);
+    bg.setAttribute('fill', '#F8F6F1');
+    clone.insertBefore(bg, clone.firstChild);
+
+    // Decorative gold outer border
+    const border = document.createElementNS(ns,'rect');
+    border.setAttribute('x', bb.x - pad + 6); border.setAttribute('y', topY + 6);
+    border.setAttribute('width', fullW - 12);   border.setAttribute('height', fullH - 12);
+    border.setAttribute('rx','8'); border.setAttribute('fill','none');
+    border.setAttribute('stroke','#C9943A'); border.setAttribute('stroke-width','2.5');
+    clone.appendChild(border);
+
+    // Inner border (double-line effect)
+    const border2 = document.createElementNS(ns,'rect');
+    border2.setAttribute('x', bb.x - pad + 12); border2.setAttribute('y', topY + 12);
+    border2.setAttribute('width', fullW - 24);    border2.setAttribute('height', fullH - 24);
+    border2.setAttribute('rx','5'); border2.setAttribute('fill','none');
+    border2.setAttribute('stroke','#C9943A'); border2.setAttribute('stroke-width','0.8');
+    clone.appendChild(border2);
+
+    // Title — "The Balrampur Family"
+    const title = document.createElementNS(ns,'text');
+    title.setAttribute('x', cx); title.setAttribute('y', bb.y - pad - titleH/2 + 8);
+    title.setAttribute('text-anchor','middle');
+    title.setAttribute('font-family','Cormorant Garamond, Georgia, serif');
+    title.setAttribute('font-size','28'); title.setAttribute('font-weight','700');
+    title.setAttribute('fill','#0C1A4E');
+    title.setAttribute('letter-spacing','2');
+    title.textContent = 'The Balrampur Family';
+    clone.appendChild(title);
+
+    // Subtitle
+    const sub = document.createElementNS(ns,'text');
+    sub.setAttribute('x', cx); sub.setAttribute('y', bb.y - pad - titleH/2 + 24);
+    sub.setAttribute('text-anchor','middle');
+    sub.setAttribute('font-family','DM Sans, Arial, sans-serif');
+    sub.setAttribute('font-size','10'); sub.setAttribute('fill','#C9943A');
+    sub.setAttribute('letter-spacing','3');
+    sub.textContent = 'एक परिवार  ·  एक सूची  ·  एक पहचान';
+    clone.appendChild(sub);
+
+    // Gold divider line under title
+    const line = document.createElementNS(ns,'line');
+    line.setAttribute('x1', cx - 120); line.setAttribute('y1', bb.y - pad - 10);
+    line.setAttribute('x2', cx + 120); line.setAttribute('y2', bb.y - pad - 10);
+    line.setAttribute('stroke','#C9943A'); line.setAttribute('stroke-width','1');
+    clone.appendChild(line);
+
+    // Replace foreignObject (photos) with SVG images for export
+    clone.querySelectorAll('foreignObject').forEach(fo => {
+      const img = fo.querySelector('img');
+      const x   = parseFloat(fo.getAttribute('x') || 0);
+      const y   = parseFloat(fo.getAttribute('y') || 0);
+      const w   = parseFloat(fo.getAttribute('width') || 44);
+      const r   = w / 2;
+      const cx2 = x + r, cy2 = y + r;
+      if (img && img.src && img.src.startsWith('data:')) {
+        const clipId = 'ec_' + Math.random().toString(36).slice(2);
+        const defs   = clone.querySelector('defs') || clone.insertBefore(document.createElementNS(ns,'defs'), clone.firstChild);
+        const clip   = document.createElementNS(ns,'clipPath');
+        clip.setAttribute('id', clipId);
+        const circ   = document.createElementNS(ns,'circle');
+        circ.setAttribute('cx', cx2); circ.setAttribute('cy', cy2); circ.setAttribute('r', r);
+        clip.appendChild(circ); defs.appendChild(clip);
+        const imgEl = document.createElementNS(ns,'image');
+        imgEl.setAttribute('href', img.src);
+        imgEl.setAttribute('x', x); imgEl.setAttribute('y', y);
+        imgEl.setAttribute('width', w); imgEl.setAttribute('height', w);
+        imgEl.setAttribute('clip-path', `url(#${clipId})`);
+        fo.replaceWith(imgEl);
+      } else { fo.remove(); }
+    });
+
+    const xml  = new XMLSerializer().serializeToString(clone);
+    const blob = new Blob([xml], {type:'image/svg+xml;charset=utf-8'});
+    const url  = URL.createObjectURL(blob);
+
+    await new Promise((resolve, reject) => {
+      const img = new Image();
+      img.onload = () => {
+        const canvas = document.createElement('canvas');
+        canvas.width  = fullW * scale;
+        canvas.height = fullH * scale;
+        const ctx = canvas.getContext('2d');
+        ctx.fillStyle = '#F8F6F1';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        ctx.drawImage(img, 0, 0);
+        URL.revokeObjectURL(url);
+        if (format === 'png') {
+          const a = document.createElement('a');
+          a.download = 'Balrampur-Family-Tree.png';
+          a.href = canvas.toDataURL('image/png');
+          a.click();
+          resolve();
+        } else {
+          const pngData = canvas.toDataURL('image/png');
+          const { jsPDF } = window.jspdf;
+          const pdf = new jsPDF({
+            orientation: fullW > fullH ? 'landscape' : 'portrait',
+            unit: 'px', format: [fullW, fullH], hotfixes: ['px_scaling']
+          });
+          pdf.addImage(pngData, 'PNG', 0, 0, fullW, fullH);
+          pdf.save('Balrampur-Family-Tree.pdf');
+          resolve();
+        }
+      };
+      img.onerror = reject;
+      img.src = url;
+    });
+  } catch(e) {
+    console.error('Export error:', e);
+    showToast('Export failed — try zooming to Reset first, then export.');
+  } finally {
+    if (btn) { btn.textContent = orig; btn.disabled = false; }
+  }
+}
+// ── Helpers ───────────────────────────────────────
+// ── Password show/hide toggle ──────────────────────
+function toggleEye(inputId, btn) {
+  const inp = document.getElementById(inputId);
+  if (inp.type === 'password') { inp.type='text';  btn.textContent='🙈'; }
+  else                         { inp.type='password'; btn.textContent='👁'; }
+}
+
+// ── Password reset ─────────────────────────────────
+function toggleResetForm(id) {
+  const el=document.getElementById(id);
+  el.style.display = el.style.display==='none' ? 'block' : 'none';
+}
+
+async function doPasswordReset(emailFieldId, formId) {
+  const email=document.getElementById(emailFieldId).value.trim();
+  if(!email||!email.includes('@')){shake(document.getElementById(emailFieldId));showToast('Please enter a valid email');return;}
+  const btn=document.querySelector('#'+formId+' .gate-btn');
+  btn.disabled=true;btn.textContent='Sending…';
+  try{
+    const res=await fetch(APPS_SCRIPT_URL,{method:'POST',body:JSON.stringify({action:'resetPassword',family:FAMILY_ID,email})});
+    const data=await res.json();
+    if(data.success){
+      document.getElementById(formId).innerHTML='<div style="text-align:center;padding:14px 0;"><div style="font-size:32px;margin-bottom:8px;">📧</div><p style="font-size:.88rem;color:var(--text-mid);line-height:1.6;">'+data.message+'</p><p style="font-size:.76rem;color:var(--text-light);margin-top:8px;">Check your spam folder too.</p></div>';
+    }else{
+      showToast(data.message||'Reset failed. Please try again.');
+      btn.disabled=false;btn.textContent='Send Temporary Password →';
+    }
+  }catch{
+    showToast('Network error. Please try again.');
+    btn.disabled=false;btn.textContent='Send Temporary Password →';
+  }
+}
+
+function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('on');setTimeout(()=>t.classList.remove('on'),3500);}
+function setErr(f,e){if(f)document.getElementById(f).classList.add('err');document.getElementById(e).classList.add('on');}
+function clearErr(f,e){if(f)document.getElementById(f).classList.remove('err');document.getElementById(e).classList.remove('on');}
+function shake(el){el.classList.add('err');setTimeout(()=>el.classList.remove('err'),500);}
+
+window.addEventListener('resize',()=>{if(!svgSel)return;const w=document.getElementById('treeWrap');svgSel.attr('width',w.clientWidth).attr('height',w.clientHeight);});
+</script>
+</body>
+</html>
