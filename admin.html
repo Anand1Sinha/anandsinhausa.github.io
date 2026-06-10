@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Family Directory — Admin</title>
+<style>
+  :root{
+    --navy:#0C1A4E;--gold:#C9943A;--red:#DC2626;--green:#166534;
+    --border:#E5E7EB;--cream:#F8F6F1;--text:#1F2937;--mid:#6B7280;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Segoe UI',Arial,sans-serif;background:#F3F4F6;color:var(--text);font-size:14px}
+
+  /* ── Login ── */
+  #loginScreen{display:flex;align-items:center;justify-content:center;
+    min-height:100vh;background:var(--navy)}
+  .login-card{background:white;border-radius:16px;padding:40px 36px;width:340px;
+    box-shadow:0 20px 60px rgba(0,0,0,.3)}
+  .login-brand{font-family:Georgia,serif;font-size:1.3rem;font-weight:700;
+    color:var(--navy);text-align:center;margin-bottom:4px;letter-spacing:1px}
+  .login-sub{font-size:.78rem;color:var(--mid);text-align:center;
+    margin-bottom:28px;text-transform:uppercase;letter-spacing:1px}
+  .login-card input{width:100%;padding:10px 14px;border:1px solid var(--border);
+    border-radius:8px;font-size:.95rem;margin-bottom:14px;outline:none}
+  .login-card input:focus{border-color:var(--navy)}
+  .btn-primary{width:100%;padding:11px;background:var(--navy);color:white;
+    border:none;border-radius:8px;font-size:.95rem;font-weight:600;
+    cursor:pointer;transition:opacity .15s}
+  .btn-primary:hover{opacity:.88}
+  .btn-primary:disabled{opacity:.5;cursor:not-allowed}
+  #loginErr{color:var(--red);font-size:.8rem;margin-top:8px;text-align:center;min-height:18px}
+
+  /* ── App shell ── */
+  #appShell{display:none}
+  #topBar{background:var(--navy);color:white;padding:0 24px;
+    height:52px;display:flex;align-items:center;gap:16px}
+  #topBar .brand{font-family:Georgia,serif;font-size:1rem;font-weight:700;
+    letter-spacing:1px;flex:1}
+  #topBar .badge{background:var(--gold);color:white;font-size:.7rem;
+    font-weight:700;padding:2px 8px;border-radius:10px;text-transform:uppercase}
+  .logout-btn{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);
+    color:white;padding:5px 14px;border-radius:6px;cursor:pointer;font-size:.8rem;
+    transition:background .15s}
+  .logout-btn:hover{background:rgba(255,255,255,.22)}
+
+  /* ── Nav tabs ── */
+  #navTabs{display:flex;background:white;border-bottom:2px solid var(--border);
+    padding:0 24px;gap:4px}
+  .nav-tab{padding:12px 18px;border:none;background:none;font-size:.875rem;
+    font-weight:500;color:var(--mid);cursor:pointer;border-bottom:3px solid transparent;
+    margin-bottom:-2px;transition:all .15s}
+  .nav-tab:hover{color:var(--navy)}
+  .nav-tab.active{color:var(--navy);border-bottom-color:var(--gold);font-weight:600}
+
+  /* ── Content ── */
+  #content{padding:24px;max-width:1100px;margin:0 auto}
+
+  /* ── Stats cards ── */
+  .stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+    gap:14px;margin-bottom:24px}
+  .stat-card{background:white;border:1px solid var(--border);border-radius:12px;
+    padding:16px;text-align:center;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+  .stat-fam{font-size:.7rem;color:var(--mid);text-transform:uppercase;
+    letter-spacing:.5px;margin-bottom:4px}
+  .stat-num{font-size:2rem;font-weight:700;color:var(--navy);line-height:1;
+    font-family:Georgia,serif}
+  .stat-lbl{font-size:.72rem;color:var(--mid);margin-top:4px}
+  .stat-card.warn .stat-num{color:var(--red)}
+  .stat-card.ok   .stat-num{color:var(--green)}
+
+  /* ── Member table ── */
+  .section-title{font-family:Georgia,serif;font-size:1.05rem;font-weight:700;
+    color:var(--navy);margin-bottom:14px;padding-bottom:8px;
+    border-bottom:2px solid var(--gold);display:flex;align-items:center;
+    justify-content:space-between}
+  .family-label{display:inline-block;background:var(--navy);color:white;
+    font-size:.7rem;padding:2px 10px;border-radius:10px;margin-left:10px;
+    font-family:'Segoe UI',Arial,sans-serif;font-weight:600;letter-spacing:.5px}
+  .table-wrap{background:white;border-radius:12px;border:1px solid var(--border);
+    overflow:hidden;margin-bottom:28px;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+  table{width:100%;border-collapse:collapse}
+  th{background:var(--navy);color:white;padding:10px 12px;text-align:left;
+    font-size:.75rem;font-weight:600;letter-spacing:.3px;white-space:nowrap}
+  td{padding:10px 12px;border-bottom:1px solid #F3F4F6;font-size:.82rem;
+    vertical-align:middle}
+  tr:last-child td{border-bottom:none}
+  tr:hover td{background:#FAFAFA}
+  .badge{display:inline-block;padding:2px 8px;border-radius:8px;
+    font-size:.68rem;font-weight:600}
+  .badge-locked{background:#FEE2E2;color:#991B1B}
+  .badge-deceased{background:#F3F4F6;color:#6B7280}
+  .badge-ok{background:#DCFCE7;color:#166534}
+  .badge-photo{background:#EFF6FF;color:#1D4ED8}
+
+  /* ── Action buttons ── */
+  .act-btn{padding:4px 10px;border-radius:6px;border:1px solid;
+    font-size:.72rem;font-weight:600;cursor:pointer;transition:all .12s;
+    white-space:nowrap}
+  .act-btn-reset{border-color:#D97706;color:#D97706;background:white}
+  .act-btn-reset:hover{background:#FEF3C7}
+  .act-btn-unlock{border-color:var(--green);color:var(--green);background:white}
+  .act-btn-unlock:hover{background:#DCFCE7}
+  .act-btn-status{border-color:var(--mid);color:var(--mid);background:white}
+  .act-btn-status:hover{background:#F3F4F6}
+  .act-btn-delete{border-color:var(--red);color:var(--red);background:white}
+  .act-btn-delete:hover{background:#FEE2E2}
+  .acts{display:flex;gap:5px;flex-wrap:wrap}
+
+  /* ── Audit log ── */
+  .audit-row-ok    td:nth-child(5){color:var(--green);font-weight:600}
+  .audit-row-fail  td:nth-child(5){color:var(--red);font-weight:600}
+  .audit-row-warn  td:nth-child(5){color:#D97706;font-weight:600}
+  .audit-row-lock  td:nth-child(5){color:#7C3AED;font-weight:600}
+
+  /* ── Code rotation ── */
+  .code-card{background:white;border-radius:12px;border:1px solid var(--border);
+    padding:20px 24px;margin-bottom:16px;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+  .code-card h3{font-size:.9rem;font-weight:700;color:var(--navy);margin-bottom:12px}
+  .code-row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+  .code-row input{flex:1;min-width:160px;padding:8px 12px;border:1px solid var(--border);
+    border-radius:8px;font-size:.88rem;outline:none}
+  .code-row input:focus{border-color:var(--navy)}
+  .btn-sm{padding:8px 16px;border-radius:8px;border:none;font-size:.82rem;
+    font-weight:600;cursor:pointer;transition:opacity .15s}
+  .btn-sm:hover{opacity:.85}
+  .btn-navy{background:var(--navy);color:white}
+  .btn-red{background:var(--red);color:white}
+
+  /* ── Modal ── */
+  #modal{position:fixed;inset:0;background:rgba(0,0,0,.45);display:none;
+    align-items:center;justify-content:center;z-index:999}
+  #modal.open{display:flex}
+  .modal-card{background:white;border-radius:14px;padding:28px 28px 22px;
+    width:420px;max-width:92vw;box-shadow:0 20px 60px rgba(0,0,0,.2);position:relative}
+  .modal-title{font-family:Georgia,serif;font-size:1.1rem;font-weight:700;
+    color:var(--navy);margin-bottom:6px}
+  .modal-sub{font-size:.82rem;color:var(--mid);margin-bottom:18px;line-height:1.5}
+  .modal-result{font-size:.85rem;padding:10px 14px;border-radius:8px;
+    margin-top:14px;display:none;line-height:1.5}
+  .modal-result.ok{background:#DCFCE7;color:#166534}
+  .modal-result.err{background:#FEE2E2;color:#991B1B}
+  .modal-result.warn{background:#FEF3C7;color:#92400E}
+  .modal-actions{display:flex;gap:10px;margin-top:16px;justify-content:flex-end}
+  .modal-close{position:absolute;top:14px;right:14px;background:#F3F4F6;
+    border:none;border-radius:50%;width:28px;height:28px;cursor:pointer;
+    font-size:.9rem;color:var(--mid)}
+  .field-label{font-size:.78rem;font-weight:600;color:var(--mid);
+    text-transform:uppercase;letter-spacing:.4px;margin-bottom:5px;display:block}
+  .field-input{width:100%;padding:9px 12px;border:1px solid var(--border);
+    border-radius:8px;font-size:.9rem;outline:none;margin-bottom:12px}
+  .field-input:focus{border-color:var(--navy)}
+
+  /* ── Toast ── */
+  #toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(80px);
+    background:#1F2937;color:white;padding:10px 20px;border-radius:10px;
+    font-size:.85rem;opacity:0;transition:all .3s;z-index:9999;white-space:nowrap}
+  #toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+  /* ── Loading ── */
+  .spinner{display:inline-block;width:16px;height:16px;border:2px solid rgba(255,255,255,.3);
+    border-top-color:white;border-radius:50%;animation:spin .7s linear infinite;
+    vertical-align:middle;margin-right:6px}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  .loading-row td{text-align:center;color:var(--mid);padding:24px;font-style:italic}
+
+  .search-bar{padding:9px 14px;border:1px solid var(--border);border-radius:8px;
+    font-size:.88rem;outline:none;width:260px;margin-bottom:16px}
+  .search-bar:focus{border-color:var(--navy)}
+</style>
+</head>
+<body>
+
+<!-- LOGIN -->
+<div id="loginScreen">
+  <div class="login-card">
+    <div class="login-brand">BALRAMPUR & SONBARSA</div>
+    <div class="login-sub">Admin Panel</div>
+    <input type="password" id="adminPwd" placeholder="Admin password"
+      onkeydown="if(event.key==='Enter')doLogin()">
+    <button class="btn-primary" onclick="doLogin()" id="loginBtn">Sign In</button>
+    <div id="loginErr"></div>
+  </div>
+</div>
+
+<!-- APP -->
+<div id="appShell">
+  <div id="topBar">
+    <div class="brand">FAMILY DIRECTORY <span class="badge">Admin</span></div>
+    <button class="logout-btn" onclick="doLogout()">Sign Out</button>
+  </div>
+  <div id="navTabs">
+    <button class="nav-tab active" onclick="showTab('members')">👥 Members</button>
+    <button class="nav-tab" onclick="showTab('audit')">📋 Audit Log</button>
+    <button class="nav-tab" onclick="showTab('codes')">🔑 Access Codes</button>
+  </div>
+  <div id="content">
+    <div id="tabMembers"></div>
+    <div id="tabAudit" style="display:none"></div>
+    <div id="tabCodes" style="display:none"></div>
+  </div>
+</div>
+
+<!-- MODAL -->
+<div id="modal">
+  <div class="modal-card">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div class="modal-title" id="modalTitle"></div>
+    <div class="modal-sub"  id="modalSub"></div>
+    <div id="modalBody"></div>
+    <div class="modal-result" id="modalResult"></div>
+    <div class="modal-actions" id="modalActions"></div>
+  </div>
+</div>
+
+<div id="toast"></div>
+
+<script>
+let SESSION_TOKEN = '';
+
+// ── Login ──────────────────────────────────────────
+function doLogin() {
+  const pwd = document.getElementById('adminPwd').value.trim();
+  if (!pwd) return;
+  const btn = document.getElementById('loginBtn');
+  btn.disabled = true;
+  btn.innerHTML = '<span class="spinner"></span>Signing in…';
+  document.getElementById('loginErr').textContent = '';
+  google.script.run
+    .withSuccessHandler(r => {
+      if (r.success) {
+        SESSION_TOKEN = r.token;
+        document.getElementById('loginScreen').style.display = 'none';
+        document.getElementById('appShell').style.display = 'block';
+        loadMembers();
+        loadStats();
+      } else {
+        document.getElementById('loginErr').textContent = r.message;
+        btn.disabled = false;
+        btn.textContent = 'Sign In';
+      }
+    })
+    .withFailureHandler(e => {
+      document.getElementById('loginErr').textContent = 'Error: ' + e.message;
+      btn.disabled = false;
+      btn.textContent = 'Sign In';
+    })
+    .adminLogin(pwd);
+}
+
+function doLogout() {
+  google.script.run.adminLogout(SESSION_TOKEN);
+  SESSION_TOKEN = '';
+  document.getElementById('appShell').style.display = 'none';
+  document.getElementById('loginScreen').style.display = 'flex';
+  document.getElementById('adminPwd').value = '';
+}
+
+// ── Tabs ───────────────────────────────────────────
+function showTab(tab) {
+  ['members','audit','codes'].forEach(t => {
+    document.getElementById('tab' + t.charAt(0).toUpperCase() + t.slice(1)).style.display = t === tab ? 'block' : 'none';
+  });
+  document.querySelectorAll('.nav-tab').forEach((el,i) => {
+    el.classList.toggle('active', ['members','audit','codes'][i] === tab);
+  });
+  if (tab === 'audit')   loadAudit();
+  if (tab === 'codes')   loadCodes();
+}
+
+// ── Stats ──────────────────────────────────────────
+function loadStats() {
+  google.script.run
+    .withSuccessHandler(r => {
+      if (!r.success) return;
+      const s = r.stats;
+      const el = document.getElementById('statsRow');
+      if (!el) return;
+      let html = '';
+      for (const [fam, data] of Object.entries(s)) {
+        const label = fam.charAt(0).toUpperCase() + fam.slice(1);
+        html += `
+          <div class="stat-card">
+            <div class="stat-fam">${label}</div>
+            <div class="stat-num">${data.total}</div>
+            <div class="stat-lbl">Registered Members</div>
+          </div>
+          <div class="stat-card ${data.locked > 0 ? 'warn' : 'ok'}">
+            <div class="stat-fam">${label}</div>
+            <div class="stat-num">${data.locked}</div>
+            <div class="stat-lbl">Locked Accounts</div>
+          </div>`;
+      }
+      el.innerHTML = html;
+    })
+    .adminGetStats(SESSION_TOKEN);
+}
+
+// ── Members ────────────────────────────────────────
+let allMembers = {};
+
+function loadMembers() {
+  const wrap = document.getElementById('tabMembers');
+  wrap.innerHTML = '<div class="stats-grid" id="statsRow"><div class="stat-card"><div class="stat-lbl" style="padding:20px;color:var(--mid)">Loading stats…</div></div></div><p style="color:var(--mid);padding:20px">Loading members…</p>';
+  google.script.run
+    .withSuccessHandler(r => {
+      if (!r.success) { wrap.innerHTML = '<p style="color:red;padding:20px">'+r.message+'</p>'; return; }
+      allMembers = r.families;
+      renderMembers('');
+    })
+    .withFailureHandler(e => { wrap.innerHTML = '<p style="color:red;padding:20px">'+e.message+'</p>'; })
+    .adminGetMembers(SESSION_TOKEN);
+}
+
+function renderMembers(q) {
+  const wrap = document.getElementById('tabMembers');
+  const ql = (q||'').toLowerCase();
+  let html = '<div class="stats-grid" id="statsRow"></div>';
+  html += `<input class="search-bar" placeholder="Search by name or email…" oninput="renderMembers(this.value)" value="${q}">`;
+
+  for (const [famKey, members] of Object.entries(allMembers)) {
+    const label = famKey.charAt(0).toUpperCase() + famKey.slice(1);
+    const filtered = ql ? members.filter(m =>
+      (m.firstName+' '+m.lastName).toLowerCase().includes(ql) ||
+      (m.email||'').toLowerCase().includes(ql) ||
+      (m.branch||'').toLowerCase().includes(ql)
+    ) : members;
+
+    html += `<div class="section-title">
+      Members <span class="family-label">${label} Family</span>
+      <span style="font-size:.78rem;color:var(--mid);font-family:sans-serif;font-weight:400">${filtered.length} shown</span>
+    </div>`;
+    html += '<div class="table-wrap"><table><thead><tr>' +
+      '<th>Name</th><th>Email</th><th>Branch</th><th>Joined</th><th>Status</th><th>Actions</th>' +
+      '</tr></thead><tbody>';
+
+    if (filtered.length === 0) {
+      html += '<tr class="loading-row"><td colspan="6">No members found.</td></tr>';
+    } else {
+      filtered.forEach(m => {
+        const fullName = m.firstName + ' ' + m.lastName;
+        const isLocked = m.lockedUntil && new Date() < new Date(m.lockedUntil);
+        const isDeceased = (m.status||'').toLowerCase().startsWith('d');
+        const badges = [
+          m.hasPhoto ? '<span class="badge badge-photo">📷 Photo</span>' : '',
+          isLocked   ? '<span class="badge badge-locked">🔒 Locked</span>' : '',
+          isDeceased ? '<span class="badge badge-deceased">🕊️ Deceased</span>' : ''
+        ].filter(Boolean).join(' ');
+
+        const safeEmail = encodeURIComponent(m.email);
+        html += `<tr>
+          <td><strong>${fullName}</strong></td>
+          <td style="color:var(--mid)">${m.email}</td>
+          <td>${m.branch||'—'}</td>
+          <td style="color:var(--mid)">${m.registered}</td>
+          <td>${badges || '<span class="badge badge-ok">✅ Active</span>'}</td>
+          <td><div class="acts">
+            <button class="act-btn act-btn-reset"
+              onclick="openResetModal('${famKey}','${m.email}','${fullName}')">Reset PWD</button>
+            ${isLocked ? `<button class="act-btn act-btn-unlock"
+              onclick="doUnlock('${famKey}','${m.email}','${fullName}')">Unlock</button>` : ''}
+            <button class="act-btn act-btn-status"
+              onclick="openStatusModal('${famKey}','${m.email}','${fullName}','${m.status||''}')">Status</button>
+            <button class="act-btn act-btn-delete"
+              onclick="openDeleteModal('${famKey}','${m.email}','${fullName}')">Delete</button>
+          </div></td>
+        </tr>`;
+      });
+    }
+    html += '</tbody></table></div>';
+  }
+  wrap.innerHTML = html;
+  loadStats();
+}
+
+// ── Reset password modal ───────────────────────────
+function openResetModal(famKey, email, name) {
+  showModal(
+    '🔑 Reset Password',
+    `Send a temporary password to <strong>${name}</strong> (${email}).`,
+    '',
+    [
+      { label:'Cancel', cls:'btn-sm', onclick:'closeModal()' },
+      { label:'Send Reset Email', cls:'btn-sm btn-navy', onclick:`doReset('${famKey}','${email}')` }
+    ]
+  );
+}
+
+function doReset(famKey, email) {
+  setModalLoading('Sending…');
+  google.script.run
+    .withSuccessHandler(r => {
+      showModalResult(r.success, r.message);
+      if (r.success) loadMembers();
+    })
+    .withFailureHandler(e => showModalResult(false, e.message))
+    .adminResetPassword(SESSION_TOKEN, famKey, email);
+}
+
+// ── Unlock modal ───────────────────────────────────
+function doUnlock(famKey, email, name) {
+  if (!confirm('Unlock account for ' + name + '?')) return;
+  google.script.run
+    .withSuccessHandler(r => {
+      showToast(r.success ? '✅ ' + r.message : '❌ ' + r.message);
+      if (r.success) loadMembers();
+    })
+    .adminUnlockAccount(SESSION_TOKEN, famKey, email);
+}
+
+// ── Status modal ───────────────────────────────────
+function openStatusModal(famKey, email, name, currentStatus) {
+  showModal(
+    '📋 Set Member Status',
+    `Update status for <strong>${name}</strong>.`,
+    `<label class="field-label">Status</label>
+     <select id="statusSel" class="field-input">
+       <option value="" ${!currentStatus?'selected':''}>Active (no special status)</option>
+       <option value="deceased" ${currentStatus==='deceased'?'selected':''}>🕊️ Deceased</option>
+       <option value="inactive" ${currentStatus==='inactive'?'selected':''}>Inactive</option>
+     </select>`,
+    [
+      { label:'Cancel', cls:'btn-sm', onclick:'closeModal()' },
+      { label:'Save Status', cls:'btn-sm btn-navy', onclick:`doSetStatus('${famKey}','${email}')` }
+    ]
+  );
+}
+
+function doSetStatus(famKey, email) {
+  const status = document.getElementById('statusSel').value;
+  setModalLoading('Saving…');
+  google.script.run
+    .withSuccessHandler(r => {
+      showModalResult(r.success, r.message);
+      if (r.success) loadMembers();
+    })
+    .withFailureHandler(e => showModalResult(false, e.message))
+    .adminSetStatus(SESSION_TOKEN, famKey, email, status);
+}
+
+// ── Delete modal ───────────────────────────────────
+function openDeleteModal(famKey, email, name) {
+  showModal(
+    '🗑️ Delete Member',
+    `This permanently removes <strong>${name}</strong> from the directory. This cannot be undone.`,
+    `<label class="field-label">Type email to confirm</label>
+     <input type="email" id="confirmEmail" class="field-input" placeholder="${email}">`,
+    [
+      { label:'Cancel', cls:'btn-sm', onclick:'closeModal()' },
+      { label:'Delete Permanently', cls:'btn-sm btn-red', onclick:`doDelete('${famKey}','${email}')` }
+    ]
+  );
+}
+
+function doDelete(famKey, email) {
+  const confirm = document.getElementById('confirmEmail').value.trim();
+  setModalLoading('Deleting…');
+  google.script.run
+    .withSuccessHandler(r => {
+      showModalResult(r.success, r.message);
+      if (r.success) loadMembers();
+    })
+    .withFailureHandler(e => showModalResult(false, e.message))
+    .adminDeleteMember(SESSION_TOKEN, famKey, email, confirm);
+}
+
+// ── Audit log ──────────────────────────────────────
+function loadAudit() {
+  const wrap = document.getElementById('tabAudit');
+  wrap.innerHTML = '<p style="color:var(--mid);padding:20px">Loading audit log…</p>';
+  google.script.run
+    .withSuccessHandler(r => {
+      if (!r.success) { wrap.innerHTML = '<p style="color:red;padding:20px">'+r.message+'</p>'; return; }
+      let html = '<div class="section-title">Audit Log <span style="font-size:.78rem;color:var(--mid);font-family:sans-serif;font-weight:400">Last 100 entries</span></div>';
+      html += '<div class="table-wrap"><table><thead><tr>' +
+        '<th>Time</th><th>Family</th><th>Email</th><th>Action</th><th>Status</th><th>Details</th>' +
+        '</tr></thead><tbody>';
+      if (!r.entries.length) {
+        html += '<tr class="loading-row"><td colspan="6">No audit entries found.</td></tr>';
+      } else {
+        r.entries.forEach(e => {
+          const rowClass = e.status==='OK'?'audit-row-ok':e.status==='FAIL'?'audit-row-fail':
+            e.status==='LOCKED'||e.status==='BLOCKED'?'audit-row-lock':'audit-row-warn';
+          html += `<tr class="${rowClass}">
+            <td style="white-space:nowrap;color:var(--mid)">${e.timestamp}</td>
+            <td><span class="badge badge-ok" style="background:#EFF6FF;color:#1D4ED8">${e.family||'—'}</span></td>
+            <td style="color:var(--mid)">${e.email}</td>
+            <td style="font-weight:600">${e.action}</td>
+            <td>${e.status}</td>
+            <td style="color:var(--mid)">${e.details}</td>
+          </tr>`;
+        });
+      }
+      html += '</tbody></table></div>';
+      wrap.innerHTML = html;
+    })
+    .withFailureHandler(e => { wrap.innerHTML = '<p style="color:red;padding:20px">'+e.message+'</p>'; })
+    .adminGetAuditLog(SESSION_TOKEN, 100);
+}
+
+// ── Access codes ───────────────────────────────────
+function loadCodes() {
+  const wrap = document.getElementById('tabCodes');
+  wrap.innerHTML = `
+    <div class="section-title">Access Code Management</div>
+    <p style="font-size:.82rem;color:var(--mid);margin-bottom:20px;line-height:1.6">
+      Rotating the access code immediately prevents new registrations with the old code.
+      Existing members are not affected — they log in with their email and password.
+    </p>
+    ${['balrampur','sonbarsa'].map(fam => `
+      <div class="code-card">
+        <h3>${fam.charAt(0).toUpperCase()+fam.slice(1)} Family</h3>
+        <div class="code-row">
+          <input type="text" id="code_${fam}" placeholder="New access code (min 6 chars)"
+            autocomplete="off">
+          <button class="btn-sm btn-navy" onclick="doRotateCode('${fam}')">Update Code</button>
+        </div>
+        <div id="codeResult_${fam}" style="font-size:.8rem;margin-top:8px;min-height:18px"></div>
+      </div>`).join('')}`;
+}
+
+function doRotateCode(famKey) {
+  const newCode = document.getElementById('code_' + famKey).value.trim();
+  const resEl = document.getElementById('codeResult_' + famKey);
+  resEl.textContent = 'Updating…';
+  resEl.style.color = 'var(--mid)';
+  google.script.run
+    .withSuccessHandler(r => {
+      resEl.textContent = r.message;
+      resEl.style.color = r.success ? 'var(--green)' : 'var(--red)';
+      if (r.success) document.getElementById('code_' + famKey).value = '';
+    })
+    .withFailureHandler(e => { resEl.textContent = e.message; resEl.style.color = 'var(--red)'; })
+    .adminRotateCode(SESSION_TOKEN, famKey, newCode);
+}
+
+// ── Modal helpers ──────────────────────────────────
+function showModal(title, sub, bodyHtml, actions) {
+  document.getElementById('modalTitle').innerHTML = title;
+  document.getElementById('modalSub').innerHTML   = sub;
+  document.getElementById('modalBody').innerHTML  = bodyHtml;
+  const res = document.getElementById('modalResult');
+  res.style.display = 'none'; res.className = 'modal-result';
+  const acts = document.getElementById('modalActions');
+  acts.innerHTML = actions.map(a =>
+    `<button class="${a.cls}" onclick="${a.onclick}">${a.label}</button>`
+  ).join('');
+  document.getElementById('modal').classList.add('open');
+}
+
+function closeModal() {
+  document.getElementById('modal').classList.remove('open');
+}
+
+function setModalLoading(msg) {
+  document.getElementById('modalActions').innerHTML =
+    `<button class="btn-sm btn-navy" disabled><span class="spinner"></span>${msg}</button>`;
+}
+
+function showModalResult(success, message) {
+  const el = document.getElementById('modalResult');
+  el.textContent = message;
+  el.className = 'modal-result ' + (success ? 'ok' : 'err');
+  el.style.display = 'block';
+  document.getElementById('modalActions').innerHTML =
+    '<button class="btn-sm btn-navy" onclick="closeModal()">Close</button>';
+}
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 3500);
+}
+
+// Close modal on overlay click
+document.getElementById('modal').addEventListener('click', function(e) {
+  if (e.target === this) closeModal();
+});
+</script>
+</body>
+</html>
