@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="format-detection" content="telephone=no">
+<title>The Balrampur Family Directory — Your Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0C1A4E;
+    --gold:#C9943A;
+    --gold-lt:#F5EDD8;
+    --cream:#FFFBF4;
+    --ink:#1A1A2E;
+    --mid:#4A5568;
+    --light:#9AAABF;
+    --border:#E8E0D0;
+    --white:#FFFFFF;
+    --green:#166534;
+    --green-lt:#DCFCE7;
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0}
+
+  html{scroll-behavior:smooth}
+
+  body{
+    font-family:'DM Sans',sans-serif;
+    background:var(--cream);
+    color:var(--ink);
+    font-size:16px;
+    line-height:1.7;
+  }
+
+  /* ── HERO ── */
+  .hero{
+    background:var(--navy);
+    color:white;
+    text-align:center;
+    padding:64px 24px 56px;
+    position:relative;
+    overflow:hidden;
+    background:
+      linear-gradient(105deg,rgba(6,14,46,.88) 0%,rgba(6,14,46,.65) 48%,rgba(6,14,46,.45) 100%),
+      url('https://anandsinhausa.com/balrampur-og.jpg') center/cover no-repeat;
+  }
+  .hero-eyebrow{
+    font-size:.7rem;letter-spacing:3px;text-transform:uppercase;
+    color:var(--gold);font-weight:600;margin-bottom:16px;
+    font-family:'DM Sans',sans-serif;
+  }
+  .hero-title{
+    font-family:'Cormorant Garamond',serif;
+    font-size:clamp(2rem,6vw,3.2rem);
+    font-weight:700;line-height:1.15;
+    margin-bottom:10px;
+  }
+  .hero-title em{color:var(--gold);font-style:normal}
+  .hero-tagline{
+    font-family:'Cormorant Garamond',serif;
+    font-size:1.05rem;color:rgba(255,255,255,.6);
+    letter-spacing:2px;font-style:italic;
+    margin-bottom:32px;
+  }
+  .hero-intro{
+    max-width:560px;margin:0 auto;
+    font-size:.95rem;color:rgba(255,255,255,.8);
+    line-height:1.75;
+  }
+  .hero-divider{
+    width:48px;height:2px;background:var(--gold);
+    margin:28px auto;
+  }
+
+  /* ── NAV ── */
+  .sticky-nav{
+    position:sticky;top:0;z-index:100;
+    background:var(--navy);
+    border-bottom:1px solid rgba(201,148,58,.3);
+    padding:0 24px;
+  }
+  .nav-inner{
+    max-width:860px;margin:0 auto;
+    display:flex;gap:4px;overflow-x:auto;
+    scrollbar-width:none;
+  }
+  .nav-inner::-webkit-scrollbar{display:none}
+  .nav-link{
+    padding:14px 16px;color:rgba(255,255,255,.6);
+    font-size:.78rem;font-weight:600;letter-spacing:.5px;
+    text-transform:uppercase;text-decoration:none;
+    white-space:nowrap;transition:color .15s;
+    border-bottom:2px solid transparent;
+  }
+  .nav-link:hover,.nav-link.active{color:var(--gold);border-bottom-color:var(--gold)}
+
+  /* ── LAYOUT ── */
+  .page{max-width:860px;margin:0 auto;padding:0 24px 80px}
+
+  /* ── SECTION ── */
+  .section{padding:56px 0 0}
+  .section-label{
+    font-size:.68rem;letter-spacing:3px;text-transform:uppercase;
+    color:var(--gold);font-weight:600;font-family:'DM Sans',sans-serif;
+    margin-bottom:10px;
+  }
+  .section-title{
+    font-family:'Cormorant Garamond',serif;
+    font-size:clamp(1.6rem,4vw,2.2rem);
+    font-weight:700;color:var(--navy);
+    line-height:1.2;margin-bottom:18px;
+  }
+  .section-body{
+    font-size:.95rem;color:var(--mid);line-height:1.8;
+  }
+  .section-body p{margin-bottom:14px}
+  .section-body p:last-child{margin-bottom:0}
+  .rule{
+    height:1px;background:var(--border);
+    margin:56px 0 0;
+  }
+
+  /* ── FEATURE CARDS ── */
+  .feature-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+    gap:16px;margin-top:28px;
+  }
+  .feature-card{
+    background:var(--white);border:1px solid var(--border);
+    border-radius:14px;padding:22px 20px;
+    box-shadow:0 2px 8px rgba(12,26,78,.04);
+    transition:transform .15s, box-shadow .15s;
+  }
+  .feature-card:hover{
+    transform:translateY(-2px);
+    box-shadow:0 6px 20px rgba(12,26,78,.08);
+  }
+  .feature-icon{font-size:1.6rem;margin-bottom:10px;display:block}
+  .feature-name{
+    font-family:'Cormorant Garamond',serif;
+    font-size:1.1rem;font-weight:700;color:var(--navy);
+    margin-bottom:6px;
+  }
+  .feature-desc{font-size:.83rem;color:var(--mid);line-height:1.65}
+
+  /* ── STEPS ── */
+  .steps{margin-top:28px;display:flex;flex-direction:column;gap:0}
+  .step{
+    display:flex;gap:20px;padding:20px 0;
+    border-bottom:1px solid var(--border);
+  }
+  .step:last-child{border-bottom:none}
+  .step-num{
+    width:36px;height:36px;border-radius:50%;
+    background:var(--navy);color:white;
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Cormorant Garamond',serif;font-size:1rem;
+    font-weight:700;flex-shrink:0;margin-top:2px;
+  }
+  .step-body{}
+  .step-title{
+    font-weight:600;font-size:.95rem;color:var(--navy);
+    margin-bottom:4px;
+  }
+  .step-desc{font-size:.85rem;color:var(--mid);line-height:1.65}
+  .step-desc a{color:var(--navy);font-weight:600;text-decoration:none;border-bottom:1px solid var(--gold)}
+  .step-note{
+    display:inline-block;margin-top:8px;
+    background:var(--gold-lt);color:#7A4F10;
+    border-radius:6px;padding:4px 10px;font-size:.76rem;font-weight:500;
+  }
+
+  /* ── SECURITY BLOCK ── */
+  .security-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:14px;margin-top:24px;
+  }
+  .sec-card{
+    background:var(--white);border:1px solid var(--border);
+    border-radius:12px;padding:18px 16px;
+    border-left:4px solid var(--navy);
+  }
+  .sec-title{
+    font-weight:700;font-size:.88rem;color:var(--navy);
+    margin-bottom:5px;display:flex;align-items:center;gap:7px;
+  }
+  .sec-desc{font-size:.8rem;color:var(--mid);line-height:1.6}
+
+  /* ── PRIVACY Q&A ── */
+  .qa-list{margin-top:20px;display:flex;flex-direction:column;gap:0}
+  .qa{
+    border-bottom:1px solid var(--border);
+    padding:20px 0;
+  }
+  .qa:last-child{border-bottom:none}
+  .q{
+    font-weight:600;font-size:.95rem;color:var(--navy);
+    margin-bottom:8px;display:flex;gap:10px;
+  }
+  .q::before{content:'Q.';color:var(--gold);font-family:'Cormorant Garamond',serif;
+    font-size:1rem;font-weight:700;flex-shrink:0}
+  .a{font-size:.88rem;color:var(--mid);line-height:1.75;
+    padding-left:28px;}
+
+  /* ── CTA ── */
+  .cta-block{
+    background:var(--navy);border-radius:16px;
+    padding:36px 32px;text-align:center;margin-top:48px;
+  }
+  .cta-block h2{
+    font-family:'Cormorant Garamond',serif;
+    font-size:1.8rem;font-weight:700;color:white;
+    margin-bottom:8px;
+  }
+  .cta-block p{font-size:.88rem;color:rgba(255,255,255,.7);margin-bottom:20px;line-height:1.7}
+  .cta-btn{
+    display:inline-block;background:var(--gold);color:white;
+    padding:12px 28px;border-radius:10px;text-decoration:none;
+    font-weight:600;font-size:.92rem;letter-spacing:.3px;
+    transition:opacity .15s;
+  }
+  .cta-btn:hover{opacity:.88}
+  .cta-contact{font-size:.78rem;color:rgba(255,255,255,.5);margin-top:14px}
+  .cta-contact a{color:rgba(255,255,255,.7);text-decoration:none;border-bottom:1px solid rgba(255,255,255,.3)}
+
+  /* ── WHAT YOU SEE table ── */
+  .visibility-table{
+    width:100%;border-collapse:collapse;margin-top:20px;
+    background:var(--white);border-radius:12px;overflow:hidden;
+    border:1px solid var(--border);
+    box-shadow:0 1px 4px rgba(0,0,0,.04);
+  }
+  .visibility-table th{
+    background:var(--navy);color:white;
+    padding:11px 14px;text-align:left;
+    font-size:.75rem;font-weight:600;letter-spacing:.3px;
+  }
+  .visibility-table td{
+    padding:11px 14px;border-bottom:1px solid #F3F0EA;
+    font-size:.83rem;vertical-align:top;
+  }
+  .visibility-table tr:last-child td{border-bottom:none}
+  .visibility-table tr:hover td{background:#FAFAF7}
+  .vis-yes{color:var(--green);font-weight:600}
+  .vis-no{color:#9CA3AF}
+  .vis-own{color:#D97706;font-weight:600}
+
+  /* ── CALLOUT ── */
+  .callout{
+    background:var(--gold-lt);border-left:4px solid var(--gold);
+    border-radius:0 10px 10px 0;padding:14px 18px;
+    margin:20px 0;font-size:.875rem;color:#7A4F10;line-height:1.7;
+  }
+  .callout strong{color:var(--navy)}
+
+  /* ── FOOTER ── */
+  .footer{
+    text-align:center;padding:32px 24px;
+    font-size:.75rem;color:var(--light);
+    border-top:1px solid var(--border);margin-top:64px;
+  }
+  .footer strong{color:var(--mid)}
+
+  @media(max-width:600px){
+    .hero{padding:48px 20px 40px}
+    .page{padding:0 16px 60px}
+    .section{padding:40px 0 0}
+    .cta-block{padding:28px 20px}
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-eyebrow">A Gift for Our Family</div>
+  <h1 class="hero-title">The <em>Balrampur</em> Family Directory</h1>
+  <div class="hero-tagline">एक परिवार · एक सूची · एक पहचान</div>
+  <div class="hero-divider"></div>
+  <p class="hero-intro">
+    A private, secure digital home for our family — so every member can find each other,
+    remember birthdays and anniversaries, and see how we are all connected across generations.
+  </p>
+</div>
+
+<!-- STICKY NAV -->
+<nav class="sticky-nav">
+  <div class="nav-inner">
+    <a class="nav-link" href="#what">What It Is</a>
+    <a class="nav-link" href="#features">Features</a>
+    <a class="nav-link" href="#howtojoin">How to Join</a>
+    <a class="nav-link" href="#security">Security</a>
+    <a class="nav-link" href="#privacy">Privacy Q&A</a>
+    <a class="nav-link" href="#howto">How to Use</a>
+  </div>
+</nav>
+
+<div class="page">
+
+  <!-- WHAT IT IS -->
+  <div id="what" class="section">
+    <div class="section-label">About This App</div>
+    <h2 class="section-title">What is the Family Directory?</h2>
+    <div class="section-body">
+      <p>
+        The Balrampur Family Directory is a private members-only website built by Anand Sinha
+        for the descendants of <strong>Raghuraj Prasad and Chandra Kala Devi</strong>.
+        It is a living record of our family — who we are, where we live, and how we are connected
+        to each other across three generations and multiple cities around the world.
+      </p>
+      <p>
+        It lives at <strong>anandsinhausa.com/balrampur</strong> and is accessible only to
+        family members who have been personally invited and registered with a private family code.
+        There are no advertisements. No subscriptions. No third-party access to your information.
+        It is entirely built, hosted, and maintained by Anand.
+      </p>
+    </div>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <span class="feature-icon">🌳</span>
+        <div class="feature-name">Interactive Family Tree</div>
+        <div class="feature-desc">See the full three-generation tree with photos, birthdays, and family connections — all in one visual map.</div>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">👨‍👩‍👧‍👦</span>
+        <div class="feature-name">Family Directory</div>
+        <div class="feature-desc">A searchable list of all family members organised by branch, with contact details for registered members.</div>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">🎂</span>
+        <div class="feature-name">Birthday & Anniversary Reminders</div>
+        <div class="feature-desc">See who is celebrating this month and in the coming weeks, so you never miss an important occasion.</div>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">💬</span>
+        <div class="feature-name">One-Tap WhatsApp</div>
+        <div class="feature-desc">Tap any registered family member's name to see their details and connect on WhatsApp instantly.</div>
+      </div>
+    </div>
+  </div>
+  <div class="rule"></div>
+
+  <!-- WHAT YOU CAN SEE -->
+  <div id="features" class="section">
+    <div class="section-label">Features & Access</div>
+    <h2 class="section-title">What will you be able to see?</h2>
+    <div class="section-body">
+      <p>
+        Once you register, here is exactly what is visible to you — and what is kept private.
+      </p>
+    </div>
+
+    <table class="visibility-table">
+      <thead>
+        <tr>
+          <th>What</th>
+          <th>Visible to all members?</th>
+          <th>Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Full family tree</strong> (all 3 generations, names, relationships)</td>
+          <td class="vis-yes">✅ Yes</td>
+          <td>Visible after login to all registered members</td>
+        </tr>
+        <tr>
+          <td><strong>Your own photo</strong> on the tree</td>
+          <td class="vis-yes">✅ Yes</td>
+          <td>Only you control whether to add a photo</td>
+        </tr>
+        <tr>
+          <td><strong>Birthdays & anniversaries</strong></td>
+          <td class="vis-yes">✅ Yes</td>
+          <td>Day and month only — year of birth is not shown</td>
+        </tr>
+        <tr>
+          <td><strong>City of residence</strong> (registered members)</td>
+          <td class="vis-yes">✅ Yes</td>
+          <td>Only for members who have registered</td>
+        </tr>
+        <tr>
+          <td><strong>WhatsApp number</strong></td>
+          <td class="vis-yes">✅ Yes</td>
+          <td>Tap to open WhatsApp directly — only for registered members</td>
+        </tr>
+        <tr>
+          <td><strong>Email address</strong></td>
+          <td class="vis-no">🔒 No</td>
+          <td>Never shown to other family members</td>
+        </tr>
+        <tr>
+          <td><strong>Password</strong></td>
+          <td class="vis-no">🔒 Never</td>
+          <td>Stored as a one-way encrypted hash — not even Anand can read it</td>
+        </tr>
+        <tr>
+          <td><strong>Your own profile</strong></td>
+          <td class="vis-own">✏️ Editable by you</td>
+          <td>You can update your details, photo, address, and contact info at any time</td>
+        </tr>
+        <tr>
+          <td><strong>Other members' passwords or emails</strong></td>
+          <td class="vis-no">🔒 Never</td>
+          <td>No family member can see another member's email or password</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="callout" style="margin-top:20px">
+      <strong>In plain language:</strong> Family members can see your name, photo, birthday,
+      city, and WhatsApp number — the same things you would share on a family WhatsApp group.
+      Your email address and password are never visible to anyone.
+    </div>
+  </div>
+  <div class="rule"></div>
+
+  <!-- HOW TO JOIN -->
+  <div id="howtojoin" class="section">
+    <div class="section-label">Getting Started</div>
+    <h2 class="section-title">How to join</h2>
+    <div class="section-body">
+      <p>
+        Joining takes about two minutes. You will need the family access code,
+        which Anand will share with you privately on WhatsApp.
+      </p>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <div class="step-title">Open the app</div>
+          <div class="step-desc">
+            Visit <a href="https://anandsinhausa.com/balrampur" target="_blank">anandsinhausa.com/balrampur</a>
+            on your phone or computer. You will see the login screen with a family photo.
+          </div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <div class="step-title">Click "New Member? Register"</div>
+          <div class="step-desc">
+            On the login card, tap the registration link. You will be asked to enter the
+            family access code that Anand shared with you.
+          </div>
+          <span class="step-note">📱 The access code is only shared privately — never posted publicly</span>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <div class="step-title">Fill in your details</div>
+          <div class="step-desc">
+            A short 4-step form asks for your name, which family branch you belong to,
+            your contact details (phone, city), birthday, and optionally a photo.
+            All fields except name and email are optional.
+          </div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-body">
+          <div class="step-title">Choose a password and you're in</div>
+          <div class="step-desc">
+            Set a password for your account. On future visits, simply enter your email
+            and password. Tick "Remember me" and you will stay signed in on your personal device.
+          </div>
+          <span class="step-note">💡 Tip: Use "Remember me" on your phone — you will almost never need to log in again</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="rule"></div>
+
+  <!-- SECURITY -->
+  <div id="security" class="section">
+    <div class="section-label">Built for Privacy</div>
+    <h2 class="section-title">How your information is protected</h2>
+    <div class="section-body">
+      <p>
+        This app was designed with privacy as the primary concern — not an afterthought.
+        Here is exactly how your data is kept secure.
+      </p>
+    </div>
+    <div class="security-grid">
+      <div class="sec-card">
+        <div class="sec-title">🔐 Login required</div>
+        <div class="sec-desc">
+          Nothing is visible without a valid email and password.
+          A stranger who finds the URL sees only a login screen — not a single family member's name.
+        </div>
+      </div>
+      <div class="sec-card">
+        <div class="sec-title">🔑 Invitation only</div>
+        <div class="sec-desc">
+          Registration requires a private family code shared by Anand directly on WhatsApp.
+          The code is never embedded in the website's source code or shared publicly.
+        </div>
+      </div>
+      <div class="sec-card">
+        <div class="sec-title">🛡️ Encrypted passwords</div>
+        <div class="sec-desc">
+          Your password is stored using SHA-256 cryptographic hashing with a unique salt.
+          It cannot be read, reversed, or recovered — not even by Anand.
+        </div>
+      </div>
+      <div class="sec-card">
+        <div class="sec-title">🚫 No family names in source code</div>
+        <div class="sec-desc">
+          Family member names, relationships, and tree structure are stored in a private
+          Google Sheet — not in the app's source code. View Source reveals nothing.
+        </div>
+      </div>
+      <div class="sec-card">
+        <div class="sec-title">🔒 Account lockout</div>
+        <div class="sec-desc">
+          After 6 wrong password attempts, the account is locked for 30 minutes automatically.
+          This prevents brute-force guessing of passwords.
+        </div>
+      </div>
+      <div class="sec-card">
+        <div class="sec-title">📧 Email never shared</div>
+        <div class="sec-desc">
+          Your email address is used only for login and password reset.
+          It is never displayed to other family members under any circumstances.
+        </div>
+      </div>
+      <div class="sec-card">
+        <div class="sec-title">☁️ Google-grade infrastructure</div>
+        <div class="sec-desc">
+          Data is stored in Google Sheets on Anand's private Google account.
+          Photos are stored in Google Drive. Both use Google's enterprise-grade security.
+        </div>
+      </div>
+      <div class="sec-card">
+        <div class="sec-title">📋 Full audit trail</div>
+        <div class="sec-desc">
+          Every login, registration, and change is logged with a timestamp.
+          Anand can review any unusual activity at any time.
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="rule"></div>
+
+  <!-- PRIVACY Q&A -->
+  <div id="privacy" class="section">
+    <div class="section-label">Frequently Asked Questions</div>
+    <h2 class="section-title">Privacy questions, answered honestly</h2>
+    <div class="qa-list">
+
+      <div class="qa">
+        <div class="q">Can someone outside the family see my information?</div>
+        <div class="a">
+          No. The app requires a valid registered email and password to display anything at all.
+          A person who does not have an account — including someone who knows the URL —
+          sees only a login screen. Family names, the tree, and all contact details are
+          completely hidden from unauthenticated visitors.
+        </div>
+      </div>
+
+      <div class="qa">
+        <div class="q">Can other family members see my phone number and address?</div>
+        <div class="a">
+          Yes — but only if you choose to provide them. These fields are entirely optional
+          during registration and can be left blank. If you add them, other registered family
+          members will be able to see them, the same way you would share them on a
+          family WhatsApp group. You can update or remove your details at any time from
+          "Edit My Profile."
+        </div>
+      </div>
+
+      <div class="qa">
+        <div class="q">Who built this, and who has access to the data?</div>
+        <div class="a">
+          Anand Sinha built and maintains this application entirely. Data is stored in a
+          private Google Sheet on his personal Google account. No third-party companies,
+          services, or individuals have access to the family data. There are no analytics
+          trackers, advertising networks, or data brokers involved.
+        </div>
+      </div>
+
+      <div class="qa">
+        <div class="q">Is my password safe?</div>
+        <div class="a">
+          Yes. Your password is never stored in readable form. It is converted into a
+          one-way cryptographic hash (SHA-256 with a unique salt) before being saved.
+          This means that even if the Google Sheet were ever accessed by an unauthorised party,
+          your actual password could not be determined from it. Anand cannot read your password
+          either — if you forget it, he can only reset it, not tell you what it was.
+        </div>
+      </div>
+
+      <div class="qa">
+        <div class="q">Can I remove myself from the directory?</div>
+        <div class="a">
+          Yes. Contact Anand on WhatsApp (+1 248 872 3057) and he will remove your account
+          and all associated data from the system. Your name will still appear on the family
+          tree as an unregistered member (since that is factual family history), but all
+          contact details, email, password, and photo will be permanently deleted.
+        </div>
+      </div>
+
+      <div class="qa">
+        <div class="q">Will this app ever show ads or sell our data?</div>
+        <div class="a">
+          Never. This is a personal project built by Anand for the family.
+          There is no business model, no monetisation, and no commercial interest.
+          The only cost is Anand's time.
+        </div>
+      </div>
+
+      <div class="qa">
+        <div class="q">What happens if I forget my password?</div>
+        <div class="a">
+          On the login screen, tap "Forgot password?" and enter your registered email.
+          A temporary password will be sent to your email within a minute.
+          Use it to log in, then set a new password immediately. The temporary password
+          expires after one hour.
+        </div>
+      </div>
+
+      <div class="qa">
+        <div class="q">Is this app available on iPhone and Android?</div>
+        <div class="a">
+          Yes — it is a website, so it works on any phone, tablet, or computer with a browser.
+          On iPhone, open it in Safari, tap the Share button, and select
+          "Add to Home Screen" to create an icon that opens it like an app.
+          On Android, tap the three-dot menu in Chrome and select "Add to Home screen."
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div class="rule"></div>
+
+  <!-- HOW TO USE -->
+  <div id="howto" class="section">
+    <div class="section-label">User Guide</div>
+    <h2 class="section-title">How to use the app</h2>
+    <div class="section-body">
+      <p>Once you are signed in, you will see two main sections — the Family Tree and the Directory.</p>
+    </div>
+
+    <div style="margin-top:24px">
+      <div style="font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:700;color:var(--navy);margin-bottom:14px">🌳 Family Tree</div>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num" style="background:var(--gold)">→</div>
+          <div class="step-body">
+            <div class="step-title">Pan and zoom</div>
+            <div class="step-desc">Drag to move around the tree. Pinch to zoom on mobile. Use the + / − buttons or scroll on desktop. The Reset button re-centres the view.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num" style="background:var(--gold)">→</div>
+          <div class="step-body">
+            <div class="step-title">Expand a branch</div>
+            <div class="step-desc">Tap the small ＋ button below any node to reveal their children and grandchildren. Tap − to collapse the branch again.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num" style="background:var(--gold)">→</div>
+          <div class="step-body">
+            <div class="step-title">View a person's details</div>
+            <div class="step-desc">Tap any circle on the tree to open a card with their birthday, anniversary, address, and WhatsApp button. Tap the background or ✕ to close.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num" style="background:var(--gold)">→</div>
+          <div class="step-body">
+            <div class="step-title">Download</div>
+            <div class="step-desc">Use the PDF button to save a printable family tree. Use PNG for an image you can share on WhatsApp. Use Excel to download the full directory as a spreadsheet.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:32px">
+      <div style="font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:700;color:var(--navy);margin-bottom:14px">👨‍👩‍👧‍👦 Directory</div>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num" style="background:var(--gold)">→</div>
+          <div class="step-body">
+            <div class="step-title">Browse by family branch</div>
+            <div class="step-desc">Members are grouped by the Gen 1 family branch — for example "Jaya Srivastava's Family." Tap a branch header to expand or collapse it.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num" style="background:var(--gold)">→</div>
+          <div class="step-body">
+            <div class="step-title">Search</div>
+            <div class="step-desc">Type any name, city, or phone number in the search bar to instantly filter the directory across all branches.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num" style="background:var(--gold)">→</div>
+          <div class="step-body">
+            <div class="step-title">Tap a registered member</div>
+            <div class="step-desc">Members who have joined show a ✅ badge. Tap their row to see full contact details and open WhatsApp directly.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:32px">
+      <div style="font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:700;color:var(--navy);margin-bottom:14px">✏️ Editing Your Profile</div>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num" style="background:var(--gold)">→</div>
+          <div class="step-body">
+            <div class="step-title">Open your profile</div>
+            <div class="step-desc">Tap your name in the top-right corner of the screen. A dropdown appears — select "Edit My Profile."</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num" style="background:var(--gold)">→</div>
+          <div class="step-body">
+            <div class="step-title">Update your details</div>
+            <div class="step-desc">Change your phone number, address, photo, birthday, or anniversary. All changes are saved immediately to the directory.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num" style="background:var(--gold)">→</div>
+          <div class="step-body">
+            <div class="step-title">Adding a photo</div>
+            <div class="step-desc">Tap the photo circle and select an image from your phone. Photos are resized automatically — any clear headshot works well.</div>
+            <span class="step-note">📷 Your photo appears on the family tree and in your directory card</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-block">
+    <h2>Ready to join the family?</h2>
+    <p>
+      Ask Anand for the family access code and you can register in about two minutes.
+      Your information is safe, private, and entirely in your control.
+    </p>
+    <a class="cta-btn" href="https://anandsinhausa.com/balrampur" target="_blank">Open the Directory →</a>
+    <div class="cta-contact">
+      Questions? Contact Anand on WhatsApp:
+      <a href="https://wa.me/12488723057" target="_blank">+1 (248) 872-3057</a>
+    </div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <strong>The Balrampur Family Directory</strong><br>
+  Built with care by Anand Sinha · anandsinhausa.com<br>
+  <span style="font-size:.7rem">Private and confidential — for family use only</span>
+</div>
+
+</body>
+</html>
