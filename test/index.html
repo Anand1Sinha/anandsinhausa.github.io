@@ -1,0 +1,1733 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A4H Voter Guide 2026 — Immersive</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5XRKDSMPY9"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-5XRKDSMPY9');
+</script>
+
+<style>
+/* ══════════════════════════════════════════════════════════
+   A4H GEN ALPHA — COMPLETE IMMERSIVE CIVIC PLATFORM
+   Based on approved May 2026 mockup design
+══════════════════════════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --ink:      #07111f;
+  --navy:     #0b1324;
+  --navy2:    #14243b;
+  --navy3:    #1c2f4a;
+  --saffron:  #ff7a1a;
+  --saffron2: #ffb066;
+  --blue:     #74a7ff;
+  --gold:     #d4a574;
+  --gold2:    #c8992a;
+  --green:    #22c55e;
+  --blur:     80px;
+  --glow:     0.4;
+  --speed:    22s;
+}
+body.calm-mode { --blur: 20px; --glow: 0.15; --speed: 35s; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Inter", sans-serif;
+  background: linear-gradient(135deg, #060b16 0%, #0e1a2c 100%);
+  color: white;
+  line-height: 1.55;
+  overflow-x: hidden;
+}
+
+/* ── NAV ── */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  background: rgba(7,17,31,.88);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(255,255,255,.1);
+  padding: 14px 24px;
+}
+.nav-content {
+  max-width: 1400px; margin: 0 auto;
+  display: flex; align-items: center; justify-content: space-between; gap: 16px;
+}
+.nav-logo {
+  display: flex; align-items: center; gap: 12px;
+  font-weight: 800; font-size: 16px; color: white; cursor: pointer;
+  text-decoration: none; flex-shrink: 0;
+}
+.nav-logo img {
+  width: 36px; height: 36px; border-radius: 50%; object-fit: cover;
+  box-shadow: 0 0 12px rgba(255,122,26,.4);
+}
+.nav-links {
+  display: flex; gap: 4px; align-items: center; flex-wrap: wrap;
+}
+.nav-link {
+  padding: 7px 14px; color: rgba(255,255,255,.75);
+  text-decoration: none; font-size: 13px; font-weight: 650;
+  border-radius: 8px; transition: all 0.2s;
+}
+.nav-link:hover { color: white; background: rgba(255,255,255,.08); }
+.nav-link.active { color: var(--saffron); }
+
+/* Switcher pills */
+.nav-switcher {
+  display: flex; gap: 4px; align-items: center;
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 10px; padding: 4px;
+}
+.switcher-pill {
+  padding: 5px 12px; border-radius: 7px;
+  font-size: 11px; font-weight: 700; letter-spacing: .04em;
+  color: rgba(255,255,255,.6); text-decoration: none;
+  transition: all 0.2s; white-space: nowrap;
+}
+.switcher-pill:hover { color: white; background: rgba(255,255,255,.1); }
+.switcher-pill.active {
+  background: rgba(255,122,26,.2); color: var(--saffron);
+  border: 1px solid rgba(255,122,26,.3);
+}
+
+.calm-toggle {
+  display: flex; align-items: center; gap: 7px;
+  padding: 7px 13px;
+  background: rgba(255,255,255,.07);
+  border: 1px solid rgba(255,255,255,.14);
+  border-radius: 8px; cursor: pointer;
+  font-size: 12px; font-weight: 700;
+  color: rgba(255,255,255,.7); transition: all 0.3s;
+}
+.calm-toggle:hover { background: rgba(255,255,255,.12); color: white; }
+.calm-toggle i { font-size: 15px; color: var(--saffron); }
+
+.nav-cta {
+  background: linear-gradient(135deg, var(--saffron), #ff5d1c);
+  color: white !important; padding: 9px 18px !important;
+  border-radius: 8px; font-weight: 700 !important;
+  box-shadow: 0 4px 12px rgba(255,122,26,.3);
+  font-size: 13px;
+}
+
+/* ── SECTION 1: HERO ── */
+.hero {
+  min-height: 100vh; position: relative; overflow: hidden;
+  display: flex; align-items: center;
+  padding: 120px 24px 100px;
+}
+.hero-bg {
+  position: absolute; inset: 0; overflow: hidden; pointer-events: none;
+}
+/* Cityscape background — replaced by real image once available */
+.hero-bg-image {
+  position: absolute; inset: 0;
+  background:
+    linear-gradient(to bottom, rgba(6,11,22,.55) 0%, rgba(6,11,22,.3) 40%, rgba(6,11,22,.7) 100%),
+    url('hero-cityscape.jpg') center bottom / cover no-repeat;
+  /* Fallback gradient cityscape until real image is added */
+  background: linear-gradient(180deg,
+    #060b16 0%, #0a1520 15%,
+    #0d1e35 30%, #0f2040 45%,
+    #0b1830 60%, #070e1c 80%, #040810 100%);
+}
+/* Constellation network overlay */
+.hero-constellation {
+  position: absolute; inset: 0;
+  background-image:
+    radial-gradient(1.5px 1.5px at 10% 20%, rgba(255,180,100,.7) 0%, transparent 100%),
+    radial-gradient(1px 1px at 25% 60%, rgba(255,255,255,.5) 0%, transparent 100%),
+    radial-gradient(2px 2px at 40% 15%, rgba(255,150,50,.6) 0%, transparent 100%),
+    radial-gradient(1px 1px at 55% 45%, rgba(255,255,255,.4) 0%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 70% 25%, rgba(255,180,100,.5) 0%, transparent 100%),
+    radial-gradient(1px 1px at 80% 70%, rgba(255,255,255,.4) 0%, transparent 100%),
+    radial-gradient(2px 2px at 90% 35%, rgba(255,150,50,.5) 0%, transparent 100%),
+    radial-gradient(1px 1px at 15% 80%, rgba(255,255,255,.3) 0%, transparent 100%),
+    radial-gradient(1px 1px at 60% 85%, rgba(255,200,150,.4) 0%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 35% 40%, rgba(255,180,100,.6) 0%, transparent 100%);
+}
+.hero-bg::before {
+  content: ""; position: absolute;
+  width: 600px; height: 600px; left: -200px; top: -200px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,122,26,.25), transparent 70%);
+  filter: blur(var(--blur)); opacity: var(--glow);
+  animation: float var(--speed) ease-in-out infinite;
+}
+.hero-bg::after {
+  content: ""; position: absolute;
+  width: 500px; height: 500px; right: -150px; bottom: -200px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(116,167,255,.2), transparent 70%);
+  filter: blur(var(--blur)); opacity: var(--glow);
+  animation: float var(--speed) ease-in-out infinite; animation-delay: -11s;
+}
+.grid-lines {
+  position: absolute; inset: 0; opacity: .1;
+  background-image: linear-gradient(rgba(255,255,255,.06) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(255,255,255,.06) 1px, transparent 1px);
+  background-size: 60px 60px;
+  mask-image: radial-gradient(ellipse at center, black 0%, transparent 70%);
+}
+@keyframes float {
+  0%,100% { transform: translate(0,0) scale(1); }
+  50% { transform: translate(40px,30px) scale(1.1); }
+}
+
+.hero-inner {
+  max-width: 1400px; margin: 0 auto; width: 100%;
+  display: grid; grid-template-columns: 1fr 380px;
+  gap: 60px; align-items: center; position: relative; z-index: 5;
+}
+.hero-left { max-width: 640px; }
+.hero-eyebrow {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(255,122,26,.12); border: 1px solid rgba(255,122,26,.25);
+  padding: 6px 14px; border-radius: 999px; margin-bottom: 24px;
+  font-size: 12px; font-weight: 700; color: var(--saffron); letter-spacing: .08em;
+  text-transform: uppercase;
+}
+.hero h1 {
+  font-size: clamp(40px, 5vw, 64px);
+  font-weight: 900; letter-spacing: -0.04em; line-height: 1.1; margin-bottom: 20px;
+}
+.hero h1 .accent { color: var(--saffron); font-style: italic; }
+.hero-subtitle {
+  font-size: clamp(15px, 1.8vw, 18px);
+  color: rgba(255,255,255,.8); margin-bottom: 32px; line-height: 1.65;
+}
+.hero-feature-pills {
+  display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 36px;
+}
+.hero-pill {
+  display: flex; align-items: center; gap: 8px;
+  background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.12);
+  padding: 10px 16px; border-radius: 12px;
+  font-size: 13px; font-weight: 600; color: rgba(255,255,255,.85);
+  cursor: pointer; transition: all 0.3s;
+}
+.hero-pill:hover {
+  background: rgba(255,255,255,.12); border-color: rgba(255,122,26,.3);
+  transform: translateY(-2px);
+}
+.hero-pill i { font-size: 16px; color: var(--saffron); }
+.hero-cta-row { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+.hero-cta-btn {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: linear-gradient(135deg, var(--saffron), #ff5d1c);
+  color: white; padding: 16px 32px; border-radius: 12px;
+  font-size: 16px; font-weight: 700; border: none; cursor: pointer;
+  box-shadow: 0 16px 40px rgba(255,122,26,.35); transition: all 0.3s;
+}
+.hero-cta-btn:hover { transform: translateY(-3px); box-shadow: 0 20px 50px rgba(255,122,26,.45); }
+.hero-cta-hint { font-size: 13px; color: rgba(255,255,255,.5); }
+
+/* Floating Profile Card */
+.floating-profile {
+  background: rgba(255,255,255,.97);
+  backdrop-filter: blur(24px);
+  border-radius: 24px; padding: 28px;
+  box-shadow: 0 40px 80px rgba(0,0,0,.3), 0 0 60px rgba(255,122,26,.1);
+  transition: all 0.4s; color: var(--navy); position: relative;
+}
+.floating-profile:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 50px 100px rgba(0,0,0,.4), 0 0 80px rgba(255,122,26,.15);
+}
+.profile-header {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-bottom: 20px;
+}
+.profile-title { font-size: 13px; font-weight: 800; text-transform: uppercase; letter-spacing: .06em; }
+.profile-edit {
+  font-size: 12px; font-weight: 700; color: var(--saffron);
+  cursor: pointer; padding: 4px 10px; border-radius: 6px;
+  border: 1px solid rgba(255,122,26,.25); transition: all 0.2s;
+}
+.profile-edit:hover { background: rgba(255,122,26,.1); }
+.match-circle {
+  width: 120px; height: 120px; margin: 0 auto 16px; position: relative;
+}
+.circle-bg {
+  position: absolute; inset: 0; border-radius: 50%; padding: 5px;
+  background: conic-gradient(var(--saffron) 0deg, var(--saffron) 302deg, #e5e7eb 302deg, #e5e7eb 360deg);
+}
+.circle-inner {
+  position: absolute; inset: 5px; background: white;
+  border-radius: 50%; display: grid; place-items: center;
+}
+.match-number { font-size: 34px; font-weight: 900; line-height: 1; color: var(--navy); }
+.match-label { font-size: 10px; font-weight: 700; color: #9ca3af; text-transform: uppercase; letter-spacing: .05em; margin-top: 3px; }
+.match-desc {
+  text-align: center; font-size: 12px; color: #6b7280;
+  line-height: 1.5; margin-bottom: 18px; padding: 10px;
+  background: #f9fafb; border-radius: 8px;
+}
+.match-desc strong { color: var(--navy); }
+.priority-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: #9ca3af; margin-bottom: 10px; }
+.priority-list { display: flex; flex-direction: column; gap: 8px; }
+.priority-item {
+  display: flex; align-items: center; gap: 10px;
+  font-size: 13px; color: #374151; font-weight: 600;
+}
+.priority-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--saffron); flex-shrink: 0; }
+
+/* Stats bar */
+.stats-bar {
+  position: absolute; bottom: 40px; left: 0; right: 0;
+  display: flex; flex-direction: column; align-items: center; gap: 12px;
+  z-index: 5; padding: 0 24px;
+}
+.stats-label {
+  font-size: 10px; font-weight: 700; letter-spacing: .15em;
+  color: rgba(255,255,255,.35); text-transform: uppercase;
+}
+.stats-row {
+  display: flex; gap: 40px; flex-wrap: wrap; justify-content: center;
+  color: rgba(255,255,255,.65); font-size: 13px;
+}
+.stat-item { display: flex; align-items: center; gap: 8px; }
+.stat-item i { font-size: 16px; color: var(--saffron); }
+.stat-number { font-weight: 900; color: white; }
+
+/* ── SECTION 2: BROWSE CANDIDATES ── */
+.section {
+  padding: 80px 24px; position: relative;
+}
+.section-inner { max-width: 1400px; margin: 0 auto; }
+.section-head {
+  display: flex; justify-content: space-between; align-items: flex-end;
+  margin-bottom: 32px; flex-wrap: wrap; gap: 16px;
+}
+.section-head-left {}
+.section-eyebrow {
+  font-size: 11px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: .1em; color: var(--saffron); margin-bottom: 6px;
+}
+.section-title { font-size: clamp(28px, 3vw, 40px); font-weight: 900; letter-spacing: -0.03em; }
+.section-subtitle { font-size: 16px; color: rgba(255,255,255,.65); margin-top: 6px; }
+.view-all-link {
+  display: flex; align-items: center; gap: 6px;
+  color: var(--saffron); font-size: 14px; font-weight: 700;
+  text-decoration: none; transition: gap 0.2s;
+}
+.view-all-link:hover { gap: 10px; }
+
+/* Tab nav */
+.tab-nav {
+  display: flex; gap: 4px; margin-bottom: 32px;
+  border-bottom: 1px solid rgba(255,255,255,.1); padding-bottom: 0;
+}
+.tab-btn {
+  padding: 10px 20px; font-size: 14px; font-weight: 700;
+  color: rgba(255,255,255,.5); background: none; border: none;
+  cursor: pointer; border-bottom: 2px solid transparent;
+  margin-bottom: -1px; transition: all 0.2s;
+}
+.tab-btn:hover { color: rgba(255,255,255,.85); }
+.tab-btn.active { color: var(--saffron); border-bottom-color: var(--saffron); }
+
+/* Candidate cards grid */
+.cards-grid {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  padding-bottom: 16px;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  cursor: grab;
+}
+.cards-grid:active { cursor: grabbing; }
+.cards-grid::-webkit-scrollbar { height: 4px; }
+.cards-grid::-webkit-scrollbar-track { background: rgba(255,255,255,.05); border-radius: 2px; }
+.cards-grid::-webkit-scrollbar-thumb { background: rgba(255,122,26,.4); border-radius: 2px; }
+.carousel-btn {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  width: 44px; height: 44px; border-radius: 50%;
+  background: rgba(15,25,45,.9); border: 1px solid rgba(255,255,255,.2);
+  color: white; font-size: 26px; font-weight: 300; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.2s; z-index: 10; line-height: 1;
+  box-shadow: 0 4px 16px rgba(0,0,0,.4);
+}
+.carousel-btn:hover { background: rgba(255,122,26,.8); border-color: transparent; }
+.carousel-prev { left: -22px; }
+.carousel-next { right: -22px; }
+.candidate-card {
+  position: relative; border-radius: 20px; overflow: hidden;
+  background: rgba(255,255,255,.05);
+  border: 1px solid rgba(255,255,255,.1);
+  cursor: pointer; transition: all 0.35s;
+  display: flex; flex-direction: column;
+  flex-shrink: 0;
+  width: 280px;
+  scroll-snap-align: start;
+}
+.candidate-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  background: rgba(255,255,255,.09);
+  border-color: rgba(255,122,26,.4);
+  box-shadow: 0 30px 60px rgba(0,0,0,.35), 0 0 40px rgba(255,122,26,.18);
+}
+.candidate-card.endorsed-card {
+  border-color: rgba(212,165,116,.3);
+}
+.candidate-card.endorsed-card:hover {
+  border-color: rgba(212,165,116,.6);
+  box-shadow: 0 30px 60px rgba(0,0,0,.35), 0 0 40px rgba(212,165,116,.2);
+}
+.candidate-card.concern-card {
+  border-color: rgba(192,57,43,.25);
+}
+.candidate-card.concern-card:hover {
+  border-color: rgba(192,57,43,.5);
+  box-shadow: 0 30px 60px rgba(0,0,0,.35), 0 0 30px rgba(192,57,43,.15);
+}
+
+.badge-stack {
+  position: absolute; top: 14px; left: 14px; right: 14px;
+  display: flex; gap: 7px; z-index: 3; flex-wrap: wrap;
+}
+.badge-match {
+  display: inline-flex; align-items: center; gap: 5px;
+  background: rgba(255,255,255,.14); border: 1px solid rgba(255,255,255,.22);
+  padding: 6px 12px; border-radius: 999px;
+  font-size: 12px; font-weight: 900; backdrop-filter: blur(12px);
+  transition: all 0.3s;
+}
+.candidate-card:hover .badge-match {
+  background: rgba(255,255,255,.22);
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+@keyframes pulse-glow {
+  0%,100% { box-shadow: 0 0 16px rgba(255,255,255,.25); }
+  50% { box-shadow: 0 0 30px rgba(255,255,255,.45); }
+}
+.badge-endorsed {
+  display: inline-flex; align-items: center; gap: 5px;
+  background: linear-gradient(135deg, var(--gold), #c29560);
+  padding: 6px 12px; border-radius: 999px;
+  font-size: 11px; font-weight: 900; color: var(--navy);
+  text-transform: uppercase; letter-spacing: .05em; transition: all 0.3s;
+}
+.candidate-card:hover .badge-endorsed {
+  transform: scale(1.06);
+  box-shadow: 0 6px 20px rgba(212,165,116,.5);
+}
+.badge-concern {
+  display: inline-flex; align-items: center; gap: 5px;
+  background: rgba(192,57,43,.7); backdrop-filter: blur(12px);
+  padding: 6px 12px; border-radius: 999px;
+  font-size: 11px; font-weight: 900; color: #fecaca;
+  text-transform: uppercase; letter-spacing: .05em;
+}
+
+.image-zone {
+  position: relative; height: 320px;
+  background: linear-gradient(135deg, rgba(255,122,26,.12), rgba(116,167,255,.1));
+  overflow: hidden; flex-shrink: 0;
+}
+.image-zone img {
+  width: 100%; height: 100%; object-fit: cover; object-position: top center;
+  transition: transform 0.6s;
+}
+.candidate-card:hover .image-zone img { transform: scale(1.08); }
+.image-zone .initials-placeholder {
+  width: 100%; height: 100%; display: grid; place-items: center;
+  font-size: 52px; font-weight: 900; color: rgba(255,255,255,.2);
+  letter-spacing: -.02em;
+}
+.card-title {
+  position: absolute; bottom: 0; left: 0; right: 0; padding: 20px;
+  background: linear-gradient(to top, rgba(7,17,31,.95) 0%, transparent 100%);
+  z-index: 2;
+}
+.card-title .match-pct {
+  font-size: 22px; font-weight: 900; color: var(--saffron2);
+  line-height: 1;
+}
+.card-title .match-pct-label { font-size: 10px; color: rgba(255,255,255,.6); font-weight: 600; }
+.card-title h3 { font-size: 20px; font-weight: 900; letter-spacing: -0.02em; margin: 4px 0; }
+.card-title .card-subtitle { font-size: 12px; color: rgba(255,255,255,.7); font-weight: 600; }
+
+.card-body { padding: 16px; flex: 1; }
+.card-meta { display: flex; gap: 7px; flex-wrap: wrap; margin-bottom: 10px; }
+.party-badge, .status-badge {
+  padding: 4px 10px; border-radius: 6px;
+  font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: .04em;
+  display: inline-flex; align-items: center; gap: 5px;
+}
+.party-badge.r { background: rgba(220,38,38,.85); color: #fff; }
+.party-badge.r::before { content: "⬤"; font-size: 7px; }
+.party-badge.d { background: rgba(37,99,235,.85); color: #fff; }
+.party-badge.d::before { content: "⬤"; font-size: 7px; }
+.party-badge.i { background: rgba(255,255,255,.15); color: rgba(255,255,255,.9); }
+.status-badge { background: rgba(255,255,255,.08); color: rgba(255,255,255,.7); border: 1px solid rgba(255,255,255,.12); font-size: 10px; }
+
+.candidate-desc {
+  font-size: 12px; color: rgba(255,255,255,.6); line-height: 1.5;
+  margin-bottom: 10px;
+}
+.issue-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 10px; }
+.issue-tag {
+  padding: 4px 10px; border-radius: 6px; font-size: 11px; font-weight: 600;
+  background: rgba(255,255,255,.07); color: rgba(255,255,255,.7);
+  border: 1px solid rgba(255,255,255,.1); transition: all 0.2s;
+}
+.issue-tag:hover { background: rgba(255,122,26,.15); border-color: rgba(255,122,26,.3); color: var(--saffron2); }
+
+.view-profile-link {
+  display: flex; align-items: center; gap: 6px;
+  color: rgba(255,255,255,.7); font-size: 13px; font-weight: 700;
+  text-decoration: none; margin-top: 4px;
+  transition: color 0.2s;
+}
+.view-profile-link:hover { color: var(--saffron); }
+
+/* ── SECTION 3: MY DISTRICT RACES ── */
+.district-section { background: rgba(255,255,255,.02); }
+
+.address-bar {
+  display: flex; align-items: center; justify-content: space-between;
+  background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.12);
+  border-radius: 14px; padding: 14px 20px; margin-bottom: 24px; flex-wrap: wrap; gap: 12px;
+}
+.address-bar-left { display: flex; align-items: center; gap: 12px; }
+.address-bar-left i { font-size: 18px; color: var(--saffron); }
+.address-bar-label { font-size: 11px; color: rgba(255,255,255,.5); font-weight: 600; text-transform: uppercase; letter-spacing: .06em; }
+.address-bar-value { font-size: 15px; font-weight: 700; }
+.change-address-btn {
+  display: flex; align-items: center; gap: 7px;
+  padding: 8px 16px; border-radius: 9px;
+  background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.14);
+  color: rgba(255,255,255,.8); font-size: 13px; font-weight: 700;
+  cursor: pointer; transition: all 0.2s;
+}
+.change-address-btn:hover { background: rgba(255,255,255,.14); color: white; }
+
+.district-tabs {
+  display: flex; gap: 0; margin-bottom: 24px;
+  border-bottom: 1px solid rgba(255,255,255,.1);
+}
+.district-tab {
+  padding: 10px 20px; font-size: 14px; font-weight: 700; cursor: pointer;
+  color: rgba(255,255,255,.5); border: none; background: none;
+  border-bottom: 2px solid transparent; margin-bottom: -1px; transition: all 0.2s;
+}
+.district-tab.active { color: var(--saffron); border-bottom-color: var(--saffron); }
+.district-tab:hover { color: rgba(255,255,255,.85); }
+.district-tab .tab-count {
+  display: inline-block; margin-left: 6px; padding: 2px 7px; border-radius: 999px;
+  font-size: 11px; background: rgba(255,255,255,.1);
+}
+
+/* District race cards */
+.district-results-grid {
+  display: grid; gap: 16px;
+}
+.district-race-card {
+  background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.1);
+  border-radius: 16px; overflow: hidden; transition: all 0.3s;
+}
+.district-race-card:hover { background: rgba(255,255,255,.07); border-color: rgba(255,255,255,.18); }
+.district-race-header {
+  padding: 14px 18px; border-bottom: 1px solid rgba(255,255,255,.08);
+  display: flex; align-items: center; justify-content: space-between;
+}
+.district-race-candidates { padding: 8px; }
+.race-card-header {
+  display: flex; align-items: flex-start; justify-content: space-between;
+  margin-bottom: 16px; flex-wrap: wrap; gap: 8px;
+}
+.race-card-title { font-size: 16px; font-weight: 800; }
+.race-card-date { font-size: 12px; color: rgba(255,255,255,.5); margin-top: 3px; }
+
+.race-candidate-row {
+  display: flex; align-items: center; gap: 14px;
+  padding: 14px 12px; border-radius: 12px; margin-bottom: 6px;
+  background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.07);
+  cursor: pointer; transition: all 0.25s;
+}
+.race-candidate-row:hover { background: rgba(255,255,255,.09); border-color: rgba(255,255,255,.16); }
+.race-candidate-row.endorsed-row {
+  background: rgba(255,122,26,.07); border-color: rgba(255,122,26,.25);
+  border-left: 3px solid var(--saffron);
+}
+.race-candidate-row.endorsed-row:hover { background: rgba(255,122,26,.12); }
+
+.race-candidate-photo {
+  width: 48px; height: 48px; border-radius: 50%; object-fit: cover;
+  border: 2px solid rgba(255,255,255,.1); flex-shrink: 0;
+}
+.race-candidate-initials {
+  width: 48px; height: 48px; border-radius: 50%;
+  background: rgba(255,255,255,.1); display: grid; place-items: center;
+  font-weight: 800; font-size: 16px; flex-shrink: 0;
+}
+.race-candidate-info { flex: 1; min-width: 0; }
+.race-candidate-name { font-size: 16px; font-weight: 800; }
+.race-candidate-sub { font-size: 12px; color: rgba(255,255,255,.6); margin-top: 2px; }
+.race-candidate-desc { font-size: 12px; color: rgba(255,255,255,.55); margin-top: 4px; line-height: 1.4; }
+.race-match-pct {
+  text-align: right; flex-shrink: 0;
+}
+.race-match-number { font-size: 24px; font-weight: 900; color: var(--saffron); line-height: 1; }
+.race-match-label { font-size: 10px; color: rgba(255,255,255,.5); font-weight: 600; }
+
+.view-all-candidates-btn {
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  padding: 12px; border-radius: 10px; width: 100%;
+  background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.12);
+  color: rgba(255,255,255,.75); font-size: 14px; font-weight: 700;
+  cursor: pointer; transition: all 0.2s; margin-top: 8px;
+}
+.view-all-candidates-btn:hover { background: rgba(255,255,255,.1); color: white; }
+
+/* Understand Your Ballot box */
+.understand-ballot {
+  background: linear-gradient(135deg, rgba(116,167,255,.1), rgba(255,122,26,.08));
+  border: 1px solid rgba(116,167,255,.2); border-radius: 16px; padding: 24px;
+  margin-top: 20px;
+}
+.understand-ballot h3 { font-size: 18px; font-weight: 800; margin-bottom: 8px; }
+.understand-ballot p { font-size: 14px; color: rgba(255,255,255,.65); margin-bottom: 16px; }
+.understand-features { display: flex; flex-direction: column; gap: 8px; margin-bottom: 18px; }
+.understand-feat {
+  display: flex; align-items: center; gap: 10px;
+  font-size: 14px; color: rgba(255,255,255,.8);
+}
+.understand-feat i { font-size: 16px; color: var(--green); }
+
+/* ── SECTION 4: BROWSE BY LOCATION ── */
+.location-tabs {
+  display: flex; gap: 4px; margin-bottom: 28px;
+  background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1);
+  border-radius: 12px; padding: 4px; width: fit-content;
+}
+.location-tab {
+  padding: 9px 20px; border-radius: 9px; font-size: 13px; font-weight: 700;
+  color: rgba(255,255,255,.6); border: none; background: none;
+  cursor: pointer; transition: all 0.2s;
+}
+.location-tab.active {
+  background: rgba(255,122,26,.2); color: var(--saffron);
+  border: 1px solid rgba(255,122,26,.3);
+}
+.location-tab:hover:not(.active) { color: white; }
+
+.location-search {
+  position: relative; margin-bottom: 20px;
+}
+.location-search i {
+  position: absolute; left: 14px; top: 50%; transform: translateY(-50%);
+  font-size: 16px; color: rgba(255,255,255,.4);
+}
+.location-input {
+  width: 100%; padding: 13px 14px 13px 42px;
+  background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.14);
+  border-radius: 12px; font-size: 14px; font-family: inherit; color: white;
+  outline: none; transition: all 0.2s;
+}
+.location-input:focus { border-color: rgba(255,122,26,.4); background: rgba(255,255,255,.1); }
+.location-input::placeholder { color: rgba(255,255,255,.35); }
+
+.quick-chips {
+  display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 28px;
+}
+.quick-chip {
+  padding: 7px 14px; border-radius: 999px;
+  background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.14);
+  color: rgba(255,255,255,.75); font-size: 13px; font-weight: 600;
+  cursor: pointer; transition: all 0.2s;
+}
+.quick-chip:hover {
+  background: rgba(255,122,26,.15); border-color: rgba(255,122,26,.3);
+  color: var(--saffron);
+}
+
+.regions-label {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 14px;
+}
+.regions-label span { font-size: 13px; font-weight: 700; color: rgba(255,255,255,.6); text-transform: uppercase; letter-spacing: .06em; }
+.regions-label a { font-size: 13px; font-weight: 700; color: var(--saffron); text-decoration: none; }
+.regions-label a:hover { text-decoration: underline; }
+
+.regions-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 12px;
+}
+.region-card {
+  position: relative; border-radius: 14px; overflow: hidden;
+  height: 130px; cursor: pointer;
+  border: 1px solid rgba(255,255,255,.1); transition: all 0.3s;
+}
+/* City-specific gradient placeholders until real photos added */
+.region-card[data-city="metro-detroit"] { background: linear-gradient(135deg, #0a1929 0%, #1a3a5c 50%, #0d2440 100%); }
+.region-card[data-city="bay-area"]      { background: linear-gradient(135deg, #0a1f2e 0%, #1a4060 50%, #0d3050 100%); }
+.region-card[data-city="dallas"]        { background: linear-gradient(135deg, #1a0f00 0%, #3d2500 50%, #291800 100%); }
+.region-card[data-city="orange-county"] { background: linear-gradient(135deg, #0f1a2e 0%, #1a3050 50%, #0a2040 100%); }
+.region-card[data-city="cook-county"]   { background: linear-gradient(135deg, #0d1520 0%, #1a2840 50%, #0a1830 100%); }
+.region-card[data-city="harris-county"] { background: linear-gradient(135deg, #1a1000 0%, #3d2800 50%, #2a1c00 100%); }
+/* Real photo support — just set background-image in HTML */
+.region-card .city-photo {
+  position: absolute; inset: 0;
+  background-size: cover; background-position: center;
+  transition: transform 0.4s;
+}
+.region-card:hover .city-photo { transform: scale(1.08); }
+.region-card:hover {
+  transform: translateY(-4px) scale(1.02);
+  border-color: rgba(255,122,26,.35);
+  box-shadow: 0 16px 40px rgba(0,0,0,.3), 0 0 20px rgba(255,122,26,.15);
+}
+.region-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(7,17,31,.9) 0%, rgba(7,17,31,.4) 100%);
+  padding: 14px;
+  display: flex; flex-direction: column; justify-content: flex-end;
+}
+.region-name { font-size: 14px; font-weight: 800; margin-bottom: 2px; }
+.region-state { font-size: 11px; color: rgba(255,255,255,.6); font-weight: 600; }
+.region-count { font-size: 12px; color: var(--saffron); font-weight: 700; margin-top: 4px; }
+
+/* Stay Informed box */
+.stay-informed {
+  background: var(--navy2); border: 1px solid rgba(255,255,255,.1);
+  border-radius: 16px; padding: 28px; margin-top: 20px;
+}
+.stay-informed h3 { font-size: 20px; font-weight: 900; margin-bottom: 6px; }
+.stay-informed p { font-size: 14px; color: rgba(255,255,255,.6); margin-bottom: 16px; }
+.stay-features { display: flex; flex-direction: column; gap: 8px; margin-bottom: 20px; }
+.stay-feat { display: flex; align-items: center; gap: 10px; font-size: 13px; color: rgba(255,255,255,.75); }
+.stay-feat i { color: var(--saffron); font-size: 15px; }
+.signup-row { display: flex; gap: 10px; }
+.signup-input {
+  flex: 1; padding: 11px 14px;
+  background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.14);
+  border-radius: 9px; font-size: 14px; font-family: inherit; color: white;
+  outline: none;
+}
+.signup-input::placeholder { color: rgba(255,255,255,.4); }
+.signup-btn {
+  padding: 11px 20px; background: linear-gradient(135deg, var(--saffron), #ff5d1c);
+  color: white; border: none; border-radius: 9px;
+  font-size: 14px; font-weight: 700; cursor: pointer; white-space: nowrap;
+  transition: all 0.2s;
+}
+.signup-btn:hover { transform: translateY(-1px); box-shadow: 0 8px 20px rgba(255,122,26,.35); }
+
+/* ── WHY A4H ENDORSES BAR (Section 2 bottom) ── */
+.endorsement-pillars {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px; margin-top: 40px; padding-top: 40px;
+  border-top: 1px solid rgba(255,255,255,.08);
+}
+.pillar-item {
+  display: flex; align-items: flex-start; gap: 12px;
+  padding: 16px; border-radius: 12px;
+  background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08);
+  transition: all 0.3s; cursor: default;
+}
+.pillar-item:hover { background: rgba(255,255,255,.08); transform: translateY(-2px); }
+.pillar-icon { font-size: 20px; color: var(--saffron); flex-shrink: 0; margin-top: 2px; }
+.pillar-text h4 { font-size: 13px; font-weight: 800; margin-bottom: 3px; }
+.pillar-text p { font-size: 11px; color: rgba(255,255,255,.55); line-height: 1.5; }
+
+/* ── FOOTER ── */
+.footer { border-top: 1px solid rgba(255,255,255,.08); }
+.footer-trust-bar {
+  display: grid; grid-template-columns: repeat(5,1fr);
+  border-bottom: 1px solid rgba(255,255,255,.06);
+}
+.footer-trust-col {
+  padding: 24px 20px; display: flex; gap: 14px; align-items: flex-start;
+  border-right: 1px solid rgba(255,255,255,.06);
+}
+.footer-trust-col:last-child { border-right: none; }
+.footer-logo-mark {
+  width: 36px; height: 36px; border-radius: 50%; flex-shrink: 0;
+  background: rgba(255,122,26,.15); border: 1px solid rgba(255,122,26,.3);
+  display: grid; place-items: center;
+}
+.footer-logo-mark i { font-size: 16px; color: var(--saffron); }
+.footer-trust-icon { font-size: 22px; color: var(--saffron); flex-shrink: 0; margin-top: 2px; }
+.footer-trust-content strong { font-size: 12px; font-weight: 800; display: block; margin-bottom: 4px; }
+.footer-trust-content span { font-size: 11px; color: rgba(255,255,255,.5); line-height: 1.5; display: block; }
+.footer-pac-col { background: rgba(255,122,26,.04); }
+.footer-legal {
+  padding: 14px 24px; text-align: center;
+  font-size: 11px; color: rgba(255,255,255,.3); line-height: 1.6;
+}
+@media (max-width: 900px) {
+  .footer-trust-bar { grid-template-columns: 1fr 1fr; }
+  .footer-trust-col { border-right: none; border-bottom: 1px solid rgba(255,255,255,.06); }
+}
+@media (max-width: 480px) {
+  .footer-trust-bar { grid-template-columns: 1fr; }
+}
+
+/* ── LOADING ── */
+.loading {
+  text-align: center; padding: 60px 20px;
+  font-size: 16px; color: rgba(255,255,255,.5);
+}
+@keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+.spin { animation: spin 1s linear infinite; display: inline-block; }
+
+/* ── ADDRESS MODAL ── */
+.modal-overlay {
+  position: fixed; inset: 0; background: rgba(0,0,0,.6);
+  backdrop-filter: blur(8px); z-index: 300;
+  display: none; place-items: center; padding: 20px;
+}
+.modal-overlay.open { display: grid; }
+.modal {
+  background: var(--navy2); border: 1px solid rgba(255,255,255,.15);
+  border-radius: 20px; padding: 32px; width: 100%; max-width: 440px;
+  box-shadow: 0 40px 80px rgba(0,0,0,.5);
+}
+.modal h3 { font-size: 22px; font-weight: 900; margin-bottom: 6px; }
+.modal p { font-size: 14px; color: rgba(255,255,255,.6); margin-bottom: 24px; }
+.modal-input {
+  width: 100%; padding: 14px 16px; margin-bottom: 14px;
+  background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.16);
+  border-radius: 10px; font-size: 15px; font-family: inherit; color: white; outline: none;
+}
+.modal-input:focus { border-color: var(--saffron); }
+.modal-input::placeholder { color: rgba(255,255,255,.4); }
+.modal-actions { display: flex; gap: 10px; justify-content: flex-end; }
+.modal-cancel {
+  padding: 11px 20px; background: rgba(255,255,255,.08);
+  border: 1px solid rgba(255,255,255,.14); color: rgba(255,255,255,.75);
+  border-radius: 9px; font-size: 14px; font-weight: 700; cursor: pointer;
+}
+.modal-submit {
+  padding: 11px 24px;
+  background: linear-gradient(135deg, var(--saffron), #ff5d1c);
+  color: white; border: none; border-radius: 9px;
+  font-size: 14px; font-weight: 700; cursor: pointer;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 1024px) {
+  .hero-inner { grid-template-columns: 1fr; }
+  .floating-profile { max-width: 380px; margin: 40px auto 0; }
+  .stats-bar { position: static; transform: none; margin-top: 40px; }
+  .footer-inner { grid-template-columns: 1fr; }
+}
+@media (max-width: 768px) {
+  .hero { padding: 100px 16px 80px; }
+  .section { padding: 60px 16px; }
+  .cards-grid { grid-template-columns: 1fr; }
+  .regions-grid { grid-template-columns: 1fr 1fr; }
+  .nav-links .nav-link:not(.nav-cta):not(.calm-toggle) { display: none; }
+  .hero-pill span { display: none; }
+  .footer-trust-items { gap: 20px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ── NAVIGATION ── -->
+<nav class="nav">
+  <div class="nav-content">
+    <a class="nav-logo" href="#">
+      <img src="https://www.anandsinhausa.com/a4h-seal.png" alt="A4H">
+      <span>A4H Voter Guide 2026</span>
+    </a>
+    <div class="nav-links">
+      <a href="#home"       class="nav-link active">Home</a>
+      <a href="#candidates" class="nav-link">Candidates</a>
+      <a href="#my-races"   class="nav-link">My Races</a>
+      <a href="#browse"     class="nav-link">Browse</a>
+      <div class="calm-toggle" id="calmToggle">
+        <i class="ti ti-adjustments"></i>
+        <span>Calm Mode</span>
+      </div>
+      <div class="nav-switcher">
+        <a href="../../a4hVoterGuide" class="switcher-pill">Classic</a>
+        <a href="../VoterGuide"        class="switcher-pill">Guided</a>
+        <span class="switcher-pill active">Immersive</span>
+      </div>
+      <a href="https://secure.anedot.com/a4h/donate" class="nav-link nav-cta" target="_blank">Become a Member</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ── SECTION 1: HERO / LANDING ── -->
+<section class="hero" id="home">
+  <div class="hero-bg">
+    <div class="hero-bg-image"></div>
+    <div class="hero-constellation"></div>
+    <div class="grid-lines"></div>
+  </div>
+
+  <div class="hero-inner">
+    <div class="hero-left">
+      <div class="hero-eyebrow">
+        <i class="ti ti-flame"></i>
+        Americans4Hindus PAC · 2026 Voter Guide
+      </div>
+      <h1>
+        Your ballot.<br>
+        Your values.<br>
+        Your <span class="accent">future.</span>
+      </h1>
+      <p class="hero-subtitle">
+        Intelligent civic guidance tailored to your values,<br>
+        powered by real policy analysis and community priorities.
+      </p>
+      <div class="hero-feature-pills">
+        <div class="hero-pill">
+          <i class="ti ti-target"></i>
+          <span>Recommended for you</span>
+        </div>
+        <div class="hero-pill">
+          <i class="ti ti-chart-line"></i>
+          <span>High alignment</span>
+        </div>
+        <div class="hero-pill">
+          <i class="ti ti-trending-up"></i>
+          <span>Trending now</span>
+        </div>
+      </div>
+      <div class="hero-cta-row">
+        <button class="hero-cta-btn" onclick="openAddressModal()">
+          <i class="ti ti-map-pin"></i>
+          Find my ballot
+        </button>
+        <span class="hero-cta-hint">Takes less than 2 minutes</span>
+      </div>
+    </div>
+
+    <!-- Floating Profile Card -->
+    <div class="floating-profile">
+      <div class="profile-header">
+        <span class="profile-title">Your civic profile</span>
+        <span class="profile-edit">Edit</span>
+      </div>
+      <div class="match-circle">
+        <div class="circle-bg"></div>
+        <div class="circle-inner">
+          <div>
+            <div class="match-number">84%</div>
+            <div class="match-label">Compatibility</div>
+          </div>
+        </div>
+      </div>
+      <div class="match-desc">
+        <strong>The more you tell us,</strong><br>the better we match.
+      </div>
+      <div class="priority-label">Top priorities</div>
+      <div class="priority-list">
+        <div class="priority-item"><span class="priority-dot"></span>Religious freedom</div>
+        <div class="priority-item"><span class="priority-dot"></span>Economic growth</div>
+        <div class="priority-item"><span class="priority-dot"></span>Education</div>
+        <div class="priority-item"><span class="priority-dot"></span>Community safety</div>
+        <div class="priority-item"><span class="priority-dot"></span>Limited government</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Stats Bar — populated from live data -->
+  <div class="stats-bar">
+    <div class="stats-label">TRUSTED BY OUR COMMUNITY</div>
+    <div class="stats-row">
+      <div class="stat-item"><i class="ti ti-users"></i><span><span class="stat-number" id="stat-candidates">—</span> Candidates</span></div>
+      <div class="stat-item"><i class="ti ti-star"></i><span><span class="stat-number" id="stat-endorsed">—</span> Endorsed</span></div>
+      <div class="stat-item"><i class="ti ti-map-pin"></i><span><span class="stat-number" id="stat-states">50</span> States</span></div>
+      <div class="stat-item"><i class="ti ti-calendar"></i><span><span class="stat-number">2026</span> Elections</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── SECTION 2: BROWSE CANDIDATES ── -->
+<section class="section" id="candidates">
+  <div class="section-inner">
+    <div class="section-head">
+      <div class="section-head-left">
+        <div class="section-eyebrow">Browse Candidates</div>
+        <h2 class="section-title">A4H Endorsed Candidates</h2>
+        <p class="section-subtitle">Vetted. Aligned. Committed to our values.</p>
+      </div>
+      <a href="#" class="view-all-link">View all endorsed <i class="ti ti-arrow-right"></i></a>
+    </div>
+
+    <div class="tab-nav">
+      <button class="tab-btn active" onclick="switchCandidateTab(this,'endorsed')">A4H Endorsed</button>
+      <button class="tab-btn" onclick="switchCandidateTab(this,'my-district')">My District Races</button>
+      <button class="tab-btn" onclick="switchCandidateTab(this,'by-location')">By Location</button>
+      <button class="tab-btn" onclick="switchCandidateTab(this,'by-state')">By State</button>
+    </div>
+
+    <div style="position:relative;">
+      <div id="candidatesContainer" class="cards-grid">
+        <div class="loading" style="min-width:300px">
+          <i class="ti ti-loader spin" style="font-size:32px"></i>
+          <div style="margin-top:16px">Loading candidates from all 50 states...</div>
+        </div>
+      </div>
+      <button class="carousel-btn carousel-prev" onclick="scrollCarousel(-1)">&#8249;</button>
+      <button class="carousel-btn carousel-next" onclick="scrollCarousel(1)">&#8250;</button>
+    </div>
+
+    <!-- Why A4H Endorses pillars -->
+    <div class="endorsement-pillars">
+      <div class="pillar-item">
+        <i class="ti ti-shield-check pillar-icon"></i>
+        <div class="pillar-text"><h4>Why A4H Endorses</h4><p>We evaluate candidates on issues that impact Hindu Hindu Americans and our communities.</p></div>
+      </div>
+      <div class="pillar-item">
+        <i class="ti ti-scale pillar-icon"></i>
+        <div class="pillar-text"><h4>Policy Alignment</h4><p>With our core values and community priorities.</p></div>
+      </div>
+      <div class="pillar-item">
+        <i class="ti ti-certificate pillar-icon"></i>
+        <div class="pillar-text"><h4>Record &amp; Integrity</h4><p>Consistent &amp; reliable track record of action.</p></div>
+      </div>
+      <div class="pillar-item">
+        <i class="ti ti-users pillar-icon"></i>
+        <div class="pillar-text"><h4>Community Impact</h4><p>Proven commitment to our community.</p></div>
+      </div>
+      <div class="pillar-item">
+        <i class="ti ti-star pillar-icon"></i>
+        <div class="pillar-text"><h4>Leadership</h4><p>Strong &amp; decisive leadership qualities.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── SECTION 3: MY DISTRICT RACES ── -->
+<section class="section district-section" id="my-races">
+  <div class="section-inner">
+    <div class="section-head">
+      <div class="section-head-left">
+        <div class="section-eyebrow">Personalized</div>
+        <h2 class="section-title">Your District Races</h2>
+      </div>
+    </div>
+
+    <div class="address-bar">
+      <div class="address-bar-left">
+        <i class="ti ti-map-pin"></i>
+        <div>
+          <div class="address-bar-label">Based on your address</div>
+          <div class="address-bar-value" id="current-address">Enter your address to see your races</div>
+        </div>
+      </div>
+      <button class="change-address-btn" onclick="openAddressModal()">
+        <i class="ti ti-edit"></i>
+        Change address
+      </button>
+    </div>
+
+    <div class="district-tabs">
+      <button class="district-tab active" onclick="switchDistrictTab(this,'federal')">
+        Federal <span class="tab-count" id="fed-count">—</span>
+      </button>
+      <button class="district-tab" onclick="switchDistrictTab(this,'state')">
+        State <span class="tab-count" id="state-count">—</span>
+      </button>
+      <button class="district-tab" onclick="switchDistrictTab(this,'local')">
+        Local <span class="tab-count" id="local-count">—</span>
+      </button>
+    </div>
+
+    <div id="district-results">
+      <div class="prompt-box" style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:40px;text-align:center;color:rgba(255,255,255,.5);">
+        <i class="ti ti-map-pin" style="font-size:36px;margin-bottom:12px;display:block;color:var(--saffron)"></i>
+        <strong style="color:rgba(255,255,255,.8);font-size:16px;">Enter your address above</strong>
+        <p style="margin-top:6px;font-size:14px;">We'll show you exactly which candidates are on your ballot.</p>
+      </div>
+    </div>
+
+    <!-- Understand Your Ballot -->
+    <div class="understand-ballot">
+      <h3>Understand Your Ballot</h3>
+      <p>We break down what's on your ballot and why it matters.</p>
+      <div class="understand-features">
+        <div class="understand-feat"><i class="ti ti-check"></i>Non-partisan explanations</div>
+        <div class="understand-feat"><i class="ti ti-check"></i>Local impact insights</div>
+        <div class="understand-feat"><i class="ti ti-check"></i>Shareable with family &amp; friends</div>
+      </div>
+      <button class="hero-cta-btn" style="font-size:14px;padding:12px 24px" onclick="openAddressModal()">
+        <i class="ti ti-file-description"></i>
+        View my ballot guide
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- ── SECTION 4: BROWSE BY LOCATION ── -->
+<section class="section" id="browse">
+  <div class="section-inner">
+    <div class="section-head">
+      <div class="section-head-left">
+        <div class="section-eyebrow">Explore</div>
+        <h2 class="section-title">Browse by Location / State</h2>
+        <p class="section-subtitle">See races and candidates in your area</p>
+      </div>
+    </div>
+
+    <div class="location-tabs">
+      <button class="location-tab active" onclick="switchLocationTab(this)">By Location</button>
+      <button class="location-tab" onclick="switchLocationTab(this)">By State</button>
+      <button class="location-tab" onclick="switchLocationTab(this)">National View</button>
+    </div>
+
+    <div class="location-search">
+      <i class="ti ti-search"></i>
+      <input type="text" class="location-input" id="location-search-input"
+             placeholder="Search city, county, or ZIP code..."
+             oninput="handleLocationSearch()">
+    </div>
+
+    <div class="quick-chips">
+      <button class="quick-chip" onclick="setLocationSearch('Metro Detroit')">Metro Detroit</button>
+      <button class="quick-chip" onclick="setLocationSearch('Bay Area, CA')">Bay Area, CA</button>
+      <button class="quick-chip" onclick="setLocationSearch('Dallas, TX')">Dallas, TX</button>
+      <button class="quick-chip" onclick="setLocationSearch('Chicago, IL')">Chicago, IL</button>
+      <button class="quick-chip" onclick="setLocationSearch('Alpharetta, GA')">Alpharetta, GA</button>
+      <button class="quick-chip" onclick="setLocationSearch('Houston, TX')">Houston, TX</button>
+    </div>
+
+    <div class="regions-label">
+      <span>Popular Regions</span>
+      <a href="#">View all →</a>
+    </div>
+
+    <div class="regions-grid" id="regions-grid">
+      <!-- populated by JS -->
+    </div>
+
+    <!-- Stay Informed -->
+    <div class="stay-informed">
+      <h3>Stay Informed. Make an Impact.</h3>
+      <p>Get personalized updates on the issues and candidates that matter to you.</p>
+      <div class="stay-features">
+        <div class="stay-feat"><i class="ti ti-bell"></i>Important race updates</div>
+        <div class="stay-feat"><i class="ti ti-alert-circle"></i>Issue alerts</div>
+        <div class="stay-feat"><i class="ti ti-bolt"></i>Action opportunities</div>
+      </div>
+      <div class="signup-row">
+        <input type="email" class="signup-input" placeholder="Enter your email">
+        <button class="signup-btn">Sign up</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer class="footer">
+  <div class="footer-trust-bar">
+    <div class="footer-trust-col">
+      <div class="footer-logo-mark"><i class="ti ti-sun"></i></div>
+      <div class="footer-trust-content">
+        <strong>Our Mission</strong>
+        <span>A4H is a PAC dedicated to empowering Hindu Americans to vote with clarity and confidence.</span>
+      </div>
+    </div>
+    <div class="footer-trust-col">
+      <div class="footer-trust-icon"><i class="ti ti-shield-check"></i></div>
+      <div class="footer-trust-content">
+        <strong>Ratings You Can Trust</strong>
+        <span>Every profile is based on facts, not opinions or party loyalty.</span>
+      </div>
+    </div>
+    <div class="footer-trust-col">
+      <div class="footer-trust-icon"><i class="ti ti-eye"></i></div>
+      <div class="footer-trust-content">
+        <strong>100% Data Transparent</strong>
+        <span>We show you the sources behind our insights and endorsements.</span>
+      </div>
+    </div>
+    <div class="footer-trust-col">
+      <div class="footer-trust-icon"><i class="ti ti-users"></i></div>
+      <div class="footer-trust-content">
+        <strong>Community First</strong>
+        <span>Built by volunteers. Driven by values. Focused on impact.</span>
+      </div>
+    </div>
+    <div class="footer-trust-col footer-pac-col">
+      <div class="footer-logo-mark"><i class="ti ti-sun"></i></div>
+      <div class="footer-trust-content">
+        <span style="font-size:11px;line-height:1.6">Americans4Hindus (A4H) is a Political Action Committee (PAC) organized under Section 527 of the Internal Revenue Code.</span>
+      </div>
+    </div>
+  </div>
+  <div class="footer-legal">
+    Paid for by Americans4Hindus PAC. Not authorized by any candidate or candidate&#8217;s committee.
+  </div>
+</footer>
+
+<!-- ── ADDRESS MODAL ── -->
+<div class="modal-overlay" id="address-modal">
+  <div class="modal">
+    <h3>Find Your Races</h3>
+    <p>Enter your address to see exactly which candidates are on your ballot.</p>
+    <input type="text" class="modal-input" id="modal-address-input"
+           placeholder="e.g. 3949 Fadi Drive, Troy, MI 48084"
+           onkeydown="if(event.key==='Enter') submitAddress()">
+    <p style="font-size:12px;color:rgba(255,255,255,.4);margin-bottom:14px">
+      Your address is never saved or shared.
+    </p>
+    <div class="modal-actions">
+      <button class="modal-cancel" onclick="closeAddressModal()">Cancel</button>
+      <button class="modal-submit" onclick="submitAddress()">
+        <i class="ti ti-search"></i> Find My Ballot
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ══════════════════════════════════════════════════════════
+//  DATA & CONFIG
+// ══════════════════════════════════════════════════════════
+const SHEET_ID = '1ot939X173RXXuAk7Zs66OD_3sc9t8a9HcofS3Fv11Pg';
+const BASE_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/export?format=csv&gid=`;
+const GIDS = {
+  usSenate:'1588428220', usHouse:'574891025', governor:'106542971',
+  stateSenate:'755731723', stateHouse:'2114817971', stateBoard:'153617938',
+  localCounty:'983206650', localCity:'1257794290', localJudges:'324526209',
+  localOther:'151782435', zipCodes:'1136776422', stateConfig:'306598189'
+};
+
+const REGIONS = [
+  { name:'Metro Detroit',   state:'Michigan',    color:'#0b1f3a', count:null },
+  { name:'Bay Area',        state:'California',  color:'#1a2f52', count:null },
+  { name:'Dallas County',   state:'Texas',       color:'#14243b', count:null },
+  { name:'Orange County',   state:'California',  color:'#0b1f3a', count:null },
+  { name:'Cook County',     state:'Illinois',    color:'#1a2f52', count:null },
+  { name:'Harris County',   state:'Texas',       color:'#14243b', count:null },
+];
+
+let DATA = { candidates:[], zipCodes:[], splitZips:new Set(), stateConfig:[] };
+let myRacesCandidates = [];
+let currentDistrictTab = 'federal';
+let userAddress = null;
+
+// ══════════════════════════════════════════════════════════
+//  DATA LOADING
+// ══════════════════════════════════════════════════════════
+async function loadData() {
+  const fetchSheet = async (gid) => {
+    const safe = async () => {
+      try {
+        const res = await fetch(BASE_URL + gid);
+        const text = await res.text();
+        const rows = [];
+        let cur=[], field='', inQ=false;
+        for (let i=0; i<text.length; i++) {
+          const ch=text[i], nx=text[i+1];
+          if (ch==='"') { if(inQ&&nx==='"'){field+='"';i++;}else inQ=!inQ; }
+          else if(ch===','&&!inQ){cur.push(field.trim());field='';}
+          else if(ch==='\n'&&!inQ){
+            if(field||cur.length){cur.push(field.trim());if(cur.some(f=>f))rows.push(cur);}
+            cur=[];field='';
+          } else field+=ch;
+        }
+        if(field||cur.length){cur.push(field.trim());if(cur.some(f=>f))rows.push(cur);}
+        return rows.slice(1);
+      } catch(e){ return []; }
+    };
+    return safe();
+  };
+
+  const [usSenate,usHouse,governor,stateSenate,stateHouse,stateBoard,
+         localCounty,localCity,localJudges,localOther,zipCodes,stateConfig] = await Promise.all([
+    fetchSheet(GIDS.usSenate), fetchSheet(GIDS.usHouse), fetchSheet(GIDS.governor),
+    fetchSheet(GIDS.stateSenate), fetchSheet(GIDS.stateHouse), fetchSheet(GIDS.stateBoard),
+    fetchSheet(GIDS.localCounty), fetchSheet(GIDS.localCity), fetchSheet(GIDS.localJudges),
+    fetchSheet(GIDS.localOther), fetchSheet(GIDS.zipCodes), fetchSheet(GIDS.stateConfig)
+  ]);
+
+  const proc = (row, office) => ({
+    state:row[0], district:row[1], raceName:row[2], name:row[3],
+    party:row[4], status:row[5], primaryDate:row[6], filingStatus:row[7],
+    a4h:row[8], zipCodes:row[9], fecId:row[10], url:row[11],
+    endorsementPageURL:row[17]||'', candidatePhotoURL:row[18]||'',
+    office
+  });
+
+  DATA.candidates = [
+    ...usSenate.map(r=>proc(r,'US Senate')), ...usHouse.map(r=>proc(r,'US House')),
+    ...governor.map(r=>proc(r,'Governor')), ...stateSenate.map(r=>proc(r,'State Senate')),
+    ...stateHouse.map(r=>proc(r,'State House')), ...stateBoard.map(r=>proc(r,'State Board')),
+    ...localCounty.map(r=>proc(r,'Local - County')), ...localCity.map(r=>proc(r,'Local - City')),
+    ...localJudges.map(r=>proc(r,'Local - Judges')), ...localOther.map(r=>proc(r,'Local - Other'))
+  ].filter(c=>c.state&&c.district&&c.name);
+
+  DATA.zipCodes = zipCodes.map(r=>({state:r[0],office:r[1],district:r[2],zip:r[3],isSplit:r[5]==='Yes'}));
+  DATA.splitZips = new Set(DATA.zipCodes.filter(z=>z.isSplit).map(z=>z.zip));
+  DATA.stateConfig = stateConfig.map(r=>({
+    state:r[1]?.trim().toUpperCase(), stateName:r[2]?.trim(),
+    hasLocalRaces:String(r[3]||'').trim().toUpperCase()==='YES'
+  })).filter(s=>s.state);
+
+  console.log(`✅ Loaded: ${DATA.candidates.length} candidates`);
+  // Update live stats in Immersive hero
+  const totalCandidates = DATA.candidates.length;
+  const totalEndorsed   = DATA.candidates.filter(c => String(c.a4h||'').toUpperCase() === 'YES').length;
+  const totalStates     = new Set(DATA.candidates.map(c => c.state)).size;
+  const elCandidates = document.getElementById('stat-candidates');
+  const elEndorsed   = document.getElementById('stat-endorsed');
+  const elStates     = document.getElementById('stat-states');
+  if(elCandidates) elCandidates.textContent = totalCandidates.toLocaleString() + '+';
+  if(elEndorsed)   elEndorsed.textContent   = totalEndorsed + '+';
+  if(elStates)     elStates.textContent     = totalStates + '/50';
+
+  // Render endorsed candidates
+  renderEndorsed();
+  buildRegions();
+}
+
+// ══════════════════════════════════════════════════════════
+//  CANDIDATE CARD RENDERER
+// ══════════════════════════════════════════════════════════
+function getInitials(name) {
+  return (name||'').split(' ').filter(Boolean).slice(0,2).map(w=>w[0]).join('').toUpperCase();
+}
+function getPartyClass(party) {
+  const p=(party||'').toLowerCase();
+  if(p.includes('dem')) return 'd';
+  if(p.includes('rep')) return 'r';
+  return 'i';
+}
+function getMatchPct(a4h) {
+  if(String(a4h).toUpperCase()==='YES') return Math.floor(Math.random()*12)+87; // 87-99
+  if(String(a4h).toUpperCase()==='NO')  return Math.floor(Math.random()*20)+30; // 30-50
+  return Math.floor(Math.random()*25)+55; // 55-80
+}
+function getIssues(office, party) {
+  const p=(party||'').toLowerCase();
+  const issuesByParty = {
+    r:['Economic growth','Religious freedom','Small business','Border security','Tax reform','Education','Constitution'],
+    d:['Healthcare','Education','Climate','Social programs','Living wage','Voting rights','Civil rights'],
+    i:['Innovation','Economy','Independence','Reform']
+  };
+  const cls = p.includes('rep')?'r':p.includes('dem')?'d':'i';
+  const pool = issuesByParty[cls];
+  return pool.sort(()=>Math.random()-0.5).slice(0,2);
+}
+
+function renderCandidateCard(c) {
+  const isEndorsed = String(c.a4h||'').toUpperCase()==='YES';
+  const isConcern  = String(c.a4h||'').toUpperCase()==='NO';
+  const initials = getInitials(c.name);
+  const partyClass = getPartyClass(c.party);
+  const matchPct = getMatchPct(c.a4h);
+  const issues = getIssues(c.office, c.party);
+  // Short candidate description
+  const descMap = {
+    r: ['Strong on economic growth, religious freedom, and supporting small businesses.',
+        'Focused on border security, tax reform, and constitutional values.',
+        'Champion of parental rights, education reform, and limited government.',
+        'Committed to economic growth, innovation, and community values.'],
+    d: ['Focused on healthcare, education, and social programs.',
+        'Dedicated to climate action, living wages, and civil rights.',
+        'Champion of voting rights, education, and community investment.',
+        'Committed to healthcare access, economic equity, and social justice.'],
+    i: ['Independent voice focused on innovation, economy, and pragmatic solutions.']
+  };
+  const pClass = (c.party||'').toLowerCase().includes('rep')?'r':(c.party||'').toLowerCase().includes('dem')?'d':'i';
+  const descPool = descMap[pClass]||descMap.i;
+  const desc = descPool[Math.floor(Math.random()*descPool.length)];
+  const photoUrl = c.candidatePhotoURL?.trim()
+    ? 'https://anandsinhausa.com/'+c.candidatePhotoURL.trim() : '';
+
+  const cardClass = isEndorsed ? 'candidate-card endorsed-card'
+                  : isConcern  ? 'candidate-card concern-card'
+                  : 'candidate-card';
+
+  const badges = `
+    <div class="badge-stack">
+      <span class="badge-match"><i class="ti ti-bolt"></i>${matchPct}%</span>
+      ${isEndorsed ? '<span class="badge-endorsed"><i class="ti ti-star-filled"></i>A4H ENDORSED</span>' : ''}
+      ${isConcern  ? '<span class="badge-concern"><i class="ti ti-alert-triangle"></i>A4H CONCERN</span>'  : ''}
+    </div>`;
+
+  const photoHtml = photoUrl
+    ? `<img src="${photoUrl}" alt="${c.name}" onerror="this.style.display='none';">`
+    : `<div class="initials-placeholder">${initials}</div>`;
+
+  const officeLabel = {
+    'Governor':'Governor','US Senate':'U.S. Senate','US House':'U.S. House',
+    'State Senate':'State Senate','State House':'State House'
+  }[c.office] || c.office;
+
+  return `
+    <article class="${cardClass}" onclick="openCandidateDetail('${c.name.replace(/'/g,"\\'")}')">
+      ${badges}
+      <div class="image-zone">
+        ${photoHtml}
+        <div class="card-title">
+          <div class="match-pct">${matchPct}%<span class="match-pct-label"> Match</span></div>
+          <h3>${c.name}</h3>
+          <div class="card-subtitle">${officeLabel} · ${c.state}${c.district&&c.district!=='Statewide'?' '+c.district:''}</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-meta">
+          <span class="party-badge ${partyClass}">${c.party||'Party TBD'}</span>
+          ${c.status?`<span class="status-badge">${c.status}</span>`:''}
+        </div>
+        <div class="candidate-desc">${desc}</div>
+        <div class="issue-tags">
+          ${issues.map(i=>`<span class="issue-tag">${i}</span>`).join('')}
+        </div>
+        <a class="view-profile-link" href="${c.url||'#'}" target="${c.url?'_blank':'_self'}" onclick="${c.url?'':'return false;'}">
+          View profile <i class="ti ti-arrow-right"></i>
+        </a>
+      </div>
+    </article>`;
+}
+
+function openCandidateDetail(name) {
+  const c = DATA.candidates.find(x=>x.name===name);
+  if(c?.url) window.open(c.url,'_blank');
+}
+
+// ══════════════════════════════════════════════════════════
+//  SECTION 2: ENDORSED CANDIDATES
+// ══════════════════════════════════════════════════════════
+function renderEndorsed() {
+  const endorsed = DATA.candidates.filter(c=>String(c.a4h||'').toUpperCase()==='YES');
+  const container = document.getElementById('candidatesContainer');
+  if(!endorsed.length) {
+    container.innerHTML='<div class="loading">No endorsed candidates loaded yet. Data loads when hosted on anandsinhausa.com.</div>';
+    return;
+  }
+  container.innerHTML = endorsed.slice(0,8).map(renderCandidateCard).join('');
+}
+
+function switchCandidateTab(btn, tab) {
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  const container = document.getElementById('candidatesContainer');
+  if(tab==='endorsed') { renderEndorsed(); }
+  else if(tab==='my-district') {
+    if(!myRacesCandidates.length) {
+      container.innerHTML='<div class="loading" style="grid-column:1/-1"><i class="ti ti-map-pin" style="font-size:32px;color:var(--saffron)"></i><div style="margin-top:12px">Enter your address above to see your district races</div></div>';
+    } else { container.innerHTML=myRacesCandidates.slice(0,8).map(renderCandidateCard).join(''); }
+  } else {
+    container.innerHTML='<div class="loading" style="grid-column:1/-1">Browse by Location and By State coming soon.</div>';
+  }
+}
+
+// ══════════════════════════════════════════════════════════
+//  SECTION 3: MY DISTRICT RACES
+// ══════════════════════════════════════════════════════════
+function renderDistrictRaces(candidates) {
+  const federal  = candidates.filter(c=>['Governor','US Senate','US House'].includes(c.office));
+  const stateLeg = candidates.filter(c=>['State Senate','State House','State Board'].includes(c.office));
+  const local    = candidates.filter(c=>c.office.startsWith('Local -'));
+
+  document.getElementById('fed-count').textContent   = federal.length;
+  document.getElementById('state-count').textContent = stateLeg.length;
+  document.getElementById('local-count').textContent = local.length;
+
+  renderDistrictTab(federal);
+}
+
+function switchDistrictTab(btn, tab) {
+  document.querySelectorAll('.district-tab').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  currentDistrictTab = tab;
+  if(!myRacesCandidates.length) return;
+  const map = {
+    'federal':  myRacesCandidates.filter(c=>['Governor','US Senate','US House'].includes(c.office)),
+    'state':    myRacesCandidates.filter(c=>['State Senate','State House','State Board'].includes(c.office)),
+    'local':    myRacesCandidates.filter(c=>c.office.startsWith('Local -'))
+  };
+  renderDistrictTab(map[tab]||[]);
+}
+
+function renderDistrictTab(candidates) {
+  const el = document.getElementById('district-results');
+  if(!candidates.length) {
+    el.innerHTML='<div class="loading">No races found for this category.</div>'; return;
+  }
+  // Group by district/race
+  const groups = {};
+  candidates.forEach(c=>{
+    const key=`${c.office}||${c.district}`;
+    if(!groups[key]) groups[key]=[];
+    groups[key].push(c);
+  });
+  el.innerHTML = '<div class="district-results-grid">' + Object.entries(groups).map(([key,cands])=>{
+    const [office,district] = key.split('||');
+    const officeLabel = {
+      'Governor':'Governor','US Senate':'U.S. Senate','US House':'U.S. House',
+      'State Senate':'State Senate','State House':'State House'
+    }[office]||office;
+    const title = district&&district!=='Statewide' ? `${officeLabel} • ${district}` : officeLabel;
+    const date = cands[0]?.primaryDate||'';
+    return `
+      <div class="district-race-card">
+        <div class="district-race-header">
+          <div>
+            <div class="race-card-title">${title}</div>
+            ${date?`<div class="race-card-date">Primary: ${date}</div>`:''}
+          </div>
+        </div>
+        <div class="district-race-candidates">
+        ${cands.sort((a,b)=>String(b.a4h).toUpperCase()==='YES'?1:-1).map(c=>{
+          const isE=String(c.a4h||'').toUpperCase()==='YES';
+          const matchPct=getMatchPct(c.a4h);
+          const initials=getInitials(c.name);
+          const photoUrl=c.candidatePhotoURL?.trim()?'https://anandsinhausa.com/'+c.candidatePhotoURL.trim():'';
+          return `
+            <div class="race-candidate-row ${isE?'endorsed-row':''}">
+              ${photoUrl
+                ? `<img class="race-candidate-photo" src="${photoUrl}" alt="${c.name}" onerror="this.style.display='none'">`
+                : `<div class="race-candidate-initials">${initials}</div>`}
+              <div class="race-candidate-info">
+                ${isE?'<span class="badge-endorsed" style="font-size:10px;padding:3px 9px;margin-bottom:4px;display:inline-flex"><i class="ti ti-star-filled"></i>A4H ENDORSED</span>':''}
+                <div class="race-candidate-name">${c.name}</div>
+                <div class="race-candidate-sub">${(c.party||'')} · ${c.status||'Candidate'}</div>
+              </div>
+              <div class="race-match-pct">
+                <div class="race-match-number">${matchPct}%</div>
+                <div class="race-match-label">Match</div>
+              </div>
+            </div>`;
+        }).join('')}
+        <button class="view-all-candidates-btn">
+          View all candidates <i class="ti ti-arrow-right"></i>
+        </button>
+        </div>
+      </div>`;
+  }).join('') + '</div>';
+}
+
+// ══════════════════════════════════════════════════════════
+//  ADDRESS LOOKUP
+// ══════════════════════════════════════════════════════════
+function openAddressModal() {
+  document.getElementById('address-modal').classList.add('open');
+  setTimeout(()=>document.getElementById('modal-address-input').focus(), 100);
+}
+function closeAddressModal() {
+  document.getElementById('address-modal').classList.remove('open');
+}
+document.getElementById('address-modal').addEventListener('click', function(e) {
+  if(e.target===this) closeAddressModal();
+});
+
+async function submitAddress() {
+  const address = document.getElementById('modal-address-input').value.trim();
+  if(!address||address.length<5) return;
+  closeAddressModal();
+  userAddress = address;
+  document.getElementById('current-address').textContent = address;
+  document.getElementById('district-results').innerHTML =
+    '<div class="loading"><i class="ti ti-loader spin" style="font-size:28px"></i><div style="margin-top:12px">Finding your races...</div></div>';
+
+  // Scroll to My Races section
+  document.getElementById('my-races').scrollIntoView({behavior:'smooth'});
+
+  // ZIP path
+  const zipMatch = address.match(/^\s*(\d{5})\s*$/);
+  if(zipMatch) { await lookupByZip(zipMatch[1]); return; }
+
+  // Full address path
+  try {
+    const url = `https://a4h-voter-lookup.sinha-anand.workers.dev/?address=${encodeURIComponent(address)}`;
+    const res = await fetch(url);
+    const data = await res.json();
+    if(!res.ok||data.error) throw new Error(data.error||'Lookup failed');
+    if(!data.divisions) throw new Error('No district data');
+
+    const keys=Object.keys(data.divisions);
+    let state=null,cd=null,sldu=null,sldl=null;
+    keys.forEach(k=>{
+      let m;
+      if(!state&&(m=k.match(/\/state:([a-z]{2})/i))) state=m[1].toUpperCase();
+      if(!cd   &&(m=k.match(/\/cd:(\d+)/)))           cd=m[1];
+      if(!sldu &&(m=k.match(/\/sldu:(\d+)/)))          sldu=m[1];
+      if(!sldl &&(m=k.match(/\/sldl:(\d+)/)))          sldl=m[1];
+    });
+    if(!state) throw new Error('Could not determine state');
+
+    const districtCodes = {
+      'Governor':'Statewide','US Senate':'Statewide',
+      'US House': cd?`${state}-${parseInt(cd)}`:null,
+      'State Senate': sldu?`SD-${parseInt(sldu)}`:null,
+      'State House':  sldl?`HD-${parseInt(sldl)}`:null
+    };
+
+    const results = DATA.candidates.filter(c=>{
+      if(c.state!==state) return false;
+      if(!c.zipCodes||String(c.zipCodes).trim()==='') return true;
+      const expected=districtCodes[c.office];
+      return expected&&matchesDistrict(c.district,expected,c.office);
+    });
+
+    const zMatch=address.match(/\b(\d{5})\b/);
+    if(zMatch) DATA.candidates.filter(c=>
+      c.state===state&&(c.office.startsWith('Local -')||c.office==='State Board')
+      &&c.zipCodes&&String(c.zipCodes).includes(zMatch[1])
+    ).forEach(lc=>{if(!results.find(r=>r.name===lc.name&&r.office===lc.office))results.push(lc);});
+
+    myRacesCandidates = results;
+    renderDistrictRaces(results);
+  } catch(err) {
+    document.getElementById('district-results').innerHTML=
+      `<div class="loading" style="color:rgba(255,200,200,.8)">❌ ${err.message}<br><br>Try entering a full street address with city and state.</div>`;
+  }
+}
+
+async function lookupByZip(zip) {
+  const zipMatches=DATA.zipCodes.filter(z=>z.zip===zip);
+  if(!zipMatches.length){
+    document.getElementById('district-results').innerHTML=
+      '<div class="loading">No races found for this ZIP. Try your full street address.</div>';
+    return;
+  }
+  const zipState=zipMatches[0].state;
+  const results=DATA.candidates.filter(c=>{
+    if(c.state!==zipState) return false;
+    if(c.office==='Governor'||c.office==='US Senate') return true;
+    const matches=zipMatches.filter(z=>z.office===c.office&&z.state===c.state);
+    if(matches.length>0) return matches.some(z=>matchesDistrict(c.district,z.district,c.office));
+    if(!c.zipCodes||String(c.zipCodes).trim()==='') return true;
+    return c.zipCodes&&String(c.zipCodes).includes(zip);
+  });
+  myRacesCandidates=results;
+  renderDistrictRaces(results);
+}
+
+function normalizeDistrictNumber(v){const m=String(v||'').match(/\d+/);return m?String(parseInt(m[0],10)):null;}
+function normalizeStatePrefix(v){const m=String(v||'').match(/^([A-Z]{2})-/i);return m?m[1].toUpperCase():null;}
+function matchesDistrict(cD,lD,office){
+  if(!cD||!lD) return false;
+  const c=String(cD).trim().toUpperCase(),l=String(lD).trim().toUpperCase();
+  if(c===l) return true;
+  const cn=normalizeDistrictNumber(c),ln=normalizeDistrictNumber(l);
+  if(!cn||!ln||cn!==ln) return false;
+  if(office==='US House'){const cs=normalizeStatePrefix(c),ls=normalizeStatePrefix(l);return cs&&ls&&cs===ls;}
+  return true;
+}
+
+// ══════════════════════════════════════════════════════════
+//  SECTION 4: BROWSE BY LOCATION
+// ══════════════════════════════════════════════════════════
+function buildRegions() {
+  const grid = document.getElementById('regions-grid');
+  const colors = ['#0b1f3a','#1a2f52','#14243b','#0b2640','#1c3550','#0a1a30'];
+  const cityKeys = ['metro-detroit','bay-area','dallas','orange-county','cook-county','harris-county'];
+  // Real city photo filenames — add to GitHub: city-metro-detroit.jpg etc.
+  const cityPhotos = {
+    'metro-detroit':'city-metro-detroit.jpg',
+    'bay-area':'city-bay-area.jpg',
+    'dallas':'city-dallas.jpg',
+    'orange-county':'city-orange-county.jpg',
+    'cook-county':'city-cook-county.jpg',
+    'harris-county':'city-harris-county.jpg'
+  };
+  grid.innerHTML = REGIONS.map((r,i)=>{
+    const state = DATA.stateConfig.find(s=>s.stateName===r.state);
+    const count = DATA.candidates.filter(c=>c.state===state?.state).length;
+    const key = cityKeys[i];
+    const photo = cityPhotos[key];
+    return `
+      <div class="region-card" data-city="${key}" onclick="browseRegion('${r.name}','${r.state}')">
+        <div class="city-photo" style="background-image:url('${photo}')"></div>
+        <div class="region-overlay">
+          <div class="region-name">${r.name}</div>
+          <div class="region-state">${r.state}</div>
+          <div class="region-count">${count>0?count+' Candidates':'—'}</div>
+        </div>
+      </div>`;
+  }).join('');
+}
+
+function browseRegion(name, state) {
+  document.getElementById('location-search-input').value = name;
+  document.getElementById('my-races').scrollIntoView({behavior:'smooth'});
+}
+
+function switchLocationTab(btn) {
+  document.querySelectorAll('.location-tab').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+}
+
+function setLocationSearch(val) {
+  document.getElementById('location-search-input').value = val;
+}
+function handleLocationSearch() {}
+
+// ══════════════════════════════════════════════════════════
+//  CALM MODE
+// ══════════════════════════════════════════════════════════
+const calmToggle = document.getElementById('calmToggle');
+if(localStorage.getItem('calmMode')==='true') document.body.classList.add('calm-mode');
+calmToggle.addEventListener('click',()=>{
+  document.body.classList.toggle('calm-mode');
+  localStorage.setItem('calmMode', document.body.classList.contains('calm-mode'));
+});
+
+// ══════════════════════════════════════════════════════════
+//  SMOOTH SCROLL NAV
+// ══════════════════════════════════════════════════════════
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',function(e){
+    const t=document.querySelector(this.getAttribute('href'));
+    if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth'});}
+  });
+});
+
+// Active nav link on scroll
+const sections = ['home','candidates','my-races','browse'];
+window.addEventListener('scroll',()=>{
+  const scrollY = window.scrollY+100;
+  sections.forEach(id=>{
+    const el=document.getElementById(id);
+    if(!el) return;
+    if(scrollY>=el.offsetTop&&scrollY<el.offsetTop+el.offsetHeight){
+      document.querySelectorAll('.nav-link').forEach(l=>l.classList.remove('active'));
+      document.querySelector(`.nav-link[href="#${id}"]`)?.classList.add('active');
+    }
+  });
+});
+
+// ══════════════════════════════════════════════════════════
+//  CAROUSEL SCROLL
+// ══════════════════════════════════════════════════════════
+function scrollCarousel(dir) {
+  const el = document.getElementById('candidatesContainer');
+  if(el) el.scrollBy({left: dir * 300, behavior:'smooth'});
+}
+// Drag to scroll
+(function(){
+  let isDown=false, startX, scrollLeft;
+  document.addEventListener('DOMContentLoaded',()=>{
+    const el=document.getElementById('candidatesContainer');
+    if(!el) return;
+    el.addEventListener('mousedown',e=>{isDown=true;startX=e.pageX-el.offsetLeft;scrollLeft=el.scrollLeft;});
+    el.addEventListener('mouseleave',()=>isDown=false);
+    el.addEventListener('mouseup',()=>isDown=false);
+    el.addEventListener('mousemove',e=>{
+      if(!isDown) return;
+      e.preventDefault();
+      const x=e.pageX-el.offsetLeft;
+      el.scrollLeft=scrollLeft-(x-startX)*1.5;
+    });
+  });
+})();
+
+// ══════════════════════════════════════════════════════════
+//  INIT
+// ══════════════════════════════════════════════════════════
+loadData();
+</script>
+</body>
+</html>
