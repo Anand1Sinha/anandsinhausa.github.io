@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Signal — Independent Analysis by Anand Sinha</title>
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://anandsinhausa.com/signal/">
+    <meta property="og:title" content="The Signal — Independent Analysis by Anand Sinha">
+    <meta property="og:description" content="Independent analysis on civilization, technology, finance, elections, and geopolitics. Each edition takes one subject and examines it from every angle.">
+    <meta property="og:image" content="https://anandsinhausa.com/signal/assets/signal-OG.jpg">
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://anandsinhausa.com/signal/">
+    <meta property="twitter:title" content="The Signal — Independent Analysis by Anand Sinha">
+    <meta property="twitter:description" content="Independent analysis on civilization, technology, finance, elections, and geopolitics.">
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: Georgia, 'Times New Roman', serif;
+            font-size: 18px;
+            line-height: 1.7;
+            color: #222;
+            background-color: #fff;
+        }
+
+        /* ── HEADER ── */
+        header {
+            background-color: #1a1a1a;
+            color: #fff;
+            padding: 20px 0 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        }
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px 20px;
+        }
+        .signal-masthead {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 10px;
+        }
+        .globe-icon {
+            width: 44px;
+            height: 44px;
+            border: 2px solid #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            flex-shrink: 0;
+        }
+        h1.main-title {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 30px;
+            font-weight: 700;
+            letter-spacing: 3px;
+            color: #fff;
+            margin: 0;
+        }
+        .category-tags {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 11px;
+            letter-spacing: 2px;
+            color: #999;
+            text-transform: uppercase;
+        }
+        .category-tags span { margin: 0 8px; }
+
+        /* ── HERO ── */
+        .hero {
+            background: #fff;
+            border-bottom: 3px solid #2b3e50;
+            padding: 50px 20px 44px;
+            text-align: center;
+        }
+        .hero-inner {
+            max-width: 680px;
+            margin: 0 auto;
+        }
+        .hero-label {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: #D4AF37;
+            margin-bottom: 18px;
+        }
+        .hero-title {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 38px;
+            font-weight: 800;
+            color: #000;
+            letter-spacing: -0.5px;
+            line-height: 1.15;
+            margin-bottom: 18px;
+        }
+        .hero-rule {
+            width: 48px;
+            height: 3px;
+            background: #D4AF37;
+            margin: 0 auto 20px;
+        }
+        .hero-description {
+            font-family: Georgia, 'Times New Roman', serif;
+            font-size: 18px;
+            line-height: 1.75;
+            color: #555;
+            margin-bottom: 28px;
+            text-align: center;
+        }
+        .hero-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            justify-content: center;
+        }
+        .hero-tag {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: #2b3e50;
+            border: 1px solid #c5c0b5;
+            padding: 5px 12px;
+        }
+
+        /* ── CONTAINER ── */
+        .container {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 0 20px 80px;
+        }
+
+        /* ── FEATURED EDITION ── */
+        .featured-wrap {
+            padding: 40px 0 0;
+        }
+        .section-rule {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .section-tag {
+            background: #2b3e50;
+            color: #D4AF37;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 9px;
+            font-weight: 800;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            padding: 7px 14px;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+        .section-line {
+            flex: 1;
+            height: 1px;
+            background: #e5e5e5;
+            margin-left: 12px;
+        }
+        .featured-card {
+            background: #2b3e50;
+            padding: 36px;
+            display: block;
+            text-decoration: none;
+            color: inherit;
+            transition: opacity 0.2s;
+            position: relative;
+            overflow: hidden;
+        }
+        .featured-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 5px;
+            height: 100%;
+            background: #D4AF37;
+        }
+        .featured-card:hover { opacity: 0.92; text-decoration: none; }
+        .featured-badge {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 8px;
+            font-weight: 800;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: #D4AF37;
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .featured-badge::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: rgba(212,175,55,0.3);
+        }
+        .featured-edition-num {
+            font-family: Georgia, serif;
+            font-size: 64px;
+            font-weight: bold;
+            color: rgba(255,255,255,0.08);
+            position: absolute;
+            top: 16px;
+            right: 24px;
+            line-height: 1;
+            pointer-events: none;
+        }
+        .featured-title {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 26px;
+            font-weight: 800;
+            color: #fff;
+            line-height: 1.25;
+            margin-bottom: 10px;
+            letter-spacing: -0.3px;
+        }
+        .featured-subtitle {
+            font-family: Georgia, serif;
+            font-style: italic;
+            font-size: 17px;
+            color: #cdd5dc;
+            margin-bottom: 16px;
+            line-height: 1.5;
+        }
+        .featured-deck {
+            font-family: Georgia, serif;
+            font-size: 15px;
+            color: #8a9ba8;
+            line-height: 1.65;
+            margin-bottom: 20px;
+        }
+        .featured-meta {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: #D4AF37;
+        }
+        .featured-cta {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 28px;
+            background: #D4AF37;
+            color: #000;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            text-decoration: none;
+            border: none;
+        }
+
+        /* ── ARCHIVE GRID ── */
+        .archive-wrap { padding: 40px 0 0; }
+        .archive-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-top: 20px;
+        }
+        @media (max-width: 560px) {
+            .archive-grid { grid-template-columns: 1fr; }
+        }
+        .arc-card {
+            background: white;
+            border: 2px solid #e0d8cc;
+            padding: 20px;
+            text-decoration: none;
+            display: block;
+            transition: all 0.2s;
+            color: inherit;
+        }
+        .arc-card:hover {
+            border-color: #D4AF37;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            text-decoration: none;
+            color: inherit;
+        }
+        .arc-badge {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 8px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            padding: 3px 8px;
+            display: inline-block;
+            background: rgba(43,62,80,0.08);
+            color: #2b3e50;
+        }
+        .arc-number {
+            font-family: Georgia, serif;
+            font-size: 36px;
+            font-weight: bold;
+            color: #e8e0d4;
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+        .arc-headline {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 14px;
+            font-weight: 700;
+            color: #000;
+            margin-bottom: 8px;
+            line-height: 1.3;
+        }
+        .arc-headline em { color: #D4AF37; font-style: italic; }
+        .arc-deck {
+            font-family: Georgia, serif;
+            font-size: 13px;
+            line-height: 1.6;
+            color: #666;
+            margin-bottom: 10px;
+        }
+        .arc-date {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 9px;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: #aaa;
+        }
+
+        /* ── ABOUT ── */
+        .about-wrap { padding: 48px 0 0; }
+        .about-box {
+            border: 2px solid #e0d8cc;
+            padding: 30px;
+        }
+        .about-name {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 18px;
+            font-weight: 800;
+            color: #000;
+            margin-bottom: 4px;
+        }
+        .about-role {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: #D4AF37;
+            margin-bottom: 14px;
+        }
+        .about-bio {
+            font-family: Georgia, serif;
+            font-size: 15px;
+            line-height: 1.75;
+            color: #555;
+            margin-bottom: 12px;
+            text-align: left;
+        }
+        .about-bio strong { color: #000; }
+        .about-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 16px;
+        }
+        .about-link {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: #2b3e50;
+            border: 1px solid #2b3e50;
+            padding: 7px 14px;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+        .about-link:hover {
+            background: #2b3e50;
+            color: #D4AF37;
+            border-color: #2b3e50;
+        }
+
+        /* ── SUBSCRIBE ── */
+        .subscribe-box {
+            background-color: #f8f6f0;
+            border-left: 4px solid #D4AF37;
+            padding: 30px;
+            margin: 36px 0 0;
+            text-align: center;
+        }
+        .subscribe-box h3 {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: #000;
+        }
+        .subscribe-box p {
+            font-size: 15px;
+            color: #666;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .subscribe-box a {
+            display: inline-block;
+            padding: 12px 30px;
+            margin: 6px;
+            text-decoration: none;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-weight: 700;
+            font-size: 13px;
+            border: none;
+        }
+        .subscribe-box a:first-of-type { background: #D4AF37; color: #000; }
+        .subscribe-box a:last-of-type { background: #2b3e50; color: #fff; }
+        .subscribe-box a:hover { opacity: 0.9; }
+
+        /* ── FOOTER ── */
+        footer {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 36px 20px;
+            border-top: 1px solid #e5e5e5;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 13px;
+            color: #999;
+            text-align: center;
+        }
+        footer a { color: #326891; text-decoration: none; }
+        footer p { margin-bottom: 6px; text-align: center; }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 600px) {
+            .hero-title { font-size: 28px; }
+            .featured-title { font-size: 20px; }
+            .featured-card { padding: 24px; }
+            .subscribe-box a { display: block; margin: 8px 0; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+    <div class="header-content">
+        <div class="signal-masthead">
+            <div class="globe-icon">🌐</div>
+            <h1 class="main-title">THE SIGNAL</h1>
+        </div>
+        <div class="category-tags">
+            CIVILIZATION <span>·</span> TECHNOLOGY <span>·</span> FINANCE <span>·</span> ELECTIONS <span>·</span> GEOPOLITICS
+        </div>
+    </div>
+</header>
+
+<!-- HERO -->
+<div class="hero">
+    <div class="hero-inner">
+        <div class="hero-label">Independent Analysis &nbsp;·&nbsp; By Anand Sinha &nbsp;·&nbsp; Since 2026</div>
+        <h2 class="hero-title">The Signal</h2>
+        <div class="hero-rule"></div>
+        <p class="hero-description">Each edition takes one subject — a geopolitical shift, a financial system, a civilizational question, an election — and examines it from every angle. Independently researched. Directly argued. Written for the reader who wants more than the mainstream narrative offers.</p>
+        <div class="hero-tags">
+            <span class="hero-tag">Civilization</span>
+            <span class="hero-tag">Technology</span>
+            <span class="hero-tag">Finance</span>
+            <span class="hero-tag">Elections</span>
+            <span class="hero-tag">Geopolitics</span>
+            <span class="hero-tag">Identity</span>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+
+    <!-- LATEST EDITION -->
+    <div class="featured-wrap">
+        <div class="section-rule">
+            <div class="section-tag">Latest Edition &nbsp;·&nbsp; Edition 09</div>
+            <div class="section-line"></div>
+        </div>
+
+        <a href="https://anandsinhausa.com/signal/beyond-assimilation.html" class="featured-card">
+            <div class="featured-edition-num">09</div>
+            <div class="featured-badge">★ &nbsp; Current Edition &nbsp;·&nbsp; July 2026</div>
+            <div class="featured-title">Beyond Assimilation</div>
+            <div class="featured-subtitle">Must We Stop Being Indian to Become Fully American?</div>
+            <div class="featured-deck">You may have mistaken cultural disappearance for civic loyalty. Indian Americans are the highest-earning group among Asian Americans — achieved without stopping being Indian. The real deficit is not cultural. It is civic. Four parts: The Pressure, The Confusion, The Evidence, and A Better Path.</div>
+            <div class="featured-meta">Identity &nbsp;·&nbsp; Culture &nbsp;·&nbsp; Civic Life &nbsp;·&nbsp; Immigration &nbsp;·&nbsp; 4-Part Essay</div>
+            <div><span class="featured-cta">Read This Edition →</span></div>
+        </a>
+    </div>
+
+    <!-- ARCHIVE -->
+    <div class="archive-wrap">
+        <div class="section-rule">
+            <div class="section-tag">Previous Editions</div>
+            <div class="section-line"></div>
+        </div>
+
+        <div class="archive-grid">
+
+            <a href="https://anandsinhausa.com/signal/silent-shift.html" class="arc-card">
+                <div class="arc-badge">✓ Published</div>
+                <div class="arc-number">08</div>
+                <div class="arc-headline">The Silent Shift: <em>Why Hindu Americans Are Rethinking Their Political Home</em></div>
+                <p class="arc-deck">For decades, Indian Americans voted Democratic by default. Something changed. The data behind the political realignment — and what it means for both parties.</p>
+                <div class="arc-date">2025 &nbsp;·&nbsp; Politics &amp; Elections</div>
+            </a>
+
+            <a href="https://anandsinhausa.com/signal/borrowed-mirror.html" class="arc-card">
+                <div class="arc-badge">✓ Published</div>
+                <div class="arc-number">07</div>
+                <div class="arc-headline">The Borrowed Mirror: <em>A Civilization Looking Outward for Pride It Already Owns</em></div>
+                <p class="arc-deck">Most Indians can name the conquerors. Very few can name the builders. How historical framing shaped a civilization's self-confidence.</p>
+                <div class="arc-date">2025 &nbsp;·&nbsp; Civilization &amp; History</div>
+            </a>
+
+            <a href="https://anandsinhausa.com/signal/ai-cost-crisis.html" class="arc-card">
+                <div class="arc-badge">✓ Published</div>
+                <div class="arc-number">06</div>
+                <div class="arc-headline">The AI Cost Crisis: <em>When Adoption Breaks the Budget</em></div>
+                <p class="arc-deck">Microsoft cancels Claude Code. Uber burns its annual AI budget in four months. The structural economics behind enterprise AI's first reckoning.</p>
+                <div class="arc-date">June 2026 &nbsp;·&nbsp; Technology &amp; Economics</div>
+            </a>
+
+            <a href="https://anandsinhausa.com/signal/why-krishnamoorthi-lost.html" class="arc-card">
+                <div class="arc-badge">✓ Published</div>
+                <div class="arc-number">05</div>
+                <div class="arc-headline">Why Krishnamoorthi Lost: <em>Money, Five Terms, and Still Not Enough</em></div>
+                <p class="arc-deck">Despite a $29M war chest and five terms in Congress, Raja Krishnamoorthi was outmaneuvered — undone by immigration vulnerabilities and voters who saw him as out of step.</p>
+                <div class="arc-date">2026 &nbsp;·&nbsp; Elections &amp; Analysis</div>
+            </a>
+
+            <a href="https://anandsinhausa.com/signal/bengal-2026.html" class="arc-card">
+                <div class="arc-badge">✓ Published</div>
+                <div class="arc-number">04</div>
+                <div class="arc-headline">Bengal 2026: <em>How BJP Won the Unconquerable</em></div>
+                <p class="arc-deck">9.1M voters removed. 240K forces deployed. 93% turnout. The mathematics of an 8 million vote swing that ended 15 years of TMC rule.</p>
+                <div class="arc-date">May 2026 &nbsp;·&nbsp; Elections &amp; Psephology</div>
+            </a>
+
+            <a href="https://anandsinhausa.com/signal/bitcoin.html" class="arc-card">
+                <div class="arc-badge">✓ Published</div>
+                <div class="arc-number">03</div>
+                <div class="arc-headline">Bitcoin: <em>The Investor's Guide for the Skeptical Professional</em></div>
+                <p class="arc-deck">From Saylor's $21M prediction to crash mechanics and custody decisions — a rigorous first-principles framework for serious investors.</p>
+                <div class="arc-date">May 2026 &nbsp;·&nbsp; Investment Strategy</div>
+            </a>
+
+            <a href="https://anandsinhausa.com/signal/crypto.html" class="arc-card">
+                <div class="arc-badge">✓ Published</div>
+                <div class="arc-number">02</div>
+                <div class="arc-headline">The Crypto Landscape: <em>From Cypherpunk Dreams to Infrastructure</em></div>
+                <p class="arc-deck">Understanding cryptocurrency from its origins in cryptographic freedom movements to today's institutional adoption — and why it matters beyond speculation.</p>
+                <div class="arc-date">May 2026 &nbsp;·&nbsp; Technology &amp; Finance</div>
+            </a>
+
+            <a href="https://anandsinhausa.com/signal/petrodollar.html" class="arc-card">
+                <div class="arc-badge">✓ Published</div>
+                <div class="arc-number">01</div>
+                <div class="arc-headline">The Dollar's Three Lives: <em>Gold → Oil → Digital</em></div>
+                <p class="arc-deck">How America reinvented currency dominance three times — and why every American receives an invisible $1,500–$2,000 monthly subsidy because of it.</p>
+                <div class="arc-date">May 2026 &nbsp;·&nbsp; Finance &amp; Geopolitics</div>
+            </a>
+
+        </div>
+    </div>
+
+    <!-- ABOUT -->
+    <div class="about-wrap">
+        <div class="section-rule">
+            <div class="section-tag">About the Author</div>
+            <div class="section-line"></div>
+        </div>
+
+        <div class="about-box">
+            <div class="about-name">Anand Sinha</div>
+            <div class="about-role">Writer · Civic Technologist · Founder, The Signal</div>
+            <p class="about-bio">Anand Sinha spent decades in corporate life before retiring to focus on the questions that had always mattered most — civilization, identity, history, and the political future of Hindu Americans. The Signal is where he writes them down.</p>
+            <p class="about-bio">He is actively engaged with <strong>Americans for Hindus (A4H)</strong>, a Political Action Committee working to awaken Hindu Americans to the urgency of civic participation. He developed the <strong>A4H Elections Hub 2026</strong> — a fifty-state voter guide and candidate tracking system. He is based in Troy, Michigan.</p>
+            <div class="about-links">
+                <a href="https://anandsinhausa.com/signal" class="about-link">All Editions</a>
+                <a href="https://www.anandsinhausa.com/a4hVoterGuide.html" class="about-link">A4H Voter Guide</a>
+                <a href="mailto:sinha.anand@gmail.com" class="about-link">Write to the Author</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- SUBSCRIBE -->
+    <div class="subscribe-box">
+        <h3>Stay Updated</h3>
+        <p>Get notified when new Signal articles are published.</p>
+        <a href="mailto:sinha.anand@gmail.com?subject=Subscribe to The Signal">Subscribe</a>
+        <a href="mailto:sinha.anand@gmail.com?subject=Feedback on The Signal">Send Feedback</a>
+    </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+    <p>&copy; 2026 The Signal by Anand Sinha &nbsp;·&nbsp; Published at <a href="https://anandsinhausa.com">anandsinhausa.com</a></p>
+    <p>Civilization Analysis &nbsp;·&nbsp; Technology &nbsp;·&nbsp; Finance &nbsp;·&nbsp; Elections &nbsp;·&nbsp; Geopolitics</p>
+</footer>
+
+</body>
+</html>
