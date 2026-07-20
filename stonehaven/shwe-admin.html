@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SHWE Social 2026 — Admin</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --forest:#1E3D2F; --gold:#C9A84C; --burgundy:#6B1A1A;
+  --cream:#F7F0E3; --parchment:#EFE5CC; --text:#2C1A0E;
+  --muted:#6B5744; --amber:#C4740A; --radius:10px;
+  --shadow:0 4px 20px rgba(44,26,14,0.10);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Lato',sans-serif;background:var(--cream);color:var(--text);min-height:100vh;}
+
+/* LOGIN */
+#loginScreen{
+  min-height:100vh;display:flex;align-items:center;justify-content:center;
+  background:var(--forest);
+}
+.login-box{
+  background:white;border-radius:16px;padding:40px;
+  width:320px;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,0.3);
+}
+.login-box h1{font-family:'Playfair Display',serif;font-size:24px;color:var(--forest);margin-bottom:6px;}
+.login-box p{font-size:13px;color:var(--muted);margin-bottom:24px;}
+.login-box input{
+  width:100%;padding:14px;border:2px solid var(--parchment);
+  border-radius:8px;font-size:20px;text-align:center;
+  letter-spacing:8px;font-family:'Playfair Display',serif;
+  background:var(--cream);margin-bottom:12px;
+}
+.login-box input:focus{outline:none;border-color:var(--forest);}
+.login-btn{
+  width:100%;padding:14px;background:var(--forest);color:white;
+  border:none;border-radius:8px;font-size:15px;font-weight:700;
+  cursor:pointer;transition:background 0.2s;
+}
+.login-btn:hover{background:#2A5240;}
+.login-error{color:var(--burgundy);font-size:13px;margin-top:8px;display:none;}
+
+/* ADMIN */
+#adminScreen{display:none;}
+.admin-header{
+  background:var(--forest);padding:16px 28px;
+  display:flex;align-items:center;justify-content:space-between;
+  border-bottom:3px solid var(--gold);
+}
+.admin-header h1{font-family:'Playfair Display',serif;font-size:20px;color:#fff;}
+.admin-header span{font-size:12px;color:rgba(255,255,255,0.6);}
+.signout{
+  background:transparent;border:1px solid rgba(255,255,255,0.3);
+  color:rgba(255,255,255,0.7);padding:6px 14px;border-radius:20px;
+  font-size:12px;cursor:pointer;font-family:'Lato',sans-serif;
+}
+.signout:hover{border-color:white;color:white;}
+
+.admin-wrap{max-width:900px;margin:0 auto;padding:28px 20px 60px;}
+
+/* STAT CARDS */
+.stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px;margin-bottom:28px;}
+.stat-card{
+  background:white;border-radius:var(--radius);padding:20px;
+  text-align:center;box-shadow:var(--shadow);border:1px solid rgba(201,168,76,0.2);
+}
+.stat-num{font-family:'Playfair Display',serif;font-size:40px;font-weight:900;line-height:1;}
+.stat-num.green{color:var(--forest);}
+.stat-num.burgundy{color:var(--burgundy);}
+.stat-num.amber{color:var(--amber);}
+.stat-num.muted{color:var(--muted);}
+.stat-label{font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-top:6px;}
+
+/* PROGRESS BAR */
+.progress-wrap{background:white;border-radius:var(--radius);padding:20px 24px;box-shadow:var(--shadow);margin-bottom:28px;border:1px solid rgba(201,168,76,0.2);}
+.progress-label{font-size:13px;font-weight:700;color:var(--muted);margin-bottom:8px;}
+.progress-bar{height:12px;background:var(--parchment);border-radius:6px;overflow:hidden;}
+.progress-fill{height:100%;background:linear-gradient(90deg,var(--forest),#3A6B52);border-radius:6px;transition:width 0.5s ease;}
+.progress-text{font-size:12px;color:var(--muted);margin-top:6px;text-align:right;}
+
+/* SECTION */
+.section{margin-bottom:28px;}
+.section-title{
+  font-family:'Playfair Display',serif;font-size:18px;font-weight:700;
+  color:var(--forest);margin-bottom:14px;padding-bottom:8px;
+  border-bottom:2px solid var(--parchment);
+  display:flex;align-items:center;justify-content:space-between;
+}
+
+/* TABLE */
+.table-wrap{overflow-x:auto;}
+table{width:100%;border-collapse:collapse;font-size:13px;}
+th{background:var(--forest);color:var(--gold);font-size:10px;letter-spacing:1px;text-transform:uppercase;padding:10px 12px;text-align:left;}
+td{padding:10px 12px;border-bottom:1px solid var(--parchment);}
+tr:last-child td{border-bottom:none;}
+tr:hover td{background:var(--cream);}
+.badge{display:inline-block;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700;}
+.badge.yes{background:#E8F5EC;color:#1E6B3A;}
+.badge.no{background:#FDE8E8;color:#8B1A1A;}
+.badge.pending{background:var(--parchment);color:var(--muted);}
+
+/* BUTTONS */
+.btn{
+  padding:10px 20px;border:none;border-radius:8px;
+  font-family:'Lato',sans-serif;font-size:13px;font-weight:700;
+  cursor:pointer;transition:all 0.2s;text-transform:uppercase;letter-spacing:1px;
+}
+.btn-green{background:var(--forest);color:white;}
+.btn-green:hover{background:#2A5240;}
+.btn-amber{background:var(--amber);color:white;}
+.btn-amber:hover{background:#A86008;}
+.btn-burgundy{background:var(--burgundy);color:white;}
+.btn-burgundy:hover{background:#8B2A2A;}
+.btn-row{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:20px;}
+
+/* CHIP LISTS */
+.chip-list{display:flex;flex-direction:column;gap:8px;}
+.chip{background:white;border:1px solid var(--parchment);border-radius:8px;padding:10px 14px;font-size:13px;}
+.chip .addr{font-weight:700;color:var(--forest);margin-bottom:2px;font-size:12px;}
+
+/* TOAST */
+.toast{
+  position:fixed;bottom:24px;left:50%;transform:translateX(-50%);
+  background:var(--forest);color:white;padding:12px 24px;
+  border-radius:8px;font-size:14px;font-weight:700;
+  box-shadow:0 8px 24px rgba(0,0,0,0.2);
+  opacity:0;transition:opacity 0.3s;pointer-events:none;z-index:999;
+}
+.toast.show{opacity:1;}
+
+/* REFRESH */
+.refresh-note{font-size:12px;color:var(--muted);font-style:italic;}
+</style>
+</head>
+<body>
+
+<!-- LOGIN -->
+<div id="loginScreen">
+  <div class="login-box">
+    <h1>🌳 SHWE Admin</h1>
+    <p>Annual Social 2026 · Admin Panel</p>
+    <p style="font-size:13px;color:var(--muted);margin-bottom:20px;">
+      Access is granted by your signed-in Google account. If you're not authorized, contact StonehavenwoodsEast@gmail.com.
+    </p>
+    <button type="button" class="login-btn" onclick="enterAdmin()">Continue</button>
+    <div class="login-error" id="loginError" style="display:none"></div>
+  </div>
+</div>
+
+<!-- ADMIN -->
+<div id="adminScreen">
+  <div class="admin-header">
+    <h1>🌳 SHWE Social 2026 · Admin</h1>
+    <div style="display:flex;align-items:center;gap:12px;">
+      <span class="refresh-note" id="lastRefresh"></span>
+      <button class="signout" onclick="signOut()">Sign Out</button>
+    </div>
+  </div>
+
+  <div class="admin-wrap">
+
+    <!-- STAT CARDS -->
+    <div class="stat-grid">
+      <div class="stat-card">
+        <div class="stat-num green" id="statYes">–</div>
+        <div class="stat-label">✅ RSVPed Yes</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num burgundy" id="statNo">–</div>
+        <div class="stat-label">❌ RSVPed No</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num muted" id="statPending">–</div>
+        <div class="stat-label">⏳ No Response</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num amber" id="statAdults">–</div>
+        <div class="stat-label">👥 Adults Coming</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num amber" id="statKids5">–</div>
+        <div class="stat-label">👶 Under 5</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num amber" id="statKids15">–</div>
+        <div class="stat-label">🧒 Ages 6–15</div>
+      </div>
+      <div class="stat-card" style="border-color:var(--gold);">
+        <div class="stat-num green" id="statTotal">–</div>
+        <div class="stat-label">🎉 Total Attending</div>
+      </div>
+    </div>
+
+    <!-- RESPONSE RATE -->
+    <div class="progress-wrap">
+      <div class="progress-label">Response Rate</div>
+      <div class="progress-bar"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
+      <div class="progress-text" id="progressText">Loading…</div>
+    </div>
+
+    <!-- EMAIL ACTIONS -->
+    <div class="section">
+      <div class="section-title">Email Actions</div>
+
+      <div style="margin-bottom:16px;">
+        <label style="display:block;font-size:12px;font-weight:700;color:var(--muted);margin-bottom:6px;">Campaign type</label>
+        <select id="campaignType" style="width:100%;padding:10px;border:1px solid var(--parchment);border-radius:8px;font-size:14px;">
+          <option value="invite">Initial invite (to ALL households)</option>
+          <option value="reminder">Reminder (to non-RSVPed households)</option>
+          <option value="update">Update (to already-confirmed households)</option>
+          <option value="closing">Closing alert (to non-RSVPed households)</option>
+        </select>
+      </div>
+
+      <div class="btn-row">
+        <button type="button" class="btn btn-green" onclick="previewCampaign()">Preview Recipients (sends nothing)</button>
+      </div>
+      <div id="previewResult" style="display:none;background:var(--cream);border:1px solid var(--parchment);border-radius:8px;padding:16px;margin-bottom:16px;font-size:13px;"></div>
+
+      <div style="margin:20px 0 12px;padding-top:16px;border-top:1px solid var(--parchment);">
+        <label style="display:block;font-size:12px;font-weight:700;color:var(--muted);margin-bottom:6px;">Test email address (all matching emails will be redirected here instead of real neighbors)</label>
+        <input type="email" id="testEmailInput" placeholder="your.own.email@example.com" style="width:100%;padding:10px;border:1px solid var(--parchment);border-radius:8px;font-size:14px;margin-bottom:10px;">
+        <button type="button" class="btn btn-amber" onclick="sendTestCampaign()">Send Test to This Address</button>
+        <p style="font-size:11px;color:var(--muted);margin-top:6px;">Test sends use the real targeting logic and real email template, but every message goes to the address above instead of the real household. Test sends do not count against the one-time real-send lock below.</p>
+      </div>
+
+      <div style="margin-top:20px;padding-top:16px;border-top:2px solid var(--burgundy);">
+        <p style="font-size:12px;font-weight:700;color:var(--burgundy);margin-bottom:10px;">REAL SEND — emails go to actual households. Each campaign type can only be sent once.</p>
+        <div class="btn-row">
+          <button type="button" class="btn btn-amber" onclick="sendRealCampaign('invite')">Send Initial Invite (ALL households)</button>
+          <button type="button" class="btn btn-amber" onclick="sendRealCampaign('reminder')">Send Reminder (non-RSVPed)</button>
+          <button type="button" class="btn btn-green" onclick="sendRealCampaign('update')">Send Update (confirmed)</button>
+          <button type="button" class="btn btn-burgundy" onclick="sendRealCampaign('closing')">Send Closing Alert</button>
+        </div>
+        <p style="font-size:12px;color:var(--muted);margin-top:8px;">Reminder + Update = Sept 27 · Closing = Sept 30 (non-RSVPed only)</p>
+      </div>
+    </div>
+
+    <!-- TEST CONFIRMATION EMAIL -->
+    <div class="section">
+      <div class="section-title">Test Confirmation Email</div>
+      <p style="font-size:12px;color:var(--muted);margin-bottom:14px;">
+        This tests the RSVP confirmation email — the one a resident receives right after they submit the form —
+        not the invite/reminder emails above. Sends a one-off email to the address below with sample data
+        (Test Household, 2 adults, 1 kid under 5, 1 kid 6&ndash;15). Nothing is written to the RSVPs sheet.
+      </p>
+      <label style="display:block;font-size:12px;font-weight:700;color:var(--muted);margin-bottom:6px;">Send test confirmation to</label>
+      <input type="email" id="confirmTestEmailInput" placeholder="your.own.email@example.com" style="width:100%;padding:10px;border:1px solid var(--parchment);border-radius:8px;font-size:14px;margin-bottom:10px;">
+      <div class="btn-row">
+        <button type="button" class="btn btn-green" onclick="sendTestConfirmation('yes')">Send Test &mdash; RSVP Yes</button>
+        <button type="button" class="btn btn-amber" onclick="sendTestConfirmation('no')">Send Test &mdash; RSVP No</button>
+      </div>
+    </div>
+
+    <!-- RSVP LIST -->
+    <div class="section">
+      <div class="section-title">
+        All RSVPs
+        <button class="btn btn-green" style="font-size:11px;padding:6px 14px;" onclick="loadStats()">↻ Refresh</button>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Address</th><th>Household</th><th>RSVP</th><th>Adults</th><th>Under 5</th><th>6–15</th></tr>
+          </thead>
+          <tbody id="rsvpTable"><tr><td colspan="6" style="text-align:center;color:var(--muted);">Loading…</td></tr></tbody>
+        </table>
+      </div>
+    </div>
+
+
+
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+// ⚠️ REPLACE BEFORE LAUNCH — this must be the SEPARATE admin deployment URL, NOT the public one.
+// Deploy → New deployment → Execute as: User accessing the web app → Access: Anyone with Google account
+// The line below must contain YOUR admin deployment URL — verify it's not still a placeholder.
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzOHfFQ2vlVEvonbo7x9U7X2gTGVfOdXDYl0AZzUbv_u-jQvUb1W5yekSGCD_Ax7-90/exec';
+// No PIN or secret here — access is enforced server-side via Google account (see Code.gs ADMIN_ALLOWLIST).
+
+// Admin gate is now server-side (Google account allowlist in Code.gs).
+// This function just moves past the local splash screen; the actual
+// authorization check happens on the first loadStats() call below.
+function enterAdmin() {
+  document.getElementById('loginScreen').style.display = 'none';
+  document.getElementById('adminScreen').style.display = 'block';
+  loadStats();
+}
+
+function signOut() {
+  document.getElementById('adminScreen').style.display = 'none';
+  document.getElementById('loginScreen').style.display = 'flex';
+}
+
+function toast(msg) {
+  var t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(function(){ t.classList.remove('show'); }, 3000);
+}
+
+function loadStats() {
+  if (!SCRIPT_URL) {
+    toast('⚠️ Admin deployment URL not set — see SCRIPT_URL at top of script');
+    return;
+  }
+  fetch(SCRIPT_URL + '?action=getStats', { credentials: 'include' })
+    .then(function(r){ return r.json(); })
+    .then(function(d){
+      if (!d || d.error) {
+        if (d && d.error === 'Unauthorized') {
+          document.getElementById('adminScreen').style.display = 'none';
+          document.getElementById('loginScreen').style.display = 'flex';
+          document.getElementById('loginError').textContent =
+            'Your Google account is not authorized for admin access. Contact StonehavenwoodsEast@gmail.com to be added.';
+          document.getElementById('loginError').style.display = 'block';
+          return;
+        }
+        throw new Error(d && d.error ? d.error : 'Invalid server response');
+      }
+      renderStats(d);
+    })
+    .catch(function(err){ toast('❌ ' + (err.message || 'Error loading stats')); });
+}
+
+// (renderDemo() removed — it was unused dead code and had real resident
+// data hardcoded as sample values, which has no place in this file anymore.)
+
+function renderStats(d) {
+  document.getElementById('statYes').textContent    = d.yesHouseholds || 0;
+  document.getElementById('statNo').textContent     = d.noHouseholds || 0;
+  document.getElementById('statPending').textContent= d.notRsvped || 0;
+  document.getElementById('statAdults').textContent = d.totalAdults || 0;
+  document.getElementById('statKids5').textContent  = d.totalKids5 || 0;
+  document.getElementById('statKids15').textContent = d.totalKids15 || 0;
+  document.getElementById('statTotal').textContent  = d.totalAttending || 0;
+
+  var eligible = d.eligibleHouseholds || 41;
+  var responded = (d.yesHouseholds||0) + (d.noHouseholds||0);
+  var pct = eligible > 0 ? Math.round(responded / eligible * 100) : 0;
+  document.getElementById('progressFill').style.width = pct + '%';
+  document.getElementById('progressText').textContent =
+    responded + ' of ' + eligible + ' households responded (' + pct + '%)';
+
+  document.getElementById('lastRefresh').textContent =
+    'Last refreshed: ' + new Date().toLocaleTimeString();
+
+  // RSVP table — built via DOM + textContent (safe against HTML injection)
+  var tbody = document.getElementById('rsvpTable');
+  tbody.innerHTML = '';
+  if (!d.rsvps || !d.rsvps.length) {
+    var emptyRow = document.createElement('tr');
+    var emptyCell = document.createElement('td');
+    emptyCell.colSpan = 6;
+    emptyCell.style.textAlign = 'center';
+    emptyCell.style.color = 'var(--muted)';
+    emptyCell.textContent = 'No RSVPs yet';
+    emptyRow.appendChild(emptyCell);
+    tbody.appendChild(emptyRow);
+  } else {
+    d.rsvps.forEach(function(r) {
+      var tr = document.createElement('tr');
+      function cell(text) {
+        var td = document.createElement('td');
+        td.textContent = text;
+        tr.appendChild(td);
+        return td;
+      }
+      cell(r.addr);
+      cell(r.name);
+      var badgeCell = document.createElement('td');
+      var badge = document.createElement('span');
+      badge.className = 'badge ' + r.rsvp;
+      badge.textContent = r.rsvp === 'yes' ? '✅ Yes' : '❌ No';
+      badgeCell.appendChild(badge);
+      tr.appendChild(badgeCell);
+      cell(r.rsvp === 'yes' ? r.adults : '–');
+      cell(r.rsvp === 'yes' ? r.kids5  : '–');
+      cell(r.rsvp === 'yes' ? r.kids15 : '–');
+      tbody.appendChild(tr);
+    });
+  }
+
+
+}
+
+function checkScriptUrl() {
+  if (!SCRIPT_URL || SCRIPT_URL === 'PASTE-ADMIN-DEPLOYMENT-URL-HERE') {
+    toast('Admin deployment URL not set — see SCRIPT_URL at top of script');
+    return false;
+  }
+  return true;
+}
+
+function previewCampaign() {
+  if (!checkScriptUrl()) return;
+  var type = document.getElementById('campaignType').value;
+  var resultBox = document.getElementById('previewResult');
+  resultBox.style.display = 'block';
+  resultBox.textContent = 'Loading preview...';
+
+  fetch(SCRIPT_URL, {
+    method:'POST', redirect:'follow',
+    headers:{'Content-Type':'text/plain'},
+    body: JSON.stringify({action:'previewReminders', type:type})
+  })
+  .then(function(r){ return r.json(); })
+  .then(function(data){
+    if (data && data.error) { resultBox.textContent = 'Error: ' + data.error; return; }
+
+    // Built via createElement/textContent, not innerHTML string concatenation —
+    // recipient name/addr/email now come live from an editable directory Sheet,
+    // so this must be treated the same as any other untrusted spreadsheet data
+    // (see the RSVP table below, which follows the same pattern).
+    resultBox.innerHTML = '';
+
+    var summary = document.createElement('strong');
+    summary.textContent = data.recipientCount + ' household(s) would receive this email:';
+    resultBox.appendChild(summary);
+
+    var ul = document.createElement('ul');
+    ul.style.margin = '8px 0 0 20px';
+    (data.recipients || []).forEach(function(r) {
+      var li = document.createElement('li');
+      li.textContent = r.name + ' \u2014 ' + r.addr + ' \u2014 ' + r.email;
+      ul.appendChild(li);
+    });
+    resultBox.appendChild(ul);
+
+    if (data.sampleSubject) {
+      var sampleDiv = document.createElement('div');
+      sampleDiv.style.marginTop = '12px';
+      sampleDiv.style.paddingTop = '12px';
+      sampleDiv.style.borderTop = '1px solid var(--parchment)';
+      var label = document.createElement('strong');
+      label.textContent = 'Sample subject line:';
+      sampleDiv.appendChild(label);
+      sampleDiv.appendChild(document.createElement('br'));
+      sampleDiv.appendChild(document.createTextNode(data.sampleSubject));
+      resultBox.appendChild(sampleDiv);
+    }
+  })
+  .catch(function(){ resultBox.textContent = 'Error loading preview — check Script URL.'; });
+}
+
+function sendTestCampaign() {
+  if (!checkScriptUrl()) return;
+  var type = document.getElementById('campaignType').value;
+  var testEmail = document.getElementById('testEmailInput').value.trim();
+  if (!testEmail) { toast('Enter a test email address first'); return; }
+  if (!confirm('Send a TEST ' + type + ' email to ' + testEmail + '? This uses real targeting logic but redirects every message to this one address.')) return;
+  toast('Sending test emails...');
+  fetch(SCRIPT_URL, {
+    method:'POST', redirect:'follow',
+    headers:{'Content-Type':'text/plain'},
+    body: JSON.stringify({action:'sendReminders', type:type, testMode:true, testEmail:testEmail})
+  })
+  .then(function(r){ return r.json(); })
+  .then(function(data){
+    if (data && data.error) { toast('Error: ' + data.error); return; }
+    toast(data.sent + ' test email(s) sent to ' + testEmail);
+  })
+  .catch(function(){ toast('Error — check Script URL'); });
+}
+
+function sendRealCampaign(type) {
+  if (!checkScriptUrl()) return;
+  var labels = {invite:'initial invite to ALL households',reminder:'reminder to non-RSVPed',update:'update to confirmed',closing:'closing alert'};
+  if (!confirm('This will send REAL emails to actual households.\n\nSend ' + labels[type] + ' now? This cannot be undone and can only be sent once per campaign type.')) return;
+  if (!confirm('Are you certain? This is not a test.')) return;
+  toast('Sending...');
+  fetch(SCRIPT_URL, {
+    method:'POST', redirect:'follow',
+    headers:{'Content-Type':'text/plain'},
+    body: JSON.stringify({action:'sendReminders', type:type})
+  })
+  .then(function(r){ return r.json(); })
+  .then(function(data){
+    if (data && data.error) { toast('Error: ' + data.error); return; }
+    if (data && typeof data.sent === 'number') { toast(data.sent + ' email(s) sent'); }
+    else { toast('Request completed'); }
+  })
+  .catch(function(){ toast('Error — check Script URL'); });
+}
+
+function sendTestConfirmation(rsvpType) {
+  if (!checkScriptUrl()) return;
+  var testEmail = document.getElementById('confirmTestEmailInput').value.trim();
+  if (!testEmail) { toast('Enter an email address first'); return; }
+  toast('Sending test confirmation...');
+  fetch(SCRIPT_URL, {
+    method:'POST', redirect:'follow',
+    headers:{'Content-Type':'text/plain'},
+    body: JSON.stringify({action:'sendTestConfirmation', testEmail:testEmail, rsvpType:rsvpType})
+  })
+  .then(function(r){ return r.json(); })
+  .then(function(data){
+    if (data && data.error) { toast('Error: ' + data.error); return; }
+    toast('Test confirmation (' + rsvpType + ') sent to ' + testEmail);
+  })
+  .catch(function(){ toast('Error — check Script URL'); });
+}
+
+// (PIN listener removed — admin gate is server-side now)
+</script>
+</body>
+</html>
