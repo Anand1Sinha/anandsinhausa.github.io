@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="C">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Anand Sinha — Independent Analyst · Civic Voice · Community Builder</title>
+<meta name="description" content="Anand Sinha — writing on geopolitics, finance, Indian identity, and the future of Hindu Americans in public life. Troy, Michigan.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://anandsinhausa.com">
+<meta property="og:title" content="Anand Sinha">
+<meta property="og:description" content="Independent analyst. Civic voice. Community builder. Writing on geopolitics, finance, Indian identity, and the future of Hindu Americans.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,600;9..144,700&family=Playfair+Display:wght@600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; overflow-x: hidden; transition: background 0.3s, color 0.3s; }
+a { color: inherit; text-decoration: none; }
+
+/* ── Shared tokens ───────────────────────────────────────── */
+:root {
+  --gold:        #D4AF37;
+  --gold-dk:     #c49a20;
+  --upad-saffron:#c8720f;
+  --upad-navy:   #152a4d;
+  --upad-cream:  #f3ead4;
+  --a4h-navy:    #0f1f3d;
+  --a4h-gold:    #b7860b;
+  --a4h-paper:   #f4f2ec;
+  --signal-dark: #1a1a1a;
+  --signal-navy: #2b3e50;
+  --signal-paper:#f2efe9;
+  --family-sepia:#7a5230;
+  --family-paper:#efe6d3;
+  --family-line: #d8c7a3;
+  --max: 1080px;
+}
+
+/* ══════════════════════════════════════════════════════════
+   THEME C — White hero (DEFAULT)
+══════════════════════════════════════════════════════════ */
+[data-theme="C"] {
+  --bg-page:    #ffffff;
+  --bg-body:    #f7f5f0;
+  --bg-about:   #efece4;
+  --ink:        #1a1a1a;
+  --ink-soft:   #4a4642;
+  --line:       #d8d3c6;
+  --hero-bg:    #ffffff;
+  --hero-text:  #1a1a1a;
+  --hero-sub:   #4a4642;
+  --hero-accent:#D4AF37;
+  --hero-rule:  3px solid #D4AF37;
+  --topbar-bg:  #1a1a1a;
+  --topbar-text:#ffffff;
+  --desk-strip: #1a1a1a;
+  --desk-text:  #ffffff;
+  --desk-eyebrow-default: #888;
+}
+
+/* ══════════════════════════════════════════════════════════
+   THEME B — Deep Navy Immersive
+══════════════════════════════════════════════════════════ */
+[data-theme="B"] {
+  --bg-page:    #0d1b2e;
+  --bg-body:    #0f2035;
+  --bg-about:   #0a1628;
+  --ink:        #e8edf5;
+  --ink-soft:   #a0b4cc;
+  --line:       #1e3a5c;
+  --hero-bg:    #0d1b2e;
+  --hero-text:  #ffffff;
+  --hero-sub:   #a0b4cc;
+  --hero-accent:#D4AF37;
+  --hero-rule:  3px solid #D4AF37;
+  --topbar-bg:  #091525;
+  --topbar-text:#ffffff;
+  --desk-strip: #0a1628;
+  --desk-text:  #e8edf5;
+  --desk-eyebrow-default: #6a8aaa;
+}
+
+/* ══════════════════════════════════════════════════════════
+   THEME A — Editorial Classic (warm paper)
+══════════════════════════════════════════════════════════ */
+[data-theme="A"] {
+  --bg-page:    #f7f5f0;
+  --bg-body:    #f7f5f0;
+  --bg-about:   #efece4;
+  --ink:        #1a1a1a;
+  --ink-soft:   #4a4642;
+  --line:       #d8d3c6;
+  --hero-bg:    #1a1a1a;
+  --hero-text:  #ffffff;
+  --hero-sub:   #8a9ba8;
+  --hero-accent:#D4AF37;
+  --hero-rule:  none;
+  --topbar-bg:  #1a1a1a;
+  --topbar-text:#ffffff;
+  --desk-strip: #f7f5f0;
+  --desk-text:  #1a1a1a;
+  --desk-eyebrow-default: #999;
+}
+
+body { background: var(--bg-body); color: var(--ink); }
+
+/* ── Top Bar ─────────────────────────────────────────────── */
+.top-bar {
+  background: var(--topbar-bg);
+  padding: 10px 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  transition: background 0.3s;
+}
+.top-bar-name {
+  font-size: 11px; font-weight: 700; letter-spacing: 2.5px;
+  text-transform: uppercase; color: var(--topbar-text);
+}
+.top-bar-links { display: flex; align-items: center; gap: 16px; }
+.top-bar-links a {
+  font-size: 10px; font-weight: 600; letter-spacing: 1.5px;
+  text-transform: uppercase; color: #8a9ba8; transition: color 0.15s;
+}
+.top-bar-links a:hover { color: var(--topbar-text); }
+
+/* Theme toggle */
+.theme-toggle {
+  display: flex;
+  gap: 3px;
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 4px;
+  padding: 3px;
+}
+.theme-btn {
+  font-size: 11px; font-weight: 800; letter-spacing: 0.5px;
+  padding: 6px 13px; border: none; border-radius: 2px;
+  cursor: pointer; transition: all 0.15s;
+  background: transparent; color: #8a9ba8;
+  text-transform: uppercase;
+}
+.theme-btn.active { background: var(--gold); color: #000; }
+.theme-btn:hover:not(.active) { color: #fff; }
+
+
+
+/* ── Hero ────────────────────────────────────────────────── */
+.hero-wrap {
+  background: var(--hero-bg);
+  border-bottom: var(--hero-rule);
+  transition: background 0.3s;
+}
+[data-theme="A"] .hero-wrap { border-bottom: 1px solid rgba(255,255,255,0.1); }
+
+.hero {
+  max-width: var(--max); margin: 0 auto;
+  padding: 72px 28px 56px;
+  display: grid; grid-template-columns: 1fr 320px;
+  gap: 56px; align-items: center;
+}
+[data-theme="C"] .hero { padding: 56px 28px 48px; }
+
+.hero-kicker {
+  font-size: 11px; font-weight: 700; letter-spacing: 2px;
+  text-transform: uppercase; color: var(--gold);
+  margin-bottom: 20px;
+}
+.hero h1 {
+  font-family: 'Fraunces', serif; font-weight: 600;
+  font-size: clamp(36px, 5.5vw, 68px);
+  line-height: 1.02; letter-spacing: -0.02em;
+  color: var(--hero-text); margin-bottom: 20px;
+  transition: color 0.3s;
+}
+.hero h1 em { font-style: italic; color: var(--hero-accent); }
+.hero-sub {
+  font-size: 17px; line-height: 1.7;
+  color: var(--hero-sub); max-width: 50ch;
+  transition: color 0.3s;
+}
+.hero-sub strong { color: var(--hero-text); font-weight: 600; }
+.hero-actions {
+  display: flex; align-items: center; gap: 14px;
+  margin-top: 32px; flex-wrap: wrap;
+}
+.btn-linkedin {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 11px 20px; background: #0077B5; color: #fff;
+  font-size: 12px; font-weight: 700; letter-spacing: 0.5px;
+  border-radius: 3px; transition: opacity 0.15s;
+}
+.btn-linkedin:hover { opacity: 0.88; }
+.btn-linkedin svg { width: 14px; height: 14px; fill: #fff; flex-shrink: 0; }
+.btn-contact-hero {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 11px 20px; font-size: 12px; font-weight: 700;
+  letter-spacing: 0.5px; border-radius: 3px; cursor: pointer;
+  transition: all 0.2s; background: transparent;
+}
+[data-theme="C"] .btn-contact-hero { border: 1.5px solid #1a1a1a; color: #1a1a1a; }
+[data-theme="C"] .btn-contact-hero:hover { background: #1a1a1a; color: #fff; }
+[data-theme="B"] .btn-contact-hero { border: 1.5px solid var(--gold); color: var(--gold); }
+[data-theme="B"] .btn-contact-hero:hover { background: var(--gold); color: #000; }
+[data-theme="A"] .btn-contact-hero { border: 1.5px solid rgba(255,255,255,0.7); color: #fff; }
+[data-theme="A"] .btn-contact-hero:hover { background: rgba(255,255,255,0.15); color: #fff; }
+
+/* Hero credential block */
+.hero-right {
+  padding: 24px;
+  background: rgba(0,0,0,0.08);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-left: 3px solid var(--gold);
+  transition: background 0.3s;
+}
+[data-theme="C"] .hero-right { background: #1a1a1a; border: none; border-left: 3px solid var(--gold); }
+[data-theme="B"] .hero-right { background: rgba(255,255,255,0.05); border: 1px solid rgba(212,175,55,0.2); border-left: 3px solid var(--gold); }
+[data-theme="A"] .hero-right { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-left: 3px solid var(--gold); }
+
+.hero-right-label {
+  font-size: 12px; font-weight: 800; letter-spacing: 2px;
+  text-transform: uppercase; color: var(--gold); margin-bottom: 20px;
+}
+.credential { margin-bottom: 16px; padding-bottom: 16px; border-bottom: 1px solid rgba(255,255,255,0.08); }
+.credential:last-of-type { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+.credential-role { font-size: 15px; font-weight: 700; color: #fff; margin-bottom: 3px; }
+[data-theme="C"] .credential-role { color: #fff; }
+[data-theme="B"] .credential-role { color: #e8edf5; }
+[data-theme="A"] .credential-role { color: #fff; }
+.credential-org { font-size: 13px; color: var(--gold); margin-bottom: 4px; }
+.credential-detail { font-size: 12px; color: #8a9ba8; line-height: 1.5; }
+.hero-location { font-size: 11px; color: #8a9ba8; margin-top: 18px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.08); }
+
+/* ── Desk Strip ──────────────────────────────────────────── */
+.desks-wrap {
+  background: var(--desk-strip);
+  padding: 0 0 0 0;
+  transition: background 0.3s;
+  border-top: 1px solid rgba(212,175,55,0.25);
+}
+.desks-header {
+  max-width: var(--max); margin: 0 auto;
+  padding: 28px 28px 16px;
+  display: flex; align-items: center; gap: 16px;
+}
+.desks-header-tag {
+  font-size: 9px; font-weight: 800; letter-spacing: 2.5px;
+  text-transform: uppercase; color: var(--gold);
+  padding: 5px 12px;
+  border: 1px solid rgba(212,175,55,0.4);
+  white-space: nowrap; flex-shrink: 0;
+}
+.desks-header-line { flex: 1; height: 1px; background: rgba(255,255,255,0.08); }
+[data-theme="A"] .desks-header-line { background: var(--line); }
+
+.desks {
+  max-width: var(--max); margin: 0 auto;
+  display: grid; grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+  background: transparent;
+  padding: 0 28px 32px;
+}
+[data-theme="A"] .desks { background: transparent; }
+
+.desk {
+  position: relative; display: flex; flex-direction: column;
+  text-decoration: none; overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer;
+  background: rgba(255,255,255,0.06);
+  color: var(--desk-text);
+  border: 1px solid rgba(212,175,55,0.18);
+  border-radius: 2px;
+}
+[data-theme="A"] .desk { background: #fff; color: #1a1a1a; border-color: #d8d3c6; }
+[data-theme="C"] .desk { background: #fff; color: #1a1a1a; border-color: #d8d3c6; }
+.desk:hover { transform: translateY(-2px); z-index: 2; box-shadow: 0 8px 28px rgba(0,0,0,0.22); border-color: rgba(212,175,55,0.5); }
+[data-theme="A"] .desk:hover, [data-theme="C"] .desk:hover { border-color: #D4AF37; }
+.desk-mark { padding: 24px 22px 18px; position: relative; }
+.desk-eyebrow {
+  font-size: 11px; font-weight: 700; letter-spacing: 2px;
+  text-transform: uppercase; margin-bottom: 10px;
+  display: block; color: var(--desk-eyebrow-default);
+}
+.desk-name { font-weight: 700; line-height: 1.05; margin: 0; font-size: 15px; color: #fff; }
+[data-theme="C"] .desk-name { color: #1a1a1a; }
+[data-theme="A"] .desk-name { color: #1a1a1a; }
+[data-theme="A"] .desk-name { color: #1a1a1a; }
+.desk-tagline { font-size: 12px; margin-top: 8px; line-height: 1.5; color: var(--desk-eyebrow-default); }
+.desk-body { padding: 18px 22px 24px; border-top: 1px solid rgba(255,255,255,0.1); flex: 1; display: flex; flex-direction: column; }
+[data-theme="A"] .desk-body, [data-theme="C"] .desk-body { border-top-color: var(--line); }
+.desk-desc { font-size: 15px; line-height: 1.7; margin: 0 0 18px; flex: 1; color: rgba(255,255,255,0.88); }
+[data-theme="A"] .desk-desc, [data-theme="C"] .desk-desc { color: #4a4642; }
+.desk-cta {
+  font-size: 11px; font-weight: 700; letter-spacing: 1.5px;
+  text-transform: uppercase; display: inline-flex; align-items: center; gap: 8px;
+  transition: gap 0.15s; color: var(--gold);
+}
+.desk:hover .desk-cta { gap: 12px; }
+.desk-cta svg { width: 12px; height: 12px; flex-shrink: 0; }
+
+/* Desk-specific marks */
+.desk-upad .desk-mark { background: rgba(200,114,15,0.08); }
+[data-theme="A"] .desk-upad .desk-mark { background: var(--upad-cream); }
+.desk-upad .desk-eyebrow { color: var(--upad-saffron); }
+.desk-upad .desk-name {
+  font-family: 'Playfair Display', serif; font-size: 28px;
+  color: var(--upad-saffron); border-bottom: 2px solid var(--upad-saffron);
+  padding-bottom: 8px; text-transform: uppercase;
+}
+[data-theme="A"] .desk-upad .desk-name { color: var(--upad-navy); border-color: var(--upad-navy); }
+.desk-upad .desk-tagline { font-style: italic; font-family: 'Playfair Display', serif; color: var(--upad-saffron); }
+
+.desk-a4h .desk-mark { background: rgba(183,134,11,0.08); }
+[data-theme="A"] .desk-a4h .desk-mark { background: var(--a4h-paper); }
+.desk-a4h .desk-eyebrow { color: var(--gold); }
+.desk-a4h .desk-name { font-size: 22px; color: #fff; }
+[data-theme="C"] .desk-a4h .desk-name { color: var(--a4h-navy); }
+[data-theme="A"] .desk-a4h .desk-name { color: var(--a4h-navy); }
+.desk-a4h .desk-tagline { color: var(--gold); font-weight: 600; }
+.desk-a4h .seal {
+  position: absolute; top: 20px; right: 20px;
+  width: 40px; height: 40px; border: 1.5px solid var(--gold);
+  border-radius: 50%; display: flex; align-items: center; justify-content: center;
+}
+.desk-a4h .seal::before { content: ''; width: 28px; height: 28px; border: 1px solid var(--gold); border-radius: 50%; }
+.desk-a4h .seal-star { position: absolute; font-size: 11px; color: var(--gold); }
+
+.desk-signal .desk-mark { background: rgba(212,175,55,0.06); }
+[data-theme="A"] .desk-signal .desk-mark { background: var(--signal-paper); }
+.desk-signal .desk-eyebrow { color: var(--gold); letter-spacing: 3px; }
+.desk-signal .desk-name {
+  font-family: 'Fraunces', serif; font-size: 28px;
+  font-style: italic; color: #fff;
+}
+[data-theme="C"] .desk-signal .desk-name { color: var(--signal-dark); }
+[data-theme="A"] .desk-signal .desk-name { color: var(--signal-dark); }
+.desk-signal .globe {
+  position: absolute; top: 20px; right: 20px;
+  width: 38px; height: 38px; border: 2px solid rgba(255,255,255,0.3);
+  border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 17px;
+}
+[data-theme="A"] .desk-signal .globe { border-color: var(--signal-dark); }
+.desk-signal .desk-tagline {
+  font-size: 10px; font-weight: 700; letter-spacing: 2px;
+  text-transform: uppercase; color: var(--gold);
+  border-left: 2px solid var(--gold); padding-left: 8px; margin-top: 12px;
+}
+
+.desk-family { cursor: default; }
+.desk-family:hover { transform: none; box-shadow: none; }
+.desk-family .desk-mark { background: rgba(122,82,48,0.12); border-bottom: 1px solid rgba(122,82,48,0.2); }
+[data-theme="A"] .desk-family .desk-mark { background: var(--family-paper); border-bottom: 1px solid var(--family-line); }
+[data-theme="C"] .desk-family .desk-mark { background: var(--family-paper); border-bottom: 1px solid var(--family-line); }
+.desk-family .desk-eyebrow { color: var(--family-sepia); }
+.desk-family .desk-name {
+  font-family: 'Playfair Display', serif; font-size: 26px;
+  color: #fff;
+}
+[data-theme="C"] .desk-family .desk-name { color: #3a2c1a; }
+[data-theme="A"] .desk-family .desk-name { color: #3a2c1a; }
+.desk-family .desk-tagline { font-style: italic; color: var(--family-sepia); font-family: 'Playfair Display', serif; }
+.desk-family .desk-body { display: block; }
+.family-items { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+.family-item {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  padding: 14px 16px; border: 1px solid rgba(255,255,255,0.12);
+  text-decoration: none; color: var(--desk-text); transition: background 0.15s;
+  background: rgba(255,255,255,0.03);
+}
+[data-theme="A"] .family-item { border-color: var(--family-line); background: #fff; color: #1a1a1a; }
+[data-theme="C"] .family-item { border-color: var(--family-line); background: #fff; color: #1a1a1a; }
+[data-theme="B"] .family-item { border-color: rgba(212,175,55,0.15); background: rgba(255,255,255,0.04); }
+.family-item:hover { background: rgba(255,255,255,0.08); border-color: rgba(212,175,55,0.3); }
+[data-theme="A"] .family-item:hover, [data-theme="C"] .family-item:hover { background: var(--family-paper); border-color: var(--family-sepia); }
+.fi-text { display: flex; flex-direction: column; gap: 3px; }
+.fi-name { font-size: 14px; font-weight: 700; }
+.fi-sub { font-size: 12px; opacity: 0.72; line-height: 1.4; }
+.fi-badge {
+  flex-shrink: 0; font-size: 10px; font-weight: 700; letter-spacing: 1px;
+  text-transform: uppercase; color: var(--family-sepia);
+  border: 1px solid var(--family-sepia); padding: 6px 12px;
+  white-space: nowrap; display: flex; align-items: center; gap: 5px;
+  border-radius: 2px;
+}
+[data-theme="B"] .fi-badge { color: var(--gold); border-color: var(--gold); }
+.fi-badge svg { width: 9px; height: 9px; }
+
+/* ── About ───────────────────────────────────────────────── */
+.about-wrap {
+  background: var(--bg-about);
+  border-top: 1px solid rgba(212,175,55,0.2);
+  border-bottom: 1px solid rgba(212,175,55,0.2);
+  padding: 56px 28px;
+  transition: background 0.3s;
+}
+.about-inner { max-width: var(--max); margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: start; }
+.about-eyebrow { font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--ink-soft); margin-bottom: 16px; padding-bottom: 14px; border-bottom: 1px solid var(--line); }
+.about-name { font-family: 'Fraunces', serif; font-weight: 600; font-size: 32px; color: var(--ink); margin-bottom: 14px; line-height: 1.1; }
+.about-tagline { font-family: 'Fraunces', serif; font-style: italic; font-size: 16px; color: var(--ink-soft); line-height: 1.6; margin-bottom: 16px; padding-bottom: 16px; border-bottom: 1px solid var(--line); }
+.about-bio { font-size: 16px; line-height: 1.8; color: var(--ink-soft); margin-bottom: 14px; }
+.about-bio strong { color: var(--ink); font-weight: 600; }
+.about-connect { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 20px; }
+.btn-about { display: inline-flex; align-items: center; padding: 11px 20px; background: var(--ink); color: #fff; font-size: 12px; font-weight: 700; letter-spacing: 0.5px; border-radius: 3px; transition: opacity 0.15s; }
+.btn-about:hover { opacity: 0.85; }
+.about-quote { font-family: 'Fraunces', serif; font-style: italic; font-size: 21px; line-height: 1.55; color: var(--ink-soft); padding-left: 20px; border-left: 3px solid var(--gold); margin-bottom: 28px; }
+.about-highlights { display: flex; flex-direction: column; gap: 10px; }
+.highlight-item { display: flex; gap: 12px; align-items: flex-start; padding: 12px 14px; background: rgba(0,0,0,0.03); border: 1px solid var(--line); }
+.highlight-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--gold); flex-shrink: 0; margin-top: 5px; }
+.highlight-text { font-size: 13px; line-height: 1.6; color: var(--ink-soft); }
+.highlight-text strong { color: var(--ink); font-weight: 600; }
+
+/* ── Footer ──────────────────────────────────────────────── */
+.site-footer { background: #1a1a1a; color: #8a9ba8; padding: 28px 28px; }
+.footer-inner { max-width: var(--max); margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+.footer-name { font-family: 'Fraunces', serif; font-size: 18px; font-weight: 600; color: #fff; }
+.footer-copy { font-size: 12px; margin-top: 3px; }
+.footer-links { display: flex; align-items: center; gap: 20px; }
+.footer-links a { font-size: 11px; font-weight: 600; color: #8a9ba8; transition: color 0.15s; }
+.footer-links a:hover { color: var(--gold); }
+
+/* ── Contact Overlay ─────────────────────────────────────── */
+.contact-overlay { display: none; position: fixed; inset: 0; background: rgba(26,26,26,0.65); z-index: 500; align-items: center; justify-content: center; padding: 20px; backdrop-filter: blur(2px); }
+.contact-overlay.open { display: flex; }
+.contact-panel { background: #fff; max-width: 520px; width: 100%; padding: 40px 36px; position: relative; border-top: 4px solid var(--gold); box-shadow: 0 24px 64px rgba(0,0,0,0.2); }
+.contact-close { position: absolute; top: 16px; right: 20px; font-size: 22px; color: #999; cursor: pointer; background: none; border: none; line-height: 1; transition: color 0.15s; }
+.contact-close:hover { color: #1a1a1a; }
+.contact-eyebrow { font-size: 9px; font-weight: 800; letter-spacing: 2.5px; text-transform: uppercase; color: var(--gold); background: #1a1a1a; display: inline-block; padding: 5px 12px; margin-bottom: 14px; }
+.contact-title { font-family: 'Fraunces', serif; font-size: 26px; font-weight: 600; color: #1a1a1a; margin-bottom: 6px; }
+.contact-sub { font-size: 14px; color: #666; margin-bottom: 24px; line-height: 1.6; }
+.contact-form { display: flex; flex-direction: column; gap: 12px; }
+.contact-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.contact-form input, .contact-form select, .contact-form textarea { width: 100%; padding: 12px 14px; border: 1px solid #d8d3c6; background: #f7f5f0; font-family: 'Inter', sans-serif; font-size: 14px; color: #1a1a1a; outline: none; transition: border-color 0.15s; -webkit-appearance: none; }
+.contact-form input:focus, .contact-form select:focus, .contact-form textarea:focus { border-color: #2b3e50; }
+.contact-form input::placeholder, .contact-form textarea::placeholder { color: #aaa; }
+.contact-form textarea { min-height: 110px; resize: vertical; }
+.btn-send { width: 100%; padding: 14px; background: #1a1a1a; color: #fff; font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; border: none; cursor: pointer; transition: background 0.15s; margin-top: 4px; }
+.btn-send:hover { background: #2b3e50; }
+.contact-success { display: none; text-align: center; padding: 32px 20px; }
+.contact-success-icon { font-size: 40px; margin-bottom: 16px; }
+.contact-success-title { font-family: 'Fraunces', serif; font-size: 22px; font-weight: 600; color: #1a1a1a; margin-bottom: 8px; }
+.contact-success-msg { font-size: 14px; color: #666; line-height: 1.6; }
+
+/* About section contact button — always dark regardless of theme */
+[data-theme="A"] .about-contact-btn { border-color: #1a1a1a !important; color: #1a1a1a !important; background: transparent !important; }
+[data-theme="A"] .about-contact-btn:hover { background: #1a1a1a !important; color: #fff !important; }
+[data-theme="B"] .about-contact-btn { border-color: #1a1a1a !important; color: #1a1a1a !important; background: transparent !important; }
+[data-theme="B"] .about-contact-btn:hover { background: #1a1a1a !important; color: #fff !important; }
+[data-theme="C"] .about-contact-btn { border-color: #1a1a1a !important; color: #1a1a1a !important; background: transparent !important; }
+[data-theme="C"] .about-contact-btn:hover { background: #1a1a1a !important; color: #fff !important; }
+
+/* ── Responsive ──────────────────────────────────────────── */
+@media (max-width: 860px) {
+  .hero { grid-template-columns: 1fr; gap: 32px; padding: 48px 20px 36px; }
+  .desks { grid-template-columns: 1fr; padding: 0 20px 20px; gap: 12px; }
+  .about-inner { grid-template-columns: 1fr; gap: 32px; }
+  .contact-row { grid-template-columns: 1fr; }
+  .footer-inner { flex-direction: column; align-items: flex-start; gap: 12px; }
+  .top-bar { padding: 10px 16px; }
+  .desks-header { padding: 20px 20px 12px; }
+  .about-wrap { padding: 40px 20px; }
+}
+@media (max-width: 540px) {
+  .hero h1 { font-size: 34px; }
+  .top-bar-links a:not(.btn-contact-bar) { display: none; }
+  .theme-toggle { gap: 2px; }
+  .theme-btn { padding: 5px 8px; font-size: 9px; letter-spacing: 0; }
+  .contact-panel { padding: 28px 20px; }
+}
+</style>
+</head>
+<body>
+
+<!-- Top Bar -->
+<div class="top-bar">
+  <div class="top-bar-name">Anand Sinha</div>
+  <div class="top-bar-links">
+    <a href="/signal/">The Signal</a>
+    <a href="https://upaddetroit.github.io/times/issues/2026-07-july/upad-team.html" target="_blank" rel="noopener">UPAD</a>
+    <a href="/a4h/">A4H</a>
+    <div class="theme-toggle" title="Switch theme">
+      <button class="theme-btn" data-t="C" onclick="setTheme('C')">C · Light</button>
+      <button class="theme-btn" data-t="B" onclick="setTheme('B')">B · Night</button>
+      <button class="theme-btn" data-t="A" onclick="setTheme('A')">A · Warm</button>
+    </div>
+
+  </div>
+</div>
+
+<!-- Hero -->
+<div class="hero-wrap">
+  <div class="hero">
+    <div class="hero-left">
+      <div class="hero-kicker">Anand Sinha &nbsp;·&nbsp; Troy, Michigan</div>
+      <h1>Independent analyst.<br><em>Civic voice.</em><br>Community builder.</h1>
+      <p class="hero-sub">Writing on <strong>geopolitics, finance, Indian identity</strong>, and the future of Hindu Americans in public life — across four desks, under one byline.</p>
+      <div class="hero-actions">
+        <button class="btn-contact-hero" onclick="openContact()">Write to Anand →</button>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-right-label">Current Roles</div>
+      <div class="credential">
+        <div class="credential-role">Founder &amp; Editor</div>
+        <div class="credential-org">The Signal</div>
+        <div class="credential-detail">Independent long-form analysis on geopolitics, finance, and Indian identity</div>
+      </div>
+      <div class="credential">
+        <div class="credential-role">CIO &amp; Chair, Social Media</div>
+        <div class="credential-org">Americans4Hindus (A4H)</div>
+        <div class="credential-detail">Michigan PAC · Hindu American civic participation</div>
+      </div>
+      <div class="credential">
+        <div class="credential-role">Editor &amp; Publisher</div>
+        <div class="credential-org">UPAD Times</div>
+        <div class="credential-detail">Digital magazine of the UP Association of Detroit</div>
+      </div>
+      <div class="hero-location">📍 Troy, Michigan &nbsp;·&nbsp; Metro Detroit</div>
+    </div>
+  </div>
+</div>
+
+<!-- Desks -->
+<div class="desks-wrap">
+  <div class="desks-header">
+    <div class="desks-header-tag">Four Desks</div>
+    <div class="desks-header-line"></div>
+  </div>
+  <div class="desks">
+
+    <a class="desk desk-upad" href="https://upaddetroit.github.io/times/issues/2026-07-july/upad-team.html" target="_blank" rel="noopener">
+      <div class="desk-mark">
+        <span class="desk-eyebrow">Heritage &amp; Community</span>
+        <h2 class="desk-name">UPAD Times</h2>
+        <div class="desk-tagline">The digital magazine of the UP Association of Detroit</div>
+      </div>
+      <div class="desk-body">
+        <p class="desk-desc">Stories from Uttar Pradesh and the diaspora — culture, food, history, and the community that carries it forward in Metro Detroit.</p>
+        <span class="desk-cta">Read the latest issue <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </div>
+    </a>
+
+    <a class="desk desk-a4h" href="/a4h/" target="_blank" rel="noopener">
+      <div class="desk-mark">
+        <span class="desk-eyebrow">Civic Advocacy</span>
+        <div class="seal" aria-hidden="true"><span class="seal-star">★</span></div>
+        <h2 class="desk-name">Americans4Hindus</h2>
+        <div class="desk-tagline">Michigan PAC · A4H</div>
+      </div>
+      <div class="desk-body">
+        <p class="desk-desc">Voter guides, candidate research, and community organizing for Hindu American civic participation across Michigan.</p>
+        <span class="desk-cta">Visit the desk <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </div>
+    </a>
+
+    <a class="desk desk-signal" href="/signal/">
+      <div class="desk-mark">
+        <span class="desk-eyebrow">Analysis</span>
+        <div class="globe" aria-hidden="true">🌐</div>
+        <h2 class="desk-name">The Signal</h2>
+        <div class="desk-tagline">Geopolitics · Finance · Identity · History</div>
+      </div>
+      <div class="desk-body">
+        <p class="desk-desc">Independent long-form analysis — from the petrodollar's decline to Hindu civilizational history and the fault lines of American elections.</p>
+        <span class="desk-cta">Read the editions <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </div>
+    </a>
+
+    <div class="desk desk-family">
+      <div class="desk-mark">
+        <span class="desk-eyebrow">Private</span>
+        <h2 class="desk-name">Family</h2>
+        <div class="desk-tagline">Two family trees · Member sign-in required</div>
+      </div>
+      <div class="desk-body">
+        <ul class="family-items">
+          <li>
+            <a class="family-item" href="https://anandsinhausa.com/balrampur" target="_blank" rel="noopener">
+              <span class="fi-text">
+                <span class="fi-name">Balrampur Family Tree</span>
+                <span class="fi-sub">My Nanihal — Balrampur, UP — sign-in required</span>
+              </span>
+              <span class="fi-badge">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="9" rx="1.5"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+                Sign in
+              </span>
+            </a>
+          </li>
+          <li>
+            <a class="family-item" href="https://anandsinhausa.com/sonbarsa" target="_blank" rel="noopener">
+              <span class="fi-text">
+                <span class="fi-name">Sonbarsa Family Tree</span>
+                <span class="fi-sub">My Dadihal — Sonbarsa, Ballia, UP — sign-in required</span>
+              </span>
+              <span class="fi-badge">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="9" rx="1.5"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+                Sign in
+              </span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- About -->
+<div class="about-wrap">
+  <div class="about-inner">
+    <div>
+      <div class="about-eyebrow">About Anand Sinha</div>
+      <div class="about-name">Anand Sinha</div>
+      <p class="about-tagline">Technology. Public policy. Economics. Indian civilization. Independent analysis grounded in evidence, history, and long-term thinking.</p>
+      <p class="about-bio">Anand Sinha is a technology executive, strategist, writer, and community leader who writes about the forces shaping our world — from artificial intelligence and geopolitics to economics, elections, and Indian civilization. His work emphasizes <strong>evidence over ideology</strong>, historical context over headlines, and long-term trends over daily news cycles.</p>
+      <p class="about-bio">Following more than four decades in global technology and consulting leadership, he now focuses on independent research, public affairs, and community initiatives from <strong>Metro Detroit, Michigan</strong>.</p>
+      <div class="about-connect">
+        <a href="/about.html" class="btn-about">Full Profile &amp; Career →</a>
+        <a class="btn-linkedin" href="https://www.linkedin.com/in/anand-sinha" target="_blank" rel="noopener" style="font-size:11px;padding:10px 16px;">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="width:13px;height:13px;fill:#fff;flex-shrink:0;"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          LinkedIn
+        </a>
+        <button class="btn-contact-hero about-contact-btn" onclick="openContact()">Write to Anand →</button>
+      </div>
+    </div>
+    <div class="about-right">
+      <div class="about-quote">"Be at the table — or be on the menu."</div>
+      <div class="about-highlights">
+        <div class="highlight-item"><div class="highlight-dot"></div><div class="highlight-text"><strong>The Signal</strong> — 12 editions on geopolitics, finance, Indian identity, and civilizational history</div></div>
+        <div class="highlight-item"><div class="highlight-dot"></div><div class="highlight-text"><strong>A4H Elections Hub 2026</strong> — fifty-state voter guide for Hindu American civic participation</div></div>
+        <div class="highlight-item"><div class="highlight-dot"></div><div class="highlight-text"><strong>UPAD Times</strong> — digital magazine of the UP Association of Detroit</div></div>
+        <div class="highlight-item"><div class="highlight-dot"></div><div class="highlight-text">Four decades in global technology leadership across Ciber, Tech Mahindra, Cognizant, and NTT DATA</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div>
+      <div class="footer-name">Anand Sinha</div>
+      <div class="footer-copy">&copy; 2026 &nbsp;·&nbsp; Troy, Michigan</div>
+    </div>
+    <div class="footer-links">
+      <a href="/signal/">The Signal</a>
+      <a href="https://upaddetroit.github.io/times/issues/2026-07-july/upad-team.html" target="_blank" rel="noopener">UPAD Times</a>
+      <a href="/a4h/">A4H</a>
+      <a href="https://www.linkedin.com/in/anand-sinha" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="javascript:void(0)" onclick="openContact()">Contact</a>
+    </div>
+  </div>
+</footer>
+
+<!-- Contact Overlay -->
+<div class="contact-overlay" id="contact-overlay">
+  <div class="contact-panel">
+    <button class="contact-close" onclick="closeContact()">&times;</button>
+    <div id="contact-form-wrap">
+      <div class="contact-eyebrow">Get in Touch</div>
+      <div class="contact-title">Write to Anand</div>
+      <p class="contact-sub">Read personally. Replies within a few days when possible.</p>
+      <div class="contact-form">
+        <div class="contact-row">
+          <input type="text" id="c-name" placeholder="Your name">
+          <input type="email" id="c-email" placeholder="Your email (for a reply)">
+        </div>
+        <select id="c-desk">
+          <option value="">Which desk brought you here?</option>
+          <option value="The Signal">The Signal</option>
+          <option value="UPAD Times">UPAD Times</option>
+          <option value="A4H">Americans4Hindus (A4H)</option>
+          <option value="Family">Family section</option>
+          <option value="General">General / Just browsing</option>
+        </select>
+        <textarea id="c-message" placeholder="Your message…"></textarea>
+        <button class="btn-send" onclick="submitContact()">Send Message →</button>
+      </div>
+    </div>
+    <div class="contact-success" id="contact-success">
+      <div class="contact-success-icon">✓</div>
+      <div class="contact-success-title">Message sent.</div>
+      <p class="contact-success-msg">Thank you for writing. Anand reads every message personally and will reply when possible.</p>
+    </div>
+  </div>
+</div>
+
+<script>
+const APPS_URL = 'https://script.google.com/macros/s/AKfycbwtVwCmtQI2QmYW47rzQUrm1kgghpcqGgaYHdfUWXFv9EglpJ8UgS_XJPj2i1xLxzLa5w/exec';
+
+// ── Theme toggle ──────────────────────────────────────────
+function setTheme(t) {
+  document.documentElement.setAttribute('data-theme', t);
+  localStorage.setItem('as-theme', t);
+  document.querySelectorAll('.theme-btn').forEach(b => {
+    b.classList.toggle('active', b.getAttribute('data-t') === t);
+  });
+}
+
+// Load saved theme on arrival (default C)
+(function() {
+  const saved = localStorage.getItem('as-theme') || 'C';
+  setTheme(saved);
+})();
+
+// ── Contact ───────────────────────────────────────────────
+function openContact() {
+  document.getElementById('contact-overlay').classList.add('open');
+  setTimeout(() => document.getElementById('c-name').focus(), 100);
+}
+function closeContact() {
+  document.getElementById('contact-overlay').classList.remove('open');
+}
+document.getElementById('contact-overlay').addEventListener('click', function(e) {
+  if (e.target === this) closeContact();
+});
+
+async function submitContact() {
+  const name    = document.getElementById('c-name').value.trim();
+  const email   = document.getElementById('c-email').value.trim();
+  const desk    = document.getElementById('c-desk').value;
+  const message = document.getElementById('c-message').value.trim();
+  if (!message) { document.getElementById('c-message').focus(); return; }
+  try {
+    await fetch(APPS_URL, {
+      method: 'POST',
+      body: JSON.stringify({ action: 'contact', name, email, desk, message }),
+    });
+  } catch(e) {}
+  document.getElementById('contact-form-wrap').style.display = 'none';
+  document.getElementById('contact-success').style.display   = 'block';
+}
+</script>
+</body>
+</html>
