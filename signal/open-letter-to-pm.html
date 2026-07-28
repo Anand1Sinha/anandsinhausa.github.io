@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>An Open Letter to the Prime Minister - The Signal</title>
+
+    <!-- OG Tags -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://anandsinhausa.com/signal/open-letter-to-pm.html">
+    <meta property="og:title" content="An Open Letter to the Prime Minister">
+    <meta property="og:description" content="Modi has buckled twice -- to Kisan Andolan and now to NEET protesters with zero mandate. The record is strong. The pattern must end.">
+    <meta property="og:image" content="https://anandsinhausa.com/signal/assets/open-letter-to-pm-OG.jpg">
+
+    <!-- Twitter Tags -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://anandsinhausa.com/signal/open-letter-to-pm.html">
+    <meta property="twitter:title" content="An Open Letter to the Prime Minister">
+    <meta property="twitter:description" content="Modi has buckled twice -- to Kisan Andolan and now to NEET protesters with zero mandate. The record is strong. The pattern must end.">
+    <meta property="twitter:image" content="https://anandsinhausa.com/signal/assets/open-letter-to-pm-OG.jpg">
+
+    <style>
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            background: #ffffff;
+            font-size: 18px;
+            line-height: 1.7;
+            color: #222222;
+        }
+
+        /* HEADER */
+        header {
+            background: #1a1a1a;
+            padding: 12px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        }
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .signal-masthead {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .globe-icon {
+            width: 40px;
+            height: 40px;
+            border: 2px solid #ffffff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+        .main-title {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 28px;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: #ffffff;
+            margin: 0;
+        }
+        /* TAB SYSTEM */
+        .tab-container {
+            background: transparent;
+            margin-top: 10px;
+            overflow-x: auto;
+            scrollbar-width: none;
+        }
+        .tab-container::-webkit-scrollbar { display: none; }
+        .tabs {
+            display: flex;
+            gap: 8px;
+            padding: 6px 10px 12px;
+            flex-wrap: nowrap;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .tab {
+            padding: 8px 14px;
+            border-radius: 6px;
+            background: linear-gradient(180deg, #333333, #1a1a1a);
+            border: 1px solid rgba(255,255,255,0.08);
+            box-shadow: 0 1px 0 rgba(255,255,255,0.1) inset, 0 2px 3px rgba(0,0,0,0.5);
+            color: #ffffff;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 9px;
+            font-weight: 700;
+            letter-spacing: 0.3px;
+            text-transform: uppercase;
+            white-space: nowrap;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .tab.active {
+            background: linear-gradient(180deg, #D4AF37, #b8860b);
+            color: #000000;
+            border-color: #D4AF37;
+            box-shadow: 0 1px 0 rgba(255,255,255,0.3) inset, 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        /* ARTICLE CONTAINER */
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: 22px 20px 80px;
+        }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+
+        .article-category {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 11px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #999;
+            margin-bottom: 10px;
+            text-align: left;
+        }
+        h2 {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 32px;
+            font-weight: 700;
+            line-height: 1.3;
+            margin: 20px 0 10px;
+            color: #000;
+            text-align: left;
+        }
+        h2:first-of-type { margin-top: 0; }
+        .subtitle {
+            font-size: 20px;
+            font-style: italic;
+            color: #555;
+            margin-bottom: 16px;
+            text-align: left;
+        }
+        .article-meta {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 13px;
+            color: #999;
+            margin-bottom: 20px;
+            padding-bottom: 14px;
+            border-bottom: 1px solid #e5e5e5;
+            text-align: left;
+        }
+        .article-meta .author { color: #666; font-weight: 500; }
+        .article-meta span { margin-right: 12px; }
+
+        p {
+            font-family: Georgia, 'Times New Roman', serif;
+            font-size: 18px;
+            line-height: 1.7;
+            color: #222222;
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid #e5e5e5;
+            margin: 40px 0;
+        }
+
+        /* IN-ARTICLE IMAGE */
+        .article-image {
+            width: 100%;
+            height: auto;
+            display: block;
+            margin: 30px 0 10px;
+        }
+        .article-image-caption {
+            font-family: Georgia, serif;
+            font-size: 13px;
+            font-style: italic;
+            color: #999;
+            text-align: left;
+            margin-bottom: 30px;
+        }
+
+        /* CALLOUT BOX */
+        .callout-box {
+            background-color: #f8f6f0;
+            border-left: 3px solid #D4AF37;
+            padding: 20px 25px;
+            margin: 30px 0;
+        }
+        .callout-box p {
+            margin-bottom: 0;
+            font-size: 18px;
+            font-weight: 700;
+            color: #1a1a1a;
+            font-style: normal;
+            text-align: left;
+        }
+        .callout-box.note {
+            border-left-color: #8a9ba8;
+        }
+        .callout-box.note h3 {
+            margin-top: 0;
+            margin-bottom: 10px;
+            color: #000;
+            text-align: left;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 13px;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+        .callout-box.note p {
+            font-weight: 400;
+            font-size: 17px;
+            color: #333;
+            font-style: normal;
+        }
+
+        /* NEXT-TAB NAVIGATION */
+        .next-tab-nav {
+            margin: 10px 0 16px;
+            text-align: center;
+            border-top: 1px solid #e5e5e5;
+            padding-top: 12px;
+        }
+        .next-tab-teaser-wrap {
+            background-color: #f8f6f0;
+            border-radius: 6px;
+            padding: 16px 20px;
+            margin-bottom: 14px;
+        }
+        .next-tab-teaser {
+            font-style: italic;
+            color: #555;
+            font-size: 18px;
+            line-height: 1.7;
+            margin-bottom: 0;
+            text-align: center;
+        }
+        .next-tab-prompt {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 15px;
+            margin-bottom: 12px;
+            text-align: center;
+            color: #444;
+        }
+        .next-tab-btn {
+            display: block;
+            width: 100%;
+            max-width: 420px;
+            margin: 0 auto;
+            padding: 16px 30px;
+            background-color: #D4AF37;
+            color: #000;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 16px;
+            font-weight: 700;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            letter-spacing: 0.3px;
+            transition: opacity 0.2s;
+        }
+        .next-tab-btn:hover { opacity: 0.85; }
+
+        /* SUBSCRIBE BOX */
+        .subscribe-box {
+            background-color: #f8f6f0;
+            border-left: 4px solid #D4AF37;
+            padding: 30px;
+            margin: 40px 0;
+            text-align: center;
+        }
+        .subscribe-box h3 {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            margin-top: 0;
+            margin-bottom: 15px;
+            color: #000;
+            text-align: center;
+        }
+        .subscribe-box p { margin-bottom: 20px; text-align: center; color: #666; }
+        .subscribe-box a {
+            display: inline-block;
+            padding: 12px 30px;
+            margin: 10px;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 4px;
+            border: none;
+        }
+        .subscribe-box a:first-of-type { background-color: #D4AF37; color: #000; }
+        .subscribe-box a:last-of-type { background-color: #2b3e50; color: #fff; }
+        .subscribe-box a:hover { opacity: 0.9; }
+
+        /* SECTION RULE DIVIDER */
+        .archive-section-rule {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+            margin-top: 10px;
+        }
+        .archive-rule-tag {
+            background: #2b3e50;
+            color: #D4AF37;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 9px;
+            font-weight: 800;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            padding: 7px 14px;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+        .archive-rule-line {
+            flex: 1;
+            height: 1px;
+            background: #e5e5e5;
+            margin-left: 12px;
+        }
+
+        /* ARCHIVE GRID */
+        .archive-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin: 24px 0;
+        }
+        .arc-card {
+            background: white;
+            border: 2px solid #e0d8cc;
+            padding: 18px;
+            text-decoration: none;
+            display: block;
+            transition: all 0.2s;
+            color: inherit;
+            border-radius: 2px;
+        }
+        .arc-card:hover {
+            border-color: #D4AF37;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+        .arc-card.current-arc {
+            border-color: #D4AF37;
+            box-shadow: 0 2px 10px rgba(212,175,55,0.2);
+            cursor: default;
+        }
+        .arc-card.current-arc:hover { transform: none; }
+        .arc-badge {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 8px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            padding: 3px 8px;
+            display: inline-block;
+            border-radius: 2px;
+        }
+        .arc-badge.live { background: rgba(43,62,80,0.1); color: #2b3e50; }
+        .arc-badge.current { background: #D4AF37; color: #000; }
+        .arc-number {
+            font-family: Georgia, serif;
+            font-size: 36px;
+            font-weight: bold;
+            color: #e8e0d4;
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+        .arc-headline {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 15px;
+            font-weight: 700;
+            color: #000;
+            margin-bottom: 8px;
+            line-height: 1.3;
+        }
+        .arc-headline em { color: #D4AF37; font-style: italic; }
+        .arc-deck {
+            font-family: Georgia, serif;
+            font-size: 13px;
+            line-height: 1.6;
+            color: #555;
+            margin-bottom: 10px;
+        }
+        .arc-date {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 9px;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: #999;
+        }
+
+        /* AUTHOR NOTE */
+        .author-note {
+            background: #2b3e50;
+            color: #fff;
+            padding: 36px 32px;
+            margin: 32px 0 0;
+        }
+        .author-note-label {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 9px;
+            font-weight: 800;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: #D4AF37;
+            margin-bottom: 18px;
+        }
+        .author-note-text {
+            font-family: Georgia, serif;
+            font-size: 16px;
+            line-height: 1.75;
+            color: #cdd5dc;
+            margin-bottom: 14px;
+            text-align: left;
+        }
+        .author-note-strong { color: #D4AF37; font-weight: 700; }
+        .author-note-quote {
+            font-family: Georgia, serif;
+            font-size: 20px;
+            font-style: italic;
+            color: #D4AF37;
+            line-height: 1.5;
+            margin: 24px 0;
+            padding-left: 20px;
+            border-left: 3px solid #D4AF37;
+            text-align: left;
+        }
+        .author-note-sig {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 13px;
+            color: #8a9ba8;
+            margin-top: 20px;
+            margin-bottom: 24px;
+        }
+        .author-note-cta { text-align: center; }
+        .author-note-btn {
+            display: inline-block;
+            padding: 14px 36px;
+            background-color: #D4AF37;
+            color: #000;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 14px;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: opacity 0.2s;
+        }
+        .author-note-btn:hover { opacity: 0.85; }
+
+        /* ABOUT AUTHOR */
+        .about-author {
+            border: 2px solid #e0d8cc;
+            padding: 30px;
+            margin: 32px 0;
+        }
+        .about-author-rule {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .about-author-tag {
+            background: #2b3e50;
+            color: #D4AF37;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 9px;
+            font-weight: 800;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            padding: 7px 14px;
+        }
+        .about-author-line {
+            flex: 1;
+            height: 1px;
+            background: #e0d8cc;
+            margin-left: 12px;
+        }
+        .about-author-name {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 18px;
+            font-weight: 800;
+            color: #000;
+            margin-bottom: 6px;
+        }
+        .about-author-title {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: #D4AF37;
+            margin-bottom: 16px;
+        }
+        .about-author-bio {
+            font-family: Georgia, serif;
+            font-size: 16px;
+            line-height: 1.75;
+            color: #444;
+            margin-bottom: 14px;
+            text-align: left;
+        }
+        .about-author-bio strong { color: #000; }
+        .about-author-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 18px;
+        }
+        .about-author-link {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: #2b3e50;
+            text-decoration: none;
+            border: 1px solid #2b3e50;
+            padding: 7px 14px;
+            transition: all 0.2s;
+        }
+        .about-author-link:hover {
+            background: #2b3e50;
+            color: #D4AF37;
+        }
+
+        /* FOOTER */
+        footer {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            border-top: 1px solid #e5e5e5;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 14px;
+            color: #666666;
+            text-align: center;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            body { font-size: 16px; }
+            h2 { font-size: 26px; }
+            .main-title { font-size: 22px; }
+            .tab { font-size: 8px; padding: 8px 10px; }
+        }
+        @media (max-width: 600px) {
+            .archive-grid { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 400px) {
+            .tab { font-size: 7.5px; padding: 7px 9px; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="header-content">
+        <div class="signal-masthead">
+            <div class="globe-icon">🌐</div>
+            <h1 class="main-title">THE SIGNAL</h1>
+        </div>
+    </div>
+    <div class="tab-container">
+        <nav class="tabs">
+            <div class="tab active" data-tab="record">THE RECORD</div>
+            <div class="tab" data-tab="vacuum">THE VACUUM</div>
+            <div class="tab" data-tab="cost">THE COST</div>
+            <div class="tab" data-tab="lesson">THE LESSON</div>
+            <div class="tab" data-tab="more">OTHER EDITIONS</div>
+        </nav>
+    </div>
+</header>
+
+<main class="container">
+
+    <!-- TAB 1: THE RECORD -->
+    <article id="record" class="tab-content active">
+        <div class="article-category">GOVERNANCE · OPEN LETTER · JULY 2026</div>
+        <h2>An Open Letter to the Prime Minister</h2>
+        <p class="subtitle">The record is undeniable. The pattern is repeating.</p>
+        <div class="article-meta">
+            <span class="author">Anand Sinha</span>
+            <span>·</span>
+            <span>July 2026</span>
+            <span>·</span>
+            <span>Part I of IV &nbsp;·&nbsp; The Record</span>
+        </div>
+
+        <div class="callout-box note">
+            <h3>Author's Note</h3>
+            <p>I have been a consistent supporter of Prime Minister Narendra Modi and the transformational direction of his government. This article is not a criticism of his leadership. It is a critique of those entrusted with advising him and communicating government decisions to the public. Effective governance requires not only sound policy but also timely, credible communication. When false narratives are allowed to spread unchecked, they damage public trust, the government, and ultimately the nation.</p>
+        </div>
+
+        <p>Namaste, Modi ji.</p>
+
+        <p>Twice now, a government with your mandate has conceded to men with none. On November 19, 2021, you repealed three farm laws under pressure from Gurnam Singh Charuni — who three years later polled 1,170 votes in Pehowa and lost his deposit. On July 25, 2026, Dharmendra Pradhan resigned under pressure from Abhijeet Dipke, a man who has never once stood before an Indian voter.</p>
+
+        <div class="callout-box">
+            <p>Twice now, a government with one of the highest approval ratings on earth has conceded to men with zero votes between them.</p>
+        </div>
+
+        <p>This is not a case built by someone who doubts your record. UPI moved 23.2 billion transactions in May alone — 49 percent of the world's real-time payment volume. West Bengal ended 49 years of Left Front and Trinamool rule that same month, at the ballot box, not by decree. Morning Consult puts your approval in the low-to-mid 70s — far ahead of every G7 head of government by a margin most of them will never close.</p>
+
+        <img class="article-image" src="assets/open-letter-to-pm-desk.jpg" alt="A fountain pen resting across formal letterhead stationery on a wooden desk, warm afternoon light">
+        <p class="article-image-caption">Photo illustration for The Signal.</p>
+
+        <p>That is the record. It is also exactly why this summer is unacceptable, and why I will not let it be written off as an advisors' failure alone. It is a story about what you allowed to happen, and what has to change before it happens a third time.</p>
+
+        <div class="next-tab-nav">
+            <div class="next-tab-teaser-wrap"><p class="next-tab-teaser">Nine arrests in two weeks. A clean re-exam. Then five weeks of silence handed the story to people with no evidence at all.</p></div>
+            <p class="next-tab-prompt">
+                <strong>Continue reading:</strong> Tap the <strong>THE VACUUM</strong>
+                tab above for the timeline your own advisors let slip.
+            </p>
+            <button class="next-tab-btn" onclick="switchToTab('vacuum')">
+                Read: The Vacuum &rarr;
+            </button>
+        </div>
+    </article>
+
+    <!-- TAB 2: THE VACUUM -->
+    <article id="vacuum" class="tab-content">
+        <div class="article-category">GOVERNANCE · OPEN LETTER · JULY 2026</div>
+        <h2>The Vacuum</h2>
+        <p class="subtitle">Fifteen days to solve it. Five weeks to lose it.</p>
+        <div class="article-meta">
+            <span class="author">Anand Sinha</span>
+            <span>·</span>
+            <span>July 2026</span>
+            <span>·</span>
+            <span>Part II of IV &nbsp;·&nbsp; The Vacuum</span>
+        </div>
+
+        <p>NEET-UG 2026 was held May 3. The leak surfaced within days. CBI arrested nine people by May 16 — Manisha Mandhare, a Pune botany teacher sitting on the NTA's own expert panel; P.V. Kulkarni, the chemistry lecturer CBI called the case's kingpin; Dhananjay Lokhande, the courier between them. A re-exam followed. Results were declared on schedule. Fifteen days, leak to arrest to resolution. That is not a failure of governance. That is governance working exactly as it should.</p>
+
+        <p>The reform commitment existed too, and it sat unenforced for exactly as long as it took to become embarrassing. On May 15 — the same week as the arrests — Education Minister Pradhan announced that NEET-UG would move to a fully computer-based format by 2027. By June, Parliament's own Standing Committee on Education said publicly that irregularities were continuing regardless and demanded a time-bound implementation plan. Nothing moved for another six weeks. It took Pradhan's resignation on July 25 before you personally stepped in the next day and named Nandan Nilekani, the man who built Aadhaar into the most trusted digital identity system on earth, to lead the actual task force. That appointment is the single most credible answer this government has given all summer — and it arrived a day after the crisis that made it necessary, not five weeks before it, when it could have changed the outcome instead of following it.</p>
+
+        <p>Nobody said so out loud. No press conference stood a minister in front of Mandhare's photograph and the evidence against her — money changing hands for question papers, notebooks that matched the actual exam word for word. Your government solved this crisis in two weeks and then let five more weeks of silence hand the narrative to people with no evidence and no restraint at all.</p>
+
+        <div class="callout-box">
+            <p>Your government solved this crisis in two weeks and let five weeks of silence hand the story away.</p>
+        </div>
+
+        <p>Chief Justice Surya Kant's "cockroaches" remark landed in May, straight into that silence. Abhijeet Dipke — AAP communications strategist, Boston-based, no exam-affected sibling, no coaching-industry stake — launched the Cockroach Janta Party on X the next day, May 16. Its Instagram account went live May 17. It passed 3 million followers in 78 hours. By May 20 — four days old — it had already overtaken the BJP's own official Instagram page, built over more than a decade to 8.7 million. Within two weeks it had passed Yogi Adityanath, India's second-most-followed politician, at 16.1 million. No organic account in the history of Indian social media has grown at that rate.</p>
+
+        <div class="callout-box">
+            <p>An account with no history outgrew the ruling party's own Instagram page in ninety-six hours. That is not virality. That is infrastructure.</p>
+        </div>
+
+        <p>Paid amplification, bot networks, or coordinated seeding — it deserved an answer from the government's own digital intelligence within days, not a shrug. When Dipke landed in Delhi, no one senior enough to matter was there to signal your government already knew exactly who he was, who he had worked for, and where his politics came from.</p>
+
+        <div class="next-tab-nav">
+            <div class="next-tab-teaser-wrap"><p class="next-tab-teaser">June 20 to July 20: thirty days at Jantar Mantar. Not one minister sat across the table until day twenty of a hunger strike.</p></div>
+            <p class="next-tab-prompt">
+                <strong>Continue reading:</strong> Tap the <strong>THE COST</strong>
+                tab above for what five weeks of silence bought.
+            </p>
+            <button class="next-tab-btn" onclick="switchToTab('cost')">
+                Read: The Cost &rarr;
+            </button>
+        </div>
+    </article>
+
+    <!-- TAB 3: THE COST -->
+    <article id="cost" class="tab-content">
+        <div class="article-category">GOVERNANCE · OPEN LETTER · JULY 2026</div>
+        <h2>The Cost</h2>
+        <p class="subtitle">A ministry changed hands because a man with zero votes decided it should</p>
+        <div class="article-meta">
+            <span class="author">Anand Sinha</span>
+            <span>·</span>
+            <span>July 2026</span>
+            <span>·</span>
+            <span>Part III of IV &nbsp;·&nbsp; The Cost</span>
+        </div>
+
+        <p>June 20 to July 20: thirty days of protest at Jantar Mantar, unaddressed by any minister with the standing to close it. Union Ministers J.P. Nadda and Jitendra Singh finally sat down with the CJP delegation only after Sonam Wangchuk's hunger strike, joined in solidarity, reached its twentieth day. That is week five of a crisis your government had already solved on paper by week two.</p>
+
+        <p>July 20: marchers pushed toward Parliament. Delhi Police held the line with barricades, batons, and tear gas. No bullets were fired — credit where it belongs — but the optics of a government reacting instead of leading were now locked onto every channel and every phone screen in the country.</p>
+
+        <div class="callout-box">
+            <p>A ministry changed hands because a man with zero votes decided it should.</p>
+        </div>
+
+        <p>Two days before Pradhan resigned, Gurpatwant Singh Pannun — the US-based Sikhs for Justice chief India has designated a terrorist — released a video claiming he had met CJP's leadership over Zoom and was sending $1 million to keep the protest alive through Independence Day. The NIA already had a file on him for exactly that kind of threat: in September 2025, months before this summer's protests even began, he was booked for offering Sikh soldiers a ₹11 crore bounty to stop Modi from hoisting the tricolour at that same Red Fort on August 15 itself. CJP never confirmed accepting Pannun's money. Nobody needed to. The claim alone, aired publicly two days before a sitting Cabinet minister fell, should have been disqualifying for the entire movement's credibility — and instead it barely registered as a news cycle.</p>
+
+        <p>July 23, late night: Wangchuk broke his 26-day fast, drinking from a cup handed to him by Nadda and Jitendra Singh, citing "possible violence" as his reason. Two days later, July 25, Dharmendra Pradhan resigned. Pralhad Joshi took Education with additional charge. A sitting Cabinet minister was gone because Abhijeet Dipke — zero votes, one viral account — decided the pressure should not let up.</p>
+
+        <div class="next-tab-nav">
+            <div class="next-tab-teaser-wrap"><p class="next-tab-teaser">This has happened before, on almost identical terms. Your government has already seen how this story ends when nobody stops it early.</p></div>
+            <p class="next-tab-prompt">
+                <strong>Continue reading:</strong> Tap the <strong>THE LESSON</strong>
+                tab above for the pattern this summer repeated — and what has to change now.
+            </p>
+            <button class="next-tab-btn" onclick="switchToTab('lesson')">
+                Read: The Lesson &rarr;
+            </button>
+        </div>
+    </article>
+
+    <!-- TAB 4: THE LESSON -->
+    <article id="lesson" class="tab-content">
+        <div class="article-category">GOVERNANCE · OPEN LETTER · JULY 2026</div>
+        <h2>The Lesson</h2>
+        <p class="subtitle">Fire the people who let this happen twice</p>
+        <div class="article-meta">
+            <span class="author">Anand Sinha</span>
+            <span>·</span>
+            <span>July 2026</span>
+            <span>·</span>
+            <span>Part IV of IV &nbsp;·&nbsp; The Lesson</span>
+        </div>
+
+        <p>You have been here before, and the parallel is not flattering. Gurnam Singh Charuni led the loudest Haryana faction of the Kisan Andolan through 2020 and 2021. On November 19, 2021, you announced the repeal of three farm laws — a full concession. Three years later, in October 2024, Haryana's own voters gave Charuni 1,170 votes in the Pehowa Assembly seat. He lost his deposit. Yogendra Yadav lost his too, that same election cycle. The men your government yielded to had no mandate at all, and the country watched you yield anyway.</p>
+
+        <p>Abhijeet Dipke is the same lesson's second draft, written faster: a man with fewer public credentials than Charuni forced out a sitting Cabinet minister in five weeks instead of fifteen months. The FCRA record was public by June — SECMOL's licence cancelled in September 2025, the Foreign Contribution (Regulation) Amendment Bill sitting in the same July 2026 session NEET dominated, the Public Examinations (Prevention of Unfair Means) Amendment Bill written specifically against the coaching syndicates this crisis threatened. None of it was said out loud, by you or by anyone speaking for you, until after Pradhan had already resigned. Whoever sits behind an account that outgrows a ruling party's own page in ninety-six hours has more reason than most to fear a law built to trace and seize exactly that kind of funding — and that may explain the timing better than anything the movement itself has offered.</p>
+
+        <div class="callout-box">
+            <p>The size of a man's public voice is not a substitute for the size of his public mandate — and your government keeps forgetting the difference.</p>
+        </div>
+
+        <p>I understand why you buckled, both times, and the reasoning does you some credit even where the outcome did not. Sri Lanka's president fled the country by military jet in July 2022, after the Aragalaya protests turned an economic crisis into a collapse of the state itself. Bangladesh's Sheikh Hasina fled to India on August 5, 2024, after student quota protests brought down a fifteen-year government. Nepal's K.P. Sharma Oli resigned in September 2025 after Discord-coordinated Gen Z protests left dozens dead and Kathmandu in flames. Serbia's Aleksandar Vučić, after eighteen months of student-led demonstrations that began with a railway canopy collapse in Novi Sad, announced his own resignation this June. Georgia's government is still fighting the same fire two years on, with no resolution in sight. Not every version ends in a toppled government — Iran's 2022 uprising after Mahsa Amini's death did not move the regime, and France's Gilets Jaunes movement did not remove Macron — but the pattern is now common enough, across enough continents, that no leader watching it can be blamed for wanting no part of it.</p>
+
+        <p>You did not want a Kathmandu in Delhi. You did not want Jantar Mantar to become Colombo's Galle Face Green. That calculation is not cowardice; it is the same instinct that has kept you focused, across a decade, on lifting the poorest Indians out of poverty, on putting Bharat among the world's three largest economies, on reclaiming Pakistan-occupied Kashmir, on reviving Sanatana Dharma's place in public life, and on correcting a history that colonial and Marxist historians spent a century distorting. Those are the projects that matter, and a government dragged into a street war over an exam scandal would have spent its political capital on the wrong fight entirely.</p>
+
+        <p>But avoiding the wrong fight is not the same as winning the right one quietly, and that is where the calculation stopped serving you. You had the tools to fight this in public the whole time — the arrests, the clean re-exam, the FCRA bill already drafted — and what you lacked was a communications operation willing to use any of it before the crisis ended, rather than after.</p>
+
+        <p>That growth curve was not a mystery. It was a signal, and it is exactly the signal a national IT cell exists to catch. Amit Malviya's operation did not catch it, or caught it and said nothing publicly for weeks — and either version is a failure serious enough to answer for. If this is the first time that operation has missed a pattern this obvious, it is a costly first. If it is not the first time, the country deserves to know that too, and you are the only person positioned to demand the answer. Fire the people responsible. Put ministers on camera in week one, not week five. Stop letting hostile coverage of a crisis run unanswered for five weeks at a stretch. Silence is not the same as dignity, and it reads, to a watching public, as having no answer at all — not as having nothing to say to people who were never going to be fair anyway.</p>
+
+        <p>You are not naive about Mr. Soros's intentions. He named you directly at Davos in 2020, calling your government exactly the kind of state his billion-dollar university network exists to counter, and in February 2023 he said openly that Adani's troubles would loosen your grip on power. NEET will not be the last test of that prediction. Whatever the next pressure point is — and there will be one — you cannot afford another Kisan Andolan, another five weeks of silence while a movement with no mandate sets the pace. The lapse cannot repeat a third time.</p>
+
+        <p style="margin-top:40px;">With respect — and no patience left for a third repeat,<br><strong>Anand Sinha</strong></p>
+
+        <div class="subscribe-box">
+            <h3>Stay Updated</h3>
+            <p>Get notified when new Signal articles are published.</p>
+            <a href="mailto:sinha.anand@gmail.com?subject=Subscribe to The Signal">Subscribe</a>
+            <a href="mailto:sinha.anand@gmail.com?subject=Feedback on An Open Letter to the Prime Minister">Send Feedback</a>
+        </div>
+
+        <div class="author-note">
+            <div class="author-note-label">A Note from the Author</div>
+            <p class="author-note-text">I did not write this letter lightly, and I did not soften it either. It is easy to write from opposition, or from unqualified praise. It is harder to hold a decade's record and a summer's failure in the same hand and say plainly that the first does not excuse the second — and that the second was avoidable, at every single point along the way.</p>
+            <p class="author-note-text">I am actively engaged with
+                <strong class="author-note-strong">Americans4Hindus (A4H)</strong>,
+                working to awaken Hindu Americans to the urgency of civic participation and
+                political representation. The stakes are not abstract.
+                Every community faces the same fundamental choice:</p>
+            <p class="author-note-quote">"Be at the table — or be on the menu."</p>
+            <p class="author-note-text">If this letter gave you something to think about,
+                the other editions are written in the same spirit.
+                I hope you find them worth your time.</p>
+            <div class="author-note-sig">— Anand Sinha &nbsp;·&nbsp; anandsinhausa.com</div>
+            <div class="author-note-cta">
+                <button class="author-note-btn" onclick="switchToTab('more')">
+                    Explore Other Articles &rarr;
+                </button>
+            </div>
+        </div>
+
+        <div class="about-author">
+            <div class="about-author-rule">
+                <div class="about-author-tag">About the Author</div>
+                <div class="about-author-line"></div>
+            </div>
+            <div class="about-author-name">Anand Sinha</div>
+            <div class="about-author-title">Writer · Civic Technologist · Founder, The Signal</div>
+            <p class="about-author-bio">Anand Sinha spent decades in corporate life before retiring to
+                focus on the questions that had always mattered most to him — civilization, identity,
+                history, and the political future of Hindu Americans. Based in Metro Detroit, he writes
+                <strong>The Signal</strong>, an independent publication covering geopolitics, finance,
+                technology, elections, and civilizational history for the educated reader who wants more
+                than the mainstream narrative offers.</p>
+            <p class="about-author-bio">He is actively engaged with <strong>Americans4Hindus (A4H)</strong>,
+                a Political Action Committee dedicated to awakening Hindu Americans to the importance of
+                civic participation and political representation. He conceived, researched, and built
+                entirely on his own the <strong>A4H Elections Hub 2026</strong> — a fifty-state voter
+                guide and candidate tracking system designed to give Hindu Americans a seat at the table
+                in American political life.</p>
+            <p class="about-author-bio">He also coordinates neighborhood civic services for his community
+                in Troy, Michigan, and publishes his writing, tools, and civic technology projects online.</p>
+            <div class="about-author-links">
+                <a href="https://anandsinhausa.com/signal" class="about-author-link">The Signal Archive</a>
+                <a href="https://www.anandsinhausa.com/a4hVoterGuide.html" class="about-author-link">A4H Voter Guide</a>
+                <a href="mailto:sinha.anand@gmail.com" class="about-author-link">Write to the Author</a>
+            </div>
+        </div>
+    </article>
+
+    <!-- OTHER EDITIONS -->
+    <article id="more" class="tab-content">
+        <div class="article-category">THE ARCHIVE</div>
+        <h2>Other Editions</h2>
+        <p class="subtitle">The full run of The Signal, to date</p>
+
+        <div class="archive-section-rule">
+            <div class="archive-rule-tag">All Editions</div>
+            <div class="archive-rule-line"></div>
+        </div>
+
+        <div class="archive-grid" id="archive-grid-container">
+            <p style="grid-column: 1 / -1; text-align:center; color:#999; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; padding: 20px 0;">Loading editions&hellip;</p>
+        </div>
+
+    </article>
+
+</main>
+
+<footer>
+    <p>&copy; 2026 The Signal by Anand Sinha · Published at
+       <a href="https://anandsinhausa.com">anandsinhausa.com</a></p>
+    <p style="margin-top:10px; font-size:13px;">NEET Protests · Governance · FCRA · Kisan Andolan · Open Letter</p>
+</footer>
+
+<script>
+    function switchToTab(tabId) {
+        document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+        document.querySelector('[data-tab="' + tabId + '"]').classList.add('active');
+        document.getElementById(tabId).classList.add('active');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+    document.querySelectorAll('.tab').forEach(tab => {
+        tab.addEventListener('click', function() {
+            switchToTab(this.getAttribute('data-tab'));
+        });
+    });
+
+    // === DYNAMIC EDITIONS (pulled from Google Sheet via Apps Script) ===
+    const EDITIONS_API_URL = 'https://script.google.com/macros/s/AKfycbwTrLwXpL3jgzQv_3XwEhjMZZrSMUWwPFtOHrviTG7DES5PNnE4WitL-dq1PswfqR33rA/exec';
+    const CURRENT_FILENAME = window.location.pathname.split('/').pop();
+
+    function escapeHtml(str) {
+        const div = document.createElement('div');
+        div.textContent = str == null ? '' : String(str);
+        return div.innerHTML;
+    }
+
+    async function loadEditions() {
+        const grid = document.getElementById('archive-grid-container');
+        const badge = document.getElementById('edition-badge');
+        try {
+            const res = await fetch(EDITIONS_API_URL);
+            if (!res.ok) throw new Error('Bad response: ' + res.status);
+            const editions = await res.json();
+            renderEditions(editions, grid, badge);
+        } catch (err) {
+            console.error('Failed to load editions:', err);
+            if (grid) {
+                grid.innerHTML = '<p style="grid-column: 1 / -1; text-align:center; color:#999; font-family: \'Helvetica Neue\', Helvetica, Arial, sans-serif; font-size: 14px; padding: 20px 0;">Unable to load the archive right now. <a href="https://anandsinhausa.com/signal/" style="color:#326891;">Browse all editions &rarr;</a></p>';
+            }
+            if (badge) badge.textContent = 'THE SIGNAL';
+        }
+    }
+
+    function renderEditions(editions, grid, badge) {
+        const current = editions.find(ed => ed.Filename === CURRENT_FILENAME);
+        const others = editions.filter(ed => ed.Filename !== CURRENT_FILENAME);
+
+        if (badge) {
+            badge.textContent = current ? ('EDITION ' + current.Edition) : 'THE SIGNAL';
+        }
+
+        let html = '';
+
+        if (current) {
+            html += `
+            <div class="arc-card current-arc">
+                <div class="arc-badge current">★ You Are Here</div>
+                <div class="arc-number">${escapeHtml(current.Edition)}</div>
+                <h3 class="arc-headline">${escapeHtml(current.Title)}: <em>${escapeHtml(current.Subtitle)}</em></h3>
+                <p class="arc-deck">${escapeHtml(current.Deck)}</p>
+                <div class="arc-date">${escapeHtml(current.DateLabel)} &nbsp;&middot;&nbsp; ${escapeHtml(current.Category)}</div>
+            </div>`;
+        }
+
+        others.forEach(ed => {
+            html += `
+            <a href="https://anandsinhausa.com/signal/${escapeHtml(ed.Filename)}" class="arc-card">
+                <div class="arc-badge live">&check; Published</div>
+                <div class="arc-number">${String(ed.Edition).padStart(2, '0')}</div>
+                <h3 class="arc-headline">${escapeHtml(ed.Title)}: <em>${escapeHtml(ed.Subtitle)}</em></h3>
+                <p class="arc-deck">${escapeHtml(ed.Deck)}</p>
+                <div class="arc-date">${escapeHtml(ed.DateLabel)} &nbsp;&middot;&nbsp; ${escapeHtml(ed.Category)}</div>
+            </a>`;
+        });
+
+        if (grid) grid.innerHTML = html;
+    }
+
+    document.addEventListener('DOMContentLoaded', loadEditions);
+</script>
+
+</body>
+</html>
