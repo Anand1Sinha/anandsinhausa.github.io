@@ -1,0 +1,972 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Understanding Sanātana Dharma - The Signal</title>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-KC85E1GR1M"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-KC85E1GR1M');
+    </script>
+
+    <!-- OG Tags -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://anandsinhausa.com/signal/understanding-sanatana-dharma.html">
+    <meta property="og:title" content="Understanding Sanātana Dharma">
+    <meta property="og:description" content="Sanātana Dharma in its own vocabulary — Brahman, Ātman, Karma, Saṃsāra and Moksha — for readers raised on a different map of reality.">
+    <meta property="og:image" content="https://anandsinhausa.com/signal/assets/understanding-sanatana-dharma-OG.jpg">
+
+    <!-- Twitter Tags -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://anandsinhausa.com/signal/understanding-sanatana-dharma.html">
+    <meta property="twitter:title" content="Understanding Sanātana Dharma">
+    <meta property="twitter:description" content="Sanātana Dharma in its own vocabulary — Brahman, Ātman, Karma, Saṃsāra and Moksha — for readers raised on a different map of reality.">
+    <meta property="twitter:image" content="https://anandsinhausa.com/signal/assets/understanding-sanatana-dharma-OG.jpg">
+
+    <style>
+        * { box-sizing: border-box; }
+
+        html { overflow-x: hidden; width: 100%; }
+
+        body {
+            margin: 0;
+            background: #FCFAF5;
+            font-family: Georgia, 'Times New Roman', serif;
+            font-size: 18px;
+            line-height: 1.7;
+            color: #222222;
+            overflow-x: hidden;
+            width: 100%;
+        }
+
+        /* HEADER — no globe icon, no category-tags row (standing rule, all future editions) */
+        header {
+            background: #1a1a1a;
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        }
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        .main-title {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 28px;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: #ffffff;
+            margin: 0;
+            text-align: left;
+        }
+
+        .tab-container {
+            background: #000000;
+            border-top: 1px solid #1a2732;
+            margin-top: 15px;
+            overflow-x: visible;
+        }
+        .tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px;
+            padding: 8px 10px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .tab {
+            padding: 9px 13px;
+            border-radius: 4px;
+            border: 1px solid rgba(255,255,255,0.35);
+            background: #000000;
+            color: #ffffff;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 9px;
+            font-weight: 700;
+            letter-spacing: 0.3px;
+            text-transform: uppercase;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+        .tab.active { background: #D4AF37; color: #000000; border-color: #D4AF37; }
+
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: 20px 20px 80px;
+        }
+
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+
+        .article-category {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 11px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #999;
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        h2 {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 32px;
+            font-weight: 700;
+            line-height: 1.3;
+            margin: 40px 0 20px;
+            color: #000;
+            text-align: left;
+        }
+        h2:first-of-type { margin-top: 0; }
+
+        .subtitle {
+            font-size: 20px;
+            font-style: italic;
+            color: #555;
+            margin-bottom: 30px;
+            text-align: left;
+        }
+
+        .article-meta {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 13px;
+            color: #999;
+            margin-bottom: 35px;
+            padding-bottom: 25px;
+            border-bottom: 1px solid #e5e5e5;
+            text-align: left;
+        }
+        .article-meta .author { color: #666; font-weight: 500; }
+        .article-meta span { margin-right: 12px; }
+
+        p { margin-bottom: 20px; text-align: left; }
+
+        h3 {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 24px;
+            font-weight: 600;
+            color: #2b3e50;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        .callout-box {
+            background-color: #f8f6f0;
+            border-left: 3px solid #D4AF37;
+            padding: 20px 25px;
+            margin: 30px 0;
+        }
+        .callout-box p {
+            margin-bottom: 0;
+            font-size: 18px;
+            font-weight: 700;
+            color: #1a1a1a;
+            font-style: normal;
+            text-align: left;
+        }
+        .callout-box.note p { font-weight: 400; font-size: 17px; color: #333; margin-bottom: 0; }
+        .callout-box.note h3 { margin-top: 0; color: #000; text-align: left; }
+
+        /* In-article images (v1.1 addendum component) */
+        .article-image {
+            width: 100%;
+            height: auto;
+            display: block;
+            margin: 30px 0 10px;
+            background: #f8f6f0;
+            min-height: 240px;
+        }
+        .article-image-placeholder {
+            width: 100%;
+            min-height: 240px;
+            background: #f8f6f0;
+            border: 1px dashed #D4AF37;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 30px;
+            margin: 30px 0 10px;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 13px;
+            color: #999;
+        }
+        .article-image-caption {
+            font-family: Georgia, serif;
+            font-size: 13px;
+            font-style: italic;
+            color: #999;
+            text-align: left;
+            margin-bottom: 30px;
+        }
+
+        /* NEXT-TAB NAVIGATION — appears at the end of every tab except the last */
+        .next-tab-nav {
+            margin: 40px 0 30px;
+            text-align: center;
+            border-top: 1px solid #e5e5e5;
+            padding-top: 36px;
+        }
+        .next-tab-teaser {
+            font-style: italic;
+            color: #555;
+            font-size: 18px;
+            line-height: 1.7;
+            margin-bottom: 24px;
+            text-align: center;
+        }
+        .next-tab-prompt {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 15px;
+            margin-bottom: 20px;
+            text-align: center;
+            color: #444;
+        }
+        .next-tab-btn {
+            display: block;
+            width: 100%;
+            max-width: 420px;
+            margin: 0 auto;
+            padding: 16px 30px;
+            background-color: #D4AF37;
+            color: #000;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 16px;
+            font-weight: 700;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            letter-spacing: 0.3px;
+        }
+        .next-tab-btn:hover { opacity: 0.85; }
+
+        /* Time-comparison table (Tab 2) */
+        .time-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 30px 0;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 14px;
+        }
+        .time-table th {
+            background: #2b3e50;
+            color: #ffffff;
+            font-weight: 700;
+            font-size: 11px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            padding: 12px 14px;
+            text-align: left;
+        }
+        .time-table td {
+            padding: 12px 14px;
+            border-bottom: 1px solid #e5e5e5;
+            color: #333;
+            text-align: left;
+            font-family: Georgia, serif;
+            font-size: 15px;
+        }
+        .time-table tr:nth-child(even) td { background: #f8f6f0; }
+
+        hr.rule { border: none; border-top: 1px solid #e5e5e5; margin: 40px 0; }
+
+        /* ENGAGEMENT BOX — single instance, last tab only */
+        .engagement-box {
+            background-color: #f8f6f0;
+            border-left: 4px solid #D4AF37;
+            padding: 30px;
+            margin: 40px 0;
+            text-align: center;
+        }
+        .engagement-box h3 {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            margin-top: 0;
+            margin-bottom: 15px;
+            color: #000;
+            text-align: center;
+        }
+        .engagement-box p { margin-bottom: 20px; text-align: center; color: #666; }
+        .engagement-box .eng-buttons { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+        .engagement-box button {
+            display: inline-block;
+            padding: 12px 26px;
+            margin: 4px;
+            text-decoration: none;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-weight: bold;
+            font-size: 13px;
+            border-radius: 4px;
+            border: none;
+            cursor: pointer;
+        }
+        .btn-subscribe { background-color: #D4AF37; color: #000; }
+        .btn-feedback { background-color: #2b3e50; color: #fff; }
+        .btn-rate { background-color: #ffffff; color: #2b3e50; border: 1px solid #2b3e50 !important; }
+        .engagement-box button:hover { opacity: 0.9; }
+
+        /* MODALS */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .modal-overlay.active { display: flex; }
+        .modal-box {
+            background: #fff;
+            max-width: 420px;
+            width: 100%;
+            padding: 30px;
+            border-radius: 4px;
+            position: relative;
+        }
+        .modal-box h3 {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            margin-top: 0;
+            color: #000;
+            text-align: left;
+        }
+        .modal-close {
+            position: absolute;
+            top: 14px; right: 18px;
+            font-size: 22px;
+            color: #999;
+            cursor: pointer;
+            background: none;
+            border: none;
+            line-height: 1;
+        }
+        .modal-box label {
+            display: block;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 12px;
+            color: #666;
+            margin: 14px 0 6px;
+            text-align: left;
+        }
+        .modal-box input[type="text"],
+        .modal-box input[type="email"],
+        .modal-box textarea {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-family: Georgia, serif;
+            font-size: 15px;
+        }
+        .modal-box textarea { min-height: 90px; resize: vertical; }
+        .star-row { font-size: 28px; letter-spacing: 4px; margin: 10px 0; text-align: left; }
+        .star-row span { cursor: pointer; color: #d3d1c7; }
+        .star-row span.selected { color: #D4AF37; }
+        .modal-submit {
+            margin-top: 20px;
+            width: 100%;
+            padding: 13px;
+            background: #D4AF37;
+            color: #000;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-weight: 700;
+            font-size: 14px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .modal-status { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 13px; margin-top: 12px; text-align: left; }
+
+        /* AUTHOR NOTE */
+        .author-note { background: #2b3e50; color: #fff; padding: 36px 32px; margin: 32px 0 0; }
+        .author-note-label {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 9px; font-weight: 800; letter-spacing: 2.5px; text-transform: uppercase;
+            color: #D4AF37; margin-bottom: 18px;
+        }
+        .author-note-text { font-family: Georgia, serif; font-size: 16px; line-height: 1.75; color: #cdd5dc; margin-bottom: 14px; text-align: left; }
+        .author-note-strong { color: #D4AF37; font-weight: 700; }
+        .author-note-quote {
+            font-family: Georgia, serif; font-size: 20px; font-style: italic; color: #D4AF37;
+            line-height: 1.5; margin: 24px 0; padding-left: 20px; border-left: 3px solid #D4AF37; text-align: left;
+        }
+        .author-note-sig { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 13px; color: #8a9ba8; margin-top: 20px; margin-bottom: 24px; }
+        .author-note-btn {
+            display: inline-block; padding: 14px 36px; background-color: #D4AF37; color: #000;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 800;
+            letter-spacing: 0.5px; border: none; border-radius: 4px; cursor: pointer; text-transform: uppercase;
+        }
+
+        /* ABOUT AUTHOR */
+        .about-author { border: 2px solid #e0d8cc; padding: 30px; margin: 32px 0; }
+        .about-author-rule { display: flex; align-items: center; margin-bottom: 20px; }
+        .about-author-tag {
+            background: #2b3e50; color: #D4AF37; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 9px; font-weight: 800; letter-spacing: 2.5px; text-transform: uppercase; padding: 7px 14px;
+        }
+        .about-author-line { flex: 1; height: 1px; background: #e0d8cc; margin-left: 12px; }
+        .about-author-name { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 800; color: #000; margin-bottom: 6px; }
+        .about-author-title {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 11px; font-weight: 600;
+            letter-spacing: 1.5px; text-transform: uppercase; color: #D4AF37; margin-bottom: 16px;
+        }
+        .about-author-bio { font-family: Georgia, serif; font-size: 16px; line-height: 1.75; color: #444; margin-bottom: 14px; text-align: left; }
+        .about-author-bio strong { color: #000; }
+        .about-author-links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+        .about-author-link {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 11px; font-weight: 700;
+            letter-spacing: 1px; text-transform: uppercase; color: #2b3e50; text-decoration: none;
+            border: 1px solid #2b3e50; padding: 7px 14px;
+        }
+        .about-author-link:hover { background: #2b3e50; color: #D4AF37; }
+
+        /* ARCHIVE SECTION RULE + GRID */
+        .archive-section-rule { display: flex; align-items: center; margin-bottom: 8px; margin-top: 10px; }
+        .archive-rule-tag {
+            background: #2b3e50; color: #D4AF37; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 9px; font-weight: 800; letter-spacing: 2.5px; text-transform: uppercase; padding: 7px 14px; white-space: nowrap; flex-shrink: 0;
+        }
+        .archive-rule-line { flex: 1; height: 1px; background: #e5e5e5; margin-left: 12px; }
+
+        .archive-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 24px 0; }
+        .arc-card {
+            background: white; border: 2px solid #e0d8cc; padding: 18px; text-decoration: none;
+            display: block; color: inherit; border-radius: 2px;
+        }
+        .arc-card:hover { border-color: #D4AF37; }
+        .arc-card.current-arc { border-color: #D4AF37; box-shadow: 0 2px 10px rgba(212,175,55,0.2); cursor: default; }
+        .arc-badge {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 8px; font-weight: 800;
+            letter-spacing: 2px; text-transform: uppercase; margin-bottom: 10px; padding: 3px 8px; display: inline-block; border-radius: 2px;
+        }
+        .arc-badge.live { background: rgba(43,62,80,0.1); color: #2b3e50; }
+        .arc-badge.current { background: #D4AF37; color: #000; }
+        .arc-number { font-family: Georgia, serif; font-size: 36px; font-weight: bold; color: #e8e0d4; line-height: 1; margin-bottom: 8px; }
+        .arc-headline { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 15px; font-weight: 700; color: #000; margin-bottom: 8px; line-height: 1.3; }
+        .arc-headline em { color: #D4AF37; font-style: italic; }
+        .arc-deck { font-family: Georgia, serif; font-size: 13px; line-height: 1.6; color: #555; margin-bottom: 10px; }
+        .arc-date { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 9px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: #999; }
+        .archive-loading { grid-column: 1 / -1; text-align: center; color: #999; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; padding: 40px 0; }
+        .archive-fallback { text-align: center; padding: 30px 0; }
+        .archive-fallback a { color: #326891; }
+
+        footer {
+            max-width: 680px; margin: 0 auto; padding: 40px 20px; border-top: 1px solid #e5e5e5;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; color: #666666; text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            body { font-size: 16px; }
+            h2 { font-size: 26px; }
+            .tab { font-size: 8px; padding: 8px 10px; }
+            .main-title { font-size: 22px; }
+        }
+        @media (max-width: 600px) {
+            .archive-grid { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 400px) {
+            .tab { font-size: 7.5px; padding: 7px 9px; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="header-content">
+        <h1 class="main-title">THE SIGNAL</h1>
+    </div>
+    <div class="tab-container">
+        <nav class="tabs">
+            <div class="tab active" data-tab="questions">THE QUESTIONS</div>
+            <div class="tab" data-tab="timelines">THREE TIMELINES</div>
+            <div class="tab" data-tab="map">THE MAP</div>
+            <div class="tab" data-tab="cycle">THE CYCLE</div>
+            <div class="tab" data-tab="aim">THE AIM</div>
+            <div class="tab" data-tab="source">THE SOURCE</div>
+            <div class="tab" data-tab="more">OTHER EDITIONS</div>
+        </nav>
+    </div>
+</header>
+
+<main class="container">
+
+    <!-- TAB 1: THE QUESTIONS -->
+    <article id="questions" class="tab-content active">
+        <h2>Understanding Sanātana Dharma</h2>
+        <p class="subtitle">A guide for the intelligent reader raised on a different map of reality — not a comparison, a translation.</p>
+        <div class="article-meta">
+            <span class="author">Anand Sinha</span>
+            <span>&middot;</span>
+            <span>August 2026</span>
+            <span>&middot;</span>
+            <span>Part I of VI &nbsp;&middot;&nbsp; The&nbsp;Questions</span>
+        </div>
+
+        <p>Most people raised in the Abrahamic traditions do not consciously realize they are carrying a mental framework into every conversation about God, scripture, and the ultimate nature of things. It is not a flaw. It is simply the only lens available to someone who has never needed another one. That lens comes with a built-in checklist: one God, one creation event, one human life, a prophet or a succession of prophets, one revealed scripture, a final judgment, a heaven or a hell, and salvation through right belief or obedience.</p>
+
+        <p>When that lens turns toward Sanātana Dharma, it produces a familiar set of questions. Who is your God? Who is your prophet? What is your holy book? Who founded your tradition? Which heaven do you go to? What happens after judgment? Every one of these is a reasonable question — reasonable, that is, from inside the framework that generated it.</p>
+
+        <div class="callout-box"><p>The difficulty is not that Sanātana Dharma has bad answers to these questions. The difficulty is that it is answering an entirely different set of questions.</p></div>
+
+        <p>Where the Abrahamic traditions ask who revealed the truth, Sanātana Dharma asks what the nature of reality is. Where they ask how to reach heaven, it asks who is doing the asking — who am I, really. Where they ask what a person must believe, it asks what is true and how that truth can be directly known. Where they ask what happens after death, it asks the more unsettling question underneath: why there is birth and death at all.</p>
+
+        <p>This is a difference of starting point, not merely of doctrine. The Abrahamic traditions begin, broadly, with history — God acted, God revealed, prophets appeared, scripture was given, and history moves toward a final destination. Sanātana Dharma begins with ontology, the study of being itself: what consciousness is, why the universe exists, what the self is, what liberation means. History matters in this framework, but it is not where the inquiry starts.</p>
+
+        <p>There is a second, quieter difference beneath the first. Abrahamic traditions generally begin with relationship — Creator and creation, standing apart from one another and addressing each other across that distance. Sanātana Dharma begins with identity. At the deepest level, reality and consciousness are not two separate things, and the true Self is not ultimately separate from that reality. This is expressed in one of the great Upanishadic declarations, <em>Tat Tvam Asi</em> — &ldquo;That Thou Art,&rdquo; from the Chāndogya Upanishad. The central question stops being &ldquo;who is God&rdquo; and becomes &ldquo;who am I, really.&rdquo;</p>
+
+        <p>None of this makes one tradition superior to the other. It only means a reader cannot understand Sanātana Dharma by running its concepts through categories built for a different purpose — any more than a person could learn calculus using only the tools of arithmetic. The operations look similar at a glance. They are not doing the same work. What follows is an attempt to lay out Sanātana Dharma&rsquo;s own vocabulary, on its own terms, before any comparison is attempted at all.</p>
+
+        <div class="next-tab-nav">
+            <p class="next-tab-teaser">Before any of that vocabulary will make sense, one more assumption needs to be set aside — the assumption that Sanātana Dharma runs on a single timeline at all.</p>
+            <p class="next-tab-prompt"><strong>Continue reading:</strong> Tap the <strong>THREE TIMELINES</strong> tab above to see why cosmic time, sacred chronology, and textual history are not the same clock.</p>
+            <button class="next-tab-btn" onclick="switchToTab('timelines')">Read: Three Timelines &rarr;</button>
+        </div>
+    </article>
+
+    <!-- TAB 2: THREE TIMELINES -->
+    <article id="timelines" class="tab-content">
+        <h2>Three Timelines</h2>
+        <p class="subtitle">Cosmic time, sacred chronology, and textual history are not the same clock.</p>
+        <div class="article-meta">
+            <span class="author">Anand Sinha</span>
+            <span>&middot;</span>
+            <span>August 2026</span>
+            <span>&middot;</span>
+            <span>Part II of VI &nbsp;&middot;&nbsp; Three&nbsp;Timelines</span>
+        </div>
+
+        <p>Before any of the vocabulary in this guide will make sense, one more assumption needs to be set aside. A reader raised on a single timeline — one creation, one history, one sequence of prophets — naturally starts asking when questions from the first paragraph onward. When did this begin? Before or after Moses, before or after Jesus, before or after Muhammad? Were Rāma and Krishna before the Vedas, or after? Until that question has an answer, nothing else in this guide has a place to sit.</p>
+
+        <p>The honest answer is that Sanātana Dharma does not run on one timeline. It runs on three, and they are not interchangeable. Cosmic time is the framework of kalpas and yugas, vast cycles of creation and dissolution described as beginningless — not a sequence of datable events, but the container within which all events, however vast, take place. Traditional itihāsa is the sacred chronology the tradition itself preserves: Rāma, then Krishna, then the events of the Mahābhārata, then the beginning of the current age, Kali Yuga. Textual history is a third and different thing again — the order in which the surviving literature was composed and written down, which is what modern historical scholarship is actually in a position to date.</p>
+
+        <img class="article-image" src="assets/understanding-sanatana-dharma-timelines.png" alt="Diagram showing three separate timelines: cosmic time (kalpas and yugas, beginningless), traditional itihāsa (Rāma, Krishna, Mahābhārata, beginning of Kali Yuga), and textual history (Vedas, Upanishads, Rāmāyaṇa, Mahābhārata, Purāṇas, later commentaries).">
+        <p class="article-image-caption">Illustrative diagram created for The Signal. A visual simplification of the three-timeline distinction described in the text, not a substitute for it.</p>
+
+        <p>Traditional Hindu understanding regards the philosophy itself as Sanātana — beginningless — while treating the surviving literature that preserves it as belonging to specific periods of history. Those two claims are not in tension, because they are answers to two different questions: one about the nature of the truth being pointed to, the other about when a given text was composed. The table below lays out the second kind of claim — the traditional understanding alongside what modern historical scholarship proposes — without attempting to adjudicate between them.</p>
+
+        <table class="time-table">
+            <tr><th>Traditional Understanding</th><th>Modern Historical Scholarship</th></tr>
+            <tr><td>Sanātana Dharma — beginningless (anādi)</td><td>Philosophical tradition preserved through evolving literature</td></tr>
+            <tr><td>Vedic tradition</td><td>c. 1500–1200 BCE (earliest surviving layers)</td></tr>
+            <tr><td>Principal Upanishads</td><td>c. 800–300 BCE</td></tr>
+            <tr><td>Bhagavad Gītā</td><td>c. 2nd century BCE – 2nd century CE</td></tr>
+            <tr><td>Mahābhārata compilation</td><td>c. 400 BCE – 400 CE</td></tr>
+            <tr><td>Purāṇas</td><td>c. 300–1000 CE</td></tr>
+        </table>
+
+        <p>Traditional Hindu chronology places events such as Rāma, Krishna, and the Mahābhārata considerably earlier than the dates generally proposed by modern academic scholarship — traditional reckoning dates the start of the current age, Kali Yuga, to 3102 BCE. This guide distinguishes between three separate things: the philosophical claims of the tradition, the traditional chronology preserved within it, and the historical dating of surviving manuscripts — without attempting to resolve the differences between them. With that map of time in place, the vocabulary itself can now be laid out clearly.</p>
+
+        <div class="next-tab-nav">
+            <p class="next-tab-teaser">With cosmic time, sacred chronology, and textual history untangled, the vocabulary itself can be laid out clearly — starting with the word most often mistranslated of all.</p>
+            <p class="next-tab-prompt"><strong>Continue reading:</strong> Tap the <strong>THE MAP</strong> tab above to untangle Brahman, Brahmā, Brahmin, and Īśvara.</p>
+            <button class="next-tab-btn" onclick="switchToTab('map')">Read: The Map &rarr;</button>
+        </div>
+    </article>
+
+    <!-- TAB 3: THE MAP -->
+    <article id="map" class="tab-content">
+        <h2>The Map</h2>
+        <p class="subtitle">Four words that sound alike in English and mean nothing alike in Sanskrit.</p>
+        <div class="article-meta">
+            <span class="author">Anand Sinha</span>
+            <span>&middot;</span>
+            <span>August 2026</span>
+            <span>&middot;</span>
+            <span>Part III of VI &nbsp;&middot;&nbsp; The&nbsp;Map</span>
+        </div>
+
+        <div class="callout-box"><p>To understand Sanātana Dharma, set aside one assumption shared by Christianity, Islam, and Judaism: that everything begins with God. Sanātana Dharma begins with Reality.</p></div>
+
+        <p>One of the largest obstacles to understanding Sanātana Dharma is not conceptual but linguistic. Sanskrit terms get flattened into English words — God, soul, heaven, hell — that were built for a different worldview, and the flattening quietly rewrites the meaning underneath. Nowhere is this more consequential than with four words that look and sound almost identical to an English speaker&rsquo;s ear: Brahman, Brahmā, Brahmin, and Īśvara.</p>
+
+        <p>Sanātana Dharma itself is the broadest term of the four to sort out, though it comes first. Sanātana means eternal. Dharma is among the richest words in Sanskrit — depending on context it can mean the cosmic order that sustains existence, moral order, natural law, ethical duty, or the right way of living in harmony with reality, which is part of why it resists being translated the same way twice. Together the phrase means something closer to &ldquo;the eternal order of reality&rdquo; than the name of a single founded system with a body of followers. It is not the name of a system someone invented. It is a description of how its adherents understand reality to already operate, independent of anyone&rsquo;s belief in it.</p>
+
+        <p>Brahman is the term that carries the most weight and the most risk of mistranslation. Brahman is not a god in any conventional sense — not a being among beings, not a personality with preferences. It is described as infinite reality, pure consciousness, existence itself, prior to and beyond space, time, gender, form, and personality. A useful, if imperfect, modern analogy: where physics describes quantum fields underlying matter, Brahman is understood as something more fundamental still — not energy, not matter, but the ultimate reality within which both consciousness and the physical universe arise. Everything that exists, exists within Brahman. Nothing exists outside it.</p>
+
+        <div class="callout-box"><p>Brahman and Brahmā are not the same word wearing different spellings. One is eternal. The other exists inside time.</p></div>
+
+        <img class="article-image" src="assets/understanding-sanatana-dharma-map.png" alt="Nested diagram showing Brahman as the outermost, unbounded ultimate reality; Īśvara nested within it as Brahman's relational aspect; Brahmā nested further within as the cosmic creator operating in time; and Brahmin shown separately as a vocation, not a cosmic rank.">
+        <p class="article-image-caption">Illustrative diagram created for The Signal. A visual simplification of the four terms described in the text, not a substitute for it.</p>
+
+        <p>Brahmā, with the long final vowel, is the cosmic creative intelligence traditionally personified as the creator of the manifested universe. He operates within cosmic time rather than standing beyond it, taking up that role at the start of each cosmic cycle, or kalpa. When the cosmic order associated with him reaches its end, the manifested universe dissolves; Brahman, by contrast, is the reality beyond all such cycles.</p>
+
+        <p>Brahmin, a third and unrelated word, refers to the traditional social and intellectual class associated with Vedic learning, teaching, ritual, and the preservation of sacred knowledge. Hindu texts also describe the ideal Brahmin through learning, discipline, character, and the pursuit of Brahman, although Brahmin identity became closely connected with inherited social status in historical practice. A Brahmin&rsquo;s connection to Brahman is aspirational, not definitional: the ideal Brahmin is one who seeks knowledge of Brahman, not one who possesses or embodies it by birth.</p>
+
+        <p>One of the oldest lines in the Ṛg Veda states it directly: <em>ekaṃ sat viprā bahudhā vadanti</em> — &ldquo;Truth is one; the wise call it by many names.&rdquo; That single line, composed millennia before the theological debates it anticipates, is the reason Vishnu, Shiva, Devi, and other names are not experienced within the tradition as competing, independent gods.</p>
+
+        <p>That leaves the closest thing Sanātana Dharma has to the English word &ldquo;God&rdquo; in the devotional sense: Īśvara, the Lord. Īśvara means the supreme governing intelligence encountered personally in relation to the universe; Brahman names ultimate reality without limitation, while Īśvara is how that ultimate reality is understood and approached as knowing, ordering, sustaining, and responsive. Different schools of thought within Sanātana Dharma worship this Supreme Lord under different names and forms — Vishnu, Shiva, Devi, and others — different names and forms through which the ultimate is contemplated and worshipped. The multiplicity that looks, from the outside, like polytheism is, from the inside, closer to a set of doorways into a single room.</p>
+
+        <div class="next-tab-nav">
+            <p class="next-tab-teaser">With the vocabulary in place, the next question is what kind of story these terms are telling — and it is not the one-life, one-judgment story most readers expect.</p>
+            <p class="next-tab-prompt"><strong>Continue reading:</strong> Tap the <strong>THE CYCLE</strong> tab above to see why Sanātana Dharma pictures existence as a wheel, not a line.</p>
+            <button class="next-tab-btn" onclick="switchToTab('cycle')">Read: The Cycle &rarr;</button>
+        </div>
+    </article>
+
+    <!-- TAB 4: THE CYCLE -->
+    <article id="cycle" class="tab-content">
+        <h2>The Cycle</h2>
+        <p class="subtitle">No single life, no single judgment, no eternal reward or eternal punishment.</p>
+        <div class="article-meta">
+            <span class="author">Anand Sinha</span>
+            <span>&middot;</span>
+            <span>August 2026</span>
+            <span>&middot;</span>
+            <span>Part IV of VI &nbsp;&middot;&nbsp; The&nbsp;Cycle</span>
+        </div>
+
+        <p>If the Abrahamic traditions picture existence as a line — one life, one judgment, one eternal outcome — Sanātana Dharma pictures something closer to a wheel. The universe itself is not created once. It expands, evolves, dissolves, and is recreated across cycles measured in billions of years, with no absolute starting point to creation and no single Year One from which everything else is dated.</p>
+
+        <p>The individual self within this picture is called Ātman, and several of the principal Upanishads lead toward the recognition that the deepest Self, Ātman, is not separate from Brahman, the ultimate reality. Life&rsquo;s central task, in this framework, is not to earn a place in the next world but to realize a truth about this one: that the seeker and the sought are not, in the end, two separate things.</p>
+
+        <div class="callout-box"><p>Karma is not divine punishment handed down from outside. It is closer to a law built into the structure of reality itself.</p></div>
+
+        <p>Karma, literally &ldquo;action,&rdquo; describes the principle that every thought, word, and deed carries consequences that shape future experience — not as an arbitrary judgment imposed by an external authority, but as something closer to a moral law woven into the fabric of existence, the way gravity is woven into the physical world. Those consequences are not confined to a single lifetime. The embodied individual, or jīva, is understood to undergo repeated births and deaths, a continuous cycle called saṃsāra, with each lifetime offering fresh opportunity for learning and growth rather than a single, final exam.</p>
+
+        <img class="article-image" src="assets/understanding-sanatana-dharma-wheel.png" alt="Diagram of a circular wheel representing saṃsāra, with Birth, Karma, and Death marked on the rim, Svarga and Naraka shown as temporary offshoots that loop back into the cycle, and Moksha shown as a single arrow breaking away from the wheel entirely.">
+        <p class="article-image-caption">Illustrative diagram created for The Signal. A visual simplification of the cycle described in the text, not a substitute for it.</p>
+
+        <p>This has direct consequences for how Sanātana Dharma treats heaven and hell, and it is here that translation does the most damage. Swarga is often rendered as &ldquo;Heaven,&rdquo; but the translation is incomplete: Swarga is a higher realm where beings experience the results of accumulated good karma, and it is not eternal — once those merits are exhausted, the jīva returns to earthly existence rather than remaining permanently. Naraka is often rendered as &ldquo;Hell,&rdquo; and the same caveat applies. It is a realm where the consequences of harmful action are experienced, but like Swarga it is temporary, and the jīva continues its journey afterward. In the mainstream Hindu cosmological framework, Naraka is not an eternal damnation from which no further journey is possible; Swarga and Naraka are both conditions within saṃsāra, not the final destination of the Self. A third term, Pātāla, is sometimes mistranslated as Hell as well, but it refers instead to a set of lower realms populated by various beings, including Nāgas and Asuras in many traditional accounts — a feature of Hindu cosmology, not a place of punishment at all.</p>
+
+        <p>The end point of this entire cycle is Moksha: liberation from the wheel of birth and death altogether. Moksha is not simply an admission ticket to a better realm. It is the direct awakening to one&rsquo;s true nature as inseparable from Brahman — the realization that the question &ldquo;who am I&rdquo; and the question &ldquo;what is ultimate reality&rdquo; were, from the beginning, the same question asked two different ways.</p>
+
+        <div class="next-tab-nav">
+            <p class="next-tab-teaser">If the cycle is real, an obvious question follows: what is any of it for? Two more terms answer that question directly.</p>
+            <p class="next-tab-prompt"><strong>Continue reading:</strong> Tap the <strong>THE AIM</strong> tab above for Avatāra, Rishi, and the four puruṣārthas.</p>
+            <button class="next-tab-btn" onclick="switchToTab('aim')">Read: The Aim &rarr;</button>
+        </div>
+    </article>
+
+    <!-- TAB 5: THE AIM -->
+    <article id="aim" class="tab-content">
+        <h2>The Aim</h2>
+        <p class="subtitle">What a divine descent, a seer, and a well-lived life have in common.</p>
+        <div class="article-meta">
+            <span class="author">Anand Sinha</span>
+            <span>&middot;</span>
+            <span>August 2026</span>
+            <span>&middot;</span>
+            <span>Part V of VI &nbsp;&middot;&nbsp; The&nbsp;Aim</span>
+        </div>
+
+        <p>Two more terms round out this vocabulary, and both mark real departures from Abrahamic categories rather than mere synonyms wearing different names. The first is Avatāra. An Avatāra is not a prophet, not a messenger, and not a person specially inspired by the divine from a distance. A prophet conveys divine revelation; an Avatāra is understood as a descent of the Divine itself into embodied existence — Rāma and Krishna being the most widely recognized examples — with the central purpose of restoring dharma when it has seriously declined. The structural difference from prophecy is not subtle.</p>
+
+        <p>The second is the Rishi, often translated loosely as &ldquo;sage&rdquo; but functioning quite differently from a prophet in the technical sense. A Rishi is not considered the author or inventor of scripture. The tradition holds that a Rishi directly perceives eternal truths that already exist, independent of any particular moment in history, and transmits what has been perceived rather than what has been personally revealed to him alone. This is part of why the Vedas are traditionally described as apauruṣeya — not authored by any human being — a category that has no real equivalent in traditions where scripture is understood as revealed by God to a specific prophet at a specific point in time.</p>
+
+        <div class="callout-box"><p>Sanātana Dharma does not ask a person to choose between wealth, pleasure, ethics, and liberation. It asks them to hold all four, in the right order.</p></div>
+
+        <img class="article-image" src="assets/understanding-sanatana-dharma-purusharthas.png" alt="Diagram showing three boxes, Dharma, Artha, and Kāma, with arrows rising from each into a wider box above labeled Moksha, showing liberation as the fulfillment of the other three goals rather than their negation.">
+        <p class="article-image-caption">Illustrative diagram created for The Signal. A visual simplification of the four puruṣārthas described in the text, not a substitute for it.</p>
+
+        <p>That ordering is formalized in the four puruṣārthas, the traditional goals of a human life. Dharma is living ethically and in harmony with the order underlying existence. Artha is the pursuit of wealth, security, and the material means to live responsibly. Kāma is the enjoyment of love, beauty, relationship, and the legitimate pleasures available to an embodied life. Moksha, liberation, sits above the other three as the highest aim, but critically, it does not cancel them. Unlike frameworks that treat worldly success and spiritual salvation as competing tracks, Sanātana Dharma treats the first three as legitimate goods in their own right, with the fourth as their fulfillment rather than their negation.</p>
+
+        <p>Taken together, these terms are not a competing theology asking to be ranked against another one. They are a different grammar, built to answer a different opening question. A reader who arrives expecting a single God, a single prophet, a single book, and a single judgment will, understandably, come away confused — not because Sanātana Dharma has failed to answer the question, but because it was never trying to answer that particular one.</p>
+
+        <p>One question remains, and it is the question a careful reader should be asking by now: where did any of this come from, and how was it kept intact across thousands of years without a single founder, a single revelation event, or a single book to anchor it? That is where the vocabulary in this guide originated — not in doctrine handed down at one moment in history, but in a body of texts and a mode of inquiry that developed, and kept developing, across a very long span of time.</p>
+
+        <div class="next-tab-nav">
+            <p class="next-tab-teaser">Where did any of this come from, and how was it kept intact for thousands of years without a single founder, revelation event, or book to anchor it?</p>
+            <p class="next-tab-prompt"><strong>Continue reading:</strong> Tap the <strong>THE SOURCE</strong> tab above to see the texts and history behind everything covered so far.</p>
+            <button class="next-tab-btn" onclick="switchToTab('source')">Read: The Source &rarr;</button>
+        </div>
+    </article>
+
+    <!-- TAB 6: THE SOURCE (last content tab — engagement box, author note, about author) -->
+    <article id="source" class="tab-content">
+        <h2>The Source</h2>
+        <p class="subtitle">Where these ideas came from, how they were written down, and how the tradition kept growing.</p>
+        <div class="article-meta">
+            <span class="author">Anand Sinha</span>
+            <span>&middot;</span>
+            <span>August 2026</span>
+            <span>&middot;</span>
+            <span>Part VI of VI &nbsp;&middot;&nbsp; The&nbsp;Source</span>
+        </div>
+
+        <p>Brahman was described earlier as pure consciousness — but it is worth pausing on what that word is and is not doing. This is not consciousness in the everyday sense of brain activity, alertness, or awareness of one&rsquo;s surroundings, all of which come and go and belong to a particular body. It is closer to the substrate that makes any experience possible at all — often described in the tradition through the compound <em>sat-chit-ānanda</em>, existence, consciousness, and bliss, understood not as three separate qualities Brahman happens to have but as three faces of a single, undivided reality. A modern reader can hold this loosely: not &ldquo;Brahman is conscious&rdquo; in the way a person is conscious, but &ldquo;consciousness itself, wherever it appears, is Brahman showing up as experience.&rdquo;</p>
+
+        <p>That claim did not arrive by argument alone. It arrived through a specific body of literature, and understanding that literature is essential to understanding how Sanātana Dharma differs from traditions built around a single revealed book. The foundational texts are the four Vedas — Ṛg, Yajur, Sāma, and Atharva — transmitted orally for a very long period before being written down, and traditionally regarded as apauruṣeya, without human author. Each Veda developed through several interconnected layers: the Saṃhitās, containing hymns and formulas; the Brāhmaṇas, explaining ritual; the Āraṇyakas, moving toward contemplation; and the Upanishads, examining the nature of reality, consciousness, and the Self. Later tradition broadly described the ritual orientation as karma-kāṇḍa and the knowledge-oriented culmination as jñāna-kāṇḍa — a word, Upanishad, that literally suggests sitting down close to a teacher, and a body of texts also known as Vedānta: literally, the end of the Veda, both in the sense of coming last and in the sense of representing its culmination.</p>
+
+        <p>The Upanishads are where the vocabulary in this guide is actually anchored. More than two hundred texts have at various times circulated under the name Upanishad, while the traditional Muktikā canon lists 108; a much smaller group of principal Upanishads — commented on for centuries by every major school of Hindu philosophy — forms the philosophical foundation most extensively studied. It is here that the great declarations, the mahāvākyas, appear: <em>Tat Tvam Asi</em>, &ldquo;That Thou Art,&rdquo; <em>Ayam Ātmā Brahma</em>, &ldquo;This Self is Brahman,&rdquo; and <em>Prajñānam Brahma</em>, &ldquo;Consciousness is Brahman.&rdquo; These are not devotional slogans. They are the conclusions of sustained philosophical dialogue, often framed as a teacher walking a student from a plausible but incomplete answer toward a more precise one.</p>
+
+        <p>Sanātana Dharma preserved different kinds of knowledge through different kinds of literature. The Vedic hymns preserve invocations, cosmological reflections, and ritual knowledge; the Upanishads pursue the nature of reality and the Self through sustained inquiry; the Rāmāyaṇa and Mahābhārata embody dharma in human choices, relationships, conflict, and consequence; and the Purāṇas communicate cosmology, genealogy, sacred geography, devotion, and ethical memory through narrative. The tradition therefore grew not by discarding one layer for another, but by preserving different modes of knowing — recitation, ritual, contemplation, reasoning, dialogue, story, and lived practice.</p>
+
+        <div class="callout-box note"><h3>A Note on Scope</h3><p>This guide focuses on the philosophical foundations of Sanātana Dharma found in the Upanishads and related Vedic literature. It is an introduction to one foundational stream of that civilizational inheritance, not a survey of every school of thought or path of practice that later developed from it — Sāṅkhya, Yoga, Nyāya, Mīmāṃsā, Tantra, and the many Bhakti traditions each deserve, and have received elsewhere, their own extended treatment.</p></div>
+
+        <p>Understood this way, the reader who began this guide asking &ldquo;who is your God, who is your prophet, and what is your holy book&rdquo; is ready for a deeper question: what does a civilization come to understand when generation after generation preserves, tests, contemplates, debates, and lives the same enduring inquiry — what is real, who am I, what is consciousness, what binds a being to repeated existence, and what sets it free.</p>
+
+        <!-- ENGAGEMENT BOX -->
+        <div class="engagement-box">
+            <h3>Stay Connected to The Signal</h3>
+            <p>Subscribe for new editions, send feedback on this piece, or rate what you just read.</p>
+            <div class="eng-buttons">
+                <button class="btn-subscribe" onclick="openModal('subscribeModal')">Subscribe</button>
+                <button class="btn-feedback" onclick="openModal('feedbackModal')">Send Feedback</button>
+                <button class="btn-rate" onclick="openModal('rateModal')">Rate This Article</button>
+            </div>
+        </div>
+
+        <!-- AUTHOR NOTE -->
+        <div class="author-note">
+            <div class="author-note-label">A Note from the Author</div>
+            <p class="author-note-text">I did not grow up needing the vocabulary in this guide explained to me, which is exactly why writing it took longer than almost anything else I have published here. Translating a worldview without flattening it into someone else&rsquo;s categories is slow, deliberate work, and I am certain this is not the last word I will write on the subject.</p>
+            <p class="author-note-text">I am actively engaged with
+                <strong class="author-note-strong">Americans for Hindus (A4H)</strong>,
+                working to awaken Hindu Americans to the urgency of civic participation and
+                political representation. The stakes are not abstract.
+                Every community faces the same fundamental choice:</p>
+            <p class="author-note-quote">&ldquo;Be at the table — or be on the menu.&rdquo;</p>
+            <p class="author-note-text">If this article gave you something to think about,
+                the other editions are written in the same spirit.
+                I hope you find them worth your time.</p>
+            <div class="author-note-sig">— Anand Sinha &nbsp;&middot;&nbsp; anandsinhausa.com</div>
+            <div class="author-note-cta">
+                <button class="author-note-btn" onclick="switchToTab('more')">
+                    Explore Other Articles &rarr;
+                </button>
+            </div>
+        </div>
+
+        <!-- ABOUT THE AUTHOR -->
+        <div class="about-author">
+            <div class="about-author-rule">
+                <div class="about-author-tag">About the Author</div>
+                <div class="about-author-line"></div>
+            </div>
+            <div class="about-author-name">Anand Sinha</div>
+            <div class="about-author-title">Writer &middot; Civic Technologist &middot; Founder, The Signal</div>
+            <p class="about-author-bio">Anand Sinha spent decades in corporate life before retiring to
+                focus on the questions that had always mattered most to him — civilization, identity,
+                history, and the political future of Hindu Americans. Based in Metro Detroit, he writes
+                <strong>The Signal</strong>, an independent publication covering geopolitics, finance,
+                technology, elections, and civilizational history for the educated reader who wants more
+                than the mainstream narrative offers.</p>
+            <p class="about-author-bio">He is actively engaged with <strong>Americans for Hindus (A4H)</strong>,
+                a Political Action Committee dedicated to awakening Hindu Americans to the importance of
+                civic participation and political representation. He conceived, researched, and built
+                entirely on his own the <strong>A4H Elections Hub 2026</strong> — a fifty-state voter
+                guide and candidate tracking system designed to give Hindu Americans a seat at the table
+                in American political life.</p>
+            <p class="about-author-bio">He also coordinates neighborhood civic services for his community
+                in Troy, Michigan, and publishes his writing, tools, and civic technology projects online.</p>
+            <div class="about-author-links">
+                <a href="https://anandsinhausa.com/signal" class="about-author-link">The Signal Archive</a>
+                <a href="https://www.anandsinhausa.com/a4hVoterGuide.html" class="about-author-link">A4H Voter Guide</a>
+                <a href="mailto:sinha.anand@gmail.com" class="about-author-link">Write to the Author</a>
+            </div>
+        </div>
+    </article>
+
+    <!-- OTHER EDITIONS — fully dynamic, no hardcoded cards -->
+    <article id="more" class="tab-content">
+        <div class="archive-section-rule">
+            <div class="archive-rule-tag">Other Editions</div>
+            <div class="archive-rule-line"></div>
+        </div>
+        <div class="archive-grid" id="archive-grid-container">
+            <p class="archive-loading">Loading editions&hellip;</p>
+        </div>
+    </article>
+
+</main>
+
+<footer>
+    <p>&copy; 2026 The Signal by Anand Sinha &middot; Published at
+       <a href="https://anandsinhausa.com">anandsinhausa.com</a></p>
+    <p style="margin-top:10px; font-size:13px;">Sanātana Dharma &middot; Hindu philosophy &middot; Vedānta &middot; Civilization</p>
+</footer>
+
+<!-- FEEDBACK MODAL -->
+<div class="modal-overlay" id="feedbackModal">
+    <div class="modal-box">
+        <button class="modal-close" onclick="closeModal('feedbackModal')">&times;</button>
+        <h3>Send Feedback</h3>
+        <label for="fb-name">Name</label>
+        <input type="text" id="fb-name">
+        <label for="fb-email">Email</label>
+        <input type="email" id="fb-email" required>
+        <label for="fb-message">Message</label>
+        <textarea id="fb-message" required></textarea>
+        <button class="modal-submit" onclick="submitFeedback()">Send Feedback</button>
+        <div class="modal-status" id="fb-status"></div>
+    </div>
+</div>
+
+<!-- RATE MODAL -->
+<div class="modal-overlay" id="rateModal">
+    <div class="modal-box">
+        <button class="modal-close" onclick="closeModal('rateModal')">&times;</button>
+        <h3>Rate This Article</h3>
+        <div class="star-row" id="star-row">
+            <span data-star="1">&#9733;</span><span data-star="2">&#9733;</span><span data-star="3">&#9733;</span><span data-star="4">&#9733;</span><span data-star="5">&#9733;</span>
+        </div>
+        <label for="rate-comment">Comment (optional)</label>
+        <textarea id="rate-comment"></textarea>
+        <label for="rate-name">Name (optional)</label>
+        <input type="text" id="rate-name">
+        <button class="modal-submit" onclick="submitRating()">Submit Rating</button>
+        <div class="modal-status" id="rate-status"></div>
+    </div>
+</div>
+
+<!-- SUBSCRIBE MODAL -->
+<div class="modal-overlay" id="subscribeModal">
+    <div class="modal-box">
+        <button class="modal-close" onclick="closeModal('subscribeModal')">&times;</button>
+        <h3>Subscribe</h3>
+        <label for="sub-email">Email</label>
+        <input type="email" id="sub-email" required>
+        <label for="sub-name">Name (optional)</label>
+        <input type="text" id="sub-name">
+        <button class="modal-submit" onclick="submitSubscribe()">Subscribe</button>
+        <div class="modal-status" id="sub-status"></div>
+    </div>
+</div>
+
+<script>
+    var ARTICLE_ID = 'understanding-sanatana-dharma.html';
+    var ENGAGEMENT_API_URL = 'https://script.google.com/macros/s/AKfycbwtVwCmtQI2QmYW47rzQUrm1kgghpcqGgaYHdfUWXFv9EglpJ8UgS_XJPj2i1xLxzLa5w/exec';
+    var EDITIONS_API_URL = 'https://script.google.com/macros/s/AKfycbwTrLwXpL3jgzQv_3XwEhjMZZrSMUWwPFtOHrviTG7DES5PNnE4WitL-dq1PswfqR33rA/exec';
+
+    function switchToTab(tabId) {
+        document.querySelectorAll('.tab').forEach(function(t) { t.classList.remove('active'); });
+        document.querySelectorAll('.tab-content').forEach(function(c) { c.classList.remove('active'); });
+        document.querySelector('[data-tab="' + tabId + '"]').classList.add('active');
+        document.getElementById(tabId).classList.add('active');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+    document.querySelectorAll('.tab').forEach(function(tab) {
+        tab.addEventListener('click', function() {
+            switchToTab(this.getAttribute('data-tab'));
+        });
+    });
+
+    function openModal(id) { document.getElementById(id).classList.add('active'); }
+    function closeModal(id) { document.getElementById(id).classList.remove('active'); }
+
+    function postEngagement(payload, statusEl, successMsg) {
+        statusEl.textContent = 'Sending…';
+        fetch(ENGAGEMENT_API_URL, {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+            body: JSON.stringify(payload)
+        }).then(function() {
+            statusEl.textContent = successMsg;
+        }).catch(function() {
+            statusEl.textContent = 'Something went wrong. Please try again or email sinha.anand@gmail.com directly.';
+        });
+    }
+
+    function submitFeedback() {
+        var email = document.getElementById('fb-email').value;
+        var message = document.getElementById('fb-message').value;
+        if (!email || !message) { document.getElementById('fb-status').textContent = 'Email and message are required.'; return; }
+        postEngagement({
+            action: 'feedback',
+            article: ARTICLE_ID,
+            name: document.getElementById('fb-name').value,
+            email: email,
+            message: message
+        }, document.getElementById('fb-status'), 'Thank you — your feedback has been sent.');
+    }
+
+    var selectedStars = 0;
+    document.querySelectorAll('#star-row span').forEach(function(star) {
+        star.addEventListener('click', function() {
+            selectedStars = parseInt(this.getAttribute('data-star'), 10);
+            document.querySelectorAll('#star-row span').forEach(function(s) {
+                s.classList.toggle('selected', parseInt(s.getAttribute('data-star'), 10) <= selectedStars);
+            });
+        });
+    });
+
+    function submitRating() {
+        if (!selectedStars) { document.getElementById('rate-status').textContent = 'Please select a star rating.'; return; }
+        postEngagement({
+            action: 'rate',
+            article: ARTICLE_ID,
+            stars: selectedStars,
+            comment: document.getElementById('rate-comment').value,
+            name: document.getElementById('rate-name').value
+        }, document.getElementById('rate-status'), 'Thank you for rating this article.');
+    }
+
+    function submitSubscribe() {
+        var email = document.getElementById('sub-email').value;
+        if (!email) { document.getElementById('sub-status').textContent = 'Email is required.'; return; }
+        postEngagement({
+            action: 'subscribe',
+            article: ARTICLE_ID,
+            name: document.getElementById('sub-name').value,
+            email: email
+        }, document.getElementById('sub-status'), 'Thank you — you are subscribed.');
+    }
+
+    // OTHER EDITIONS — dynamic archive grid
+    function loadEditions() {
+        var container = document.getElementById('archive-grid-container');
+        fetch(EDITIONS_API_URL)
+            .then(function(res) { return res.json(); })
+            .then(function(data) {
+                var rows = (data && data.editions) ? data.editions : data;
+                if (!rows || !rows.length) { throw new Error('empty'); }
+                rows = rows.filter(function(r) { return String(r.Active).toLowerCase() !== 'false'; });
+                rows.sort(function(a, b) { return parseInt(b.Edition, 10) - parseInt(a.Edition, 10); });
+                var currentFile = window.location.pathname.split('/').pop();
+                var html = '';
+                rows.forEach(function(r) {
+                    var isCurrent = r.Filename === currentFile;
+                    var num = ('0' + r.Edition).slice(-2);
+                    if (isCurrent) {
+                        html += '<div class="arc-card current-arc">' +
+                            '<div class="arc-badge current">&#9733; You Are Here</div>' +
+                            '<div class="arc-number">' + num + '</div>' +
+                            '<h3 class="arc-headline">' + r.Title + ': <em>' + r.Subtitle + '</em></h3>' +
+                            '<p class="arc-deck">' + r.Deck + '</p>' +
+                            '<div class="arc-date">' + r.DateLabel + ' &nbsp;&middot;&nbsp; ' + r.Category + '</div>' +
+                            '</div>';
+                    } else {
+                        html += '<a href="https://anandsinhausa.com/signal/' + r.Filename + '" class="arc-card">' +
+                            '<div class="arc-badge live">&#10003; Published</div>' +
+                            '<div class="arc-number">' + num + '</div>' +
+                            '<h3 class="arc-headline">' + r.Title + ': <em>' + r.Subtitle + '</em></h3>' +
+                            '<p class="arc-deck">' + r.Deck + '</p>' +
+                            '<div class="arc-date">' + r.DateLabel + ' &nbsp;&middot;&nbsp; ' + r.Category + '</div>' +
+                            '</a>';
+                    }
+                });
+                container.innerHTML = html;
+            })
+            .catch(function() {
+                container.innerHTML = '<div class="archive-fallback"><p>Editions couldn&rsquo;t be loaded right now. <a href="https://anandsinhausa.com/signal/">Browse the full archive &rarr;</a></p></div>';
+            });
+    }
+    loadEditions();
+
+    // Image placeholder — if an image hasn't been uploaded yet or fails to load,
+    // show a styled placeholder with the alt text instead of a broken-image icon.
+    document.querySelectorAll('.article-image').forEach(function(img) {
+        img.addEventListener('error', function() {
+            var ph = document.createElement('div');
+            ph.className = 'article-image-placeholder';
+            ph.textContent = img.getAttribute('alt') || 'Image unavailable';
+            img.replaceWith(ph);
+        });
+    });
+
+</script>
+
+</body>
+</html>
