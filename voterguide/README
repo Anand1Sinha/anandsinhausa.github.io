@@ -1,0 +1,24 @@
+# The Signal Voter Guide
+
+Independent, nonpartisan 50-state voter guide by Anand Sinha.
+
+## Purpose
+
+A 50-state, 5-race reference (Governor, US Senate, US House, State Senate,
+State House) built on Vote411-style address/browse flow. Reads live from a
+Google Sheet backend. Does not endorse or recommend candidates.
+
+Live at: https://anandsinhausa.com/voterguide
+
+## Files
+
+- `index.html` — the site. GitHub Pages serves this automatically for the
+  `/voterguide` path.
+
+## Note
+
+This README exists partly to keep this folder from disappearing. GitHub only
+tracks files, not empty folders — if `index.html` is ever deleted without a
+replacement uploaded in the same commit, this folder (and this README) will
+be deleted too, since nothing would be left inside it to track. Keep at least
+one file here at all times.
