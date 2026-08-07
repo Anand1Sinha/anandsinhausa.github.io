@@ -1,0 +1,3350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="The Signal Voter Guide — a 50-state, 5-race reference by Anand Sinha.">
+<title>The Signal Voter Guide | Anand Sinha</title>
+
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="shortcut icon" href="/favicon.ico">
+
+<!-- Open Graph -->
+<meta property="og:title" content="The Signal Voter Guide | Anand Sinha">
+<meta property="og:description" content="An independent, nonpartisan 50-state reference for the 2026 elections — Governor, US Senate, US House, State Senate, and State House.">
+<meta property="og:url" content="https://anandsinhausa.com/voterguide">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://anandsinhausa.com/voterguide/og-voterguide.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="The Signal Voter Guide — A 50-State, 5-Race Reference by Anand Sinha">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="The Signal Voter Guide | Anand Sinha">
+<meta name="twitter:description" content="An independent, nonpartisan 50-state reference for the 2026 elections.">
+<meta name="twitter:image" content="https://anandsinhausa.com/voterguide/og-voterguide.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&display=swap" rel="stylesheet">
+
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5XRKDSMPY9"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-5XRKDSMPY9');
+</script>
+
+<style>
+/* ── RESET & BASE ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { max-width: 100%; overflow-x: hidden; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  background: #fff;
+  color: #1a1a1a;
+  font-size: 15px;
+  line-height: 1.5;
+}
+a { color: #1a6fa8; text-decoration: none; }
+a:hover { text-decoration: underline; }
+button { cursor: pointer; font-family: inherit; }
+
+/* ── STICKY HEADER ── */
+.site-header {
+  background: #0e1a29;
+  border-bottom: 1px solid rgba(212,175,55,0.18);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+.header-inner {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 20px;
+  height: 56px;
+  max-width: 1120px;
+  margin: 0 auto;
+}
+.header-logo {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+.header-brand {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+}
+.header-wordmark {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  color: #fff;
+  flex-shrink: 0;
+}
+.header-title {
+  font-size: 13px;
+  font-weight: 500;
+  color: #8899b0;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  border-left: 1px solid rgba(255,255,255,0.15);
+  padding-left: 10px;
+}
+@media (max-width: 480px) {
+  .header-title { display: none; }
+}
+.header-switcher {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  flex-shrink: 0;
+}
+.header-btn {
+  background: rgba(255,255,255,0.10);
+  color: rgba(255,255,255,0.8);
+  border: 1px solid rgba(255,255,255,0.2);
+  padding: 5px 11px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 700;
+  white-space: nowrap;
+  transition: all 0.2s;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+  font-family: inherit;
+}
+.header-btn:hover {
+  background: rgba(255,255,255,0.22);
+  color: #fff;
+  text-decoration: none;
+}
+.header-btn.active {
+  background: rgba(255,255,255,0.9);
+  color: #2b3e50;
+  border-color: transparent;
+}
+.header-btn.theme-btn {
+  font-size: 14px;
+  padding: 4px 9px;
+  border-color: rgba(255,255,255,0.15);
+}
+/* Dark theme variables */
+body.dark-mode {
+  --bg:      #060d1a;
+  --bg2:     #0b1628;
+  --surface: #111d33;
+  --surf2:   #162240;
+  --text:    #e8edf4;
+  --tdim:    #8899b0;
+  --tmuted:  #566070;
+  --border:  rgba(255,255,255,0.08);
+  --bord2:   rgba(255,255,255,0.14);
+  --link:    #3bbfaa;
+  --accent:  #c8992a;
+}
+body.dark-mode { background: var(--bg); color: var(--text); }
+body.dark-mode .screen-inner,
+body.dark-mode #screen-home { background: var(--bg); }
+body.dark-mode .home-section { background: var(--bg); }
+body.dark-mode .address-box,
+body.dark-mode .browse-box {
+  background: var(--surface);
+  border-color: var(--bord2);
+}
+body.dark-mode .address-heading,
+body.dark-mode .browse-heading,
+body.dark-mode .screen-title,
+body.dark-mode .race-name,
+body.dark-mode .card-name { color: #fff; }
+body.dark-mode .address-subtext,
+body.dark-mode .browse-subtext,
+body.dark-mode .screen-subtitle,
+body.dark-mode .meet-heading { color: var(--tdim, #8899b0); }
+body.dark-mode .address-input,
+body.dark-mode .search-field,
+body.dark-mode .split-zip-input {
+  background: var(--bg2);
+  border-color: var(--bord2);
+  color: #fff;
+}
+body.dark-mode .address-input::placeholder,
+body.dark-mode .search-field::placeholder { color: var(--tmuted, #566070); }
+body.dark-mode .candidate-card {
+  background: var(--surface);
+  border-color: var(--bord2);
+  color: #fff;
+}
+body.dark-mode .candidate-card:hover {
+  border-color: var(--bord2);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+}
+body.dark-mode .card-photo-row { background: var(--bg2); }
+body.dark-mode .card-initials { background: var(--surf2); color: var(--tdim); }
+body.dark-mode .card-party { color: var(--tdim); }
+body.dark-mode .card-party.dem { color: #6699cc; }
+body.dark-mode .card-party.rep { color: #cc6666; }
+body.dark-mode .btn-my-choice {
+  border-color: var(--bord2);
+  color: var(--tdim);
+}
+body.dark-mode .btn-my-choice:hover { color: #3bbfaa; border-color: #3bbfaa; background: rgba(59,191,170,0.08); }
+body.dark-mode .btn-my-choice.selected { color: #3bbfaa; border-color: #3bbfaa; background: rgba(59,191,170,0.12); }
+body.dark-mode .state-list-item { border-color: var(--border); }
+body.dark-mode .state-list-btn { color: #fff; }
+body.dark-mode .state-arrow { border-color: var(--bord2); color: var(--tdim); }
+body.dark-mode .race-list-item { border-color: var(--border); }
+body.dark-mode .race-list-btn { color: #3bbfaa; }
+body.dark-mode .race-list-btn:hover { color: #3bbfaa; }
+body.dark-mode .about-race { background: var(--surface); border-color: var(--border); }
+body.dark-mode .about-race-toggle { color: #fff; }
+body.dark-mode .about-race-body { color: var(--tdim); }
+body.dark-mode .race-date-link { color: #3bbfaa; }
+body.dark-mode .race-type-label { color: #3bbfaa; }
+body.dark-mode .back-btn { background: var(--surface); color: #fff; border-color: var(--bord2); }
+body.dark-mode .back-link { color: #3bbfaa; }
+body.dark-mode .your-address-bar { background: var(--surface); border-color: var(--bord2); }
+body.dark-mode .your-address-value { color: #fff; }
+body.dark-mode .filter-chip { background: var(--surface); border-color: var(--bord2); color: var(--tdim); }
+body.dark-mode .filter-chip.active { background: rgba(59,191,170,0.15); border-color: #3bbfaa; color: #3bbfaa; }
+body.dark-mode .race-group-header { color: #3bbfaa; border-color: rgba(59,191,170,0.25); }
+body.dark-mode .prompt-box { background: var(--surface); border-color: var(--border); color: var(--tdim); }
+body.dark-mode .site-footer { background: var(--bg2); border-color: var(--border); color: var(--tmuted); }
+body.dark-mode .panel { background: var(--surface); border-color: var(--border); }
+body.dark-mode .panel-header { background: var(--surf2); color: #3bbfaa; }
+body.dark-mode .autocomplete-dropdown { background: var(--surf2); border-color: var(--bord2); }
+body.dark-mode .autocomplete-item { color: #fff; border-color: var(--border); }
+body.dark-mode .autocomplete-item:hover { background: rgba(59,191,170,0.1); }
+
+/* ══════════════════════════════════════════════════════════════
+   HOME PAGE v1.0 — hero, trust strip, action cards, footer
+   ══════════════════════════════════════════════════════════════ */
+
+
+/* ── ACTION CARDS (3-up) ── */
+.home-section-v2 {
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 28px 16px 0;
+}
+.action-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  margin-bottom: 24px;
+}
+@media (max-width: 760px) {
+  .action-cards { grid-template-columns: 1fr; }
+}
+.action-card {
+  background: #fff;
+  border: 1px solid #c3ccd6;
+  border-top: 3px solid var(--accent, #2b3e50);
+  border-radius: 10px;
+  padding: 26px 22px;
+  text-align: center;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+.action-card.crimson { --accent: #a83246; }
+.action-card.teal { --accent: #1a6fa8; }
+.action-card.green { --accent: #1a8a5a; }
+.action-icon {
+  width: 52px; height: 52px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 16px;
+}
+.action-card.crimson .action-icon { background: #fdf1f2; color: #a83246; }
+.action-card.teal .action-icon { background: #eaf3fa; color: #1a6fa8; }
+.action-card.green .action-icon { background: #eaf7f0; color: #1a8a5a; }
+.action-icon svg { width: 24px; height: 24px; }
+.action-card h3 {
+  font-size: 18px;
+  font-weight: 800;
+  color: #1a2a3a;
+  margin-bottom: 8px;
+}
+.action-card p { font-size: 13.5px; color: #666; line-height: 1.5; margin-bottom: 18px; min-height: 40px; }
+.action-card-btn-row { display: flex; flex-direction: column; gap: 8px; }
+.btn-action-primary {
+  display: block;
+  width: 100%;
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  text-decoration: none;
+  text-align: center;
+  color: #fff;
+}
+.action-card.crimson .btn-action-primary { background: #a83246; }
+.action-card.crimson .btn-action-primary:hover { background: #8a2939; }
+.action-card.teal .btn-action-primary { background: #1a6fa8; }
+.action-card.teal .btn-action-primary:hover { background: #155d8f; }
+.action-card.green .btn-action-primary { background: #1a8a5a; }
+.action-card.green .btn-action-primary:hover { background: #15714a; }
+.btn-action-outline {
+  display: block;
+  width: 100%;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+  background: transparent;
+  text-decoration: none;
+  text-align: center;
+}
+.action-card.crimson .btn-action-outline { border: 1.5px solid #a83246; color: #a83246; }
+.action-card.teal .btn-action-outline { border: 1.5px solid #1a6fa8; color: #1a6fa8; }
+.action-card select.mystate-select-v2 {
+  width: 100%;
+  padding: 12px 12px;
+  border: 1.5px solid #cfd8e3;
+  border-radius: 8px;
+  font-size: 14px;
+  font-family: inherit;
+  background: #fff;
+  color: #1a1a1a;
+  margin-bottom: 8px;
+}
+.action-card-caption { font-size: 11.5px; color: #999; margin-top: 12px; }
+
+body.dark-mode .action-card { background: var(--surface); border-color: var(--bord2); }
+body.dark-mode .action-card h3 { color: #fff; }
+body.dark-mode .action-card p { color: var(--tdim); }
+body.dark-mode .action-card-caption { color: var(--tmuted); }
+body.dark-mode .action-card select.mystate-select-v2 { background: var(--bg2); border-color: var(--bord2); color: #fff; }
+
+/* ── MY CHOICES BANNER (lower weight, horizontal) ── */
+.mychoice-banner {
+  background: #fdf9ef;
+  border: 1.5px solid #D4AF37;
+  border-radius: 10px;
+  padding: 18px 22px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+}
+.mychoice-banner-icon {
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  background: #D4AF37;
+  color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.mychoice-banner-icon svg { width: 20px; height: 20px; }
+.mychoice-banner-text { flex: 1; min-width: 200px; }
+.mychoice-banner-text h3 { font-size: 15px; font-weight: 800; color: #8a6d1a; margin-bottom: 2px; }
+.mychoice-banner-text p { font-size: 13px; color: #7a7259; }
+.btn-mychoice-banner {
+  background: #D4AF37;
+  color: #fff;
+  border: none;
+  padding: 11px 20px;
+  border-radius: 8px;
+  font-size: 13.5px;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.btn-mychoice-banner:hover { background: #b8952c; }
+
+body.dark-mode .mychoice-banner { background: var(--surface); border-color: #D4AF37; }
+body.dark-mode .mychoice-banner-text h3 { color: #D4AF37; }
+body.dark-mode .mychoice-banner-text p { color: var(--tdim); }
+
+/* ── TRUST NOTE ── */
+.trust-note {
+  background: #eef2f7;
+  border-radius: 10px;
+  padding: 18px 22px;
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  margin-bottom: 28px;
+}
+.trust-note-icon {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  background: #2b3e50;
+  color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.trust-note-icon svg { width: 18px; height: 18px; }
+.trust-note h3 { font-size: 14.5px; font-weight: 800; color: #1a2a3a; margin-bottom: 4px; }
+.trust-note p { font-size: 13px; color: #555; line-height: 1.55; }
+
+body.dark-mode .trust-note { background: var(--surface); }
+body.dark-mode .trust-note h3 { color: #fff; }
+body.dark-mode .trust-note p { color: var(--tdim); }
+
+/* ── FOOTER v2 ── */
+.site-footer-v2 {
+  background: #0e1a29;
+  color: #a8bcd8;
+  padding: 36px 20px 28px;
+  margin-top: 24px;
+  border-top: 2px solid #D4AF37;
+}
+.footer-v2-inner {
+  max-width: 1040px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+.footer-v2-brand { font-family: 'Fraunces', Georgia, serif; font-size: 20px; font-weight: 700; color: #fff; letter-spacing: 1.2px; }
+.footer-v2-tagline { font-size: 12.5px; color: #7c8ea3; margin-top: 4px; }
+.footer-v2-links { display: flex; flex-direction: column; gap: 8px; font-size: 13.5px; }
+.footer-v2-links a { color: #c3ccd6; text-decoration: none; display: flex; align-items: center; gap: 8px; }
+.footer-v2-links a:hover { color: #fff; }
+.footer-v2-links svg { width: 15px; height: 15px; flex-shrink: 0; }
+.footer-badge {
+  width: 84px; height: 84px;
+  border: 1.5px solid #D4AF37;
+  border-radius: 50%;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  text-align: center;
+}
+.footer-badge svg { width: 22px; height: 22px; color: #D4AF37; margin-bottom: 3px; }
+.footer-badge-text { font-size: 8px; font-weight: 700; letter-spacing: 1px; color: #D4AF37; line-height: 1.4; }
+.footer-v2-disclaimer {
+  max-width: 1040px;
+  margin: 24px auto 0;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  font-size: 12.5px;
+  color: #7c8ea3;
+  line-height: 1.6;
+}
+.footer-v2-disclaimer strong { color: #c3ccd6; }
+
+/* ── HERO — identical to Classic ── */
+.hero {
+  background: linear-gradient(180deg, #1a1a1a 0%, #2b3e50 100%);
+  color: #fff;
+  text-align: center;
+  padding: 4rem 1.25rem 3.5rem;
+  position: relative;
+}
+.hero-eyebrow {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  color: #8899b0;
+  margin-bottom: 12px;
+}
+.hero h1 {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: clamp(34px, 6vw, 64px);
+  font-weight: 600;
+  margin-bottom: 14px;
+}
+.hero-subtitle-classic {
+  color: #a8bcd8;
+  font-size: clamp(16px, 2.6vw, 22px);
+  font-weight: 500;
+  font-style: italic;
+  max-width: 980px;
+  margin: 0 auto;
+  line-height: 1.35;
+}
+
+/* ── SCREEN SYSTEM ── */
+/* All screens are hidden by default; JS shows the right one */
+.screen { display: none; }
+.screen.active { display: block; }
+
+/* ── SHARED PANEL ── */
+.panel {
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 16px;
+}
+.panel-header {
+  background: #f8fafc;
+  border-bottom: 1px solid #e2e8f0;
+  padding: 10px 16px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #2b3e50;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+}
+.panel-body { padding: 20px 16px; }
+
+/* ── SCREEN 1: HOME ── */
+#screen-home { padding: 0; }
+
+.home-section {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 24px 16px 0;
+}
+
+/* Address entry box — Vote411 yellow border */
+.address-box {
+  border: 3px solid #e8a000;
+  border-radius: 4px;
+  padding: 24px 20px 20px;
+  margin-bottom: 20px;
+  position: relative;
+}
+.address-box::before {
+  content: '';
+  position: absolute;
+  top: -3px; right: -3px;
+  width: 20px; height: 20px;
+  background: #e8a000;
+}
+.address-heading {
+  font-size: clamp(20px, 4vw, 28px);
+  font-weight: 900;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+  line-height: 1.1;
+}
+.address-heading span { color: #1a6fa8; }
+.address-subtext {
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 20px;
+  line-height: 1.5;
+}
+.address-subtext a { font-weight: 600; }
+.address-privacy {
+  font-size: 13px;
+  color: #666;
+  margin-bottom: 20px;
+  line-height: 1.6;
+}
+
+.field-label {
+  font-size: 12px;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 6px;
+  display: block;
+}
+.field-label span { color: #c00; }
+.address-input-wrap { position: relative; margin-bottom: 16px; }
+.address-input {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1.5px solid #cbd5e1;
+  border-radius: 6px;
+  font-size: 15px;
+  font-family: inherit;
+  outline: none;
+  transition: border-color 0.2s;
+  background: #fff;
+}
+.address-input:focus { border-color: #1a6fa8; }
+.address-input::placeholder { color: #aaa; }
+
+.btn-primary {
+  width: 100%;
+  background: #5a6890;
+  color: #fff;
+  border: none;
+  padding: 14px 20px;
+  border-radius: 30px;
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  transition: background 0.2s;
+}
+.btn-primary:hover { background: #4a5880; }
+.btn-primary.active-btn { background: #1a6fa8; }
+.btn-primary.active-btn:hover { background: #155d8f; }
+
+.btn-outline {
+  width: 100%;
+  background: transparent;
+  color: #1a6fa8;
+  border: 2px solid #1a6fa8;
+  padding: 13px 20px;
+  border-radius: 30px;
+  font-size: 15px;
+  font-weight: 700;
+  transition: all 0.2s;
+}
+.btn-outline:hover { background: #f0f7ff; }
+
+/* Voter Registration box — crimson border, distinct civic-action accent */
+.register-box {
+  border: 3px solid #a83246;
+  border-radius: 4px;
+  padding: 24px 20px 20px;
+  margin-bottom: 20px;
+}
+.register-heading {
+  font-size: clamp(18px, 4vw, 24px);
+  font-weight: 900;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  line-height: 1.15;
+  color: #2b3e50;
+}
+.register-subtext { font-size: 14px; color: #555; margin-bottom: 16px; }
+.register-row { display: flex; gap: 10px; flex-wrap: wrap; }
+.btn-register {
+  flex: 1;
+  min-width: 200px;
+  background: #a83246;
+  color: #fff;
+  border: none;
+  padding: 13px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+  text-decoration: none;
+  text-align: center;
+  display: inline-block;
+}
+.btn-register:hover { background: #8a2939; text-decoration: none; }
+.btn-register-outline {
+  flex: 1;
+  min-width: 200px;
+  background: transparent;
+  color: #a83246;
+  border: 2px solid #a83246;
+  padding: 11px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+  text-decoration: none;
+  text-align: center;
+  display: inline-block;
+}
+.btn-register-outline:hover { background: #fdf1f2; text-decoration: none; }
+.register-note { font-size: 12px; color: #888; margin-top: 12px; }
+body.dark-mode .register-box { background: var(--surface); border-color: #a83246; }
+body.dark-mode .register-heading { color: #fff; }
+body.dark-mode .register-subtext { color: var(--tdim, #8899b0); }
+body.dark-mode .register-note { color: var(--tmuted, #566070); }
+body.dark-mode .btn-register-outline { color: #e08a97; border-color: #a83246; }
+body.dark-mode .btn-register-outline:hover { background: rgba(168,50,70,0.1); }
+
+/* My State box — teal border */
+.mystate-box {
+  border: 3px solid #1a6fa8;
+  border-radius: 4px;
+  padding: 24px 20px 20px;
+  margin-bottom: 20px;
+}
+.mystate-heading {
+  font-size: clamp(18px, 4vw, 24px);
+  font-weight: 900;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  line-height: 1.15;
+  color: #2b3e50;
+}
+.mystate-subtext { font-size: 14px; color: #555; margin-bottom: 16px; }
+.mystate-row { display: flex; gap: 8px; flex-wrap: wrap; }
+select.mystate-select {
+  flex: 1;
+  min-width: 0;
+  padding: 13px 12px;
+  border: 1.5px solid #cfd8e3;
+  border-radius: 8px;
+  font-size: 15px;
+  font-family: inherit;
+  background: #fff;
+  color: #1a1a1a;
+}
+.btn-mystate-go {
+  background: #1a6fa8;
+  color: #fff;
+  border: none;
+  padding: 13px 20px;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.btn-mystate-go:hover { background: #155d8f; }
+body.dark-mode select.mystate-select {
+  background: var(--bg2);
+  border-color: var(--bord2);
+  color: #fff;
+}
+
+/* My Choice box — gold border, always visible, cumulative picks */
+.mychoice-box {
+  border: 3px solid #c8992a;
+  border-radius: 4px;
+  padding: 24px 20px 20px;
+  margin-bottom: 24px;
+}
+.mychoice-heading {
+  font-size: clamp(18px, 4vw, 24px);
+  font-weight: 900;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  line-height: 1.15;
+  color: #2b3e50;
+}
+.mychoice-subtext { font-size: 14px; color: #555; margin-bottom: 18px; }
+.btn-outline-mychoice {
+  width: 100%;
+  background: transparent;
+  color: #a5780f;
+  border: 2px solid #c8992a;
+  padding: 13px 20px;
+  border-radius: 30px;
+  font-size: 15px;
+  font-weight: 700;
+  transition: all 0.2s;
+  font-family: inherit;
+  cursor: pointer;
+}
+.btn-outline-mychoice:hover { background: #fffbf0; }
+body.dark-mode .mystate-box,
+body.dark-mode .mychoice-box { background: var(--surface); border-color: var(--bord2); }
+body.dark-mode .mystate-heading,
+body.dark-mode .mychoice-heading { color: #fff; }
+body.dark-mode .mystate-subtext,
+body.dark-mode .mychoice-subtext { color: var(--tdim, #8899b0); }
+
+/* Browse box — Vote411 green border */
+.browse-box {
+  border: 3px solid #1a8a5a;
+  border-radius: 4px;
+  padding: 24px 20px 20px;
+  margin-bottom: 24px;
+}
+.browse-heading {
+  font-size: clamp(18px, 4vw, 24px);
+  font-weight: 900;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  line-height: 1.15;
+}
+.browse-heading .teal { color: #1a8a5a; }
+.browse-subtext { font-size: 14px; color: #555; margin-bottom: 18px; }
+
+/* Footer */
+.site-footer {
+  background: #f1f5f9;
+  border-top: 1px solid #e2e8f0;
+  padding: 20px 16px;
+  font-size: 12px;
+  color: #666;
+  line-height: 1.7;
+  margin-top: 40px;
+}
+.site-footer strong { color: #333; }
+.footer-links { margin-top: 10px; display: flex; gap: 16px; }
+.footer-links a { color: #1a6fa8; font-weight: 600; font-size: 13px; }
+
+/* ── AUTOCOMPLETE ── */
+.autocomplete-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0; right: 0;
+  background: #fff;
+  border: 1px solid #cbd5e1;
+  border-radius: 0 0 6px 6px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+  z-index: 50;
+  display: none;
+  max-height: 240px;
+  overflow-y: auto;
+}
+.autocomplete-item {
+  padding: 11px 14px;
+  cursor: pointer;
+  font-size: 14px;
+  border-bottom: 1px solid #f0f4f8;
+  color: #333;
+}
+.autocomplete-item:last-child { border-bottom: none; }
+.autocomplete-item:hover { background: #f0f7ff; }
+
+/* ── SCREEN 2: BROWSE STATES ── */
+#screen-browse { padding: 0; }
+.screen-inner {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 20px 16px;
+}
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #1a6fa8;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  background: none;
+  border: none;
+  padding: 0;
+}
+.back-link:hover { text-decoration: underline; }
+.screen-title {
+  font-size: clamp(20px, 4vw, 28px);
+  font-weight: 900;
+  text-transform: uppercase;
+  color: #2b3e50;
+  margin-bottom: 6px;
+}
+.screen-subtitle {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 20px;
+}
+.search-field-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: #555;
+  margin-bottom: 6px;
+}
+.search-field {
+  width: 100%;
+  padding: 11px 14px;
+  border: 1.5px solid #cbd5e1;
+  border-radius: 6px;
+  font-size: 15px;
+  font-family: inherit;
+  outline: none;
+  margin-bottom: 24px;
+}
+.search-field:focus { border-color: #1a6fa8; }
+
+/* State list */
+.state-list { list-style: none; }
+.state-list-item {
+  border-bottom: 1px solid #e8edf2;
+}
+.state-list-item:last-child { border-bottom: none; }
+.state-list-btn {
+  width: 100%;
+  background: none;
+  border: none;
+  padding: 16px 4px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 16px;
+  font-weight: 700;
+  color: #2b3e50;
+  text-align: left;
+  transition: color 0.15s;
+}
+.state-list-btn:hover { color: #1a6fa8; }
+.state-arrow {
+  width: 32px; height: 32px;
+  border: 1.5px solid #cbd5e1;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  font-size: 14px;
+  color: #888;
+  transition: all 0.15s;
+}
+.state-list-btn:hover .state-arrow {
+  border-color: #1a6fa8;
+  color: #1a6fa8;
+}
+
+/* ── SCREEN 3: RACE LIST ── */
+.race-list { list-style: none; }
+.race-list-item { border-bottom: 1px solid #e8edf2; }
+.race-list-item:last-child { border-bottom: none; }
+.race-list-btn {
+  width: 100%;
+  background: none;
+  border: none;
+  padding: 15px 4px;
+  font-size: 15px;
+  font-weight: 700;
+  color: #1a6fa8;
+  text-align: left;
+  display: block;
+  transition: color 0.15s;
+  text-decoration: underline;
+  text-decoration-color: transparent;
+}
+.race-list-btn:hover { text-decoration-color: #1a6fa8; }
+
+/* ── SCREEN 4: RACE DETAIL ── */
+.back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #2b3e50;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 24px;
+}
+.back-btn:hover { background: #253f7a; }
+
+.race-type-label {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  color: #1a6fa8;
+  margin-bottom: 4px;
+}
+.race-name {
+  font-size: clamp(22px, 5vw, 32px);
+  font-weight: 900;
+  text-transform: uppercase;
+  color: #2b3e50;
+  margin-bottom: 16px;
+  line-height: 1.1;
+}
+
+/* About This Race */
+.about-race {
+  margin-bottom: 24px;
+  border-bottom: 1px solid #e2e8f0;
+  padding-bottom: 20px;
+}
+.about-race-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: none;
+  border: none;
+  width: 100%;
+  padding: 0 0 12px;
+  font-size: 16px;
+  font-weight: 700;
+  color: #2b3e50;
+  text-align: left;
+}
+.about-race-toggle .arrow { color: #1a6fa8; font-size: 14px; }
+.about-race-body { font-size: 14px; color: #333; line-height: 1.7; }
+.about-race-body p { margin-bottom: 8px; }
+.about-race-body strong { color: #1a1a1a; }
+.race-date-link {
+  font-weight: 700;
+  text-decoration: underline;
+  color: #2b3e50;
+  display: block;
+  margin-bottom: 12px;
+}
+.read-more-link {
+  color: #1a6fa8;
+  font-size: 14px;
+  font-weight: 600;
+  display: inline-block;
+  margin-top: 8px;
+}
+
+/* Meet the candidates */
+.meet-heading {
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 16px;
+}
+
+/* ── CANDIDATE CARDS (Vote411 style) ── */
+.candidate-card {
+  background: #fff;
+  border: 1px solid #c3ccd6;
+  border-radius: 8px;
+  padding: 0;
+  margin-bottom: 12px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+}
+
+/* Photo row: full-width image at top, square crop */
+.card-photo-row {
+  position: relative;
+  height: 90px;
+  background: #f0f4f8;
+  overflow: hidden;
+}
+.card-photo-row img {
+  width: 90px;
+  height: 90px;
+  object-fit: cover;
+  object-position: top center;
+  position: absolute;
+  top: 0; left: 0;
+}
+.card-initials {
+  width: 90px;
+  height: 90px;
+  background: #2b3e50;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  font-weight: 700;
+  position: absolute;
+  top: 0; left: 0;
+}
+
+.card-body {
+  padding: 12px 14px 14px;
+}
+
+.card-party {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  color: #666;
+  margin-bottom: 3px;
+}
+.card-party.dem { color: #1a5296; }
+.card-party.rep { color: #991b1b; }
+
+.card-name {
+  font-size: 19px;
+  font-weight: 700;
+  color: #2b3e50;
+  margin-bottom: 10px;
+  line-height: 1.2;
+}
+.card-name a { color: #2b3e50; }
+.card-name a:hover { color: #1a6fa8; }
+
+.card-race {
+  font-size: 12px;
+  font-weight: 600;
+  color: #1a6fa8;
+  margin-bottom: 4px;
+}
+body.dark-mode .card-race { color: #6bb0e8; }
+
+.card-date {
+  font-size: 12px;
+  color: #666;
+  margin-bottom: 10px;
+}
+.card-date span { font-weight: 700; color: #e85c2a; }
+
+.btn-my-choice {
+  width: 100%;
+  background: transparent;
+  color: #2b3e50;
+  border: 2px solid #2b3e50;
+  padding: 10px;
+  border-radius: 24px;
+  font-size: 14px;
+  font-weight: 700;
+  transition: all 0.2s;
+}
+.btn-my-choice:hover,
+.btn-my-choice.selected {
+  background: #2b3e50;
+  color: #fff;
+}
+
+/* ── SCREEN 5: ZIP RESULTS (My Races) ── */
+.your-address-bar {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 14px 16px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+/* Optional, opt-in "welcome back" banner — shown only if the visitor chose to be remembered */
+.welcome-banner {
+  background: #f0f6f4;
+  border: 1px solid #cfe3dc;
+  border-radius: 8px;
+  padding: 14px 16px;
+  margin-bottom: 18px;
+}
+.welcome-text {
+  font-size: 14px;
+  color: #2b3e50;
+  margin-bottom: 4px;
+}
+.welcome-clear {
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: 12px;
+  color: #3b8a6e;
+  text-decoration: underline;
+  font-family: inherit;
+  cursor: pointer;
+}
+.welcome-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 8px 0 6px;
+}
+.welcome-form input[type="text"] {
+  flex: 1;
+  min-width: 140px;
+  padding: 8px 10px;
+  border: 1px solid #cfd8e3;
+  border-radius: 6px;
+  font-size: 14px;
+  font-family: inherit;
+}
+.welcome-save,
+.welcome-skip {
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+}
+.welcome-save { background: #2b3e50; color: #fff; }
+.welcome-save:hover { opacity: 0.9; }
+.welcome-skip { background: transparent; color: #666; border: 1px solid #cfd8e3; }
+.welcome-skip:hover { background: #f0f0f0; }
+.welcome-fineprint {
+  font-size: 12px;
+  color: #6a7a72;
+}
+body.dark-mode .welcome-banner {
+  background: var(--surface);
+  border-color: var(--bord2);
+}
+body.dark-mode .welcome-text { color: #fff; }
+body.dark-mode .welcome-fineprint { color: var(--tdim); }
+body.dark-mode .welcome-form input[type="text"] {
+  background: var(--bg2);
+  border-color: var(--bord2);
+  color: #fff;
+}
+body.dark-mode .welcome-skip { border-color: var(--bord2); color: var(--tdim); }
+body.dark-mode .welcome-clear { color: #3bbfaa; }
+.your-address-bar .pin { color: #c0392b; font-size: 18px; flex-shrink: 0; }
+.your-address-label {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  color: #1a6fa8;
+  margin-bottom: 2px;
+}
+.your-address-value {
+  font-size: 13px;
+  color: #333;
+  font-weight: 600;
+}
+.change-address-link {
+  font-size: 12px;
+  color: #1a6fa8;
+  font-weight: 600;
+  margin-top: 3px;
+  display: inline-block;
+}
+
+.filter-row {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+.filter-chip {
+  background: #fff;
+  border: 1.5px solid #cbd5e1;
+  color: #444;
+  padding: 5px 14px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 700;
+  transition: all 0.15s;
+}
+.filter-chip.active {
+  background: #2b3e50;
+  border-color: #2b3e50;
+  color: #fff;
+}
+.filter-chip:hover:not(.active) { border-color: #1a6fa8; color: #1a6fa8; }
+
+/* Race groups in results */
+.race-group { margin-bottom: 20px; }
+.race-group-header {
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  color: #2b3e50;
+  padding: 8px 0;
+  border-bottom: 2px solid #2b3e50;
+  margin-bottom: 12px;
+}
+
+/* ── PROMPT BOX ── */
+.prompt-box {
+  background: #f8fafc;
+  border: 1px dashed #cbd5e1;
+  border-radius: 8px;
+  padding: 32px 20px;
+  text-align: center;
+  color: #555;
+  font-size: 14px;
+  line-height: 1.7;
+}
+.prompt-box strong { color: #2b3e50; }
+
+/* Split ZIP banner */
+.split-zip-banner {
+  background: #f1f5f9;
+  border: 1.5px solid #94a3b8;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 16px;
+}
+.split-zip-banner h3 { font-size: 15px; color: #334155; margin-bottom: 6px; }
+.split-zip-banner p { font-size: 13px; color: #475569; margin-bottom: 12px; }
+.split-zip-input-row { display: flex; gap: 8px; flex-wrap: wrap; }
+.split-zip-input {
+  flex: 1;
+  min-width: 0;
+  padding: 10px 12px;
+  border: 1.5px solid #cbd5e1;
+  border-radius: 6px;
+  font-size: 14px;
+  font-family: inherit;
+  outline: none;
+}
+.split-zip-input:focus { border-color: #1a6fa8; }
+.split-zip-btn {
+  background: #2b3e50;
+  color: #fff;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+/* ── LOADING SPINNER ── */
+.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 40px 20px;
+  color: #666;
+  font-size: 14px;
+}
+.spinner {
+  width: 20px; height: 20px;
+  border: 2px solid #e2e8f0;
+  border-top-color: #1a6fa8;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ── DATA SOURCE NOTE ── */
+.data-source {
+  font-size: 11px;
+  color: #aaa;
+  text-align: center;
+  padding: 8px;
+  margin-top: 12px;
+}
+
+/* ── MOBILE ── */
+@media (max-width: 480px) {
+  .card-name { font-size: 17px; }
+  .hero h1 { font-size: 26px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ════════════════════════════════════
+     STICKY HEADER
+════════════════════════════════════ -->
+<header class="site-header">
+  <div class="header-inner">
+    <div class="header-brand">
+      <span class="header-wordmark">THE SIGNAL</span>
+      <span class="header-title">The Signal Voter Guide</span>
+    </div>
+    <div class="header-switcher">
+      <a href="/voterguide/classic.html" class="header-btn">Classic</a>
+      <span class="header-btn active">New</span>
+      <a href="https://anandsinhausa.com" class="header-btn" target="_blank" rel="noopener">anandsinhausa.com</a>
+      <button class="header-btn theme-btn" onclick="toggleDarkMode()" id="theme-btn" title="Switch to Dark">🌙</button>
+    </div>
+  </div>
+</header>
+
+<!-- ════════════════════════════════════
+     HERO — matches Classic design
+════════════════════════════════════ -->
+<!-- ════════════════════════════════════
+     HERO v1.0
+════════════════════════════════════ -->
+<!-- SIGNAL:HERO:START — DO NOT EDIT. Edit hero.html and run build_hero.py -->
+<!--
+  THE SIGNAL — SHARED HERO COMPONENT
+  ===================================
+  Single source of truth for the hero (eyebrow, headline, subtitle, map,
+  trust strip, and ballot search card) used identically on both
+  voterguide/index.html (New) and voterguide/classic.html (Classic).
+
+  DO NOT edit the hero directly in index.html or classic.html.
+  Edit this file, then run: python3 build_hero.py
+  That script injects this file's content into the reserved hero slot
+  in both pages, byte-for-byte identical. Everything below the hero
+  (action cards vs. address/register boxes, screens, JS, routing,
+  data) is untouched by the build — only the hero slot is ever
+  replaced.
+-->
+<style>
+/* ── HERO — editorial cover, matches approved OG artwork ── */
+.hero-v2 {
+  background:
+    radial-gradient(ellipse 900px 500px at 88% 0%, rgba(212,175,55,0.07) 0%, transparent 60%),
+    linear-gradient(160deg, #0c1420 0%, #16283f 55%, #0c1420 100%);
+  color: #fff;
+  padding: 2.75rem 1.5rem 0;
+  position: relative;
+  overflow: hidden;
+}
+@media (max-width: 860px) {
+  .hero-v2 { padding: 3.25rem 1.5rem 0; }
+}
+.hero-v2-content {
+  position: relative;
+  z-index: 1;
+  max-width: 1280px;
+  margin: 0 auto;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+}
+.hero-v2-mapwrap {
+  flex: 0 1 50%;
+  max-width: 640px;
+  margin-top: 10px;
+  pointer-events: none;
+  opacity: 0.85;
+}
+.hero-v2-mapwrap svg { width: 100%; height: auto; display: block; }
+@media (max-width: 860px) {
+  .hero-v2-mapwrap { display: none; }
+}
+.hero-v2-inner {
+  position: relative;
+  text-align: left;
+  flex: 0 1 45%;
+}
+.hero-v2 .hero-eyebrow {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 4px;
+  color: #D4AF37;
+  margin-bottom: 14px;
+}
+.hero-v2 h1 {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: clamp(34px, 5.6vw, 72px);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.08;
+  margin-bottom: 18px;
+}
+.hero-v2 h1 .gold { color: #D4AF37; }
+.hero-v2-subtitle {
+  color: #a8bcd8;
+  font-size: clamp(15px, 1.8vw, 18px);
+  font-weight: 500;
+  max-width: 440px;
+  margin: 0 0 20px;
+  line-height: 1.55;
+}
+@media (max-width: 860px) {
+  .hero-v2-inner { flex: 1 1 100%; max-width: 100%; text-align: center; }
+  .hero-v2-inner .hero-v2-subtitle { margin-left: auto; margin-right: auto; }
+}
+
+/* ── TRUST STRIP — flat editorial row, spans full hero width ── */
+.hero-trust-strip {
+  position: relative;
+  z-index: 1;
+  max-width: 1280px;
+  margin: 8px auto 26px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0;
+}
+.hero-trust-item {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 0 20px 0 0;
+  margin-right: 20px;
+  border-right: 1px solid rgba(212,175,55,0.28);
+}
+.hero-trust-item:last-child { border-right: none; margin-right: 0; padding-right: 0; }
+.hero-trust-item svg { width: 16px; height: 16px; flex-shrink: 0; color: rgba(212,175,55,0.9); stroke-width: 1.6; }
+.hero-trust-label {
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.6px;
+  color: #c3ccd6;
+  text-transform: uppercase;
+  line-height: 1.4;
+  white-space: nowrap;
+}
+@media (max-width: 860px) {
+  .hero-trust-strip { justify-content: center; }
+}
+@media (max-width: 640px) {
+  .hero-trust-strip { gap: 14px 0; }
+  .hero-trust-item { margin-right: 0; padding-right: 0; border-right: none; flex: 1 1 40%; justify-content: center; }
+}
+
+/* ── BALLOT CARD (embedded at base of hero) ── */
+.ballot-card-wrap {
+  position: relative;
+  z-index: 1;
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 0 40px;
+  transform: translateY(28px);
+}
+.ballot-card {
+  background: #fff;
+  border-radius: 14px;
+  padding: 32px 28px;
+  text-align: left;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.35);
+}
+.ballot-card h2 {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 24px;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin-bottom: 6px;
+}
+.ballot-card-subtext { font-size: 14px; color: #666; margin-bottom: 18px; }
+.ballot-search-row { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 12px; }
+.ballot-input-wrap { flex: 1; min-width: 220px; position: relative; }
+.ballot-input {
+  width: 100%;
+  padding: 14px 16px 14px 40px;
+  border: 1.5px solid #cfd8e3;
+  border-radius: 8px;
+  font-size: 15px;
+  font-family: inherit;
+}
+.ballot-input-icon {
+  position: absolute;
+  left: 13px; top: 50%;
+  transform: translateY(-50%);
+  width: 16px; height: 16px;
+  color: #98a5b3;
+  pointer-events: none;
+}
+.btn-ballot-primary {
+  background: #2b3e50;
+  color: #fff;
+  border: none;
+  padding: 14px 26px;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.btn-ballot-primary:hover { background: #223140; }
+.ballot-privacy {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+  font-size: 12.5px;
+  color: #8a8a8a;
+  line-height: 1.5;
+}
+.ballot-privacy svg { width: 13px; height: 13px; flex-shrink: 0; margin-top: 2px; }
+.ballot-count-line { font-size: 13px; color: #777; margin-top: 14px; }
+.ballot-count-line a { color: #1a6fa8; font-weight: 600; text-decoration: none; }
+.ballot-count-line a:hover { text-decoration: underline; }
+@media (max-width: 480px) {
+  .ballot-input-wrap { min-width: 100%; }
+  .btn-ballot-primary { width: 100%; }
+}
+
+body.dark-mode .ballot-card { background: var(--surface); }
+body.dark-mode .ballot-card h2 { color: #fff; }
+body.dark-mode .ballot-card-subtext { color: var(--tdim); }
+body.dark-mode .ballot-input { background: var(--bg2); border-color: var(--bord2); color: #fff; }
+body.dark-mode .btn-ballot-primary { background: #3bbfaa; color: #06110d; }
+body.dark-mode .btn-ballot-primary:hover { background: #35ab98; }
+body.dark-mode .ballot-privacy { color: var(--tmuted); }
+body.dark-mode .ballot-count-line { color: var(--tdim); }
+</style>
+
+<div class="hero-v2">
+  <div class="hero-v2-content">
+    <div class="hero-v2-inner">
+      <div class="hero-eyebrow">— THE SIGNAL —</div>
+      <h1>Everything on Your Ballot.<br><span class="gold">One Place.</span></h1>
+      <p class="hero-v2-subtitle">Find every federal, state, county, city, and school board race for your address.</p>
+    </div>
+
+    <div class="hero-v2-mapwrap" aria-hidden="true">
+      <svg viewBox="174 100 959 593" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <filter id="signal-dot-glow" x="-200%" y="-200%" width="500%" height="500%">
+            <feGaussianBlur stdDeviation="5" result="blur"/>
+          </filter>
+        </defs>
+        <g fill="rgba(212,175,55,0.045)" stroke="rgba(212,175,55,0.34)" stroke-width="1.3" stroke-linejoin="round">
+          <path d="M407.1,619.3l1.9-3.6l2.3-0.3l0.3,0.8l-2.1,3.1H407.1z M417.3,615.6l6.1,2.6l2.1-0.3l1.6-3.9   l-0.6-3.4l-4.2-0.5l-4,1.8L417.3,615.6z M448,625.6l3.7,5.5l2.4-0.3l1.1-0.5l1.5,1.3l3.7-0.2l1-1.5l-2.9-1.8l-1.9-3.7l-2.1-3.6   l-5.8,2.9L448,625.6z M468.2,634.5l1.3-1.9l4.7,1l0.6-0.5l6.1,0.6l-0.3,1.3l-2.6,1.5l-4.4-0.3L468.2,634.5z M473.5,639.7l1.9,3.9   l3.1-1.1l0.3-1.6l-1.6-2.1l-3.7-0.3V639.7z M480.5,638.5l2.3-2.9l4.7,2.4l4.4,1.1l4.4,2.7v1.9l-3.6,1.8l-4.8,1l-2.4-1.5   L480.5,638.5z M497.1,654.1l1.6-1.3l3.4,1.6l7.6,3.6l3.4,2.1l1.6,2.4l1.9,4.4l4,2.6l-0.3,1.3l-3.9,3.2l-4.2,1.5l-1.5-0.6l-3.1,1.8   l-2.4,3.2l-2.3,2.9l-1.8-0.2l-3.6-2.6l-0.3-4.5l0.6-2.4l-1.6-5.7l-2.1-1.8l-0.2-2.6l2.3-1l2.1-3.1l0.5-1l-1.6-1.8L497.1,654.1z"/>
+          <path d="M332.1,553.7l-0.3,85.4l1.6,1l3.1,0.2l1.5-1.1h2.6l0.2,2.9l7,6.8l0.5,2.6l3.4-1.9l0.6-0.2l0.3-3.1   l1.5-1.6l1.1-0.2l1.9-1.5l3.1,2.1l0.6,2.9l1.9,1.1l1.1,2.4l3.9,1.8l3.4,6l2.7,3.9l2.3,2.7l1.5,3.7l5,1.8l5.2,2.1l1,4.4l0.5,3.1   l-1,3.4l-1.8,2.3l-1.6-0.8l-1.5-3.1l-2.7-1.5l-1.8-1.1l-0.8,0.8l1.5,2.7l0.2,3.7l-1.1,0.5l-1.9-1.9l-2.1-1.3l0.5,1.6l1.3,1.8   l-0.8,0.8c0,0-0.8-0.3-1.3-1c-0.5-0.6-2.1-3.4-2.1-3.4l-1-2.3c0,0-0.3,1.3-1,1c-0.6-0.3-1.3-1.5-1.3-1.5l1.8-1.9l-1.5-1.5v-5h-0.8   l-0.8,3.4l-1.1,0.5l-1-3.7l-0.6-3.7l-0.8-0.5l0.3,5.7v1.1l-1.5-1.3l-3.6-6l-2.1-0.5l-0.6-3.7l-1.6-2.9l-1.6-1.1v-2.3l2.1-1.3   l-0.5-0.3l-2.6,0.6l-3.4-2.4l-2.6-2.9l-4.8-2.6l-4-2.6l1.3-3.2v-1.6l-1.8,1.6l-2.9,1.1l-3.7-1.1l-5.7-2.4h-5.5l-0.6,0.5l-6.5-3.9   l-2.1-0.3l-2.7-5.8l-3.6,0.3l-3.6,1.5l0.5,4.5l1.1-2.9l1,0.3l-1.5,4.4l3.2-2.7l0.6,1.6l-3.9,4.4l-1.3-0.3l-0.5-1.9l-1.3-0.8   l-1.3,1.1l-2.7-1.8l-3.1,2.1l-1.8,2.1l-3.4,2.1l-4.7-0.2l-0.5-2.1l3.7-0.6v-1.3l-2.3-0.6l1-2.4l2.3-3.9v-1.8l0.2-0.8l4.4-2.3l1,1.3   h2.7l-1.3-2.6l-3.7-0.3l-5,2.7l-2.4,3.4l-1.8,2.6l-1.1,2.3l-4.2,1.5l-3.1,2.6l-0.3,1.6l2.3,1l0.8,2.1l-2.7,3.2l-6.5,4.2l-7.8,4.2   l-2.1,1.1l-5.3,1.1l-5.3,2.3l1.8,1.3l-1.5,1.5l-0.5,1.1l-2.7-1l-3.2,0.2l-0.8,2.3h-1l0.3-2.4l-3.6,1.3l-2.9,1l-3.4-1.3l-2.9,1.9   h-3.2l-2.1,1.3l-1.6,0.8l-2.1-0.3l-2.6-1.1l-2.3,0.6l-1,1l-1.6-1.1v-1.9l3.1-1.3l6.3,0.6l4.4-1.6l2.1-2.1l2.9-0.6l1.8-0.8l2.7,0.2   l1.6,1.3l1-0.3l2.3-2.7l3.1-1l3.4-0.6l1.3-0.3l0.6,0.5h0.8l1.3-3.7l4-1.5l1.9-3.7l2.3-4.5l1.6-1.5l0.3-2.6l-1.6,1.3l-3.4,0.6   l-0.6-2.4l-1.3-0.3l-1,1l-0.2,2.9l-1.5-0.2l-1.5-5.8l-1.3,1.3l-1.1-0.5l-0.3-1.9l-4,0.2l-2.1,1.1l-2.6-0.3l1.5-1.5l0.5-2.6   l-0.6-1.9l1.5-1l1.3-0.2l-0.6-1.8v-4.4l-1-1l-0.8,1.5h-6.1l-1.5-1.3l-0.6-3.9l-2.1-3.6v-1l2.1-0.8l0.2-2.1l1.1-1.1l-0.8-0.5   l-1.3,0.5l-1.1-2.7l1-5l4.5-3.2l2.6-1.6l1.9-3.7l2.7-1.3l2.6,1.1l0.3,2.4l2.4-0.3l3.2-2.4l1.6,0.6l1,0.6h1.6l2.3-1.3l0.8-4.4   c0,0,0.3-2.9,1-3.4c0.6-0.5,1-1,1-1l-1.1-1.9l-2.6,0.8l-3.2,0.8l-1.9-0.5l-3.6-1.8l-5-0.2l-3.6-3.7l0.5-3.9l0.6-2.4l-2.1-1.8   l-1.9-3.7l0.5-0.8l6.8-0.5h2.1l1,1h0.6l-0.2-1.6l3.9-0.6l2.6,0.3l1.5,1.1l-1.5,2.1l-0.5,1.5l2.7,1.6l5,1.8l1.8-1l-2.3-4.4l-1-3.2   l1-0.8l-3.4-1.9l-0.5-1.1l0.5-1.6l-0.8-3.9l-2.9-4.7l-2.4-4.2l2.9-1.9h3.2l1.8,0.6l4.2-0.2l3.7-3.6l1.1-3.1l3.7-2.4l1.6,1l2.7-0.6   l3.7-2.1l1.1-0.2l1,0.8l4.5-0.2l2.7-3.1h1.1l3.6,2.4l1.9,2.1l-0.5,1.1l0.6,1.1l1.6-1.6l3.9,0.3l0.3,3.7l1.9,1.5l7.1,0.6l6.3,4.2   l1.5-1l5.2,2.6l2.1-0.6l1.9-0.8l4.8,1.9L332.1,553.7z M217,582.6l2.1,5.3l-0.2,1l-2.9-0.3l-1.8-4l-1.8-1.5H210l-0.2-2.6l1.8-2.4   l1.1,2.4l1.5,1.5L217,582.6z M214.4,616.1l3.7,0.8l3.7,1l0.8,1l-1.6,3.7l-3.1-0.2l-3.4-3.6L214.4,616.1z M193.7,602l1.1,2.6   l1.1,1.6l-1.1,0.8l-2.1-3.1V602H193.7z M180,675.1l3.4-2.3l3.4-1l2.6,0.3l0.5,1.6l1.9,0.5l1.9-1.9l-0.3-1.6l2.7-0.6l2.9,2.6   l-1.1,1.8l-4.4,1.1l-2.7-0.5l-3.7-1.1l-4.4,1.5l-1.6,0.3L180,675.1z M228.9,670.6l1.6,1.9l2.1-1.6l-1.5-1.3L228.9,670.6z    M231.8,673.6l1.1-2.3l2.1,0.3l-0.8,1.9H231.8z M255.4,671.7l1.5,1.8l1-1.1l-0.8-1.9L255.4,671.7z M264.2,659.2l1.1,5.8l2.9,0.8   l5-2.9l4.4-2.6l-1.6-2.4l0.5-2.4l-2.1,1.3l-2.9-0.8l1.6-1.1l1.9,0.8l3.9-1.8l0.5-1.5l-2.4-0.8l0.8-1.9l-2.7,1.9l-4.7,3.6l-4.8,2.9   L264.2,659.2z M306.5,639.4l2.4-1.5l-1-1.8l-1.8,1L306.5,639.4z"/>
+          <path d="M929.4,545.5l2.3,7.3l3.7,9.7l5.3,9.4l3.7,6.3l4.8,5.5l4,3.7l1.6,2.9l-1.1,1.3L953,593l2.9,7.4   l2.9,2.9l2.6,5.3l3.6,5.8l4.5,8.2l1.3,7.6l0.5,12l0.6,1.8l-0.3,3.4l-2.4,1.3l0.3,1.9l-0.6,1.9l0.3,2.4l0.5,1.9l-2.7,3.2l-3.1,1.5   l-3.9,0.2l-1.5,1.6l-2.4,1l-1.3-0.5l-1.1-1l-0.3-2.9l-0.8-3.4l-3.4-5.2l-3.6-2.3l-3.9-0.3l-0.8,1.3l-3.1-4.4l-0.6-3.6l-2.6-4   l-1.8-1.1l-1.6,2.1l-1.8-0.3l-2.1-5l-2.9-3.9l-2.9-5.3l-2.6-3.1l-3.6-3.7l2.1-2.4l3.2-5.5l-0.2-1.6l-4.5-1l-1.6,0.6l0.3,0.6l2.6,1   l-1.5,4.5l-0.8,0.5l-1.8-4l-1.3-4.8l-0.3-2.7l1.5-4.7v-9.5L910,585l-1.3-3.1l-5.2-1.3l-1.9-0.6l-1.6-2.6l-3.4-1.6l-1.1-3.4l-2.7-1   l-2.4-3.7l-4.2-1.5l-2.9-1.5h-2.6l-4,0.8l-0.2,1.9l0.8,1l-0.5,1.1l-3.1-0.2l-3.7,3.6l-3.6,1.9h-3.9l-3.2,1.3l-0.3-2.7l-1.6-1.9   l-2.9-1.1l-1.6-1.5l-8.1-3.9l-7.6-1.8l-4.4,0.6l-6,0.5l-6,2.1l-3.5,0.6l-0.2-8l-2.6-1.9l-1.8-1.8l0.3-3.1l10.2-1.3l25.5-2.9   l6.8-0.6l5.4,0.3l2.6,3.9l1.5,1.5l8.1,0.5l10.8-0.6l21.5-1.3l5.4-0.7l4.6,0l0.2,2.9l3.8,0.8l0.3-4.8l-1.6-4.5l1-0.7l5.1,0.5   L929.4,545.5z M941.9,677.9l2.4-0.6l1.3-0.2l1.5-2.3l2.3-1.6l1.3,0.5l1.7,0.3l0.4,1.1l-3.5,1.2l-4.2,1.5l-2.3,1.2L941.9,677.9z    M955.4,672.9l1.2,1.1l2.7-2.1l5.3-4.2l3.7-3.9l2.5-6.6l1-1.7l0.2-3.4l-0.7,0.5l-1,2.8l-1.5,4.6l-3.2,5.3l-4.4,4.2l-3.4,1.9   L955.4,672.9z"/>
+          <path d="M935.2,512.9l-1.8,1l-2.6-1.3l-0.6-2.1l-1.3-3.6l-2.3-2.1l-2.6-0.6l-1.6-4.8l-2.7-6l-4.2-1.9   l-2.1-1.9l-1.3-2.6L910,485l-2.3-1.3l-2.3-2.9l-3.1-2.3l-4.5-1.8l-0.5-1.5l-2.4-2.9l-0.5-1.5l-3.4-5.2l-3.4,0.2l-4-2.4l-1.3-1.3   l-0.3-1.8l0.8-1.9l2.3-1l-0.3-2.1l6.1-2.6l9.1-4.5l7.3-0.8l16.5-0.5l2.3,1.9l1.6,3.2l4.4-0.5l12.6-1.5l2.9,0.8l12.6,7.6l10.1,8.1   l-5.4,5.5l-2.6,6.1l-0.5,6.3l-1.6,0.8l-1.1,2.7l-2.4,0.6l-2.1,3.6l-2.7,2.7l-2.3,3.4l-1.6,0.8l-3.6,3.4l-2.9,0.2l1,3.2l-5,5.5   L935.2,512.9z"/>
+          <path d="M863.6,458l-4.8,0.8l-8.4,1.1l-8.6,0.9v2.2l0.2,2.1l0.6,3.4l3.4,7.9l2.4,9.9l1.5,6.1l1.6,4.8l1.5,7   l2.1,6.3l2.6,3.4l0.5,3.4l1.9,0.8l0.2,2.1l-1.8,4.8l-0.5,3.2l-0.2,1.9l1.6,4.4l0.3,5.3l-0.8,2.4l0.6,0.8l1.5,0.8l0.6,3.4l2.6,3.9   l1.5,1.5l7.9,0.2l10.8-0.6l21.5-1.3l5.4-0.7l4.6,0l0.2,2.9l2.6,0.8l0.3-4.4l-1.6-4.5l1.1-1.6l5.8,0.8l5,0.3l-0.8-6.3l2.3-10   l1.5-4.2l-0.5-2.6l3.3-6.2l-0.5-1.4l-1.9,0.7l-2.6-1.3l-0.6-2.1l-1.3-3.6l-2.3-2.1l-2.6-0.6l-1.6-4.8l-2.9-6.3l-4.2-1.9l-2.1-1.9   l-1.3-2.6l-2.1-1.9l-2.3-1.3l-2.3-2.9l-3.1-2.3l-4.5-1.8l-0.5-1.5l-2.4-2.9l-0.5-1.5l-3.4-4.9l-3.4,0.2l-4.1-3l-1.3-1.3l-0.3-1.8   l0.8-1.9l2.4-1.2l-1.1-1.2l0.1-0.3l-5.8,1l-7,0.8L863.6,458z"/>
+          <path d="M799.6,566.8l-1.6-15.2l-2.7-18.8l0.2-14.1l0.8-31l-0.2-16.7l0.2-6.4l7.8-0.4l27.8-2.6l8.9-0.7   l-0.1,2.2l0.2,2.1l0.6,3.4l3.4,7.9l2.4,9.9l1.5,6.1l1.6,4.8l1.5,7l2.1,6.3l2.6,3.4l0.5,3.4l1.9,0.8l0.2,2.1l-1.8,4.8l-0.5,3.2   l-0.2,1.9l1.6,4.4l0.3,5.3l-0.8,2.4l0.6,0.8l1.5,0.8l1,2.5h-6.3l-6.8,0.6l-25.5,2.9l-10.4,1.4l-0.1,3.8l1.8,1.8l2.6,1.9l0.6,7.9   l-5.5,2.6l-2.7-0.3l2.7-1.9v-1l-3.1-6l-2.3-0.6l-1.5,4.4l-1.3,2.7l-0.6-0.2H799.6z"/>
+          <path d="M1006.1,398.5l1.7,4.7l3.6,6.5l2.4,2.4l0.6,2.3l-2.4,0.2l0.8,0.6l-0.3,4.2l-2.6,1.3l-0.6,2.1   l-1.3,2.9l-3.7,1.6l-2.4-0.3l-1.5-0.2l-1.6-1.3l0.3,1.3v1h1.9l0.8,1.3l-1.9,6.3h4.2l0.6,1.6l2.3-2.3l1.3-0.5l-1.9,3.6l-3.1,4.8   h-1.3l-1.1-0.5l-2.7,0.6l-5.2,2.4l-6.5,5.3l-3.4,4.7l-1.9,6.5l-0.5,2.4l-4.7,0.5l-5.5,1.3l-9.9-8.2l-12.6-7.6l-2.9-0.8l-12.6,1.5   l-4.3,0.8l-1.6-3.2l-3-2.1l-16.5,0.5l-7.3,0.8l-9.1,4.5l-6.1,2.6l-1.6,0.3l-5.8,1l-7,0.8l-6.8,0.5l0.5-4.1l1.8-1.5l2.7-0.6l0.6-3.7   l4.2-2.7l3.9-1.5l4.2-3.6l4.4-2.1l0.6-3.1l3.9-3.9l0.6-0.2c0,0,0,1.1,0.8,1.1c0.8,0,1.9,0.3,1.9,0.3l2.3-3.6l2.1-0.6l2.3,0.3   l1.6-3.6l2.9-2.6l0.5-2.1v-4l4.5,0.7l7.1-1.3l15.8-1.9l17.1-2.6l19.9-4l19.7-4.2l11.4-2.8L1006.1,398.5z M1010,431.5l2.6-2.5   l3.2-2.6l1.5-0.6l0.2-2l-0.6-6.1l-1.5-2.3l-0.6-1.9l0.7-0.2l2.7,5.5l0.4,4.4l-0.2,3.4l-3.4,1.5l-2.8,2.4l-1.1,1.2L1010,431.5z"/>
+          <path d="M871.1,420.6l-51.9,5l-15.8,1.8l-4.6,0.5l-3.9,0v3.9l-8.4,0.5l-7,0.6l-11.1,0.1l-0.3,5.8l-2.1,6.3   l-1,3l-1.3,4.4l-0.3,2.6l-4,2.3l1.5,3.6l-1,4.4l-1,0.8l7.3-0.2l24.1-1.9l5.3-0.2l8.1-0.5l27.8-2.6l10.2-0.8l8.4-1l8.4-1.1l4.8-0.8   l-0.1-4.5l1.8-1.5l2.7-0.6l0.6-3.7l4.2-2.7l3.9-1.5l4.2-3.6l4.4-2.1l0.9-3.5l4.3-3.9l0.6-0.2c0,0,0,1.1,0.8,1.1s1.9,0.3,1.9,0.3   l2.3-3.6l2.1-0.6l2.3,0.3l1.6-3.6l2.1-2.2l0.6-1l0.2-3.9l-1.5-0.3l-2.4,1.9l-7.9,0.2l-12,1.9L871.1,420.6z"/>
+          <path d="M1048.1,279.8l-0.5-4.2l-0.8-4.4l-1.7-5.9l5.7-1.5l1.6,1.1l3.4,4.4l2.9,4.4l-2.9,1.5l-1.3-0.2   l-1.1,1.8l-2.4,1.9L1048.1,279.8z"/>
+          <path d="M1047.2,280.1l-0.6-4.2l-0.8-4.4l-1.6-6l-4.2,0.9l-21.8,4.8l0.6,3.3l1.5,7.3v8.1l-1.1,2.3l1.8,2.1   l5-3.4l3.6-3.2l1.9-2.1l0.8,0.6l2.7-1.5l5.2-1.1L1047.2,280.1z"/>
+          <path d="M1074,273.9l2.2-0.7l0.5-1.7l1,0.1l1,2.3l-1.3,0.5l-3.9,0.1L1074,273.9z M1064.6,274.7l2.3-2.6h1.6   l1.8,1.5l-2.4,1l-2.2,1L1064.6,274.7z M1029.8,252.7l17.5-4.2l2.3-0.6l2.1-3.2l3.7-1.7l2.9,4.4l-2.4,5.2l-0.3,1.5l1.9,2.6l1.1-0.8   h1.8l2.3,2.6l3.9,6l3.6,0.5l2.3-1l1.8-1.8l-0.8-2.7l-2.1-1.6l-1.5,0.8l-1-1.3l0.5-0.5l2.1-0.2l1.8,0.8l1.9,2.4l1,2.9l0.3,2.4   l-4.2,1.5l-3.9,1.9l-3.9,4.5l-1.9,1.5v-1l2.4-1.5l0.5-1.8l-0.8-3.1l-2.9,1.5l-0.8,1.5l0.5,2.3l-2.1,1l-2.7-4.5l-3.4-4.4l-2.1-1.8   l-6.5,1.9l-5.1,1.1l-21.8,4.8l-0.4-4.9l0.6-10.6l5.2-0.9L1029.8,252.7z"/>
+          <path d="M1097.2,177.3l1.9,2.1l2.3,3.7v1.9l-2.1,4.7l-1.9,0.6l-3.4,3.1l-4.8,5.5c0,0-0.6,0-1.3,0   c-0.6,0-1-2.1-1-2.1l-1.8,0.2l-1,1.5l-2.4,1.5l-1,1.5l1.6,1.5l-0.5,0.6l-0.5,2.7l-1.9-0.2v-1.6l-0.3-1.3l-1.5,0.3l-1.8-3.2   l-2.1,1.3l1.3,1.5l0.3,1.1l-0.8,1.3l0.3,3.1l0.2,1.6l-1.6,2.6l-2.9,0.5l-0.3,2.9l-5.3,3.1l-1.3,0.5l-1.6-1.5l-3.1,3.6l1,3.2   l-1.5,1.3l-0.2,4.4l-1.1,6.3l-2.5-1.2l-0.5-3.1l-3.9-1.1l-0.3-2.7l-7.3-23.4l-4.2-13.6l1.4-0.1l1.5,0.4v-2.6l0.8-5.5l2.6-4.7l1.5-4   l-1.9-2.4v-6l0.8-1l0.8-2.7l-0.2-1.5l-0.2-4.8l1.8-4.8l2.9-8.9l2.1-4.2h1.3l1.3,0.2v1.1l1.3,2.3l2.7,0.6l0.8-0.8v-1l4-2.9l1.8-1.8   l1.5,0.2l6,2.4l1.9,1l9.1,29.9h6l0.8,1.9l0.2,4.8l2.9,2.3h0.8l0.2-0.5l-0.5-1.1L1097.2,177.3z M1076.3,207.5l1.5-1.5l1.4,1.1   l0.6,2.4l-1.7,0.9L1076.3,207.5z M1083,201.6l1.8,1.9c0,0,1.3,0.1,1.3-0.2s0.2-2,0.2-2l0.9-0.8l-0.8-1.8l-2,0.7L1083,201.6z"/>
+          <path d="M1054.8,242.4l0.9-1.1l1.1-3.3l-2.5-0.9l-0.5-3.1l-3.9-1.1l-0.3-2.7l-7.3-23.4l-4.6-14.5l-0.9,0   l-0.6,1.6l-0.6-0.5l-1-1l-1.5,1.9l0,5l0.3,5.7l1.9,2.7v4l-3.7,5.1l-2.6,1.1v1.1l1.1,1.8v8.6l-0.8,9.2l-0.2,4.8l1,1.3l-0.2,4.5   l-0.5,1.8l1.5,0.9l16.4-4.7l2.3-0.6l1.5-2.6L1054.8,242.4z"/>
+          <path d="M1018.3,253.7l-0.8-5.7l-2.4-10l-0.6-0.3l-2.9-1.3l0.8-2.9l-0.8-2.1l-2.7-4.6l1-3.9l-0.8-5.2   l-2.4-6.5l-0.8-4.9l26.2-6.7l0.3,5.8l1.9,2.7v4l-3.7,4l-2.6,1.1v1.1l1.1,1.8v8.6l-0.8,9.2l-0.2,4.8l1,1.3l-0.2,4.5l-0.5,1.8   l0.7,1.6l-7,1.4L1018.3,253.7z"/>
+          <path d="M1002.6,289.4l-1.1-1l-2.6-0.2l-2.3-1.9l-1.6-6.1l-3.5,0.1l-2.4-2.7l-19.4,4.4l-43,8.7l-7.5,1.2   l-0.7-6.5l1.4-1.1l1.3-1.1l1-1.6l1.8-1.1l1.9-1.8l0.5-1.6l2.1-2.7l1.1-1l-0.2-1l-1.3-3.1l-1.8-0.2l-1.9-6.1l2.9-1.8l4.4-1.5l4-1.3   l3.2-0.5l6.3-0.2l1.9,1.3l1.6,0.2l2.1-1.3l2.6-1.1l5.2-0.5l2.1-1.8l1.8-3.2l1.6-1.9h2.1l1.9-1.1l0.2-2.3l-1.5-2.1l-0.3-1.5l1.1-2.1   v-1.5h-1.8l-1.8-0.8l-0.8-1.1l-0.2-2.6l5.8-5.5l0.6-0.8l1.5-2.9l2.9-4.5l2.7-3.7l2.1-2.4l2.4-1.8l3.1-1.2l5.5-1.3l3.2,0.2l4.5-1.5   l7.6-2.1l0.5,5l2.4,6.5l0.8,5.2l-1,3.9l2.6,4.5l0.8,2.1l-0.8,2.9l2.9,1.3l0.6,0.3l3.1,11l-0.5,5.1l-0.5,10.8l0.8,5.5l0.8,3.6   l1.5,7.3v8.1l-1.1,2.3l1.8,2l0.8,1.7l-1.9,1.8l0.3,1.3l1.3-0.3l1.5-1.3l2.3-2.6l1.1-0.6l1.6,0.6l2.3,0.2l7.9-3.9l2.9-2.7l1.3-1.5   l4.2,1.6l-3.4,3.6l-3.9,2.9l-7.1,5.3l-2.6,1l-5.8,1.9l-4,1.1l-1.2-0.5l-0.2-3.7l0.5-2.7l-0.2-2.1l-2.8-1.7l-4.5-1l-3.9-1.1   L1002.6,289.4z"/>
+          <path d="M1002.2,290.3l-2.1,2.4v3.1l-1.9,3.1l-0.2,1.6l1.3,1.3l-0.2,2.4l-2.3,1.1l0.8,2.7l0.2,1.1l2.7,0.3   l1,2.6l3.6,2.4l2.4,1.6v0.8l-3.2,3.1l-1.6,2.3l-1.5,2.7l-2.3,1.3l-1.2,0.7l-0.2,1.2l-0.6,2.6l1.1,2.2l3.2,2.9l4.8,2.3l4,0.6   l0.2,1.5l-0.8,1l0.3,2.7h0.8l2.1-2.4l0.8-4.8l2.7-4l3.1-6.5l1.1-5.5l-0.6-1.1l-0.2-9.4l-1.6-3.4l-1.1,0.8l-2.7,0.3l-0.5-0.5l1.1-1   l2.1-1.9l0.1-1.1l-0.4-3.4l0.5-2.7l-0.2-2.1l-2.6-1.1l-4.5-1l-3.9-1.1L1002.2,290.3z"/>
+          <path d="M996.2,326.5l1.1-0.6l2.3-0.6l1.5-2.7l1.6-2.3l3.2-3.1v-0.8l-2.4-1.6l-3.6-2.4l-1-2.6l-2.7-0.3   l-0.2-1.1l-0.8-2.7l2.3-1.1l0.2-2.4l-1.3-1.3l0.2-1.6l1.9-3.1v-3.1l2.3-2.4l0.2-1.1l-2.6-0.2l-2.3-1.9l-2.4-5.3l-3-0.9l-2.3-2.1   l-18.6,4l-43,8.7l-8.9,1.5l-0.5-7.1l-5.5,5.6l-1.3,0.5l-4.2,3l2.9,19.1l2.5,9.7l3.6,19.3l3.3-0.6l11.9-1.5l37.9-7.7l14.9-2.8   l8.3-1.6l0.3-0.2l2.1-1.6L996.2,326.5z"/>
+          <path d="M996.4,330.4l0.6-2.1l0-1.2l-1.3-0.1l-2.1,1.6l-1.5,1.5l1.5,4.2l2.3,5.7l2.1,9.7l1.6,6.3l5-0.2   l6.1-1.2l-2.3-7.4l-1,0.5l-3.6-2.4l-1.8-4.7l-1.9-3.6l-2.3-1l-2.1-3.6L996.4,330.4z"/>
+          <path d="M1011,355.3l-6.1,1.3l-5.8,0.2l-1.8-7.1l-2.1-9.7l-2.3-5.7l-1.3-4.4l-7.5,1.6l-14.9,2.8l-37.5,7.6   l1.1,5l1,5.7l0.3-0.3l2.1-2.4l2.3-2.6l2.4-0.6l1.5-1.5l1.8-2.6l1.3,0.6l2.9-0.3l2.6-2.1l2-1.5l1.8-0.5l1.6,1.1l2.9,1.5l1.9,1.8   l1.2,1.5l4.1,1.7v2.9l5.5,1.3l1.1,0.5l1.4-2l2.9,2l-1.3,2.5l-0.8,4l-1.8,2.6v2.1l0.6,1.8l5.1,1.4l4.3-0.1l3.1,1l2.1,0.3l1-2.1   l-1.5-2.1v-1.8l-2.4-2.1l-2.1-5.5l1.3-5.3l-0.2-2.1l-1.3-1.3c0,0,1.5-1.6,1.5-2.3c0-0.6,0.5-2.1,0.5-2.1l1.9-1.3l1.9-1.6l0.5,1   l-1.5,1.6l-1.3,3.7l0.3,1.1l1.8,0.3l0.5,5.5l-2.1,1l0.3,3.6l0.5-0.2l1.1-1.9l1.6,1.8l-1.6,1.3l-0.3,3.4l2.6,3.4l3.9,0.5l1.6-0.8   l3.2,4.2l1.4,0.5l6.7-2.8l2-4L1011,355.3z M994.3,364.3l1.1,2.5l0.2,1.8l1.1,1.9c0,0,0.9-0.9,0.9-1.2c0-0.3-0.7-3.1-0.7-3.1   l-0.7-2.3L994.3,364.3z"/>
+          <path d="M930.6,342l1.1,4.9l1.1,6.9l3.6-2.7l2.3-3.1l2.5-0.6l1.5-1.5l1.8-2.6l1.2,0.6l2.9-0.3l2.6-2.1   l2-1.5l1.8-0.5l1.3,1l2.2,1.1l1.9,1.8l1.4,1.3l-0.1,4.7l-5.7-3.1l-4.5-1.8l-0.2,5.3l-0.5,2.1l-1.6,2.7l-0.6,1.6l-3.1,2.4l-0.5,2.3   l-3.4,0.3l-0.3,3.1l-1.1,5.5h-2.6l-1.3-0.8l-1.6-2.7l-1.8,0.2l-0.3,4.4l-2.1,6.6l-5,10.8l0.8,1.3l-0.2,2.7l-2.1,1.9l-1.5-0.3   l-3.2,2.4l-2.6-1l-1.8,4.7c0,0-3.7,0.8-4.4,1c-0.6,0.2-2.4-1.3-2.4-1.3l-2.4,2.3l-2.6,0.6l-2.9-0.8l-1.3-1.3l-2.2-3l-3.1-2   l-2.6-2.7l-2.9-3.7l-0.6-2.3l-2.6-1.5l-0.8-1.6l-0.2-5.3l2.2-0.1l1.9-0.8l0.2-2.7l1.6-1.5l0.2-5l1-3.9l1.3-0.6l1.3,1.1l0.5,1.8   l1.8-1l0.5-1.6l-1.1-1.8v-2.4l1-1.3l2.3-3.4l1.3-1.5l2.1,0.5l2.3-1.6l3.1-3.4l2.3-3.9l0.3-5.7l0.5-5v-4.7l-1.1-3.1l1-1.5l1.3-1.3   l3.5,19.8l4.6-0.8L930.6,342z"/>
+          <path d="M895.8,397.8l-2.3,2.7l-4.2,3.6L885,410l-1.8,1.8v2.1l-3.9,2.1l-5.7,3.4l-3.5,0.4l-51.9,4.9   l-15.8,1.8l-4.6,0.5l-3.9,0l-0.2,4.2l-8.2,0.1l-7,0.6l-10.4,0.2l1.9-0.2l2.2-1.8l2.1-1.1l0.2-3.2l0.9-1.8l-1.6-2.5l0.8-1.9l2.3-1.8   l2.1-0.6l2.7,1.3l3.6,1.3l1.1-0.3l0.2-2.3l-1.3-2.4l0.3-2.3l1.9-1.5l2.6-0.6l1.6-0.6l-0.8-1.8l-0.6-1.9l1.1-0.8l1.1-3.3l3-1.7   l5.8-1l3.6-0.5l1.5,1.9l1.8,0.8l1.8-3.2l2.9-1.5l1.9,1.6l0.8,1.1l2.1-0.5l-0.2-3.4l2.9-1.6l1.1-0.8l1.1,1.6h4.7l0.8-2.1l-0.3-2.3   l2.9-3.6l4.7-3.9l0.5-4.5l2.7-0.3l3.9-1.8l2.7-1.9l-0.3-1.9l-1.5-1.5l0.6-2.2l4.1-0.2l2.4-0.8l2.9,1.6l1.6,4.4l5.8,0.3l1.8,1.8   l2.1,0.2l2.4-1.5l3.1,0.5l1.3,1.5l2.7-2.6l1.8-1.3h1.6l0.6,2.7l1.8,1l2.4,2.2l0.2,5.5l0.8,1.6l2.6,1.5l0.6,2.3l2.9,3.7l2.6,2.7   L895.8,397.8z"/>
+          <path d="M905.4,295l-6.1,4.1l-3.9,2.3l-3.4,3.7l-4,3.9l-3.2,0.8l-2.9,0.5l-5.5,2.6l-2.1,0.2l-3.4-3.1   l-5.2,0.6l-2.6-1.5l-2.4-1.4l-4.9,0.7l-10.2,1.6l-7.8,1.2l1.3,14.6l1.8,13.7l2.6,23.4l0.6,4.8l4.1-0.1l2.4-0.8l3.4,1.5l2.1,4.4   l5.1,0l1.9,2.1l1.8-0.1l2.5-1.3l2.5,0.4l2,1.5l1.7-2.1l2.3-1.3l2.1-0.7l0.6,2.7l1.8,1l3.5,2.3l2.2-0.1l1.1-1.1l-0.1-1.4l1.6-1.5   l0.2-5l1-3.9l1.5-1.4l1.5,0.9l0.8,1.2l1.2-0.2l-0.4-2.4l-0.6-0.6v-2.4l1-1.3l2.3-3.4l1.3-1.5l2.1,0.5l2.3-1.6l3.1-3.4l2.3-3.9   l0.2-5.4l0.5-5v-4.7l-1.1-3.1l1-1.5l0.9-1l-1.4-9.8L905.4,295z"/>
+          <path d="M755.6,182.1l1.8-2.1l2.2-0.8l5.4-3.9l2.3-0.6l0.5,0.5l-5.1,5.1l-3.3,1.9l-2.1,0.9L755.6,182.1z    M841.8,214.2l0.6,2.5l3.2,0.2l1.3-1.2c0,0-0.1-1.5-0.4-1.6c-0.3-0.2-1.6-1.9-1.6-1.9l-2.2,0.2l-1.6,0.2l-0.3,1.1L841.8,214.2z    M871.9,277.2l-3.2-8.2l-2.3-9.1l-2.4-3.2l-2.6-1.8l-1.6,1.1l-3.9,1.8l-1.9,5l-2.7,3.7l-1.1,0.6l-1.5-0.6c0,0-2.6-1.5-2.4-2.1   c0.2-0.6,0.5-5,0.5-5l3.4-1.3l0.8-3.4l0.6-2.6l2.4-1.6l-0.3-10l-1.6-2.3l-1.3-0.8l-0.8-2.1l0.8-0.8l1.6,0.3l0.2-1.6L850,231   l-1.3-2.6h-2.6l-4.5-1.5l-5.5-3.4h-2.7l-0.6,0.6l-1-0.5l-3.1-2.3l-2.9,1.8l-2.9,2.3l0.3,3.6l1,0.3l2.1,0.5l0.5,0.8l-2.6,0.8   l-2.6,0.3l-1.5,1.8l-0.3,2.1l0.3,1.6l0.3,5.5l-3.6,2.1l-0.6-0.2v-4.2l1.3-2.4l0.6-2.4l-0.8-0.8l-1.9,0.8l-1,4.2l-2.7,1.1l-1.8,1.9   l-0.2,1l0.6,0.8l-0.6,2.6l-2.3,0.5v1.1l0.8,2.4l-1.1,6.1l-1.6,4l0.6,4.7l0.5,1.1l-0.8,2.4l-0.3,0.8l-0.3,2.7l3.6,6l2.9,6.5l1.5,4.8   l-0.8,4.7l-1,6l-2.4,5.2l-0.3,2.7l-3.3,3.1l4.4-0.2l21.4-2.3l7.3-1l0.1,1.7l6.9-1.2l10.3-1.5l3.9-0.5l0.1-0.6l0.2-1.5l2.1-3.7   l2-1.7l-0.2-5.1l1.6-1.6l1.1-0.3l0.2-3.6l1.5-3l1.1,0.6l0.2,0.6l0.8,0.2l1.9-1L871.9,277.2z M741.5,211.2l0.7-0.6l2.7-0.8l3.6-2.3   v-1l0.6-0.6l6-1l2.4-1.9l4.4-2.1l0.2-1.3l1.9-2.9l1.8-0.8l1.3-1.8l2.3-2.3l4.4-2.4l4.7-0.5l1.1,1.1l-0.3,1l-3.7,1l-1.5,3.1   l-2.3,0.8l-0.5,2.4l-2.4,3.2l-0.3,2.6l0.8,0.5l1-1.1l3.6-2.9l1.3,1.3h2.3l3.2,1l1.5,1.1l1.5,3.1l2.7,2.7l3.9-0.2l1.5-1l1.6,1.3   l1.6,0.5l1.3-0.8h1.1l1.6-1l4-3.6l3.4-1.1l6.6-0.3l4.5-1.9l2.6-1.3l1.5,0.2v5.7l0.5,0.3l2.9,0.8l1.9-0.5l6.1-1.6l1.1-1.1l1.5,0.5v7   l3.2,3.1l1.3,0.6l1.3,1l-1.3,0.3l-0.8-0.3l-3.7-0.5l-2.1,0.6l-2.3-0.2l-3.2,1.5h-1.8l-5.8-1.3l-5.2,0.2l-1.9,2.6l-7,0.6l-2.4,0.8   l-1.1,3.1l-1.3,1.1l-0.5-0.2l-1.5-1.6l-4.5,2.4h-0.6l-1.1-1.6l-0.8,0.2l-1.9,4.4l-1,4l-3.2,7l-1.2-1l-1.4-1l-1.9-10.3l-3.5-1.4   l-2.1-2.3l-12.1-2.7l-2.9-1l-8.2-2.2l-7.9-1.1L741.5,211.2z"/>
+          <path d="M528.3,243.8l-10.5-0.8l-32.1-3.3l-16.2-2.1l-28.3-4.1l-19.9-3l-1.4,11.2l-3.8,24.3l-5.3,30.4   l-1.5,10.5l-1.7,11.9l6.5,0.9l25.9,2.5l20.6,2.3l36.8,4.1l23.8,2.9l4.5-44.2l1.4-25.4L528.3,243.8z"/>
+          <path d="M530.7,222.3l0.6-11.2l2.3-24.8c0.5-5,1.1-8.5,1.4-15.4l0.9-14.6l-30.7-2.8L476,150l-29.3-4   l-32.3-5.3l-18.4-3.4l-32.7-6.9l-4.5,21.3l3.4,7.5l-1.4,4.6l1.8,4.6l3.2,1.4l4.6,10.8l2.7,3.2l0.5,1.1l3.4,1.1l0.5,2.1l-7.1,17.6   v2.5l2.5,3.2h0.9l4.8-3l0.7-1.1l1.6,0.7l-0.2,5.3l2.7,12.6l3,2.5l0.9,0.7l1.8,2.3l-0.5,3.4l0.7,3.4l1.1,0.9l2.3-2.3h2.7l3.2,1.6   l2.5-0.9h4.1l3.7,1.6l2.7-0.5l0.5-3l3-0.7l1.4,1.4l0.5,3.2l1.8,1.4l1.5-11.6l20.7,3l28.2,4l16.6,1.9l31.4,3.5l11,1.5l1.1-15.4   L530.7,222.3z"/>
+          <path d="M336.1,281c-22.6-4.3-14.1-2.8-21.1-4.4l4.4-17.5l4.3-17.7l1.4-4.2l2.5-5.9l-1.3-2.3l-2.5,0.1   l-0.8-1l0.5-1.1l0.3-3.1l4.5-5.5l1.8-0.5l1.1-1.1l0.6-3.2l0.9-0.7l3.9-5.8l3.9-4.3l0.2-3.8l-3.4-2.6l-1.3-4.4l0.4-9.7l3.7-16.5   l4.5-20.8l3.8-13.5l0.8-3.8l13,2.5l-4.2,21.5l2.9,7.7l-1.1,4.6l2,4.6l3.2,1.7l4.5,9.8l2.7,3.8l0.6,1.1l3.4,1.1l0.5,2.5l-6.9,16.8   l0.3,3.3l2.7,2.9l1.9,0.5l4.8-3.6l0.4-0.5l0.2,0.8l0.3,4.1l2.6,12.9l3.5,2.7l0.4,0.8l2.1,2.4l-0.8,2.8l0.7,3.8l1.9,0.9l2.1-1.6   l2.6-0.5l3.4,1.6l2.5-0.6l3.8-0.2l4,1.6l2.7-0.3l0.9-2.3l2.5-1.6l0.7,1.7l0.6,2.2l2.3,2.5l-3.8,24l-5.1,29l-4.2-0.3l-8.2-1.5   l-9.8-1.8l-12.2-2.4l-12.5-2.5l-8.5-1.8l-9.3-1.7L336.1,281z"/>
+          <path d="M267.6,106.4l4.4,1.5l9.7,2.7l8.6,1.9l20,5.7l23,5.7l15.2,3.4l-1,3.9l-4.1,13.8l-4.5,20.8   l-3.2,16.1l-0.4,9.4l-13.2-3.9l-15.6-3.4l-13.7,0.6l-1.6-1.5l-5.3,1.9l-4-0.3l-2.7-1.8l-1.6,0.5l-4.2-0.2l-1.9-1.4l-4.8-1.7   l-1.4-0.2l-5-1.3l-1.8,1.5l-5.7-0.3l-4.8-3.8l0.2-0.8l0.1-7.9l-2.1-3.9l-4.1-0.7l-0.4-2.4l-2.5-0.6l-2.9-0.5l-1.8,1l-2.3-2.9   l0.3-2.9l2.7-0.3l1.6-4l-2.6-1.1l0.2-3.7l4.4-0.6l-2.7-2.7l-1.5-7.1l0.6-2.9v-7.9l-1.8-3.2l2.3-9.4l2.1,0.5l2.4,2.9l2.7,2.6   l3.2,1.9l4.5,2.1l3.1,0.6l2.9,1.5l3.4,1l2.3-0.2v-2.4l1.3-1.1l2.1-1.3l0.3,1.1l0.3,1.8l-2.3,0.5l-0.3,2.1l1.8,1.5l1.1,2.4l0.6,1.9   l1.5-0.2l0.2-1.3l-1-1.3l-0.5-3.2l0.8-1.8l-0.6-1.5V119l1.8-3.6l-1.1-2.6l-2.4-4.8l0.3-0.8L267.6,106.4z M258.1,112.3l2-0.2   l0.5,1.4l1.5-1.6h2.3l0.8,1.5l-1.5,1.7l0.6,0.8l-0.7,2l-1.4,0.4c0,0-0.9,0.1-0.9-0.2s1.5-2.6,1.5-2.6l-1.7-0.6l-0.3,1.5l-0.7,0.6   l-1.5-2.3L258.1,112.3z"/>
+          <path d="M531.1,433.4l22.7,1.1l31.1,1.1l-2.3,23.5l-0.3,18.2l0.1,2.1l4.3,3.8l1.7,0.8l1.8,0.3l0.7-1.3   l0.9,0.9l1.7,0.5l1.6-0.7l1.1,0.4l-0.3,3.4l4.3,1l2.7,0.8l4,0.5l2.2,1.8l3.2-1.6l2.8,0.4l2,2.8l1.1,0.3l-0.2,2l3.1,1.2l2.8-1.8   l1.5,0.4l2.4,0.2l0.4,1.9l4.6,2l2.7-0.2l2-4.1h0.3l1.1,1.9l4.4,1l3.3,1.2l3.3,0.8l2.1-0.8l0.8-2.5h3.7l1.9,0.8l3.1-1.6h0.7l0.4,1.1   h4.3l2.4-1.3l1.7,0.3l1.4,1.9l2.9,1.7l3.5,1.1l2.7,1.4l2.4,1.6l3.3-0.9l1.9,1l0.5,10.1l0.3,9.7l0.7,9.5l0.5,4l2.7,4.6l1.1,4.1   l3.9,6.3l0.5,2.9l0.5,1l-0.7,7.5l-2.7,4.4l1,2.9l-0.4,2.5l-0.8,7.3l-1.4,2.7l0.6,4.4l-5.7,1.6l-9.9,4.5l-1,1.9l-2.6,1.9l-2.1,1.5   l-1.3,0.8l-5.7,5.3l-2.7,2.1l-5.3,3.2l-5.7,2.4l-6.3,3.4l-1.8,1.5l-5.8,3.6l-3.4,0.6l-3.9,5.5l-4,0.3l-1,1.9l2.3,1.9l-1.5,5.5   l-1.3,4.5l-1.1,3.9l-0.8,4.5l0.8,2.4l1.8,7l1,6.1l1.8,2.7l-1,1.5l-3.1,1.9l-5.7-3.9l-5.5-1.1l-1.3,0.5l-3.2-0.6l-4.2-3.1l-5.2-1.1   l-7.6-3.4l-2.1-3.9l-1.3-6.5l-3.2-1.9l-0.6-2.3l0.6-0.6l0.3-3.4l-1.3-0.6l-0.6-1l1.3-4.4l-1.6-2.3l-3.2-1.3l-3.4-4.4l-3.6-6.6   l-4.2-2.6l0.2-1.9l-5.3-12.3l-0.8-4.2l-1.8-1.9l-0.2-1.5l-6-5.3l-2.6-3.1v-1.1l-2.6-2.1l-6.8-1.1l-7.4-0.6l-3.1-2.3l-4.5,1.8   l-3.6,1.5l-2.3,3.2l-1,3.7l-4.4,6.1l-2.4,2.4l-2.6-1l-1.8-1.1l-1.9-0.6l-3.9-2.3v-0.6l-1.8-1.9l-5.2-2.1l-7.4-7.8l-2.3-4.7v-8.1   l-3.2-6.5l-0.5-2.7l-1.6-1l-1.1-2.1l-5-2.1l-1.3-1.6l-7.1-7.9l-1.3-3.2l-4.7-2.3l-1.5-4.4l-2.6-2.9l-1.9-0.5l-0.6-4.7l8,0.7l29,2.7   l29,1.6l2.3-23.8l3.9-55.6l1.6-18.7l1.4,0 M631.2,667.3l-0.6-7.1l-2.7-7.2l-0.6-7l1.5-8.2l3.3-6.9l3.5-5.4l3.2-3.6l0.6,0.2   l-4.8,6.6l-4.4,6.5l-2,6.6l-0.3,5.2l0.9,6.1l2.6,7.2l0.5,5.2l0.2,1.5L631.2,667.3z"/>
+          <path d="M310.7,486.8l3.8-0.5l1.5-2l0.7-1.9l-3.2-0.1l-1.1-1.8l0.8-1.7l0-6.2l2.2-1.3l2.7-2.6l0.4-4.9   l1.6-3.5l1.9-2.1l3.3-1.7l1.3-0.7l0.8-1.5l-0.9-0.9l-1-1.5l-0.9-5.3l-2.9-5.2l0.1-2.8l-2.2-3.2l-15-23.2l-19.4-28.7l-22.4-33   l-12.7-19.5l1.8-7.2l6.8-25.9l8.1-31.4l-12.4-3.3l-13.5-3.4l-12.6-4.1l-7.5-2.1l-11.4-3l-7.1-2.4l-1.6,4.7l-0.2,7.4l-5.2,11.8   l-3.1,2.6l-0.3,1.1l-1.8,0.8l-1.5,4.2l-0.8,3.2l2.7,4.2l1.6,4.2l1.1,3.6l-0.3,6.5l-1.8,3.1l-0.6,5.8l-1,3.7l1.8,3.9l2.7,4.5   l2.3,4.8l1.3,4l-0.3,3.2l-0.3,0.5v2.1l5.7,6.3l-0.5,2.4l-0.6,2.3l-0.6,1.9l0.2,8.2l2.1,3.7l1.9,2.6l2.7,0.5l1,2.7l-1.1,3.6   l-2.1,1.6h-1.1l-0.8,3.9l0.5,2.9l3.2,4.4l1.6,5.3l1.5,4.7l1.3,3.1l3.4,5.8l1.5,2.6l0.5,2.9l1.6,1v2.4l-0.8,1.9l-1.8,7.1l-0.5,1.9   l2.4,2.7l4.2,0.5l4.5,1.8l3.9,2.1h2.9l2.9,3.1l2.6,4.8l1.1,2.3l3.9,2.1l4.8,0.8l1.5,2.1l0.6,3.2l-1.5,0.6l0.3,1l3.2,0.8l2.7,0.2   l2.9,4.7l3.9,4.2l0.8,2.3l2.6,4.2l0.3,3.2v9.4l0.5,1.8l10,1.5l19.7,2.7L310.7,486.8z M222.8,437l1.3,1.5l-0.2,1.3l-3.2-0.1   l-0.6-1.2l-0.6-1.5L222.8,437z M224.7,437l1.2-0.6l3.6,2.1l3.1,1.2l-0.9,0.6l-4.5-0.2l-1.6-1.6L224.7,437z M245.4,456.8l1.8,2.3   l0.8,1l1.5,0.6l0.6-1.5l-1-1.8l-2.7-2l-1.1,0.2V456.8z M244,465.5l1.8,3.2l1.2,1.9l-1.5,0.2l-1.3-1.2c0,0-0.7-1.5-0.7-1.9   s0-2.2,0-2.2L244,465.5z"/>
+          <path d="M311.7,487.5l-2.6,2.2l-0.3,1.5l0.5,1l18.9,10.7l12.1,7.6l14.7,8.6l16.8,10l12.3,2.4l25.1,2.7   l2.5-12.5l3.8-27.2l7-52.9l4.3-31l-24.6-3.7l-27.2-4.6l-33.4-6.3l-2.9,18.1l-0.5,0.5l-1.7,2.6l-2.5-0.1l-1.3-2.7l-2.7-0.3l-0.9-1.1   h-0.9l-0.9,0.6l-1.9,1l-0.1,7l-0.2,1.7l-0.6,12.6l-1.5,2.2l-0.6,3.3l2.7,4.9l1.3,5.8l0.8,1l1,0.6l-0.1,2.3l-1.6,1.4l-3.4,1.7   l-1.9,1.9l-1.5,3.7l-0.6,4.9l-2.9,2.7l-2.1,0.7l-0.1,5.8l-0.5,1.7l0.5,0.8l3.7,0.6l-0.6,2.7l-1.5,2.2L311.7,487.5z"/>
+          <path d="M314.7,277.6l21,4.5l9.7,1.9l9.3,1.8l6.6,1.6l-0.6,5.9l-3.5,17.3l-4.1,20l-1.9,9.7l-2.2,13.3   l-3.2,16.4l-3.5,15.7l-2,10.2l-2.5,16.8l-0.5,1.1l-1.1,2.5l-1.9-0.1l-1.1-2.7l-2.7-0.5l-1.4-1l-2,0.3l-0.9,0.7l-1.3,1.3l-0.4,7   l-0.5,1.7l-0.4,12.1l-1.3,1.7l-1.9-2.3l-14.5-22.7l-19.4-29L263.6,349l-12.4-18.6l1.6-6.6l7-25.9l7.9-31.3l33.6,8.1l13.7,3"/>
+          <path d="M427,409.3l-24.6-3.5l-26.6-4.9l-33.8-6l1.6-9.2l3.2-15.2L350,354l2.2-13.6l1.9-8.9l3.8-20.5   l3.5-17.5l1.1-5.6l12.7,2.3l12,2.1l10.3,1.8l8.3,1.4l3.7,0.5l-1.5,10.6l-2.3,13.2l7.8,0.9l16.4,1.8l8.2,0.9l-2.1,22l-3.2,22.6   l-3.8,27.8l-1.7,11.1L427,409.3z"/>
+          <path d="M552.6,356.8l1.4-21.3l-32.1-3.1l-24.5-2.7l-37.3-4.1l-20.7-2.5l-2.6,22.2l-3.2,22.4l-3.8,28   l-1.5,11.1l-0.3,2.8l33.9,3.8l37.7,4.3l32,3.2l16.6,0.8"/>
+          <path d="M456.7,531l-0.7-6.1l8.6,0.5l29.5,3.1l28.4,1.4l2-22.3l3.7-55.9l1.1-19.4l2,0.3l0-11.1l-32.2-2.4   l-36.9-4.4l-34.5-4.1l-4.2,30.8l-7,53.2l-3.8,26.9l-2,13.3l15.5,2l1.3-10l16.7,2.6L456.7,531z"/>
+          <path d="M314.3,276.7l4.3-17.9l4.7-17.9l1.1-4.2l2.4-5.6l-0.6-1.2l-2.5,0l-1.3-1.7l0.5-1.5l0.5-3.2l4.5-5.5   l1.8-1.1l1.1-1.1l1.5-3.6l4-5.7l3.6-3.9l0.2-3.5l-3.3-2.5l-1.2-4.5l-13.2-3.7l-15.1-3.5l-15.4,0.1l-0.5-1.4l-5.5,2.1l-4.5-0.6   l-2.4-1.6l-1.3,0.7L273,184l-1.7-1.4l-5.3-2.1l-0.8,0.1l-4.3-1.5l-1.9,1.8l-6.2-0.3l-5.9-4.1l0.7-0.8l0.2-7.8l-2.3-3.9l-4.1-0.6   l-0.7-2.5l-2.4-0.5l-5.8,2.1l-2.3,6.5l-3.2,10l-3.2,6.5l-5,14.1l-6.5,13.6l-8.1,12.6l-1.9,2.9l-0.8,8.6l-1.3,6l2.7,3.5l6.7,2.3   l11.6,3.3l7.9,2.5l12.4,3.6l13.3,3.6l13.2,3.6"/>
+          <path d="M645.3,227.7l-0.4-7.5l-2-7.3l-1.8-13.6l-0.5-9.8l-2-3.1l-1.6-5.4v-10.3l0.7-3.9l-2.1-5.5   l-28.4-0.6l-18.6-0.6l-26.5-1.3l-24.9-1.9l-1.3,14.2l-1.4,15.1l-2.3,24.9l-0.5,11l56.8,3.8L645.3,227.7z"/>
+          <path d="M646.8,303.2l-1-1.1l-1.5-3.6l1.8-3.7l1.1-5.6l-2.6-2.1l-0.3-2.7l0.6-3l2.2-0.8l0.3-5.7l-0.1-30.1   l-0.6-3l-4.1-3.6l-1-2v-1.9l1.9-1.3l1.5-1.9l0.2-2.7l-57.4-1.6l-56.2-3.9l-0.8,5.3l-1.6,15.9l-1.3,17.9l-1.6,24.6l16,1l19.6,1.1   l18,1.3l23.8,1.3l10.7-0.8l2.9,2.3l4.3,3l1,0.8l3.5-0.9l4-0.3l2.7-0.1l3.1,1.2l4.5,1.4l3.1,1.8l0.6,1.9l0.9,1.9l0.7-0.5   L646.8,303.2z"/>
+          <path d="M658.2,347l1.4,2.7l0.1,2.1l2.4,3.7l2.7,3.2h-5l-43.5-0.9l-40.8-0.9l-21.2-1l1.1-21.3l-33.4-2.7   l4.3-44l15.5,1L562,290l17.8,1.1l23.8,1.1l10.7-0.5l2.1,2.3l4.8,3l1.1,0.9l4.3-1.4l3.9-0.5l2.7-0.2l1.8,1.4l5,1.6l3,1.6l0.5,1.6   l0.9,2.1h1.8l0.8,0l1,5.2l2.7,8l1.2,4.6l2.1,3.8l0.5,4.9l1.4,4.3l0.5,6.5"/>
+          <path d="M740.6,301.6l0.2,1.9l2.3,1.1l1.1,1.3l0.3,1.3l3.9,3.2l0.7,2.2l-0.8,2.9l-1.5,3.5l-0.8,2.7   l-2.2,1.6l-1.7,0.6l-5.5,1.5l-0.7,2.3l-0.8,2.3l0.6,1.4l1.7,1.7l0,3.7l-2.2,1.6l-0.5,1.5v2.5l-1.5,0.5l-1.7,1.4l-0.5,1.5l0.5,1.7   l-1.4,1.2l-2.3-2.7l-1.5-2.6l-8.3,0.8l-10.2,0.6l-25,0.7l-13,0.2l-9.4,0.2l-1.3,0.1l-1.7-4.5l-0.2-6.6l-1.6-4.1l-0.7-5.3l-2.3-3.7   l-0.9-4.8l-2.7-7.5l-1.1-5.4l-1.4-2.2l-1.6-2.7l1.8-4.3l1.4-5.7l-2.7-2.1l-0.5-2.7l0.9-2.5h1.7h11.5l49.6-0.7l19.9-0.7l1.9,2.7   l1.8,2.6l0.5,0.8l-1.8,2.7l0.5,4.2l2.5,3.9l3,1.8l2.4,0.2L740.6,301.6z"/>
+          <path d="M798.6,567l-0.3,1.3h-5.2l-1.5-0.8l-2.1-0.3l-6.8,1.9l-1.8-0.8l-2.6,4.2l-1.1,0.8l-1.1-2.5   l-1.1-3.9l-3.4-3.2l1.1-7.5l-0.7-0.9l-1.8,0.2l-8.2,0.7l-24.2,0.7l-0.5-1.6l0.7-8l3.4-6.2l5.3-9.1l-0.9-2.1h1.1l0.7-3.2l-2.3-1.8   l0.2-1.8l-2.1-4.6l-0.3-5.3l1.4-2.7l-0.4-4.3l-1.4-3l1.4-1.4l-1.4-2.1l0.5-1.8l0.9-6.2l3-2.7l-0.7-2.1l3.7-5.3l2.7-0.9v-2.5   l-0.7-1.4l2.7-5.3l2.7-1.1l0.1-3.4l8.7-0.1l24.1-1.9l4.6-0.2l0,6.4l0.2,16.7l-0.8,31l-0.2,14.1l2.7,18.8L798.6,567z"/>
+          <path d="M792.4,400.9l0.1-2.9l0.5-4.5l2.3-2.9l1.8-3.9l2.6-4.2l-0.5-5.8l-1.8-2.7l-0.3-3.2l0.8-5.5l-0.5-7   l-1.3-16l-1.3-15.4l-1-11.7l3.1,0.9l1.5,1l1.1-0.3l2.1-1.9l2.8-1.6l5.1-0.2l22-2.3l5.6-0.5l1.5,16l4.3,36.8l0.6,5.8L843,371   l1.2,1.8l0.1,1.4l-2.5,1.6l-3.5,1.6l-3.2,0.6l-0.6,4.9l-4.6,3.3l-2.8,4l0.3,2.4l-0.6,1.5h-3.3l-1.6-1.6l-2.5,1.3l-2.7,1.5l0.2,3.1   l-1.2,0.3l-0.5-1l-2.2-1.5l-3.3,1.3l-1.6,3l-1.4-0.8l-1.5-1.6l-4.5,0.5l-5.6,1L792.4,400.9z"/>
+          <path d="M791.8,401.6V398l0.3-4.9l2.4-3.1l1.8-3.8l2.6-3.9l-0.4-5.3l-2-3.5l-0.1-3.3l0.7-5.3l-0.8-7.2   l-1.1-15.8l-1.3-15l-0.9-11.6l-0.3-0.9l-0.8-2.6l-1.3-3.7l-1.6-1.8l-1.5-2.6l-0.2-5.5l-9.9,1.3l-27.2,1.7l-8.7-0.4l0.2,2.4l2.3,0.7   l0.9,1.1l0.5,1.8l3.9,3.4l0.7,2.3l-0.7,3.4l-1.8,3.7l-0.7,2.5l-2.3,1.8l-1.8,0.7l-5.3,1.4l-0.7,1.8L736,330l0.7,1.4l1.8,1.6   l-0.2,4.1l-1.8,1.6l-0.7,1.6v2.7l-1.8,0.5l-1.6,1.1l-0.2,1.4l0.2,2.1l-1.7,1.3l-1,2.8l0.5,3.7l2.3,7.3l7.3,7.5l5.5,3.7l-0.2,4.3   l0.9,1.4l6.4,0.5l2.7,1.4l-0.7,3.7l-2.3,5.9l-0.7,3.2l2.3,3.9l6.4,5.3l4.6,0.7l2.1,5l2.1,3.2l-0.9,3l1.6,4.1l1.8,2.1l1.9-0.8   l0.7-2.2l2-1.4l3.2-1.1l3.1,1.2l2.9,1.1l0.8-0.2l-0.1-1.2l-1.1-2.8l0.4-2.4l2.3-1.6l2.4-1l1.2-0.4l-0.6-1.3l-0.8-2.2l1.2-1.3   L791.8,401.6z"/>
+          <path d="M645.9,228.5l-0.5-8.5l-1.8-7.3l-1.8-13.5l-0.5-9.8l-1.8-3.4l-1.6-5v-10.3l0.7-3.9l-1.8-5.5l30.1,0   l0.3-8.2l0.6-0.2l2.3,0.5l1.9,0.8l0.8,5.5l1.5,6.1l1.6,1.6h4.8l0.3,1.5l6.3,0.3v2.1h4.8l0.3-1.3l1.1-1.1l2.3-0.6l1.3,1h2.9l3.9,2.6   l5.3,2.4l2.4,0.5l0.5-1l1.5-0.5l0.5,2.9l2.6,1.3l0.5-0.5l1.3,0.2v2.1l2.6,1h3.1l1.6-0.8l3.2-3.2l2.6-0.5l0.8,1.8l0.5,1.3h1l1-0.8   l8.9-0.3l1.8,3.1h0.6l0.7-1.1l4.4-0.4l-0.6,2.3l-3.9,1.8l-9.2,4.1l-4.8,2l-3.1,2.6l-2.4,3.6l-2.3,3.9l-1.8,0.8l-4.5,5l-1.3,0.2   l-3.8,2.9l-2.8,3.2l-0.2,3l0.2,7.8l-1.6,1.6L704,228l-1.8,5.7l2.5,3.6l0.5,2.5l-1.1,3l-0.2,3.7l0.5,7.1l3.4,4.1h3l2.5,2.3l3.2,1.4   l3.7,5l7.1,5l1.8,2.1l0.2,5.5l-20.6,0.7l-60.2,0.5l-0.3-35.7l-0.5-3l-4.1-3.4l-1.1-1.8v-1.6l2.1-1.6l1.4-1.4L645.9,228.5z"/>
+          <path d="M786.9,297.2l0.4-3l-1.6-4.5l-0.6-6.1l-1.1-2.4l1-3.1l0.8-2.9l1.5-2.6l-0.6-3.4l-0.6-3.6l0.5-1.8   l1.9-2.4l0.2-2.7l-0.8-1.3l0.6-2.6l0.5-3.2l2.7-5.7l2.9-6.8l0.2-2.3l-0.3-1l-0.8,0.5l-4.2,6.3l-2.7,4l-1.9,1.8l-0.8,2.3l-1.5,0.8   l-1.1,1.9l-1.5-0.3l-0.2-1.8l1.3-2.4l2.1-4.7l1.8-1.6l1.1-2.3l-1.6-0.9l-1.4-1.4l-1.6-10.3l-3.7-1.1l-1.4-2.3l-12.6-2.7l-2.5-1.1   l-8.2-2.3l-8.2-1.1l-4.2-5.4l-0.5,1.3l-1.1-0.2l-0.6-1.1l-2.7-0.8l-1.1,0.2l-1.8,1l-1-0.6l0.6-1.9l1.9-3.1l1.1-1.1l-1.9-1.5   l-2.1,0.8l-2.9,1.9l-7.4,3.2l-2.9,0.6l-2.9-0.5l-1-0.9l-2.1,2.8l-0.2,2.7v8.5l-1.1,1.6l-5.3,3.9l-2.3,5.9l0.5,0.2l2.5,2.1l0.7,3.2   l-1.8,3.2v3.9l0.5,6.6l3,3h3.4l1.8,3.2l3.4,0.5l3.9,5.7l7.1,4.1l2.1,2.7l0.9,7.4l0.7,3.3l2.3,1.6l0.2,1.4l-2.1,3.4l0.2,3.2l2.5,3.9   l2.5,1.1l3,0.5l1.3,1.4l9.2,0l26.1-1.5L786.9,297.2z"/>
+          <path d="M729.8,349.5l-2.5-3.1l-1.1-2.3l-7.8,0.7l-9.8,0.5l-25.4,0.9l-13.5,0.2l-7.9,0.1l-2.3,0.1l1.3,2.5   l-0.2,2.3l2.5,3.9l3.1,4.1l3.1,2.7l2.3,0.2l1.4,0.9v3l-1.8,1.6l-0.5,2.3l2.1,3.4l2.5,3l2.5,1.8l1.4,11.7l-0.7,35.3l0.2,4.7l0.5,5.4   l23.4-0.1l23.2-0.7l20.8-0.8l11.7-0.2l2.2,3.4l-0.7,3.3l-3.1,2.4l-0.6,1.8l5.4,0.5l3.9-0.7l1.7-5.5l0.7-5.9l2.3-2l1.7-1.5l2.1-1   l0.1-2.9l0.6-1.7l-1-1.7l-2.7,0.1l-2.2-2.6l-1.4-4.2l0.8-2.5l-1.9-3.4l-1.8-4.6l-4.8-0.8l-7-5.6l-1.7-4.1l0.8-3.2l2.1-6.1l0.5-2.9   l-1.9-1l-6.9-0.8l-1-1.7l-0.1-4.2l-5.5-3.4l-7-7.8l-2.3-7.3l-0.2-4.2L729.8,349.5z"/>
+          <path d="M765,445l-3.8,0.9l-6.2-0.5l0.7-3l3.2-2.7l0.5-2.3l-1.8-3l-11,0.5l-20.8,0.9l-23.3,0.7L679,437   l1.6,6.9v8.2l1.4,11l0.2,37.8l2.3,1.9l3-1.4l2.7,1.1l0.4,10.3l22.9-0.1l18.9-0.8l10.1-0.2l1.1-2.1l-0.3-3.5l-1.8-3l1.6-1.5   l-1.6-2.5l0.7-2.5l1.4-5.6l2.5-2.1l-0.7-2.3l3.7-5.4l2.7-1.4l-0.1-1.5l-0.3-1.8l2.9-5.6l2.4-1.3l0.4-3.4l1.8-1.2l0.9-4.2l-1.3-4   l4-2.4l0.6-2l1.2-4.3L765,445z"/>
+          <path d="M549.3,422.6l-10.7-0.5l-6.4-0.5l0.3,0.2l-0.7,10.4l22,1.4l32.1,1.3l-2.3,24.4l-0.5,17.8l0.2,1.6   l4.3,3.7l2.1,1.1l0.7-0.2l0.7-2.1l1.4,1.8h2.1v-1.4l2.7,1.4l-0.5,3.9l4.1,0.2l2.5,1.1l4.1,0.7l2.5,1.8l2.3-2.1l3.4,0.7l2.5,3.4h0.9   v2.3l2.3,0.7l2.3-2.3l1.8,0.7h2.5l0.9,2.5l4.8,1.8l1.4-0.7l1.8-4.1h1.1l1.1,2.1l4.1,0.7l3.7,1.4l3,0.9l1.8-0.9l0.7-2.5h4.3l2.1,0.9   l2.7-2.1h1.1l0.7,1.6h4.1l1.6-2.1l1.8,0.5l2.1,2.5l3.2,1.8l3.2,0.9l1.9,1.1l-0.4-37.2l-1.4-11l-0.2-8.9l-1.4-6.5l-0.8-7.2l-0.1-3.8   l-12.1,0.3l-46.4-0.5l-45-2.1L549.3,422.6z"/>
+          <path d="M677.4,425.1l-12.6,0.2l-46.1-0.5l-44.6-2.1l-24.6-1.3l4.1-64.7l21.8,0.8l40.5,1.4l44.1,0.5h5.1   l3.2,3.2l2.8,0.2l0.9,1.1v2l-1.8,1.6l-0.5,2.6l2.2,3.6l2.5,3.1l2.5,2l1.1,11.2L677.4,425.1z"/>
+          <path d="M776.2,573l-1-2.6l-1.1-3.1l-3.3-3.5l0.9-6.8l-0.1-1.1l-1.3,0.3l-8.2,0.9l-25,0.5l-0.7-2.4l0.9-8.5   l3.3-5.9l5-8.7l-0.6-2.4l1.3-0.7l0.5-2l-2.3-2.1l-0.1-1.9l-1.8-4.3l-0.5-5.9l-9.7,0.1l-19.2,0.9l-22.2,0l0,9.6l0.7,9.4l0.7,3.9   l2.5,4.1l0.9,5l4.3,5.5l0.2,3.2l0.7,0.7l-0.7,8.5l-3,5l1.6,2.1l-0.7,2.5l-0.7,7.3l-1.4,3.2l0.1,3.6l4.7-1.5l8.1-0.3l10.3,3.6   l6.5,1.1l3.7-1.5l3.2,1.1l3.2,1l0.8-2.1l-3.2-1.1l-2.6,0.5l-2.7-1.6c0,0,0.2-1.3,0.8-1.5c0.6-0.2,3.1-1,3.1-1l1.8,1.5l1.8-1   l3.2,0.6l1.5,2.4l0.3,2.3l4.5,0.3l1.8,1.8l-0.8,1.6l-1.3,0.8l1.6,1.6l8.4,3.6l3.6-1.3l1-2.4l2.6-0.6l1.8-1.5l1.3,1l0.8,2.9   l-2.3,0.8l0.6,0.6l3.4-1.3l2.3-3.4l0.8-0.5l-2.1-0.3l0.8-1.6l-0.2-1.5l2.1-0.5l1.1-1.3l0.6,0.8c0,0-0.2,3.1,0.6,3.1   c0.8,0,4.2,0.6,4.2,0.6l4,1.9l1,1.5h2.9l1.1,1l2.3-3.1v-1.5h-1.3l-3.4-2.7l-5.8-0.8l-3.2-2.3l1.1-2.7l2.3,0.3l0.2-0.6l-1.8-1v-0.5   h3.2l1.8-3.1l-1.3-1.9l-0.3-2.7l-1.5,0.2l-1.9,2.1l-0.6,2.6l-3.1-0.6l-1-1.8l1.8-1.9l2-1.8L776.2,573z"/>
+          <path d="M1002.9,369.2l-0.1-1.9l6.5-2.5l-0.8,3.2l-2.9,3.8l-0.4,4.6l0.5,3.4l-1.8,5l-2.2,1.9l-1.5-4.6   l0.4-5.4l1.6-4.2L1002.9,369.2z M1005.2,397.5L947,410.1l-37.4,5.3l-6.7-0.4l-2.6,1.9l-7.3,0.2l-8.4,1l-8.9,1l8.5-4.9l0-2.1   l1.5-2.1l10.6-11.5l3.9,4.5l3.8,1l2.5-1.1l2.2-1.3l2.5,1.3l3.9-1.4l1.9-4.6l2.6,0.5l2.9-2.1l1.8,0.5l2.8-3.7l0.3-2.1l-1-1.3l1-1.9   l5.3-12.3l0.6-5.7l1.2-0.5l2.2,2.4l3.9-0.3l1.9-7.6l2.8-0.6l1-2.7l2.6-2.3l1.3-2.3l1.5-3.4l0.1-5.1l9.8,3.8   c0.7,0.3,0.7-4.8,0.7-4.8l4.1,1.4l-0.5,2.6l8.2,2.9l1.3,1.8l-0.9,3.7l-1.3,1.3l-0.5,1.7l0.5,2.4l2,1.3l3.9,1.4l2.9,1l4.9,0.9   l2.2,2.1l3.2,0.4l0.9,1.2l-0.4,4.7l1.4,1.1l-0.5,1.9l1.2,0.8l-0.2,1.4l-2.7-0.1l0.1,1.6l2.3,1.5l0.1,1.4l1.8,1.8l0.5,2.5l-2.6,1.4   l1.6,1.5l5.8-1.7L1005.2,397.5z"/>
+        </g>
+        <g fill="#D4AF37" opacity="0.45" filter="url(#signal-dot-glow)">
+          <circle cx="929.4" cy="545.5" r="3.8"/><circle cx="863.6" cy="458.0" r="3.8"/><circle cx="1006.1" cy="398.5" r="3.8"/><circle cx="871.1" cy="420.6" r="3.8"/><circle cx="1074.0" cy="273.9" r="3.8"/><circle cx="1002.6" cy="289.4" r="3.8"/><circle cx="996.2" cy="326.5" r="3.8"/><circle cx="905.4" cy="295.0" r="3.8"/><circle cx="755.6" cy="182.1" r="3.8"/><circle cx="267.6" cy="106.4" r="3.8"/><circle cx="531.1" cy="433.4" r="3.8"/><circle cx="310.7" cy="486.8" r="3.8"/><circle cx="552.6" cy="356.8" r="3.8"/><circle cx="791.8" cy="401.6" r="3.8"/><circle cx="645.9" cy="228.5" r="3.8"/><circle cx="776.2" cy="573.0" r="3.8"/><circle cx="1002.9" cy="369.2" r="3.8"/>
+        </g>
+        <g fill="#f0dfa8">
+          <circle cx="929.4" cy="545.5" r="1.7"/><circle cx="863.6" cy="458.0" r="1.7"/><circle cx="1006.1" cy="398.5" r="1.7"/><circle cx="871.1" cy="420.6" r="1.7"/><circle cx="1074.0" cy="273.9" r="1.7"/><circle cx="1002.6" cy="289.4" r="1.7"/><circle cx="996.2" cy="326.5" r="1.7"/><circle cx="905.4" cy="295.0" r="1.7"/><circle cx="755.6" cy="182.1" r="1.7"/><circle cx="267.6" cy="106.4" r="1.7"/><circle cx="531.1" cy="433.4" r="1.7"/><circle cx="310.7" cy="486.8" r="1.7"/><circle cx="552.6" cy="356.8" r="1.7"/><circle cx="791.8" cy="401.6" r="1.7"/><circle cx="645.9" cy="228.5" r="1.7"/><circle cx="776.2" cy="573.0" r="1.7"/><circle cx="1002.9" cy="369.2" r="1.7"/>
+        </g>
+      </svg>
+    </div>
+  </div>
+
+  <div class="hero-trust-strip">
+    <div class="hero-trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg><div class="hero-trust-label">All 50<br>States</div></div>
+    <div class="hero-trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" x2="21" y1="22" y2="22"/><line x1="6" x2="6" y1="18" y2="11"/><line x1="10" x2="10" y1="18" y2="11"/><line x1="14" x2="14" y1="18" y2="11"/><line x1="18" x2="18" y1="18" y2="11"/><polygon points="12 2 20 7 4 7"/></svg><div class="hero-trust-label">5 Election<br>Levels</div></div>
+    <div class="hero-trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.5 8.5-.3.1-.7.1-1 0C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.79 17 5 19 5a1 1 0 0 1 1 1z"/></svg><div class="hero-trust-label">Independent</div></div>
+    <div class="hero-trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/><path d="M8 16H3v5"/></svg><div class="hero-trust-label">Continuously<br>Updated</div></div>
+    <div class="hero-trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg><div class="hero-trust-label">Privacy<br>First</div></div>
+  </div>
+
+  <div class="ballot-card-wrap">
+    <div class="ballot-card">
+      <h2>Find Your Ballot</h2>
+      <p class="ballot-card-subtext">Enter your address to see the races and candidates on your ballot.</p>
+
+      <div id="welcome-banner" class="welcome-banner" style="display:none;"></div>
+
+      <div class="ballot-search-row">
+        <div class="ballot-input-wrap">
+          <svg class="ballot-input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+          <input
+            type="text"
+            id="addressInput"
+            class="ballot-input"
+            placeholder="e.g. 123 Main St, Lansing, MI 48933"
+            autocomplete="new-password"
+            autocorrect="off"
+            autocapitalize="off"
+            spellcheck="false"
+            data-lpignore="true"
+          >
+          <div class="autocomplete-dropdown" id="autocomplete-dropdown"></div>
+        </div>
+        <button class="btn-ballot-primary" id="get-started-btn" onclick="handleGetStarted()">Find My Ballot</button>
+      </div>
+
+      <p class="ballot-privacy">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        <span>Your address is never stored or used for marketing. It is only used to locate your ballot.</span>
+      </p>
+      <p class="ballot-count-line">
+        We currently have information on <a href="#" onclick="showBrowse(); return false;" id="candidate-count">candidates</a> across all 50 states.
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- SIGNAL:HERO:END -->
+
+
+<!-- ════════════════════════════════════
+     SCREEN 1: HOME
+════════════════════════════════════ -->
+<div id="screen-home" class="screen active">
+  <div class="home-section-v2">
+
+    <div class="action-cards">
+
+      <!-- CHECK REGISTRATION -->
+      <div class="action-card crimson">
+        <div class="action-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="2" width="8" height="4" rx="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="m9 14 2 2 4-4"/></svg></div>
+        <h3>Check Your Registration</h3>
+        <p>Make sure you're registered to vote and see important deadlines for your state.</p>
+        <div class="action-card-btn-row">
+          <a class="btn-action-primary" href="https://www.usa.gov/confirm-voter-registration" target="_blank" rel="noopener">Check Registration Status</a>
+          <a class="btn-action-outline" href="https://vote.gov/register" target="_blank" rel="noopener">Register to Vote</a>
+        </div>
+        <p class="action-card-caption">Official links to USA.gov and your state's election site.</p>
+      </div>
+
+      <!-- BROWSE BY STATE -->
+      <div class="action-card teal">
+        <div class="action-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
+        <h3>Browse by State</h3>
+        <p>Pick your state to see every race, no address needed.</p>
+        <select class="mystate-select-v2" id="mystate-select">
+          <option value="">Select a state…</option>
+        </select>
+        <div class="action-card-btn-row">
+          <button class="btn-action-primary" onclick="handleMyState()">Go to State</button>
+        </div>
+      </div>
+
+      <!-- VIEW ALL RACES OR CANDIDATES -->
+      <div class="action-card green">
+        <div class="action-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg></div>
+        <h3>View All Races or Candidates</h3>
+        <p>Browse all races by state or search for candidates.</p>
+        <div class="action-card-btn-row">
+          <button class="btn-action-outline" style="border:1.5px solid #1a8a5a; color:#1a8a5a;" onclick="showBrowse()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;vertical-align:-2px;margin-right:5px;"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>Browse All Races</button>
+          <button class="btn-action-outline" style="border:1.5px solid #1a8a5a; color:#1a8a5a;" onclick="showSearchCandidates()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;vertical-align:-2px;margin-right:5px;"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="m21 21-1.9-1.9"/><circle cx="17" cy="15" r="3"/></svg>Search Candidates</button>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- MY CHOICES -->
+    <div class="mychoice-banner">
+      <div class="mychoice-banner-icon"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+      <div class="mychoice-banner-text">
+        <h3>My Choices</h3>
+        <p id="mychoice-subtext">Save candidates and races that matter to you. Build your personal ballot as you explore.</p>
+      </div>
+      <button class="btn-mychoice-banner" onclick="showMyChoiceSummary()">View My Choices</button>
+    </div>
+
+    <!-- TRUST NOTE -->
+    <div class="trust-note">
+      <div class="trust-note-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.5 8.5-.3.1-.7.1-1 0C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.79 17 5 19 5a1 1 0 0 1 1 1z"/></svg></div>
+      <div>
+        <h3>Independent. Nonpartisan. For Voters.</h3>
+        <p>The Signal Voter Guide is an independent, nonpartisan reference compiled by Anand Sinha. It does not endorse or recommend candidates and is not affiliated with any campaign, party, or political action committee.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <footer class="site-footer-v2">
+    <div class="footer-v2-inner">
+      <div>
+        <div class="footer-v2-brand">THE SIGNAL</div>
+        <div class="footer-v2-tagline">Independent journalism. Informed citizens.</div>
+      </div>
+      <div class="footer-v2-links">
+        <a href="https://anandsinhausa.com/voterguide" target="_blank">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          anandsinhausa.com/voterguide
+        </a>
+        <a href="https://anandsinhausa.com/signal/" target="_blank">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 7v14"/><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg>
+          About The Signal
+        </a>
+        <a href="https://anandsinhausa.com" target="_blank">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+          Contact
+        </a>
+      </div>
+      <div class="footer-badge">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        <div class="footer-badge-text">INDEPENDENT<br>NONPARTISAN</div>
+      </div>
+    </div>
+    <div class="footer-v2-disclaimer">
+      <strong>The Signal Voter Guide</strong> is an independent, nonpartisan reference compiled by Anand Sinha. It does not endorse or recommend candidates and is not affiliated with any campaign, party, or political action committee.
+    </div>
+  </footer>
+</div>
+<!-- ════════════════════════════════════
+     SCREEN 2: BROWSE ALL STATES
+════════════════════════════════════ -->
+<div id="screen-browse" class="screen">
+  <div class="screen-inner">
+    <button class="back-link" onclick="showHome()">← Back to Address Entry</button>
+
+    <h2 class="screen-title">All Races and Measures</h2>
+    <p class="screen-subtitle">Select a state to see races and candidates.</p>
+
+    <div class="mystate-row">
+      <select class="mystate-select" id="browse-state-select">
+        <option value="">Select a state…</option>
+      </select>
+      <button class="btn-mystate-go" onclick="handleBrowseStateGo()">Go</button>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════
+     SCREEN 2B: SEARCH CANDIDATES (all 50 states)
+════════════════════════════════════ -->
+<div id="screen-search-candidates" class="screen">
+  <div class="screen-inner">
+    <button class="back-link" onclick="showHome()">← Back to Home</button>
+
+    <h2 class="screen-title">Search Candidates</h2>
+    <p class="screen-subtitle">Search by name across all 50 states — no need to pick a state first.</p>
+
+    <div class="search-field-label">Candidate Name</div>
+    <input
+      type="text"
+      class="search-field"
+      id="global-candidate-search"
+      placeholder="Enter a candidate's name"
+      oninput="filterGlobalCandidateSearch()"
+      autofocus
+    >
+
+    <div id="global-search-results" style="margin-top: 20px;">
+      <div class="prompt-box">Start typing a name to search candidates nationwide.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════
+     SCREEN 3: RACE LIST FOR A STATE
+════════════════════════════════════ -->
+<div id="screen-races" class="screen">
+  <div class="screen-inner">
+    <button class="back-link" onclick="showBrowse()">← Back to State List</button>
+
+    <h2 class="screen-title" id="races-screen-title">All Races for State</h2>
+    <p class="screen-subtitle">Pick a race type below, or search for a candidate by name — most voters don't know their district number offhand.</p>
+
+    <div class="search-field-label">Search by Candidate Name</div>
+    <input
+      type="text"
+      class="search-field"
+      id="state-candidate-search"
+      placeholder="Enter candidate name"
+      oninput="filterStateCandidateSearch()"
+    >
+
+    <div class="filter-row" id="state-office-filters" style="margin-top: 16px;">
+      <!-- populated by JS -->
+    </div>
+
+    <div id="state-office-results" style="margin-top: 16px;">
+      <!-- populated by JS -->
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════
+     SCREEN 4: RACE DETAIL + CANDIDATES
+════════════════════════════════════ -->
+<div id="screen-race-detail" class="screen">
+  <div class="screen-inner">
+    <button class="back-btn" id="race-detail-back-btn" onclick="backFromRaceDetail()">← Back</button>
+
+    <div class="race-type-label" id="race-type-label">Single Vote Race</div>
+    <h2 class="race-name" id="race-name">Race Name</h2>
+
+    <!-- About This Race (collapsible) -->
+    <div class="about-race">
+      <button class="about-race-toggle" onclick="toggleAboutRace()">
+        <span>About This Race</span>
+        <span class="arrow" id="about-race-arrow">▲</span>
+      </button>
+      <div class="about-race-body" id="about-race-body">
+        <!-- populated by JS -->
+      </div>
+    </div>
+
+    <!-- Candidates -->
+    <p class="meet-heading">Meet the candidates</p>
+    <div id="race-candidates">
+      <div class="prompt-box">Loading candidates...</div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════
+     SCREEN 5: MY RACES (after address)
+════════════════════════════════════ -->
+<div id="screen-my-races" class="screen">
+  <div class="screen-inner">
+    <button class="back-link" onclick="showHome()">← Back to Address Entry</button>
+
+    <!-- Your Address Bar -->
+    <div class="your-address-bar">
+      <span class="pin">📍</span>
+      <div>
+        <div class="your-address-label">Your Address</div>
+        <div class="your-address-value" id="display-address">—</div>
+        <a href="#" class="change-address-link" onclick="showHome(); return false;">Change address</a>
+      </div>
+    </div>
+
+    <!-- Split ZIP banner (shown if needed) -->
+    <div id="split-zip-banner" style="display:none" class="split-zip-banner">
+      <h3>🏘️ This ZIP code covers multiple districts</h3>
+      <p>For more precise results, enter your full street address below.</p>
+      <div class="split-zip-input-row">
+        <input type="text" class="split-zip-input" id="refine-address" placeholder="e.g. 123 Main St, Lansing, MI 48933" autocomplete="new-password" autocorrect="off" autocapitalize="off" spellcheck="false" data-lpignore="true">
+        <button class="split-zip-btn" onclick="refineByAddress()">Refine</button>
+      </div>
+    </div>
+
+    <!-- Race filter chips -->
+    <div class="filter-row" id="my-races-filters" style="display:none">
+      <button class="filter-chip active" onclick="setMyRacesFilter(this, 'all')">All races</button>
+      <button class="filter-chip" onclick="setMyRacesFilter(this, 'Governor')">Governor</button>
+      <button class="filter-chip" onclick="setMyRacesFilter(this, 'US Senate')">US Senate</button>
+      <button class="filter-chip" onclick="setMyRacesFilter(this, 'US House')">US House</button>
+      <button class="filter-chip" onclick="setMyRacesFilter(this, 'State Senate')">State Senate</button>
+      <button class="filter-chip" onclick="setMyRacesFilter(this, 'State House')">State House</button>
+    </div>
+
+    <div id="my-races-results">
+      <div class="loading"><div class="spinner"></div> Loading your races...</div>
+    </div>
+
+    <div class="data-source" id="data-source-line">Source: state Secretary of State filings</div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════
+     SCREEN 6: MY CHOICE SUMMARY
+════════════════════════════════════ -->
+<div id="screen-mychoice" class="screen">
+  <div class="screen-inner">
+    <button class="back-link" onclick="showHome()">← Back to Home</button>
+    <h2 class="screen-title">★ My Choice</h2>
+    <p class="screen-subtitle">Every candidate you've saved, in one place. Keep browsing to add more.</p>
+
+    <div id="mychoice-results">
+      <div class="prompt-box">You haven't saved any picks yet.</div>
+    </div>
+
+    <div style="margin-top: 20px;">
+      <button class="btn-outline" onclick="showBrowse()">Browse All Races to Add More</button>
+    </div>
+  </div>
+</div>
+
+
+<!-- ════════════════════════════════════
+     JAVASCRIPT
+════════════════════════════════════ -->
+<script>
+
+// ── CONFIG ──────────────────────────────────────────────────────────
+const SHEET_ID = '1ot939X173RXXuAk7Zs66OD_3sc9t8a9HcofS3Fv11Pg';
+const BASE_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/export?format=csv&gid=`;
+const GIDS = {
+  usSenate:    '1588428220',
+  usHouse:     '574891025',
+  governor:    '106542971',
+  stateSenate: '755731723',
+  stateHouse:  '2114817971',
+  stateBoard:  '153617938',
+  localCounty: '983206650',
+  localCity:   '1257794290',
+  localJudges: '324526209',
+  localOther:  '151782435',
+  zipCodes:    '1136776422',
+  stateConfig: '306598189'
+};
+
+const STATES = [
+  ['Alabama','AL'],['Alaska','AK'],['Arizona','AZ'],['Arkansas','AR'],
+  ['California','CA'],['Colorado','CO'],['Connecticut','CT'],['Delaware','DE'],
+  ['Florida','FL'],['Georgia','GA'],['Hawaii','HI'],['Idaho','ID'],
+  ['Illinois','IL'],['Indiana','IN'],['Iowa','IA'],['Kansas','KS'],
+  ['Kentucky','KY'],['Louisiana','LA'],['Maine','ME'],['Maryland','MD'],
+  ['Massachusetts','MA'],['Michigan','MI'],['Minnesota','MN'],['Mississippi','MS'],
+  ['Missouri','MO'],['Montana','MT'],['Nebraska','NE'],['Nevada','NV'],
+  ['New Hampshire','NH'],['New Jersey','NJ'],['New Mexico','NM'],['New York','NY'],
+  ['North Carolina','NC'],['North Dakota','ND'],['Ohio','OH'],['Oklahoma','OK'],
+  ['Oregon','OR'],['Pennsylvania','PA'],['Rhode Island','RI'],['South Carolina','SC'],
+  ['South Dakota','SD'],['Tennessee','TN'],['Texas','TX'],['Utah','UT'],
+  ['Vermont','VT'],['Virginia','VA'],['Washington','WA'],['West Virginia','WV'],
+  ['Wisconsin','WI'],['Wyoming','WY']
+];
+
+// Shared office ordering/labels — used by the state office-filter chips, the "All"
+// grouped view, and the district label on every candidate card. Single source of
+// truth so these three places can't drift out of sync with each other.
+const OFFICE_ORDER = ['Governor','US Senate','US House','State Senate','State House',
+                       'State Board','Local - County','Local - City','Local - Judges','Local - Other'];
+const OFFICE_LABELS = {
+  'Governor':'Governor', 'US Senate':'U.S. Senate', 'US House':'U.S. House',
+  'State Senate':'State Senate', 'State House':'State House', 'State Board':'State Board',
+  'Local - County':'County Races', 'Local - City':'City Races',
+  'Local - Judges':'Judicial Races', 'Local - Other':'Other Local Races'
+};
+
+const RACE_INFO = {
+  'Governor': {
+    type: 'Single Vote Race',
+    duties: 'The Governor is the chief executive of the state, responsible for implementing state laws and overseeing the operation of the state executive branch.',
+    qualifications: 'Requirements vary by state, but typically include minimum age, residency, and citizenship requirements.',
+    term: '4 years in most states.'
+  },
+  'US Senate': {
+    type: 'Single Vote Race',
+    duties: 'U.S. Senators represent their state in the Senate, the upper chamber of Congress. They vote on federal legislation, confirm presidential appointments, and ratify treaties.',
+    qualifications: 'Must be at least 30 years old, a U.S. citizen for at least 9 years, and a resident of the state they represent.',
+    term: '6 years. One-third of the Senate is elected every two years.'
+  },
+  'US House': {
+    type: 'Single Vote Race',
+    duties: 'Members of the U.S. House of Representatives serve in the lower chamber of Congress, representing specific congressional districts. They vote on federal legislation and have the sole power to originate revenue bills.',
+    qualifications: 'Must be at least 25 years old, a U.S. citizen for at least 7 years, and a resident of the state they represent.',
+    term: '2 years. All 435 seats are up for election every two years.'
+  },
+  'State Senate': {
+    type: 'Single Vote Race',
+    duties: 'State Senators serve in the upper chamber of the state legislature. They vote on state laws, budgets, and local issues affecting their districts.',
+    qualifications: 'Requirements vary by state. Typically includes minimum age and state residency requirements.',
+    term: '2 or 4 years depending on the state. Many states have staggered elections.'
+  },
+  'State House': {
+    type: 'Single Vote Race',
+    duties: 'State House members serve in the lower chamber of the state legislature. They represent specific districts and vote on state laws, budgets, and local issues.',
+    qualifications: 'Requirements vary by state. Typically includes minimum age and district residency requirements.',
+    term: '2 years in most states. All seats typically up for election every two years.'
+  }
+};
+
+// ── STATE ───────────────────────────────────────────────────────────
+let DATA = { candidates: [], zipCodes: [], splitZips: new Set(), stateConfig: [] };
+let myRacesCandidates = [];
+let myRacesFilter = 'all';
+let currentState = null;
+let currentRace = null;
+let previousScreen = 'browse';
+let aboutRaceOpen = true;
+let autocompleteTimeout;
+
+// ── DATA LOADING ─────────────────────────────────────────────────────
+async function loadData() {
+  const fetchSheet = async (gid) => {
+    const res = await fetch(BASE_URL + gid);
+    const text = await res.text();
+    const rows = [];
+    let cur = [], field = '', inQ = false;
+    for (let i = 0; i < text.length; i++) {
+      const ch = text[i], nx = text[i+1];
+      if (ch === '"') { if (inQ && nx === '"') { field += '"'; i++; } else inQ = !inQ; }
+      else if (ch === ',' && !inQ) { cur.push(field.trim()); field = ''; }
+      else if (ch === '\n' && !inQ) {
+        if (field || cur.length) { cur.push(field.trim()); if (cur.some(f=>f)) rows.push(cur); }
+        cur = []; field = '';
+      } else { field += ch; }
+    }
+    if (field || cur.length) { cur.push(field.trim()); if (cur.some(f=>f)) rows.push(cur); }
+    return rows.slice(1);
+  };
+
+  try {
+    const safe = async (gid) => { try { return await fetchSheet(gid); } catch(e) { return []; } };
+    const [usSenate, usHouse, governor, stateSenate, stateHouse, stateBoard,
+           localCounty, localCity, localJudges, localOther, zipCodes, stateConfig] = await Promise.all([
+      safe(GIDS.usSenate), safe(GIDS.usHouse), safe(GIDS.governor),
+      safe(GIDS.stateSenate), safe(GIDS.stateHouse), safe(GIDS.stateBoard),
+      safe(GIDS.localCounty), safe(GIDS.localCity), safe(GIDS.localJudges),
+      safe(GIDS.localOther), safe(GIDS.zipCodes), safe(GIDS.stateConfig)
+    ]);
+
+    const proc = (row, office) => ({
+      state: row[0], district: row[1], raceName: row[2], name: row[3],
+      party: row[4], status: row[5], primaryDate: row[6], filingStatus: row[7],
+      a4h: row[8], zipCodes: row[9], fecId: row[10], url: row[11],
+      onBallot: row[12]||'', lastVerified: row[15]||'',
+      endorsementPageURL: row[17]||'', candidatePhotoURL: row[18]||'',
+      collectDonation: row[19]||'', donationURL: row[20]||'', office
+    });
+
+    DATA.candidates = [
+      ...usSenate.map(r=>proc(r,'US Senate')), ...usHouse.map(r=>proc(r,'US House')),
+      ...governor.map(r=>proc(r,'Governor')), ...stateSenate.map(r=>proc(r,'State Senate')),
+      ...stateHouse.map(r=>proc(r,'State House')), ...stateBoard.map(r=>proc(r,'State Board')),
+      ...localCounty.map(r=>proc(r,'Local - County')), ...localCity.map(r=>proc(r,'Local - City')),
+      ...localJudges.map(r=>proc(r,'Local - Judges')), ...localOther.map(r=>proc(r,'Local - Other'))
+    ].filter(c => c.state && c.district && c.name)
+     .filter(c => String(c.onBallot||'').trim().toUpperCase() !== 'N');
+
+    DATA.zipCodes = zipCodes.map(r=>({ state:r[0], office:r[1], district:r[2], zip:r[3], isSplit:r[5]==='Yes' }));
+    DATA.splitZips = new Set(DATA.zipCodes.filter(z=>z.isSplit).map(z=>z.zip));
+    DATA.stateConfig = stateConfig.map(r=>({
+      state: r[1]?.trim().toUpperCase(),
+      stateName: r[2]?.trim(),
+      hasLocalRaces: String(r[3]||'').trim().toUpperCase() === 'YES'
+    })).filter(s=>s.state);
+
+    const total = DATA.candidates.length;
+    document.getElementById('candidate-count').textContent = `${total.toLocaleString()} candidates`;
+    document.getElementById('get-started-btn').classList.add('active-btn');
+    console.log(`✅ Loaded: ${total} candidates`);
+  } catch(e) {
+    console.error('Data load error:', e);
+    document.getElementById('candidate-count').textContent = 'candidates';
+  }
+}
+
+// ── SCREEN NAVIGATION ────────────────────────────────────────────────
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function showHome() { showScreen('screen-home'); renderWelcomeBanner(); renderMyChoiceHomeBox(); }
+
+function showBrowse() {
+  showScreen('screen-browse');
+}
+
+// ── SEARCH CANDIDATES (nationwide, all 50 states at once) ──────────────
+function showSearchCandidates() {
+  const input = document.getElementById('global-candidate-search');
+  input.value = '';
+  document.getElementById('global-search-results').innerHTML =
+    '<div class="prompt-box">Start typing a name to search candidates nationwide.</div>';
+  showScreen('screen-search-candidates');
+  setTimeout(() => input.focus(), 50);
+}
+
+function filterGlobalCandidateSearch() {
+  const query = document.getElementById('global-candidate-search').value.trim().toLowerCase();
+  const container = document.getElementById('global-search-results');
+
+  if (query.length < 2) {
+    container.innerHTML = '<div class="prompt-box">Start typing a name to search candidates nationwide.</div>';
+    return;
+  }
+
+  const matches = DATA.candidates.filter(c => c.name.toLowerCase().includes(query));
+  if (!matches.length) {
+    container.innerHTML = '<div class="prompt-box">No candidates found matching that name.</div>';
+    return;
+  }
+
+  renderCandidatesByState(matches, 'global-search-results');
+}
+
+// Groups results by state (not office) since this view spans all 50 states at once —
+// office+district alone (as shown on each card) would be ambiguous without knowing
+// which state you're looking at. Sub-container IDs are namespaced to this screen only,
+// same fix pattern as renderGroupedCandidates, to avoid cross-screen ID collisions.
+function renderCandidatesByState(candidates, containerId) {
+  const el = document.getElementById(containerId);
+  const byState = {};
+  candidates.forEach(c => { (byState[c.state] = byState[c.state] || []).push(c); });
+
+  const stateCodes = Object.keys(byState).sort((a, b) => {
+    const nameA = STATES.find(s => s[1] === a)?.[0] || a;
+    const nameB = STATES.find(s => s[1] === b)?.[0] || b;
+    return nameA.localeCompare(nameB);
+  });
+
+  let html = '';
+  stateCodes.forEach(code => {
+    const stateName = STATES.find(s => s[1] === code)?.[0] || code;
+    const key = code.replace(/[^a-z0-9]/gi,'');
+    html += `<div class="race-group">
+      <div class="race-group-header">${stateName}</div>
+      <div id="${containerId}-state-${key}"></div>
+    </div>`;
+  });
+  el.innerHTML = html;
+
+  stateCodes.forEach(code => {
+    const key = code.replace(/[^a-z0-9]/gi,'');
+    renderCandidateCards(byState[code], `${containerId}-state-${key}`);
+  });
+}
+
+function showRaces(stateCode, stateName) {
+  currentState = stateCode;
+  document.getElementById('races-screen-title').textContent = `All Races and Measures for ${stateName}`;
+  document.getElementById('state-candidate-search').value = '';
+  stateOfficeFilter = 'All';
+  buildStateOfficeFilters(stateCode);
+  renderStateOfficeResults();
+  showScreen('screen-races');
+}
+
+function showRaceDetail(office, district, fromScreen) {
+  previousScreen = fromScreen || 'races';
+  currentRace = { office, district };
+
+  const stateName = STATES.find(s => s[1] === currentState)?.[0] || currentState;
+  const distLabel = (district && district.toLowerCase() !== 'statewide') ? ` — ${district}` : '';
+  const raceLabel = office === 'Governor' ? `${stateName} Governor`
+    : office === 'US Senate' ? `${stateName} — U.S. Senate`
+    : office === 'US House' ? `U.S. House${distLabel}`
+    : office === 'State Senate' ? `${stateName} State Senate${distLabel}`
+    : office === 'State House' ? `${stateName} State House${distLabel}`
+    : `${office}${distLabel}`;
+
+  document.getElementById('race-type-label').textContent = RACE_INFO[office]?.type || 'Single Vote Race';
+  document.getElementById('race-name').textContent = raceLabel;
+
+  // Back button label
+  const backBtn = document.getElementById('race-detail-back-btn');
+  backBtn.textContent = previousScreen === 'my-races' ? '← Back to My Races' : `← Back to ${stateName} Races`;
+
+  // About This Race
+  buildAboutRace(office);
+
+  // Candidates
+  const candidates = DATA.candidates.filter(c =>
+    c.state === currentState && c.office === office &&
+    (district === 'Statewide' || c.district === district)
+  );
+  renderCandidateCards(candidates, 'race-candidates');
+
+  showScreen('screen-race-detail');
+}
+
+function backFromRaceDetail() {
+  if (previousScreen === 'my-races') { showScreen('screen-my-races'); }
+  else { showRaces(currentState, STATES.find(s=>s[1]===currentState)?.[0] || currentState); }
+}
+
+// ── BUILD STATE LIST ─────────────────────────────────────────────────
+// ── STATE DROPDOWNS (My State box + Browse All Races screen) ───────────
+function populateStateDropdown(selectId) {
+  const sel = document.getElementById(selectId);
+  if (!sel) return;
+  sel.innerHTML = '<option value="">Select a state…</option>' +
+    STATES.map(([name, code]) => `<option value="${code}|${name}">${name}</option>`).join('');
+}
+function buildMyStateDropdown() {
+  populateStateDropdown('mystate-select');
+  populateStateDropdown('browse-state-select');
+}
+function handleMyState() {
+  const sel = document.getElementById('mystate-select');
+  const val = sel && sel.value;
+  if (!val) { if (sel) sel.focus(); return; }
+  const [code, name] = val.split('|');
+  showRaces(code, name);
+}
+function handleBrowseStateGo() {
+  const sel = document.getElementById('browse-state-select');
+  const val = sel && sel.value;
+  if (!val) { if (sel) sel.focus(); return; }
+  const [code, name] = val.split('|');
+  showRaces(code, name);
+}
+
+// ── STATE OFFICE FILTERS (category buttons + candidate name search) ────
+let stateOfficeFilter = 'All';
+
+function buildStateOfficeFilters(stateCode) {
+  const el = document.getElementById('state-office-filters');
+  const present = new Set(DATA.candidates.filter(c => c.state === stateCode).map(c => c.office));
+  const buttons = ['All', ...OFFICE_ORDER.filter(o => present.has(o))];
+  el.innerHTML = buttons.map(o =>
+    `<button class="filter-chip${o === 'All' ? ' active' : ''}" onclick="setStateOfficeFilter(this, '${o.replace(/'/g,"\\'")}')">${o === 'All' ? 'All Races' : OFFICE_LABELS[o]}</button>`
+  ).join('');
+}
+
+function setStateOfficeFilter(btn, office) {
+  document.querySelectorAll('#state-office-filters .filter-chip').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  stateOfficeFilter = office;
+  renderStateOfficeResults();
+}
+
+function filterStateCandidateSearch() {
+  renderStateOfficeResults();
+}
+
+function renderStateOfficeResults() {
+  const query = (document.getElementById('state-candidate-search').value || '').trim().toLowerCase();
+  let candidates = DATA.candidates.filter(c => c.state === currentState);
+  if (stateOfficeFilter !== 'All') candidates = candidates.filter(c => c.office === stateOfficeFilter);
+  if (query) candidates = candidates.filter(c => c.name.toLowerCase().includes(query));
+
+  const container = document.getElementById('state-office-results');
+  if (!candidates.length) {
+    container.innerHTML = '<div class="prompt-box">No candidates found. Try a different race type or search term.</div>';
+    return;
+  }
+
+  if (stateOfficeFilter === 'All') {
+    renderGroupedCandidates(candidates, 'state-office-results');
+  } else {
+    renderCandidateCards(candidates, 'state-office-results');
+  }
+}
+
+
+// ── ABOUT THIS RACE ──────────────────────────────────────────────────
+// Term limits vary a lot by state and change via ballot measures — only stating specifics
+// where verified. Falls back to a neutral note for states not yet researched.
+// Governor qualifications are set by each state's own constitution — unlike Congress,
+// the U.S. Constitution sets no uniform bar here, so these genuinely differ state to state.
+// Source: state constitutions, compiled Sept 2025. Paraphrased, not quoted verbatim.
+const STATE_GOV_QUALIFICATIONS = {
+  'AL': 'At least 30 years old; a U.S. citizen for at least 10 years; a resident of Alabama for at least 7 years.',
+  'AK': 'At least 30 years old; a qualified voter; a U.S. citizen and resident of Alaska for at least 7 years.',
+  'AZ': 'At least 25 years old; a U.S. citizen for at least 10 years; a resident of Arizona for at least 5 years.',
+  'AR': 'At least 30 years old; a qualified voter and U.S. citizen; a resident of Arkansas for at least 7 years.',
+  'CA': 'A registered voter and U.S. citizen. California\u2019s 5-year residency requirement has gone unenforced by the Secretary of State since 2021 over constitutional concerns.',
+  'CO': 'At least 30 years old; a U.S. citizen; a resident of Colorado for at least 2 years.',
+  'CT': 'At least 30 years old; a U.S. citizen and registered voter; a resident of Connecticut for at least 6 months.',
+  'DE': 'At least 30 years old; a U.S. citizen for at least 12 years; a resident of Delaware for at least 6 years.',
+  'FL': 'At least 30 years old; a resident and registered voter of Florida for at least 7 years.',
+  'GA': 'At least 30 years old by taking office; a resident of Georgia for at least 6 years; a U.S. citizen for at least 15 years.',
+  'HI': 'At least 30 years old; a qualified voter; a U.S. citizen and resident of Hawaii for 5 consecutive years.',
+  'ID': 'At least 30 years old; a qualified voter and U.S. citizen; a resident of Idaho for at least 2 years.',
+  'IL': 'At least 25 years old; a qualified voter and U.S. citizen; a resident of Illinois for at least 3 years.',
+  'IN': 'A U.S. citizen and resident of Indiana for 5 consecutive years; a qualified voter; at least 30 years old when sworn in.',
+  'IA': 'At least 30 years old; a qualified voter and U.S. citizen; a resident of Iowa for at least 2 years.',
+  'KS': 'At least 25 years old \u2014 Kansas sets no other formal age, residency, or citizenship requirement.',
+  'KY': 'At least 30 years old; a qualified voter and U.S. citizen; a resident of Kentucky for at least 2 years.',
+  'LA': 'At least 25 years old; an elector; a U.S. and Louisiana citizen for at least 5 years.',
+  'ME': 'At least 30 years old; a U.S. citizen for at least 15 years; a resident of Maine for at least 5 years.',
+  'MD': 'At least 30 years old; a U.S. citizen; a resident and registered voter of Maryland for at least 5 years.',
+  'MA': 'A registered elector; a resident of Massachusetts for at least 7 years. No minimum age is set.',
+  'MI': 'At least 30 years old; a U.S. citizen and resident of Michigan; a registered Michigan voter for at least 4 years.',
+  'MN': 'At least 25 years old; a qualified voter and U.S. citizen; a resident of Minnesota for at least 1 year.',
+  'MS': 'At least 30 years old; a qualified voter; a U.S. citizen for at least 20 years; a resident of Mississippi for at least 5 years.',
+  'MO': 'At least 30 years old; a U.S. citizen for at least 15 years; a resident of Missouri for at least 10 years.',
+  'MT': 'At least 25 years old; a qualified voter and U.S. citizen; a resident of Montana for at least 2 years.',
+  'NE': 'At least 30 years old; a resident of Nebraska for at least 5 years; a U.S. citizen.',
+  'NV': 'At least 25 years old; a registered elector; a resident of Nevada for at least 2 years.',
+  'NH': 'At least 30 years old; a U.S. citizen; a resident of New Hampshire for at least 7 years.',
+  'NJ': 'At least 30 years old; a qualified voter; a U.S. citizen for at least 20 years; a resident of New Jersey for at least 7 years.',
+  'NM': 'At least 30 years old; a qualified voter and U.S. citizen; a continuous resident of New Mexico for at least 5 years.',
+  'NY': 'A U.S. citizen; at least 30 years old; a resident of New York for at least 5 years.',
+  'NC': 'At least 30 years old; a qualified voter; a U.S. citizen for at least 5 years; a resident of North Carolina for at least 2 years.',
+  'ND': 'At least 30 years old; a U.S. citizen and registered elector; a resident of North Dakota for at least 5 years.',
+  'OH': 'At least 18 years old; a qualified voter and U.S. citizen; a resident of Ohio.',
+  'OK': 'A U.S. citizen for at least 10 years; at least 31 years old; a resident of Oklahoma for at least 10 years.',
+  'OR': 'A U.S. citizen; at least 30 years old; a resident of Oregon for at least 3 years.',
+  'PA': 'A U.S. citizen and registered voter; at least 30 years old; a resident of Pennsylvania for at least 7 years.',
+  'RI': 'A qualified elector, U.S. citizen, and Rhode Island resident \u2014 each for at least 30 days.',
+  'SC': 'At least 30 years old; a U.S. citizen; a resident of South Carolina for at least 5 years.',
+  'SD': 'A U.S. citizen and registered voter; at least 21 years old; a resident of South Dakota for at least 2 years.',
+  'TN': 'At least 30 years old; a U.S. citizen; a citizen of Tennessee for at least 7 years.',
+  'TX': 'At least 30 years old; a U.S. citizen; a resident of Texas for at least 5 years immediately before the election.',
+  'UT': 'At least 30 years old; a resident of Utah for at least 5 years; a U.S. citizen for at least 3 years; a qualified elector.',
+  'VT': 'A resident of Vermont for at least 4 years; a registered voter and U.S. citizen; at least 18 years old.',
+  'VA': 'A U.S. citizen; a resident and registered voter of Virginia for at least 5 years; at least 30 years old.',
+  'WA': 'A U.S. citizen and qualified elector of Washington; a resident of the state; at least 18 years old.',
+  'WV': 'A U.S. citizen; a resident of West Virginia for at least 5 years; a qualified elector; at least 30 years old.',
+  'WI': 'A U.S. citizen and qualified voter of Wisconsin; a resident of the state; at least 18 years old.',
+  'WY': 'A U.S. citizen; a resident of Wyoming for at least 5 years; a qualified elector; at least 30 years old.'
+};
+
+const STATE_TERM_LIMITS = {
+  'MI': {
+    'Governor': 'Michigan governors are limited to 2 four-year terms (8 years total), per the Michigan Constitution.',
+    'State Senate': 'As of a 2022 constitutional amendment, Michigan legislators are limited to 12 years total in the state legislature, in any combination of House and Senate terms.',
+    'State House': 'As of a 2022 constitutional amendment, Michigan legislators are limited to 12 years total in the state legislature, in any combination of House and Senate terms.'
+  }
+};
+// Dates in the sheet aren't always the same format (ISO "2026-08-04" vs text like
+// "Aug 4, 2026") depending on how a given row was entered — parse defensively.
+function parseFlexibleDate(str) {
+  if (!str) return null;
+  let d = new Date(str);
+  if (!isNaN(d)) return d;
+  d = new Date(str + 'T00:00:00');
+  return isNaN(d) ? null : d;
+}
+
+function getTermLimitsText(state, office) {
+  const stateSpecific = STATE_TERM_LIMITS[state]?.[office];
+  if (stateSpecific) return stateSpecific;
+  if (office === 'US Senate' || office === 'US House') return 'No term limits — set by the U.S. Constitution, which does not cap terms for Congress.';
+  return 'Term limits vary by state and by office. Check your Secretary of State\u2019s site for specifics.';
+}
+
+function buildAboutRace(office) {
+  const info = RACE_INFO[office];
+  if (!info) {
+    document.getElementById('about-race-body').innerHTML = '';
+    return;
+  }
+
+  const termLimits = getTermLimitsText(currentState, office);
+  // Governor qualifications vary by state constitution — use the real state-specific
+  // text when we have it, rather than the generic "varies by state" placeholder.
+  const qualificationsText = (office === 'Governor' && STATE_GOV_QUALIFICATIONS[currentState])
+    ? STATE_GOV_QUALIFICATIONS[currentState]
+    : info.qualifications;
+
+  // Pull the actual primary date for this race from the data, rather than showing
+  // a generic "2026" that doesn't say whether the primary already happened.
+  const raceCandidates = DATA.candidates.filter(c =>
+    c.state === currentState && c.office === office &&
+    (!currentRace || currentRace.district === 'Statewide' || c.district === currentRace.district)
+  );
+  const rawPrimaryDate = raceCandidates.find(c => c.primaryDate)?.primaryDate;
+  const primaryDateObj = parseFlexibleDate(rawPrimaryDate);
+  const today = new Date();
+  today.setHours(0,0,0,0);
+
+  let primaryLine = '';
+  if (primaryDateObj && !isNaN(primaryDateObj)) {
+    // Only show the primary date if it hasn't happened yet — once today's date is
+    // past it, the primary is no longer relevant to a voter looking at this race.
+    if (today <= primaryDateObj) {
+      const formatted = primaryDateObj.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+      primaryLine = `<strong class="race-date-link">Primary Election: ${formatted}</strong><br>`;
+    }
+  } else {
+    // No date on file for this race — show the generic fallback since we can't tell if it's passed.
+    primaryLine = `<strong class="race-date-link">Primary Election: 2026</strong><br>`;
+  }
+  const generalLine = `<strong class="race-date-link">General Election: Tuesday, November 3, 2026</strong>`;
+
+  // Dynamic seat/district count from the data actually loaded for this state+office —
+  // reflects real coverage rather than an assumed constitutional total.
+  let seatsLine = '';
+  if (office !== 'Governor' && office !== 'US Senate' && currentRace) {
+    const districts = new Set(
+      DATA.candidates
+        .filter(c => c.state === currentState && c.office === office)
+        .map(c => c.district)
+    );
+    if (districts.size > 0) {
+      const stateName = STATES.find(s => s[1] === currentState)?.[0] || currentState;
+      seatsLine = `<p><strong>Districts in this guide:</strong> ${districts.size} ${office} district${districts.size === 1 ? '' : 's'} currently published for ${stateName}.</p>`;
+    }
+  }
+
+  document.getElementById('about-race-body').innerHTML = `
+    ${primaryLine}${generalLine}
+    <p><strong>Duties:</strong> ${info.duties}</p>
+    <p><strong>Qualifications:</strong> ${qualificationsText}</p>
+    <p><strong>Term:</strong> ${info.term}</p>
+    <p><strong>Term Limits:</strong> ${termLimits}</p>
+    ${seatsLine}
+  `;
+  aboutRaceOpen = true;
+  document.getElementById('about-race-arrow').textContent = '▲';
+}
+
+function toggleAboutRace() {
+  const body = document.getElementById('about-race-body');
+  const arrow = document.getElementById('about-race-arrow');
+  aboutRaceOpen = !aboutRaceOpen;
+  body.style.display = aboutRaceOpen ? '' : 'none';
+  arrow.textContent = aboutRaceOpen ? '▲' : '▼';
+}
+
+// ── CANDIDATE CARD RENDERER ───────────────────────────────────────────
+function getInitials(name) {
+  return (name||'').split(' ').filter(Boolean).slice(0,2).map(w=>w[0]).join('').toUpperCase();
+}
+
+function sortCandidates(arr) {
+  return [...arr].sort((a,b) => {
+    if (a.district !== b.district) return a.district.localeCompare(b.district);
+    return a.name.localeCompare(b.name);
+  });
+}
+
+function renderCandidateCards(candidates, containerId) {
+  const el = document.getElementById(containerId);
+  if (!candidates.length) {
+    el.innerHTML = '<div class="prompt-box">No candidates found for this race.</div>';
+    return;
+  }
+
+  const sorted = sortCandidates(candidates);
+  el.innerHTML = sorted.map(c => {
+    const initials = getInitials(c.name);
+
+    const photoUrl = c.candidatePhotoURL?.trim()
+      ? 'https://anandsinhausa.com/' + c.candidatePhotoURL.trim() : '';
+
+    // Party label
+    const partyClass = (c.party||'').toLowerCase().includes('dem') ? 'dem'
+                     : (c.party||'').toLowerCase().includes('rep') ? 'rep' : '';
+    const party = `<div class="card-party ${partyClass}">${c.party || 'Party TBD'}</div>`;
+
+    // Name
+    const nameInner = c.url?.trim()
+      ? `<a href="${c.url}" target="_blank" rel="noopener">${c.name}</a>`
+      : c.name;
+    const name = `<div class="card-name">${nameInner}</div>`;
+
+    // Race + district — needed since cards get grouped by office across many districts
+    // (e.g. "Show All Candidates"), where the office header alone doesn't say which seat.
+    const distLabel = (c.district && c.district.trim().toLowerCase() !== 'statewide') ? c.district.trim() : '';
+    const raceLabel = (OFFICE_LABELS[c.office] || c.office || '') + (distLabel ? ` — ${distLabel}` : '');
+    const raceLine = raceLabel ? `<div class="card-race">${raceLabel}</div>` : '';
+
+    // Date — hide the primary date once it's passed (keep the status label if there is one),
+    // since a completed primary date isn't useful info once it's behind us.
+    const primaryDateObj = parseFlexibleDate(c.primaryDate);
+    const today = new Date(); today.setHours(0,0,0,0);
+    let date;
+    if (primaryDateObj && today <= primaryDateObj) {
+      const formatted = primaryDateObj.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+      date = `<div class="card-date">Primary: <span>${formatted}</span>${c.status ? '  ·  '+c.status : ''}</div>`;
+    } else if (c.status) {
+      date = `<div class="card-date">${c.status}</div>`;
+    } else {
+      date = '';
+    }
+
+    // Photo/initials row
+    const photoHtml = photoUrl
+      ? `<img src="${photoUrl}" alt="${c.name}" onerror="this.style.display='none';">`
+      : `<div class="card-initials">${initials}</div>`;
+
+    const candidateId = 'c-' + c.name.toLowerCase().replace(/[^a-z0-9]/g,'-');
+    const isSelected = getMyChoices()[candidateId] === true;
+
+    return `
+      <div class="candidate-card">
+        <div class="card-photo-row">
+          ${photoHtml}
+        </div>
+        <div class="card-body">
+          ${party}${name}${raceLine}${date}
+          <button class="btn-my-choice${isSelected ? ' selected' : ''}" id="choice-${candidateId}"
+            onclick="toggleMyChoice(this, '${candidateId}')"
+          >${isSelected ? '✓ My Choice' : 'My Choice'}</button>
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+// ── MY CHOICE PERSISTENCE (localStorage, no address or personal data) ──
+function getMyChoices() {
+  try { return JSON.parse(localStorage.getItem('signal-vg-my-choices') || '{}'); }
+  catch(e) { return {}; }
+}
+function setMyChoices(obj) {
+  try { localStorage.setItem('signal-vg-my-choices', JSON.stringify(obj)); }
+  catch(e) {}
+}
+function toggleMyChoice(btn, candidateId) {
+  const choices = getMyChoices();
+  const nowSelected = !choices[candidateId];
+  if (nowSelected) { choices[candidateId] = true; }
+  else { delete choices[candidateId]; }
+  setMyChoices(choices);
+  btn.classList.toggle('selected', nowSelected);
+  btn.textContent = nowSelected ? '✓ My Choice' : 'My Choice';
+  renderWelcomeBanner();
+  renderMyChoiceHomeBox();
+}
+
+// ── MY CHOICE: home-screen box + full summary screen ────────────────────
+function computeCandidateId(name) {
+  return 'c-' + name.toLowerCase().replace(/[^a-z0-9]/g,'-');
+}
+function getSelectedCandidates() {
+  const choices = getMyChoices();
+  return DATA.candidates.filter(c => choices[computeCandidateId(c.name)]);
+}
+function renderMyChoiceHomeBox() {
+  const el = document.getElementById('mychoice-subtext');
+  if (!el) return;
+  const count = Object.keys(getMyChoices()).length;
+  el.textContent = count
+    ? `You've saved ${count} pick${count === 1 ? '' : 's'} so far. Keep browsing to add more, or review your ballot below.`
+    : `You haven't saved any picks yet. Tap "My Choice" on any candidate to start building your ballot.`;
+}
+function showMyChoiceSummary() {
+  showScreen('screen-mychoice');
+  const picks = getSelectedCandidates();
+  if (!picks.length) {
+    document.getElementById('mychoice-results').innerHTML =
+      "<div class=\"prompt-box\">You haven't saved any picks yet. Browse races and tap \"My Choice\" on any candidate to add them here.</div>";
+    return;
+  }
+  renderGroupedCandidates(picks, 'mychoice-results');
+}
+
+// ── OPTIONAL PERSONALIZATION ──
+// Opt-in only. Nothing here is asked unless the visitor has already chosen to save a
+// pick, and it can always be skipped or forgotten. Name (if given) stays in this
+// browser's localStorage — never sent to us, never saved anywhere else.
+function getSavedName() {
+  try { return localStorage.getItem('signal-vg-name') || ''; } catch(e) { return ''; }
+}
+function setSavedName(name) {
+  try { localStorage.setItem('signal-vg-name', name); } catch(e) {}
+}
+function clearSavedName() {
+  try {
+    localStorage.removeItem('signal-vg-name');
+    localStorage.removeItem('signal-vg-asked-name');
+  } catch(e) {}
+}
+function hasAskedName() {
+  try { return localStorage.getItem('signal-vg-asked-name') === '1'; } catch(e) { return false; }
+}
+function markAskedName() {
+  try { localStorage.setItem('signal-vg-asked-name', '1'); } catch(e) {}
+}
+function escapeHtml(s) {
+  return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+
+function renderWelcomeBanner() {
+  const el = document.getElementById('welcome-banner');
+  if (!el) return;
+  const name = getSavedName();
+  const choiceCount = Object.keys(getMyChoices()).length;
+
+  if (name) {
+    el.style.display = 'block';
+    el.innerHTML = `
+      <div class="welcome-text">Welcome back, <strong>${escapeHtml(name)}</strong>${choiceCount ? ` — you have ${choiceCount} saved pick${choiceCount === 1 ? '' : 's'}.` : '.'}</div>
+      <button class="welcome-clear" onclick="handleForgetMe()">Not you? Forget me</button>
+    `;
+  } else if (choiceCount > 0 && !hasAskedName()) {
+    el.style.display = 'block';
+    el.innerHTML = `
+      <div class="welcome-text">You've saved ${choiceCount} pick${choiceCount === 1 ? '' : 's'} in this browser. Want to be greeted by name next time? Totally optional.</div>
+      <div class="welcome-form">
+        <input type="text" id="welcome-name-input" placeholder="First name" maxlength="30">
+        <button class="welcome-save" onclick="handleSaveName()">Save</button>
+        <button class="welcome-skip" onclick="handleSkipName()">No thanks</button>
+      </div>
+      <div class="welcome-fineprint">Stays only in this browser — never sent to us or saved anywhere else.</div>
+    `;
+  } else {
+    el.style.display = 'none';
+    el.innerHTML = '';
+  }
+}
+
+function handleSaveName() {
+  const input = document.getElementById('welcome-name-input');
+  const val = (input && input.value || '').trim();
+  markAskedName();
+  if (val) { setSavedName(val); }
+  renderWelcomeBanner();
+}
+function handleSkipName() {
+  markAskedName();
+  renderWelcomeBanner();
+}
+function handleForgetMe() {
+  clearSavedName();
+  renderWelcomeBanner();
+}
+
+// ── RENDER RACES GROUPED (for My Races screen) ────────────────────────
+function renderGroupedCandidates(candidates, containerId) {
+  const el = document.getElementById(containerId);
+  if (!candidates.length) {
+    el.innerHTML = '<div class="prompt-box">No candidates found for this area. Try refining your address.</div>';
+    return;
+  }
+
+  const groups = {};
+  OFFICE_ORDER.forEach(o => groups[o] = []);
+  candidates.forEach(c => { if (groups[c.office]) groups[c.office].push(c); });
+
+  // Sub-group container IDs are namespaced with containerId so they can't collide with
+  // identically-named groups rendered earlier into a *different* (now-hidden) screen —
+  // hidden screens stay in the DOM, they're not removed, so unqualified IDs like
+  // "group-Governor" used to clash across My Races / My Choice / Browse All Races.
+  let html = '';
+  OFFICE_ORDER.forEach(office => {
+    if (!groups[office].length) return;
+    const key = office.replace(/\s/g,'-').replace(/[^a-z0-9-]/gi,'');
+    html += `<div class="race-group">
+      <div class="race-group-header">${OFFICE_LABELS[office]}</div>
+      <div id="${containerId}-group-${key}"></div>
+    </div>`;
+  });
+
+  el.innerHTML = html;
+
+  OFFICE_ORDER.forEach(office => {
+    if (!groups[office].length) return;
+    const key = office.replace(/\s/g,'-').replace(/[^a-z0-9-]/gi,'');
+    renderCandidateCards(groups[office], `${containerId}-group-${key}`);
+  });
+}
+
+// ── MY RACES FILTER ───────────────────────────────────────────────────
+function setMyRacesFilter(btn, val) {
+  document.querySelectorAll('#my-races-filters .filter-chip').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  myRacesFilter = val;
+
+  let filtered = myRacesCandidates;
+  if (val !== 'all') {
+    filtered = val === 'Local' ? myRacesCandidates.filter(c => c.office.startsWith('Local -'))
+      : myRacesCandidates.filter(c => c.office === val);
+  }
+  renderGroupedCandidates(filtered, 'my-races-results');
+}
+
+// ── ADDRESS LOOKUP ────────────────────────────────────────────────────
+function handleGetStarted() {
+  const address = document.getElementById('addressInput').value.trim();
+  if (!address || address.length < 5) {
+    document.getElementById('addressInput').focus();
+    return;
+  }
+  doAddressLookup(address);
+}
+
+async function doAddressLookup(address) {
+  document.getElementById('display-address').textContent = address;
+  showScreen('screen-my-races');
+  document.getElementById('my-races-results').innerHTML =
+    '<div class="loading"><div class="spinner"></div> Looking up your districts...</div>';
+  document.getElementById('my-races-filters').style.display = 'none';
+  document.getElementById('split-zip-banner').style.display = 'none';
+
+  // ZIP-only path
+  const zipMatch = address.match(/^\s*(\d{5})\s*$/);
+  if (zipMatch) {
+    await lookupByZip(zipMatch[1]);
+    return;
+  }
+
+  // Full address path
+  try {
+    const url = `https://a4h-voter-lookup.sinha-anand.workers.dev/?address=${encodeURIComponent(address)}`;
+    const res = await fetch(url);
+    const data = await res.json();
+    if (!res.ok || data.error) throw new Error(data.error || 'Lookup failed');
+    if (!data.divisions) throw new Error('No district data returned');
+
+    const keys = Object.keys(data.divisions);
+    let state=null, cd=null, sldu=null, sldl=null;
+    keys.forEach(k => {
+      let m;
+      if (!state && (m = k.match(/\/state:([a-z]{2})/i))) state = m[1].toUpperCase();
+      if (!cd    && (m = k.match(/\/cd:(\d+)/)))          cd = m[1];
+      if (!sldu  && (m = k.match(/\/sldu:(\d+)/)))        sldu = m[1];
+      if (!sldl  && (m = k.match(/\/sldl:(\d+)/)))        sldl = m[1];
+    });
+    if (!state) throw new Error('Could not determine state');
+
+    currentState = state;
+    const districtCodes = {
+      'Governor': 'Statewide', 'US Senate': 'Statewide',
+      'US House': cd ? `${state}-${parseInt(cd)}` : null,
+      'State Senate': sldu ? `SD-${parseInt(sldu)}` : null,
+      'State House': sldl ? `HD-${parseInt(sldl)}` : null
+    };
+
+    const results = DATA.candidates.filter(c => {
+      if (c.state !== state) return false;
+      if (!c.zipCodes || String(c.zipCodes).trim() === '') return true;
+      const expected = districtCodes[c.office];
+      return expected && matchesDistrict(c.district, expected, c.office);
+    });
+
+    // Add local via ZIP from address
+    const zMatch = address.match(/\b(\d{5})\b/);
+    if (zMatch) {
+      DATA.candidates.filter(c =>
+        c.state === state &&
+        (c.office.startsWith('Local -') || c.office === 'State Board') &&
+        c.zipCodes && String(c.zipCodes).includes(zMatch[1])
+      ).forEach(lc => { if (!results.find(r => r.name===lc.name && r.office===lc.office)) results.push(lc); });
+    }
+
+    showMyRacesResults(results, false);
+  } catch(err) {
+    document.getElementById('my-races-results').innerHTML =
+      `<div class="prompt-box">❌ Could not find your districts: ${err.message}<br><br>Please try entering a full address with city and state, or just your 5-digit ZIP code.</div>`;
+  }
+}
+
+async function lookupByZip(zip) {
+  const zipMatches = DATA.zipCodes.filter(z => z.zip === zip);
+  if (!zipMatches.length) {
+    document.getElementById('my-races-results').innerHTML =
+      '<div class="prompt-box">No races found for this ZIP code. Please try your full street address.</div>';
+    return;
+  }
+
+  const zipState = zipMatches[0].state;
+  currentState = zipState;
+
+  const results = DATA.candidates.filter(c => {
+    if (c.state !== zipState) return false;
+    if (c.office === 'Governor' || c.office === 'US Senate') return true;
+    const matches = zipMatches.filter(z => z.office === c.office && z.state === c.state);
+    if (matches.length > 0) return matches.some(z => matchesDistrict(c.district, z.district, c.office));
+    if (!c.zipCodes || String(c.zipCodes).trim() === '') return true;
+    if (c.zipCodes && String(c.zipCodes).includes(zip)) return true;
+    return false;
+  });
+
+  const isSplit = DATA.splitZips.has(zip);
+  showMyRacesResults(results, isSplit);
+}
+
+function showMyRacesResults(results, isSplit) {
+  myRacesCandidates = results;
+  myRacesFilter = 'all';
+  document.querySelectorAll('#my-races-filters .filter-chip').forEach(b => b.classList.remove('active'));
+  document.querySelector('#my-races-filters .filter-chip').classList.add('active');
+  document.getElementById('my-races-filters').style.display = results.length ? 'flex' : 'none';
+
+  if (isSplit) document.getElementById('split-zip-banner').style.display = 'block';
+
+  renderGroupedCandidates(results, 'my-races-results');
+  updateDataSourceLine(results);
+}
+
+// Finds the most recent "Last Verified" date among the candidates actually being shown,
+// rather than a single hardcoded date for the whole site — different states get
+// certified/verified at different times, so this should reflect the real result set.
+function updateDataSourceLine(candidates) {
+  const el = document.getElementById('data-source-line');
+  if (!el) return;
+  let latest = null;
+  candidates.forEach(c => {
+    const d = parseFlexibleDate(c.lastVerified);
+    if (d && (!latest || d > latest)) latest = d;
+  });
+  el.textContent = latest
+    ? `Data last updated: ${latest.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })} · Source: state Secretary of State filings`
+    : `Source: state Secretary of State filings`;
+}
+
+function refineByAddress() {
+  const addr = document.getElementById('refine-address').value.trim();
+  if (addr.length > 4) doAddressLookup(addr);
+}
+
+// ── DISTRICT MATCHING (preserved exactly from original) ───────────────
+function normalizeDistrictNumber(v) {
+  const m = String(v||'').match(/\d+/);
+  return m ? String(parseInt(m[0],10)) : null;
+}
+function normalizeStatePrefix(v) {
+  const m = String(v||'').match(/^([A-Z]{2})-/i);
+  return m ? m[1].toUpperCase() : null;
+}
+function matchesDistrict(cDist, lDist, office) {
+  if (!cDist||!lDist) return false;
+  const c = String(cDist).trim().toUpperCase();
+  const l = String(lDist).trim().toUpperCase();
+  if (c===l) return true;
+  const cn = normalizeDistrictNumber(c), ln = normalizeDistrictNumber(l);
+  if (!cn||!ln||cn!==ln) return false;
+  if (office==='US House') {
+    const cs = normalizeStatePrefix(c), ls = normalizeStatePrefix(l);
+    return cs && ls && cs===ls;
+  }
+  return true;
+}
+
+// ── ADDRESS AUTOCOMPLETE ──────────────────────────────────────────────
+const addressInput = document.getElementById('addressInput');
+const dropdown = document.getElementById('autocomplete-dropdown');
+
+addressInput.addEventListener('input', function() {
+  clearTimeout(autocompleteTimeout);
+  const q = this.value;
+  if (q.length < 3) { dropdown.style.display = 'none'; return; }
+  autocompleteTimeout = setTimeout(() => fetchSuggestions(q), 300);
+});
+
+addressInput.addEventListener('keydown', e => {
+  if (e.key === 'Enter') { dropdown.style.display = 'none'; handleGetStarted(); }
+});
+
+document.addEventListener('click', e => {
+  if (!addressInput.contains(e.target) && !dropdown.contains(e.target)) {
+    dropdown.style.display = 'none';
+  }
+});
+
+async function fetchSuggestions(q) {
+  try {
+    const url = `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(q)}&countrycodes=us&format=json&limit=5&addressdetails=1`;
+    const res = await fetch(url, { headers: { 'User-Agent': 'A4H-Voter-Guide/2.0' } });
+    const results = await res.json();
+    if (!results?.length) { dropdown.style.display = 'none'; return; }
+
+    dropdown.innerHTML = results.map(r => {
+      const a = r.address || {};
+      const parts = [a.house_number, a.road, a.city||a.town||a.village, a.state, a.postcode].filter(Boolean);
+      const display = parts.join(', ');
+      const full = r.display_name;
+      return `<div class="autocomplete-item" onclick="selectAutocomplete('${full.replace(/'/g,"\\'")}')">${display}</div>`;
+    }).join('');
+    dropdown.style.display = 'block';
+  } catch(e) { dropdown.style.display = 'none'; }
+}
+
+function selectAutocomplete(fullAddress) {
+  const parts = fullAddress.split(', ');
+  const stateMap = {
+    'Alabama':'AL','Alaska':'AK','Arizona':'AZ','Arkansas':'AR','California':'CA',
+    'Colorado':'CO','Connecticut':'CT','Delaware':'DE','Florida':'FL','Georgia':'GA',
+    'Hawaii':'HI','Idaho':'ID','Illinois':'IL','Indiana':'IN','Iowa':'IA',
+    'Kansas':'KS','Kentucky':'KY','Louisiana':'LA','Maine':'ME','Maryland':'MD',
+    'Massachusetts':'MA','Michigan':'MI','Minnesota':'MN','Mississippi':'MS','Missouri':'MO',
+    'Montana':'MT','Nebraska':'NE','Nevada':'NV','New Hampshire':'NH','New Jersey':'NJ',
+    'New Mexico':'NM','New York':'NY','North Carolina':'NC','North Dakota':'ND','Ohio':'OH',
+    'Oklahoma':'OK','Oregon':'OR','Pennsylvania':'PA','Rhode Island':'RI','South Carolina':'SC',
+    'South Dakota':'SD','Tennessee':'TN','Texas':'TX','Utah':'UT','Vermont':'VT',
+    'Virginia':'VA','Washington':'WA','West Virginia':'WV','Wisconsin':'WI','Wyoming':'WY'
+  };
+
+  let house='', street='', city='', state='', zip='';
+  for (const p of parts) { if (/^\d{5}$/.test(p)) { zip=p; break; } }
+  for (const [name, code] of Object.entries(stateMap)) {
+    if (parts.includes(name)) { state=code; break; }
+  }
+  if (parts.length >= 2) { house = parts[0]; street = parts[1]; }
+  const stateIdx = parts.findIndex(p => stateMap[p]);
+  if (stateIdx > 2) {
+    const prev = parts[stateIdx-1];
+    city = prev?.endsWith(' County') ? (parts[stateIdx-2]||'') : prev||'';
+  }
+
+  const clean = [house && street ? `${house} ${street}` : parts[0], city, state, zip].filter(Boolean).join(', ');
+  addressInput.value = clean || fullAddress.split(',').slice(0,3).join(',').trim();
+  dropdown.style.display = 'none';
+}
+
+
+// ── THEME TOGGLE ─────────────────────────────────────────────────────
+function toggleDarkMode() {
+  const body = document.body;
+  const btn = document.getElementById('theme-btn');
+  body.classList.toggle('dark-mode');
+  const isDark = body.classList.contains('dark-mode');
+  // Show the OPPOSITE icon — what you'll switch TO next click
+  btn.textContent = isDark ? '☀' : '🌙';
+  btn.title = isDark ? 'Switch to Light' : 'Switch to Dark';
+  try { localStorage.setItem('a4h-theme', isDark ? 'dark' : 'light'); } catch(e) {}
+}
+// Restore saved theme on load
+try {
+  if (localStorage.getItem('a4h-theme') === 'dark') {
+    document.body.classList.add('dark-mode');
+    document.getElementById('theme-btn').textContent = '☀';
+  }
+} catch(e) {}
+
+// ── INIT ──────────────────────────────────────────────────────────────
+loadData();
+buildMyStateDropdown(); // Populate both state dropdowns (My State box + Browse All Races)
+renderWelcomeBanner(); // Show welcome-back greeting immediately if this browser opted in
+renderMyChoiceHomeBox(); // Reflect any previously saved picks on load
+
+</script>
+<!-- SIGNAL:ENGAGEMENT:START — DO NOT EDIT. Edit engagement.html and run build_hero.py -->
+<!--
+  THE SIGNAL VOTER GUIDE — SHARED ENGAGEMENT COMPONENT
+  =====================================================
+  Single source of truth for Rate / Send Feedback / Subscribe —
+  the bar under the footer, the three modals, and the submission
+  logic — used identically on both index.html (New) and
+  classic.html (Classic).
+
+  DO NOT edit this section directly in index.html or classic.html.
+  Edit this file, then run: python3 build_hero.py
+  (the same build script now injects both hero.html and this file,
+  each into its own reserved marker slot.)
+
+  ── BEFORE THIS WORKS ──
+  Set ENGAGEMENT_ENDPOINT below to your deployed Apps Script Web
+  App URL (Deploy > Manage deployments > Web app > URL, ending in
+  /exec). Nothing will submit until that's filled in. Everything
+  else works out of the box.
+
+  All three actions write into your existing "Anand Sinha — Site"
+  master sheet — Ratings / Subscribers / ArticleFeedback tabs —
+  tagged with article: "Voter Guide", so nothing new is created
+  on the sheet side.
+-->
+<style>
+/* ── ENGAGEMENT BAR (directly under the footer, same navy) ── */
+.engagement-bar {
+  background: #0e1a29;
+  padding: 16px 20px 30px;
+}
+.engagement-bar-inner {
+  max-width: 1040px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0;
+}
+.engagement-bar-item {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 0 18px;
+  margin: 4px 0;
+  border-right: 1px solid rgba(212,175,55,0.25);
+  background: none;
+  border-top: none;
+  border-bottom: none;
+  border-left: none;
+  color: #c3ccd6;
+  font-size: 13px;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+}
+.engagement-bar-item:last-child { border-right: none; }
+.engagement-bar-item svg { width: 14px; height: 14px; color: #D4AF37; flex-shrink: 0; }
+.engagement-bar-item:hover { color: #fff; }
+@media (max-width: 480px) {
+  .engagement-bar-item { padding: 0 12px; font-size: 12.5px; }
+}
+
+/* ── MODAL OVERLAY + CARD (reuses .ballot-card visual language) ── */
+.signal-modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(10,16,24,0.72);
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.signal-modal-overlay.open { display: flex; }
+.signal-modal {
+  background: #fff;
+  border-radius: 14px;
+  padding: 32px 28px;
+  max-width: 440px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  text-align: left;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+  position: relative;
+}
+body.dark-mode .signal-modal { background: var(--surface, #111d33); }
+.signal-modal-close {
+  position: absolute;
+  top: 16px; right: 16px;
+  width: 28px; height: 28px;
+  border: none;
+  background: transparent;
+  color: #98a5b3;
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.signal-modal-close:hover { color: #1a1a1a; }
+body.dark-mode .signal-modal-close:hover { color: #fff; }
+.signal-modal h2 {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 22px;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin-bottom: 6px;
+}
+body.dark-mode .signal-modal h2 { color: #fff; }
+.signal-modal-subtext { font-size: 13.5px; color: #666; margin-bottom: 20px; line-height: 1.5; }
+body.dark-mode .signal-modal-subtext { color: var(--tdim, #8899b0); }
+.signal-modal-field { margin-bottom: 14px; }
+.signal-modal-label { display: block; font-size: 12px; font-weight: 700; color: #333; margin-bottom: 6px; }
+body.dark-mode .signal-modal-label { color: #c3ccd6; }
+.signal-modal-input,
+.signal-modal-textarea {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1.5px solid #cfd8e3;
+  border-radius: 8px;
+  font-size: 14.5px;
+  font-family: inherit;
+  background: #fff;
+  color: #1a1a1a;
+}
+body.dark-mode .signal-modal-input,
+body.dark-mode .signal-modal-textarea {
+  background: var(--bg2, #0b1628); border-color: var(--bord2, rgba(255,255,255,0.14)); color: #fff;
+}
+.signal-modal-textarea { resize: vertical; min-height: 90px; }
+.signal-modal-submit {
+  width: 100%;
+  background: #2b3e50;
+  color: #fff;
+  border: none;
+  padding: 13px 20px;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+  margin-top: 4px;
+}
+.signal-modal-submit:hover { background: #223140; }
+.signal-modal-submit:disabled { opacity: 0.6; cursor: default; }
+body.dark-mode .signal-modal-submit { background: #3bbfaa; color: #06110d; }
+.signal-modal-privacy { font-size: 12px; color: #8a8a8a; margin-top: 12px; line-height: 1.5; }
+body.dark-mode .signal-modal-privacy { color: var(--tmuted, #566070); }
+.signal-modal-success {
+  display: none;
+  text-align: center;
+  padding: 12px 0 4px;
+  font-size: 14.5px;
+  font-weight: 600;
+  color: #1a8a5a;
+}
+.signal-modal-error {
+  display: none;
+  text-align: center;
+  padding: 10px 0 0;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #a83246;
+}
+
+/* Star rating */
+.star-rating { display: flex; gap: 6px; margin-bottom: 18px; }
+.star-rating button {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  font-size: 30px;
+  line-height: 1;
+  color: #d8dee6;
+}
+.star-rating button.filled { color: #D4AF37; }
+body.dark-mode .star-rating button { color: #2a3550; }
+body.dark-mode .star-rating button.filled { color: #D4AF37; }
+</style>
+
+<div class="engagement-bar">
+  <div class="engagement-bar-inner">
+    <button class="engagement-bar-item" onclick="signalOpenModal('rate')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+      Rate This Guide
+    </button>
+    <button class="engagement-bar-item" onclick="signalOpenModal('feedback')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+      Send Feedback
+    </button>
+    <button class="engagement-bar-item" onclick="signalOpenModal('subscribe')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+      Subscribe for Updates
+    </button>
+  </div>
+</div>
+
+<!-- RATE MODAL -->
+<div class="signal-modal-overlay" id="signal-modal-rate" onclick="if(event.target===this) signalCloseModal('rate')">
+  <div class="signal-modal">
+    <button class="signal-modal-close" onclick="signalCloseModal('rate')" aria-label="Close">&times;</button>
+    <h2>Rate This Guide</h2>
+    <p class="signal-modal-subtext">How useful was The Signal Voter Guide in finding your ballot?</p>
+    <form onsubmit="return signalSubmit(event, 'rate')">
+      <div class="star-rating" id="signal-star-rating">
+        <button type="button" data-star="1" onclick="signalSetStars(1)">★</button>
+        <button type="button" data-star="2" onclick="signalSetStars(2)">★</button>
+        <button type="button" data-star="3" onclick="signalSetStars(3)">★</button>
+        <button type="button" data-star="4" onclick="signalSetStars(4)">★</button>
+        <button type="button" data-star="5" onclick="signalSetStars(5)">★</button>
+      </div>
+      <div class="signal-modal-field">
+        <label class="signal-modal-label" for="signal-rate-comment">Comment (optional)</label>
+        <textarea class="signal-modal-textarea" id="signal-rate-comment" placeholder="Anything that would make this more useful?"></textarea>
+      </div>
+      <div class="signal-modal-field">
+        <label class="signal-modal-label" for="signal-rate-name">Name (optional)</label>
+        <input class="signal-modal-input" type="text" id="signal-rate-name" placeholder="Anonymous">
+      </div>
+      <button type="submit" class="signal-modal-submit">Submit Rating</button>
+      <div class="signal-modal-success" id="signal-rate-success">Thank you — your rating was submitted.</div>
+      <div class="signal-modal-error" id="signal-rate-error"></div>
+    </form>
+  </div>
+</div>
+
+<!-- FEEDBACK MODAL -->
+<div class="signal-modal-overlay" id="signal-modal-feedback" onclick="if(event.target===this) signalCloseModal('feedback')">
+  <div class="signal-modal">
+    <button class="signal-modal-close" onclick="signalCloseModal('feedback')" aria-label="Close">&times;</button>
+    <h2>Send Feedback</h2>
+    <p class="signal-modal-subtext">Found a bug, missing candidate, or have a suggestion? Tell us directly.</p>
+    <form onsubmit="return signalSubmit(event, 'feedback')">
+      <div class="signal-modal-field">
+        <label class="signal-modal-label" for="signal-feedback-message">Message</label>
+        <textarea class="signal-modal-textarea" id="signal-feedback-message" required placeholder="What's on your mind?"></textarea>
+      </div>
+      <div class="signal-modal-field">
+        <label class="signal-modal-label" for="signal-feedback-name">Name (optional)</label>
+        <input class="signal-modal-input" type="text" id="signal-feedback-name" placeholder="Anonymous">
+      </div>
+      <div class="signal-modal-field">
+        <label class="signal-modal-label" for="signal-feedback-email">Email (optional — only if you'd like a reply)</label>
+        <input class="signal-modal-input" type="email" id="signal-feedback-email" placeholder="you@example.com">
+      </div>
+      <button type="submit" class="signal-modal-submit">Send Feedback</button>
+      <div class="signal-modal-success" id="signal-feedback-success">Thank you — your feedback was sent.</div>
+      <div class="signal-modal-error" id="signal-feedback-error"></div>
+    </form>
+  </div>
+</div>
+
+<!-- SUBSCRIBE MODAL -->
+<div class="signal-modal-overlay" id="signal-modal-subscribe" onclick="if(event.target===this) signalCloseModal('subscribe')">
+  <div class="signal-modal">
+    <button class="signal-modal-close" onclick="signalCloseModal('subscribe')" aria-label="Close">&times;</button>
+    <h2>Subscribe for Updates</h2>
+    <p class="signal-modal-subtext">Get notified when new candidates, races, or election dates are added.</p>
+    <form onsubmit="return signalSubmit(event, 'subscribe')">
+      <div class="signal-modal-field">
+        <label class="signal-modal-label" for="signal-subscribe-email">Email</label>
+        <input class="signal-modal-input" type="email" id="signal-subscribe-email" required placeholder="you@example.com">
+      </div>
+      <div class="signal-modal-field">
+        <label class="signal-modal-label" for="signal-subscribe-name">Name (optional)</label>
+        <input class="signal-modal-input" type="text" id="signal-subscribe-name" placeholder="Anonymous">
+      </div>
+      <button type="submit" class="signal-modal-submit">Subscribe</button>
+      <p class="signal-modal-privacy">Your email is never sold or shared. Unsubscribe any time by replying to any update.</p>
+      <div class="signal-modal-success" id="signal-subscribe-success">Thank you — you're subscribed.</div>
+      <div class="signal-modal-error" id="signal-subscribe-error"></div>
+    </form>
+  </div>
+</div>
+
+<script>
+// ── THE SIGNAL — ENGAGEMENT SUBMISSION ─────────────────────────────
+// Fill in your deployed Apps Script Web App URL (ends in /exec).
+// Nothing submits until this is set.
+const ENGAGEMENT_ENDPOINT = 'https://script.google.com/macros/s/AKfycbwtVwCmtQI2QmYW47rzQUrm1kgghpcqGgaYHdfUWXFv9EglpJ8UgS_XJPj2i1xLxzLa5w/exec';
+
+// Every submission from this app is tagged with this value so it's
+// filterable in the shared Ratings / Subscribers / ArticleFeedback
+// tabs without needing separate sheets.
+const ENGAGEMENT_SOURCE = 'Voter Guide';
+
+let signalSelectedStars = 0;
+
+function signalOpenModal(name) {
+  const el = document.getElementById('signal-modal-' + name);
+  if (el) el.classList.add('open');
+}
+
+function signalCloseModal(name) {
+  const el = document.getElementById('signal-modal-' + name);
+  if (el) el.classList.remove('open');
+}
+
+// Escape key closes whichever modal is open
+document.addEventListener('keydown', function (e) {
+  if (e.key !== 'Escape') return;
+  ['rate', 'feedback', 'subscribe'].forEach(signalCloseModal);
+});
+
+function signalSetStars(n) {
+  signalSelectedStars = n;
+  document.querySelectorAll('#signal-star-rating button').forEach(function (btn) {
+    btn.classList.toggle('filled', Number(btn.dataset.star) <= n);
+  });
+}
+
+function signalSubmit(evt, kind) {
+  evt.preventDefault();
+  const form = evt.target;
+  const submitBtn = form.querySelector('.signal-modal-submit');
+  const successEl = document.getElementById('signal-' + kind + '-success');
+  const errorEl = document.getElementById('signal-' + kind + '-error');
+  const defaultLabel = kind === 'rate' ? 'Submit Rating' : (kind === 'feedback' ? 'Send Feedback' : 'Subscribe');
+
+  errorEl.style.display = 'none';
+  errorEl.textContent = '';
+
+  if (ENGAGEMENT_ENDPOINT.indexOf('PASTE_YOUR_WEB_APP_EXEC_URL_HERE') !== -1) {
+    alert('Engagement endpoint not configured yet — set ENGAGEMENT_ENDPOINT in the engagement partial.');
+    return false;
+  }
+
+  let payload;
+  if (kind === 'rate') {
+    if (!signalSelectedStars) { alert('Please select a star rating.'); return false; }
+    payload = {
+      action: 'rate',
+      article: ENGAGEMENT_SOURCE,
+      stars: signalSelectedStars,
+      comment: document.getElementById('signal-rate-comment').value.trim(),
+      name: document.getElementById('signal-rate-name').value.trim(),
+    };
+  } else if (kind === 'feedback') {
+    payload = {
+      action: 'feedback',
+      article: ENGAGEMENT_SOURCE,
+      name: document.getElementById('signal-feedback-name').value.trim(),
+      email: document.getElementById('signal-feedback-email').value.trim(),
+      message: document.getElementById('signal-feedback-message').value.trim(),
+    };
+  } else if (kind === 'subscribe') {
+    payload = {
+      action: 'subscribe',
+      article: ENGAGEMENT_SOURCE,
+      name: document.getElementById('signal-subscribe-name').value.trim(),
+      email: document.getElementById('signal-subscribe-email').value.trim(),
+    };
+  }
+
+  submitBtn.disabled = true;
+  submitBtn.textContent = 'Sending…';
+
+  // text/plain avoids triggering a CORS preflight (a JSON content-type
+  // would). This lets us make a normal fetch — no `no-cors` — and
+  // actually read the response, so a real backend error (unknown
+  // action, bad payload, etc.) shows up to the user instead of a
+  // false "success" that never actually saved anything.
+  fetch(ENGAGEMENT_ENDPOINT, {
+    method: 'POST',
+    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+    body: JSON.stringify(payload),
+  })
+    .then(function (res) {
+      if (!res.ok) throw new Error('Bad response: ' + res.status);
+      return res.json();
+    })
+    .then(function (data) {
+      if (!data || data.ok !== true) {
+        throw new Error((data && data.error) || 'Submission was not accepted.');
+      }
+      form.querySelectorAll('input, textarea, button[type=submit]').forEach(function (el) { el.style.display = 'none'; });
+      document.querySelectorAll('#signal-modal-' + kind + ' .signal-modal-label').forEach(function (el) { el.style.display = 'none'; });
+      successEl.style.display = 'block';
+      setTimeout(function () {
+        signalCloseModal(kind);
+        form.reset();
+        signalSelectedStars = 0;
+        if (kind === 'rate') {
+          document.querySelectorAll('#signal-star-rating button').forEach(function (b) { b.classList.remove('filled'); });
+        }
+        form.querySelectorAll('input, textarea, button[type=submit]').forEach(function (el) { el.style.display = ''; });
+        document.querySelectorAll('#signal-modal-' + kind + ' .signal-modal-label').forEach(function (el) { el.style.display = ''; });
+        successEl.style.display = 'none';
+        submitBtn.disabled = false;
+        submitBtn.textContent = defaultLabel;
+      }, 1800);
+    })
+    .catch(function (err) {
+      errorEl.textContent = 'Something went wrong — please try again. (' + err.message + ')';
+      errorEl.style.display = 'block';
+      submitBtn.disabled = false;
+      submitBtn.textContent = defaultLabel;
+    });
+
+  return false;
+}
+</script>
+
+<!-- SIGNAL:ENGAGEMENT:END -->
+</body>
+</html>
