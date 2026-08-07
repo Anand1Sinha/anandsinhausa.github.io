@@ -1,0 +1,281 @@
+<!--
+  THE SIGNAL — SHARED HERO COMPONENT
+  ===================================
+  Single source of truth for the hero (eyebrow, headline, subtitle, map,
+  trust strip, and ballot search card) used identically on both
+  voterguide/index.html (New) and voterguide/classic.html (Classic).
+
+  DO NOT edit the hero directly in index.html or classic.html.
+  Edit this file, then run: python3 build_hero.py
+  That script injects this file's content into the reserved hero slot
+  in both pages, byte-for-byte identical. Everything below the hero
+  (action cards vs. address/register boxes, screens, JS, routing,
+  data) is untouched by the build — only the hero slot is ever
+  replaced.
+-->
+<style>
+/* ── HERO — editorial cover, matches approved OG artwork ── */
+.hero-v2 {
+  background:
+    radial-gradient(ellipse 900px 500px at 88% 0%, rgba(212,175,55,0.07) 0%, transparent 60%),
+    linear-gradient(160deg, #0c1420 0%, #16283f 55%, #0c1420 100%);
+  color: #fff;
+  padding: 2.75rem 1.5rem 0;
+  position: relative;
+  overflow: hidden;
+}
+@media (max-width: 860px) {
+  .hero-v2 { padding: 3.25rem 1.5rem 0; }
+}
+.hero-v2-content {
+  position: relative;
+  z-index: 1;
+  max-width: 1280px;
+  margin: 0 auto;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+}
+.hero-v2-mapwrap {
+  flex: 0 1 50%;
+  max-width: 640px;
+  margin-top: 10px;
+  pointer-events: none;
+  opacity: 0.85;
+}
+.hero-v2-mapwrap svg { width: 100%; height: auto; display: block; }
+@media (max-width: 860px) {
+  .hero-v2-mapwrap { display: none; }
+}
+.hero-v2-inner {
+  position: relative;
+  text-align: left;
+  flex: 0 1 45%;
+}
+.hero-v2 .hero-eyebrow {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 4px;
+  color: #D4AF37;
+  margin-bottom: 14px;
+}
+.hero-v2 h1 {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: clamp(34px, 5.6vw, 72px);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.08;
+  margin-bottom: 18px;
+}
+.hero-v2 h1 .gold { color: #D4AF37; }
+.hero-v2-subtitle {
+  color: #a8bcd8;
+  font-size: clamp(15px, 1.8vw, 18px);
+  font-weight: 500;
+  max-width: 440px;
+  margin: 0 0 20px;
+  line-height: 1.55;
+}
+@media (max-width: 860px) {
+  .hero-v2-inner { flex: 1 1 100%; max-width: 100%; text-align: center; }
+  .hero-v2-inner .hero-v2-subtitle { margin-left: auto; margin-right: auto; }
+}
+
+/* ── TRUST STRIP — flat editorial row, spans full hero width ── */
+.hero-trust-strip {
+  position: relative;
+  z-index: 1;
+  max-width: 1280px;
+  margin: 8px auto 26px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0;
+}
+.hero-trust-item {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 0 20px 0 0;
+  margin-right: 20px;
+  border-right: 1px solid rgba(212,175,55,0.28);
+}
+.hero-trust-item:last-child { border-right: none; margin-right: 0; padding-right: 0; }
+.hero-trust-item svg { width: 16px; height: 16px; flex-shrink: 0; color: rgba(212,175,55,0.9); stroke-width: 1.6; }
+.hero-trust-label {
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.6px;
+  color: #c3ccd6;
+  text-transform: uppercase;
+  line-height: 1.4;
+  white-space: nowrap;
+}
+@media (max-width: 860px) {
+  .hero-trust-strip { justify-content: center; }
+}
+@media (max-width: 640px) {
+  .hero-trust-strip { gap: 14px 0; }
+  .hero-trust-item { margin-right: 0; padding-right: 0; border-right: none; flex: 1 1 40%; justify-content: center; }
+}
+
+/* ── BALLOT CARD (embedded at base of hero) ── */
+.ballot-card-wrap {
+  position: relative;
+  z-index: 1;
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 0 40px;
+  transform: translateY(28px);
+}
+.ballot-card {
+  background: #fff;
+  border-radius: 14px;
+  padding: 32px 28px;
+  text-align: left;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.35);
+}
+.ballot-card h2 {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 24px;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin-bottom: 6px;
+}
+.ballot-card-subtext { font-size: 14px; color: #666; margin-bottom: 18px; }
+.ballot-search-row { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 12px; }
+.ballot-input-wrap { flex: 1; min-width: 220px; position: relative; }
+.ballot-input {
+  width: 100%;
+  padding: 14px 16px 14px 40px;
+  border: 1.5px solid #cfd8e3;
+  border-radius: 8px;
+  font-size: 15px;
+  font-family: inherit;
+}
+.ballot-input-icon {
+  position: absolute;
+  left: 13px; top: 50%;
+  transform: translateY(-50%);
+  width: 16px; height: 16px;
+  color: #98a5b3;
+  pointer-events: none;
+}
+.btn-ballot-primary {
+  background: #2b3e50;
+  color: #fff;
+  border: none;
+  padding: 14px 26px;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.btn-ballot-primary:hover { background: #223140; }
+.ballot-privacy {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+  font-size: 12.5px;
+  color: #8a8a8a;
+  line-height: 1.5;
+}
+.ballot-privacy svg { width: 13px; height: 13px; flex-shrink: 0; margin-top: 2px; }
+.ballot-count-line { font-size: 13px; color: #777; margin-top: 14px; }
+.ballot-count-line a { color: #1a6fa8; font-weight: 600; text-decoration: none; }
+.ballot-count-line a:hover { text-decoration: underline; }
+@media (max-width: 480px) {
+  .ballot-input-wrap { min-width: 100%; }
+  .btn-ballot-primary { width: 100%; }
+}
+
+body.dark-mode .ballot-card { background: var(--surface); }
+body.dark-mode .ballot-card h2 { color: #fff; }
+body.dark-mode .ballot-card-subtext { color: var(--tdim); }
+body.dark-mode .ballot-input { background: var(--bg2); border-color: var(--bord2); color: #fff; }
+body.dark-mode .btn-ballot-primary { background: #3bbfaa; color: #06110d; }
+body.dark-mode .btn-ballot-primary:hover { background: #35ab98; }
+body.dark-mode .ballot-privacy { color: var(--tmuted); }
+body.dark-mode .ballot-count-line { color: var(--tdim); }
+</style>
+
+<div class="hero-v2">
+  <div class="hero-v2-content">
+    <div class="hero-v2-inner">
+      <div class="hero-eyebrow">— THE SIGNAL —</div>
+      <h1>Everything on Your Ballot.<br><span class="gold">One Place.</span></h1>
+      <p class="hero-v2-subtitle">Find every federal, state, county, city, and school board race for your address.</p>
+    </div>
+
+    <div class="hero-v2-mapwrap" aria-hidden="true">
+      <svg viewBox="0 0 600 400" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <filter id="signal-dot-glow" x="-200%" y="-200%" width="500%" height="500%">
+            <feGaussianBlur stdDeviation="3.2" result="blur"/>
+          </filter>
+        </defs>
+        <path d="M590,67 L552,94 L559,112 L553,117 L539,128 L519,152 L509,168 L498,192 L498,194 L504,221 L493,229 L468,253 L447,280 L442,293 L456,371 L439,390 L427,309 L408,309 L382,299 L363,301 L361,317 L341,312 L315,309 L285,339 L281,368 L188,275 L171,283 L142,283 L105,264 L80,264 L66,240 L46,232 L25,179 L6,138 L8,112 L3,34 L3,10 L25,3 L92,2 L214,2 L285,2 L303,2 L307,8 L336,37 L413,42 L430,85 L418,88 L431,93 L426,109 L468,100 L482,95 L526,66 L570,63 Z"
+          fill="rgba(212,175,55,0.04)" stroke="rgba(212,175,55,0.34)" stroke-width="0.85" stroke-linejoin="round"/>
+        <g fill="#D4AF37" opacity="0.45" filter="url(#signal-dot-glow)">
+          <circle cx="539" cy="140" r="2.4"/><circle cx="498" cy="180" r="2"/><circle cx="460" cy="270" r="2"/>
+          <circle cx="410" cy="160" r="2"/><circle cx="300" cy="300" r="2"/><circle cx="230" cy="220" r="2"/>
+          <circle cx="90" cy="250" r="2"/><circle cx="40" cy="60" r="2"/><circle cx="450" cy="360" r="2"/>
+          <circle cx="555" cy="105" r="2"/><circle cx="430" cy="110" r="2"/><circle cx="150" cy="275" r="2"/>
+          <circle cx="330" cy="90" r="2"/><circle cx="305" cy="320" r="2"/><circle cx="40" cy="180" r="2"/>
+          <circle cx="410" cy="240" r="2"/>
+        </g>
+        <g fill="#f0dfa8">
+          <circle cx="539" cy="140" r="1.3"/><circle cx="498" cy="180" r="1"/><circle cx="460" cy="270" r="1"/>
+          <circle cx="410" cy="160" r="1"/><circle cx="300" cy="300" r="1"/><circle cx="230" cy="220" r="1"/>
+          <circle cx="90" cy="250" r="1"/><circle cx="40" cy="60" r="1"/><circle cx="450" cy="360" r="1"/>
+          <circle cx="555" cy="105" r="1"/><circle cx="430" cy="110" r="1"/><circle cx="150" cy="275" r="1"/>
+          <circle cx="330" cy="90" r="1"/><circle cx="305" cy="320" r="1"/><circle cx="40" cy="180" r="1"/>
+          <circle cx="410" cy="240" r="1"/>
+        </g>
+      </svg>
+    </div>
+  </div>
+
+  <div class="hero-trust-strip">
+    <div class="hero-trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg><div class="hero-trust-label">All 50<br>States</div></div>
+    <div class="hero-trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" x2="21" y1="22" y2="22"/><line x1="6" x2="6" y1="18" y2="11"/><line x1="10" x2="10" y1="18" y2="11"/><line x1="14" x2="14" y1="18" y2="11"/><line x1="18" x2="18" y1="18" y2="11"/><polygon points="12 2 20 7 4 7"/></svg><div class="hero-trust-label">5 Election<br>Levels</div></div>
+    <div class="hero-trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.5 8.5-.3.1-.7.1-1 0C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.79 17 5 19 5a1 1 0 0 1 1 1z"/></svg><div class="hero-trust-label">Independent</div></div>
+    <div class="hero-trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/><path d="M8 16H3v5"/></svg><div class="hero-trust-label">Continuously<br>Updated</div></div>
+    <div class="hero-trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg><div class="hero-trust-label">Privacy<br>First</div></div>
+  </div>
+
+  <div class="ballot-card-wrap">
+    <div class="ballot-card">
+      <h2>Find Your Ballot</h2>
+      <p class="ballot-card-subtext">Enter your address to see the races and candidates on your ballot.</p>
+
+      <div id="welcome-banner" class="welcome-banner" style="display:none;"></div>
+
+      <div class="ballot-search-row">
+        <div class="ballot-input-wrap">
+          <svg class="ballot-input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+          <input
+            type="text"
+            id="addressInput"
+            class="ballot-input"
+            placeholder="e.g. 123 Main St, Lansing, MI 48933"
+            autocomplete="off"
+          >
+          <div class="autocomplete-dropdown" id="autocomplete-dropdown"></div>
+        </div>
+        <button class="btn-ballot-primary" id="get-started-btn" onclick="handleGetStarted()">Find My Ballot</button>
+      </div>
+
+      <p class="ballot-privacy">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        <span>Your address is never stored or used for marketing. It is only used to locate your ballot.</span>
+      </p>
+      <p class="ballot-count-line">
+        We currently have information on <a href="#" onclick="showBrowse(); return false;" id="candidate-count">candidates</a> across all 50 states.
+      </p>
+    </div>
+  </div>
+</div>
