@@ -1,0 +1,60 @@
+name: Publish Sanatana FAQ JSON
+
+# Pull-based publishing: this Action holds the only credential involved
+# (GitHub's own auto-issued, repo-scoped GITHUB_TOKEN). Apps Script never
+# sees, stores, or needs a GitHub credential of any kind.
+
+on:
+  schedule:
+    - cron: '*/30 * * * *'   # every 30 minutes
+  workflow_dispatch: {}       # manual "Publish now" button in the Actions tab
+
+permissions:
+  contents: write            # narrowly scoped — nothing broader is needed
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Fetch sanitized FAQ JSON from Apps Script
+        env:
+          SANATANA_FAQ_SECRET: ${{ secrets.SANATANA_FAQ_SECRET }}
+          SANATANA_FAQ_API_URL: ${{ secrets.SANATANA_FAQ_API_URL }}
+        run: |
+          curl -sS -f "${SANATANA_FAQ_API_URL}?key=${SANATANA_FAQ_SECRET}" \
+            -o /tmp/fetched.json
+
+      - name: Validate JSON structure
+        run: |
+          node -e "
+            const fs = require('fs');
+            const data = JSON.parse(fs.readFileSync('/tmp/fetched.json', 'utf8'));
+            if (!Array.isArray(data.entries)) {
+              console.error('Invalid payload: entries is not an array');
+              process.exit(1);
+            }
+            for (const e of data.entries) {
+              if (!e.id || !e.claim || !e.quickAnswer) {
+                console.error('Invalid entry, missing required field:', JSON.stringify(e).slice(0,200));
+                process.exit(1);
+              }
+            }
+            console.log('Validated', data.entries.length, 'entries.');
+          "
+
+      - name: Compare and commit only if changed
+        run: |
+          mkdir -p dharma
+          if [ -f dharma/sanatana-faq.json ] && diff -q /tmp/fetched.json dharma/sanatana-faq.json > /dev/null 2>&1; then
+            echo "No changes — skipping commit."
+            exit 0
+          fi
+          cp /tmp/fetched.json dharma/sanatana-faq.json
+          git config user.name "sanatana-faq-publisher"
+          git config user.email "actions@github.com"
+          git add dharma/sanatana-faq.json
+          git commit -m "Publish Sanatana FAQ data ($(date -u +%Y-%m-%dT%H:%M:%SZ))"
+          git push
