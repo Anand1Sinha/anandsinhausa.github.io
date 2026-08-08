@@ -24,7 +24,7 @@ jobs:
           SANATANA_FAQ_SECRET: ${{ secrets.SANATANA_FAQ_SECRET }}
           SANATANA_FAQ_API_URL: ${{ secrets.SANATANA_FAQ_API_URL }}
         run: |
-          curl -sS -f "${SANATANA_FAQ_API_URL}?key=${SANATANA_FAQ_SECRET}" \
+          curl -sS -f -L "${SANATANA_FAQ_API_URL}?key=${SANATANA_FAQ_SECRET}" \
             -o /tmp/fetched.json
 
       - name: Validate JSON structure
