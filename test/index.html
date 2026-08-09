@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sanātana FAQ — Redesign Prototype (Manusmriti card only)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;750;800&family=Inter:wght@400;450;500;600;700&family=Georgia&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --saffron: #E87516;
+    --saffron-deep: #C9580A;
+    --navy: #163A63;
+    --ink: #1F252B;
+    --warm-white: #FFFCF7;
+    --saffron-tint: #FFF2E3;
+    --navy-tint: #EDF4FA;
+    --gray: #66717A;
+    --border: #E7DDD0;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+  html, body { background: var(--warm-white); }
+  body {
+    font-family: 'Inter', sans-serif;
+    color: var(--ink);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .hero {
+    background: linear-gradient(155deg, var(--saffron) 0%, var(--saffron-deep) 100%);
+    padding: 28px 20px 26px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 220px; height: 220px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.08);
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    bottom: -80px; left: -40px;
+    width: 180px; height: 180px;
+    border-radius: 50%;
+    border: 2px solid rgba(255,255,255,0.10);
+  }
+  .hero-inner { position: relative; z-index: 1; }
+  .hero-title {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 36px;
+    font-weight: 800;
+    line-height: 1.08;
+    letter-spacing: -0.5px;
+    color: #ffffff;
+  }
+  .hero-tagline {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: #ffffff;
+    margin-top: 8px;
+    line-height: 1.25;
+  }
+  .hero-sub {
+    font-size: 17px;
+    font-weight: 450;
+    line-height: 1.4;
+    color: rgba(255,255,255,0.92);
+    margin-top: 10px;
+    max-width: 340px;
+  }
+
+  .search-wrap { padding: 18px 20px 4px; background: var(--warm-white); }
+  .search-box { position: relative; }
+  .search-input {
+    width: 100%;
+    height: 60px;
+    padding: 0 20px 0 52px;
+    font-family: 'Inter', sans-serif;
+    font-size: 18px;
+    font-weight: 450;
+    color: var(--ink);
+    background: #ffffff;
+    border: 2px solid var(--saffron);
+    border-radius: 18px;
+    outline: none;
+  }
+  .search-input::placeholder { color: #8a8378; }
+  .search-input:focus {
+    border-color: var(--saffron-deep);
+    box-shadow: 0 0 0 4px rgba(232, 117, 22, 0.18);
+  }
+  .search-icon {
+    position: absolute; left: 18px; top: 50%; transform: translateY(-50%);
+    font-size: 23px;
+  }
+
+  .utility-row {
+    display: flex; flex-wrap: wrap; gap: 8px;
+    padding: 14px 20px 4px;
+  }
+  .util-pill {
+    height: 48px;
+    display: flex; align-items: center;
+    padding: 0 18px;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 15.5px;
+    font-weight: 700;
+    border-radius: 24px;
+    white-space: nowrap;
+  }
+  .util-pill.current { background: var(--navy); color: #ffffff; }
+  .util-pill.plain { background: #ffffff; color: var(--ink); border: 1.5px solid var(--border); }
+
+  .category-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    padding: 16px 20px 20px;
+  }
+  .cat-pill {
+    height: 54px;
+    display: flex; align-items: center; justify-content: center; gap: 6px;
+    padding: 0 12px;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 16.5px;
+    font-weight: 700;
+    border-radius: 27px;
+    cursor: pointer;
+    transition: transform 0.12s ease;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .cat-pill:active { transform: scale(0.97); }
+  .cat-pill.active { background: var(--saffron); color: #ffffff; box-shadow: 0 4px 14px rgba(232,117,22,0.28); }
+  .cat-pill.inactive { background: #ffffff; color: var(--ink); border: 1.5px solid var(--border); }
+
+  main { padding: 4px 20px 60px; }
+  .faq-card {
+    background: #ffffff;
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 24px;
+    box-shadow: 0 2px 12px rgba(31,37,43,0.05);
+  }
+
+  .category-badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: var(--navy-tint);
+    color: var(--navy);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 14.5px;
+    font-weight: 800;
+    padding: 6px 14px;
+    border-radius: 20px;
+    margin-bottom: 16px;
+  }
+
+  .faq-question {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 29px;
+    font-weight: 750;
+    line-height: 1.18;
+    color: var(--ink);
+    letter-spacing: -0.3px;
+    margin-bottom: 18px;
+  }
+
+  .someone-says {
+    display: flex; gap: 10px;
+    align-items: flex-start;
+    padding: 14px 16px;
+    background: #FAF7F2;
+    border-radius: 14px;
+    margin-bottom: 20px;
+  }
+  .someone-says-icon { font-size: 19px; line-height: 1.5; }
+  .someone-says-text { font-size: 17px; line-height: 1.45; color: #4A4238; }
+  .someone-says-text strong { font-weight: 600; color: var(--ink); }
+  .someone-says-quote { font-weight: 500; color: #3a332b; }
+
+  .quick-answer {
+    background: var(--saffron-tint);
+    border-left: 6px solid var(--saffron);
+    border-radius: 16px;
+    padding: 22px;
+    margin-bottom: 20px;
+  }
+  .qa-label {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 16.5px;
+    font-weight: 800;
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+    color: var(--saffron-deep);
+    margin-bottom: 10px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .qa-text { font-size: 20px; font-weight: 500; line-height: 1.48; color: var(--ink); }
+
+  .disclosure { margin-bottom: 14px; }
+  .disclosure-trigger {
+    display: flex; align-items: center; justify-content: space-between;
+    min-height: 58px;
+    padding: 14px 18px;
+    background: #ffffff;
+    border: 1.5px solid var(--border);
+    border-radius: 16px;
+    cursor: pointer;
+  }
+  .disclosure-trigger.say-trigger { border-color: rgba(22,58,99,0.25); background: var(--navy-tint); }
+  .disclosure-trigger.story-trigger { border-color: rgba(232,117,22,0.25); background: var(--saffron-tint); }
+  .disclosure-left { display: flex; flex-direction: column; gap: 2px; }
+  .disclosure-title {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 20px;
+    font-weight: 750;
+    color: var(--ink);
+    display: flex; align-items: center; gap: 8px;
+  }
+  .disclosure-sub { font-size: 14.5px; color: var(--gray); font-weight: 450; }
+  .disclosure-chevron {
+    font-size: 22px; color: var(--gray);
+    transition: transform 0.2s ease;
+    flex-shrink: 0; margin-left: 12px;
+  }
+  .disclosure-trigger.open .disclosure-chevron { transform: rotate(180deg); }
+
+  .disclosure-body { display: none; padding-top: 14px; }
+  .disclosure-body.open { display: block; }
+
+  .say-card { background: var(--navy); border-radius: 16px; padding: 22px; }
+  .say-card-label {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 13px; font-weight: 800; letter-spacing: 0.5px; text-transform: uppercase;
+    color: #9FC2E0; margin-bottom: 10px;
+  }
+  .say-card-text { font-size: 19px; font-weight: 450; line-height: 1.55; color: #ffffff; }
+
+  .story-card { border-radius: 14px; padding: 18px; margin-bottom: 12px; }
+  .story-card:nth-child(odd) { background: #ffffff; border: 1.5px solid var(--border); }
+  .story-card:nth-child(even) { background: var(--navy-tint); }
+  .story-heading {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 20.5px; font-weight: 750; color: var(--ink);
+    margin-bottom: 8px; display: flex; align-items: baseline; gap: 8px;
+  }
+  .story-num { color: var(--saffron-deep); font-weight: 800; }
+  .story-text { font-size: 18.5px; line-height: 1.55; color: #2E353C; font-weight: 450; }
+
+  .verse-card {
+    background: #FFFDF9; border: 1.5px solid #F0D9B8; border-radius: 14px;
+    padding: 20px; margin-top: 14px; position: relative;
+  }
+  .verse-card::before {
+    content: '\201C'; position: absolute; top: 2px; left: 16px;
+    font-size: 46px; color: #F0D9B8; font-family: Georgia, serif; line-height: 1;
+  }
+  .verse-quote { font-family: Georgia, serif; font-style: italic; font-size: 19px; line-height: 1.5; color: var(--navy); padding-left: 20px; }
+  .verse-cite {
+    font-family: 'Plus Jakarta Sans', sans-serif; font-size: 12.5px; font-weight: 700;
+    letter-spacing: 0.6px; text-transform: uppercase; color: var(--gray); margin-top: 10px; padding-left: 20px;
+  }
+
+  .sources-row { margin-top: 16px; font-size: 15.5px; color: var(--gray); font-weight: 500; cursor: pointer; display: inline-block; }
+  .sources-body { display: none; font-size: 15px; color: var(--gray); line-height: 1.6; margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--border); }
+  .sources-body.open { display: block; }
+
+  .label-note { text-align: center; font-size: 12px; color: #b0a99c; margin: 10px 0 -6px; }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-title">SANĀTANA FAQ</div>
+    <div class="hero-tagline">Understand it. Explain it. Be proud of it.</div>
+    <div class="hero-sub">Real answers for the questions your friends ask.</div>
+  </div>
+</div>
+
+<div class="search-wrap">
+  <div class="search-box">
+    <span class="search-icon">🔍</span>
+    <input class="search-input" placeholder='Search "Krishna," "caste," "elephant," "women"…'>
+  </div>
+</div>
+
+<div class="utility-row">
+  <div class="util-pill current">GRADES 6–8</div>
+  <div class="util-pill plain">PARENTS &amp; EDUCATORS</div>
+  <div class="util-pill plain">❓ HOW THIS WORKS</div>
+</div>
+
+<div class="category-row">
+  <div class="cat-pill inactive">💬 My friends ask</div>
+  <div class="cat-pill active">🏫 My teacher said</div>
+  <div class="cat-pill inactive">😬 Kids tease</div>
+  <div class="cat-pill inactive">✨ Explain proudly</div>
+</div>
+
+<main>
+  <div class="faq-card">
+    <div class="category-badge">🏫 MY TEACHER SAID</div>
+
+    <div class="faq-question">Is it true that Manusmriti says bad things about women?</div>
+
+    <div class="someone-says">
+      <span class="someone-says-icon">💬</span>
+      <div class="someone-says-text"><strong>Someone says:</strong> <span class="someone-says-quote">"Doesn't Manusmriti treat women as inferior?"</span></div>
+    </div>
+
+    <div class="quick-answer">
+      <div class="qa-label">🟠 Quick Answer · 20 sec</div>
+      <div class="qa-text">Yes, controversial verses exist. But we don't have the original Manusmriti, surviving manuscripts differ, and the same text tells families to honor women — saying a family prospers when its women are respected and happy.</div>
+    </div>
+
+    <div class="disclosure" id="sayDisclosure">
+      <div class="disclosure-trigger say-trigger" onclick="toggleDisclosure('sayDisclosure')">
+        <div class="disclosure-left">
+          <div class="disclosure-title">💬 What I can say</div>
+          <div class="disclosure-sub">Give me something I can actually say to a friend.</div>
+        </div>
+        <span class="disclosure-chevron">⌄</span>
+      </div>
+      <div class="disclosure-body">
+        <div class="say-card">
+          <div class="say-card-label">What I Can Say</div>
+          <div class="say-card-text">Yes, those verses exist in versions we have today. But we don't have Manu's original, the manuscripts differ, and the same Manusmriti says families prosper where women are honored. So it's more complicated than one quotation.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="disclosure" id="storyDisclosure">
+      <div class="disclosure-trigger story-trigger" onclick="toggleDisclosure('storyDisclosure')">
+        <div class="disclosure-left">
+          <div class="disclosure-title">📖 Understand the full story</div>
+        </div>
+        <span class="disclosure-chevron">⌄</span>
+      </div>
+      <div class="disclosure-body">
+
+        <div class="story-card">
+          <div class="story-heading"><span class="story-num">①</span> Yes, those verses exist</div>
+          <div class="story-text">Some versions of the Manusmriti we have today do contain verses about women that we'd consider unfair by today's standards. That's real — don't pretend otherwise.</div>
+        </div>
+
+        <div class="story-card">
+          <div class="story-heading"><span class="story-num">②</span> But we don't have the original</div>
+          <div class="story-text">The text passed through many centuries of handwritten copies. More than fifty surviving manuscripts have been studied by scholars, and they don't all say exactly the same thing.</div>
+        </div>
+
+        <div class="story-card">
+          <div class="story-heading"><span class="story-num">③</span> Here's what else Manusmriti says</div>
+          <div class="story-text">The same text contains one of its most famous lines — and it says the opposite.</div>
+          <div class="verse-card">
+            <div class="verse-quote">Where women are honored, there the Devatās rejoice; where women are not honored, all sacred actions become fruitless.</div>
+            <div class="verse-cite">Manusmriti 3.56</div>
+          </div>
+        </div>
+
+        <div class="sources-row" onclick="toggleSources()">📚 Sources &amp; further reading +</div>
+        <div class="sources-body" id="sourcesBody">Manusmriti 3.55–3.60; Patrick Olivelle's textual and critical scholarship on the Mānava-Dharmaśāstra; scholarship on the development of Anglo-Hindu law under British colonial administration.</div>
+      </div>
+    </div>
+
+  </div>
+  <div class="label-note">Prototype — Manusmriti card only, per design brief §21</div>
+</main>
+
+<script>
+  function toggleDisclosure(id) {
+    var wrap = document.getElementById(id);
+    var trigger = wrap.querySelector('.disclosure-trigger');
+    var body = wrap.querySelector('.disclosure-body');
+    trigger.classList.toggle('open');
+    body.classList.toggle('open');
+  }
+  function toggleSources() {
+    document.getElementById('sourcesBody').classList.toggle('open');
+  }
+</script>
+
+</body>
+</html>
