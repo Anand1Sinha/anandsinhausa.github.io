@@ -1,0 +1,454 @@
+<!--
+  THE SIGNAL VOTER GUIDE — SHARED ENGAGEMENT COMPONENT
+  =====================================================
+  Single source of truth for Rate / Send Feedback / Subscribe / Contact —
+  the persistent bar, the four modals, and the submission
+  logic — used identically on both index.html (New) and
+  classic.html (Classic). Contact itself isn't triggered from the bar —
+  it opens from the footer's "Contact" link/button (see index.html /
+  classic.html footer markup), which lives outside this partial.
+
+  DO NOT edit this section directly in index.html or classic.html.
+  Edit this file, then run: python3 build_hero.py
+  (the same build script now injects both hero.html and this file,
+  each into its own reserved marker slot.)
+
+  ── BEFORE THIS WORKS ──
+  Set ENGAGEMENT_ENDPOINT below to your deployed Apps Script Web
+  App URL (Deploy > Manage deployments > Web app > URL, ending in
+  /exec). Nothing will submit until that's filled in. Everything
+  else works out of the box.
+
+  Rate / Feedback / Subscribe write into your existing "Anand Sinha —
+  Site" master sheet — Ratings / ArticleFeedback / Subscribers tabs —
+  tagged with article: "Voter Guide". Contact writes into that same
+  sheet's existing Contact tab, tagged with desk: "Voter Guide". No
+  new tabs are created on the sheet side for any of the four.
+-->
+<style>
+/* ── ENGAGEMENT BAR (fixed at the bottom of the viewport, always visible) ── */
+.engagement-bar {
+  position: fixed;
+  left: 0; right: 0; bottom: 0;
+  z-index: 500;
+  background: rgba(14,26,41,0.97);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  border-top: 1px solid rgba(212,175,55,0.35);
+  box-shadow: 0 -4px 16px rgba(0,0,0,0.35);
+  padding: 10px 20px;
+}
+/* Keep real page content (footer disclaimer, etc.) from permanently sitting
+   underneath the fixed bar */
+body { padding-bottom: 54px; }
+.engagement-bar-inner {
+  max-width: 1040px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0;
+}
+.engagement-bar-item {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 0 18px;
+  margin: 4px 0;
+  border-right: 1px solid rgba(212,175,55,0.25);
+  background: none;
+  border-top: none;
+  border-bottom: none;
+  border-left: none;
+  color: #c3ccd6;
+  font-size: 13px;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+}
+.engagement-bar-item:last-child { border-right: none; }
+.engagement-bar-item svg { width: 14px; height: 14px; color: #D4AF37; flex-shrink: 0; }
+.engagement-bar-item:hover { color: #fff; }
+@media (max-width: 480px) {
+  .engagement-bar-item { padding: 0 8px; font-size: 11px; gap: 5px; }
+  .engagement-bar-item svg { width: 12px; height: 12px; }
+  body { padding-bottom: 74px; }
+}
+
+/* ── MODAL OVERLAY + CARD (reuses .ballot-card visual language) ── */
+.signal-modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(10,16,24,0.72);
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.signal-modal-overlay.open { display: flex; }
+.signal-modal {
+  background: #fff;
+  border-radius: 14px;
+  padding: 32px 28px;
+  max-width: 440px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  text-align: left;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+  position: relative;
+}
+body.dark-mode .signal-modal { background: var(--surface, #111d33); }
+.signal-modal-close {
+  position: absolute;
+  top: 16px; right: 16px;
+  width: 28px; height: 28px;
+  border: none;
+  background: transparent;
+  color: #98a5b3;
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.signal-modal-close:hover { color: #1a1a1a; }
+body.dark-mode .signal-modal-close:hover { color: #fff; }
+.signal-modal h2 {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 22px;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin-bottom: 6px;
+}
+body.dark-mode .signal-modal h2 { color: #fff; }
+.signal-modal-subtext { font-size: 13.5px; color: #666; margin-bottom: 20px; line-height: 1.5; }
+body.dark-mode .signal-modal-subtext { color: var(--tdim, #8899b0); }
+.signal-modal-field { margin-bottom: 14px; }
+.signal-modal-label { display: block; font-size: 12px; font-weight: 700; color: #333; margin-bottom: 6px; }
+body.dark-mode .signal-modal-label { color: #c3ccd6; }
+.signal-modal-input,
+.signal-modal-textarea {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1.5px solid #cfd8e3;
+  border-radius: 8px;
+  font-size: 14.5px;
+  font-family: inherit;
+  background: #fff;
+  color: #1a1a1a;
+}
+body.dark-mode .signal-modal-input,
+body.dark-mode .signal-modal-textarea {
+  background: var(--bg2, #0b1628); border-color: var(--bord2, rgba(255,255,255,0.14)); color: #fff;
+}
+.signal-modal-textarea { resize: vertical; min-height: 90px; }
+.signal-modal-submit {
+  width: 100%;
+  background: #2b3e50;
+  color: #fff;
+  border: none;
+  padding: 13px 20px;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+  margin-top: 4px;
+}
+.signal-modal-submit:hover { background: #223140; }
+.signal-modal-submit:disabled { opacity: 0.6; cursor: default; }
+body.dark-mode .signal-modal-submit { background: #3bbfaa; color: #06110d; }
+.signal-modal-privacy { font-size: 12px; color: #8a8a8a; margin-top: 12px; line-height: 1.5; }
+body.dark-mode .signal-modal-privacy { color: var(--tmuted, #566070); }
+.signal-modal-success {
+  display: none;
+  text-align: center;
+  padding: 12px 0 4px;
+  font-size: 14.5px;
+  font-weight: 600;
+  color: #1a8a5a;
+}
+.signal-modal-error {
+  display: none;
+  text-align: center;
+  padding: 10px 0 0;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #a83246;
+}
+
+/* Star rating */
+.star-rating { display: flex; gap: 6px; margin-bottom: 18px; }
+.star-rating button {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  font-size: 30px;
+  line-height: 1;
+  color: #d8dee6;
+}
+.star-rating button.filled { color: #D4AF37; }
+body.dark-mode .star-rating button { color: #2a3550; }
+body.dark-mode .star-rating button.filled { color: #D4AF37; }
+</style>
+
+<div class="engagement-bar">
+  <div class="engagement-bar-inner">
+    <button class="engagement-bar-item" onclick="signalOpenModal('rate')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+      Rate This Guide
+    </button>
+    <button class="engagement-bar-item" onclick="signalOpenModal('feedback')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+      Send Feedback
+    </button>
+    <button class="engagement-bar-item" onclick="signalOpenModal('subscribe')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+      Subscribe for Updates
+    </button>
+  </div>
+</div>
+
+<!-- RATE MODAL -->
+<div class="signal-modal-overlay" id="signal-modal-rate" onclick="if(event.target===this) signalCloseModal('rate')">
+  <div class="signal-modal">
+    <button class="signal-modal-close" onclick="signalCloseModal('rate')" aria-label="Close">&times;</button>
+    <h2>Rate This Guide</h2>
+    <p class="signal-modal-subtext">How useful was The Signal Voter Guide in finding your ballot?</p>
+    <form onsubmit="return signalSubmit(event, 'rate')">
+      <div class="star-rating" id="signal-star-rating">
+        <button type="button" data-star="1" onclick="signalSetStars(1)">★</button>
+        <button type="button" data-star="2" onclick="signalSetStars(2)">★</button>
+        <button type="button" data-star="3" onclick="signalSetStars(3)">★</button>
+        <button type="button" data-star="4" onclick="signalSetStars(4)">★</button>
+        <button type="button" data-star="5" onclick="signalSetStars(5)">★</button>
+      </div>
+      <div class="signal-modal-field">
+        <label class="signal-modal-label" for="signal-rate-comment">Comment (optional)</label>
+        <textarea class="signal-modal-textarea" id="signal-rate-comment" placeholder="Anything that would make this more useful?"></textarea>
+      </div>
+      <div class="signal-modal-field">
+        <label class="signal-modal-label" for="signal-rate-name">Name (optional)</label>
+        <input class="signal-modal-input" type="text" id="signal-rate-name" placeholder="Anonymous">
+      </div>
+      <button type="submit" class="signal-modal-submit">Submit Rating</button>
+      <div class="signal-modal-success" id="signal-rate-success">Thank you — your rating was submitted.</div>
+      <div class="signal-modal-error" id="signal-rate-error"></div>
+    </form>
+  </div>
+</div>
+
+<!-- FEEDBACK MODAL -->
+<div class="signal-modal-overlay" id="signal-modal-feedback" onclick="if(event.target===this) signalCloseModal('feedback')">
+  <div class="signal-modal">
+    <button class="signal-modal-close" onclick="signalCloseModal('feedback')" aria-label="Close">&times;</button>
+    <h2>Send Feedback</h2>
+    <p class="signal-modal-subtext">Found a bug, missing candidate, or have a suggestion? Tell us directly.</p>
+    <form onsubmit="return signalSubmit(event, 'feedback')">
+      <div class="signal-modal-field">
+        <label class="signal-modal-label" for="signal-feedback-message">Message</label>
+        <textarea class="signal-modal-textarea" id="signal-feedback-message" required placeholder="What's on your mind?"></textarea>
+      </div>
+      <div class="signal-modal-field">
+        <label class="signal-modal-label" for="signal-feedback-name">Name (optional)</label>
+        <input class="signal-modal-input" type="text" id="signal-feedback-name" placeholder="Anonymous">
+      </div>
+      <div class="signal-modal-field">
+        <label class="signal-modal-label" for="signal-feedback-email">Email (optional — only if you'd like a reply)</label>
+        <input class="signal-modal-input" type="email" id="signal-feedback-email" placeholder="you@example.com">
+      </div>
+      <button type="submit" class="signal-modal-submit">Send Feedback</button>
+      <div class="signal-modal-success" id="signal-feedback-success">Thank you — your feedback was sent.</div>
+      <div class="signal-modal-error" id="signal-feedback-error"></div>
+    </form>
+  </div>
+</div>
+
+<!-- SUBSCRIBE MODAL -->
+<div class="signal-modal-overlay" id="signal-modal-subscribe" onclick="if(event.target===this) signalCloseModal('subscribe')">
+  <div class="signal-modal">
+    <button class="signal-modal-close" onclick="signalCloseModal('subscribe')" aria-label="Close">&times;</button>
+    <h2>Subscribe for Updates</h2>
+    <p class="signal-modal-subtext">Get notified when new candidates, races, or election dates are added.</p>
+    <form onsubmit="return signalSubmit(event, 'subscribe')">
+      <div class="signal-modal-field">
+        <label class="signal-modal-label" for="signal-subscribe-email">Email</label>
+        <input class="signal-modal-input" type="email" id="signal-subscribe-email" required placeholder="you@example.com">
+      </div>
+      <div class="signal-modal-field">
+        <label class="signal-modal-label" for="signal-subscribe-name">Name (optional)</label>
+        <input class="signal-modal-input" type="text" id="signal-subscribe-name" placeholder="Anonymous">
+      </div>
+      <button type="submit" class="signal-modal-submit">Subscribe</button>
+      <p class="signal-modal-privacy">Your email is never sold or shared. Unsubscribe any time by replying to any update.</p>
+      <div class="signal-modal-success" id="signal-subscribe-success">Thank you — you're subscribed.</div>
+      <div class="signal-modal-error" id="signal-subscribe-error"></div>
+    </form>
+  </div>
+</div>
+
+<!-- CONTACT MODAL -->
+<div class="signal-modal-overlay" id="signal-modal-contact" onclick="if(event.target===this) signalCloseModal('contact')">
+  <div class="signal-modal">
+    <button class="signal-modal-close" onclick="signalCloseModal('contact')" aria-label="Close">&times;</button>
+    <h2>Contact</h2>
+    <p class="signal-modal-subtext">Send a message directly — questions, corrections, or anything else.</p>
+    <form onsubmit="return signalSubmit(event, 'contact')">
+      <div class="signal-modal-field">
+        <label class="signal-modal-label" for="signal-contact-message">Message</label>
+        <textarea class="signal-modal-textarea" id="signal-contact-message" required placeholder="What's on your mind?"></textarea>
+      </div>
+      <div class="signal-modal-field">
+        <label class="signal-modal-label" for="signal-contact-name">Name (optional)</label>
+        <input class="signal-modal-input" type="text" id="signal-contact-name" placeholder="Anonymous">
+      </div>
+      <div class="signal-modal-field">
+        <label class="signal-modal-label" for="signal-contact-email">Email (optional — only if you'd like a reply)</label>
+        <input class="signal-modal-input" type="email" id="signal-contact-email" placeholder="you@example.com">
+      </div>
+      <button type="submit" class="signal-modal-submit">Send Message</button>
+      <div class="signal-modal-success" id="signal-contact-success">Thank you — your message was sent.</div>
+      <div class="signal-modal-error" id="signal-contact-error"></div>
+    </form>
+  </div>
+</div>
+
+<script>
+// ── THE SIGNAL — ENGAGEMENT SUBMISSION ─────────────────────────────
+// Fill in your deployed Apps Script Web App URL (ends in /exec).
+// Nothing submits until this is set.
+const ENGAGEMENT_ENDPOINT = 'https://script.google.com/macros/s/AKfycbwtVwCmtQI2QmYW47rzQUrm1kgghpcqGgaYHdfUWXFv9EglpJ8UgS_XJPj2i1xLxzLa5w/exec';
+
+// Every submission from this app is tagged with this value so it's
+// filterable in the shared Ratings / Subscribers / ArticleFeedback
+// tabs without needing separate sheets.
+const ENGAGEMENT_SOURCE = 'Voter Guide';
+
+let signalSelectedStars = 0;
+
+function signalOpenModal(name) {
+  const el = document.getElementById('signal-modal-' + name);
+  if (el) el.classList.add('open');
+}
+
+function signalCloseModal(name) {
+  const el = document.getElementById('signal-modal-' + name);
+  if (el) el.classList.remove('open');
+}
+
+// Escape key closes whichever modal is open
+document.addEventListener('keydown', function (e) {
+  if (e.key !== 'Escape') return;
+  ['rate', 'feedback', 'subscribe', 'contact'].forEach(signalCloseModal);
+});
+
+function signalSetStars(n) {
+  signalSelectedStars = n;
+  document.querySelectorAll('#signal-star-rating button').forEach(function (btn) {
+    btn.classList.toggle('filled', Number(btn.dataset.star) <= n);
+  });
+}
+
+function signalSubmit(evt, kind) {
+  evt.preventDefault();
+  const form = evt.target;
+  const submitBtn = form.querySelector('.signal-modal-submit');
+  const successEl = document.getElementById('signal-' + kind + '-success');
+  const errorEl = document.getElementById('signal-' + kind + '-error');
+  const defaultLabel = kind === 'rate' ? 'Submit Rating' : (kind === 'feedback' ? 'Send Feedback' : (kind === 'contact' ? 'Send Message' : 'Subscribe'));
+
+  errorEl.style.display = 'none';
+  errorEl.textContent = '';
+
+  if (ENGAGEMENT_ENDPOINT.indexOf('PASTE_YOUR_WEB_APP_EXEC_URL_HERE') !== -1) {
+    alert('Engagement endpoint not configured yet — set ENGAGEMENT_ENDPOINT in the engagement partial.');
+    return false;
+  }
+
+  let payload;
+  if (kind === 'rate') {
+    if (!signalSelectedStars) { alert('Please select a star rating.'); return false; }
+    payload = {
+      action: 'rate',
+      article: ENGAGEMENT_SOURCE,
+      stars: signalSelectedStars,
+      comment: document.getElementById('signal-rate-comment').value.trim(),
+      name: document.getElementById('signal-rate-name').value.trim(),
+    };
+  } else if (kind === 'feedback') {
+    payload = {
+      action: 'feedback',
+      article: ENGAGEMENT_SOURCE,
+      name: document.getElementById('signal-feedback-name').value.trim(),
+      email: document.getElementById('signal-feedback-email').value.trim(),
+      message: document.getElementById('signal-feedback-message').value.trim(),
+    };
+  } else if (kind === 'subscribe') {
+    payload = {
+      action: 'subscribe',
+      article: ENGAGEMENT_SOURCE,
+      name: document.getElementById('signal-subscribe-name').value.trim(),
+      email: document.getElementById('signal-subscribe-email').value.trim(),
+    };
+  } else if (kind === 'contact') {
+    payload = {
+      action: 'contact',
+      desk: ENGAGEMENT_SOURCE,
+      name: document.getElementById('signal-contact-name').value.trim(),
+      email: document.getElementById('signal-contact-email').value.trim(),
+      message: document.getElementById('signal-contact-message').value.trim(),
+    };
+  }
+
+  submitBtn.disabled = true;
+  submitBtn.textContent = 'Sending…';
+
+  // text/plain avoids triggering a CORS preflight (a JSON content-type
+  // would). This lets us make a normal fetch — no `no-cors` — and
+  // actually read the response, so a real backend error (unknown
+  // action, bad payload, etc.) shows up to the user instead of a
+  // false "success" that never actually saved anything.
+  fetch(ENGAGEMENT_ENDPOINT, {
+    method: 'POST',
+    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+    body: JSON.stringify(payload),
+  })
+    .then(function (res) {
+      if (!res.ok) throw new Error('Bad response: ' + res.status);
+      return res.json();
+    })
+    .then(function (data) {
+      if (!data || data.ok !== true) {
+        throw new Error((data && data.error) || 'Submission was not accepted.');
+      }
+      form.querySelectorAll('input, textarea, button[type=submit]').forEach(function (el) { el.style.display = 'none'; });
+      document.querySelectorAll('#signal-modal-' + kind + ' .signal-modal-label').forEach(function (el) { el.style.display = 'none'; });
+      successEl.style.display = 'block';
+      setTimeout(function () {
+        signalCloseModal(kind);
+        form.reset();
+        signalSelectedStars = 0;
+        if (kind === 'rate') {
+          document.querySelectorAll('#signal-star-rating button').forEach(function (b) { b.classList.remove('filled'); });
+        }
+        form.querySelectorAll('input, textarea, button[type=submit]').forEach(function (el) { el.style.display = ''; });
+        document.querySelectorAll('#signal-modal-' + kind + ' .signal-modal-label').forEach(function (el) { el.style.display = ''; });
+        successEl.style.display = 'none';
+        submitBtn.disabled = false;
+        submitBtn.textContent = defaultLabel;
+      }, 1800);
+    })
+    .catch(function (err) {
+      errorEl.textContent = 'Something went wrong — please try again. (' + err.message + ')';
+      errorEl.style.display = 'block';
+      submitBtn.disabled = false;
+      submitBtn.textContent = defaultLabel;
+    });
+
+  return false;
+}
+</script>
