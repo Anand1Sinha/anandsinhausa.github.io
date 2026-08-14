@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Become an A4H Ambassador — My 10 for a Million</title>
+<meta name="description" content="Become an A4H Ambassador or join Americans4Hindus. It takes 30 seconds.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#101E38;
+    --ink-soft:#25355A;
+    --ivory:#FBF8F1;
+    --card:#FFFFFF;
+    --saffron:#E48F17;
+    --saffron-deep:#B96F0A;
+    --line:rgba(16,30,56,.14);
+    --ok:#1E7A46;
+    --err:#B3261E;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{ -webkit-text-size-adjust:100% }
+  body{
+    font-family:"Libre Franklin",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    background:var(--ivory);
+    color:var(--ink);
+    min-height:100vh;
+    display:flex;flex-direction:column;align-items:center;
+  }
+  /* ---------- Header band ---------- */
+  header{
+    width:100%;
+    background:var(--ink);
+    color:var(--ivory);
+    padding:28px 20px 24px;
+    text-align:center;
+  }
+  .eyebrow{
+    font-size:12px;font-weight:700;letter-spacing:.28em;text-transform:uppercase;
+    color:rgba(251,248,241,.85);
+  }
+  .campaign{
+    font-weight:900;
+    font-size:clamp(28px,8vw,40px);
+    letter-spacing:-.01em;
+    line-height:1.05;
+    margin-top:10px;
+  }
+  .campaign .accent{color:var(--saffron)}
+  /* ten circles — signature */
+  .ten{
+    display:flex;justify-content:center;gap:7px;margin-top:16px;
+  }
+  .ten span{
+    width:13px;height:13px;border-radius:50%;
+    border:1.5px solid rgba(251,248,241,.55);
+    display:inline-block;
+    transition:background .4s ease,border-color .4s ease;
+  }
+  .ten span.filled{background:var(--saffron);border-color:var(--saffron)}
+  .ten-label{
+    margin-top:8px;font-size:12px;letter-spacing:.12em;text-transform:uppercase;
+    color:rgba(251,248,241,.6);font-weight:500;
+  }
+  /* ---------- Main ---------- */
+  main{
+    width:100%;max-width:460px;
+    padding:20px 16px 48px;
+    animation:rise .5s ease both;
+  }
+  @keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+  @media (prefers-reduced-motion:reduce){ main{animation:none} }
+  .card{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:22px 18px;
+    box-shadow:0 2px 10px rgba(16,30,56,.05);
+  }
+  .invited-banner{
+    background:rgba(228,143,23,.12);
+    border:1px solid rgba(228,143,23,.4);
+    border-radius:10px;
+    padding:12px 14px;
+    font-size:14.5px;line-height:1.45;
+    margin-bottom:16px;
+  }
+  .invited-banner b{color:var(--saffron-deep)}
+  h1.form-title{font-size:22px;font-weight:900;letter-spacing:-.01em;margin-bottom:4px}
+  p.form-sub{font-size:14.5px;color:var(--ink-soft);line-height:1.5;margin-bottom:18px}
+  label{
+    display:block;font-size:12.5px;font-weight:700;
+    letter-spacing:.06em;text-transform:uppercase;
+    margin:14px 0 5px;color:var(--ink-soft);
+  }
+  input,select{
+    width:100%;
+    font:inherit;font-size:16px;
+    padding:12px 12px;
+    border:1.5px solid var(--line);
+    border-radius:9px;
+    background:#fff;color:var(--ink);
+  }
+  input:focus,select:focus{outline:3px solid rgba(228,143,23,.35);border-color:var(--saffron)}
+  .row{display:flex;gap:10px}
+  .row>div{flex:1}
+  .hp{position:absolute;left:-9999px;top:-9999px}  /* honeypot */
+  button.primary{
+    width:100%;
+    margin-top:22px;
+    font:inherit;font-size:17px;font-weight:900;letter-spacing:.01em;
+    color:#fff;background:var(--saffron);
+    border:none;border-radius:10px;
+    padding:15px 12px;
+    cursor:pointer;
+  }
+  button.primary:active{background:var(--saffron-deep)}
+  button.primary:disabled{opacity:.6;cursor:wait}
+  button.primary:focus-visible{outline:3px solid var(--ink)}
+  .switch{
+    text-align:center;margin-top:16px;font-size:14px;color:var(--ink-soft);
+  }
+  .switch a{color:var(--saffron-deep);font-weight:700;text-decoration:underline;cursor:pointer}
+  .msg-err{
+    display:none;
+    margin-top:14px;padding:11px 13px;border-radius:9px;
+    background:rgba(179,38,30,.08);border:1px solid rgba(179,38,30,.35);
+    color:var(--err);font-size:14px;line-height:1.45;
+  }
+  .fineprint{
+    margin-top:18px;text-align:center;
+    font-size:12px;color:var(--ink-soft);line-height:1.5;
+  }
+  /* ---------- Success screens ---------- */
+  .success-badge{
+    width:52px;height:52px;border-radius:50%;
+    background:var(--ok);color:#fff;
+    display:flex;align-items:center;justify-content:center;
+    font-size:26px;margin:0 auto 14px;
+  }
+  .success h2{font-size:24px;font-weight:900;text-align:center;letter-spacing:-.01em}
+  .success p.lede{font-size:15px;color:var(--ink-soft);text-align:center;line-height:1.55;margin-top:8px}
+  .code-box{
+    margin:20px 0 6px;text-align:center;
+  }
+  .code-box .lbl{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft)}
+  .code-box .code{
+    font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+    font-size:30px;font-weight:700;letter-spacing:.12em;
+    color:var(--ink);margin-top:4px;
+  }
+  .link-box{
+    margin-top:14px;
+    background:var(--ivory);
+    border:1.5px dashed var(--line);
+    border-radius:9px;
+    padding:11px 12px;
+    font-size:13.5px;word-break:break-all;color:var(--ink-soft);
+    text-align:center;
+  }
+  .actions{display:flex;flex-direction:column;gap:10px;margin-top:16px}
+  .actions button, .actions a{
+    display:block;width:100%;text-align:center;text-decoration:none;
+    font:inherit;font-size:16px;font-weight:700;
+    padding:13px 12px;border-radius:10px;cursor:pointer;
+  }
+  .btn-copy{background:var(--ink);color:#fff;border:none}
+  .btn-wa{background:#25D366;color:#fff;border:none}
+  .btn-share{background:#fff;color:var(--ink);border:1.5px solid var(--line)}
+  .next-steps{
+    margin-top:22px;border-top:1px solid var(--line);padding-top:16px;
+    font-size:14.5px;line-height:1.6;color:var(--ink-soft);
+  }
+  .next-steps b{color:var(--ink)}
+  .hidden{display:none}
+  /* Setup warning (only shows if SCRIPT_URL not configured) */
+  .setup-warn{
+    display:none;
+    margin:0 auto 14px;max-width:460px;
+    background:#FFF3CD;border:1px solid #E0C368;border-radius:10px;
+    padding:12px 14px;font-size:13.5px;line-height:1.5;color:#6b5310;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="eyebrow">Americans4Hindus</div>
+  <div class="campaign">MY 10 FOR <span class="accent">A MILLION</span></div>
+  <div class="ten" id="tenCircles" aria-hidden="true">
+    <span></span><span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span><span></span>
+  </div>
+  <div class="ten-label" id="tenLabel">One organized Hindu American voice</div>
+</header>
+
+<main>
+  <div class="setup-warn" id="setupWarn">
+    <b>Setup needed:</b> SCRIPT_URL has not been configured in this file yet. Open join.html and paste your Apps Script deployment URL at the top of the script section.
+  </div>
+
+  <!-- ================= AMBASSADOR FORM ================= -->
+  <div class="card" id="viewAmbassador">
+    <h1 class="form-title">Become an A4H Ambassador</h1>
+    <p class="form-sub">Sign up in 30 seconds. You'll get your personal invitation link on the next screen — that link is how your ten are counted as <b>yours</b>.</p>
+    <form id="formAmbassador" novalidate>
+      <label for="a_name">Full name</label>
+      <input id="a_name" name="name" type="text" autocomplete="name" required>
+      <label for="a_email">Email</label>
+      <input id="a_email" name="email" type="email" autocomplete="email" inputmode="email" required>
+      <label for="a_phone">Mobile phone</label>
+      <input id="a_phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" required>
+      <div class="row">
+        <div>
+          <label for="a_city">City</label>
+          <input id="a_city" name="city" type="text" autocomplete="address-level2" required>
+        </div>
+        <div>
+          <label for="a_state">State</label>
+          <select id="a_state" name="state" required></select>
+        </div>
+      </div>
+      <input class="hp" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <button class="primary" type="submit" id="btnAmbassador">Become an Ambassador</button>
+      <div class="msg-err" id="errAmbassador"></div>
+    </form>
+    <div class="switch">Not at the conference? <a id="toRecruit">Join A4H as a member</a></div>
+    <p class="fineprint">Free membership. Your information stays with Americans4Hindus and is never sold.</p>
+  </div>
+
+  <!-- ================= RECRUIT / MEMBER FORM ================= -->
+  <div class="card hidden" id="viewRecruit">
+    <div class="invited-banner hidden" id="invitedBanner">
+      You've been personally invited by an <b>A4H Ambassador</b>. Welcome — joining takes 30 seconds and membership is free.
+    </div>
+    <h1 class="form-title">Join Americans4Hindus</h1>
+    <p class="form-sub">Add your voice to an organized Hindu American constituency. Free one-year membership.</p>
+    <form id="formRecruit" novalidate>
+      <label for="r_name">Full name</label>
+      <input id="r_name" name="name" type="text" autocomplete="name" required>
+      <label for="r_email">Email</label>
+      <input id="r_email" name="email" type="email" autocomplete="email" inputmode="email" required>
+      <label for="r_phone">Mobile phone</label>
+      <input id="r_phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" required>
+      <div class="row">
+        <div>
+          <label for="r_city">City</label>
+          <input id="r_city" name="city" type="text" autocomplete="address-level2" required>
+        </div>
+        <div>
+          <label for="r_state">State</label>
+          <select id="r_state" name="state" required></select>
+        </div>
+      </div>
+      <input class="hp" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <button class="primary" type="submit" id="btnRecruit">Join A4H — free</button>
+      <div class="msg-err" id="errRecruit"></div>
+    </form>
+    <div class="switch" id="switchToAmb">At the conference? <a id="toAmbassador">Become an Ambassador instead</a></div>
+    <p class="fineprint">Free membership. Your information stays with Americans4Hindus and is never sold.</p>
+  </div>
+
+  <!-- ================= AMBASSADOR SUCCESS ================= -->
+  <div class="card success hidden" id="viewAmbSuccess">
+    <div class="success-badge">✓</div>
+    <h2>I AM AN A4H AMBASSADOR</h2>
+    <p class="lede" style="color:var(--saffron-deep);font-weight:700;margin-top:6px;">My 10 starts today.</p>
+    <p class="lede">This is your personal invitation link. Everyone who joins through it is counted as one of <b>your ten</b>.</p>
+    <div class="code-box">
+      <div class="lbl">Your Ambassador code</div>
+      <div class="code" id="ambCode">——</div>
+    </div>
+    <div class="link-box" id="ambLink"></div>
+    <div class="actions">
+      <button class="btn-copy" id="btnCopy">Copy my link</button>
+      <a class="btn-wa" id="btnWa" target="_blank" rel="noopener">Share on WhatsApp</a>
+      <button class="btn-share hidden" id="btnShare">Share another way…</button>
+    </div>
+    <div class="next-steps">
+      <b>Your next step:</b> before you leave today, send your link to the first three of your ten. Then invite the most committed of your ten to become Ambassadors and find their own ten. <b>My 10 for a Million.</b>
+    </div>
+  </div>
+
+  <!-- ================= RECRUIT SUCCESS ================= -->
+  <div class="card success hidden" id="viewRecSuccess">
+    <div class="success-badge">✓</div>
+    <h2>Welcome to A4H.</h2>
+    <p class="lede">You're now part of an organized Hindu American voice — one of a million we're building together. Watch your email for a welcome note and next steps.</p>
+    <div class="next-steps">
+      <b>Want to multiply your voice?</b> Ask the person who invited you how to become an Ambassador and bring your own ten.
+    </div>
+  </div>
+</main>
+
+<script>
+/* =====================================================================
+   CONFIG — the ONLY line you must edit before going live:
+   Paste your Apps Script Web App deployment URL (ends in /exec) below.
+   ===================================================================== */
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwLS6xwhW--eGC8dlW7AOdlaippTKFQCsg0_KxbXIaH-Dsk9PqYVOOWYjyTOuzwQMyo/exec";
+
+const BASE_LINK = "https://anandsinhausa.com/a4h/become-ambassador.html";
+
+/* ---------- state ---------- */
+const params = new URLSearchParams(location.search);
+const refCode = (params.get("ref") || "").trim().toUpperCase();
+
+/* ---------- helpers ---------- */
+const $ = id => document.getElementById(id);
+function show(id){ ["viewAmbassador","viewRecruit","viewAmbSuccess","viewRecSuccess"].forEach(v=>$(v).classList.add("hidden")); $(id).classList.remove("hidden"); window.scrollTo({top:0}); }
+function setErr(id,msg){ const el=$(id); el.textContent=msg; el.style.display = msg ? "block" : "none"; }
+
+const STATES = ["AL","AK","AZ","AR","CA","CO","CT","DE","DC","FL","GA","HI","ID","IL","IN","IA","KS","KY","LA","ME","MD","MA","MI","MN","MS","MO","MT","NE","NV","NH","NJ","NM","NY","NC","ND","OH","OK","OR","PA","RI","SC","SD","TN","TX","UT","VT","VA","WA","WV","WI","WY","Other"];
+["a_state","r_state"].forEach(id=>{
+  const sel=$(id);
+  sel.innerHTML = '<option value="" selected disabled>Select</option>' + STATES.map(s=>`<option>${s}</option>`).join("");
+});
+
+/* ---------- mode on load ---------- */
+if (SCRIPT_URL.startsWith("PASTE_")) $("setupWarn").style.display="block";
+if (refCode){
+  $("invitedBanner").classList.remove("hidden");
+  $("switchToAmb").classList.add("hidden");   // invited people stay on the member path
+  show("viewRecruit");
+} else {
+  show("viewAmbassador");
+}
+$("toRecruit").onclick = ()=> show("viewRecruit");
+$("toAmbassador").onclick = ()=> show("viewAmbassador");
+
+/* ---------- submission ---------- */
+async function post(payload){
+  const res = await fetch(SCRIPT_URL, {
+    method:"POST",
+    // text/plain avoids a CORS preflight, which Apps Script cannot answer
+    headers:{ "Content-Type":"text/plain;charset=utf-8" },
+    body: JSON.stringify(payload),
+    redirect:"follow"
+  });
+  const text = await res.text();
+  let data; try{ data = JSON.parse(text); }catch(e){ throw new Error("Unexpected server reply"); }
+  if (!data.ok) throw new Error(data.error || "Something went wrong");
+  return data;
+}
+
+function readForm(form){
+  const f = new FormData(form);
+  return {
+    name:(f.get("name")||"").trim(),
+    email:(f.get("email")||"").trim(),
+    phone:(f.get("phone")||"").trim(),
+    city:(f.get("city")||"").trim(),
+    state:(f.get("state")||"").trim(),
+    website:(f.get("website")||"").trim()   // honeypot
+  };
+}
+function validate(d){
+  if(!d.name) return "Please enter your name.";
+  if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(d.email)) return "Please enter a valid email address.";
+  if(d.phone.replace(/\D/g,"").length < 10) return "Please enter a valid mobile number.";
+  if(!d.city || !d.state) return "Please enter your city and state.";
+  return "";
+}
+
+$("formAmbassador").addEventListener("submit", async (ev)=>{
+  ev.preventDefault();
+  setErr("errAmbassador","");
+  const d = readForm(ev.target);
+  const v = validate(d); if(v){ setErr("errAmbassador",v); return; }
+  const btn=$("btnAmbassador"); btn.disabled=true; btn.textContent="One moment…";
+  try{
+    const out = await post({ action:"ambassador", ...d });
+    showAmbassadorSuccess(out.code, out.link);
+  }catch(err){
+    setErr("errAmbassador","Could not submit — please check your connection and tap the button again. ("+err.message+")");
+  }finally{
+    btn.disabled=false; btn.textContent="Become an Ambassador";
+  }
+});
+
+$("formRecruit").addEventListener("submit", async (ev)=>{
+  ev.preventDefault();
+  setErr("errRecruit","");
+  const d = readForm(ev.target);
+  const v = validate(d); if(v){ setErr("errRecruit",v); return; }
+  const btn=$("btnRecruit"); btn.disabled=true; btn.textContent="One moment…";
+  try{
+    await post({ action:"recruit", ref:refCode, ...d });
+    show("viewRecSuccess");
+  }catch(err){
+    setErr("errRecruit","Could not submit — please check your connection and tap the button again. ("+err.message+")");
+  }finally{
+    btn.disabled=false; btn.textContent="Join A4H — free";
+  }
+});
+
+/* ---------- ambassador success ---------- */
+function showAmbassadorSuccess(code, link){
+  $("ambCode").textContent = code;
+  $("ambLink").textContent = link;
+  const shareText = "I just became an Americans4Hindus Ambassador. Add your voice — free membership, takes 30 seconds: " + link;
+  $("btnWa").href = "https://wa.me/?text=" + encodeURIComponent(shareText);
+  $("btnCopy").onclick = async ()=>{
+    try{ await navigator.clipboard.writeText(link); }
+    catch(e){
+      const t=document.createElement("textarea"); t.value=link; document.body.appendChild(t); t.select();
+      document.execCommand("copy"); document.body.removeChild(t);
+    }
+    $("btnCopy").textContent="Copied ✓";
+    setTimeout(()=>{$("btnCopy").textContent="Copy my link";},2000);
+  };
+  if (navigator.share){
+    $("btnShare").classList.remove("hidden");
+    $("btnShare").onclick = ()=> navigator.share({ title:"Join Americans4Hindus", text:shareText, url:link }).catch(()=>{});
+  }
+  // signature moment: light the first circle — "you" — the rest are your ten to fill
+  const dots = document.querySelectorAll("#tenCircles span");
+  if (dots[0]) dots[0].classList.add("filled");
+  $("tenLabel").textContent = "Now fill the other nine — and one more";
+  show("viewAmbSuccess");
+}
+</script>
+</body>
+</html>
