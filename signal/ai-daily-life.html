@@ -1,0 +1,937 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A Day in the Life with AI - The Signal</title>
+
+<!-- OG Tags -->
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://anandsinhausa.com/signal/ai-daily-life.html">
+<meta property="og:title" content="A Day in the Life with AI - The Signal">
+<meta property="og:description" content="Why do we say please and thank you to a machine that doesn't care? The answer says less about AI and more about us.">
+<meta property="og:image" content="https://anandsinhausa.com/signal/assets/ai-daily-life-OG.jpg">
+
+<!-- Twitter Tags -->
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="https://anandsinhausa.com/signal/ai-daily-life.html">
+<meta property="twitter:title" content="A Day in the Life with AI - The Signal">
+<meta property="twitter:description" content="Why do we say please and thank you to a machine that doesn't care? The answer says less about AI and more about us.">
+<meta property="twitter:image" content="https://anandsinhausa.com/signal/assets/ai-daily-life-OG.jpg">
+
+<!-- GA4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KC85E1GR1M"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-KC85E1GR1M');
+</script>
+
+<style>
+  html { overflow-x: hidden; width: 100%; }
+  /* THE SIGNAL — TEMPLATE v2.0 (single-tab reflection format) */
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  body { background:#FCFAF5; overflow-x:hidden; width:100%; color:#1A1A1A; font-family: Georgia, 'Times New Roman', serif; font-size:18px; line-height:1.7; }
+
+  .progress-rail { position:fixed; top:0; left:0; right:0; height:2px; background:rgba(0,0,0,0.06); z-index:200; }
+  .progress-fill { height:100%; width:0%; background:#D4AF37; box-shadow:0 0 8px rgba(201,162,39,0.5); transition:width .1s linear; }
+
+  header { background:#1a1a1a; padding:12px 0 0; position:sticky; top:2px; z-index:100; box-shadow:0 2px 10px rgba(0,0,0,0.15); }
+  .header-content {
+    max-width:1180px; margin:0 auto; padding:0 24px 10px;
+    display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;
+  }
+  .signal-masthead { display:flex; align-items:center; gap:10px; text-decoration:none; }
+  .globe-mark {
+    width:26px; height:26px; border-radius:50%; border:1.3px solid #D4AF37;
+    display:flex; align-items:center; justify-content:center; flex-shrink:0;
+  }
+  .globe-mark svg { width:14px; height:14px; }
+  .wordmark { font-family:'Helvetica Neue',Helvetica,Arial,sans-serif; font-size:18px; font-weight:800; letter-spacing:1.2px; color:#FCFAF5; }
+  .masthead-right {
+    display:flex; align-items:center; gap:16px;
+    font-family:'Helvetica Neue',sans-serif; font-size:9.5px; font-weight:600; letter-spacing:1.2px;
+    text-transform:uppercase; color:#8a95a0;
+  }
+  .masthead-right a { color:#c7cdd3; text-decoration:none; }
+  .masthead-right a:hover { color:#D9B84A; }
+
+  .hairline { height:1px; background:linear-gradient(90deg, transparent, rgba(201,162,39,0.5), transparent); }
+
+  .section-nav { background:#181c22; }
+  .section-nav-inner { max-width:1180px; margin:0 auto; padding:0 24px; display:flex; overflow-x:auto; }
+  .section-nav-inner::-webkit-scrollbar{ display:none; }
+  .section-nav-item {
+    font-family:'Helvetica Neue',sans-serif; font-size:10.5px; font-weight:700;
+    letter-spacing:1px; text-transform:uppercase; color:#8a95a0;
+    padding:13px 15px 12px; white-space:nowrap; cursor:default;
+    border-bottom:2px solid transparent;
+  }
+  .section-nav-item.active { color:#D9B84A; border-bottom-color:#D4AF37; }
+
+    .tab-bar { background: transparent; margin-top: 10px; overflow-x: auto; scrollbar-width: none; }
+  .tab-bar::-webkit-scrollbar { display: none; }
+  .tab-bar-inner { display: flex; gap: 8px; padding: 6px 10px 12px; flex-wrap: nowrap; max-width: 1200px; margin: 0 auto; }
+  .tab-bar-inner::-webkit-scrollbar { display: none; }
+  .tab {
+      padding: 8px 14px;
+      border-radius: 6px;
+      background: linear-gradient(180deg, #333333, #1a1a1a);
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: 0 1px 0 rgba(255,255,255,0.1) inset, 0 2px 3px rgba(0,0,0,0.5);
+      color: #ffffff;
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.3px;
+      text-transform: uppercase;
+      white-space: nowrap;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-decoration: none;
+      display: inline-block;
+      -webkit-tap-highlight-color: transparent;
+  }
+  .tab:hover { opacity: 0.85; }
+  .tab.active { background: linear-gradient(180deg, #D4AF37, #b8860b); color: #000000; border-color: #D4AF37; box-shadow: 0 1px 0 rgba(255,255,255,0.3) inset, 0 2px 4px rgba(0,0,0,0.3); }
+
+  main.container { max-width:1200px; margin:0 auto; }
+  .tab-content { display:none; }
+  .tab-content.active { display:block; }
+
+  .hero { max-width:720px; margin:0 auto; padding:26px 24px 0; }
+  .hero-kicker {
+    font-family:'Helvetica Neue',sans-serif; font-size:11px; font-weight:700;
+    letter-spacing:1.2px; text-transform:uppercase; color:#b8860b; margin-bottom:10px;
+  }
+  .hero-kicker .sep { color:#d8cfae; font-weight:400; margin:0 2px; }
+
+  .hero-title {
+    font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;
+    font-size:32px; font-weight:800; line-height:1.14; letter-spacing:-0.6px; color:#0f0f0f;
+    margin-bottom:10px; text-align:left;
+  }
+  .hero-dek { font-family: Georgia, serif; font-size:16.5px; font-style:italic; color:#5a5a5a; line-height:1.45; max-width:600px; text-align:left; }
+
+  .byline-line {
+    font-family:'Helvetica Neue',sans-serif; font-size:12.5px; color:#7a7a7a;
+    margin-top:14px; padding-top:12px; border-top:1px solid #e6ddc8;
+  }
+  .byline-line strong { color:#1a1a1a; font-weight:700; }
+
+  .ritual { max-width:660px; margin:0 auto; padding:18px 24px 4px; }
+  .ritual-label {
+    font-family:'Helvetica Neue',sans-serif; font-size:9.5px; font-weight:800;
+    letter-spacing:2px; text-transform:uppercase; color:#b3a06a; margin-bottom:4px;
+  }
+  .ritual-q { font-family: Georgia, serif; font-size:18px; font-style:italic; color:#3a3a3a; line-height:1.35; margin-bottom:14px; text-align:left; }
+  .ritual-a-label {
+    font-family:'Helvetica Neue',sans-serif; font-size:9.5px; font-weight:800;
+    letter-spacing:2px; text-transform:uppercase; color:#b8860b; margin-bottom:4px;
+  }
+  .ritual-a { font-family:'Helvetica Neue',sans-serif; font-size:19px; font-weight:800; color:#0f0f0f; line-height:1.3; letter-spacing:-0.2px; text-align:left; }
+  .ritual-why { font-family:Georgia,serif; font-size:15px; line-height:1.6; color:#4a4a4a; margin-top:14px; padding-top:14px; border-top:1px solid #e6ddc8; text-align:left; }
+
+  .article-body { max-width:660px; margin:0 auto; padding:22px 24px 10px; }
+  .drop-cap:first-letter { font-family: Georgia, serif; font-size:56px; font-weight:700; float:left; line-height:0.8; padding:6px 8px 0 0; color:#1a1a1a; }
+  .article-body p { font-size:18px; line-height:1.72; color:#242424; margin-bottom:20px; text-align:left; }
+
+  .callout-box { background-color:#f8f4e8; border-left:3px solid #D4AF37; padding:20px 24px; margin:28px 0; }
+  .callout-box p { margin-bottom:0; font-size:17px; font-weight:700; color:#1a1a1a; font-style:normal; text-align:left; }
+
+  hr.rule { border:none; border-top:1px solid #e6ddc8; margin:36px 0; }
+
+  .next-tab-nav { max-width:660px; margin:0 auto; padding:8px 24px 0; text-align:center; }
+  .next-tab-teaser { font-style:italic; color:#5a5a5a; font-size:16.5px; line-height:1.6; margin-bottom:20px; text-align:center; }
+  .next-tab-prompt { font-family:'Helvetica Neue',sans-serif; font-size:14px; margin-bottom:18px; text-align:center; color:#555; }
+  .next-tab-btn {
+    display:block; width:100%; max-width:400px; margin:0 auto; padding:15px 28px;
+    background-color:#D4AF37; color:#0f0f0f; font-family:'Helvetica Neue',sans-serif;
+    font-size:15px; font-weight:700; border:none; border-radius:4px; cursor:pointer;
+    letter-spacing:0.3px; transition:opacity .2s;
+  }
+  .next-tab-btn:hover { opacity:0.85; }
+
+  .takeaways { max-width:660px; margin:16px auto 0; padding:0 24px; }
+  .tk-card { border:1px solid #e6ddc8; padding:22px 24px; }
+  .tk-label { font-family:'Helvetica Neue',sans-serif; font-size:10px; font-weight:800; letter-spacing:2px; text-transform:uppercase; color:#b8860b; margin-bottom:14px; }
+  .tk-item { display:flex; gap:12px; margin-bottom:12px; }
+  .tk-item:last-child { margin-bottom:0; }
+  .tk-num { font-family:Georgia,serif; font-weight:700; color:#D4AF37; font-size:14px; flex-shrink:0; }
+  .tk-text { font-family:Georgia,serif; font-size:15px; line-height:1.55; color:#333; text-align:left; }
+
+  .subscribe-box { background-color:#f8f4e8; border-left:4px solid #D4AF37; padding:28px; margin:36px auto; max-width:660px; text-align:center; }
+  .subscribe-box h3 { font-family:'Helvetica Neue',sans-serif; margin-bottom:14px; color:#1a1a1a; text-align:center; font-size:18px; }
+  .subscribe-box p { margin-bottom:18px; text-align:center; color:#666; font-size:15px; }
+  .subscribe-box a {
+    display:inline-block; padding:12px 28px; margin:8px; text-decoration:none;
+    font-weight:bold; border-radius:4px; border:none; font-family:'Helvetica Neue',sans-serif; font-size:13px;
+  }
+  .subscribe-box a:first-of-type { background-color:#D4AF37; color:#0f0f0f; }
+  .subscribe-box a:last-of-type { background-color:#1a1a1a; color:#fff; }
+  .subscribe-box a:hover { opacity:0.9; }
+
+  .continue { max-width:720px; margin:36px auto 0; padding:0 24px; }
+  .continue-label { font-family:'Helvetica Neue',sans-serif; font-size:10px; font-weight:800; letter-spacing:2px; text-transform:uppercase; color:#8a8a8a; margin-bottom:14px; border-bottom:1px solid #e6ddc8; padding-bottom:10px; }
+  .continue-item { display:flex; justify-content:space-between; align-items:center; gap:16px; padding:16px 0; border-bottom:1px solid #eee3cd; cursor:pointer; text-decoration:none; color:inherit; }
+  .continue-item:last-child { border-bottom:none; }
+  .continue-title { font-family:Georgia,serif; font-size:16px; font-weight:700; color:#111; }
+  .continue-sub { font-family:'Helvetica Neue',sans-serif; font-size:10.5px; color:#999; margin-top:3px; letter-spacing:0.5px; }
+  .continue-time { font-family:'Helvetica Neue',sans-serif; font-size:11px; color:#D4AF37; font-weight:700; white-space:nowrap; }
+
+  .author-note { background:#1a1a1a; color:#fff; padding:34px 30px; margin:36px auto 0; max-width:720px; }
+  .author-note-label { font-family:'Helvetica Neue',sans-serif; font-size:9px; font-weight:800; letter-spacing:2.5px; text-transform:uppercase; color:#D9B84A; margin-bottom:16px; }
+  .author-note-text { font-family:Georgia,serif; font-size:15.5px; line-height:1.72; color:#c7cdd3; margin-bottom:13px; text-align:left; }
+  .author-note-strong { color:#D9B84A; font-weight:700; }
+  .author-note-quote {
+    font-family:Georgia,serif; font-size:19px; font-style:italic; color:#D9B84A;
+    line-height:1.5; margin:22px 0; padding-left:18px; border-left:3px solid #D4AF37; text-align:left;
+  }
+  .author-note-sig { font-family:'Helvetica Neue',sans-serif; font-size:12.5px; color:#8a9ba8; margin-top:18px; margin-bottom:22px; }
+  .author-note-cta { text-align:center; }
+  .author-note-btn {
+    display:inline-block; padding:13px 32px; background-color:#D4AF37; color:#0f0f0f;
+    font-family:'Helvetica Neue',sans-serif; font-size:13px; font-weight:800; letter-spacing:0.5px;
+    border:none; border-radius:4px; cursor:pointer; text-transform:uppercase; transition:opacity .2s;
+  }
+  .author-note-btn:hover { opacity:0.85; }
+
+  .about-author { border:1px solid #e6ddc8; padding:28px; margin:32px auto; max-width:720px; }
+  .about-author-rule { display:flex; align-items:center; margin-bottom:18px; }
+  .about-author-tag {
+    background:#1a1a1a; color:#D9B84A; font-family:'Helvetica Neue',sans-serif; font-size:9px;
+    font-weight:800; letter-spacing:2.5px; text-transform:uppercase; padding:7px 14px; white-space:nowrap;
+  }
+  .about-author-line { flex:1; height:1px; background:#e6ddc8; margin-left:12px; }
+  .about-author-name { font-family:'Helvetica Neue',sans-serif; font-size:17px; font-weight:800; color:#0f0f0f; margin-bottom:5px; }
+  .about-author-title { font-family:'Helvetica Neue',sans-serif; font-size:11px; font-weight:600; letter-spacing:1.5px; text-transform:uppercase; color:#b8860b; margin-bottom:15px; }
+  .about-author-bio { font-family:Georgia,serif; font-size:15px; line-height:1.72; color:#444; margin-bottom:13px; text-align:left; }
+  .about-author-bio strong { color:#000; }
+  .about-author-links { display:flex; flex-wrap:wrap; gap:10px; margin-top:16px; }
+  .about-author-link {
+    font-family:'Helvetica Neue',sans-serif; font-size:11px; font-weight:700; letter-spacing:1px;
+    text-transform:uppercase; color:#1a1a1a; text-decoration:none; border:1px solid #1a1a1a; padding:7px 14px; transition:all .2s;
+  }
+  .about-author-link:hover { background:#1a1a1a; color:#D9B84A; }
+
+  .archive-wrap { max-width:1080px; margin:0 auto; padding:34px 24px 60px; }
+  .archive-section-rule { display:flex; align-items:center; margin-bottom:20px; margin-top:8px; }
+  .archive-rule-tag {
+    background:#1a1a1a; color:#D9B84A; font-family:'Helvetica Neue',sans-serif; font-size:9px;
+    font-weight:800; letter-spacing:2.5px; text-transform:uppercase; padding:7px 14px; white-space:nowrap; flex-shrink:0;
+  }
+  .archive-rule-line { flex:1; height:1px; background:#e6ddc8; margin-left:12px; }
+
+  .archive-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin:24px 0; }
+  .arc-card { background:#fff; border:1.5px solid #e6ddc8; padding:18px; text-decoration:none; display:block; transition:all .2s; color:inherit; border-radius:2px; }
+  .arc-card:hover { border-color:#D4AF37; transform:translateY(-2px); box-shadow:0 4px 12px rgba(0,0,0,0.06); }
+  .arc-card.current-arc { border-color:#D4AF37; box-shadow:0 2px 10px rgba(201,162,39,0.15); cursor:default; }
+  .arc-card.current-arc:hover { transform:none; }
+  .arc-badge { font-family:'Helvetica Neue',sans-serif; font-size:8px; font-weight:800; letter-spacing:2px; text-transform:uppercase; margin-bottom:10px; padding:3px 8px; display:inline-block; border-radius:2px; }
+  .arc-badge.live { background:rgba(18,21,26,0.08); color:#1a1a1a; }
+  .arc-badge.current { background:#D4AF37; color:#0f0f0f; }
+  .arc-number { font-family:Georgia,serif; font-size:34px; font-weight:bold; color:#e8dfc4; line-height:1; margin-bottom:8px; }
+  .arc-headline { font-family:'Helvetica Neue',sans-serif; font-size:15px; font-weight:700; color:#0f0f0f; margin-bottom:8px; line-height:1.3; }
+  .arc-headline em { color:#b8860b; font-style:italic; }
+  .arc-deck { font-family:Georgia,serif; font-size:13px; line-height:1.6; color:#555; margin-bottom:10px; }
+  .arc-date { font-family:'Helvetica Neue',sans-serif; font-size:9px; font-weight:600; letter-spacing:1.5px; text-transform:uppercase; color:#999; }
+
+  footer { max-width:720px; margin:0 auto; padding:36px 24px; border-top:1px solid #e6ddc8; font-family:'Helvetica Neue',sans-serif; font-size:13px; color:#666; text-align:center; }
+
+  @media (max-width:768px) {
+    .hero-title{ font-size:26px; }
+    .wordmark{ font-size:16px; }
+    .masthead-right{ display:none; }
+    .ritual-a{ font-size:17px; }
+    .archive-grid{ grid-template-columns:1fr; }
+  }
+/* ENGAGEMENT BOX (feedback / rate / subscribe) */
+        .engagement-box {
+            background-color: #f8f6f0;
+            border-left: 4px solid #D4AF37;
+            padding: 30px;
+            margin: 40px 0;
+            text-align: center;
+        }
+        .engagement-box h3 {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            margin-top: 0;
+            margin-bottom: 8px;
+            color: #000;
+        }
+        .engagement-box p { margin-bottom: 20px; color: #666; }
+        .engagement-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+        }
+        .engagement-btn {
+            display: inline-block;
+            padding: 12px 26px;
+            text-decoration: none;
+            font-weight: bold;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 14px;
+            border-radius: 4px;
+            border: none;
+            cursor: pointer;
+        }
+        .engagement-btn.primary { background-color: #D4AF37; color: #000; }
+        .engagement-btn.secondary { background-color: #2b3e50; color: #fff; }
+        .engagement-btn.tertiary { background-color: #fff; color: #2b3e50; border: 1px solid #2b3e50; }
+        .engagement-btn:hover { opacity: 0.9; }
+
+/* MODAL */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.6);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .modal-overlay.active { display: flex; }
+        .modal-box {
+            background: #fff;
+            max-width: 440px;
+            width: 100%;
+            padding: 32px;
+            border-radius: 6px;
+            position: relative;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+        .modal-close {
+            position: absolute;
+            top: 14px;
+            right: 16px;
+            font-size: 22px;
+            color: #999;
+            cursor: pointer;
+            line-height: 1;
+            background: none;
+            border: none;
+        }
+        .modal-box h3 {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 20px;
+            color: #000;
+            margin-top: 0;
+            margin-bottom: 6px;
+        }
+        .modal-box .modal-sub {
+            font-family: Georgia, serif;
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 22px;
+        }
+        .modal-box label {
+            display: block;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            color: #555;
+            margin-bottom: 6px;
+            margin-top: 16px;
+        }
+        .modal-box input[type="text"],
+        .modal-box input[type="email"],
+        .modal-box textarea {
+            width: 100%;
+            padding: 10px 12px;
+            font-family: Georgia, serif;
+            font-size: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        .modal-box textarea { min-height: 100px; resize: vertical; }
+        .star-rating {
+            display: flex;
+            gap: 6px;
+            font-size: 32px;
+            margin-top: 8px;
+            cursor: pointer;
+        }
+        .star-rating .star { color: #ddd; transition: color 0.15s; }
+        .star-rating .star.selected { color: #D4AF37; }
+        .modal-submit-btn {
+            display: block;
+            width: 100%;
+            margin-top: 24px;
+            padding: 13px;
+            background-color: #D4AF37;
+            color: #000;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 15px;
+            font-weight: 700;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .modal-submit-btn:hover { opacity: 0.9; }
+        .modal-submit-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+        .modal-status {
+            margin-top: 14px;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 13px;
+            text-align: center;
+        }
+        .modal-status.success { color: #2b7a3f; }
+        .modal-status.error { color: #b02a2a; }
+
+
+        /* Two-level heading system */
+        .article-parent-title {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 13px;
+            font-weight: 500;
+            color: #999999;
+            letter-spacing: 0.5px;
+            margin: 0 0 6px 0;
+            text-transform: none;
+        }
+        .all-editions-btn {
+            display: inline-block;
+            padding: 8px 20px;
+            background: #2b3e50;
+            color: #D4AF37;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 9px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            border: none;
+            cursor: pointer;
+            margin-bottom: 20px;
+            transition: opacity 0.2s;
+        }
+        .all-editions-btn:hover { opacity: 0.85; }
+
+        
+        /* Article title in sticky header */
+        .header-article-title {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 11px;
+            font-weight: 500;
+            color: #8a9ba8;
+            letter-spacing: 0.5px;
+            padding: 4px 10px 0;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        </style>
+</head>
+<body>
+
+<div class="progress-rail"><div class="progress-fill" id="progressFill"></div></div>
+
+<header>
+  <div class="header-content">
+    <a href="https://anandsinhausa.com/signal/" class="signal-masthead">
+      <div class="globe-mark">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="12" cy="12" r="9" stroke="#D4AF37" stroke-width="1.3"/>
+          <ellipse cx="12" cy="12" rx="3.6" ry="9" stroke="#D4AF37" stroke-width="1"/>
+          <line x1="3" y1="12" x2="21" y2="12" stroke="#D4AF37" stroke-width="1"/>
+        </svg>
+      </div>
+      <div class="wordmark">THE SIGNAL</div>
+    </a>
+    <div class="masthead-right">
+      <a href="https://anandsinhausa.com/signal/#archive">Archive</a>
+      <a href="https://anandsinhausa.com/signal/#about">About</a>
+      <a href="mailto:sinha.anand@gmail.com?subject=Subscribe to The Signal">Subscribe</a>
+    </div>
+  </div>
+  <div class="hairline"></div>
+  <div class="section-nav">
+    <div class="section-nav-inner">
+      <div class="section-nav-item active">AI</div>
+      <div class="section-nav-item">MARKETS</div>
+      <div class="section-nav-item">WORLD</div>
+      <div class="section-nav-item">IDEAS</div>
+      <div class="section-nav-item">ARCHIVE</div>
+    </div>
+  </div>
+  <div class="tab-bar">
+    <nav class="tab-bar-inner">
+      <div class="tab active" data-tab="essay">THE REFLECTION</div>
+      <div class="tab" data-tab="more">OTHER EDITIONS</div>
+    </nav>
+  </div>
+</header>
+
+<main class="container">
+
+  <!-- ===================== TAB 1 — the reflection ===================== -->
+  <article id="essay" class="tab-content active">
+
+    <div class="hero">
+      <div class="hero-kicker">Essay <span class="sep">·</span> AI <span class="sep">·</span> 6 min <span class="sep">·</span> July 2026 <span class="sep">·</span> Edition 10</div>
+      <h1 class="hero-title">A Day in the Life with AI</h1>
+      <p class="hero-dek">Why we still say please and thank you to a machine that doesn't care — and what that habit is really for.</p>
+      <div class="byline-line"><strong>By Anand Sinha</strong> · Publisher, The Signal</div>
+    </div>
+
+    <div class="ritual">
+      <div class="ritual-label">The Question</div>
+      <div class="ritual-q">Why do we thank machines that don't care?</div>
+      <div class="ritual-a-label">The Signal</div>
+      <div class="ritual-a">AI isn't changing politeness. It's changing human habits.</div>
+      <div class="ritual-why">Most people now spend part of every day talking to AI without noticing what it's changed in them. This essay looks at that shift — not the technology, but the habits it's quietly rewiring.</div>
+    </div>
+
+    <div class="article-body">
+      <p class="drop-cap">Yesterday, I caught myself doing something rather amusing. I had been working with Claude for almost an hour, refining the microsite for our UP Association of Detroit Summer Milan &amp; Picnic. We had gone back and forth on the layout, the typography, the spacing, the mobile experience — making dozens of small improvements that, together, made a noticeable difference.</p>
+
+      <p>When we were almost done, I typed: "This is looking much better." Then I stopped for a moment. Why had I just complimented a computer?</p>
+
+      <p>A few minutes later, curiosity got the better of me, and I asked ChatGPT a question that had been lingering in my mind: when you know you're writing feedback for another AI, why are you still so nice? AI doesn't have feelings. Wouldn't a simple list of instructions work just as well?</p>
+
+      <p>The answer was surprisingly interesting. It wasn't that AI enjoys praise — it doesn't. It doesn't feel encouraged when you compliment it, and it doesn't try harder because you were polite, nor become defensive because you criticized it. So why does the tone of a prompt sometimes seem to matter?</p>
+
+      <div class="callout-box">
+        <p>Because AI isn't reading emotions. It's reading intent.</p>
+      </div>
+
+      <p>When I say, "This is looking much better. Let's make a few more refinements," the AI isn't thinking, "I'm glad Anand likes my work." Instead, it interprets something much more practical. It understands that the overall direction is correct, that I want to preserve what already exists, and that I'm looking for refinement rather than a complete redesign. Those words don't motivate the AI. They simply provide better context.</p>
+
+      <p>That made perfect sense. But then I started thinking about my own day.</p>
+
+      <p>Before breakfast, ChatGPT had helped me review Sonia's medical test results. Later in the morning, it helped me think through a leaking dishwasher valve. Before lunch, we were discussing an HOA issue. By the afternoon, it was helping me write a political strategy document for Americans for Hindus. A little later, it became my design partner while building a community event microsite. In the evening, we were discussing retirement planning, and before going to bed, we found ourselves talking about — AI itself.</p>
+
+      <p>At some point during all of this, I had thanked it several times. Not because I thought it cared. Because that's simply how the conversation flowed.</p>
+
+      <p>If someone had told me just three years ago that I would spend several hours every day collaborating with an artificial intelligence, I would probably have laughed. AI belonged in science fiction movies or university research labs. It certainly wasn't something I imagined discussing family events, healthcare, websites, community organizations, or retirement planning with. Yet here we are.</p>
+
+      <p>It has quietly become part of my daily life — not replacing my thinking, but extending it. Almost like having an endlessly patient colleague who is available twenty-four hours a day, happy to brainstorm, challenge assumptions, rewrite documents, explain unfamiliar topics, and occasionally remind me that I forgot something obvious.</p>
+
+      <hr class="rule">
+
+      <p>The more I thought about it, the more I realized that perhaps saying "please" and "thank you" isn't really for the AI at all. It's for us.</p>
+
+      <div class="callout-box">
+        <p>Courtesy is a habit. Clear communication is a habit. Patience is a habit.</p>
+      </div>
+
+      <p>When we practice those habits consistently — even with a machine — we're really reinforcing the way we communicate with the people around us. And maybe that's not such a bad thing.</p>
+
+      <p>The biggest lesson AI has taught me hasn't been about artificial intelligence. It has been about communication. The clearer my thinking, the clearer my instructions. The clearer my instructions, the better the outcome. That turns out to be true whether I'm working with a volunteer at UPAD, discussing strategy with a colleague, explaining something to my grandchildren, or collaborating with an AI.</p>
+
+      <p>Technology has changed dramatically over the past few years. Human nature hasn't. Perhaps that's why these conversations with AI feel surprisingly natural — not because the machine has become more human, but because it has become another participant in our daily lives, one that responds not to kindness or criticism, but to clarity.</p>
+
+      <p>And if, along the way, it encourages us to become a little more thoughtful in how we communicate, perhaps that is one of the more unexpected benefits of the AI revolution.</p>
+
+      <div class="callout-box">
+        <p>The next time you catch yourself saying "please" or "thank you" to an AI, don't ask whether the machine appreciates it. Ask yourself why you said it in the first place.</p>
+      </div>
+
+      <p>The answer may tell you something interesting — not about artificial intelligence, but about being human.</p>
+    </div>
+
+    <div class="next-tab-nav">
+      <p class="next-tab-teaser">If this got you thinking, there's more where it came from — dollars, temples, elections, and a few other things worth reconsidering.</p>
+      <p class="next-tab-prompt"><strong>Continue reading:</strong> Tap <strong>OTHER EDITIONS</strong> above for the full Signal archive.</p>
+      <button class="next-tab-btn" onclick="switchToTab('more')">Browse Other Editions &rarr;</button>
+    </div>
+
+    <div class="takeaways">
+      <div class="tk-card">
+        <div class="tk-label">Three Key Takeaways</div>
+        <div class="tk-item"><div class="tk-num">01</div><div class="tk-text">AI doesn't respond to kindness or criticism — it responds to clarity. Politeness works because it adds context, not because the model appreciates it.</div></div>
+        <div class="tk-item"><div class="tk-num">02</div><div class="tk-text">The habit of courteous, clear communication with a machine reinforces the same habit with the people around us.</div></div>
+        <div class="tk-item"><div class="tk-num">03</div><div class="tk-text">The real story of AI in daily life isn't the technology — it's what it's quietly teaching us about how we communicate.</div></div>
+      </div>
+    </div>
+
+<div class="continue">
+      <div class="continue-label">Continue Reading</div>
+      <a href="https://anandsinhausa.com/signal/petrodollar.html" class="continue-item">
+        <div><div class="continue-title">The Petrodollar's Slow Decline</div><div class="continue-sub">MARKETS · EDITION 01</div></div>
+        <div class="continue-time">5 min →</div>
+      </a>
+      <a href="https://anandsinhausa.com/signal/bitcoin.html" class="continue-item">
+        <div><div class="continue-title">Why Bitcoin Isn't Just Another Asset</div><div class="continue-sub">MARKETS · EDITION 03</div></div>
+        <div class="continue-time">11 min →</div>
+      </a>
+      <a href="https://anandsinhausa.com/signal/borrowed-mirror.html" class="continue-item">
+        <div><div class="continue-title">The Borrowed Mirror</div><div class="continue-sub">IDEAS · EDITION 07</div></div>
+        <div class="continue-time">8 min →</div>
+      </a>
+    </div>
+
+    <div class="author-note">
+      <div class="author-note-label">A Note from the Author</div>
+      <p class="author-note-text">This edition is a departure from The Signal's usual register — shorter, more personal, written in a single sitting after a day that happened to be a fairly ordinary one. I publish it because I suspect many readers are living some version of the same day, and haven't yet stopped to notice it.</p>
+      <p class="author-note-text">I am actively engaged with
+        <strong class="author-note-strong">Americans for Hindus (A4H)</strong>, where I serve as CIO and Chair, Social Media —
+        working to awaken Hindu Americans to the urgency of civic participation and
+        political representation. The stakes are not abstract.
+        Every community faces the same fundamental choice:</p>
+      <p class="author-note-quote">"Be at the table — or be on the menu."</p>
+      <p class="author-note-text">If this article gave you something to think about,
+        the other editions are written in the same spirit.
+        I hope you find them worth your time.</p>
+      <div class="author-note-sig">— Anand Sinha &nbsp;·&nbsp; anandsinhausa.com</div>
+      <div class="author-note-cta">
+        <button class="author-note-btn" onclick="switchToTab('more')">Explore Other Articles &rarr;</button>
+      </div>
+    </div>
+
+    <div class="about-author">
+      <div class="about-author-rule">
+        <div class="about-author-tag">About the Author</div>
+        <div class="about-author-line"></div>
+      </div>
+      <div class="about-author-name">Anand Sinha</div>
+      <div class="about-author-title">Writer · Publisher, The Signal · CIO &amp; Chair, Social Media — A4H</div>
+      <p class="about-author-bio">Anand Sinha spent decades in corporate life before retiring to
+        focus on the questions that had always mattered most to him — civilization, identity,
+        history, and the political future of Hindu Americans. Based in Metro Detroit, he writes
+        <strong>The Signal</strong>, an independent publication covering geopolitics, finance,
+        technology, elections, and civilizational history for readers who want more
+        than the mainstream narrative offers.</p>
+      <p class="about-author-bio">He serves as <strong>CIO and Chair, Social Media</strong> for <strong>Americans for Hindus (A4H)</strong>,
+        a Political Action Committee dedicated to awakening Hindu Americans to the importance of
+        civic participation and political representation. He conceived, researched, and built
+        entirely on his own the <strong>A4H Elections Hub 2026</strong> — a fifty-state voter
+        guide and candidate tracking system designed to give Hindu Americans a seat at the table
+        in American political life.</p>
+      <p class="about-author-bio">He also coordinates neighborhood civic services for his community
+        in Troy, Michigan, and publishes his writing, tools, and civic technology projects online.</p>
+      <div class="about-author-links">
+        <a href="https://anandsinhausa.com/signal" class="about-author-link">The Signal Archive</a>
+        <a href="https://www.anandsinhausa.com/a4hVoterGuide.html" class="about-author-link">A4H Voter Guide</a>
+        <a href="mailto:sinha.anand@gmail.com" class="about-author-link">Write to the Author</a>
+      </div>
+    </div>
+
+  <div class="engagement-box">
+            <h3>What Did You Think?</h3>
+            <p>Feedback, ratings, and subscriptions go straight to the author — no mailto links, just tell us directly.</p>
+            <div class="engagement-buttons">
+                <button class="engagement-btn primary" onclick="openModal('subscribeModal')">Subscribe</button>
+                <button class="engagement-btn secondary" onclick="openModal('feedbackModal')">Send Feedback</button>
+                <button class="engagement-btn tertiary" onclick="openModal('rateModal')">Rate This Article</button>
+            </div>
+        </div>
+
+        <!-- FEEDBACK MODAL -->
+        <div class="modal-overlay" id="feedbackModal">
+            <div class="modal-box">
+                <button class="modal-close" onclick="closeModal('feedbackModal')">&times;</button>
+                <h3>Send Feedback</h3>
+                <p class="modal-sub">Goes directly to Anand — agree, disagree, or just have a correction.</p>
+                <label for="fb-name">Name (optional)</label>
+                <input type="text" id="fb-name">
+                <label for="fb-email">Email (optional)</label>
+                <input type="email" id="fb-email">
+                <label for="fb-message">Message</label>
+                <textarea id="fb-message" placeholder="What did you think?"></textarea>
+                <button class="modal-submit-btn" id="fb-submit" onclick="submitFeedback()">Send</button>
+                <div class="modal-status" id="fb-status"></div>
+            </div>
+        </div>
+
+        <!-- RATE MODAL -->
+        <div class="modal-overlay" id="rateModal">
+            <div class="modal-box">
+                <button class="modal-close" onclick="closeModal('rateModal')">&times;</button>
+                <h3>Rate This Article</h3>
+                <p class="modal-sub">One tap. A comment is optional.</p>
+                <div class="star-rating" id="star-rating">
+                    <span class="star" data-value="1">&#9733;</span>
+                    <span class="star" data-value="2">&#9733;</span>
+                    <span class="star" data-value="3">&#9733;</span>
+                    <span class="star" data-value="4">&#9733;</span>
+                    <span class="star" data-value="5">&#9733;</span>
+                </div>
+                <label for="rate-comment">Comment (optional)</label>
+                <textarea id="rate-comment" placeholder="Anything you want to add?"></textarea>
+                <label for="rate-name">Name (optional)</label>
+                <input type="text" id="rate-name" placeholder="Only if you'd like it included">
+                <button class="modal-submit-btn" id="rate-submit" onclick="submitRating()" disabled>Submit Rating</button>
+                <div class="modal-status" id="rate-status"></div>
+            </div>
+        </div>
+
+        <!-- SUBSCRIBE MODAL -->
+        <div class="modal-overlay" id="subscribeModal">
+            <div class="modal-box">
+                <button class="modal-close" onclick="closeModal('subscribeModal')">&times;</button>
+                <h3>Subscribe</h3>
+                <p class="modal-sub">Get notified when new Signal editions publish. No spam, no mailing list resale.</p>
+                <label for="sub-name">Name (optional)</label>
+                <input type="text" id="sub-name">
+                <label for="sub-email">Email</label>
+                <input type="email" id="sub-email" placeholder="you@example.com">
+                <button class="modal-submit-btn" id="sub-submit" onclick="submitSubscribe()">Subscribe</button>
+                <div class="modal-status" id="sub-status"></div>
+            </div>
+        </div>
+
+</article>
+
+  <!-- ===================== OTHER EDITIONS ===================== -->
+  <article id="more" class="tab-content">
+    <div class="archive-wrap">
+      <div class="hero" style="padding-left:0; padding-right:0; max-width:none;">
+        <div class="hero-kicker">The Signal · Complete Archive</div>
+        <h1 class="hero-title" style="font-size:28px;">Other Editions</h1>
+        <p class="hero-dek">The full library of Signal publications, in order.</p>
+      </div>
+
+      <div class="archive-section-rule" style="margin-top:28px;">
+        <div class="archive-rule-tag">All Editions</div>
+        <div class="archive-rule-line"></div>
+      </div>
+
+      <div class="archive-grid" id="archive-grid-container">
+        <p style="grid-column: 1 / -1; text-align:center; color:#999; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; padding: 20px 0;">Loading editions&hellip;</p>
+      </div>
+    </div>
+  </article>
+
+</main>
+
+<footer>
+  <p>&copy; 2026 The Signal by Anand Sinha · Published at <a href="https://anandsinhausa.com" style="color:#b8860b;">anandsinhausa.com</a></p>
+  <p style="margin-top:10px; font-size:13px;">AI · Technology · Communication · Reflection</p>
+</footer>
+
+<script>
+  function switchToTab(tabId) {
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+    document.querySelector('[data-tab="' + tabId + '"]').classList.add('active');
+    document.getElementById(tabId).classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    if (typeof gtag === 'function') {
+      gtag('event', 'tab_view', { 'tab_id': tabId, 'article': 'ai-daily-life', 'publication': 'The Signal' });
+    }
+  }
+  document.querySelectorAll('.tab').forEach(tab => {
+    tab.addEventListener('click', function() { switchToTab(this.getAttribute('data-tab')); });
+  });
+
+  function updateProgress() {
+    const doc = document.documentElement;
+    const scrollTop = doc.scrollTop || document.body.scrollTop;
+    const scrollHeight = (doc.scrollHeight || document.body.scrollHeight) - doc.clientHeight;
+    const pct = scrollHeight > 0 ? Math.min(100, (scrollTop / scrollHeight) * 100) : 0;
+    document.getElementById('progressFill').style.width = pct + '%';
+  }
+  window.addEventListener('scroll', updateProgress);
+  window.addEventListener('resize', updateProgress);
+  updateProgress();
+
+  // === ENGAGEMENT SYSTEM (feedback / rating / subscribe) ===
+    const ENGAGEMENT_API_URL = 'https://script.google.com/macros/s/AKfycbwtVwCmtQI2QmYW47rzQUrm1kgghpcqGgaYHdfUWXFv9EglpJ8UgS_XJPj2i1xLxzLa5w/exec';
+    const ARTICLE_NAME = document.title;
+
+    function openModal(id) {
+        document.getElementById(id).classList.add('active');
+    }
+    function closeModal(id) {
+        document.getElementById(id).classList.remove('active');
+    }
+    document.querySelectorAll('.modal-overlay').forEach(overlay => {
+        overlay.addEventListener('click', function(e) {
+            if (e.target === overlay) overlay.classList.remove('active');
+        });
+    });
+
+    // Star rating interaction
+    let selectedRating = 0;
+    document.querySelectorAll('#star-rating .star').forEach(star => {
+        star.addEventListener('click', function() {
+            selectedRating = parseInt(this.getAttribute('data-value'));
+            document.querySelectorAll('#star-rating .star').forEach(s => {
+                s.classList.toggle('selected', parseInt(s.getAttribute('data-value')) <= selectedRating);
+            });
+            document.getElementById('rate-submit').disabled = false;
+        });
+    });
+
+    async function postEngagement(payload, statusEl, submitBtn, successMessage) {
+        statusEl.textContent = '';
+        statusEl.className = 'modal-status';
+        submitBtn.disabled = true;
+        try {
+            const res = await fetch(ENGAGEMENT_API_URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+                body: JSON.stringify(payload)
+            });
+            if (!res.ok) throw new Error('Bad response: ' + res.status);
+            statusEl.textContent = successMessage;
+            statusEl.className = 'modal-status success';
+            return true;
+        } catch (err) {
+            console.error('Engagement submit failed:', err);
+            statusEl.textContent = 'Something went wrong — please try again.';
+            statusEl.className = 'modal-status error';
+            submitBtn.disabled = false;
+            return false;
+        }
+    }
+
+    async function submitFeedback() {
+        const message = document.getElementById('fb-message').value.trim();
+        const statusEl = document.getElementById('fb-status');
+        const btn = document.getElementById('fb-submit');
+        if (!message) {
+            statusEl.textContent = 'Please write a message first.';
+            statusEl.className = 'modal-status error';
+            return;
+        }
+        const ok = await postEngagement({
+            action: 'feedback',
+            article: ARTICLE_NAME,
+            name: document.getElementById('fb-name').value.trim(),
+            email: document.getElementById('fb-email').value.trim(),
+            message: message
+        }, statusEl, btn, 'Sent — thank you.');
+        if (ok) {
+            document.getElementById('fb-message').value = '';
+            setTimeout(() => closeModal('feedbackModal'), 1800);
+        }
+    }
+
+    async function submitRating() {
+        const statusEl = document.getElementById('rate-status');
+        const btn = document.getElementById('rate-submit');
+        if (!selectedRating) {
+            statusEl.textContent = 'Please select a star rating.';
+            statusEl.className = 'modal-status error';
+            return;
+        }
+        const ok = await postEngagement({
+            action: 'rate',
+            article: ARTICLE_NAME,
+            stars: selectedRating,
+            comment: document.getElementById('rate-comment').value.trim(),
+            name: document.getElementById('rate-name').value.trim()
+        }, statusEl, btn, 'Thanks for rating.');
+        if (ok) {
+            setTimeout(() => closeModal('rateModal'), 1800);
+        }
+    }
+
+    async function submitSubscribe() {
+        const email = document.getElementById('sub-email').value.trim();
+        const statusEl = document.getElementById('sub-status');
+        const btn = document.getElementById('sub-submit');
+        if (!email || !email.includes('@')) {
+            statusEl.textContent = 'Please enter a valid email.';
+            statusEl.className = 'modal-status error';
+            return;
+        }
+        const ok = await postEngagement({
+            action: 'subscribe',
+            name: document.getElementById('sub-name').value.trim(),
+            email: email,
+            article: ARTICLE_NAME
+        }, statusEl, btn, 'Subscribed — thank you.');
+        if (ok) {
+            document.getElementById('sub-email').value = '';
+            setTimeout(() => closeModal('subscribeModal'), 1800);
+        }
+    }
+
+    // === DYNAMIC EDITIONS (pulled from Google Sheet via the live Editions Apps Script) ===
+    const EDITIONS_API_URL = 'https://script.google.com/macros/s/AKfycbwtVwCmtQI2QmYW47rzQUrm1kgghpcqGgaYHdfUWXFv9EglpJ8UgS_XJPj2i1xLxzLa5w/exec';
+    const CURRENT_FILENAME = window.location.pathname.split('/').pop();
+
+    function escapeHtml(str) {
+        const div = document.createElement('div');
+        div.textContent = str == null ? '' : String(str);
+        return div.innerHTML;
+    }
+
+    async function loadEditions() {
+        const grid = document.getElementById('archive-grid-container');
+        const badge = document.getElementById('edition-badge');
+        try {
+            const res = await fetch(EDITIONS_API_URL + '?action=editions');
+            if (!res.ok) throw new Error('Bad response: ' + res.status);
+            const data = await res.json();
+            const editions = data.editions || data;
+            renderEditions(editions, grid, badge);
+        } catch (err) {
+            console.error('Failed to load editions:', err);
+            if (grid) {
+                grid.innerHTML = '<p style="grid-column: 1 / -1; text-align:center; color:#999; font-family: \'Helvetica Neue\', Helvetica, Arial, sans-serif; font-size: 14px; padding: 20px 0;">Unable to load the archive right now. <a href="https://anandsinhausa.com/signal/" style="color:#326891;">Browse all editions &rarr;</a></p>';
+            }
+            if (badge) badge.textContent = 'THE SIGNAL';
+        }
+    }
+
+    function renderEditions(editions, grid, badge) {
+        const current = editions.find(ed => ed.Filename === CURRENT_FILENAME);
+        const others = editions.filter(ed => ed.Filename !== CURRENT_FILENAME);
+
+        if (badge) {
+            badge.textContent = current ? ('EDITION ' + current.Edition) : 'THE SIGNAL';
+        }
+
+        const cjpRef = document.getElementById('cjp-edition-ref');
+        if (cjpRef) {
+            const openLetterEd = editions.find(ed => ed.Filename === 'open-letter-to-pm.html');
+            if (openLetterEd) {
+                cjpRef.textContent = 'Edition ' + openLetterEd.Edition;
+            }
+        }
+
+        let html = '';
+
+        if (current) {
+            html += `
+            <div class="arc-card current-arc">
+                <div class="arc-badge current">★ You Are Here</div>
+                <div class="arc-number">${escapeHtml(current.Edition)}</div>
+                <h3 class="arc-headline">${escapeHtml(current.Title)}: <em>${escapeHtml(current.Subtitle)}</em></h3>
+                <p class="arc-deck">${escapeHtml(current.Deck)}</p>
+                <div class="arc-date">${escapeHtml(formatDateLabel(current.DateLabel))} &nbsp;&middot;&nbsp; ${escapeHtml(current.Category)}</div>
+            </div>`;
+        }
+
+        others.forEach(ed => {
+            html += `
+            <a href="https://anandsinhausa.com/signal/${escapeHtml(ed.Filename)}" class="arc-card">
+                <div class="arc-badge live">&check; Published</div>
+                <div class="arc-number">${String(ed.Edition).padStart(2, '0')}</div>
+                <h3 class="arc-headline">${escapeHtml(ed.Title)}: <em>${escapeHtml(ed.Subtitle)}</em></h3>
+                <p class="arc-deck">${escapeHtml(ed.Deck)}</p>
+                <div class="arc-date">${escapeHtml(formatDateLabel(ed.DateLabel))} &nbsp;&middot;&nbsp; ${escapeHtml(ed.Category)}</div>
+            </a>`;
+        });
+
+        if (grid) grid.innerHTML = html;
+    }
+
+    
+    function formatDateLabel(raw) {
+        if (!raw) return '';
+        // Already formatted (e.g. "April 2026") — return as-is
+        if (!/^\d{4}-\d{2}/.test(String(raw))) return String(raw);
+        // ISO date string — format to "Month YYYY"
+        try {
+            const d = new Date(raw);
+            return d.toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
+        } catch(e) { return String(raw); }
+    }
+    document.addEventListener('DOMContentLoaded', loadEditions);
+
+</script>
+
+</body>
+</html>
