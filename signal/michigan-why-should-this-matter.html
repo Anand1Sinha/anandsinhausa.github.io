@@ -148,9 +148,9 @@
         /* ── Q&A Accordion ── */
         .qa-cluster { margin: 32px 0; }
         .qa-cluster-label { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-                            font-size: 9px; font-weight: 800; letter-spacing: 2.5px;
-                            text-transform: uppercase; background: #2b3e50; color: #D4AF37;
-                            padding: 7px 14px; display: inline-block; margin-bottom: 12px; }
+                            font-size: 20px; font-weight: 700; letter-spacing: 0;
+                            text-transform: none; background: none; color: #000000;
+                            padding: 0; display: block; margin: 36px 0 14px; }
         .qa-item { border: 1px solid #e5e5e5; margin-bottom: 8px; background: #fff; }
         .qa-question { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
                        font-size: 16px; font-weight: 600; color: #000; padding: 18px 20px;
@@ -165,10 +165,21 @@
         .qa-item.open .qa-answer { display: block; }
         .qa-answer p { font-size: 17px; margin-bottom: 16px; margin-top: 16px; }
         .qa-answer p:last-child { margin-bottom: 0; }
+        .qa-close { display: flex; justify-content: flex-end; margin-top: 18px;
+                    padding-top: 14px; border-top: 1px solid #f0eee8; }
+        .qa-close-btn { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+                        font-size: 12px; font-weight: 600; color: #999;
+                        background: none; border: 1px solid #e0dbd4; border-radius: 3px;
+                        padding: 6px 14px; cursor: pointer; letter-spacing: 0.3px;
+                        transition: all 0.15s; }
+        .qa-close-btn:hover { color: #000; border-color: #999; background: #faf8f4; }
+
         .qa-source { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
                      font-size: 11px; color: #b8860b; background: rgba(212,175,55,0.08);
                      border: 1px solid rgba(212,175,55,0.25); border-radius: 3px;
                      padding: 3px 8px; display: inline-block; margin-top: 8px; }
+
+        #editorial-qa-container .qa-loading { font-family: 'Helvetica Neue',sans-serif; font-size: 14px; color: #999; text-align: center; padding: 30px 0; }
 
         /* ── Ask a Question Form ── */
         .ask-box { background: #f8f6f0; border-left: 4px solid #D4AF37;
@@ -417,179 +428,12 @@
 
     <hr>
 
-    <!-- CLUSTER A -->
-    <div class="qa-cluster">
-        <div class="qa-cluster-label">A — Why Should I Care?</div>
-
-        <div class="qa-item">
-            <div class="qa-question" onclick="toggleQA(this)">
-                I am not interested in politics. Why should I care about any of this?
-                <span class="qa-chevron">▼</span>
-            </div>
-            <div class="qa-answer">
-                <p>The premise here is worth separating into two parts. Disinterest in politics — campaign cycles, partisan debates, cable news — is entirely reasonable and, in many cases, probably healthy. But public policy is different. Public policy is the set of decisions made by governments that determine how schools are funded, what visa categories exist and how they are administered, how businesses are regulated, how civil rights complaints are handled, whether foreign credential recognition is expanded, and how local resources are allocated. Those decisions get made whether or not any particular person follows them, and they affect people who never pay attention to them just as much as they affect people who do.</p>
-                <p>Civic awareness — knowing when a decision that affects you is being made, and having some channel through which your perspective can be registered — is not the same thing as political engagement. A person who has no interest in electoral politics can still benefit from an elected official who knows that Indian Americans in their district are informed voters. A professional who never reads a political blog can still be affected by an administrative rule that makes their field harder to work in. The question this series asks is not whether you should follow politics. It is whether your community has enough civic presence that, when decisions affecting it are being made, someone in the room is aware it exists.</p>
-                <span class="qa-source">↗ Parts I–III, this series</span>
-            </div>
-        </div>
-
-        <div class="qa-item">
-            <div class="qa-question" onclick="toggleQA(this)">
-                What difference can one person, or even one community, realistically make?
-                <span class="qa-chevron">▼</span>
-            </div>
-            <div class="qa-answer">
-                <p>Part I of this series is the most direct answer to this question. Abdul El-Sayed defeated Haley Stevens in Michigan's August 2026 Democratic Senate primary by 15,697 votes. The net El-Sayed advantage across Dearborn, Dearborn Heights, and Hamtramck exceeded the statewide 15,697-vote margin. That does not establish that those cities alone caused the result, but it demonstrates the scale at which geographically concentrated voting patterns can become consequential. The winning margin in that race was about the size of a mid-sized concert venue. Community-scale arithmetic of this kind is not hypothetical.</p>
-                <p>Michigan's presidential margins across recent cycles make the same point through a wider frame. Donald Trump carried Michigan in 2016 by 10,704 votes. Joe Biden carried it in 2020 by 154,188 votes. Donald Trump carried it again in 2024 by 80,103 votes. These are not landslides settled by an irresistible national current; they are close-run outcomes in a state that has swung in both directions within a decade. Part II of this series modeled Michigan's Indian American community at roughly 63,800 eligible voters under a conservative proxy. Under the explicit turnout and preference scenarios modeled in Part II, the resulting net margin can reach the tens of thousands — large enough to exceed Michigan's 10,704-vote presidential margin in 2016 under some scenarios. Scale can matter. The question is whether that scale shows up.</p>
-                <span class="qa-source">↗ Part I — How Stevens Lost Michigan</span>
-                <span class="qa-source" style="margin-left:8px;">↗ Part II — The Indian American Margin</span>
-            </div>
-        </div>
-
-        <div class="qa-item">
-            <div class="qa-question" onclick="toggleQA(this)">
-                Why do primaries matter if I usually vote in November?
-                <span class="qa-chevron">▼</span>
-            </div>
-            <div class="qa-answer">
-                <p>In many races, the primary is the election. In districts that lean heavily toward one party — whether Democratic or Republican — the nominee chosen in the primary typically wins the general election without serious contest. The effective decision about who represents that district is made by a much smaller number of voters, under lower visibility and lower turnout conditions, months before November. This is a structural feature of the American electoral system, not a political argument. It applies in the same way regardless of party.</p>
-                <p>Michigan's 2026 Senate Democratic primary is an illustration rather than an exception. The primary result was the consequential outcome. General-election voting, while important, layers onto a choice that was already narrowed in August. Academic research on voter files has documented that Asian American primary turnout has historically run substantially below general-election turnout — in some studies, roughly 30 percentage points lower under comparable conditions. That gap is an opportunity as much as it is a problem. A community whose general-election engagement is already high but whose primary engagement is low is in a position to gain outsized influence in the decisions that shape the November ballot, without requiring any additional civic behavior beyond earlier attention to the calendar.</p>
-                <span class="qa-source">↗ Part III — What Would It Actually Take?</span>
-                <span class="qa-source" style="margin-left:8px;">↗ Bipartisan Policy Center — voter-file analysis, 2014–2020</span>
-            </div>
-        </div>
+    <!-- EDITORIAL Q&A — loaded dynamically from EditorialQA sheet -->
+    <div id="editorial-qa-container">
+        <p style="font-family:'Helvetica Neue',sans-serif;font-size:14px;color:#999;text-align:center;padding:20px 0;">Loading questions…</p>
     </div>
 
-    <!-- CLUSTER B -->
-    <div class="qa-cluster">
-        <div class="qa-cluster-label">B — We're Doing Fine. What Problem Are We Solving?</div>
-
-        <div class="qa-item">
-            <div class="qa-question" onclick="toggleQA(this)">
-                My family is doing well and Indian Americans have been very successful. What problem are we trying to solve?
-                <span class="qa-chevron">▼</span>
-            </div>
-            <div class="qa-answer">
-                <p>Begin with the success, because it is real. Indian Americans are among the highest-income and most highly educated population groups in the United States, as consistently documented in the American Community Survey. Rates of business ownership, professional employment, and homeownership reflect a community that has navigated American institutions effectively and built durable economic foundations. None of this is in question, and this series does not dispute it.</p>
-                <p>The distinction worth drawing is between economic and professional success on one hand, and civic visibility and policy influence on the other. These are not the same thing and they do not automatically produce each other. A community can be economically successful while being structurally invisible in the institutions that make decisions affecting it: school curriculum, workplace anti-discrimination enforcement, immigration administration, business licensing, local infrastructure investment, and foreign policy toward India and the broader subcontinent. Economic success provides resources and stability. It does not automatically provide relationships, information channels, or representation in the rooms where consequential decisions are made. The question is not whether there is a problem. The question is whether being at the table — or not being at the table — has consequences your family would notice if they materialized.</p>
-                <span class="qa-source">↗ American Community Survey — Median household income by ethnicity</span>
-            </div>
-        </div>
-
-        <div class="qa-item">
-            <div class="qa-question" onclick="toggleQA(this)">
-                Successful communities do fine without political organizing. Haven't Indian Americans proven this?
-                <span class="qa-chevron">▼</span>
-            </div>
-            <div class="qa-answer">
-                <p>Other immigrant communities have asked the same question and reached different conclusions at different points in their history. American history offers many examples of communities developing civic institutions alongside economic integration — including Irish, Italian, and Jewish Americans. The circumstances differed greatly across communities and eras. But the broader lesson is consistent: economic integration and civic organization can develop on separate tracks, and communities that built civic infrastructure during periods of economic growth generally found it easier to protect and extend what they had built. The comparison is not exact, and no one is suggesting Indian Americans face equivalent conditions. But the underlying dynamic is not an ethnic-specific lesson.</p>
-                <p>There are also more proximate examples. H-1B visa policy, immigration processing times, the EB-1 and EB-2 backlogs that affect Indian-origin applicants disproportionately, religious accommodation in public institutions, and the treatment of India in foreign policy and trade negotiations are all areas where decisions are made by policymakers who respond, in part, to organized civic input. Whether those decisions are made with or without awareness of Indian American priorities is partly a function of whether Indian American voices are organized and present. Economic success does not automatically generate that awareness.</p>
-                <span class="qa-source">↗ National Academies of Sciences — The Integration of Immigrants into American Society (2015)</span>
-            </div>
-        </div>
-    </div>
-
-    <!-- CLUSTER C -->
-    <div class="qa-cluster">
-        <div class="qa-cluster-label">C — Why Draw Attention to Ourselves?</div>
-
-        <div class="qa-item">
-            <div class="qa-question" onclick="toggleQA(this)">
-                Why put ourselves in the limelight? Isn't it better to stay under the radar?
-                <span class="qa-chevron">▼</span>
-            </div>
-            <div class="qa-answer">
-                <p>The distinction here is between limelight and civic presence. Limelight means publicity, media coverage, and the kind of visibility that attracts attention regardless of whether it is sought. Civic presence means something more specific: being visible to policymakers, candidates, and public institutions when decisions affecting the community are being made. These do not require each other. A community can have substantial civic influence — organized voter participation, informed advocacy on specific policy questions, regular communication with elected officials — while maintaining almost no public profile at all. Most effective civic engagement operates exactly this way.</p>
-                <p>The stronger concern underneath this question is usually about backlash: the worry that organizing as Indian Americans will make the community more of a target rather than less. The concern is understandable. Civic visibility always involves tradeoffs, and different communities have experienced them differently. But the choice is not simply between being loud and remaining invisible. Much civic influence happens quietly — through voting, relationships with public officials, policy expertise, and participation when specific decisions are being made. The quiet strategy has the appeal of familiarity. Its limitation is that it depends on others getting the decisions right without input, which is a hope rather than a mechanism.</p>
-            </div>
-        </div>
-
-        <div class="qa-item">
-            <div class="qa-question" onclick="toggleQA(this)">
-                Isn't organizing around Indian American identity divisive?
-                <span class="qa-chevron">▼</span>
-            </div>
-            <div class="qa-answer">
-                <p>Civic association is not inherently divisive. Irish American civic organizations, the NAACP, Jewish federations, Arab American political action committees, and dozens of other community-based civic institutions operate within the ordinary fabric of American democratic life. Organizing around a shared community identity to promote civic participation, electoral awareness, and policy literacy is precisely what pluralist democracy makes room for. It is not the same as ethnic hostility, exclusionary politics, or bloc voting in the sense of uniform partisan loyalty.</p>
-                <p>The practical question is whether the content of that organizing is oriented toward civic participation and policy awareness or toward something narrower and more confrontational. This series makes no argument for the latter. The case here is for informed voting, primary awareness, candidate research, and issue literacy — activities that strengthen democratic participation broadly, not activities directed against any other group. A community that is better informed about the policy issues that affect it and more reliably present at the ballot box is contributing to the system, not distorting it. The charge of divisiveness applies most accurately to zero-sum politics. It applies with considerably less force to civic education and participation.</p>
-            </div>
-        </div>
-    </div>
-
-    <!-- CLUSTER D -->
-    <div class="qa-cluster">
-        <div class="qa-cluster-label">D — Where Are We Actually Affected?</div>
-
-        <div class="qa-item">
-            <div class="qa-question" onclick="toggleQA(this)">
-                Where are Indian Americans actually affected by public policy?
-                <span class="qa-chevron">▼</span>
-            </div>
-            <div class="qa-answer">
-                <p>The clearest examples tend to cluster in a few policy arenas. Immigration and visa policy is the most documented. The employment-based green card backlog affects Indian-origin applicants disproportionately; under current per-country limits, the wait time for an EB-2 applicant born in India can run into decades. H-1B visa allocation, processing times, and administrative policy changes — including rules about H-4 spousal work authorization — have direct and measurable effects on Indian American professionals and families. These are not abstract civic concerns. They are decisions made by administrative agencies and shaped by congressional action, and they respond to organized advocacy.</p>
-                <p>Education is a second arena. What is taught in public schools about South Asian history, Hinduism, Sikhism, and other Indic traditions varies by state and district and is subject to curriculum review processes in which organized community participation matters. Business regulation, licensing, and local government investment in commercial corridors affect business owners. Public safety and civil rights enforcement affect everyone in the community. And foreign policy — including trade relationships with India, consular services, and the diplomatic posture toward the subcontinent — is shaped by political calculus that includes awareness of diaspora communities. None of these claims is that Indian Americans are uniquely oppressed. The claim is that these policy areas exist, are active, and respond to organized input.</p>
-                <span class="qa-source">↗ U.S. Department of State — Annual Report of Immigrant Visa Applicants (Visa Bulletin)</span>
-            </div>
-        </div>
-    </div>
-
-    <!-- CLUSTER E -->
-    <div class="qa-cluster">
-        <div class="qa-cluster-label">E — Identity, Integration &amp; Belonging</div>
-
-        <div class="qa-item">
-            <div class="qa-question" onclick="toggleQA(this)">
-                We are Americans now. Why should our Indian identity still matter in civic life?
-                <span class="qa-chevron">▼</span>
-            </div>
-            <div class="qa-answer">
-                <p>American national identity and Indian American community identity do not compete. Every large immigrant community in American history has maintained a form of dual identity — national citizenship combined with cultural and community particularity — and the country has not found this incompatible with integration. The hyphenated American is not an anomaly in American civic life; it is one of its defining characteristics. Irish Americans, Italian Americans, Polish Americans, and Jewish Americans maintained organized community institutions, cultural institutions, and political awareness as ethnic communities for generations while being fully American. The question is not whether Indian Americans can be fully American and still have a community identity that matters. The answer to that question is clearly yes. The question is what that community identity implies, if anything, for civic behavior.</p>
-                <p>Integration does not require erasure. A person who has built a career, raised children, paid taxes, and lived their adult life in the United States is American in every meaningful sense. That same person can also care about what happens to their parents' immigration case, what their child's school teaches about the civilization they come from, and what the country's trade relationship with India looks like. These are not contradictions. They are the ordinary contents of an integrated life in a pluralist society.</p>
-            </div>
-        </div>
-
-        <div class="qa-item">
-            <div class="qa-question" onclick="toggleQA(this)">
-                Does this mean Indian Americans should all vote the same way?
-                <span class="qa-chevron">▼</span>
-            </div>
-            <div class="qa-answer">
-                <p>No, and this series does not argue for it. The scenario analysis in Part II of this series examines what happens when turnout and candidate preference reach various thresholds — but that analysis is a measurement of potential, not a prescription for behavior. The claim is that the community is arithmetically large enough to matter if it is engaged, not that every member of it should vote for the same candidate or party. Indian Americans hold a wide range of political opinions and vote across the full spectrum of American political parties. That diversity is appropriate in a free society, and nothing here contradicts it.</p>
-                <p>What civic engagement does require is not uniform voting but informed engagement: knowing when elections are held, understanding what primaries are and why they matter, having some familiarity with the candidates and the policy questions they will act on, and showing up. A community can be civically engaged and politically diverse at the same time. In fact, a community that is visibly engaged and politically heterogeneous tends to attract more attention from candidates across the spectrum, because no party can take it for granted. That is a more durable civic position than bloc voting, which tends to produce either capture or neglect.</p>
-            </div>
-        </div>
-    </div>
-
-    <!-- CLUSTER F -->
-    <div class="qa-cluster">
-        <div class="qa-cluster-label">F — What Does Participation Actually Mean?</div>
-
-        <div class="qa-item">
-            <div class="qa-question" onclick="toggleQA(this)">
-                Does civic participation mean becoming an activist?
-                <span class="qa-chevron">▼</span>
-            </div>
-            <div class="qa-answer">
-                <p>No. The spectrum of civic participation runs from minimum to intensive, and most of what matters is near the minimum end. At the lowest level of engagement: knowing when elections are held, including primaries; being registered to vote; and voting. This requires a few hours per election cycle and no public profile, no organizational affiliation, and no political identity beyond "registered voter." A community that simply shows up at this level — registered, present, directionally informed — already has more influence than a community that does not.</p>
-                <p>Beyond that baseline, civic participation might include reading a candidate's position on one issue that matters to you before deciding how to vote; attending a single local government meeting when a decision affecting your neighborhood is being made; or contacting an elected official's office once when a policy affects you or someone in your family. These are not acts of activism. They are the normal mechanics of living in a representative democracy. They require no particular political passion and no organizational membership. They are, in the most literal sense, what the system is designed for. The reason this series exists is that those mechanics are less available to communities that are not aware of when and where they apply.</p>
-            </div>
-        </div>
-
-        <div class="qa-item">
-            <div class="qa-question" onclick="toggleQA(this)">
-                What can I realistically do if I only have a few hours?
-                <span class="qa-chevron">▼</span>
-            </div>
-            <div class="qa-answer">
-                <p>The most high-leverage use of a small amount of time is primary attention. Confirm that you are registered to vote in Michigan. Find your county clerk's website and note the next primary date. If a federal or state race is on that ballot, spend 20 minutes on the candidates' websites — not cable news analysis, but the candidates' own stated positions on the two or three issues most relevant to your life. Vote in the primary. That sequence takes perhaps two to three hours spread across a few months. Because primary electorates are often smaller than general-election electorates, participation at that stage can carry disproportionate weight in determining which choices reach the November ballot.</p>
-                <p>If you want to do more, share useful civic information — primary dates, registration deadlines, candidate forums — within your existing network. Not as activism, but as civic information, the same way you would forward a useful article or note a community event. If you are professionally positioned to contribute technical skills — data, communications, design, legal, finance — to organizations doing civic education work, that expertise is often more valuable than a donation. But the baseline remains: register, be aware of primaries, vote in them. That alone, at community scale, is the mechanism the first three articles in this series documented.</p>
-            </div>
-        </div>
-    </div>
-
-    <hr>
-
-    <!-- ASK A QUESTION BOX -->
+        <!-- ASK A QUESTION BOX -->
     <div class="ask-box" id="ask-form-anchor">
         <div class="ask-box-label">Your Question</div>
         <h3>Ask Something This Page Doesn't Answer</h3>
@@ -969,6 +813,15 @@
     function toggleQA(questionEl) {
         var item = questionEl.parentElement;
         item.classList.toggle('open');
+        // Scroll the question into view when closing via bottom button
+        if (!item.classList.contains('open')) {
+            var rect = item.getBoundingClientRect();
+            if (rect.top < 0) {
+                var hdr = document.querySelector('header');
+                var offset = hdr ? hdr.offsetHeight + 8 : 70;
+                window.scrollTo({ top: item.getBoundingClientRect().top + window.pageYOffset - offset, behavior: 'smooth' });
+            }
+        }
     }
 
     // ── Ask a Question ────────────────────────────────────────────
@@ -1008,6 +861,48 @@
     }
 
     // ── Load Dynamic Reader Q&A ───────────────────────────────────
+    // ── Load Editorial Q&A (THE QUESTIONS tab) ──────────────────
+    async function loadEditorialQA() {
+        var container = document.getElementById('editorial-qa-container');
+        if (!container) return;
+        try {
+            var res  = await fetch(ENGAGEMENT_API_URL + '?action=editorial-qa&article=' + encodeURIComponent(ARTICLE_SLUG));
+            if (!res.ok) throw new Error('HTTP ' + res.status);
+            var data = await res.json();
+            var rows = data.questions || [];
+            if (rows.length === 0) {
+                container.innerHTML = '<p class="qa-loading">Questions are loading…</p>';
+                return;
+            }
+            var grouped = {}, catOrder = [];
+            rows.forEach(function(row) {
+                var cat = row.Category || 'General';
+                if (!grouped[cat]) { grouped[cat] = []; catOrder.push(cat); }
+                grouped[cat].push(row);
+            });
+            var html = '';
+            catOrder.forEach(function(cat) {
+                html += '<div class="qa-cluster"><div class="qa-cluster-label">' + escapeHtml(cat) + '</div>';
+                grouped[cat].forEach(function(row) {
+                    html += '<div class="qa-item">' +
+                        '<div class="qa-question" onclick="toggleQA(this)">' +
+                        escapeHtml(row.CanonicalQuestion) +
+                        '<span class="qa-chevron">&#9660;</span></div>' +
+                        '<div class="qa-answer">' +
+                        (row.FullAnswer || '') +
+                        (row.SourcesHTML || '') +
+                        '<div class="qa-close"><button class="qa-close-btn" ' +
+                        'onclick="toggleQA(this.closest(\'.qa-item\').querySelector(\'.qa-question\'))">&#8593; Close</button></div>' +
+                        '</div></div>';
+                });
+                html += '</div>';
+            });
+            container.innerHTML = html;
+        } catch(err) {
+            container.innerHTML = '<p class="qa-loading">Unable to load questions. Please refresh the page.</p>';
+        }
+    }
+
     async function loadReaderQA() {
         var container = document.getElementById('reader-qa-container');
         if (!container) return;
@@ -1199,6 +1094,7 @@
     })();
 
         document.addEventListener('DOMContentLoaded', function() {
+        loadEditorialQA();
         loadEditions();
         loadReaderQA();
     });
