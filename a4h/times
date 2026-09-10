@@ -1,0 +1,64 @@
+# A4H Times
+## Permanent URL: anandsinhausa.com/a4h/times
+
+---
+
+### How this works
+One permanent directory. One file. Replaced every month.
+The URL never changes. The content does.
+
+---
+
+### First-time setup (do this once)
+
+**Step 1 — Create the directory**
+In your hosting file manager or via FTP/SFTP, navigate to `/a4h/` and create a folder named `times`.
+
+Full path on server:
+```
+/a4h/times/
+```
+
+**Step 2 — Rename your file**
+Rename `times-issue-00.html` → `index.html`
+
+**Step 3 — Upload**
+Upload `index.html` into `/a4h/times/`
+
+Final path on server:
+```
+/a4h/times/index.html
+```
+
+**Step 4 — Verify**
+```
+https://anandsinhausa.com/a4h/times
+```
+
+---
+
+### Every month (Issue 01, 02, 03 ...)
+
+**Step 1 — Archive the current issue (optional but recommended)**
+Before overwriting, save a copy of the current `index.html` with the issue number:
+```
+/a4h/times/archive/issue-00.html
+/a4h/times/archive/issue-01.html
+```
+This preserves past editions at their own URLs without affecting the main page.
+
+**Step 2 — Rename the new file**
+Rename the new month's file → `index.html`
+
+**Step 3 — Overwrite**
+Upload the new `index.html` into `/a4h/times/`, replacing the previous one.
+
+The URL `anandsinhausa.com/a4h/times` now shows the new issue automatically.
+
+---
+
+### Notes
+- No build step. No dependencies. Each index.html is fully self-contained.
+- All images are embedded — no separate image folder needed.
+- Google Fonts loads from CDN; page still renders if offline.
+- If the URL shows `/index.html` instead of resolving cleanly, confirm your host has `DirectoryIndex index.html` set (most do by default).
