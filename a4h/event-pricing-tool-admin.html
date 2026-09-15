@@ -630,9 +630,6 @@ input[type=number].no-spin{-moz-appearance:textfield}
 /* ═══════════════════════════════════════════════════════
    END DESKTOP SKIN
    ═══════════════════════════════════════════════════════ */
-
-/* ── PUBLIC VERSION — admin controls hidden ───────────── */
-.admin-only{display:none !important}
 </style>
 </head>
 <body>
@@ -659,11 +656,11 @@ input[type=number].no-spin{-moz-appearance:textfield}
     <button class="ptab"        onclick="showPage('Matrix',this)">🧮 Price Matrix</button>
   </div>
   <div class="hdr-right">
-    <button class="ev-save-btn admin-only" id="evSaveBtn" onclick="saveEvent()" style="display:none" aria-label="Save event">
+    <button class="ev-save-btn" id="evSaveBtn" onclick="saveEvent()" style="display:none" aria-label="Save event">
       Save
     </button>
     <div class="gs-pill"><span class="gs-dot"></span>Sheets</div>
-    <button class="btn btn-outline admin-only" onclick="openModal()">Configure</button>
+    <button class="btn btn-outline" onclick="openModal()">Configure</button>
     <button class="btn btn-accent"  onclick="syncToSheets()">↑ Sync</button>
   </div>
 </header>
@@ -674,9 +671,9 @@ input[type=number].no-spin{-moz-appearance:textfield}
     <div class="ev-hd">
       <div>
         <div class="ev-title">Events</div>
-        <div class="ev-sub">View saved pricing plans.</div>
+        <div class="ev-sub">Create a new event or continue working on a saved pricing plan.</div>
       </div>
-      <button class="ev-new-btn admin-only" onclick="newEvent()" aria-label="Create a new event">
+      <button class="ev-new-btn" onclick="newEvent()" aria-label="Create a new event">
         + New Event
       </button>
     </div>
@@ -701,9 +698,6 @@ input[type=number].no-spin{-moz-appearance:textfield}
     <div class="cb-item"><span class="cb-lbl">Margin</span>&nbsp;<span class="cb-val" id="cbMargin">—</span></div>
   </div>
 
-  <div style="background:var(--surface2);border:1.5px solid var(--border);border-radius:var(--radius-sm);padding:8px 14px;margin-bottom:12px;font-size:12px;color:var(--ink-soft);display:flex;align-items:center;gap:8px">
-    <span>👁</span><span>Read-only view — contact the event administrator to make changes.</span>
-  </div>
   <div class="sot-banner" style="position:relative">
     <span>🔒</span>
     <span><strong>Setup is the single source of truth.</strong> Category names, costs, multipliers and mix defined here are read-only on Dashboard and Price Matrix.</span>
@@ -1101,7 +1095,7 @@ input[type=number].no-spin{-moz-appearance:textfield}
 </div>
 
 <!-- SYNC CONFIRM MODAL -->
-<div class="overlay admin-only" id="syncModal">
+<div class="overlay" id="syncModal">
   <div class="modal">
     <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
       <h3 style="margin-bottom:0">Sync to Sheets</h3>
@@ -1118,7 +1112,7 @@ input[type=number].no-spin{-moz-appearance:textfield}
 </div>
 
 <!-- CONFIG MODAL -->
-<div class="overlay admin-only" id="modal">
+<div class="overlay" id="modal">
   <div class="modal">
     <h3>Google Sheets Configuration</h3>
     <p>Connect to sync data to your Sheet.</p>
@@ -2964,11 +2958,6 @@ function backToEvents() {
 
 
 window.onload=init;
-// Public version overrides
-function newEvent(){showToast("Contact the administrator to create events.");}
-function saveEvent(){}
-function openModal(){}
-function syncToSheets(){}
 
 
 
