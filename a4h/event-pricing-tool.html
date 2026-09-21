@@ -1,4 +1,4 @@
-<!-- EPT v16.9 | 2026-09-20 | 49092af1 -->
+<!-- EPT v16.9 | 2026-09-20 | d9fc76fd -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -960,7 +960,8 @@ body.admin-mode .admin-banner{display:block}
       <div id="heroOrgName" style="font-size:16px;font-weight:800;color:var(--ink);letter-spacing:-.3px;line-height:1.2">Americans4Hindus</div>
       <div style="font-size:10px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-top:2px">Event Pricing Tool</div>
     </div>
-    <span id="statusDot" title="Sync status" style="width:9px;height:9px;border-radius:50%;background:#D1D5DB;display:inline-block;flex-shrink:0;margin-left:auto"></span>
+    <div id="bandTabNote" style="display:none;margin-left:auto;text-align:right;font-size:11px;color:var(--ink-soft);line-height:1.4;max-width:340px"></div>
+    <span id="statusDot" title="Sync status" style="width:9px;height:9px;border-radius:50%;background:#D1D5DB;display:inline-block;flex-shrink:0;margin-left:8px"></span>
   </div>
 </div>
 <div class="admin-banner" id="adminBanner">&#9881; Admin Mode — Configure, Sync and maintenance controls enabled</div>
@@ -1428,7 +1429,6 @@ body.admin-mode .admin-banner{display:block}
   </div>
 
 </div>
-</div>
 
 <!-- SYNC CONFIRM MODAL -->
 <div class="overlay admin-only" id="syncModal">
@@ -1542,6 +1542,12 @@ function qs(parent,sel){return parent.querySelector(sel);}
 function showPage(id,btn){
   var wb=document.getElementById('workspaceBand');if(wb)wb.style.display='block';
   window.scrollTo(0,0);
+  var _btn=document.getElementById('bandTabNote');
+  if(_btn){
+    if(id==='Dash'){_btn.style.display='block';_btn.innerHTML='<strong style="color:var(--ink)">What-If only</strong> — sliders do not change your Setup.<br>Go to Setup tab to update your plan.';}
+    else if(id==='Matrix'){_btn.style.display='block';_btn.innerHTML='<strong style="color:var(--ink)">Price entry sheet</strong> — enter these prices in GiveButter or Zeffy.';}
+    else{_btn.style.display='none';}
+  }
   document.querySelectorAll('.page').forEach(function(p){
     p.classList.remove('active');
     p.style.display='none';
@@ -3234,6 +3240,7 @@ function openEvent(eventId,eventDate){
   _pendingOpenEventId=eventId;_pendingOpenEventDate=eventDate||'';
   _accessAttempts=0;
   var m=document.getElementById('accessModal');
+  if(!_acOriginalHTML){var _om=document.querySelector('#accessModal .modal');if(_om)_acOriginalHTML=_om.innerHTML;}
   _acReset();
   if(m){m.style.display='flex';m.classList.add('open');}
   setTimeout(function(){_acFocus();},200);
@@ -3244,6 +3251,14 @@ function _acSetActive(){for(var i=0;i<4;i++){var b=document.getElementById('acD'
 function _acFocus(){var inp=document.getElementById('accessCodeInput');if(inp)inp.focus();}
 function _acValue(){return _acBuf;}
 function _acSync(){var inp=document.getElementById('accessCodeInput');if(!inp)return;var v=inp.value.replace(/[^0-9]/g,'').slice(0,4);inp.value=v;_acBuf=v;for(var i=0;i<4;i++){var b=document.getElementById('acD'+i);if(b)b.textContent=v[i]||'';}_acSetActive();if(v.length===4)submitAccessCode();}
+var _acOriginalHTML='';
+function _acRetry(){
+  _accessAttempts=0;
+  var _modal=document.querySelector('#accessModal .modal');
+  if(_modal&&_acOriginalHTML){_modal.innerHTML=_acOriginalHTML;}
+  _acBuf='';
+  setTimeout(function(){_acFocus();},100);
+}
 function _acShake(){var d=document.getElementById('acDigits');if(d){d.classList.remove('shake');void d.offsetWidth;d.classList.add('shake');setTimeout(function(){d.classList.remove('shake');},400);}}
 function closeAccessModal(){
   var m=document.getElementById('accessModal');
@@ -3273,8 +3288,9 @@ function submitAccessCode(){
     if(_accessAttempts>=3){
       // Lock out after 3 wrong attempts
       _acReset();
-      var _p=document.getElementById('accessModalTitle');if(_p)_p.innerHTML='Contact your admin<br>for the access code';
-      setTimeout(function(){closeAccessModal();},2000);
+      var _modal=document.querySelector('#accessModal .modal');
+      if(_modal){_modal.innerHTML='<h3 style="font-size:16px;margin:0 0 12px">Incorrect code entered 3 times</h3><p style="font-size:13px;color:var(--ink-soft);margin:0 0 16px;line-height:1.5">Please contact the tool administrator for the correct access code.<br><br>If you have the correct code and may have mis-typed, you can try again.</p><div style="display:flex;gap:8px;justify-content:flex-end"><button class="btn btn-outline" onclick="closeAccessModal()">Close</button><button class="btn btn-accent" onclick="_acRetry()">Try Again</button></div>';}
+      // Modal stays open showing the message with Close/Try Again buttons
     } else {
       if(inp){
         _acShake();
